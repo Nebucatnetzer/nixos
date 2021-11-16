@@ -4,6 +4,7 @@
     ./common.nix
   ];
   home.packages = with pkgs; [
+    nextcloud-client
   ];
   programs.git = {
     enable = true;

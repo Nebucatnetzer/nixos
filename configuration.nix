@@ -73,6 +73,11 @@
   # $ nix search wget
   # allow non-free packages
   nixpkgs.config.allowUnfree = true;
+
+  # enable steam
+  programs.steam.enable = true;
+  hardware.steam-hardware.enable = true;
+
   environment.variables = {
     EDITOR = "vim";
   };

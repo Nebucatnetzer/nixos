@@ -23,6 +23,7 @@
     tmux
     mosh
     ansible
+    ansible-lint
   ];
 
   programs.vim = {

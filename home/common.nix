@@ -20,10 +20,10 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    tmux
-    mosh
     ansible
     ansible-lint
+    mosh
+    tmux
   ];
 
   programs.vim = {

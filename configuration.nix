@@ -92,6 +92,7 @@
     htop
     arc-theme
     git
+    mpv-unwrapped
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

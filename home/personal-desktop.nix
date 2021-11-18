@@ -8,6 +8,7 @@
     nextcloud-client
     signal-desktop
     tdesktop
+    youtube-dl
   ];
   programs.git = {
     enable = true;

@@ -3,11 +3,13 @@
   imports = [
     ./common.nix
   ];
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     keeweb
     nextcloud-client
     signal-desktop
     tdesktop
+    vscode
     youtube-dl
   ];
   programs.git = {

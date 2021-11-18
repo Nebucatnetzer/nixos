@@ -82,17 +82,18 @@
     EDITOR = "vim";
   };
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
+    arc-theme
     firefox
-    terminator
+    git
+    highlight
+    htop
+    mpv-unwrapped
     nitrogen
     ranger
     rofi
-    htop
-    arc-theme
-    git
-    mpv-unwrapped
+    terminator
+    vim
+    wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -46,7 +46,7 @@
   services.xserver.windowManager = {
     qtile.enable = true;
   };
-  
+  services.autorandr.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "us";

@@ -7,6 +7,7 @@
     nextcloud-client
     signal-desktop
     tdesktop
+    keeweb
   ];
   programs.git = {
     enable = true;

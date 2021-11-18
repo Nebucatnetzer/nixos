@@ -22,5 +22,5 @@
     };
   };
   # raw config files
-  home.file.".bashrc".source = ./personal_config/bashrc;
+  # home.file.".bashrc".source = ./personal_config/bashrc;
 }

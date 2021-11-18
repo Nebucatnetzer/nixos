@@ -80,14 +80,16 @@
 
   environment.variables = {
     EDITOR = "vim";
+    HIGHLIGHT_STYLE = "solarized-light";
   };
   environment.systemPackages = with pkgs; [
     arc-theme
+    celluloid
     firefox
     git
     highlight
     htop
-    mpv-unwrapped
+    ncdu
     nitrogen
     ranger
     rofi

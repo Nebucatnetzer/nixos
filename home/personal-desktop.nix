@@ -5,6 +5,8 @@
   ];
   home.packages = with pkgs; [
     nextcloud-client
+    signal-desktop
+    tdesktop
   ];
   programs.git = {
     enable = true;

@@ -26,5 +26,5 @@
     };
   };
   # raw config files
-  home.file.".config/qtile/config.py".source = ./desktop/qtile/config.py;
+  home.file.".config/qtile".source = ./desktop/qtile;
 }

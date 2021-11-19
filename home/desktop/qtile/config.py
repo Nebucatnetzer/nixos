@@ -10,8 +10,8 @@ terminal = guess_terminal()
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down()),
-    Key([mod], "j", lazy.layout.up()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
 
@@ -68,17 +68,17 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Bsp(),
+    layout.Columns(),
+    layout.TreeTab(),
     layout.Max(),
-    layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
-    # layout.Columns(),
+    # layout.Stack(num_stacks=2),
+    # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
-    # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]

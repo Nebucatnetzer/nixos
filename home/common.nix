@@ -23,6 +23,7 @@
     ansible
     ansible-lint
     mosh
+    stow
     tmux
   ];
 

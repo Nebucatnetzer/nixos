@@ -46,8 +46,17 @@ keys = [
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
+
+    Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+    Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
+    Key([mod], "F3", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    Key([mod], "F5", lazy.spawn("toggle_touchpad.sh")),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play")),
+    Key([], "XF86AudioPause", lazy.spawn("playerctl pause")),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
+    Key([], "XF86KbdBrightnessUp", lazy.spawn("brightness_up")),
+    Key([], "XF86KbdBrightnessDown", lazy.spawn("brightness_down")),
 ]
 
 groups = [Group(i) for i in "1234567890"]

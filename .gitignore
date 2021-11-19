@@ -81,3 +81,5 @@ tags
 # Persistent undo
 [._]*.un~
 
+# ignore pycache
+__pycache__/

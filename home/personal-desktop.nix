@@ -26,5 +26,5 @@
     };
   };
   # raw config files
-  # home.file.".bashrc".source = ./personal_config/bashrc;
+  home.file.".config/qtile/config.py".source = ./desktop/qtile/config.py;
 }

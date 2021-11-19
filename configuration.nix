@@ -82,6 +82,9 @@
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
 
+  environment.shellAliases = {
+    nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+  };
   environment.variables = {
     EDITOR = "vim";
     HIGHLIGHT_STYLE = "solarized-light";

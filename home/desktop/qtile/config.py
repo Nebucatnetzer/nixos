@@ -21,6 +21,8 @@ keys = [
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
+    Key([mod], "d", lazy.spawn("rofi -show drun")),
+
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next(),
         desc="Switch window focus to other pane(s) of stack"),
@@ -41,6 +43,7 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
+    Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
@@ -65,10 +68,10 @@ for i in groups:
     ])
 
 layouts = [
+    layout.Bsp(),
     layout.Max(),
     layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
-    layout.Bsp(),
     # layout.Columns(),
     # layout.Matrix(),
     # layout.MonadTall(),

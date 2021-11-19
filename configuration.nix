@@ -56,6 +56,7 @@
   services.printing.enable = true;
 
   # Enable keyring
+  security.pam.services.lightdm.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
 
   # Enable sound.

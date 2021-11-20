@@ -88,6 +88,8 @@
   environment.variables = {
     EDITOR = "vim";
     HIGHLIGHT_STYLE = "solarized-light";
+    ZWEILI_HARDWARE = "asus";
+    ZWEILI_ENVIRONMENT = "desktop";
   };
   environment.systemPackages = with pkgs; [
     arc-theme

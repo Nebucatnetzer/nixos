@@ -3,6 +3,6 @@
   imports = [
     ./personal-desktop.nix
   ];
-  programs.bash.enable = true;
+  #programs.bash.enable = true;
   targets.genericLinux.enable = true;
 }

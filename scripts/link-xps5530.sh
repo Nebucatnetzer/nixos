@@ -1,4 +1,4 @@
-rm /mnt/etc/nixos/configuration.nix
-rm /mnt/etc/nixos/hardware-configuration.nix
+rm /etc/nixos/configuration.nix
+rm /etc/nixos/hardware-configuration.nix
 
-ln -s $(pwd)/hardware/xps5530/configuration.nix /mnt/etc/nixos/configuration.nix
+ln -s $(pwd)/hardware/xps5530/configuration.nix /etc/nixos/configuration.nix

@@ -1,5 +1,5 @@
-rm /mnt/etc/nixos/configuration.nix
-rm /mnt/etc/nixos/hardware-configuration.nix
+rm -f /etc/nixos/configuration.nix
+rm -f /etc/nixos/hardware-configuration.nix
 
-ln -s $(pwd)/hardware/asus/configuration.nix /mnt/etc/nixos/configuration.nix
+ln -s $(pwd)/hardware/asus/configuration.nix /etc/nixos/configuration.nix
 

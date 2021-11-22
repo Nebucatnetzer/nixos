@@ -93,7 +93,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
+    font='Source Code Pro',
     fontsize=12,
     padding=3,
 )

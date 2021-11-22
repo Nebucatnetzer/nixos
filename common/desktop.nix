@@ -14,16 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "staubfinger"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
 
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  # networking.useDHCP = true;
-  networking.interfaces.enp0s20u1.useDHCP = true;
   networking.networkmanager.enable = true;
 
   # Configure network proxy if necessary
@@ -73,7 +67,7 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-    ]; # Enable ‘sudo’ for the user.
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -108,16 +102,6 @@
     vim
     wget
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

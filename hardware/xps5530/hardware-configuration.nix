@@ -12,6 +12,10 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "mem_sleep_default=deep"
+  ]
+
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";

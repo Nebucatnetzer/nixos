@@ -106,6 +106,7 @@
     rofi
     source-code-pro
     terminator
+    tree
     vim
     wget
   ];

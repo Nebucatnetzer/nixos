@@ -74,10 +74,10 @@
     ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   # allow non-free packages
   nixpkgs.config.allowUnfree = true;
+
+  # enable garbage collection
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -88,14 +88,23 @@
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
 
+  # enable lockscreen
+
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "i3lock -c 000000";
+  };
+
   environment.shellAliases = {
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
   };
+
   environment.variables = {
     EDITOR = "vim";
     HIGHLIGHT_STYLE = "solarized-light";
     ZWEILI_ENVIRONMENT = "desktop";
   };
+
   environment.systemPackages = with pkgs; [
     arc-theme
     celluloid
@@ -103,6 +112,7 @@
     git
     highlight
     htop
+    i3lock
     lxappearance
     ncdu
     nitrogen

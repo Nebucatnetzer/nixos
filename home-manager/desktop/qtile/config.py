@@ -79,10 +79,15 @@ for i in groups:
             desc="move focused window to group {}".format(i.name)),
     ])
 
+border = dict(
+    border_width=1,
+    border_focus='#000000'
+)
+
 layouts = [
-    layout.Columns(),
-    layout.TreeTab(),
-    layout.Max(),
+    layout.Columns(**border),
+    layout.TreeTab(**border),
+    layout.Max(**border),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),

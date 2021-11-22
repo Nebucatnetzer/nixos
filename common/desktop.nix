@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./home-manager.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

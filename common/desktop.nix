@@ -44,6 +44,11 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "compose:ralt";
 
+  fonts.fonts = with pkgs; [
+    source-code-pro
+  ];
+
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

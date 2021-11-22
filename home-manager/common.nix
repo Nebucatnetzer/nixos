@@ -37,7 +37,5 @@
       relativenumber = true;
     };
   };
-  
-  # raw files
-  home.file.".config/git/hooks".source = ./common/git/hooks;
+
 }

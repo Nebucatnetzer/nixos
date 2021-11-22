@@ -1,7 +1,8 @@
 {config, pkgs, ...}:
-{ 
+{
   imports = [
     ./common.nix
+    ./common/git/git.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
@@ -12,19 +13,8 @@
     vscode
     youtube-dl
   ];
-  programs.git = {
-    enable = true;
-    userName = "Andreas Zweili";
-    userEmail = "andreas@zweili.ch";
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
-        syntax-theme = "GitHub";
-      };
-    };
-  };
+  programs.git.userEmail = "andreas@zweili.ch";
+
   # raw config files
   home.file.".config/qtile".source = ./desktop/qtile;
 }

@@ -1,21 +1,11 @@
 {config, pkgs, ...}:
-{ 
+{
   imports = [
     ./common.nix
+    ./common/git/git.nix
   ];
-  programs.git = {
-    enable = true;
-    userName = "Andreas Zweili";
-    userEmail = "zweili@contria.com";
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
-        syntax-theme = "GitHub";
-      };
-    };
-  };
+  programs.git.userEmail = "zweili@contria.com";
+
   home.shellAliases = {
      management-server = "mosh --ssh=\"ssh -p 22\" localadmin@10.40.0.53 tmux a";
   };

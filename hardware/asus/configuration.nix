@@ -12,7 +12,6 @@
     ];
 
   networking.hostName = "staubfinger"; # Define your hostname.
-  networking.interfaces.enp0s20u1.useDHCP = true;
 
   environment.variables = {
     ZWEILI_HARDWARE = "asus";

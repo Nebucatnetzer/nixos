@@ -12,7 +12,6 @@
     ];
 
   networking.hostName = "gwyn"; # Define your hostname.
-  networking.interfaces.enp0s3.useDHCP = true;
 
   environment.variables = {
     ZWEILI_HARDWARE = "xps5530";

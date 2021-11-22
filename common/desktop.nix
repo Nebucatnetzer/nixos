@@ -100,6 +100,7 @@
     lxappearance
     ncdu
     nitrogen
+    pavucontrol
     ranger
     rofi
     source-code-pro

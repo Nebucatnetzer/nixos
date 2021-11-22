@@ -21,8 +21,6 @@ keys = [
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
-    Key([mod], "d", lazy.spawn("rofi -show drun")),
-
     # Switch window focus to other pane(s) of stack
     Key([mod], "space", lazy.layout.next(),
         desc="Switch window focus to other pane(s) of stack"),
@@ -38,6 +36,12 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+
+    Key([mod], "c", lazy.spawn("i3lock -c 000000")),
+    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "p", lazy.spawn("autorandr -c")),
+    Key([mod], "r", lazy.spawncmd()),
+    Key([mod], "w", lazy.spawn("firefox")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),

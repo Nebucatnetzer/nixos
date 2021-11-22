@@ -18,4 +18,6 @@
   # raw config files
   home.file.".config/qtile".source = ./desktop/qtile;
   home.file.".xprofile".source = ./desktop/xprofile;
+  home.file.".config/terminator".source = ./desktop/terminator;
+
 }

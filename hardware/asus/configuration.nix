@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
     ];
 
+  networking.hostName = "staubfinger"; # Define your hostname.
   networking.interfaces.enp0s20u1.useDHCP = true;
 
   environment.variables = {

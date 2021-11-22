@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
     ];
 
+  networking.hostName = "gwyn"; # Define your hostname.
   networking.interfaces.enp0s3.useDHCP = true;
 
   environment.variables = {

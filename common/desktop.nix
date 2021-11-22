@@ -96,6 +96,7 @@
     nitrogen
     ranger
     rofi
+    source-code-pro
     terminator
     vim
     wget

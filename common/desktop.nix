@@ -97,6 +97,7 @@
     git
     highlight
     htop
+    lxappearance
     ncdu
     nitrogen
     ranger

@@ -97,6 +97,7 @@
 
   environment.shellAliases = {
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+    rebuild = "sudo nixos-rebuild switch";
   };
 
   environment.variables = {
@@ -120,7 +121,6 @@
     ranger
     rofi
     source-code-pro
-    source-highlight
     terminator
     tree
     vim

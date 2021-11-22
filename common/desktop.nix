@@ -101,6 +101,11 @@
     wget
   ];
 
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 

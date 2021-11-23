@@ -65,6 +65,8 @@
     inkscape
     libreoffice-fresh
     lxappearance
+    networkmanagerapplet
+    networkmanager-openvpn
     nitrogen
     pavucontrol
     rofi

@@ -113,10 +113,12 @@
     arc-theme
     celluloid
     firefox
+    gimp
     git
     highlight
     htop
     i3lock
+    inkscape
     libreoffice-fresh
     lxappearance
     ncdu

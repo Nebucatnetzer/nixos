@@ -59,6 +59,7 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+  nix.autoOptimiseStore = true;
 
   environment.shellAliases = {
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

@@ -59,6 +59,7 @@
   environment.systemPackages = with pkgs; [
     arc-theme
     celluloid
+    evince
     firefox
     gimp
     i3lock

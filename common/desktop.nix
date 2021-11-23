@@ -114,6 +114,7 @@
     highlight
     htop
     i3lock
+    libreoffice-fresh
     lxappearance
     ncdu
     nitrogen

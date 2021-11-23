@@ -11,8 +11,10 @@
       ./hardware-configuration.nix
     ];
 
-  networking.hostName = "nixos-vm"; # Define your hostname.
-  networking.interfaces.enp0s3.useDHCP = true;
+  networking = {
+    hostName = "nixos-vm";
+    interfaces.enp0s3.useDHCP = true;
+  };
 
   environment.variables = {
     ZWEILI_HARDWARE = "vm";

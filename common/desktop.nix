@@ -11,17 +11,30 @@
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
 
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 22 ];
+    # firewall.allowedUDPPorts = [ ... ];
+  };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+  };
+
+  services = {
+    openssh.enable = true;
+    autorandr.enable = true;
+    printing.enable = true;
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -31,27 +44,20 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.defaultSession = "none+qtile";
-  services.xserver.windowManager = {
-    qtile.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.lightdm.enable = true;
+    displayManager.defaultSession = "none+qtile";
+    windowManager.qtile.enable = true;
+    layout = "us";
+    xkbOptions = "compose:ralt";
+    libinput.enable = true;
   };
-  services.autorandr.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "compose:ralt";
 
   fonts.fonts = with pkgs; [
     source-code-pro
   ];
 
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable keyring
   security.pam.services.lightdm.enableGnomeKeyring = true;
@@ -60,9 +66,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.andreas = {
@@ -127,20 +130,6 @@
     vim
     wget
   ];
-
-  hardware = {
-    cpu.intel.updateMicrocode = true;
-    enableRedistributableFirmware = true;
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

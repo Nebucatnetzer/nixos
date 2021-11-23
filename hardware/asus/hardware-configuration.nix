@@ -16,7 +16,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
-    "video.use_native_backlight=1"
     "acpi_osi="
   ];
 

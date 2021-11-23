@@ -119,6 +119,7 @@
     htop
     i3lock
     inkscape
+    killall
     libreoffice-fresh
     lxappearance
     ncdu

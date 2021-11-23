@@ -114,6 +114,7 @@
     highlight
     htop
     i3lock
+    killall
     lxappearance
     ncdu
     nitrogen

@@ -13,6 +13,8 @@
 
   networking.hostName = "staubfinger"; # Define your hostname.
 
+  virtualisation.virtualbox.host.enable = true;
+
   environment.variables = {
     ZWEILI_HARDWARE = "asus";
   };

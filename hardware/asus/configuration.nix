@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ../../common/desktop.nix
+      ../bluetooth.nix
       ./hardware-configuration.nix
     ];
 

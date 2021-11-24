@@ -59,6 +59,7 @@
 
   environment.systemPackages = with pkgs; [
     arc-theme
+    calibre
     celluloid
     digikam
     evince

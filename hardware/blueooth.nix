@@ -19,5 +19,19 @@
     extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
+
+  systemd.user.services.blueman-applet = {
+    description = "Blueman Applet";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${blueman}/bin/blueman-applet";
+      ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
+      KillMode = "process";
+      Restart = "on-failure";
+    };
+  };
+
 }
 

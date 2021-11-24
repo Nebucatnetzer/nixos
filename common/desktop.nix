@@ -60,6 +60,7 @@
   environment.systemPackages = with pkgs; [
     arc-theme
     celluloid
+    digikam
     evince
     firefox
     gimp
@@ -71,8 +72,10 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
+    rapid-photo-downloader
     remmina
     rofi
+    shotwell
     source-code-pro
     terminator
   ];

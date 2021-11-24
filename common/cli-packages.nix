@@ -11,6 +11,7 @@
     htop
     killall
     ncdu
+    nixpkgs-fmt
     ranger
     tree
     vim

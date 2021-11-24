@@ -46,11 +46,12 @@
   hardware.steam-hardware.enable = true;
 
   # enable lockscreen
-
   programs.xss-lock = {
     enable = true;
     lockerCommand = "i3lock -c 000000";
   };
+
+  programs.droidcam.enable = true;
 
   environment.variables = {
     ZWEILI_ENVIRONMENT = "desktop";
@@ -70,6 +71,7 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
+    remmina
     rofi
     source-code-pro
     terminator

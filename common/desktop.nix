@@ -6,7 +6,7 @@
 
 {
   imports = [
-      ./common.nix
+    ./common.nix
   ];
 
   networking = {
@@ -46,11 +46,12 @@
   hardware.steam-hardware.enable = true;
 
   # enable lockscreen
-
   programs.xss-lock = {
     enable = true;
     lockerCommand = "i3lock -c 000000";
   };
+
+  programs.droidcam.enable = true;
 
   environment.variables = {
     ZWEILI_ENVIRONMENT = "desktop";
@@ -58,7 +59,9 @@
 
   environment.systemPackages = with pkgs; [
     arc-theme
+    calibre
     celluloid
+    digikam
     evince
     firefox
     gimp
@@ -70,7 +73,10 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
+    rapid-photo-downloader
+    remmina
     rofi
+    shotwell
     source-code-pro
     terminator
   ];

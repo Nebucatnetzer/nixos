@@ -7,7 +7,6 @@
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     keeweb
-    nextcloud-client
     signal-desktop
     tdesktop
     vscode
@@ -20,6 +19,10 @@
   home.file.".xprofile".source = ./desktop/xprofile;
   home.file.".config/terminator".source = ./desktop/terminator;
 
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
   services.network-manager-applet.enable = true;
 

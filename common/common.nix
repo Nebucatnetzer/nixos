@@ -64,7 +64,7 @@
 
   environment.shellAliases = {
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-    rebuild = "sudo nixos-rebuild switch";
+    rebuild = "sudo nixos-rebuild -j auto switch";
   };
 
   environment.variables = {

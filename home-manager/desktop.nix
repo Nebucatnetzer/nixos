@@ -20,4 +20,7 @@
   home.file.".xprofile".source = ./desktop/xprofile;
   home.file.".config/terminator".source = ./desktop/terminator;
 
+
+  services.network-manager-applet.enable = true;
+
 }

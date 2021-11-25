@@ -70,7 +70,6 @@
     libreoffice-fresh
     lxappearance
     meld
-    networkmanagerapplet
     networkmanager-openvpn
     nitrogen
     pavucontrol

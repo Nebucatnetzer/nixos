@@ -7,6 +7,9 @@
 {
   imports = [
     ./common.nix
+    ../home-manager/desktop/services/keeweb.nix
+    ../home-manager/desktop/services/telegram-desktop.nix
+    ../home-manager/desktop/services/signal-desktop.nix
   ];
 
   networking = {

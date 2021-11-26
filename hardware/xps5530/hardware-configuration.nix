@@ -10,22 +10,23 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "mem_sleep_default=deep"
-  ]
+  ];
 
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
   fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
+    {
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
+    {
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/swap"; }
-    ];
+    [{ device = "/dev/disk/by-label/swap"; }];
 
 }
 

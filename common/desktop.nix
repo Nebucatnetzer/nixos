@@ -20,6 +20,9 @@
   services = {
     autorandr.enable = true;
     printing.enable = true;
+    redshift = {
+      enable = true;
+    };
   };
 
   # Enable the X11 windowing system.

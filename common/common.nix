@@ -16,6 +16,12 @@
     efi.canTouchEfiVariables = true;
   };
 
+  # The rough location
+  location = {
+    latitude = 46.948;
+    longitude = 7.447;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
 

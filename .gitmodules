@@ -1,3 +1,6 @@
 [submodule "secrets"]
 	path = secrets
 	url = git@git.2li.ch:Nebucatnetzer/secrets.git
+[submodule "hardware/nixos-hardware"]
+	path = hardware/nixos-hardware
+	url = https://github.com/NixOS/nixos-hardware.git

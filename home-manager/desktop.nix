@@ -15,8 +15,10 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile".source = ./desktop/qtile;
-  home.file.".config/terminator".source = ./desktop/terminator;
+  home.file.".config/qtile".source = ./desktop/configs/qtile;
+  home.file.".config/terminator".source = ./desktop/configs/terminator;
+  home.file.".config/mpv".source = ./desktop/configs/mpv;
+  home.file.".config/Rapid Photo Downloader".source = ./desktop/configs/rapid_photo_downloader;
 
   services.nextcloud-client = {
     enable = true;

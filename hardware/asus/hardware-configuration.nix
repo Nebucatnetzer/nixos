@@ -4,6 +4,10 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+  imports = [
+    ../nixos-hardware/common/pc/laptop/default.nix
+  ];
+
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"

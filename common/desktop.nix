@@ -24,6 +24,7 @@
     redshift = {
       enable = true;
     };
+    fwupd.enable = true;
   };
 
   # Enable the X11 windowing system.

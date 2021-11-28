@@ -4,6 +4,10 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
+  imports = [
+    ../nixos-hardware/dell/precision/5530/default.nix
+  ];
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "aesni_intel" "cryptd" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];

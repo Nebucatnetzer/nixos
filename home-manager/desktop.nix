@@ -26,6 +26,7 @@
     startInBackground = true;
   };
 
+  xsession.numlock.enable = true;
   services.network-manager-applet.enable = true;
   services.dunst = {
     enable = true;

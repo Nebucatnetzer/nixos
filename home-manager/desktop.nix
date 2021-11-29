@@ -3,6 +3,7 @@
   imports = [
     ./common.nix
     ./common/git/git.nix
+    ./obsidian.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [

@@ -8,7 +8,7 @@
   imports = [
     ./common.nix
     ./docker.nix
-    ./restic
+    ./restic/default.nix
     ../home-manager/desktop/services/keeweb.nix
     ../home-manager/desktop/services/telegram-desktop.nix
     ../home-manager/desktop/services/signal-desktop.nix

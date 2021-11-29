@@ -5,10 +5,10 @@
 
 {
   imports = [
-    ../nixos-hardware/dell/precision/5530
+    ../nixos-hardware/dell/precision/5530/default.nix
   ];
 
-  boot.initrd.availableKernelModules = [ 
+  boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
     "cryptd"

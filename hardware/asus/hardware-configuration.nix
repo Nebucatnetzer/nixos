@@ -5,7 +5,6 @@
 
 {
   imports = [
-    ../nixos-hardware/common/pc/laptop/default.nix
     ../nixos-hardware/common/pc/laptop
     ../nixos-hardware/common/pc/laptop/ssd
   ];

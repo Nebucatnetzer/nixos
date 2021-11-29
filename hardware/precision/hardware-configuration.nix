@@ -23,9 +23,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [
-    "mem_sleep_default=deep"
-  ];
+  boot.kernelParams = [ ];
 
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
   fileSystems."/" =

@@ -31,3 +31,5 @@ mkswap -L swap /dev/MainGroup/swap
 boot_partition="${drive_path}1"
 mkfs.fat -F 32 -n BOOT $boot_partition
 
+# Mount the drive
+mount /dev/MainGroup/root /mnt

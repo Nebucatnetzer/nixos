@@ -16,7 +16,7 @@
   virtualisation.virtualbox.host.enable = true;
 
   environment.variables = {
-    ZWEILI_HARDWARE = "xps5530";
+    ZWEILI_HARDWARE = "precision";
   };
 
 }

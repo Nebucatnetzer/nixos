@@ -5,7 +5,7 @@
 
 {
   imports = [
-    ../nixos-hardware/dell/precision/5530/default.nix
+    ../nixos-hardware/dell/precision/5530
   ];
 
   boot.initrd.availableKernelModules = [ 

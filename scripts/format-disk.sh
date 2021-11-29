@@ -33,3 +33,5 @@ mkfs.fat -F 32 -n BOOT $boot_partition &&
 
 # Mount the drive
 mount /dev/MainGroup/root /mnt &&
+mkdir -p /mnt/boot &&
+mount /dev/disk/by-label/BOOT /mnt/boot

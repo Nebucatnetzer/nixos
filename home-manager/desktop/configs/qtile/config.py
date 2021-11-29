@@ -131,6 +131,23 @@ screens = [
             24,
         ),
     ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(),
+                widget.Sep(padding=5),
+                widget.Prompt(),
+                widget.WindowName(),
+                widget.Sep(padding=5),
+                widget.CurrentLayout(),
+                widget.Sep(padding=5),
+                widget.Volume(),
+                widget.Sep(padding=5),
+                widget.Clock(format='%Y-%m-%d %a %H:%M'),
+            ],
+            24,
+        ),
+    ),
 ]
 
 # Drag floating layouts.

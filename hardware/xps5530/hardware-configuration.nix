@@ -8,7 +8,14 @@
     ../nixos-hardware/dell/precision/5530/default.nix
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "aesni_intel" "cryptd" ];
+  boot.initrd.availableKernelModules = [ 
+    "aesni_intel"
+    "ahci"
+    "cryptd"
+    "sd_mod"
+    "usb_storage"
+    "xhci_pci"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -16,7 +23,7 @@
     "mem_sleep_default=deep"
   ];
 
-  boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
+  boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
   fileSystems."/" =
     {
       device = "/dev/disk/by-label/nixos";

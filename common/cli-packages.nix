@@ -14,6 +14,7 @@
     nixpkgs-fmt
     ranger
     tree
+    unzip
     vim
     wget
   ];

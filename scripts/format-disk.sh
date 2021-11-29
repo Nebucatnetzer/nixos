@@ -1,6 +1,7 @@
-# Print the drives
+# Print the drives and get user input
 parted -l
 read -p "Which disk do you want to format?: " drive_path
+read -p "How large should the swap partition be (in GiB)?: " swap_size
 # Create partition table
 parted $drive_path -- mklabel gpt
 # Create EFI partition
@@ -18,7 +19,7 @@ cryptsetup open $main_partition cryptlvm
 pvcreate /dev/mapper/cryptlvm
 vgcreate MainGroup /dev/mapper/cryptlvm
 # Create the swap volume
-lvcreate -L 8G MainGroup -n swap
+lvcreate -L ${swap_size}G MainGroup -n swap
 # Create the main volume
 lvcreate -l 100%FREE MainGroup -n root
  

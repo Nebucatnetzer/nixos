@@ -20,6 +20,7 @@
 
   services = {
     autorandr.enable = true;
+    gvfs.enable = true;
     printing.enable = true;
     redshift = {
       enable = true;
@@ -79,6 +80,7 @@
     libreoffice-fresh
     lxappearance
     meld
+    gnome.nautilus
     networkmanager-openvpn
     nitrogen
     pavucontrol

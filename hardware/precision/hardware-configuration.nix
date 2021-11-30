@@ -24,6 +24,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
   fileSystems."/" =

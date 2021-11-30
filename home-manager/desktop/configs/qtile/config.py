@@ -39,6 +39,7 @@ keys = [
 
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("autorandr -c")),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "w", lazy.spawn("firefox")),

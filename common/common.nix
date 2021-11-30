@@ -60,13 +60,19 @@
   # allow non-free packages
   nixpkgs.config.allowUnfree = true;
 
-  # enable garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+  nix = {
+    autoOptimiseStore = true;
+    package = pkgs.nixFlakes;
+    extraOptions = ''experimental-features = nix-command flakes'';
+
+    # enable garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
   };
-  nix.autoOptimiseStore = true;
+
 
   environment.shellAliases = {
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

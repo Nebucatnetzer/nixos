@@ -78,6 +78,7 @@
     i3lock
     inkscape
     libreoffice-fresh
+    lm_sensors
     lxappearance
     meld
     gnome.nautilus

@@ -63,6 +63,9 @@
 
   programs.droidcam.enable = true;
 
+  # Enable dconf to be able to save Nautilus settings
+  programs.dconf.enable = true;
+
   environment.variables = {
     ZWEILI_ENVIRONMENT = "desktop";
   };

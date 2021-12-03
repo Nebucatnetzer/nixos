@@ -6,6 +6,7 @@
 {
   imports = [
     ../nixos-hardware/dell/precision/5530/default.nix
+    ./nvidia.nix
   ];
 
   boot.initrd.availableKernelModules = [

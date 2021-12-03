@@ -20,6 +20,7 @@
   home.file.".config/terminator".source = ./desktop/configs/terminator;
   home.file.".config/mpv".source = ./desktop/configs/mpv;
   home.file.".config/Rapid Photo Downloader".source = ./desktop/configs/rapid_photo_downloader;
+  home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 
   services.nextcloud-client = {
     enable = true;

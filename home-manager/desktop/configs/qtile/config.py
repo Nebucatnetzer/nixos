@@ -59,8 +59,8 @@ keys = [
     Key([], "XF86AudioPause", lazy.spawn("playerctl pause")),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    Key([], "XF86KbdBrightnessUp", lazy.spawn("brightness_up")),
-    Key([], "XF86KbdBrightnessDown", lazy.spawn("brightness_down")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
 ]
 
 groups = [Group(i) for i in "1234567890"]

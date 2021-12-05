@@ -72,6 +72,7 @@
 
   environment.systemPackages = with pkgs; [
     arc-theme
+    brightnessctl
     calibre
     celluloid
     digikam

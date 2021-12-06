@@ -79,6 +79,7 @@
     evince
     firefox
     gimp
+    gnome.gnome-screenshot
     i3lock
     inkscape
     libreoffice-fresh

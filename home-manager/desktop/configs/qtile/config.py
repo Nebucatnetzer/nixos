@@ -1,7 +1,7 @@
 from typing import List  # noqa: F401
 
 from libqtile import bar, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
@@ -63,12 +63,46 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%")),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+group_matches = [
+    [
+        Match(wm_class="TelegramDesktop"),
+        Match(wm_class="Signal"),
+        Match(title="WhatsApp — Mozilla Firefox"),
+        Match(title="Threema Web — Mozilla Firefox"),
+    ], #0
+    None, #1
+    None, #2
+    None, #3
+    None, #4
+    None, #5
+    [
+        Match(wm_class="KeeWeb"),
+        Match(wm_class="JDownloader"),
+    ], #6
+    None, #7
+    None, #8
+    [
+        Match(wm_class="Steam"),
+    ], #9
+]
+
+
+def toscreen(qtile, group_name):
+    if group_name  == qtile.current_screen.group.name:
+        qtile.current_screen.set_group(qtile.current_screen.previous_group)
+        return
+    for i, group in enumerate(qtile.groups):
+        if group_name == group.name:
+            qtile.current_screen.set_group(qtile.groups[i])
+            return
+
+
+groups = [Group(name=i, matches=group_matches[int(i)]) for i in "1234567890"]
 
 for i in groups:
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
+        Key([mod], i.name, lazy.function(toscreen, i.name),
             desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
@@ -168,6 +202,25 @@ bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+floating_layout = layout.Floating(float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirm'),
+    Match(wm_class='dialog'),
+    Match(wm_class='download'),
+    Match(wm_class='error'),
+    Match(wm_class='file_progress'),
+    Match(wm_class='notification'),
+    Match(wm_class='splash'),
+    Match(wm_class='toolbar'),
+    Match(wm_class='confirmreset'),  # gitk
+    Match(wm_class='makebranch'),  # gitk
+    Match(wm_class='maketag'),  # gitk
+    Match(title='branchdialog'),  # gitk
+    Match(title='pinentry'),  # GPG key password entry
+    Match(wm_class='ssh-askpass'),  # ssh-askpass
+])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

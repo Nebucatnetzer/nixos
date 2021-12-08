@@ -18,3 +18,4 @@ __pycache__
 /home/*/programmes/tor-browser_en-US
 /home/*/Downloads
 /home/*/git_repos/work
+/home/*/Virtualbox\ VMs

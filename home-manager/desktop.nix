@@ -10,6 +10,7 @@
     keeweb
     signal-desktop
     tdesktop
+    vagrant
     vscode
     youtube-dl
   ];

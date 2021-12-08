@@ -86,6 +86,7 @@
     lm_sensors
     lxappearance
     meld
+    gnome.eog
     gnome.nautilus
     networkmanager-openvpn
     nitrogen

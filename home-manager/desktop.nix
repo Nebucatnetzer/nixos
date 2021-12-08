@@ -4,13 +4,13 @@
     ./common.nix
     ./common/git/git.nix
     ./obsidian.nix
+    ./work-desktop.nix
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     keeweb
     signal-desktop
     tdesktop
-    vagrant
     vscode
     youtube-dl
   ];

@@ -8,6 +8,7 @@
   ];
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    appimage-run
     keeweb
     signal-desktop
     tdesktop

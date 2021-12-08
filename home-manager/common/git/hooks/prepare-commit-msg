@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This hook works for branches named such as "123-description" and will add "[#123]" to the commit message.
 

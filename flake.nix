@@ -17,9 +17,19 @@
     , nixpkgs-unstable
     , nixos-hardware
     , home-manager
-    }: {
+    }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+    in
+    {
       nixosConfigurations.gwyn = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system pkgs;
         modules = [
           ./hardware/precision/configuration.nix
           nixos-hardware.nixosModules.dell-precision-5530
@@ -28,7 +38,10 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.andreas = import ./home-manager/desktop.nix;
+            home-manager.users.andreas = import ./home-manager/desktop.nix
+              {
+                inherit inputs system pkgs;
+              };
           }
         ];
       };

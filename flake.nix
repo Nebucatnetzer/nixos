@@ -26,6 +26,12 @@
           ./hardware/precision/configuration.nix
           nixos-hardware.nixosModules.dell-precision-5530
           nixos-hardware.nixosModules.common-gpu-nvidia
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.andreas = import ./home-manager/desktop.nix;
+          }
         ];
       };
     };

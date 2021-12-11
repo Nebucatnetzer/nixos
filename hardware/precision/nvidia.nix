@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ../nixos-hardware/common/gpu/nvidia.nix
-  ];
   environment = {
     variables = {
       XDG_DATA_HOME = "$HOME/.local/share";

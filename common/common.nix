@@ -7,7 +7,6 @@
 {
   imports = [
     ./cli-packages.nix
-    ./home-manager.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

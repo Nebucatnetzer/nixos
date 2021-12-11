@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, pkgs-unstable, inputs, system, ... }:
 {
   imports = [
     ./common.nix
@@ -6,7 +6,6 @@
     ./obsidian.nix
     ./work-desktop.nix
   ];
-  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     appimage-run
     keeweb

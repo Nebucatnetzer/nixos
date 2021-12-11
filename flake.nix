@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager/release-21.11";
@@ -17,7 +16,6 @@
     , nixpkgs
     , nixpkgs-unstable
     , nixos-hardware
-    , flake-utils
     , home-manager
     }: {
       nixosConfigurations.gwyn = nixpkgs.lib.nixosSystem {

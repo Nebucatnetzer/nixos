@@ -48,7 +48,7 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
 
     Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Restart qtile"),
+    Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
 
     Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),

@@ -3,7 +3,7 @@
   imports = [
     ./common.nix
     ./common/git/git.nix
-    # ./obsidian.nix
+    ./obsidian.nix
     ./work-desktop.nix
   ];
   home.packages = with pkgs; [

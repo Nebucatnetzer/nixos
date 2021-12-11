@@ -20,11 +20,20 @@
     }:
     let
       system = "x86_64-linux";
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
         };
+        overlays = [
+          overlay-unstable
+        ];
       };
     in
     {

@@ -9,10 +9,10 @@
   home.packages = with pkgs; [
     appimage-run
     keeweb
-    signal-desktop
-    tdesktop
-    vscode
-    youtube-dl
+    unstable.signal-desktop
+    unstable.tdesktop
+    unstable.vscode
+    unstable.youtube-dl
   ];
   programs.git.userEmail = "andreas@zweili.ch";
 

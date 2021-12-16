@@ -58,7 +58,7 @@
   # enable lockscreen
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "i3lock -c 000000";
+    lockerCommand = "${pkgs.i3lock} -c 000000";
   };
 
   programs.droidcam.enable = true;

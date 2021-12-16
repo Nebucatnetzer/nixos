@@ -27,10 +27,6 @@
     tmux
   ];
 
-  home.shellAliases = {
-    dist-upgrade = "sudo nixos-rebuild switch -j auto";
-  };
-
   programs.vim = {
     enable = true;
     settings = {

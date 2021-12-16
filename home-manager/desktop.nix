@@ -24,7 +24,7 @@
   home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 
   home.shellAliases = {
-    management-server = 'mosh --ssh="ssh -p 22" andreas@10.7.89.106 tmux a';
+    management-server = "mosh --ssh='ssh -p 22' andreas@10.7.89.106 tmux a";
   };
 
   services.nextcloud-client = {

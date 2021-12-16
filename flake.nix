@@ -54,5 +54,20 @@
           }
         ];
       };
+      nixosConfigurations.nixos-vm = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        modules = [
+          ./hardware/vm/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.andreas = import ./home-manager/desktop.nix
+              {
+                inherit inputs system pkgs;
+              };
+          }
+        ];
+      };
     };
 }

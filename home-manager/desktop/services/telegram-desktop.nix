@@ -7,7 +7,7 @@
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.tdesktop}/bin/telegram-desktop";
+      ExecStart = "${pkgs.unstable.tdesktop}/bin/telegram-desktop";
       ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
       KillMode = "process";
       Restart = "on-failure";

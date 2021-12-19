@@ -87,7 +87,7 @@ def _create_swap_partition(disk):
 
 def _encrypt_disk(partition_path, container_name):
     print("Encrypting disk.")
-    _run_command(["cryptsetup", "luksFormat",
+    _run_command(["cryptsetup", "luksFormat", "-q"
                  "--type", "luks1", partition_path])
     _run_command(["cryptsetup", "open", partition_path, "cryptlvm"])
 

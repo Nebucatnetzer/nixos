@@ -48,9 +48,13 @@ def get_disk_to_format():
     return int(disk_to_format)
 
 
-def format_disk(disk_to_format):
+def format_disk(disk_to_format, swap_partition, encryption):
     print("Formatting disk: {}.".format(disk_to_format))
-    pass
+    print("Create boot partition.")
+    if swap_partition:
+        memory = _get_system_memory()
+        print("Create swap partition of {} GiB in size".format(memory))
+    print("Create main partition")
 
 
 def encrypt_disk():

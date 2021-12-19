@@ -125,7 +125,7 @@ def main():
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
     swap_partition = _y_n("Do you need a swap partition?")
-    encryption = _y_n("Do you want to ecrypt your data?")
+    encryption = _y_n("Do you want to encrypt your data?")
     create_boot_partition(disk_to_format)
     format_disk(disk_to_format, swap_partition, encryption)
     mount_partitions()

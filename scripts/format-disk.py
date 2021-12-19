@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import subprocess
 
 
@@ -8,6 +9,12 @@ def _run_command(command):
                             text=True,
                             check=True)
     return result
+
+
+def _get_system_memory():
+    mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
+    mem_gib = mem_bytes / (1024.**3)
+    return round(mem_gib)
 
 
 def read_disks():
@@ -45,6 +52,7 @@ def main():
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
     format_disk(disk_to_format)
+    print(_get_system_memory())
 
 
 if __name__ == "__main__":

@@ -67,13 +67,18 @@ def create_boot_partition(disk):
     _run_command(["mkfs.fat", "-F", 32, "-n", "BOOT", boot_partition])
 
 
-def _create_main_partition(disk):
+def create_main_partition(disk):
+    _run_command(["parted", disk, "--", "mkpart", "primary", "512MiB", "100%"])
+    return "{}{}2".format(disk, _partition_suffix(disk))
+
+
+def _create_main_filesystem(disk):
     print("Create main partition")
     _run_command(["lvcreate", "-l", "100%FREE", "MainGroup", "-n", "root"])
     _run_command(["mkfs.ext4", "-L", "nixos", "/dev/MainGroup/root"])
 
 
-def _create_swap_partition(disk):
+def _create_swap():
     memory = _get_system_memory()
     print("Create swap partition of {} GiB in size".format(memory))
     _run_command(["lvcreate",
@@ -104,30 +109,29 @@ def mount_partitions():
     _run_command(["mount", "/dev/disk/by-label/BOOT", "/mnt/boot"])
 
 
-def format_disk(disk, swap_partition, encryption):
-    print("Formatting disk: {}.".format(disk))
-    _run_command(["parted", disk, "--", "mkpart", "primary", "512MiB", "100%"])
-    main_partition_path = "{}{}2".format(disk, _partition_suffix(disk))
+def create_file_systems(partition, swap, encryption):
+    print("Creating filesystems.")
     lvm_target = ""
     if encryption:
         lvm_target = "/dev/mapper/cryptlvm"
-        _encrypt_disk(main_partition_path, lvm_target)
+        _encrypt_disk(partition, lvm_target)
     else:
-        lvm_target = main_partition_path
+        lvm_target = partition
     _setup_lvm(lvm_target)
-    if swap_partition:
-        _create_swap_partition(disk)
-    _create_main_partition(disk)
+    if swap:
+        _create_swap()
+    _create_main_filesystem()
 
 
 def main():
     disks = read_disks()
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
-    swap_partition = _y_n("Do you need a swap partition?")
+    swap = _y_n("Do you need swap?")
     encryption = _y_n("Do you want to encrypt your data?")
     create_boot_partition(disk_to_format)
-    format_disk(disk_to_format, swap_partition, encryption)
+    main_partition = create_main_partition(disk_to_format)
+    create_file_systems(main_partition, swap, encryption)
     mount_partitions()
 
 

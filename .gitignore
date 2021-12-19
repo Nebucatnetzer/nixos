@@ -83,3 +83,5 @@ tags
 
 # ignore pycache
 __pycache__/
+
+venv/

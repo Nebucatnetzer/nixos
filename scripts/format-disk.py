@@ -62,8 +62,9 @@ def main():
     disks = read_disks()
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
-    format_disk(disk_to_format)
-    print(_get_system_memory())
+    swap_partition = _y_n("Do you need a swap partition?")
+    encryption = _y_n("Do you want to ecrypt your data?")
+    format_disk(disk_to_format, swap_partition, encryption)
 
 
 if __name__ == "__main__":

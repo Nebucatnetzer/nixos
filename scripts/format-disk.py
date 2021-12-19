@@ -42,6 +42,9 @@ def encrypt_disk():
 
 def main():
     disks = read_disks()
+    create_menu(disks)
+    disk_to_format = disks[get_disk_to_format()]
+    format_disk(disk_to_format)
 
 
 if __name__ == "__main__":

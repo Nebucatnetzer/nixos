@@ -27,7 +27,7 @@ def create_menu(disks):
 
 def get_disk_to_format():
     disk_to_format = input("Which disk dou you want to format?: ")
-    return disk_to_format
+    return int(disk_to_format)
 
 
 def format_disk(disk_to_format):

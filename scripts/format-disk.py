@@ -48,18 +48,42 @@ def get_disk_to_format():
     return int(disk_to_format)
 
 
+def _create_partition_table(disk):
+    _run_command(["parted", disk, "--", "mklabel", "gpt"])
+
+
+def _partition_suffix(disk):
+    if "nvmne" in disk:
+        return "p"
+    return ""
+
+
+def _create_boot_partition(disk):
+    boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
+    print("Create boot partition {}.".format(boot_partition))
+    _run_command(["parted", disk, "--", "mkpart",
+                  "ESP", "fat32", "1MiB", "512MiB"])
+    _run_command(["parted", disk, "--", "set", 1, "esp", "on"])
+    _run_command(["mkfs.fat", "-F", 32, "-n", "BOOT", boot_partition])
+
+
+def _create_main_partition(disk):
+    print("Create main partition")
+    _run_command(["parted", disk, "--", "mkpart", "primary", "512MiB", "100%"])
+
+
+def _encrypt_disk():
+    print("Encrypting disk.")
+    pass
+
+
 def format_disk(disk_to_format, swap_partition, encryption):
     print("Formatting disk: {}.".format(disk_to_format))
-    print("Create boot partition.")
+    _create_boot_partition(disk_to_format)
+    _create_main_partition(disk_to_format)
     if swap_partition:
         memory = _get_system_memory()
         print("Create swap partition of {} GiB in size".format(memory))
-    print("Create main partition")
-
-
-def encrypt_disk():
-    print("Encrypting disk.")
-    pass
 
 
 def main():

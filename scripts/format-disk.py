@@ -17,6 +17,16 @@ def _get_system_memory():
     return round(mem_gib)
 
 
+def _y_n(question):
+    answer = input("{} (Y/N): ".format(question))
+    if answer.lower() == "y":
+        return True
+    if answer.lower() == "n":
+        return False
+    print("Please only anwser with Y or N!")
+    sys.exit(1)
+
+
 def read_disks():
     output = _run_command(["lsblk", "-dpno", "name"])
     disks = []

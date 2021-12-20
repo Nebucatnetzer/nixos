@@ -72,8 +72,8 @@ def create_boot_partition(disk):
     print("Create boot partition {}.".format(boot_partition))
     _run_command(["parted", "--script", disk, "mkpart",
                  "ESP", "fat32", "1MiB", "512MiB"])
-    _run_command(["parted", "--script", disk, "set", 1, "esp", "on"])
-    _run_command(["mkfs.fat", "-F", 32, "-n", "BOOT", boot_partition])
+    _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
+    _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
 
 
 def create_main_partition(disk):

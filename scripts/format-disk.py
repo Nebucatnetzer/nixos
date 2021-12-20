@@ -58,7 +58,7 @@ def get_disk_to_format():
 
 def create_partition_table(disk):
     print("Create partition table.")
-    _run_command(["parted", disk, "--", "mklabel", "gpt"])
+    _run_command(["parted", "--script", disk, "mklabel", "gpt"])
 
 
 def _partition_suffix(disk):

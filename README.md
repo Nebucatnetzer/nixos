@@ -6,11 +6,8 @@ In addition some of the scripts required for installation will destroy your data
 
 ## Base installation
 
-1. `sudo python3 scripts/format-disk.py`
-2. Execute one of the following scripts:
-    - `sudo scripts/link-asus.sh`
-    - `sudo scripts/link-vm.sh`
-    - `sudo scripts/link-precision5530.sh`
+1. `nix-shell -p python3`
+2. `sudo python3 scripts/format-disk.py`
 3. `sudo nixos-install`
 
 ## Non-Nixos System

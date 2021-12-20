@@ -1,14 +1,22 @@
 #!/usr/bin/env python3
+import getpass
 import os
 import subprocess
 import sys
 
 
-def _run_command(command):
-    result = subprocess.run(command,
-                            capture_output=True,
-                            text=True,
-                            check=True)
+def _run_command(command, input=""):
+    if input:
+        result = subprocess.run(command,
+                                capture_output=True,
+                                text=True,
+                                check=True,
+                                input=input)
+    else:
+        result = subprocess.run(command,
+                                capture_output=True,
+                                text=True,
+                                check=True)
     return result
 
 
@@ -91,10 +99,12 @@ def _create_swap():
 
 
 def _encrypt_disk(partition_path, container_name):
+    password = getpass.getpass()
     print("Encrypting disk.")
     _run_command(["cryptsetup", "luksFormat", "-q"
-                 "--type", "luks1", partition_path])
-    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"])
+                 "--type", "luks1", partition_path], input=password)
+    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"],
+                 input=password)
 
 
 def _setup_lvm(lvm_target):

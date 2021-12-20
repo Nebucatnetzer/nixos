@@ -82,8 +82,7 @@ def create_main_partition(disk):
     return "{}{}2".format(disk, _partition_suffix(disk))
 
 
-def _create_main_filesystem(disk):
-    print("Create main partition")
+def _create_main_filesystem():
     _run_command(["lvcreate", "-l", "100%FREE", "MainGroup", "-n", "root"])
     _run_command(["mkfs.ext4", "-L", "nixos", "/dev/MainGroup/root"])
 

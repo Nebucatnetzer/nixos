@@ -68,7 +68,6 @@ def _partition_suffix(disk):
 
 
 def create_boot_partition(disk):
-    print("Create boot partition.")
     boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
     print("Create boot partition {}.".format(boot_partition))
     _run_command(["parted", "--script", disk, "mkpart",

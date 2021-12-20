@@ -56,7 +56,7 @@ def get_disk_to_format():
     return int(disk_to_format)
 
 
-def _create_partition_table(disk):
+def create_partition_table(disk):
     _run_command(["parted", disk, "--", "mklabel", "gpt"])
 
 
@@ -139,6 +139,7 @@ def main():
     disk_to_format = disks[get_disk_to_format()]
     swap = _y_n("Do you need swap?")
     encryption = _y_n("Do you want to encrypt your data?")
+    create_partition_table(disk_to_format)
     create_boot_partition(disk_to_format)
     main_partition = create_main_partition(disk_to_format)
     create_file_systems(main_partition, swap, encryption)

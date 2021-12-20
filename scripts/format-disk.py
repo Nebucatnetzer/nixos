@@ -110,7 +110,7 @@ def _encrypt_disk(partition_path, container_name):
 
 
 def _setup_lvm(lvm_target):
-    print("Set up LVM.")
+    print("Set up LVM on {}.".format(lvm_target))
     _run_command(["pvcreate", lvm_target])
     _run_command(["vgcreate", "MainGroup", lvm_target])
 

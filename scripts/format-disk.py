@@ -78,7 +78,8 @@ def create_boot_partition(disk):
 
 def create_main_partition(disk):
     print("Create main partition.")
-    _run_command(["parted", disk, "--", "mkpart", "primary", "512MiB", "100%"])
+    _run_command(["parted", "--script", disk, "mkpart",
+                 "primary", "512MiB", "100%"])
     return "{}{}2".format(disk, _partition_suffix(disk))
 
 

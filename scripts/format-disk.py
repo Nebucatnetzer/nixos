@@ -103,7 +103,7 @@ def _create_swap():
 def _encrypt_disk(partition_path, container_name):
     password = getpass.getpass()
     print("Encrypting disk.")
-    _run_command(["cryptsetup", "luksFormat", "-q"
+    _run_command(["cryptsetup", "luksFormat", "-q",
                  "--type", "luks1", partition_path], input=password)
     _run_command(["cryptsetup", "open", partition_path, "cryptlvm"],
                  input=password)

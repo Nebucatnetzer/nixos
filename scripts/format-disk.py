@@ -57,6 +57,7 @@ def get_disk_to_format():
 
 
 def create_partition_table(disk):
+    print("Create partition table.")
     _run_command(["parted", disk, "--", "mklabel", "gpt"])
 
 
@@ -67,6 +68,7 @@ def _partition_suffix(disk):
 
 
 def create_boot_partition(disk):
+    print("Create boot partition.")
     boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
     print("Create boot partition {}.".format(boot_partition))
     _run_command(["parted", disk, "--", "mkpart",
@@ -76,6 +78,7 @@ def create_boot_partition(disk):
 
 
 def create_main_partition(disk):
+    print("Create main partition.")
     _run_command(["parted", disk, "--", "mkpart", "primary", "512MiB", "100%"])
     return "{}{}2".format(disk, _partition_suffix(disk))
 
@@ -114,6 +117,7 @@ def _setup_lvm(lvm_target):
 
 
 def mount_partitions():
+    print("Mounting partitions.")
     _run_command(["mount", "/dev/MainGroup/root", "/mnt"])
     os.mkdir("/mnt/boot")
     _run_command(["mount", "/dev/disk/by-label/BOOT", "/mnt/boot"])

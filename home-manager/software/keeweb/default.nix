@@ -1,11 +1,16 @@
-# needs to be imported into the main nix config
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    keeweb
+  ];
+
   systemd.user.services.keeweb = {
-    description = "Keeweb";
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
+    Unit = {
+      description = "KeeWeb";
+      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
       Type = "simple";
       ExecStart = "${pkgs.keeweb}/bin/keeweb";
       ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";

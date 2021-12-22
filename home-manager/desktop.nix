@@ -5,13 +5,13 @@
     ./common/git/git.nix
     ./obsidian.nix
     ./work-desktop.nix
+    ./software/keeweb
     ./software/pycharm
     ./software/signal
     ./software/telegram
   ];
   home.packages = with pkgs; [
     appimage-run
-    keeweb
     unstable.vscode
     unstable.youtube-dl
   ];

@@ -10,7 +10,6 @@
     ./docker.nix
     ./restic
     ./droidcam
-    ../home-manager/desktop/services/keeweb.nix
   ];
 
   networking = {

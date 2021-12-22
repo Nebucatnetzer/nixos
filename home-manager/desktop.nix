@@ -1,7 +1,7 @@
 { pkgs, inputs, system, ... }:
 {
   imports = [
-    ./common.nix
+    ./common
     ./work-desktop.nix
     ./software/git
     ./software/keeweb

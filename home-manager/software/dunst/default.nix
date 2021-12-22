@@ -1,46 +1,5 @@
-{ pkgs, inputs, system, ... }:
+{ ... }:
 {
-  imports = [
-    ./common
-    ./work-desktop.nix
-    ./software/ansible
-    ./software/dunst
-    ./software/git
-    ./software/keeweb
-    ./software/obsidian
-    ./software/pycharm
-    ./software/signal
-    ./software/telegram
-    ./software/vim
-  ];
-  home.packages = with pkgs; [
-    appimage-run
-    unstable.vscode
-    unstable.youtube-dl
-  ];
-  programs.git.userEmail = "andreas@zweili.ch";
-
-  # raw config files
-  home.file.".config/qtile".source = ./configs/qtile;
-  home.file.".config/terminator".source = ./configs/terminator;
-  home.file.".config/mpv".source = ./configs/mpv;
-  home.file.".config/Rapid Photo Downloader".source = ./configs/rapid_photo_downloader;
-  home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
-
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      management-server = "mosh --ssh='ssh -p 22' andreas@10.7.89.106 tmux a";
-    };
-  };
-
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
-  };
-
-  xsession.numlock.enable = true;
-  services.network-manager-applet.enable = true;
   services.dunst = {
     enable = true;
     settings = {

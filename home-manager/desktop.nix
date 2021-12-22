@@ -3,6 +3,7 @@
   imports = [
     ./common
     ./work-desktop.nix
+    ./software/ansible
     ./software/git
     ./software/keeweb
     ./software/obsidian

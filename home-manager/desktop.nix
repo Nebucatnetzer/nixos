@@ -6,11 +6,11 @@
     ./obsidian.nix
     ./work-desktop.nix
     ./software/pycharm
+    ./software/signal
   ];
   home.packages = with pkgs; [
     appimage-run
     keeweb
-    unstable.signal-desktop
     unstable.tdesktop
     unstable.vscode
     unstable.youtube-dl

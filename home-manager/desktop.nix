@@ -9,6 +9,7 @@
     ./software/pycharm
     ./software/signal
     ./software/telegram
+    ./software/vim
   ];
   home.packages = with pkgs; [
     appimage-run

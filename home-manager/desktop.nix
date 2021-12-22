@@ -18,10 +18,10 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile".source = ./desktop/configs/qtile;
-  home.file.".config/terminator".source = ./desktop/configs/terminator;
-  home.file.".config/mpv".source = ./desktop/configs/mpv;
-  home.file.".config/Rapid Photo Downloader".source = ./desktop/configs/rapid_photo_downloader;
+  home.file.".config/qtile".source = ./configs/qtile;
+  home.file.".config/terminator".source = ./configs/terminator;
+  home.file.".config/mpv".source = ./configs/mpv;
+  home.file.".config/Rapid Photo Downloader".source = ./configs/rapid_photo_downloader;
   home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 
   programs.bash = {

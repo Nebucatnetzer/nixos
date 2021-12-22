@@ -7,11 +7,11 @@
     ./work-desktop.nix
     ./software/pycharm
     ./software/signal
+    ./software/telegram
   ];
   home.packages = with pkgs; [
     appimage-run
     keeweb
-    unstable.tdesktop
     unstable.vscode
     unstable.youtube-dl
   ];

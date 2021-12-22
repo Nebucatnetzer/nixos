@@ -11,7 +11,6 @@
     ./restic
     ./droidcam
     ../home-manager/desktop/services/keeweb.nix
-    ../home-manager/desktop/services/telegram-desktop.nix
   ];
 
   networking = {

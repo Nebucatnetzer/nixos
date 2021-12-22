@@ -1,11 +1,16 @@
-# needs to be imported into the main nix config
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    unstable.tdesktop
+  ];
+
   systemd.user.services.telegram-desktop = {
-    description = "Telegram Desktop";
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
+    Unit = {
+      description = "Telegram Desktop";
+      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
       Type = "simple";
       ExecStart = "${pkgs.unstable.tdesktop}/bin/telegram-desktop";
       ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";

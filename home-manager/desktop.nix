@@ -9,6 +9,7 @@
     ./software/keeweb
     ./software/obsidian
     ./software/pycharm
+    ./software/rapid-photo-downloader
     ./software/signal
     ./software/telegram
     ./software/vim
@@ -24,7 +25,6 @@
   home.file.".config/qtile".source = ./configs/qtile;
   home.file.".config/terminator".source = ./configs/terminator;
   home.file.".config/mpv".source = ./configs/mpv;
-  home.file.".config/Rapid Photo Downloader".source = ./configs/rapid_photo_downloader;
   home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 
   programs.bash = {

@@ -87,7 +87,6 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
-    rapid-photo-downloader
     remmina
     rofi
     shotwell

@@ -67,8 +67,20 @@
   };
 
   environment.systemPackages = with pkgs; [
-    arc-theme
+    # what I consider to be system packages
     brightnessctl
+    i3lock
+    lm_sensors
+    lxappearance
+    gnome.eog
+    gnome.nautilus
+    networkmanager-openvpn
+    nitrogen
+    pavucontrol
+    rofi
+    source-code-pro
+    # user packages need to move to home-manager
+    arc-theme
     calibre
     celluloid
     digikam
@@ -76,21 +88,11 @@
     firefox
     gimp
     gnome.gnome-screenshot
-    i3lock
     inkscape
     libreoffice-fresh
-    lm_sensors
-    lxappearance
     meld
-    gnome.eog
-    gnome.nautilus
-    networkmanager-openvpn
-    nitrogen
-    pavucontrol
     remmina
-    rofi
     shotwell
-    source-code-pro
     terminator
   ];
 }

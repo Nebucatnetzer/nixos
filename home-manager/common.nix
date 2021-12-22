@@ -22,9 +22,6 @@
   home.packages = with pkgs; [
     ansible
     ansible-lint
-    mosh
-    stow
-    tmux
   ];
 
   programs.vim = {

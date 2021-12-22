@@ -13,10 +13,14 @@
     ncdu
     nixpkgs-fmt
     ranger
+    tmux
     tree
     unzip
     vim
     wget
   ];
+  environment.shellAliases = {
+    format = "nixpkgs-fmt **/*.nix";
+  };
 }
 

@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ../../common/desktop.nix
+      ../../modules/desktop.nix
       ../../hardware/bluetooth
       ./hardware-configuration.nix
     ];

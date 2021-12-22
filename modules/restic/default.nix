@@ -7,7 +7,7 @@
     passwordFile = "/home/andreas/git_repos/nixos/secrets/passwords/restic.key";
     paths = [ "/home/andreas/" ];
     extraBackupArgs = [
-      "--exclude-file=/home/andreas/git_repos/nixos/common/restic/excludes.txt"
+      "--exclude-file=/home/andreas/git_repos/nixos/modules/restic/excludes.txt"
     ];
 
   };

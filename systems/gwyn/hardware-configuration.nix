@@ -5,7 +5,7 @@
 
 {
   imports = [
-    ./nvidia.nix
+    ../../hardware/nvidia
   ];
 
   boot.initrd.availableKernelModules = [

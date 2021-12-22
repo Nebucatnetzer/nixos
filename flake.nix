@@ -43,7 +43,7 @@
       nixosConfigurations.gwyn = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
-          ./hardware/precision/configuration.nix
+          ./systems/gwyn/configuration.nix
           nixos-hardware.nixosModules.dell-precision-5530
           nixos-hardware.nixosModules.common-gpu-nvidia
           home-manager.nixosModules.home-manager

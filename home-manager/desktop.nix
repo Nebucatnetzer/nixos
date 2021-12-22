@@ -5,6 +5,7 @@
     ./common/git/git.nix
     ./obsidian.nix
     ./work-desktop.nix
+    ./software/pycharm
   ];
   home.packages = with pkgs; [
     appimage-run

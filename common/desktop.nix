@@ -12,6 +12,7 @@
     ../home-manager/desktop/services/keeweb.nix
     ../home-manager/desktop/services/telegram-desktop.nix
     ../home-manager/desktop/services/signal-desktop.nix
+    ./droidcam
   ];
 
   networking = {
@@ -60,8 +61,6 @@
     enable = true;
     lockerCommand = "${pkgs.i3lock} -c 000000";
   };
-
-  programs.droidcam.enable = true;
 
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;

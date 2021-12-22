@@ -10,7 +10,7 @@
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      . ~/git_repos/nixos/home-manager/personal_config/bashrc
+      . ~/git_repos/nixos/home-manager/configs/bash/bashrc
     '';
   };
   targets.genericLinux.enable = true;

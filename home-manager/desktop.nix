@@ -2,10 +2,10 @@
 {
   imports = [
     ./common.nix
-    ./common/git/git.nix
-    ./obsidian.nix
     ./work-desktop.nix
+    ./software/git
     ./software/keeweb
+    ./software/obsidian
     ./software/pycharm
     ./software/signal
     ./software/telegram

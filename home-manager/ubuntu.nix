@@ -2,7 +2,7 @@
 {
   imports = [
     ./common.nix
-    ./common/git/git.nix
+    ./software/git
   ];
 
   programs.git.userEmail = "andreas@zweili.ch";

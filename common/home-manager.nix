@@ -8,7 +8,7 @@ in
   imports = [
     (import "${home-manager}/nixos")
   ];
-  
+
   home-manager.useGlobalPkgs = true;
   home-manager.users.andreas = {
     imports = [

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./common.nix
+    ./common
     ./software/git
   ];
 

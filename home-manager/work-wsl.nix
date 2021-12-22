@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ./common.nix
+    ./common
     ./software/git
   ];
   programs.git.userEmail = "zweili@contria.com";

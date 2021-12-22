@@ -60,7 +60,7 @@
       nixosConfigurations.staubfinger = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
-          ./hardware/asus/configuration.nix
+          ./systems/staubfinger/configuration.nix
           nixos-hardware.nixosModules.common-pc-laptop
           nixos-hardware.nixosModules.common-pc-laptop-ssd
           home-manager.nixosModules.home-manager
@@ -77,7 +77,7 @@
       nixosConfigurations.nixos-vm = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
-          ./hardware/vm/configuration.nix
+          ./systems/vm/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

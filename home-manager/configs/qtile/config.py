@@ -21,18 +21,6 @@ keys = [
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next(),
-        desc="Switch window focus to other pane(s) of stack"),
-
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate(),
-        desc="Swap panes of split stack"),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -41,11 +29,12 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("autorandr -c")),
-    Key([mod], "r", lazy.spawncmd()),
+    Key([mod], "r", lazy.spawn("rofi -show run")),
     Key([mod], "w", lazy.spawn("firefox")),
 
+    Key([mod], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "Space", lazy.next_layout(), desc="Toggle between layouts"),
 
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
@@ -69,28 +58,28 @@ group_matches = [
         Match(wm_class="Signal"),
         Match(title="WhatsApp"),
         Match(title="Threema"),
-    ], #0
-    None, #1
-    None, #2
-    None, #3
-    None, #4
-    None, #5
+    ],  # 0
+    None,  # 1
+    None,  # 2
+    None,  # 3
+    None,  # 4
+    None,  # 5
     [
         Match(wm_class="KeeWeb"),
         Match(wm_class="JDownloader"),
-    ], #6
-    None, #7
+    ],  # 6
+    None,  # 7
     [
         Match(wm_class="linphone"),
-    ], #8
+    ],  # 8
     [
         Match(wm_class="Steam"),
-    ], #9
+    ],  # 9
 ]
 
 
 def toscreen(qtile, group_name):
-    if group_name  == qtile.current_screen.group.name:
+    if group_name == qtile.current_screen.group.name:
         qtile.current_screen.set_group(qtile.current_screen.previous_group)
         return
     for i, group in enumerate(qtile.groups):
@@ -124,7 +113,6 @@ border = dict(
 layouts = [
     layout.Columns(**border),
     layout.TreeTab(**border),
-    layout.Max(**border),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -173,7 +161,6 @@ screens = [
             [
                 widget.GroupBox(),
                 widget.Sep(padding=5),
-                widget.Prompt(),
                 widget.WindowName(),
                 widget.Sep(padding=5),
                 widget.CurrentLayout(),

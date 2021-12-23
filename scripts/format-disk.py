@@ -5,13 +5,13 @@ import subprocess
 import sys
 
 
-def _run_command(command, input=""):
-    if input:
+def _run_command(command, user_input=""):
+    if user_input:
         result = subprocess.run(command,
                                 capture_output=True,
                                 text=True,
                                 check=True,
-                                input=input)
+                                input=user_input)
     else:
         result = subprocess.run(command,
                                 capture_output=True,
@@ -32,7 +32,7 @@ def _y_n(question):
         return True
     if answer.lower() == "n":
         return False
-    print("Please only anwser with Y or N!")
+    print("Please only answer with Y or N!")
     sys.exit(1)
 
 
@@ -47,8 +47,8 @@ def read_disks():
 
 
 def create_menu(disks):
-    for id, disk in enumerate(disks):
-        print("{}: {}".format(id, disk))
+    for position, disk in enumerate(disks):
+        print("{}: {}".format(position, disk))
 
 
 def get_disk_to_format():
@@ -71,7 +71,7 @@ def create_boot_partition(disk):
     boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
     print("Create boot partition {}.".format(boot_partition))
     _run_command(["parted", "--script", disk, "mkpart",
-                 "ESP", "fat32", "1MiB", "512MiB"])
+                  "ESP", "fat32", "1MiB", "512MiB"])
     _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
     _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
 
@@ -79,7 +79,7 @@ def create_boot_partition(disk):
 def create_main_partition(disk):
     print("Create main partition.")
     _run_command(["parted", "--script", disk, "mkpart",
-                 "primary", "512MiB", "100%"])
+                  "primary", "512MiB", "100%"])
     return "{}{}2".format(disk, _partition_suffix(disk))
 
 
@@ -100,13 +100,12 @@ def _create_swap():
     _run_command(["mkswap", "-L", "swap", "/dev/MainGroup/swap"])
 
 
-def _encrypt_disk(partition_path, container_name):
+def _encrypt_disk(partition_path):
     password = getpass.getpass()
     print("Encrypting disk.")
     _run_command(["cryptsetup", "luksFormat", "-q",
-                 "--type", "luks1", partition_path], input=password)
-    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"],
-                 input=password)
+                  "--type", "luks1", partition_path], user_input=password)
+    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"], user_input=password)
 
 
 def _setup_lvm(lvm_target):
@@ -124,10 +123,9 @@ def mount_partitions():
 
 def create_file_systems(partition, swap, encryption):
     print("Creating filesystems.")
-    lvm_target = ""
     if encryption:
         lvm_target = "/dev/mapper/cryptlvm"
-        _encrypt_disk(partition, lvm_target)
+        _encrypt_disk(partition)
     else:
         lvm_target = partition
     _setup_lvm(lvm_target)

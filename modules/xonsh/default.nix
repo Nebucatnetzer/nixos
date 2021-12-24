@@ -4,7 +4,14 @@
 
 { pkgs, ... }:
 {
-  programs.xonsh.enable = true;
+  programs.xonsh = {
+    enable = true;
+    config = ''
+      aliases['management-server'] = "mosh andreas@10.7.89.106 tmux a"
+      aliases['nix-generations'] = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system"
+      aliases['rebuild'] = "sudo nixos-rebuild -j auto switch"
+    '';
+  };
   users.users.andreas = {
     shell = pkgs.xonsh;
   };

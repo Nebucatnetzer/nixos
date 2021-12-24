@@ -16,6 +16,7 @@
   ];
   home.packages = with pkgs; [
     appimage-run
+    czkawka
     unstable.vscode
     unstable.youtube-dl
   ];

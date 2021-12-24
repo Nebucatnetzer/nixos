@@ -10,6 +10,7 @@
     ./docker.nix
     ./restic
     ./droidcam
+    ./xonsh
   ];
 
   networking = {

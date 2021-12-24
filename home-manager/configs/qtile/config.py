@@ -34,7 +34,7 @@ keys = [
 
     Key([mod], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
-    Key([mod], "Space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
 
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),

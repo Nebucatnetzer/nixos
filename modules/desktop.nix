@@ -80,20 +80,6 @@
     pavucontrol
     rofi
     source-code-pro
-    # user packages need to move to home-manager
-    arc-theme
-    calibre
-    digikam
-    evince
-    firefox
-    gimp
-    gnome.gnome-screenshot
-    inkscape
-    libreoffice-fresh
-    meld
-    remmina
-    shotwell
-    terminator
   ];
 }
 

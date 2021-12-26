@@ -16,7 +16,6 @@
     ./software/vim
   ];
   home.packages = with pkgs; [
-    appimage-run
     arc-theme
     calibre
     czkawka
@@ -24,13 +23,11 @@
     evince
     firefox
     gimp
-    gnome.gnome-screenshot
     inkscape
     libreoffice-fresh
     meld
     remmina
     shotwell
-    terminator
     unstable.vscode
     unstable.youtube-dl
   ];

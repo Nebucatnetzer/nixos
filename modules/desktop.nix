@@ -69,17 +69,20 @@
 
   environment.systemPackages = with pkgs; [
     # what I consider to be system packages
+    appimage-run
     brightnessctl
     i3lock
     lm_sensors
     lxappearance
     gnome.eog
     gnome.nautilus
+    gnome.gnome-screenshot
     networkmanager-openvpn
     nitrogen
     pavucontrol
     rofi
     source-code-pro
+    terminator
   ];
 }
 

@@ -39,7 +39,6 @@
   # raw config files
   home.file.".config/qtile".source = ./configs/qtile;
   home.file.".config/terminator".source = ./configs/terminator;
-  home.file.".config/mpv".source = ./configs/mpv;
   home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 
   programs.bash = {

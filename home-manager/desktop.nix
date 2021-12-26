@@ -3,6 +3,7 @@
   imports = [
     ./common
     ./work-desktop.nix
+    ./configs/droidcam
     ./software/ansible
     ./software/czkawka
     ./software/dunst

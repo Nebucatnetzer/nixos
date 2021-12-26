@@ -6,7 +6,7 @@
   xdg.desktopEntries = {
     czkawka = {
       name = "Czkawka";
-      exec = "czkawka_gui";
+      exec = "${pkgs.czkawka}/bin/czkawka_gui";
       terminal = false;
       categories = [ "System" ];
     };

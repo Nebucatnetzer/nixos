@@ -83,7 +83,6 @@
     # user packages need to move to home-manager
     arc-theme
     calibre
-    celluloid
     digikam
     evince
     firefox

@@ -7,6 +7,7 @@
     ./software/dunst
     ./software/git
     ./software/keeweb
+    ./software/mpv
     ./software/obsidian
     ./software/pycharm
     ./software/rapid-photo-downloader

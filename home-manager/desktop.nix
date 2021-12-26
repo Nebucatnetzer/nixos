@@ -4,6 +4,7 @@
     ./common
     ./work-desktop.nix
     ./software/ansible
+    ./software/czkawka
     ./software/dunst
     ./software/git
     ./software/keeweb
@@ -18,7 +19,6 @@
   home.packages = with pkgs; [
     arc-theme
     calibre
-    czkawka
     digikam
     evince
     firefox

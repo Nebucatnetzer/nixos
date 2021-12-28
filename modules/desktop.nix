@@ -57,7 +57,7 @@
   # enable lockscreen
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "${pkgs.i3lock} -c 000000";
+    lockerCommand = "${pkgs.i3lock}/bin/i3lock -c 000000";
   };
 
   # Enable dconf to be able to save Nautilus settings

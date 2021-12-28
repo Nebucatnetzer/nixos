@@ -36,7 +36,7 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("autorandr -c")),
-    Key([mod], "r", lazy.spawn("rofi -matching-negate-char '\0' -show run")),
+    Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
     Key([mod], "w", lazy.spawn("firefox")),
 
     Key([mod], "Tab", lazy.spawn("rofi -show window")),

@@ -35,7 +35,8 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile".source = ./configs/qtile;
+  home.file.".config/qtile/config.py".source = ./configs/qtile/config.py;
+  home.file.".config/qtile/autostart.sh".source = ./configs/qtile/autostart.sh;
   home.file.".config/terminator".source = ./configs/terminator;
   home.file.".local/share/applications/steam.desktop".source = ./desktop/applications/steam.desktop;
 

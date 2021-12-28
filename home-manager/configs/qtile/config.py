@@ -1,6 +1,13 @@
+import os
+import subprocess
+
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+from libqtile import bar
+from libqtile import hook
+from libqtile import layout
+from libqtile import widget
+
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -29,7 +36,7 @@ keys = [
     Key([mod], "d", lazy.spawn("rofi -show drun")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("autorandr -c")),
-    Key([mod], "r", lazy.spawn("rofi -matching-negate-char \0 -show run")),
+    Key([mod], "r", lazy.spawn("rofi -matching-negate-char '\0' -show run")),
     Key([mod], "w", lazy.spawn("firefox")),
 
     Key([mod], "Tab", lazy.spawn("rofi -show window")),
@@ -191,6 +198,13 @@ bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.run([home])
+
 
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.

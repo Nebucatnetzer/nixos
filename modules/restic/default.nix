@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 {
   services.restic.backups."andreas" = {
     user = "andreas";

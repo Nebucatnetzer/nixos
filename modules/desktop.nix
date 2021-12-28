@@ -18,7 +18,6 @@
   };
 
   services = {
-    autorandr.enable = true;
     gvfs.enable = true;
     printing.enable = true;
     redshift = {

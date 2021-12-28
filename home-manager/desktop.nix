@@ -5,11 +5,13 @@
     ./work-desktop.nix
     ./configs/droidcam
     ./software/ansible
+    ./software/autorandr
     ./software/czkawka
     ./software/dunst
     ./software/git
     ./software/keeweb
     ./software/mpv
+    ./software/nitrogen
     ./software/obsidian
     ./software/pycharm
     ./software/rapid-photo-downloader

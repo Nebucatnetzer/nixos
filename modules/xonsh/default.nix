@@ -15,9 +15,5 @@ in
   users.users.${username} = {
     shell = pkgs.xonsh;
   };
-  documentation.man.generateCaches = true;
-  home-manager.users.${username} = {
-    programs.man.generateCaches = true;
-  };
 }
 

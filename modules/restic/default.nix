@@ -1,13 +1,16 @@
 { ... }:
+let
+  username = import ../../username.nix;
+in
 {
-  services.restic.backups."andreas" = {
-    user = "andreas";
+  services.restic.backups.${username} = {
+    user = username;
     repository = "sftp:borg@10.7.89.117:restic";
     timerConfig.OnCalendar = "hourly";
-    passwordFile = "/home/andreas/git_repos/nixos/secrets/passwords/restic.key";
-    paths = [ "/home/andreas/" ];
+    passwordFile = "/home/${username}/git_repos/nixos/secrets/passwords/restic.key";
+    paths = [ "/home/${username}/" ];
     extraBackupArgs = [
-      "--exclude-file=/home/andreas/git_repos/nixos/modules/restic/excludes.txt"
+      "--exclude-file=/home/${username}/git_repos/nixos/modules/restic/excludes.txt"
     ];
 
   };

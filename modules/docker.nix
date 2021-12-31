@@ -1,11 +1,14 @@
 { pkgs, ... }:
+let
+  username = import ../username.nix;
+in
 {
   virtualisation.docker =
     {
       enable = true;
       autoPrune.enable = true;
     };
-  users.users.andreas.extraGroups = [ "docker" ];
+  users.users.${username}.extraGroups = [ "docker" ];
   environment.systemPackages = with pkgs; [
     docker-compose
     lazydocker

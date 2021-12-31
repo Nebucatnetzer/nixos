@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+  username = import ../username.nix;
+in
 {
   imports = [
     ./cli-packages.nix
@@ -43,7 +45,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.andreas = {
+  users.users.${username} = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [

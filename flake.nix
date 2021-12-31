@@ -23,6 +23,7 @@
     }:
     let
       system = "x86_64-linux";
+      username = import ./username.nix;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = "x86_64-linux";
@@ -50,7 +51,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.andreas = import ./home-manager/desktop.nix
+            home-manager.users.${username} = import ./home-manager/desktop.nix
               {
                 inherit inputs system pkgs;
               };
@@ -67,7 +68,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.andreas = import ./home-manager/desktop.nix
+            home-manager.users.${username} = import ./home-manager/desktop.nix
               {
                 inherit inputs system pkgs;
               };
@@ -82,7 +83,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.andreas = import ./home-manager/desktop.nix
+            home-manager.users.${username} = import ./home-manager/desktop.nix
               {
                 inherit inputs system pkgs;
               };

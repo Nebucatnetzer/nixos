@@ -90,5 +90,21 @@
           }
         ];
       };
+      nixosConfigurations.nixos-test-vm = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        modules = [
+          networking.hostName = "nixos-test-vm";
+          ./systems/proxmox-vm/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home-manager/headless.nix
+              {
+                inherit inputs system pkgs;
+              };
+          }
+        ];
+      };
     };
 }

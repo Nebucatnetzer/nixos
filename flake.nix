@@ -93,7 +93,6 @@
       nixosConfigurations.nixos-test-vm = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
-          networking.hostName = "nixos-test-vm";
           ./systems/proxmox-vm/configuration.nix
           home-manager.nixosModules.home-manager
           {

@@ -9,6 +9,7 @@
     ];
 
   networking = {
+    hostName = "nixos-test-vm";
     interfaces.enp0s18.useDHCP = true;
   };
 }

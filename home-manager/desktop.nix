@@ -3,7 +3,6 @@
   imports = [
     ./common
     ./work-desktop.nix
-    ./software/ansible
     ./software/autorandr
     ./software/czkawka
     ./software/dunst

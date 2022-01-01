@@ -9,10 +9,5 @@
 
   networking.hostName = "gwyn"; # Define your hostname.
   virtualisation.virtualbox.host.enable = true;
-
-  environment.variables = {
-    ZWEILI_HARDWARE = "precision";
-  };
-
 }
 

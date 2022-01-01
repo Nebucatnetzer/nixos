@@ -13,9 +13,5 @@
 
   virtualisation.virtualbox.host.enable = true;
 
-  environment.variables = {
-    ZWEILI_HARDWARE = "asus";
-  };
-
 }
 

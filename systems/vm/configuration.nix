@@ -12,10 +12,5 @@
     hostName = "nixos-vm";
     interfaces.enp0s3.useDHCP = true;
   };
-
-  environment.variables = {
-    ZWEILI_HARDWARE = "vm";
-  };
-
 }
 

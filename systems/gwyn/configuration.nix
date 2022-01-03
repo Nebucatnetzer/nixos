@@ -2,8 +2,6 @@
 {
   imports =
     [
-      ../../modules/desktop.nix
-      ../../hardware/bluetooth
       ./hardware-configuration.nix
     ];
 

@@ -1,10 +1,5 @@
 { lib, ... }:
-
 {
-  imports = [
-    ../../hardware/nvidia
-  ];
-
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
@@ -22,22 +17,18 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
-    };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [{ device = "/dev/disk/by-label/swap"; }];
-
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/BOOT";
+    fsType = "vfat";
+  };
+  swapDevices = [
+    { device = "/dev/disk/by-label/swap"; }
+  ];
 }
 

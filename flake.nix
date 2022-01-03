@@ -15,7 +15,7 @@
   };
 
   outputs =
-    inputs @ { self
+    inputs@{ self
     , nixpkgs
     , nixpkgs-unstable
     , nixos-hardware
@@ -55,12 +55,14 @@
     in
     {
       nixosConfigurations = {
-        gwyn = nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          modules = [
-            ./systems/gwyn/configuration.nix
+        gwyn = mkComputer
+          ./systems/gwyn/configuration.nix
+          [
             nixos-hardware.nixosModules.dell-precision-5530
             nixos-hardware.nixosModules.common-gpu-nvidia
+            ./hardware/bluetooth
+            ./hardware/nvidia
+            ./modules/desktop.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -71,14 +73,13 @@
                 };
             }
           ];
-        };
         staubfinger = mkComputer
           ./systems/staubfinger/configuration.nix
           [
-            ./modules/desktop.nix
-            ./hardware/bluetooth
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
+            ./hardware/bluetooth
+            ./modules/desktop.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -89,10 +90,9 @@
                 };
             }
           ];
-        nixos-vm = nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          modules = [
-            ./systems/vm/configuration.nix
+        nixos-vm = mkComputer
+          ./systems/vm/configuration.nix
+          [
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -103,12 +103,11 @@
                 };
             }
           ];
-        };
         nixos-test-vm = mkComputer
           ./systems/proxmox-vm/configuration.nix
           [
-            ./modules/docker.nix
             ./modules/code-server
+            ./modules/docker.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

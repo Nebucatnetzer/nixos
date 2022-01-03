@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 let
   username = import ../../username.nix;
 in

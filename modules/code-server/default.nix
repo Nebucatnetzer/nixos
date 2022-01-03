@@ -11,6 +11,7 @@ in
     extraPackages = with pkgs;
       [
         # other
+        bash
         git
       ];
   };

@@ -1,5 +1,4 @@
 { ... }:
-
 {
   boot.initrd.availableKernelModules = [
     "ata_piix"
@@ -17,12 +16,10 @@
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
-
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];

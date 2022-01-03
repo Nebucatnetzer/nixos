@@ -74,9 +74,9 @@
         };
         staubfinger = mkComputer
           ./systems/staubfinger/configuration.nix
-          ./modules/desktop.nix
-          ./hardware/bluetooth
           [
+            ./modules/desktop.nix
+            ./hardware/bluetooth
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             home-manager.nixosModules.home-manager

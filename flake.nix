@@ -72,10 +72,11 @@
             }
           ];
         };
-        staubfinger = nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
-          modules = [
-            ./systems/staubfinger/configuration.nix
+        staubfinger = mkComputer
+          ./systems/staubfinger/configuration.nix
+          ./modules/desktop.nix
+          ./hardware/bluetooth
+          [
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             home-manager.nixosModules.home-manager
@@ -88,7 +89,6 @@
                 };
             }
           ];
-        };
         nixos-vm = nixpkgs.lib.nixosSystem {
           inherit system pkgs;
           modules = [

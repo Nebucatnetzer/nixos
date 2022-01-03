@@ -1,5 +1,4 @@
 { ... }:
-
 {
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -15,18 +14,16 @@
   boot.kernelParams = [
     "acpi_osi="
   ];
-
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
-
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];

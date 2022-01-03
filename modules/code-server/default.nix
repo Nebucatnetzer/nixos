@@ -10,6 +10,7 @@ in
     auth = "none";
     extraPackages = with pkgs;
       [
+        python3
         # other
         bash
         git

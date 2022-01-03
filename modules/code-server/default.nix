@@ -7,5 +7,5 @@ in
     enable = true;
     user = username;
   };
-  firewall.allowedTCPPorts = [ 4444 ];
+  networking.firewall.allowedTCPPorts = [ 4444 ];
 }

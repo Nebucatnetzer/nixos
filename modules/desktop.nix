@@ -4,8 +4,9 @@
   imports = [
     ./common.nix
     ./docker.nix
-    ./restic
     ./droidcam
+    ./restic
+    ./steam
     ./xonsh
   ];
 
@@ -44,10 +45,6 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # enable steam
-  programs.steam.enable = true;
-  hardware.steam-hardware.enable = true;
 
   # enable lockscreen
   programs.xss-lock = {

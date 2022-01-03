@@ -12,7 +12,7 @@ in
       [
         # other
         git
-      ]
+      ];
   };
   networking.firewall.allowedTCPPorts = [ 4444 ];
 }

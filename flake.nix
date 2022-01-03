@@ -52,6 +52,14 @@
           ] ++ extraModules
         );
       };
+      mkHomeManager = role: userName: home-manager.nixosModules.homeManager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${userName} = import role
+          {
+            inherit inputs system pkgs;
+          };
+      };
     in
     {
       nixosConfigurations = {
@@ -108,16 +116,7 @@
           [
             ./modules/code-server
             ./modules/docker.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home-manager/headless.nix
-                {
-                  inherit inputs system pkgs;
-                };
-            }
-          ];
+          ] ++ mkHomeManager ./home-manager/headless.nix username;
       };
     };
 }

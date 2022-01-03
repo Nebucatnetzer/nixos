@@ -8,6 +8,11 @@ in
     user = username;
     host = "0.0.0.0";
     auth = "none";
+    extraPackages = with pkgs;
+      [
+        # other
+        git
+      ]
   };
   networking.firewall.allowedTCPPorts = [ 4444 ];
 }

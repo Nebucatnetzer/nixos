@@ -39,7 +39,7 @@
           overlay-unstable
         ];
       };
-      mkComputer = configurationNix: extraModules: nixpkgs.lib.nixosSystem {
+      mkComputer = configurationNix: role: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit system inputs; };
         modules = (
@@ -49,16 +49,15 @@
 
             # Common configuration
             ./modules/common.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username}.imports = [ role ];
+            }
           ] ++ extraModules
         );
-      };
-      mkHomeManager = role: userName: home-manager.nixosModules.homeManager {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.users.${userName} = import role
-          {
-            inherit inputs system pkgs;
-          };
       };
     in
     {
@@ -113,10 +112,11 @@
           ];
         nixos-test-vm = mkComputer
           ./systems/proxmox-vm/configuration.nix
+          ./home-manager/headless.nix
           [
             ./modules/code-server
             ./modules/docker.nix
-          ] ++ mkHomeManager ./home-manager/headless.nix username;
+          ];
       };
     };
 }

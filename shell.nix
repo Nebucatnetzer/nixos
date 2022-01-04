@@ -4,6 +4,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     nixFlakes
+    python3
   ];
 
   shellHook = ''

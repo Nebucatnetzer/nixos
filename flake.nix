@@ -39,7 +39,7 @@
           overlay-unstable
         ];
       };
-      mkComputer = configurationNix: role: extraModules: nixpkgs.lib.nixosSystem {
+      mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit system inputs; };
         modules = (
@@ -54,7 +54,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username}.imports = [ role ];
+              home-manager.users.${username}.imports = [ homeManagerRole ];
             }
           ] ++ extraModules
         );
@@ -64,52 +64,27 @@
       nixosConfigurations = {
         gwyn = mkComputer
           ./systems/gwyn/configuration.nix
+          ./home-manager/desktop.nix
           [
             nixos-hardware.nixosModules.dell-precision-5530
             nixos-hardware.nixosModules.common-gpu-nvidia
             ./hardware/bluetooth
             ./hardware/nvidia
             ./modules/desktop.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home-manager/desktop.nix
-                {
-                  inherit inputs system pkgs;
-                };
-            }
           ];
         staubfinger = mkComputer
           ./systems/staubfinger/configuration.nix
+          ./home-manager/desktop.nix
           [
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./hardware/bluetooth
             ./modules/desktop.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home-manager/desktop.nix
-                {
-                  inherit inputs system pkgs;
-                };
-            }
           ];
         nixos-vm = mkComputer
           ./systems/vm/configuration.nix
-          [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home-manager/desktop.nix
-                {
-                  inherit inputs system pkgs;
-                };
-            }
-          ];
+          ./home-manager/desktop.nix
+          [];
         nixos-test-vm = mkComputer
           ./systems/proxmox-vm/configuration.nix
           ./home-manager/headless.nix

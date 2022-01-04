@@ -6,9 +6,9 @@ In addition some of the scripts required for installation will destroy your data
 
 ## Base installation
 
-1. `nix-shell -p python3`
+1. `nix-shell`
 2. `sudo python3 scripts/format-disk.py`
-3. `sudo nixos-install`
+4. `sudo nixos-install --flake ~/nixos#SYSTEMNAME`
 
 ## Non-Nixos System
 

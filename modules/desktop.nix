@@ -46,12 +46,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # enable lockscreen
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = "${pkgs.i3lock}/bin/i3lock -c 000000";
-  };
-
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;
 
@@ -59,7 +53,6 @@
     # what I consider to be system packages
     appimage-run
     brightnessctl
-    i3lock
     lm_sensors
     lxappearance
     gnome.eog

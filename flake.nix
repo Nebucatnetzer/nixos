@@ -71,10 +71,12 @@
             ./hardware/bluetooth
             ./hardware/nvidia
             ./modules/desktop.nix
+            ./modules/lockscreen
           ];
         staubfinger = mkComputer
           ./systems/staubfinger/configuration.nix
           ./home-manager/desktop.nix
+          ./modules/lockscreen
           [
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd

@@ -6,7 +6,6 @@
     ./docker.nix
     ./droidcam
     ./restic
-    ./steam
     ./xonsh
   ];
 

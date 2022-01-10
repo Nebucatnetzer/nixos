@@ -48,7 +48,7 @@
             configurationNix
 
             # Common configuration
-            ./roles/common
+            ./modules/common
 
             home-manager.nixosModules.home-manager
             {
@@ -70,7 +70,7 @@
             nixos-hardware.nixosModules.common-gpu-nvidia
             ./hardware/bluetooth
             ./hardware/nvidia
-            ./modules/desktop.nix
+            ./modules/desktop
             ./modules/lockscreen
           ];
         staubfinger = mkComputer
@@ -80,13 +80,15 @@
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./hardware/bluetooth
-            ./modules/desktop.nix
+            ./modules/desktop
             ./modules/lockscreen
           ];
         nixos-vm = mkComputer
           ./systems/vm/configuration.nix
           ./home-manager/desktop.nix
-          [ ];
+          [
+            ./modules/desktop
+          ];
         nixos-test-vm = mkComputer
           ./systems/proxmox-vm/configuration.nix
           ./home-manager/headless.nix

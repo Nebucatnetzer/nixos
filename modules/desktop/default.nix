@@ -1,13 +1,5 @@
 { pkgs, ... }:
-
 {
-  imports = [
-    ./docker
-    ./droidcam
-    ./restic
-    ./xonsh
-  ];
-
   networking = {
     networkmanager.enable = true;
   };

@@ -63,7 +63,7 @@
     {
       nixosConfigurations = {
         gwyn = mkComputer
-          ./systems/gwyn/configuration.nix
+          ./systems/gwyn
           ./home-manager/desktop.nix
           [
             nixos-hardware.nixosModules.dell-precision-5530
@@ -71,7 +71,11 @@
             ./hardware/bluetooth
             ./hardware/nvidia
             ./modules/desktop
+            ./modules/docker
+            ./modules/droidcam
             ./modules/lockscreen
+            ./modules/restic
+            ./modules/xonsh
           ];
         staubfinger = mkComputer
           ./systems/staubfinger/configuration.nix

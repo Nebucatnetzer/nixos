@@ -27,8 +27,13 @@
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
+
+  networking.hostName = "gwyn"; # Define your hostname.
+
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
+
+  virtualisation.virtualbox.host.enable = true;
 }
 

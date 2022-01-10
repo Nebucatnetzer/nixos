@@ -3,7 +3,7 @@
 {
   imports = [
     ./common.nix
-    ./docker.nix
+    ./docker
     ./droidcam
     ./restic
     ./xonsh

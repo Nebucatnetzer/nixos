@@ -86,13 +86,13 @@
         nixos-vm = mkComputer
           ./systems/vm/configuration.nix
           ./home-manager/desktop.nix
-          [];
+          [ ];
         nixos-test-vm = mkComputer
           ./systems/proxmox-vm/configuration.nix
           ./home-manager/headless.nix
           [
             ./modules/code-server
-            ./modules/docker.nix
+            ./modules/docker
           ];
       };
     };

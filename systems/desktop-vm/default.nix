@@ -1,5 +1,4 @@
 { ... }:
-
 {
   boot.initrd.availableKernelModules = [
     "ata_piix"
@@ -15,10 +14,14 @@
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+  };
+
+  networking = {
+    hostName = "nixos-vm";
+    interfaces.enp0s3.useDHCP = true;
   };
 
   swapDevices = [
@@ -27,3 +30,4 @@
 
   virtualisation.virtualbox.guest.enable = true;
 }
+

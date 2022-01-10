@@ -88,7 +88,7 @@
             ./modules/lockscreen
           ];
         nixos-vm = mkComputer
-          ./systems/vm/configuration.nix
+          ./systems/desktop-vm
           ./home-manager/desktop.nix
           [
             ./modules/desktop

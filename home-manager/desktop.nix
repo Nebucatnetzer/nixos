@@ -2,7 +2,7 @@
 {
   imports = [
     ./common
-    ./work-desktop.nix
+    ./software/work-desktop
     ./software/autorandr
     ./software/czkawka
     ./software/dunst

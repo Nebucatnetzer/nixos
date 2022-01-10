@@ -24,7 +24,14 @@
     device = "10.7.89.108:raspi_data";
     fsType = "nfs";
   };
+
+  networking = {
+    hostName = "nixos-test-vm";
+    interfaces.ens18.useDHCP = true;
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
 }
+

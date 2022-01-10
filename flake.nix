@@ -94,7 +94,7 @@
             ./modules/desktop
           ];
         nixos-test-vm = mkComputer
-          ./systems/proxmox-vm/configuration.nix
+          ./systems/proxmox-vm
           ./home-manager/headless.nix
           [
             ./modules/code-server

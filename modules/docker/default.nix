@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  username = import ../username.nix;
+  username = import ../../username.nix;
 in
 {
   virtualisation.docker =

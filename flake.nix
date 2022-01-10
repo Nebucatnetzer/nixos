@@ -48,7 +48,7 @@
             configurationNix
 
             # Common configuration
-            ./modules/common.nix
+            ./roles/common
 
             home-manager.nixosModules.home-manager
             {

@@ -78,7 +78,7 @@
             ./modules/xonsh
           ];
         staubfinger = mkComputer
-          ./systems/staubfinger/configuration.nix
+          ./systems/staubfinger
           ./home-manager/desktop.nix
           [
             nixos-hardware.nixosModules.common-pc-laptop

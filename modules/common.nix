@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./cli-packages.nix
+    ./cli
   ];
 
   # Use the systemd-boot EFI boot loader.

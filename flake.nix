@@ -85,7 +85,11 @@
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             ./hardware/bluetooth
             ./modules/desktop
+            ./modules/docker
+            ./modules/droidcam
             ./modules/lockscreen
+            ./modules/restic
+            ./modules/xonsh
           ];
         nixos-vm = mkComputer
           ./systems/desktop-vm

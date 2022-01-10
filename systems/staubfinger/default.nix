@@ -24,7 +24,13 @@
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
+
+  networking.hostName = "staubfinger";
+
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
+
+  virtualisation.virtualbox.host.enable = true;
 }
+

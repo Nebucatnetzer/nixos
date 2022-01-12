@@ -20,10 +20,6 @@
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
-  fileSystems."/mnt/data" = {
-    device = "10.7.89.108:raspi_data";
-    fsType = "nfs";
-  };
 
   networking = {
     hostName = "nixos-test-vm";

@@ -32,7 +32,7 @@ in
       ip = [ "${hostname}.2li.local" ];
     };
     defaultGateway = "10.7.89.1";
-    nameservers = [ ip ];
+    nameservers = [ "10.7.89.2" ];
     interfaces.ens18.ipv4.addresses = [
       {
         address = ip;

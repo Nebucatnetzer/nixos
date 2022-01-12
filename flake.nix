@@ -111,6 +111,13 @@
           [
             ./modules/docker
           ];
+
+        grav = mkComputer
+          ./systems/grav
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+          ];
       };
     };
 }

@@ -12,7 +12,7 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      . ~/git_repos/nixos/home-manager/config/bash/work_wsl_bashrc
+      . ~/git_repos/nixos/home-manager/configs/bash/work_wsl_bashrc
       . /home/${username}/.nix-profile/etc/profile.d/nix.sh
     '';
   };

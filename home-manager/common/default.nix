@@ -7,4 +7,5 @@ in
   # paths it should manage.
   home.username = username;
   home.homeDirectory = "/home/${username}";
+  programs.home-manager.enable = true;
 }

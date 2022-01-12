@@ -26,13 +26,21 @@
   };
 
   networking = {
-    hostName = "heimdall.2li.local";
-    interfaces.ens18.ip4.addresses = [
-      {
-        address = "10.7.89.121";
-        prefixLength = 24;
-      }
-    ];
+    hostName = "heimdall";
+    hosts = {
+      "127.0.0.1" = [ "heimdall.2li.local" ];
+      "10.7.89.121" = [ "heimdall.2li.local" ];
+    };
+    defaultGateway = "10.7.89.1";
+    nameservers = [ "10.7.89.2" ];
+    interfaces.ens18 = {
+      ip4.addresses = [
+        {
+          address = "10.7.89.121";
+          prefixLength = 24;
+        }
+      ];
+    };
   };
 
   swapDevices = [

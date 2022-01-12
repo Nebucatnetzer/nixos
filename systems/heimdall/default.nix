@@ -33,14 +33,12 @@
     };
     defaultGateway = "10.7.89.1";
     nameservers = [ "10.7.89.2" ];
-    interfaces.ens18 = {
-      ip4.addresses = [
-        {
-          address = "10.7.89.121";
-          prefixLength = 24;
-        }
-      ];
-    };
+    interfaces.ens18.ip4.addresses = [
+      {
+        address = "10.7.89.121";
+        prefixLength = 24;
+      }
+    ];
   };
 
   swapDevices = [

@@ -1,4 +1,8 @@
 { ... }:
+let
+  hostname = "heimdall";
+  ip = "10.7.89.121";
+in
 {
   boot.initrd.availableKernelModules = [
     "ata_piix"
@@ -20,22 +24,18 @@
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
-  fileSystems."/mnt/data" = {
-    device = "10.7.89.108:raspi_data";
-    fsType = "nfs";
-  };
 
   networking = {
-    hostName = "heimdall";
+    hostName = hostname;
     hosts = {
-      "127.0.0.1" = [ "heimdall.2li.local" ];
-      "10.7.89.121" = [ "heimdall.2li.local" ];
+      "127.0.0.1" = [ "${hostname}.2li.local" ];
+      ip = [ "${hostname}.2li.local" ];
     };
     defaultGateway = "10.7.89.1";
-    nameservers = [ "10.7.89.2" ];
+    nameservers = [ ip ];
     interfaces.ens18.ipv4.addresses = [
       {
-        address = "10.7.89.121";
+        address = ip;
         prefixLength = 24;
       }
     ];

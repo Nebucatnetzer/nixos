@@ -102,6 +102,7 @@
           ./home-manager/headless.nix
           [
             ./modules/code-server
+            ./modules/data-share
             ./modules/docker
           ];
         heimdall = mkComputer

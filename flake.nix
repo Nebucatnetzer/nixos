@@ -104,7 +104,7 @@
             ./modules/code-server
             ./modules/docker
           ];
-        heimdall.2li.local = mkComputer
+        heimdall = mkComputer
           ./systems/heimdall
           ./home-manager/headless.nix
           [

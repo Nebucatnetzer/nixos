@@ -12,6 +12,9 @@
       };
     };
     extraConfig = {
+      core = {
+        hooksPath = "~/.git/config/hooks/";
+      };
       pull = {
         rebase = false;
       };

@@ -24,7 +24,6 @@
     let
       system = "x86_64-linux";
       username = import ./username.nix;
-      network = import ./modules/network;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = "x86_64-linux";

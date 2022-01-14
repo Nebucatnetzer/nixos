@@ -24,6 +24,7 @@
     let
       system = "x86_64-linux";
       username = import ./username.nix;
+      network = import ./modules/network;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = "x86_64-linux";
@@ -59,6 +60,7 @@
           ] ++ extraModules
         );
       };
+      mkVM = import ./systems/proxmox-vm;
     in
     {
       nixosConfigurations = {
@@ -106,7 +108,8 @@
             ./modules/docker
           ];
         heimdall = mkComputer
-          ./systems/heimdall
+          (mkVM
+            { hostname = "heimdall"; ip = "10.7.89.121"; })
           ./home-manager/headless.nix
           [
             ./modules/docker

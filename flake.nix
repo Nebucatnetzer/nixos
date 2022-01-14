@@ -115,7 +115,8 @@
           ];
 
         grav = mkComputer
-          ./systems/grav
+          (mkVM
+            { hostname = "grav"; ip = "10.7.89.102"; })
           ./home-manager/headless.nix
           [
             ./modules/docker

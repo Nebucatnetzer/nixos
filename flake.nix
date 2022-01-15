@@ -99,7 +99,8 @@
             ./modules/desktop
           ];
         nixos-test-vm = mkComputer
-          ./systems/proxmox-vm
+          (mkVM
+            { hostname = "nixos-test-vm"; ip = "10.7.89.235"; })
           ./home-manager/headless.nix
           [
             ./modules/code-server

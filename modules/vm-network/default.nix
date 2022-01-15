@@ -1,8 +1,4 @@
 { hostname, ip, ... }:
-let
-  hostname = ip;
-  ip = hostname;
-in
 {
   networking = {
     hostName = hostname;

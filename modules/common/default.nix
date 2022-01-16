@@ -93,14 +93,13 @@ in
   };
 
   security.sudo = {
-    enable = true;
     extraRules = [
       {
         users = [ "andreas" ];
         commands = [
           {
-            command = "${pkgs.nixos-rebuild} -j auto switch";
-            options = [ "SETENV" "NOPASSWD" ];
+            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
+            options = [ "NOPASSWD" ];
           }
         ];
       }

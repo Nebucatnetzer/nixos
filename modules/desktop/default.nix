@@ -7,6 +7,9 @@
   services = {
     gvfs.enable = true;
     printing.enable = true;
+    picom = {
+      enable = true;
+    };
     redshift = {
       enable = true;
     };

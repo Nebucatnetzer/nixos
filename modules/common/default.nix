@@ -101,6 +101,10 @@ in
             command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "/run/current-system/sw/bin/nixos-rebuild";
+            options = [ "NOPASSWD" ];
+          }
         ];
       }
     ];

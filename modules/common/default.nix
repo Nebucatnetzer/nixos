@@ -35,7 +35,10 @@ in
 
   programs.mosh.enable = true;
   services = {
-    openssh.enable = true;
+    openssh = { 
+      enable = true;
+      permitRootLogin = "no";
+    };
   };
 
   # Select internationalisation properties.

@@ -100,7 +100,7 @@
           ];
         nixos-test-vm = mkComputer
           (mkVM
-            { hostname = "nixos-test-vm"; ip = "10.7.89.235"; })
+            { hostname = "nixos-test-vm"; ip = "10.7.89.150"; })
           ./home-manager/headless.nix
           [
             ./modules/code-server

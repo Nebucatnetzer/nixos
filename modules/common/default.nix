@@ -23,6 +23,7 @@ in
   time.timeZone = "Europe/Zurich";
 
   networking = {
+    enableIPv6 = false;
     firewall.allowedTCPPorts = [ 22 ];
     # firewall.allowedUDPPorts = [ ... ];
   };

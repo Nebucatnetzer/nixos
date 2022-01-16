@@ -1,6 +1,7 @@
 { hostname, ip, ... }:
 {
   networking = {
+    useDHCP = false;
     hostName = hostname;
     hosts = {
       "127.0.0.1" = [ "${hostname}.2li.local" ];

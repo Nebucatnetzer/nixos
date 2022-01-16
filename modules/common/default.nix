@@ -88,6 +88,21 @@ in
     HIGHLIGHT_STYLE = "solarized-light";
   };
 
+  security.sudo = {
+    enable = true;
+    extraRules = [
+      {
+        users = [ "andreas" ];
+        commands = [
+          {
+            command = "${pkgs.nixos-rebuild} -j auto switch";
+            options = [ "SETENV" "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

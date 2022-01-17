@@ -74,6 +74,7 @@
             ./modules/desktop
             ./modules/docker
             ./modules/droidcam
+            ./modules/espanso
             ./modules/lockscreen
             ./modules/restic
             ./modules/xonsh
@@ -88,6 +89,7 @@
             ./modules/desktop
             ./modules/docker
             ./modules/droidcam
+            ./modules/espanso
             ./modules/lockscreen
             ./modules/restic
             ./modules/xonsh

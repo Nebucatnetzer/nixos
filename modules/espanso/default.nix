@@ -7,7 +7,7 @@ in
   home-manager.users.${username} = {
     xdg.configFile.espanso = {
       target = "espanso/default.yml";
-      onChange = "espanso restart";
+      onChange = "${pkgs.espanso}/bin/espanso restart";
       text = ''
         matches:
           - trigger: "<dd"
@@ -16,7 +16,7 @@ in
               - name: current_date
                 type: date
                 params:
-                  format: "%YYYY-%mm-%dd"
+                  format: "%YY-%m-%d"
       '';
     };
   };

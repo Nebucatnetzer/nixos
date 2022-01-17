@@ -25,6 +25,7 @@
     layout = "us";
     xkbOptions = "compose:ralt";
     libinput.enable = true;
+    useGlamor = true;
   };
 
   fonts.fonts = with pkgs; [

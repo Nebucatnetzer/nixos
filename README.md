@@ -10,6 +10,12 @@ In addition some of the scripts required for installation will destroy your data
 2. `sudo python3 scripts/format-disk.py`
 4. `sudo nixos-install --no-root-passwd --root /mnt --flake ~/nixos#SYSTEMNAME`
 
+## Update remote systems
+
+Simply run the script `scripts/update_all_systems.xsh` and it will iterate over
+all defined systems.
+The script requires Xonsh but can be easily adapted to BASH or similar.
+
 ## Non-Nixos System
 
 1. `scripts/add-home-manager-channel.sh`

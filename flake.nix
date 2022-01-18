@@ -76,6 +76,7 @@
             ./modules/droidcam
             ./modules/espanso
             ./modules/lockscreen
+            ./modules/nix-direnv
             ./modules/restic
             ./modules/xonsh
           ];

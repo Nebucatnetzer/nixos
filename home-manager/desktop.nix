@@ -10,7 +10,6 @@
     ./software/keeweb
     ./software/mpv
     ./software/nitrogen
-    ./software/nix-direnv
     ./software/obsidian
     ./software/pycharm
     ./software/rapid-photo-downloader

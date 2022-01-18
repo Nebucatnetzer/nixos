@@ -8,6 +8,7 @@
     ./software/dunst
     ./software/git
     ./software/keeweb
+    ./software/lorri
     ./software/mpv
     ./software/nitrogen
     ./software/obsidian
@@ -50,6 +51,8 @@
     enable = true;
     startInBackground = true;
   };
+
+  gtk.theme.name = "Arc-Darker";
 
   xsession.numlock.enable = true;
   services.network-manager-applet.enable = true;

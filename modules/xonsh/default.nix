@@ -11,6 +11,7 @@ in
       aliases['rebuild'] = "sudo nixos-rebuild -j auto switch"
       aliases['find-garbage'] = "ls -l /nix/var/nix/gcroots/auto/ | sort"
       aliases['format-module'] = "nixpkgs-fmt **/*.nix"
+      aliases['vm'] = "vim"
     '';
   };
   users.users.${username} = {

@@ -8,9 +8,9 @@
     ./software/dunst
     ./software/git
     ./software/keeweb
-    ./software/lorri
     ./software/mpv
     ./software/nitrogen
+    ./software/nix-direnv
     ./software/obsidian
     ./software/pycharm
     ./software/rapid-photo-downloader

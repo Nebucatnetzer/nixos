@@ -74,9 +74,9 @@
             ./modules/desktop
             ./modules/docker
             ./modules/droidcam
+            ./modules/eog
             ./modules/espanso
             ./modules/lockscreen
-            ./modules/nix-direnv
             ./modules/restic
             ./modules/xonsh
           ];

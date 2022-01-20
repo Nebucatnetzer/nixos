@@ -49,7 +49,6 @@
     brightnessctl
     lm_sensors
     lxappearance
-    gnome.eog
     gnome.nautilus
     gnome.gnome-screenshot
     networkmanager-openvpn

@@ -6,6 +6,7 @@
     ./software/autorandr
     ./software/czkawka
     ./software/dunst
+    ./software/evince
     ./software/git
     ./software/keeweb
     ./software/mpv
@@ -21,7 +22,6 @@
     arc-theme
     calibre
     digikam
-    evince
     firefox
     gimp
     inkscape

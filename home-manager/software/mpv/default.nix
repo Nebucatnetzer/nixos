@@ -5,6 +5,9 @@
     bindings = {
       s = "playlist-shuffle";
     };
+    config = {
+      "keepaspect-window" = "no";
+    };
   };
   xdg.mimeApps = {
     enable = true;

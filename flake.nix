@@ -100,6 +100,8 @@
           ./home-manager/desktop.nix
           [
             ./modules/desktop
+            ./modules/espanso
+            ./modules/xonsh
           ];
         nixos-test-vm = mkComputer
           (mkVM

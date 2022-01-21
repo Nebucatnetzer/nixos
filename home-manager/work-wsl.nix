@@ -8,6 +8,7 @@ in
     ./software/ansible-2-9
     ./software/git
     ./software/vagrant-wsl
+    ./software/vim
   ];
 
   programs.git.userEmail = "zweili@contria.com";

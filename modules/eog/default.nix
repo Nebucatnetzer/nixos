@@ -11,12 +11,12 @@ in
     xdg.mimeApps = {
       enable = true;
       associations.added = {
-        "image/png" = ["org.gnome.eog.desktop"];
-        "image/jpeg" = ["org.gnome.eog.desktop"];
+        "image/png" = [ "org.gnome.eog.desktop" ];
+        "image/jpeg" = [ "org.gnome.eog.desktop" ];
       };
       defaultApplications = {
-        "image/png" = ["org.gnome.eog.desktop"];
-        "image/jpeg" = ["org.gnome.eog.desktop"];
+        "image/png" = [ "org.gnome.eog.desktop" ];
+        "image/jpeg" = [ "org.gnome.eog.desktop" ];
       };
     };
   };

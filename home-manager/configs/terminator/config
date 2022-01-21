@@ -3,6 +3,7 @@
 [keybindings]
 [profiles]
   [[default]]
+    allow_bold = False
     background_color = "#fdf6e3"
     background_darkness = 0.8
     cursor_color = "#aaaaaa"

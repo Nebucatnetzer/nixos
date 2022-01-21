@@ -79,6 +79,7 @@ in
       dates = "daily";
       options = "--delete-older-than 7d";
     };
+    trustedUsers = [ "root" "@wheel" ];
   };
 
 

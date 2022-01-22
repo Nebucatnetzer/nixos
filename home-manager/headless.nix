@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 {
   imports = [
-    ./common
+    (import ./common { inherit self; })
     ./software/git
     ./software/vim
   ];

@@ -1,7 +1,7 @@
-{ hostname, ip, ... }:
+{ self, hostname, ip, ... }:
 {
   imports = [
-    (import ../../modules/mk-network { inherit hostname ip; })
+    (import "${self}/modules/mk-network" { inherit hostname ip; })
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

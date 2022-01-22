@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ../../modules/cli
+    "${self}/modules/cli"
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -117,7 +117,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = import ../../version.nix;
+  system.stateVersion = import "${self}/version.nix";
 
 }
 

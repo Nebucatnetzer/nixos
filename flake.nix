@@ -107,7 +107,7 @@
           ];
         nixos-test-vm = mkComputer
           (mkVM
-            { hostname = "nixos-test-vm"; ip = "10.7.89.150"; })
+            { hostname = "nixos-test-vm"; ip = "10.7.89.150"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/code-server
@@ -116,7 +116,7 @@
           ];
         heimdall = mkComputer
           (mkVM
-            { hostname = "heimdall"; ip = "10.7.89.121"; })
+            { hostname = "heimdall"; ip = "10.7.89.121"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -124,7 +124,7 @@
 
         grav = mkComputer
           (mkVM
-            { hostname = "grav"; ip = "10.7.89.102"; })
+            { hostname = "grav"; ip = "10.7.89.102"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/docker

@@ -11,6 +11,9 @@
   };
   xdg.mimeApps = {
     enable = true;
+    associations.added = {
+      "inode/directory" = [ "mpv.desktop" ];
+    };
     defaultApplications = {
       "application/mxf" = "mpv.desktop";
       "application/sdp" = "mpv.desktop";

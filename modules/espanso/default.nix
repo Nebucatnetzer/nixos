@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 let
-  username = import ../../username.nix;
+  username = import "${self}/username.nix";
 in
 {
   services.espanso.enable = true;

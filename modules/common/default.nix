@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 let
-  username = import ../../username.nix;
+  username = import "${self}/username.nix";
 in
 {
   imports = [
@@ -35,7 +35,7 @@ in
 
   programs.mosh.enable = true;
   services = {
-    openssh = { 
+    openssh = {
       enable = true;
       permitRootLogin = "no";
     };

@@ -1,6 +1,6 @@
-{ ... }:
+{ self, ... }:
 let
-  username = import ../../username.nix;
+  username = import "${self}/username.nix";
 in
 {
   services.restic.backups.${username} = {

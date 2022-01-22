@@ -41,7 +41,7 @@
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit system inputs; };
+        specialArgs = { inherit self system inputs; };
         modules = (
           [
             # System configuration for this host
@@ -54,7 +54,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username}.imports = [ homeManagerRole ];
+              home-manager.users.${username}.imports = [
+                (import homeManagerRole { inherit self pkgs; })
+              ];
             }
           ] ++ extraModules
         );

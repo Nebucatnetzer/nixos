@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ self, pkgs, ... }:
 {
   imports = [
-    ./common
+    (import ./common { inherit self; })
     ./software/work-desktop
     ./software/autorandr
     ./software/czkawka

@@ -111,8 +111,8 @@
           ./home-manager/headless.nix
           [
             ./modules/code-server
-            ./modules/data-share
             ./modules/docker
+            ./modules/xonsh
           ];
         heimdall = mkComputer
           (mkVM

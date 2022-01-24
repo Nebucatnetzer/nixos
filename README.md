@@ -6,8 +6,9 @@ In addition some of the scripts required for installation will destroy your data
 
 ## Base installation
 
-1. `nix-shell`
-2. `sudo python3 scripts/format-disk.py`
+1. `nix-shell -p git --run "git clone https://git.2li.ch/Nebucatnetzer/nixos.git`
+2. `cd nixos && nix-shell`
+3. `sudo python3 scripts/format-disk.py`
 4. `sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#SYSTEMNAME`
 
 ## Update remote systems

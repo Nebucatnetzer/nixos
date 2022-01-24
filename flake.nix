@@ -145,6 +145,14 @@
           [
             ./modules/docker
           ];
+
+        git = mkComputer
+          (mkVM
+            { hostname = "git"; ip = "10.7.89.109"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

@@ -1,7 +1,4 @@
-{ self, ... }:
-let
-  username = import "${self}/username.nix";
-in
+{ username, ... }:
 {
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;

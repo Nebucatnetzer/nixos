@@ -1,7 +1,4 @@
-{ self, pkgs, ... }:
-let
-  username = import "${self}/username.nix";
-in
+{ pkgs, username, ... }:
 {
   programs.droidcam.enable = true;
   # required for USB connection

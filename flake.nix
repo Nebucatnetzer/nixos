@@ -23,7 +23,7 @@
     }:
     let
       system = "x86_64-linux";
-      username = import ./username.nix;
+      username = "andreas";
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = "x86_64-linux";
@@ -41,7 +41,7 @@
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit self system inputs; };
+        specialArgs = { inherit self system inputs username; };
         modules = (
           [
             # System configuration for this host
@@ -55,7 +55,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username}.imports = [
-                (import homeManagerRole { inherit self pkgs; })
+                (import homeManagerRole { inherit pkgs username; })
               ];
             }
           ] ++ extraModules

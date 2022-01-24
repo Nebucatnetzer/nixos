@@ -1,7 +1,4 @@
-{ self, pkgs, ... }:
-let
-  username = import "${self}/username.nix";
-in
+{ pkgs, username, ... }:
 {
   services.code-server = {
     enable = true;

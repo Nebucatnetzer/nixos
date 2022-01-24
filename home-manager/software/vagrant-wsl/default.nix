@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  username = import ../../username.nix;
-in
+{ pkgs, username, ... }:
 {
   home.packages = with pkgs; [
     vagrant

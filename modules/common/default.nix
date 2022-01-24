@@ -1,7 +1,4 @@
-{ self, pkgs, ... }:
-let
-  username = import "${self}/username.nix";
-in
+{ self, pkgs, username, ... }:
 {
   imports = [
     "${self}/modules/cli"

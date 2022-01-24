@@ -1,7 +1,4 @@
-{ self, pkgs, ... }:
-let
-  username = import "${self}/username.nix";
-in
+{ pkgs, username, ... }:
 {
   environment.systemPackages = with pkgs; [
     gnome.eog

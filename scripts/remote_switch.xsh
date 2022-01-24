@@ -3,7 +3,6 @@
 hosts = [
  "grav",
  "heimdall",
- "nixos-test-vm",
 ]
 
 rsa_key = "~/.nixos/secrets/ssh_keys/ansible/ansible.key"

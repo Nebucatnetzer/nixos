@@ -153,6 +153,15 @@
           [
             ./modules/docker
           ];
+
+        plex = mkComputer
+          (mkVM
+            { hostname = "plex"; ip = "10.7.89.112"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+            ./modules/media-share
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

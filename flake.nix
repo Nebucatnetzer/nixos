@@ -137,6 +137,14 @@
           [
             ./modules/docker
           ];
+
+        rss-bridge = mkComputer
+          (mkVM
+            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

@@ -130,5 +130,14 @@
             ./modules/docker
           ];
       };
-    };
-}
+      homeConfigurations = {
+        "andreas@co-ws-con4" = homeManager.lib.homeManagerConfiguration {
+          configuration = import ./home-manager/work-wsl.nix;
+          inherit self system;
+          extraSpecialArgs = {
+            inherit self system;
+          }
+            };
+        };
+      };
+    }

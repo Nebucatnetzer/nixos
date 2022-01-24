@@ -2,7 +2,11 @@
 
 hosts = [
  "grav",
+ "git",
  "heimdall",
+ "plex",
+ "rss-bridge",
+ "ttrss",
 ]
 
 rsa_key = "~/.nixos/secrets/ssh_keys/ansible/ansible.key"

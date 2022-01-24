@@ -159,6 +159,7 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            ./modules/gitea
           ];
 
         plex = mkComputer

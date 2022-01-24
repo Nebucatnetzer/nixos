@@ -133,7 +133,7 @@
       homeConfigurations = {
         "andreas@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import ./home-manager/work-wsl.nix;
-          inherit self system username;
+          inherit system username;
           homeDirectory = "/home/${username}";
           extraSpecialArgs = {
             inherit self system username;

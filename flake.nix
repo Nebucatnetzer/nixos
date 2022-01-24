@@ -105,9 +105,9 @@
             ./modules/espanso
             ./modules/xonsh
           ];
-        nixos-test-vm = mkComputer
+        nixos-management = mkComputer
           (mkVM
-            { hostname = "nixos-test-vm"; ip = "10.7.89.150"; inherit self; })
+            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/code-server

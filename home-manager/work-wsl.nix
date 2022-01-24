@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  username = import ../username.nix;
-in
+{ self, pkgs, username, ... }:
 {
   imports = [
     ./common

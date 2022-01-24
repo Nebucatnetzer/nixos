@@ -136,8 +136,8 @@
           inherit self system;
           extraSpecialArgs = {
             inherit self system;
-          }
-            };
+          };
         };
       };
-    }
+    };
+}

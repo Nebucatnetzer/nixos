@@ -131,7 +131,7 @@
           ];
       };
       homeConfigurations = {
-        "andreas@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+        "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import ./home-manager/work-wsl.nix;
           inherit system username;
           homeDirectory = "/home/${username}";

@@ -129,6 +129,14 @@
           [
             ./modules/docker
           ];
+
+        ttrss = mkComputer
+          (mkVM
+            { hostname = "ttrss"; ip = "10.7.89.115"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

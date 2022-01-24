@@ -94,5 +94,5 @@
         mode tcp
         server server1 10.7.89.114:443 check
     '';
-  }
-    }
+  };
+}

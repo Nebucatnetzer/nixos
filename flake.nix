@@ -168,6 +168,7 @@
           [
             ./modules/docker
             ./modules/media-share
+            ./modules/plex
           ];
       };
       homeConfigurations = {

@@ -11,6 +11,7 @@ However this requires some prerequisites.
 
 - A VM running the minimal NixOS ISO reachable with SSH under nixos@nixos.2li.local.
 - The VM runs UEFI.
+- You've set a password for the nixos user.
 
 1. `./scripts/install_new_vm.xsh`
 2. Provide the required information and wait until the script is finished.

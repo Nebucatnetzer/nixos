@@ -171,6 +171,14 @@
             ./modules/media-share
             ./modules/plex
           ];
+        nextcloud = mkComputer
+          (mkVM
+            { hostname = "nextcloud"; ip = "10.7.89.103"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+            ./modules/media-share
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

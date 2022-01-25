@@ -171,6 +171,7 @@
             ./modules/media-share
             ./modules/plex
           ];
+
         nextcloud = mkComputer
           (mkVM
             { hostname = "nextcloud"; ip = "10.7.89.103"; inherit self; })
@@ -179,12 +180,22 @@
             ./modules/docker
             ./modules/media-share
           ];
+
         mail = mkComputer
           (mkVM
             { hostname = "mail"; ip = "10.7.89.123"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/docker
+          ];
+
+        pihole = mkComputer
+          (mkVM
+            { hostname = "pihole"; ip = "10.7.89.2"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+            ./modules/pihole
           ];
       };
       homeConfigurations = {

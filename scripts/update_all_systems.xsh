@@ -1,9 +1,14 @@
 #!/usr/bin/env xonsh
 
 hosts = [
+ "nixos-management",
  "grav",
  "heimdall",
- "nixos-test-vm",
+ "mail",
+ "plex",
+ "proxy",
+ "rss-bridge",
+ "ttrss",
 ]
 
 update_command = 'tmux new -s updates "cd ~/.nixos && git pull && sudo nixos-rebuild -j auto switch || bash;"'

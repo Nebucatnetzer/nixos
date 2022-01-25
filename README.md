@@ -4,7 +4,19 @@ This repository contains my configuration for my Nixos systems.
 I don't provide any garantuees that it will work on other systems.
 In addition some of the scripts required for installation will destroy your data when used.
 
-## Base installation
+## VM installation
+
+This allows you to setup a VM with minimal effort.
+However this requires some prerequisites.
+
+- A VM running the minimal NixOS ISO reachable with SSH under nixos@nixos.2li.local.
+- The VM runs UEFI.
+
+1. `./scripts/install_new_vm.xsh`
+2. Provide the required information and wait until the script is finished.
+3. Reboot and profit!
+
+## Hardware installation
 
 1. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
 2. `cd nixos && nix-shell`
@@ -19,5 +31,4 @@ The script requires Xonsh but can be easily adapted to BASH or similar.
 
 ## Non-Nixos System
 
-1. `scripts/add-home-manager-channel.sh`
-2. `scripts/install-home-manager.sh`
+1. `scripts/install-home-manager.sh`

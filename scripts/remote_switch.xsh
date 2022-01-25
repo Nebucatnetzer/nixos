@@ -1,10 +1,13 @@
 #!/usr/bin/env xonsh
 
 hosts = [
+ "nixos-management",
  "grav",
- "git",
+ #"git",
  "heimdall",
+ "mail",
  "plex",
+ "proxy",
  "rss-bridge",
  "ttrss",
 ]

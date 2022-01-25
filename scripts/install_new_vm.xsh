@@ -4,12 +4,9 @@ flake = input("Enter a config you want to deploy: ")
 
 server = "nixos@nixos.2li.local"
 download_command = "curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz"
-nixshell_command = "cd nixos && nix-shell"
-format_command = "sudo python3 scripts/format-disk.py"
-install_command = "sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#" + flake
+install_command = "cd ~/nixos && ./scripts/install_vm.sh " + flake
+rsa_key = "~/.ssh/id_rsa"
 
 ssh-copy-id @(server)
-ssh -t @(server) @(download_command)
-ssh -t @(server) @(nixshell_command)
-ssh -t @(server) @(format_command)
-ssh -t @(server) @(install_command)
+ssh -i @(rsa_key) -t @(server) @(download_command)
+ssh -i @(rsa_key) -t @(server) @(install_command)

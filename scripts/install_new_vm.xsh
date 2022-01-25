@@ -1,16 +1,16 @@
 #!/usr/bin/env xonsh
 
-host = "nixos"
+flake = input("Enter a config you want to deploy: ")
 
 download_command = "curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz"
 nixshell_command = "cd nixos && nix-shell"
 format_command = "sudo python3 scripts/format-disk.py"
-install_command = "sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#" + host
+install_command = "sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#" + flake
 
 for host in hosts:
-    fqdn = "{}.2li.local".format(host)
-    ssh-copy-id @(fqdn)
-    ssh -t @(fqdn) @(download_command)
-    ssh -t @(fqdn) @(nixshell_command)
-    ssh -t @(fqdn) @(format_command)
-    ssh -t @(fqdn) @(install_command)
+    server = "nixos@nixos.2li.local"
+    ssh-copy-id @(server)
+    ssh -t @(server) @(download_command)
+    ssh -t @(server) @(nixshell_command)
+    ssh -t @(server) @(format_command)
+    ssh -t @(server) @(install_command)

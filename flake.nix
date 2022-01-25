@@ -179,6 +179,13 @@
             ./modules/docker
             ./modules/media-share
           ];
+        mail = mkComputer
+          (mkVM
+            { hostname = "mail"; ip = "10.7.89.123"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

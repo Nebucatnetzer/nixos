@@ -48,12 +48,12 @@
 
         # Ensure privacy of local IP ranges
         private-address = [
-          192.168.0.0/16
-          169.254.0.0/16
-          172.16.0.0/12
-          10.0.0.0/8
-          fd00::/8
-          fe80::/10
+          "192.168.0.0/16"
+          "169.254.0.0/16"
+          "172.16.0.0/12"
+          "10.0.0.0/8"
+          "fd00::/8"
+          "fe80::/10"
         ];
 
         # Send minimum amount of information to upstream servers to enhance

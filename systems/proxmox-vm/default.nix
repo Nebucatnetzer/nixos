@@ -2,6 +2,7 @@
 {
   imports = [
     (import "${self}/modules/mk-network" { inherit hostname ip; })
+    (import "${self}/systems/minimal")
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

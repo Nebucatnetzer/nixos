@@ -197,6 +197,14 @@
             ./modules/pihole
             ./modules/unbound
           ];
+
+        backup = mkComputer
+          (mkVM
+            { hostname = "backup"; ip = "10.7.89.117"; inherit self; })
+          ./home-manager/headless.nix
+          [
+            ./modules/restic-share
+          ];
       };
       homeConfigurations = {
         "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

@@ -195,6 +195,7 @@
           [
             ./modules/docker
             ./modules/pihole
+            ./modules/unbound
           ];
       };
       homeConfigurations = {

@@ -2,7 +2,7 @@
 {
   services.restic.backups.${username} = {
     user = username;
-    repository = "sftp:borg@10.7.89.117:restic";
+    repository = "rest:http://10.7.89.30:8000";
     timerConfig.OnCalendar = "hourly";
     passwordFile = "/home/${username}/.nixos/secrets/passwords/restic.key";
     paths = [ "/home/${username}/" ];

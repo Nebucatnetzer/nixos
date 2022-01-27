@@ -197,12 +197,12 @@
             ./modules/unbound
           ];
 
-        backup = mkComputer
+        restic-server = mkComputer
           (mkVM
-            { hostname = "backup"; ip = "10.7.89.117"; inherit self; })
+            { hostname = "server-server"; ip = "10.7.89.30"; inherit self; })
           ./home-manager/headless.nix
           [
-            ./modules/restic-share
+            ./modules/restic-server
           ];
       };
       homeConfigurations = {

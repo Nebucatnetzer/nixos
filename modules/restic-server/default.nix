@@ -12,4 +12,5 @@ in
     dataDir = repository;
     extraFlags = [ "--no-auth" ];
   };
+  networking.firewall.allowedTCPPorts = [ 8000 ];
 }

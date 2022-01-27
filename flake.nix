@@ -177,7 +177,6 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
-            ./modules/media-share
           ];
 
         mail = mkComputer

@@ -199,7 +199,7 @@
 
         restic-server = mkComputer
           (mkVM
-            { hostname = "server-server"; ip = "10.7.89.30"; inherit self; })
+            { hostname = "restic-server"; ip = "10.7.89.30"; inherit self; })
           ./home-manager/headless.nix
           [
             ./modules/restic-server

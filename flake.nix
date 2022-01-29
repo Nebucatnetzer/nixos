@@ -119,6 +119,7 @@
           [
             ./modules/code-server
             ./modules/docker
+            ./modules/restic
             ./modules/xonsh
           ];
         heimdall = mkComputer

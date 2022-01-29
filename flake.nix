@@ -160,7 +160,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self; time = "03:00";
+              inherit self username; time = "03:00";
             })
           ];
 

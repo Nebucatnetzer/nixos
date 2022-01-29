@@ -159,6 +159,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self; time = "03:00";
+            })
           ];
 
         plex = mkComputer

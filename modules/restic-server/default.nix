@@ -1,10 +1,18 @@
-{ username, ... }:
+{ pkgs, username, ... }:
 let
-  repository = "/mnt/restic";
+  repository = "/mnt/restic-server";
 in
 {
-  fileSystems.${repository} = {
+  environment.systemPackages = with pkgs; [
+    restic
+  ];
+
+  fileSystems."/mnt/restic" = {
     device = "10.7.89.108:restic";
+    fsType = "nfs";
+  };
+  fileSystems.${repository} = {
+    device = "10.7.89.108:restic-server";
     fsType = "nfs";
   };
   services.restic.server = {

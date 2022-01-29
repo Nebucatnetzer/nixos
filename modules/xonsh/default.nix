@@ -10,6 +10,7 @@
       aliases['format-module'] = "nixpkgs-fmt **/*.nix"
       aliases['vm'] = "vim"
       $XONSH_COLOR_STYLE = 'solarized-light'
+      $XONSH_HISTORY_BACKEND = 'sqlite'
     '';
   };
   users.users.${username} = {

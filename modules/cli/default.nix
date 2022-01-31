@@ -16,7 +16,11 @@
     wget
   ];
   environment.shellAliases = {
-    format = "nixpkgs-fmt **/*.nix";
+    format-modules = "nixpkgs-fmt **/*.nix";
+    nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+    rebuild = "sudo nixos-rebuild -j auto switch";
+    find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";
+    vm = "vim";
   };
 }
 

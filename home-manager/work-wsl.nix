@@ -9,9 +9,6 @@
   ];
 
   programs.git.userEmail = "zweili@contria.com";
-  home.packages = with pkgs; [
-    xonsh
-  ];
 
   programs.bash = {
     enable = true;

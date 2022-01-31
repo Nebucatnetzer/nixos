@@ -80,7 +80,6 @@
             ./modules/espanso
             ./modules/lockscreen
             ./modules/restic
-            ./modules/xonsh
           ];
         staubfinger = mkComputer
           ./systems/staubfinger
@@ -95,7 +94,6 @@
             ./modules/espanso
             ./modules/lockscreen
             ./modules/restic
-            ./modules/xonsh
           ];
         nixos-vm = mkComputer
           ./systems/desktop-vm
@@ -103,7 +101,6 @@
           [
             ./modules/desktop
             ./modules/espanso
-            ./modules/xonsh
           ];
         proxy = mkComputer
           (mkVM
@@ -120,7 +117,6 @@
             ./modules/code-server
             ./modules/docker
             ./modules/restic
-            ./modules/xonsh
           ];
         heimdall = mkComputer
           (mkVM

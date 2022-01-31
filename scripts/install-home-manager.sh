@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 nix-shell '<home-manager>' -A install
 rm ~/.config/nixpkgs/home.nix
 ln -s $(pwd)/.nixos/flake.nix /home/$USER/.config/nixpkgs/flake.nix

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   networking = {
     networkmanager.enable = true;
@@ -58,5 +58,8 @@
     source-code-pro
     terminator
   ];
+  environment.shellAliases = {
+    management-server = "mosh ${username}@10.7.89.150 tmux a";
+  };
 }
 

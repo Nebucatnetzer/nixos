@@ -124,6 +124,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "22:00";
+            })
           ];
 
         grav = mkComputer
@@ -132,6 +135,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "22:30";
+            })
           ];
 
         ttrss = mkComputer
@@ -140,6 +146,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "23:00";
+            })
           ];
 
         rss-bridge = mkComputer
@@ -148,6 +157,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "23:30";
+            })
           ];
 
         git = mkComputer
@@ -169,6 +181,9 @@
             ./modules/docker
             ./modules/media-share
             ./modules/plex
+            (import ./modules/restic-server-client {
+              inherit self username; time = "03:30";
+            })
           ];
 
         nextcloud = mkComputer
@@ -178,7 +193,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "03:30";
+              inherit self username; time = "04:00";
             })
           ];
 
@@ -188,6 +203,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "04:30";
+            })
           ];
 
         pihole = mkComputer
@@ -197,6 +215,9 @@
           [
             ./modules/docker
             ./modules/pihole
+            (import ./modules/restic-server-client {
+              inherit self username; time = "05:00";
+            })
             ./modules/unbound
           ];
 

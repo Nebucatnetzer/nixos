@@ -177,6 +177,9 @@
           ./home-manager/headless.nix
           [
             ./modules/docker
+            (import ./modules/restic-server-client {
+              inherit self username; time = "03:30";
+            })
           ];
 
         mail = mkComputer

@@ -9,9 +9,6 @@
 
   programs.bash = {
     enable = true;
-    bashrcExtra = ''
-      . ~/.nixos/home-manager/configs/bash/bashrc
-    '';
   };
   targets.genericLinux.enable = true;
 }

@@ -7,6 +7,7 @@
     auth = "none";
     extraPackages = with pkgs;
       [
+        coreutils
         python3
         # other
         bash

@@ -1,21 +1,24 @@
 #!/usr/bin/env bash
 
-hosts = (
+hosts=(
  "nixos-management"
  "grav"
  "git"
  "heimdall"
  "mail"
+ "nextcloud"
+ "pihole"
  "plex"
  "proxy"
  "rss-bridge"
  "ttrss"
 )
 
-rsa_key="~/.nixos/secrets/ssh_keys/ansible/ansible.key"
-$NIX_SSHOPTS="-t -i $rsa_key"
+rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
+export NIX_SSHOPTS="-t -i $rsa_key"
 
-for host in $hosts do
+for host in "${hosts[@]}"
+do
     fqdn="$host.2li.local"
     echo $fqdn
     nixos-rebuild switch --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"

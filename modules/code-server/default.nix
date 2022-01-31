@@ -12,6 +12,9 @@
         bash
         git
       ];
+    extraEnvironment = {
+      HOME = "/home/${username}";
+    };
   };
   networking.firewall.allowedTCPPorts = [ 4444 ];
 }

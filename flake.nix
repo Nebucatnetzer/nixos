@@ -79,6 +79,7 @@
             ./modules/eog
             ./modules/espanso
             ./modules/lockscreen
+            ./modules/nix-direnv
             ./modules/restic
           ];
         staubfinger = mkComputer

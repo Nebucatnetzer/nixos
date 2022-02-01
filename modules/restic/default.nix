@@ -16,11 +16,5 @@
     extraBackupArgs = [
       "--exclude-file=${self}/modules/restic/excludes.txt"
     ];
-    pruneOpts = [
-      "--keep-hourly 24"
-      "--keep-daily 7"
-      "--keep-weekly 5"
-      "--keep-monthly 12"
-    ];
   };
 }

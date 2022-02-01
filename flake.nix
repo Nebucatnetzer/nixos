@@ -116,7 +116,9 @@
           [
             ./modules/code-server
             ./modules/docker
-            ./modules/restic
+            (import ./modules/restic-server-client {
+              inherit self username; time = "21:30";
+            })
           ];
         heimdall = mkComputer
           (mkVM

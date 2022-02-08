@@ -101,6 +101,7 @@
           ./home-manager/desktop.nix
           [
             ./modules/desktop
+            ./modules/docker
             ./modules/espanso
           ];
         proxy = mkComputer

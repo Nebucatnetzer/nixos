@@ -1,4 +1,4 @@
-{ self, pkgs, username, ... }:
+{ self, nixpkgs, pkgs, username, ... }:
 {
   imports = [
     "${self}/modules/cli"
@@ -67,6 +67,15 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    nixPath = [ "nixpkgs=${nixpkgs}" ];
+    registry.nixpkgs = {
+      from = {
+        id = "nixpkgs";
+        type = "indirect";
+      };
+      flake = nixpkgs;
+    };
+
     autoOptimiseStore = true;
     package = pkgs.nixFlakes;
     extraOptions = ''

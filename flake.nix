@@ -30,6 +30,7 @@
           config.allowUnfree = true;
         };
       };
+
       pkgs = import nixpkgs {
         inherit system;
         config = {
@@ -41,7 +42,7 @@
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit self system inputs username; };
+        specialArgs = { inherit self nixpkgs system inputs username; };
         modules = (
           [
             # System configuration for this host

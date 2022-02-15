@@ -9,6 +9,7 @@
     ./software/evince
     ./software/git
     ./software/keeweb
+    ./software/mime-apps
     ./software/mpv
     ./software/nitrogen
     ./software/obsidian

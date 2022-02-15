@@ -4,6 +4,7 @@
     (import ./common { inherit username; })
     ./software/work-desktop
     ./software/autorandr
+    ./software/calibre
     ./software/czkawka
     ./software/dunst
     ./software/evince
@@ -21,7 +22,6 @@
   ];
   home.packages = with pkgs; [
     arc-theme
-    calibre
     digikam
     firefox
     gimp

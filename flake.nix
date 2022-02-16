@@ -27,6 +27,7 @@
     , custom
     }:
     let
+      system = custom.system;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = custom.system;
@@ -35,7 +36,7 @@
       };
 
       pkgs = import nixpkgs {
-        inherit custom.system;
+        inherit system;
         config = {
           allowUnfree = true;
         };
@@ -44,8 +45,8 @@
         ];
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
-        inherit custom.system pkgs;
-        specialArgs = { inherit inputs username; };
+        inherit system pkgs;
+        specialArgs = { inherit inputs; };
         modules = (
           [
             # System configuration for this host
@@ -123,7 +124,7 @@
             ./modules/code-server
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs username; time = "21:30";
+              inherit inputs; time = "21:30";
             })
           ];
         heimdall = mkComputer

@@ -5,7 +5,7 @@
   ];
 
   services.restic.backups.${inputs.custom.username} = {
-    user = username;
+    user = inputs.custom.username;
     repository = "rest:http://10.7.89.30:8000";
     timerConfig = {
       OnCalendar = "hourly";

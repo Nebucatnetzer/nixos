@@ -1,10 +1,10 @@
-{ pkgs, username, ... }:
+{ inputs, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     gnome.eog
   ];
 
-  home-manager.users.${username} = {
+  home-manager.users.${inputs.custom.username} = {
     xdg.mimeApps = {
       enable = true;
       associations.added = {

@@ -1,4 +1,4 @@
-{ self, pkgs, username, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./common
@@ -14,7 +14,7 @@
     enable = true;
     bashrcExtra = ''
       . ~/.nixos/home-manager/configs/bash/work_wsl_bashrc
-      . /home/${username}/.nix-profile/etc/profile.d/nix.sh
+      . /home/${inputs.custom.username}/.nix-profile/etc/profile.d/nix.sh
     '';
   };
 }

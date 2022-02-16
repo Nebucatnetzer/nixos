@@ -1,7 +1,7 @@
-{ self, nixpkgs, pkgs, username, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
-    "${self}/modules/cli"
+    "${inputs.self}/modules/cli"
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -49,7 +49,7 @@
   # Disable the root user
   users.users.root.hashedPassword = "!";
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${username} = {
+  users.users.${inputs.custom.username} = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [
@@ -67,13 +67,10 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    nixPath = [ "nixpkgs=${nixpkgs}" ];
-    registry.nixpkgs = {
-      from = {
-        id = "nixpkgs";
-        type = "indirect";
-      };
-      flake = nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      nix-config.flake = inputs.self;
     };
 
     autoOptimiseStore = true;
@@ -121,7 +118,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = import "${self}/version.nix";
+  system.stateVersion = import "${inputs.self}/version.nix";
 
 }
 

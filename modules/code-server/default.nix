@@ -1,8 +1,8 @@
-{ pkgs, username, ... }:
+{ inputs, pkgs, ... }:
 {
   services.code-server = {
     enable = true;
-    user = username;
+    user = inputs.custom.username;
     host = "0.0.0.0";
     auth = "none";
     extraPackages = with pkgs;
@@ -14,7 +14,7 @@
         git
       ];
     extraEnvironment = {
-      HOME = "/home/${username}";
+      HOME = "/home/${inputs.custom.username}";
     };
   };
   networking.firewall.allowedTCPPorts = [ 4444 ];

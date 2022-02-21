@@ -107,14 +107,14 @@
           ];
         proxy = mkComputer
           (mkVM
-            { hostname = "proxy"; ip = "10.7.89.100"; inherit inputs; })
+            { hostname = "proxy"; ip = "10.7.89.100"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/haproxy
           ];
         nixos-management = mkComputer
           (mkVM
-            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit inputs; })
+            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/code-server
@@ -125,7 +125,7 @@
           ];
         heimdall = mkComputer
           (mkVM
-            { hostname = "heimdall"; ip = "10.7.89.121"; inherit inputs; })
+            { hostname = "heimdall"; ip = "10.7.89.121"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -136,7 +136,7 @@
 
         grav = mkComputer
           (mkVM
-            { hostname = "grav"; ip = "10.7.89.102"; inherit inputs; })
+            { hostname = "grav"; ip = "10.7.89.102"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -147,7 +147,7 @@
 
         ttrss = mkComputer
           (mkVM
-            { hostname = "ttrss"; ip = "10.7.89.115"; inherit inputs; })
+            { hostname = "ttrss"; ip = "10.7.89.115"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -158,7 +158,7 @@
 
         rss-bridge = mkComputer
           (mkVM
-            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit inputs; })
+            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -169,7 +169,7 @@
 
         git = mkComputer
           (mkVM
-            { hostname = "git"; ip = "10.7.89.109"; inherit inputs; })
+            { hostname = "git"; ip = "10.7.89.109"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -180,7 +180,7 @@
 
         plex = mkComputer
           (mkVM
-            { hostname = "plex"; ip = "10.7.89.112"; inherit inputs; })
+            { hostname = "plex"; ip = "10.7.89.112"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -193,7 +193,7 @@
 
         nextcloud = mkComputer
           (mkVM
-            { hostname = "nextcloud"; ip = "10.7.89.103"; inherit inputs; })
+            { hostname = "nextcloud"; ip = "10.7.89.103"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -204,7 +204,7 @@
 
         mail = mkComputer
           (mkVM
-            { hostname = "mail"; ip = "10.7.89.123"; inherit inputs; })
+            { hostname = "mail"; ip = "10.7.89.123"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -215,7 +215,7 @@
 
         pihole = mkComputer
           (mkVM
-            { hostname = "pihole"; ip = "10.7.89.2"; inherit inputs; })
+            { hostname = "pihole"; ip = "10.7.89.2"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
@@ -228,7 +228,7 @@
 
         restic-server = mkComputer
           (mkVM
-            { hostname = "restic-server"; ip = "10.7.89.30"; inherit inputs; })
+            { hostname = "restic-server"; ip = "10.7.89.30"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/restic-server
@@ -240,7 +240,7 @@
           inherit inputs;
           homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {
-            inherit inputs;
+            inherit custom inputs;
           };
         };
       };

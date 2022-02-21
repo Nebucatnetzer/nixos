@@ -120,7 +120,7 @@
             ./modules/code-server
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "21:30";
+              inherit custom inputs; time = "21:30";
             })
           ];
         heimdall = mkComputer
@@ -130,7 +130,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "22:00";
+              inherit custom inputs; time = "22:00";
             })
           ];
 
@@ -141,7 +141,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "22:30";
+              inherit custom inputs; time = "22:30";
             })
           ];
 
@@ -152,7 +152,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "23:00";
+              inherit custom inputs; time = "23:00";
             })
           ];
 
@@ -163,7 +163,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "23:30";
+              inherit custom inputs; time = "23:30";
             })
           ];
 
@@ -174,7 +174,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "03:00";
+              inherit custom inputs; time = "03:00";
             })
           ];
 
@@ -187,7 +187,7 @@
             ./modules/media-share
             ./modules/plex
             (import ./modules/restic-server-client {
-              inherit inputs; time = "03:30";
+              inherit custom inputs; time = "03:30";
             })
           ];
 
@@ -198,7 +198,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "04:00";
+              inherit custom inputs; time = "04:00";
             })
           ];
 
@@ -209,7 +209,7 @@
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit inputs; time = "04:30";
+              inherit custom inputs; time = "04:30";
             })
           ];
 
@@ -221,7 +221,7 @@
             ./modules/docker
             ./modules/pihole
             (import ./modules/restic-server-client {
-              inherit inputs; time = "05:00";
+              inherit custom inputs; time = "05:00";
             })
             ./modules/unbound
           ];

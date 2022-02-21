@@ -1,4 +1,4 @@
-{ inputs, hostname, ip, ... }:
+{ inputs, custom, hostname, ip, ... }:
 {
   imports = [
     (import "${inputs.self}/modules/mk-network" { inherit hostname ip; })

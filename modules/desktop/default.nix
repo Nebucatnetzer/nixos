@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   networking = {
     networkmanager.enable = true;
@@ -59,7 +59,7 @@
     terminator
   ];
   environment.shellAliases = {
-    management-server = "mosh ${inputs.custom.username}@10.7.89.150 tmux a";
+    management-server = "mosh ${custom.username}@10.7.89.150 tmux a";
   };
 }
 

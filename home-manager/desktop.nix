@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   imports = [
-    (import ./common { inherit inputs; })
+    (import ./common { inherit custom inputs; })
     ./software/work-desktop
     ./software/autorandr
     ./software/calibre

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, custom, pkgs, ... }:
 let
   repository = "/mnt/restic-server";
 in

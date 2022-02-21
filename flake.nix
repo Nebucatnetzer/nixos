@@ -12,10 +12,6 @@
       url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    custom = {
-      system = "x86_64-linux";
-      username = "andreas";
-    };
   };
 
   outputs =
@@ -24,9 +20,9 @@
     , nixpkgs-unstable
     , nixos-hardware
     , home-manager
-    , custom
     }:
     let
+      custom = import ./custom;
       system = custom.system;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
@@ -46,7 +42,7 @@
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit custom inputs; };
         modules = (
           [
             # System configuration for this host
@@ -60,7 +56,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                (import homeManagerRole { inherit pkgs inputs; })
+                (import homeManagerRole { inherit custom pkgs inputs; })
               ];
             }
           ] ++ extraModules

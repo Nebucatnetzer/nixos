@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   imports = [
     (import ./common { inherit inputs; })

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   imports = [
     "${inputs.self}/modules/cli"
@@ -49,7 +49,7 @@
   # Disable the root user
   users.users.root.hashedPassword = "!";
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${inputs.custom.username} = {
+  users.users.${custom.username} = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [

@@ -1,7 +1,7 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
-    (import ./common { inherit inputs; })
+    (import ./common { inherit custom inputs; })
     ./software/git
     ./software/vim
   ];

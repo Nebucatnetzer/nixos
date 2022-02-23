@@ -24,6 +24,7 @@
     let
       custom = import ./custom;
       system = custom.system;
+      username = custom.username;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = custom.system;
@@ -237,7 +238,7 @@
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import ./home-manager/work-wsl.nix;
-          inherit inputs;
+          inherit system username;
           homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {
             inherit custom inputs;

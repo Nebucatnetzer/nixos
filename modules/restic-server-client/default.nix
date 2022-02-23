@@ -1,13 +1,13 @@
-{ self, time, username, ... }:
+{ inputs, custom, time, ... }:
 {
-  services.restic.backups.${username} = {
+  services.restic.backups.${custom.username} = {
     user = "root";
     repository = "rest:http://10.7.89.30:8000";
     timerConfig.OnCalendar = time;
-    passwordFile = "/home/${username}/.nixos/secrets/passwords/restic.key";
-    paths = [ "/home/${username}/" ];
+    passwordFile = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+    paths = [ "/home/${custom.username}/" ];
     extraBackupArgs = [
-      "--exclude-file=${self}/modules/restic/excludes.txt"
+      "--exclude-file=${inputs.self}/modules/restic/excludes.txt"
     ];
     pruneOpts = [
       "--keep-hourly 24"

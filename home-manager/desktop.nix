@@ -1,9 +1,10 @@
-{ pkgs, username, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   imports = [
-    (import ./common { inherit username; })
+    (import ./common { inherit custom inputs; })
     ./software/work-desktop
     ./software/autorandr
+    ./software/calibre
     ./software/czkawka
     ./software/dunst
     ./software/evince
@@ -21,7 +22,6 @@
   ];
   home.packages = with pkgs; [
     arc-theme
-    calibre
     digikam
     firefox
     gimp

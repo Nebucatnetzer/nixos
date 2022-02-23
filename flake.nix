@@ -22,11 +22,11 @@
     , home-manager
     }:
     let
-      system = "x86_64-linux";
-      username = "andreas";
+      custom = import ./custom;
+      system = custom.system;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
-          system = "x86_64-linux";
+          system = custom.system;
           config.allowUnfree = true;
         };
       };
@@ -42,7 +42,7 @@
       };
       mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit self nixpkgs system inputs username; };
+        specialArgs = { inherit custom inputs; };
         modules = (
           [
             # System configuration for this host
@@ -55,8 +55,8 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username}.imports = [
-                (import homeManagerRole { inherit pkgs username; })
+              home-manager.users.${custom.username}.imports = [
+                (import homeManagerRole { inherit custom pkgs inputs; })
               ];
             }
           ] ++ extraModules
@@ -107,140 +107,140 @@
           ];
         proxy = mkComputer
           (mkVM
-            { hostname = "proxy"; ip = "10.7.89.100"; inherit self; })
+            { hostname = "proxy"; ip = "10.7.89.100"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/haproxy
           ];
         nixos-management = mkComputer
           (mkVM
-            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit self; })
+            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/code-server
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "21:30";
+              inherit custom inputs; time = "21:30";
             })
           ];
         heimdall = mkComputer
           (mkVM
-            { hostname = "heimdall"; ip = "10.7.89.121"; inherit self; })
+            { hostname = "heimdall"; ip = "10.7.89.121"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "22:00";
+              inherit custom inputs; time = "22:00";
             })
           ];
 
         grav = mkComputer
           (mkVM
-            { hostname = "grav"; ip = "10.7.89.102"; inherit self; })
+            { hostname = "grav"; ip = "10.7.89.102"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "22:30";
+              inherit custom inputs; time = "22:30";
             })
           ];
 
         ttrss = mkComputer
           (mkVM
-            { hostname = "ttrss"; ip = "10.7.89.115"; inherit self; })
+            { hostname = "ttrss"; ip = "10.7.89.115"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "23:00";
+              inherit custom inputs; time = "23:00";
             })
           ];
 
         rss-bridge = mkComputer
           (mkVM
-            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit self; })
+            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "23:30";
+              inherit custom inputs; time = "23:30";
             })
           ];
 
         git = mkComputer
           (mkVM
-            { hostname = "git"; ip = "10.7.89.109"; inherit self; })
+            { hostname = "git"; ip = "10.7.89.109"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "03:00";
+              inherit custom inputs; time = "03:00";
             })
           ];
 
         plex = mkComputer
           (mkVM
-            { hostname = "plex"; ip = "10.7.89.112"; inherit self; })
+            { hostname = "plex"; ip = "10.7.89.112"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             ./modules/media-share
             ./modules/plex
             (import ./modules/restic-server-client {
-              inherit self username; time = "03:30";
+              inherit custom inputs; time = "03:30";
             })
           ];
 
         nextcloud = mkComputer
           (mkVM
-            { hostname = "nextcloud"; ip = "10.7.89.103"; inherit self; })
+            { hostname = "nextcloud"; ip = "10.7.89.103"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "04:00";
+              inherit custom inputs; time = "04:00";
             })
           ];
 
         mail = mkComputer
           (mkVM
-            { hostname = "mail"; ip = "10.7.89.123"; inherit self; })
+            { hostname = "mail"; ip = "10.7.89.123"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             (import ./modules/restic-server-client {
-              inherit self username; time = "04:30";
+              inherit custom inputs; time = "04:30";
             })
           ];
 
         pihole = mkComputer
           (mkVM
-            { hostname = "pihole"; ip = "10.7.89.2"; inherit self; })
+            { hostname = "pihole"; ip = "10.7.89.2"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/docker
             ./modules/pihole
             (import ./modules/restic-server-client {
-              inherit self username; time = "05:00";
+              inherit custom inputs; time = "05:00";
             })
             ./modules/unbound
           ];
 
         restic-server = mkComputer
           (mkVM
-            { hostname = "restic-server"; ip = "10.7.89.30"; inherit self; })
+            { hostname = "restic-server"; ip = "10.7.89.30"; inherit custom inputs; })
           ./home-manager/headless.nix
           [
             ./modules/restic-server
           ];
       };
       homeConfigurations = {
-        "${username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+        "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import ./home-manager/work-wsl.nix;
-          inherit system username;
-          homeDirectory = "/home/${username}";
+          inherit inputs;
+          homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {
-            inherit self system username;
+            inherit custom inputs;
           };
         };
       };

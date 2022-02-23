@@ -1,7 +1,7 @@
-{ pkgs, username, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   services.espanso.enable = true;
-  home-manager.users.${username} = {
+  home-manager.users.${custom.username} = {
     xdg.configFile.espanso = {
       target = "espanso/default.yml";
       onChange = "systemctl --user restart espanso";

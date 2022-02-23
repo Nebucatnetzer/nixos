@@ -1,11 +1,11 @@
-{ pkgs, username, ... }:
+{ inputs, custom, pkgs, ... }:
 {
   virtualisation.docker =
     {
       enable = true;
       autoPrune.enable = true;
     };
-  users.users.${username}.extraGroups = [ "docker" ];
+  users.users.${custom.username}.extraGroups = [ "docker" ];
   environment.systemPackages = with pkgs; [
     docker-compose
     lazydocker

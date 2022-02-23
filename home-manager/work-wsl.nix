@@ -2,7 +2,7 @@
 {
   imports = [
     ./common
-    ./software/ansible-2-9
+    ./software/ansible
     ./software/git
     ./software/vagrant-wsl
     ./software/vim

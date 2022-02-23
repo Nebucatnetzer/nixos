@@ -91,7 +91,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias management-server='mosh --ssh="ssh -p 22" localadmin@10.40.0.53 tmux a'
+alias management-server='mosh --ssh="ssh -p 22" localadmin@10.40.0.56 tmux a'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

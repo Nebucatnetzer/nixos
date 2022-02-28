@@ -131,16 +131,9 @@
           ./home-manager/headless.nix
           [ ];
         git = mkComputer
-          (mkVM
-            { hostname = "git"; ip = "10.7.89.109"; inherit custom inputs; })
+          ./systems/git
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "03:00";
-            })
-          ];
-
+          [ ];
         plex = mkComputer
           (mkVM
             { hostname = "plex"; ip = "10.7.89.112"; inherit custom inputs; })

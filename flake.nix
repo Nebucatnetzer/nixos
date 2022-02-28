@@ -60,8 +60,7 @@
                 (import homeManagerRole { inherit custom pkgs inputs; })
               ];
             }
-          ] ++ extraModules
-        );
+          ]);
       };
       mkVM = import ./systems/proxmox-vm;
     in
@@ -69,71 +68,53 @@
       nixosConfigurations = {
         gwyn = mkComputer
           ./systems/gwyn
-          ./home-manager/desktop.nix
-          [
-
-          ];
+          ./home-manager/desktop.nix;
         staubfinger = mkComputer
           ./systems/staubfinger
-          ./home-manager/desktop.nix
-          [ ];
+          ./home-manager/desktop.nix;
         nixos-vm = mkComputer
           ./systems/desktop-vm
-          ./home-manager/desktop.nix
-          [ ];
+          ./home-manager/desktop.nix;
         # Servers
         proxy = mkComputer
           ./systems/proxy
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         nixos-management = mkComputer
           ./systems/nixos-management
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         heimdall = mkComputer
           ./systems/heimdall
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         grav = mkComputer
           ./systems/grav
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         ttrss = mkComputer
           ./systems/ttrss
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         rss-bridge = mkComputer
           ./systems/rss-bridge
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         git = mkComputer
           ./systems/git
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         plex = mkComputer
           ./systems/plex
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         nextcloud = mkComputer
           ./systems/nextcloud
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         mail = mkComputer
           ./systems/mail
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         pihole = mkComputer
           ./systems/pihole
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         restic-server = mkComputer
           ./systems/restic-server
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
         jdownloader = mkComputer
           ./systems/jdownloader
-          ./home-manager/headless.nix
-          [ ];
+          ./home-manager/headless.nix;
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

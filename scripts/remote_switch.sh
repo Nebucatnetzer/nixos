@@ -11,6 +11,7 @@ hosts=(
  "pihole"
  "plex"
  "proxy"
+ "restic-server"
  "rss-bridge"
  "ttrss"
 )

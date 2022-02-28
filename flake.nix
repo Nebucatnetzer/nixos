@@ -62,7 +62,6 @@
             }
           ]);
       };
-      mkVM = import ./systems/proxmox-vm;
     in
     {
       nixosConfigurations = {

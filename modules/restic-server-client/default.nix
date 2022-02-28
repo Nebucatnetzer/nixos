@@ -1,4 +1,4 @@
-{ config, inputs, custom, time, ... }:
+{ config, inputs, custom, pkgs, time, ... }:
 {
   systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];

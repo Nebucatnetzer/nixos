@@ -118,18 +118,10 @@
           ./systems/heimdall
           ./home-manager/headless.nix
           [ ];
-
         grav = mkComputer
-          (mkVM
-            { hostname = "grav"; ip = "10.7.89.102"; inherit custom inputs; })
+          ./systems/grav
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "22:30";
-            })
-          ];
-
+          [ ];
         ttrss = mkComputer
           (mkVM
             { hostname = "ttrss"; ip = "10.7.89.115"; inherit custom inputs; })

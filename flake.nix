@@ -143,16 +143,9 @@
           ./home-manager/headless.nix
           [ ];
         mail = mkComputer
-          (mkVM
-            { hostname = "mail"; ip = "10.7.89.123"; inherit custom inputs; })
+          ./systems/mail
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "04:30";
-            })
-          ];
-
+          [ ];
         pihole = mkComputer
           (mkVM
             { hostname = "pihole"; ip = "10.7.89.2"; inherit custom inputs; })

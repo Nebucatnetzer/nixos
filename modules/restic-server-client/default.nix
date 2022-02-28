@@ -1,32 +1,28 @@
 { config, inputs, custom, time, ... }:
-let
-  repository = "rest:http://10.7.89.30:8000";
-in
 {
-  services.restic.backups.${custom.username} = {
-    user = "root";
-    repository = repository;
-    timerConfig.OnCalendar = time;
-    passwordFile = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
-    paths = [ "/home/${custom.username}/" ];
-    extraBackupArgs = [
-      "--exclude-file=${inputs.self}/modules/restic/excludes.txt"
-    ];
+  systemd.timers."restic-backups-${custom.username}" = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-backups-${custom.username}.service" ];
+    timerConfig = {
+      OnCalendar = time;
+    };
   };
 
-  systemd.services.restic-forget = {
+  systemd.services."restic-backups-${custom.username}" = {
     serviceConfig = {
-      User = "restic";
+      User = root;
       Type = "oneshot";
-      CacheDirectory = "prune-restic";
-      CacheDirectoryMode = "0700";
     };
-    after = [ "restic-backups-${custom.username}.service" ];
+    environment = {
+      RESTIC_PASSWORD_FILE = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+      RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
+    };
     script = ''
       ${pkgs.restic}/bin/restic \
-      --repo ${repository} \
-      --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
-      --cache-dir="/var/cache/prune-restic" \
+      --exclude-file=${inputs.self}/modules/restic/excludes.txt \
+      backup /home/${custom.username} \
+
+      ${pkgs.restic}/bin/restic \
       forget \
         --host ${config.networking.hostName} \
         --keep-daily 7 \

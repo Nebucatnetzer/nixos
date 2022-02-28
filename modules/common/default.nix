@@ -110,7 +110,7 @@
             options = [ "NOPASSWD" ];
           }
           {
-            command = "/run/current-system/sw/bin/nix-env -p /nix/var/nix/profiles/system";
+            command = "/run/current-system/sw/bin/nix-env -p";
             options = [ "NOPASSWD" ];
           }
         ];

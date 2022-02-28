@@ -1,4 +1,4 @@
-{ inputs, custom, hostname, ip, ... }:
+{ inputs, hostname, ip, ... }:
 {
   imports = [
     (import "${inputs.self}/modules/mk-network" { inherit hostname ip; })
@@ -28,5 +28,12 @@
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
+
+  # Inspired by
+  # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/minimal.nix
+  environment.noXlibs = true;
+  documentation.enable = false;
+  documentation.nixos.enable = false;
+  programs.command-not-found.enable = false;
 }
 

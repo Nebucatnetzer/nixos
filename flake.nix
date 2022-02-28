@@ -114,15 +114,11 @@
             ./modules/haproxy
           ];
         nixos-management = mkComputer
-          (mkVM
-            { hostname = "nixos-management"; ip = "10.7.89.150"; inherit custom inputs; })
+          ./systems/nixos-management
           ./home-manager/headless.nix
           [
             ./modules/code-server
             ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "21:30";
-            })
           ];
         heimdall = mkComputer
           (mkVM

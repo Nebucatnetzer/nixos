@@ -1,4 +1,4 @@
-{ inputs, custom, time, ... }:
+{ config, inputs, custom, time, ... }:
 let
   repository = "rest:http://10.7.89.30:8000";
 in
@@ -28,6 +28,7 @@ in
       --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
       --cache-dir="/var/cache/prune-restic" \
       forget \
+        --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \

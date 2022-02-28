@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ config, inputs, custom, pkgs, ... }:
 let
   repository = "rest:http://10.7.89.30:8000";
 in
@@ -32,6 +32,7 @@ in
       --repo ${repository} \
       --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
       forget \
+        --host ${config.networking.hostName} \
         --keep-hourly 25 \
         --keep-daily 7 \
         --keep-weekly 5 \

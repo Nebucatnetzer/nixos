@@ -21,7 +21,7 @@ in
     ];
   };
 
-  systemd.services.prune-restic = {
+  systemd.services.restic-forget = {
     serviceConfig = {
       User = custom.username;
       Type = "oneshot";

@@ -18,7 +18,7 @@ in
   };
   networking.firewall.allowedTCPPorts = [ 8000 ];
 
-  systemd.services.prune-restic = {
+  systemd.services.restic-prune = {
     serviceConfig.Type = "oneshot";
     script = ''
       ${pkgs.restic}/bin/restic \
@@ -28,9 +28,9 @@ in
     '';
   };
 
-  systemd.timers.prune-restic = {
+  systemd.timers.restic-prune = {
     wantedBy = [ "timers.target" ];
-    partOf = [ "prune-restic.service" ];
+    partOf = [ "restic-prune.service" ];
     timerConfig.OnCalendar = [ "*-*-* 12:00:00" ];
   };
 }

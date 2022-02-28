@@ -147,18 +147,9 @@
           ./home-manager/headless.nix
           [ ];
         pihole = mkComputer
-          (mkVM
-            { hostname = "pihole"; ip = "10.7.89.2"; inherit custom inputs; })
+          ./systems/pihole
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            ./modules/pihole
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "05:00";
-            })
-            ./modules/unbound
-          ];
-
+          [ ];
         restic-server = mkComputer
           (mkVM
             { hostname = "restic-server"; ip = "10.7.89.30"; inherit custom inputs; })

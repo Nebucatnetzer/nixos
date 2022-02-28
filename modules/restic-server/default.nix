@@ -19,7 +19,10 @@ in
   networking.firewall.allowedTCPPorts = [ 8000 ];
 
   systemd.services.restic-prune = {
-    serviceConfig.Type = "oneshot";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "restic";
+    };
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \

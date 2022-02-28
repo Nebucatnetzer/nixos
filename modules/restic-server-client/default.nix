@@ -10,7 +10,7 @@
 
   systemd.services."restic-backups-${custom.username}" = {
     serviceConfig = {
-      User = root;
+      User = "root";
       Type = "oneshot";
     };
     environment = {

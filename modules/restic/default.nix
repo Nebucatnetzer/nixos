@@ -1,36 +1,34 @@
 { config, inputs, custom, pkgs, ... }:
-let
-  repository = "rest:http://10.7.89.30:8000";
-in
 {
-  environment.systemPackages = with pkgs; [
-    restic
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      restic
+    ];
 
-  services.restic.backups.${custom.username} = {
-    user = custom.username;
-    repository = repository;
+  systemd.timers.restic-backups-${custom.username} = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-backups-${custom.username}.service" ];
     timerConfig = {
       OnCalendar = "hourly";
       RandomizedDelaySec = "15min";
     };
-    passwordFile = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
-    paths = [ "/home/${custom.username}/" ];
-    extraBackupArgs = [
-      "--exclude-file=${inputs.self}/modules/restic/excludes.txt"
-    ];
   };
 
-  systemd.services.restic-forget = {
+  systemd.services.restic-backups-${custom.username} = {
     serviceConfig = {
       User = custom.username;
       Type = "oneshot";
     };
-    after = [ "restic-backups-${custom.username}.service" ];
+    environment = {
+      RESTIC_PASSWORD_FILE = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+      RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
+    };
     script = ''
       ${pkgs.restic}/bin/restic \
-      --repo ${repository} \
-      --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
+      --exclude-file=${inputs.self}/modules/restic/excludes.txt \
+      backup /home/${custom.username} \
+
+      ${pkgs.restic}/bin/restic \
       forget \
         --host ${config.networking.hostName} \
         --keep-hourly 25 \

@@ -151,12 +151,9 @@
           ./home-manager/headless.nix
           [ ];
         restic-server = mkComputer
-          (mkVM
-            { hostname = "restic-server"; ip = "10.7.89.30"; inherit custom inputs; })
+          ./systems/pihole
           ./home-manager/headless.nix
-          [
-            ./modules/restic-server
-          ];
+          [ ];
 
         jdownloader = mkComputer
           (mkVM

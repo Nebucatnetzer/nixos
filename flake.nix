@@ -106,6 +106,7 @@
             ./modules/docker
             ./modules/espanso
           ];
+        # Servers
         proxy = mkComputer
           ./systems/proxy
           ./home-manager/headless.nix
@@ -154,16 +155,10 @@
           ./systems/pihole
           ./home-manager/headless.nix
           [ ];
-
         jdownloader = mkComputer
-          (mkVM
-            { hostname = "jdownloader"; ip = "10.7.89.110"; inherit custom inputs; })
+          ./systems/jdownloader
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            ./modules/download-share
-            ./modules/jdownloader
-          ];
+          [ ];
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

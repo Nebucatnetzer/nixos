@@ -107,12 +107,9 @@
             ./modules/espanso
           ];
         proxy = mkComputer
-          (mkVM
-            { hostname = "proxy"; ip = "10.7.89.100"; inherit custom inputs; })
-          ./home-manager/headless.nix
-          [
-            ./modules/haproxy
-          ];
+          ./systems/proxy
+          ./home-manager/headless.nix;
+
         nixos-management = mkComputer
           ./systems/nixos-management
           ./home-manager/headless.nix

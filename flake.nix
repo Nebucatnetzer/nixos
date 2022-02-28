@@ -152,7 +152,7 @@
           ./home-manager/headless.nix
           [ ];
         restic-server = mkComputer
-          ./systems/pihole
+          ./systems/restic-server
           ./home-manager/headless.nix
           [ ];
         jdownloader = mkComputer

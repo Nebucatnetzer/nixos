@@ -234,6 +234,16 @@
           [
             ./modules/restic-server
           ];
+
+        jdownloader = mkComputer
+          (mkVM
+            { hostname = "jdownloader"; ip = "10.7.89.110"; inherit custom inputs; })
+          ./home-manager/headless.nix
+          [
+            ./modules/docker
+            ./modules/download-share
+            ./modules/jdownloader
+          ];
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

@@ -5,6 +5,7 @@ hosts=(
  "grav"
  "git"
  "heimdall"
+ "jdownloader"
  "mail"
  "nextcloud"
  "pihole"

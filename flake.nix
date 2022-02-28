@@ -62,6 +62,28 @@
             }
           ]);
       };
+      mkVM = configurationNix: nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        specialArgs = { inherit custom inputs; };
+        modules = (
+          [
+            # System configuration for this host
+            configurationNix
+
+            # Common configuration
+            ./modules/common
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${custom.username}.imports = [
+                #(import homeManagerRole { inherit custom pkgs inputs; })
+                ./home-manager/headless.nix;
+              ];
+            }
+          ]);
+      };
     in
     {
       nixosConfigurations = {
@@ -80,10 +102,9 @@
           ./home-manager/headless.nix;
         nixos-management = mkComputer
           ./systems/nixos-management
-          ./home-manager/headless.nix;
-        heimdall = mkComputer
-          ./systems/heimdall
-          ./home-manager/headless.nix;
+          heimdall = mkComputer
+        ./systems/heimdall
+        ./home-manager/headless.nix;
         grav = mkComputer
           ./systems/grav
           ./home-manager/headless.nix;

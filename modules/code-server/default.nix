@@ -10,7 +10,7 @@
         coreutils
         python3
         # other
-        bash
+        bashInteractive
         git
       ];
     extraEnvironment = {

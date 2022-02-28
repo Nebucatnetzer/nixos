@@ -108,15 +108,12 @@
           ];
         proxy = mkComputer
           ./systems/proxy
-          ./home-manager/headless.nix;
-
+          ./home-manager/headless.nix
+          [ ];
         nixos-management = mkComputer
           ./systems/nixos-management
           ./home-manager/headless.nix
-          [
-            ./modules/code-server
-            ./modules/docker
-          ];
+          [ ];
         heimdall = mkComputer
           (mkVM
             { hostname = "heimdall"; ip = "10.7.89.121"; inherit custom inputs; })

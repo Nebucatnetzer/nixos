@@ -135,18 +135,9 @@
           ./home-manager/headless.nix
           [ ];
         plex = mkComputer
-          (mkVM
-            { hostname = "plex"; ip = "10.7.89.112"; inherit custom inputs; })
+          ./systems/plex
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            ./modules/media-share
-            ./modules/plex
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "03:30";
-            })
-          ];
-
+          [ ];
         nextcloud = mkComputer
           (mkVM
             { hostname = "nextcloud"; ip = "10.7.89.103"; inherit custom inputs; })

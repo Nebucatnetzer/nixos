@@ -41,7 +41,7 @@
           overlay-unstable
         ];
       };
-      mkComputer = configurationNix: homeManagerRole: extraModules: nixpkgs.lib.nixosSystem {
+      mkComputer = configurationNix: homeManagerRole: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit custom inputs; };
         modules = (

@@ -71,18 +71,7 @@
           ./systems/gwyn
           ./home-manager/desktop.nix
           [
-            nixos-hardware.nixosModules.dell-precision-5530
-            nixos-hardware.nixosModules.common-gpu-nvidia
-            ./hardware/bluetooth
-            ./hardware/nvidia
-            ./modules/desktop
-            ./modules/docker
-            ./modules/droidcam
-            ./modules/eog
-            ./modules/espanso
-            ./modules/lockscreen
-            ./modules/nix-direnv
-            ./modules/restic
+
           ];
         staubfinger = mkComputer
           ./systems/staubfinger

@@ -1,5 +1,19 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 {
+  imports = [
+    inputs.nixos-hardware.nixosModules.dell-precision-5530
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    "${inputs.self}/hardware/bluetooth"
+    "${inputs.self}/hardware/nvidia"
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/droidcam"
+    "${inputs.self}/modules/eog"
+    "${inputs.self}/modules/espanso"
+    "${inputs.self}/modules/lockscreen"
+    "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/restic"
+  ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"

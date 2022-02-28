@@ -26,7 +26,7 @@ in
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \
-      --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
+      --password-file "/etc/restic/restic.key" \
       prune \
     '';
   };

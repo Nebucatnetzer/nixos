@@ -24,12 +24,7 @@ in
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \
       --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
-      forget \
-        --keep-daily 7 \
-        --keep-weekly 5 \
-        --keep-monthly 12 \
-        --keep-yearly 75 \
-        --prune
+      prune \
     '';
   };
 

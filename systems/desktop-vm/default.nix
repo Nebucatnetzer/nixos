@@ -1,5 +1,10 @@
-{ ... }:
+{ inputs, ... }:
 {
+  imports = [
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/espanso"
+  ];
   boot.initrd.availableKernelModules = [
     "ata_piix"
     "ohci_pci"

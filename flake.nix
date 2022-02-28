@@ -76,17 +76,11 @@
         staubfinger = mkComputer
           ./systems/staubfinger
           ./home-manager/desktop.nix
-          [
-
-          ];
+          [ ];
         nixos-vm = mkComputer
           ./systems/desktop-vm
           ./home-manager/desktop.nix
-          [
-            ./modules/desktop
-            ./modules/docker
-            ./modules/espanso
-          ];
+          [ ];
         # Servers
         proxy = mkComputer
           ./systems/proxy

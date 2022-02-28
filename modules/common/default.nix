@@ -109,6 +109,10 @@
             command = "/run/current-system/sw/bin/nixos-rebuild";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "/run/current-system/sw/bin/nix-env -p /nix/var/nix/profiles/system";
+            options = [ "NOPASSWD" ];
+          }
         ];
       }
     ];

@@ -78,8 +78,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                #(import homeManagerRole { inherit custom pkgs inputs; })
-                ./home-manager/headless.nix;
+                (import ./home-manager/headless.nix { inherit custom pkgs inputs; })
               ];
             }
           ]);
@@ -100,11 +99,11 @@
         proxy = mkComputer
           ./systems/proxy
           ./home-manager/headless.nix;
-        nixos-management = mkComputer
-          ./systems/nixos-management
-          heimdall = mkComputer
-        ./systems/heimdall
-        ./home-manager/headless.nix;
+        nixos-management = mkVM
+          ./systems/nixos-management;
+        heimdall = mkComputer
+          ./systems/heimdall
+          ./home-manager/headless.nix;
         grav = mkComputer
           ./systems/grav
           ./home-manager/headless.nix;

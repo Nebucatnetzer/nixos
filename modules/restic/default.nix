@@ -5,7 +5,7 @@
       restic
     ];
 
-  systemd.timers.restic-backups-${custom.username} = {
+  systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-backups-${custom.username}.service" ];
     timerConfig = {
@@ -14,7 +14,7 @@
     };
   };
 
-  systemd.services.restic-backups-${custom.username} = {
+  systemd.services."restic-backups-${custom.username}" = {
     serviceConfig = {
       User = custom.username;
       Type = "oneshot";

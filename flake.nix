@@ -127,16 +127,9 @@
           ./home-manager/headless.nix
           [ ];
         rss-bridge = mkComputer
-          (mkVM
-            { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit custom inputs; })
+          ./systems/rss-bridge
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "23:30";
-            })
-          ];
-
+          [ ];
         git = mkComputer
           (mkVM
             { hostname = "git"; ip = "10.7.89.109"; inherit custom inputs; })

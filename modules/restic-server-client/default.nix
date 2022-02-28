@@ -15,12 +15,18 @@ in
   };
 
   systemd.services.prune-restic = {
-    serviceConfig.Type = "oneshot";
-    after = "restic-backups-${custom.username}.service";
+    serviceConfig = {
+      User = "restic";
+      Type = "oneshot";
+      CacheDirectory = "prune-restic";
+      CacheDirectoryMode = "0700";
+    };
+    after = [ "restic-backups-${custom.username}.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \
       --password-file "/home/${custom.username}/.nixos/secrets/passwords/restic.key" \
+      --cache-dir="/var/cache/prune-restic" \
       forget \
         --keep-daily 7 \
         --keep-weekly 5 \

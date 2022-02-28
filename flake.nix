@@ -41,7 +41,7 @@
           overlay-unstable
         ];
       };
-      mkComputer = configurationNix: homeManagerRole: nixpkgs.lib.nixosSystem {
+      mkComputer = configurationNix: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit custom inputs; };
         modules = (
@@ -57,7 +57,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                (import homeManagerRole { inherit custom pkgs inputs; })
+                (import ./home-manager/desktop.nix { inherit custom pkgs inputs; })
               ];
             }
           ]);
@@ -86,54 +86,23 @@
     in
     {
       nixosConfigurations = {
-        gwyn = mkComputer
-          ./systems/gwyn
-          ./home-manager/desktop.nix;
-        staubfinger = mkComputer
-          ./systems/staubfinger
-          ./home-manager/desktop.nix;
-        nixos-vm = mkComputer
-          ./systems/desktop-vm
-          ./home-manager/desktop.nix;
+        gwyn = mkComputer ./systems/gwyn;
+        staubfinger = mkComputer ./systems/staubfinger;
+        nixos-vm = mkComputer ./systems/desktop-vm;
         # Servers
-        proxy = mkComputer
-          ./systems/proxy
-          ./home-manager/headless.nix;
-        nixos-management = mkVM
-          ./systems/nixos-management;
-        heimdall = mkComputer
-          ./systems/heimdall
-          ./home-manager/headless.nix;
-        grav = mkComputer
-          ./systems/grav
-          ./home-manager/headless.nix;
-        ttrss = mkComputer
-          ./systems/ttrss
-          ./home-manager/headless.nix;
-        rss-bridge = mkComputer
-          ./systems/rss-bridge
-          ./home-manager/headless.nix;
-        git = mkComputer
-          ./systems/git
-          ./home-manager/headless.nix;
-        plex = mkComputer
-          ./systems/plex
-          ./home-manager/headless.nix;
-        nextcloud = mkComputer
-          ./systems/nextcloud
-          ./home-manager/headless.nix;
-        mail = mkComputer
-          ./systems/mail
-          ./home-manager/headless.nix;
-        pihole = mkComputer
-          ./systems/pihole
-          ./home-manager/headless.nix;
-        restic-server = mkComputer
-          ./systems/restic-server
-          ./home-manager/headless.nix;
-        jdownloader = mkComputer
-          ./systems/jdownloader
-          ./home-manager/headless.nix;
+        proxy = mkVM ./systems/proxy;
+        nixos-management = mkVM ./systems/nixos-management;
+        heimdall = mkVM ./systems/heimdall;
+        grav = mkVM ./systems/grav;
+        ttrss = mkVM ./systems/ttrss;
+        rss-bridge = mkVM ./systems/rss-bridge;
+        git = mkVM ./systems/git;
+        plex = mkVM ./systems/plex;
+        nextcloud = mkVM ./systems/nextcloud;
+        mail = mkVM ./systems/mail;
+        pihole = mkVM ./systems/pihole;
+        restic-server = mkVM ./systems/restic-server;
+        jdownloader = mkVM ./systems/jdownloader;
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

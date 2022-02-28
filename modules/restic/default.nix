@@ -22,9 +22,11 @@ in
   };
 
   systemd.services.prune-restic = {
-    User = custom.username;
-    serviceConfig.Type = "oneshot";
-    After = "restic-backups-${custom.username}.service";
+    serviceConfig = {
+      User = custom.username;
+      Type = "oneshot";
+    };
+    after = [ "restic-backups-${custom.username}.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \

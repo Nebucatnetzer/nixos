@@ -77,15 +77,7 @@
           ./systems/staubfinger
           ./home-manager/desktop.nix
           [
-            nixos-hardware.nixosModules.common-pc-laptop
-            nixos-hardware.nixosModules.common-pc-laptop-ssd
-            ./hardware/bluetooth
-            ./modules/desktop
-            ./modules/docker
-            ./modules/droidcam
-            ./modules/espanso
-            ./modules/lockscreen
-            ./modules/restic
+
           ];
         nixos-vm = mkComputer
           ./systems/desktop-vm

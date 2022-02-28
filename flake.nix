@@ -123,16 +123,9 @@
           ./home-manager/headless.nix
           [ ];
         ttrss = mkComputer
-          (mkVM
-            { hostname = "ttrss"; ip = "10.7.89.115"; inherit custom inputs; })
+          ./systems/ttrss
           ./home-manager/headless.nix
-          [
-            ./modules/docker
-            (import ./modules/restic-server-client {
-              inherit custom inputs; time = "23:00";
-            })
-          ];
-
+          [ ];
         rss-bridge = mkComputer
           (mkVM
             { hostname = "rss-bridge"; ip = "10.7.89.111"; inherit custom inputs; })

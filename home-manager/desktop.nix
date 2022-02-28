@@ -31,7 +31,7 @@
     remmina
     shotwell
     unstable.vscode
-    unstable.youtube-dl
+    yt-dlp
   ];
   programs.git.userEmail = "andreas@zweili.ch";
 

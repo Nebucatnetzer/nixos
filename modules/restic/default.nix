@@ -1,4 +1,7 @@
 { config, inputs, custom, pkgs, ... }:
+let
+  password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+  repository = "rest:http://10.7.89.30:8000";
 {
   environment.systemPackages = with pkgs;
     [
@@ -20,8 +23,8 @@
       Type = "oneshot";
     };
     environment = {
-      RESTIC_PASSWORD_FILE = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
-      RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
+      RESTIC_PASSWORD_FILE = password_file;
+      RESTIC_REPOSITORY = repository;
     };
     script = ''
       ${pkgs.restic}/bin/restic \
@@ -37,5 +40,13 @@
         --keep-monthly 12 \
         --keep-yearly 75 \
     '';
+  };
+  environment.shellAliases = {
+    restic-list = ''
+      restic \
+        --repo ${repository}} \
+        --passord-file ${password_file} \
+        snapshots --host ${config.network.hostName}
+      '';
   };
 }

@@ -87,22 +87,22 @@
     {
       nixosConfigurations = {
         gwyn = mkComputer ./systems/gwyn;
-        staubfinger = mkComputer ./systems/staubfinger;
         nixos-vm = mkComputer ./systems/desktop-vm;
+        staubfinger = mkComputer ./systems/staubfinger;
         # Servers
-        proxy = mkVM ./systems/proxy;
-        nixos-management = mkVM ./systems/nixos-management;
-        heimdall = mkVM ./systems/heimdall;
-        grav = mkVM ./systems/grav;
-        ttrss = mkVM ./systems/ttrss;
-        rss-bridge = mkVM ./systems/rss-bridge;
         git = mkVM ./systems/git;
-        plex = mkVM ./systems/plex;
-        nextcloud = mkVM ./systems/nextcloud;
-        mail = mkVM ./systems/mail;
-        pihole = mkVM ./systems/pihole;
-        restic-server = mkVM ./systems/restic-server;
+        grav = mkVM ./systems/grav;
+        heimdall = mkVM ./systems/heimdall;
         jdownloader = mkVM ./systems/jdownloader;
+        mail = mkVM ./systems/mail;
+        nextcloud = mkVM ./systems/nextcloud;
+        nixos-management = mkVM ./systems/nixos-management;
+        pihole = mkVM ./systems/pihole;
+        plex = mkVM ./systems/plex;
+        proxy = mkVM ./systems/proxy;
+        restic-server = mkVM ./systems/restic-server;
+        rss-bridge = mkVM ./systems/rss-bridge;
+        ttrss = mkVM ./systems/ttrss;
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

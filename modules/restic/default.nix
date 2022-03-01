@@ -48,6 +48,21 @@ in
         --repo ${repository} \
         --password-file ${password_file} \
         snapshots --host ${config.networking.hostName}
-      '';
+    '';
+    restic-mount = ''
+      mkdir -p /tmp/restic && \
+      restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        --host ${config.networking.hostName} \
+        mount /tmp/restic
+    '';
+    restic-mount-all = ''
+      mkdir -p /tmp/restic && \
+      restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        mount /tmp/restic
+    '';
   };
 }

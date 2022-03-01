@@ -2,6 +2,7 @@
 let
   password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
   repository = "rest:http://10.7.89.30:8000";
+in
 {
   environment.systemPackages = with pkgs;
     [
@@ -44,9 +45,9 @@ let
   environment.shellAliases = {
     restic-list = ''
       restic \
-        --repo ${repository}} \
-        --passord-file ${password_file} \
-        snapshots --host ${config.network.hostName}
+        --repo ${repository} \
+        --password-file ${password_file} \
+        snapshots --host ${config.networking.hostName}
       '';
   };
 }

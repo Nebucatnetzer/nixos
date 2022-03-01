@@ -3,13 +3,13 @@
   imports = [
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "{inputs.self}/hardware/bluetooth"
-    "{inputs.self}/modules/desktop"
-    "{inputs.self}/modules/docker"
-    "{inputs.self}/modules/droidcam"
-    "{inputs.self}/modules/espanso"
-    "{inputs.self}/modules/lockscreen"
-    "{inputs.self}/modules/restic"
+    "${inputs.self}/hardware/bluetooth"
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/droidcam"
+    "${inputs.self}/modules/espanso"
+    "${inputs.self}/modules/lockscreen"
+    "${inputs.self}/modules/restic"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

@@ -15,6 +15,8 @@
       ];
     extraEnvironment = {
       HOME = "/home/${custom.username}";
+      EXTENSIONS_GALLERY = ''
+        { "serviceUrl": "https://marketplace.visualstudio.com/_apis/public/gallery"}'';
     };
   };
   networking.firewall.allowedTCPPorts = [ 4444 ];

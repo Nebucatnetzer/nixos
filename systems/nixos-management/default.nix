@@ -11,5 +11,6 @@
     })
     "${inputs.self}/modules/code-server"
     "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/nix-direnv"
   ];
 }

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Black LaTeX cell
+# key: blackcell
+# --
+\cellcolor[HTML]{424242}

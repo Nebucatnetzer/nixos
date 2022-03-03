@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Shebang
+# key: _bang
+# --
+#!/usr/bin/python3

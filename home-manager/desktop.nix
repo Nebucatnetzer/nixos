@@ -7,6 +7,7 @@
     ./software/calibre
     ./software/czkawka
     ./software/dunst
+    ./software/emacs
     ./software/evince
     ./software/git
     ./software/keeweb

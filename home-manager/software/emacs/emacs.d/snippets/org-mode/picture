@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: pic
+# key: pic_
+# --
+#+attr_latex: :center
+[[]]

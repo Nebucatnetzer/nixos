@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Clock Snippet for work task
+# key: clk
+# --
+* Clock
+:PROPERTIES:
+:ID:       e9f71012-4370-4dd2-af8e-9ae14d86508a
+:END:

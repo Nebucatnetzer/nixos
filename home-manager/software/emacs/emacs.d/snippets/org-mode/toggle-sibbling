@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Toggle next sibbling
+# key: _toggle
+# --
+:properties:
+:trigger:  next-sibling scheduled!("++0d") todo!("NEXT")
+:end:

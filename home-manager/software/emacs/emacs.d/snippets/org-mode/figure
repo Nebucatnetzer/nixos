@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Latex Figure
+# key: _figure
+# --
+#+caption: $1
+#+name: fig:$2
+[[file:pictures/$3]]
+$0

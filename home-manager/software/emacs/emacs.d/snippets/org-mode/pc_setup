@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: PC aufsetzen
+# key: _pc
+# --
+
+*** NEXT $1 aufsetzen [/]
+
+- [ ] PC Setup Script ausführen
+- [ ] Account Setup ausführen
+- [ ] Startmenü aufräumen
+- [ ] Chrome und Adobe Reader als Standardapplikation hinterlegen
+- [ ] localadmin Passwort ändern
+- [ ] localadmin Passwort in Keepass eintragen
+- [ ] Windows Key hinterlegen
+- [ ] Office Key hinterlegen
+- [ ] Contria Kleber angebracht
+
+$0

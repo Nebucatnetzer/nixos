@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: org config documentation template
+# key: orgconf
+# --
+#+title:
+#+setupfile: ~/nextcloud/03_documents/org/settings/html_theme/theme-readtheorg.setup
+:preamble:
+#+author: Andreas Zweili
+:end:
+
+#+begin_src sh :tangle ../bin/bin/example.sh :shebang #!/bin/bash
+
+#+end_src

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Yellow LaTeX cell
+# key: yellowcell
+# --
+\cellcolor[HTML]{FFEB3B}

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: New misc reference
+# key: newmisc
+# --
+@misc{$1,
+month = {{$2}},
+note = {{\url{$3}}},
+Urldate = {$4-$5-$6},
+author = {$7},
+title = {{$8}},
+year = {$9},
+}
+$0

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Org Beamer
+# key: orgbeamer
+# --
+#+title:
+:preamble:
+#+author: Andreas Zweili
+#+startup: beamer
+#+columns: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+:end:

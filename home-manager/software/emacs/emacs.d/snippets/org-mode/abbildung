@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Abbildung
+# key: _abb
+# --
+, Abbildung:([[$0]]),

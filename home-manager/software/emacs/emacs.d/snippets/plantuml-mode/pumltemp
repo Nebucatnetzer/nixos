@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: puml template
+# key: puml
+# --
+@startuml
+skinparam dpi 300
+
+@enduml

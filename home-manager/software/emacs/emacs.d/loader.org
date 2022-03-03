@@ -1211,6 +1211,16 @@ https://github.com/DarthFennec/highlight-indent-guides
     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 #+END_SRC
 
+*** direnv
+
+Enable direnv support.
+
+#+begin_src emacs-lisp
+(use-package direnv
+ :config
+ (direnv-mode))
+#+end_src
+
 * UI Changes
 
 ** Hide the menu and toolbar

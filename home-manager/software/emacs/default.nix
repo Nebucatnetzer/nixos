@@ -21,6 +21,7 @@
       epkgs.counsel
       epkgs.deft
       epkgs.dired-hide-dotfiles
+      epkgs.direnv
       epkgs.discover-my-major
       epkgs.elisp-refs
       epkgs.elpy

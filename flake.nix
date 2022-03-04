@@ -94,6 +94,9 @@
         grav = mkVM ./systems/grav;
         heimdall = mkVM ./systems/heimdall;
         jdownloader = mkVM ./systems/jdownloader;
+        k3s-master1 = mkVM ./systems/k3s-master1;
+        k3s-node1 = mkVM ./systems/k3s-node1;
+        k3s-node2 = mkVM ./systems/k3s-node2;
         mail = mkVM ./systems/mail;
         nextcloud = mkVM ./systems/nextcloud;
         nixos-management = mkVM ./systems/nixos-management;

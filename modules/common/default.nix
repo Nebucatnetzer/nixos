@@ -109,6 +109,10 @@
             command = "/run/current-system/sw/bin/nixos-rebuild";
             options = [ "NOPASSWD" ];
           }
+          {
+            command = "ALL";
+            options = [ "SETENV" ];
+          }
         ];
       }
     ];

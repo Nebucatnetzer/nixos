@@ -57,7 +57,7 @@
         use_backend webmail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
         use_backend fw-nextcloud_server if { req_ssl_sni -i plattform.2li.ch }
-        use_backend photoprism_server if { req_ssl_sni -i photos.zweili.org }
+        use_backend nextcloud_server if { req_ssl_sni -i photos.zweili.org }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
         use_backend wallabag_server if { req_ssl_sni -i wallabag.2li.ch }
         use_backend webmail_server if { req_ssl_sni -i webmail.2li.ch }
@@ -78,9 +78,6 @@
         mode tcp
         server server1 10.7.89.123:443 check
       backend nextcloud_server
-        mode tcp
-        server server1 10.7.89.103:443 check
-      backend photoprism_server
         mode tcp
         server server1 10.7.89.103:443 check
       backend ttrss_server

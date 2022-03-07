@@ -5,6 +5,7 @@
     settings = {
       server = {
         enabled = true;
+        bootstrap_expect = 1; # for demo; no fault tolerance
       };
     };
   };

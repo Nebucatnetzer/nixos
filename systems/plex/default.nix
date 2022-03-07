@@ -10,7 +10,6 @@
       time = "03:30"; inherit config custom inputs pkgs;
     })
     "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/media-share"
     "${inputs.self}/modules/plex"
   ];
 }

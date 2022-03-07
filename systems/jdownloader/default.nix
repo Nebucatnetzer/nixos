@@ -7,7 +7,6 @@
       inherit inputs;
     })
     "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/download-share"
     "${inputs.self}/modules/jdownloader"
   ];
 }

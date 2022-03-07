@@ -9,5 +9,5 @@
     };
     enableDocker = true;
     networking.firewall.allowedTCPPorts = [ 4646 ];
-  }
-
+  };
+}

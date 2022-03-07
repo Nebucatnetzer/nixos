@@ -11,6 +11,8 @@ hosts=(
  "k3s-node2"
  "mail"
  "nextcloud"
+ "nomad-master1"
+ "nomad-client1"
  "pihole"
  "plex"
  "proxy"

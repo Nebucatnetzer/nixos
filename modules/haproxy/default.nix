@@ -30,7 +30,6 @@
         redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i heimdall.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i plattform.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i photos.zweili.org ! {ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i ttrss.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i wallabag.2li.ch } !{ ssl_fc }
@@ -56,7 +55,6 @@
         use_backend heimdall_server if { req_ssl_sni -i heimdall.2li.ch }
         use_backend webmail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
-        use_backend fw-nextcloud_server if { req_ssl_sni -i plattform.2li.ch }
         use_backend nextcloud_server if { req_ssl_sni -i photos.zweili.org }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
         use_backend wallabag_server if { req_ssl_sni -i wallabag.2li.ch }
@@ -74,9 +72,6 @@
       backend heimdall_server
         mode tcp
         server server1 10.7.89.121:443 check
-      backend mail_server
-        mode tcp
-        server server1 10.7.89.123:443 check
       backend nextcloud_server
         mode tcp
         server server1 10.7.89.103:443 check
@@ -92,9 +87,6 @@
       backend rss-bridge_server
         mode tcp
         server server1 10.7.89.111:443 check
-      backend fw-nextcloud_server
-        mode tcp
-        server server1 10.7.89.114:443 check
     '';
   };
 }

@@ -38,10 +38,6 @@
         redirect scheme https code 301 if { hdr(host) -i www.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr_dom(host) -i 2li.ch } !{ ssl_fc }
 
-      backend http_mail_server
-        mode http
-        server server1 10.7.89.123:80 check
-
       frontend https
         # Listen on port 443
         bind *:443

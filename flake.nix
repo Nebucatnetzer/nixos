@@ -100,6 +100,8 @@
         mail = mkVM ./systems/mail;
         nextcloud = mkVM ./systems/nextcloud;
         nixos-management = mkVM ./systems/nixos-management;
+        nomad-master1 = mkVM ./systems/nomad-master1;
+        nomad-client1 = mkVM ./systems/nomad-client1;
         pihole = mkVM ./systems/pihole;
         plex = mkVM ./systems/plex;
         proxy = mkVM ./systems/proxy;

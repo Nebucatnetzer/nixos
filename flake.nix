@@ -83,6 +83,27 @@
             }
           ]);
       };
+      mkRaspi = configurationNix: nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        specialArgs = { inherit custom inputs; };
+        modules = (
+          [
+            # System configuration for this host
+            configurationNix
+
+            # Common configuration
+            ./modules/common
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${custom.username}.imports = [
+                (import ./home-manager/headless.nix { inherit custom pkgs inputs; })
+              ];
+            }
+          ]);
+      };
     in
     {
       nixosConfigurations = {

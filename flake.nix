@@ -58,7 +58,7 @@
             configurationNix
 
             # Common configuration
-            ./modules/common
+            ./modules/common-x86
 
             home-manager.nixosModules.home-manager
             {
@@ -79,7 +79,7 @@
             configurationNix
 
             # Common configuration
-            ./modules/common
+            ./modules/common-x86
 
             home-manager.nixosModules.home-manager
             {

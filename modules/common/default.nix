@@ -4,12 +4,6 @@
     "${inputs.self}/modules/cli"
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
-
   # The rough location
   location = {
     latitude = 46.948;
@@ -26,7 +20,6 @@
   };
 
   hardware = {
-    cpu.intel.updateMicrocode = true;
     enableRedistributableFirmware = true;
   };
 

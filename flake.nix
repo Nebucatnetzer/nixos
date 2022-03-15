@@ -41,6 +41,14 @@
           overlay-unstable
         ];
       };
+
+      arm-pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        config = {
+          allowUnfree = true;
+        };
+      };
+
       mkComputer = configurationNix: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit custom inputs; };
@@ -84,7 +92,7 @@
           ]);
       };
       mkRaspi = configurationNix: nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
+        system = "aarch64-linux";
         specialArgs = { inherit custom inputs; };
         modules = (
           [
@@ -126,7 +134,7 @@
         pihole = mkVM ./systems/pihole;
         plex = mkVM ./systems/plex;
         proxy = mkVM ./systems/proxy;
-        raspi-test = mkVM ./systems/raspi-test;
+        raspi-test = mkRaspi ./systems/raspi-test;
         restic-server = mkVM ./systems/restic-server;
         rss-bridge = mkVM ./systems/rss-bridge;
         ttrss = mkVM ./systems/ttrss;

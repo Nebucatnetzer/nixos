@@ -105,6 +105,7 @@
         pihole = mkVM ./systems/pihole;
         plex = mkVM ./systems/plex;
         proxy = mkVM ./systems/proxy;
+        raspi-test = mkVM ./systems/raspi-test;
         restic-server = mkVM ./systems/restic-server;
         rss-bridge = mkVM ./systems/rss-bridge;
         ttrss = mkVM ./systems/ttrss;

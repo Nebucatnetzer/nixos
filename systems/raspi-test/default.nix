@@ -4,7 +4,7 @@
     (import "${inputs.self}/systems/raspi4" {
       hostname = "raspi-test";
       ip = "10.7.89.99";
-      inherit inputs;
+      inherit inputs pkgs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
       time = "11:30"; inherit config custom inputs pkgs;

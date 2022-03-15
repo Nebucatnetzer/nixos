@@ -1,9 +1,9 @@
 { inputs, hostname, ip, ... }:
 {
   imports = [
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     (import "${inputs.self}/modules/mk-network" { inherit hostname ip; })
   ];
-  inputs.nixos-hardware.nixosModules.raspberry-pi-4;
 
   fileSystems = {
     "/" = {

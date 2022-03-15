@@ -2,7 +2,6 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    (import "${inputs.self}/modules/mk-network" { inherit hostname ip; })
   ];
 
   fileSystems = {
@@ -17,7 +16,6 @@
   hardware.raspberry-pi."4".audio.enable = true;
   hardware.pulseaudio.enable = true;
 
-  environment.noXlibs = true;
   documentation.enable = false;
   documentation.nixos.enable = false;
   programs.command-not-found.enable = false;
@@ -25,6 +23,23 @@
   environment.systemPackages = with pkgs; [
     raspberrypi-eeprom
   ];
+
+  networking = {
+    useDHCP = false;
+    hostName = hostname;
+    hosts = {
+      "127.0.0.1" = [ "${hostname}.2li.local" ];
+      ip = [ "${hostname}.2li.local" ];
+    };
+    defaultGateway = "10.7.89.1";
+    nameservers = [ "10.7.89.2" ];
+    interfaces.eth0.ipv4.addresses = [
+      {
+        address = ip;
+        prefixLength = 24;
+      }
+    ];
+  };
 
   environment.shellAliases = {
     raspi-firmware-update = ''

@@ -21,6 +21,7 @@
 
   outputs =
     inputs@{ self
+    , agenix
     , nixpkgs
     , nixpkgs-unstable
     , nixos-hardware
@@ -77,7 +78,7 @@
             configurationNix
 
             # Common configuration
-            ./modules/common-x86
+            (import ./modules/common-x86 {inherit custom inputs pkgs system;})
 
             home-manager.nixosModules.home-manager
             {

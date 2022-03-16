@@ -1,7 +1,7 @@
-{ inputs, custom, pkgs, ... }:
+{ inputs, custom, pkgs, system, ... }:
 {
   imports = [
-    "${inputs.self}/modules/common"
+    (import "${inputs.self}/modules/common" {inherit inputs custom pkgs system;})
   ];
 
   # Use the systemd-boot EFI boot loader.

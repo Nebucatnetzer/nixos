@@ -1,7 +1,8 @@
-{ inputs, custom, pkgs, ... }:
+{ inputs, custom, pkgs, system, ... }:
 {
   imports = [
-    "${inputs.self}/modules/cli"
+    (import "${inputs.self}/modules/cli" { inherit inputs pkgs system; })
+    inputs.agenix.nixosModule
   ];
 
   # The rough location

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, system, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -14,6 +14,7 @@
     unzip
     vim
     wget
+    inputs.agenix.defaultPackage."${system}"
   ];
   environment.shellAliases = {
     format-modules = "nixpkgs-fmt **/*.nix";

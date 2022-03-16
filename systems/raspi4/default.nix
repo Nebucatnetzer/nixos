@@ -16,10 +16,6 @@
   hardware.raspberry-pi."4".audio.enable = true;
   hardware.pulseaudio.enable = true;
 
-  documentation.enable = false;
-  documentation.nixos.enable = false;
-  programs.command-not-found.enable = false;
-
   environment.systemPackages = with pkgs; [
     raspberrypi-eeprom
   ];

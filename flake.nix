@@ -48,16 +48,16 @@
         ];
       };
 
-      mkComputer = configurationNix: nixpkgs.lib.nixosSystem {
+      mkComputer = { hostname, system ? "x86_64-linux" }: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit custom inputs; };
         modules = (
           [
             # System configuration for this host
-            configurationNix
+            "${self}/systems/${hostname}"
 
             # Common configuration
-            (import ./modules/common-x86 {inherit custom inputs pkgs system;})
+            (import ./modules/common-x86 { inherit custom inputs pkgs system; })
 
             home-manager.nixosModules.home-manager
             {
@@ -69,19 +69,21 @@
             }
           ]);
       };
-      mkVM = configurationNix: nixpkgs.lib.nixosSystem {
+      mkVM = { hostname, system ? "x86_64-linux" }: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = { inherit custom inputs; };
+        specialArgs = {
+          inherit custom inputs;
+        };
         modules = (
           [
             # System configuration for this host
-            configurationNix
+            "${self}/systems/${hostname}"
 
             # Common configuration
             ./modules/common-x86
 
-			agenix.nixosModules.age
-			{ environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
+            agenix.nixosModules.age
+            { environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
 
             home-manager.nixosModules.home-manager
             {
@@ -93,19 +95,19 @@
             }
           ]);
       };
-      mkRaspi = configurationNix: nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      mkRaspi = { hostname, system ? "aarch64-linux" }: nixpkgs.lib.nixosSystem {
+        inherit system;
         specialArgs = { inherit custom inputs; };
         modules = (
           [
             # System configuration for this host
-            configurationNix
+            "${self}/systems/${hostname}"
 
             # Common configuration
             ./modules/common
 
-			agenix.nixosModules.age
-			{ environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
+            agenix.nixosModules.age
+            { environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
 
             home-manager.nixosModules.home-manager
             {
@@ -120,29 +122,73 @@
     in
     {
       nixosConfigurations = {
-        gwyn = mkComputer ./systems/gwyn;
-        nixos-vm = mkComputer ./systems/desktop-vm;
-        staubfinger = mkComputer ./systems/staubfinger;
+        gwyn = mkComputer {
+          hostname = "gwyn";
+        };
+        nixos-vm = mkComputer {
+          hostname = "desktop-vm";
+        };
+        staubfinger = mkComputer {
+          hostname = "staubfinger";
+        };
         # Servers
-        git = mkVM ./systems/git;
-        grav = mkVM ./systems/grav;
-        heimdall = mkVM ./systems/heimdall;
-        jdownloader = mkVM ./systems/jdownloader;
-        k3s-master1 = mkVM ./systems/k3s-master1;
-        k3s-node1 = mkVM ./systems/k3s-node1;
-        k3s-node2 = mkVM ./systems/k3s-node2;
-        mail = mkVM ./systems/mail;
-        nextcloud = mkVM ./systems/nextcloud;
-        nixos-management = mkVM ./systems/nixos-management;
-        nomad-master1 = mkVM ./systems/nomad-master1;
-        nomad-client1 = mkVM ./systems/nomad-client1;
-        pihole = mkVM ./systems/pihole;
-        plex = mkVM ./systems/plex;
-        proxy = mkVM ./systems/proxy;
-        raspi-test = mkRaspi ./systems/raspi-test;
-        restic-server = mkVM ./systems/restic-server;
-        rss-bridge = mkVM ./systems/rss-bridge;
-        ttrss = mkVM ./systems/ttrss;
+        git = mkVM {
+          hostname = "git";
+        };
+        grav = mkVM {
+          hostname = "grav";
+        };
+        heimdall = mkVM {
+          hostname = "heimdall";
+        };
+        jdownloader = mkVM {
+          hostname = "jdownloader";
+        };
+        k3s-master1 = mkVM {
+          hostname = "k3s-master1";
+        };
+        k3s-node1 = mkVM {
+          hostname = "k3s-node1";
+        };
+        k3s-node2 = mkVM {
+          hostname = "k3s-node2";
+        };
+        mail = mkVM {
+          hostname = "mail";
+        };
+        nextcloud = mkVM {
+          hostname = "nextcloud";
+        };
+        nixos-management = mkVM {
+          hostname = "nixos-management";
+        };
+        nomad-master1 = mkVM {
+          hostname = "nomad-master1";
+        };
+        nomad-client1 = mkVM {
+          hostname = "nomad-client1";
+        };
+        pihole = mkVM {
+          hostname = "pihole";
+        };
+        plex = mkVM {
+          hostname = "plex";
+        };
+        proxy = mkVM {
+          hostname = "proxy";
+        };
+        raspi-test = mkRaspi {
+          hostname = "raspi-test";
+        };
+        restic-server = mkVM {
+          hostname = "restic-server";
+        };
+        rss-bridge = mkVM {
+          hostname = "rss-bridge";
+        };
+        ttrss = mkVM {
+          hostname = "ttrss";
+        };
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

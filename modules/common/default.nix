@@ -2,7 +2,6 @@
 {
   imports = [
     (import "${inputs.self}/modules/cli" { inherit inputs pkgs system; })
-    inputs.agenix.nixosModule
   ];
 
   # The rough location

@@ -78,7 +78,10 @@
             configurationNix
 
             # Common configuration
-            (import ./modules/common-x86 {inherit custom inputs pkgs system;})
+            ./modules/common-x86
+
+			agenix.nixosModules.age
+			{ environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
 
             home-manager.nixosModules.home-manager
             {
@@ -99,7 +102,10 @@
             configurationNix
 
             # Common configuration
-            (import ./modules/common {inherit custom inputs pkgs system;})
+            ./modules/common
+
+			agenix.nixosModules.age
+			{ environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
 
             home-manager.nixosModules.home-manager
             {

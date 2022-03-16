@@ -1,8 +1,22 @@
 { inputs, hostname, ip, ... }:
 {
-  imports = [
-    (import "${inputs.self}/modules/mk-network" { inherit hostname ip; })
-  ];
+  networking = {
+    useDHCP = false;
+    hostName = hostname;
+    hosts = {
+      "127.0.0.1" = [ "${hostname}.2li.local" ];
+      ip = [ "${hostname}.2li.local" ];
+    };
+    defaultGateway = "10.7.89.1";
+    nameservers = [ "10.7.89.2" ];
+    interfaces.ens18.ipv4.addresses = [
+      {
+        address = ip;
+        prefixLength = 24;
+      }
+    ];
+  };
+
   boot.initrd.availableKernelModules = [
     "ata_piix"
     "uhci_hcd"
@@ -27,12 +41,5 @@
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
-
-  # Inspired by
-  # https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/profiles/minimal.nix
-  environment.noXlibs = true;
-  documentation.enable = false;
-  documentation.nixos.enable = false;
-  programs.command-not-found.enable = false;
 }
 

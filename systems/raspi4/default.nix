@@ -40,7 +40,8 @@
   environment.shellAliases = {
     raspi-firmware-update = ''
       sudo mount /dev/disk/by-label/FIRMWARE /mnt && \
-      BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable sudo -E rpi-eeprom-update -d -a
+      BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable sudo -E rpi-eeprom-update -d -a && \
+      sudo umount /mnt
     '';
   };
 }

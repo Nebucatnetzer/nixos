@@ -3,6 +3,7 @@ import getpass
 import os
 import subprocess
 import sys
+import time
 
 
 def _run_command(command, user_input=""):
@@ -116,6 +117,8 @@ def _setup_lvm(lvm_target):
 
 def mount_partitions():
     print("Mounting partitions.")
+    # wait for a second, required because the filesystem needs some time
+    time.sleep(1)
     _run_command(["mount", "/dev/disk/by-label/nixos", "/mnt"])
     os.mkdir("/mnt/boot")
     _run_command(["mount", "/dev/disk/by-label/BOOT", "/mnt/boot"])

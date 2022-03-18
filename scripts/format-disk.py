@@ -138,8 +138,12 @@ def main():
     disks = read_disks()
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
-    swap = _y_n("Do you need swap?")
+    raspberry = _y_n("Is this a Raspberry Pi?")
     encryption = _y_n("Do you want to encrypt your data?")
+    if raspberry:
+        swap = False;
+    else:
+        swap = True
     create_partition_table(disk_to_format)
     create_boot_partition(disk_to_format)
     main_partition = create_main_partition(disk_to_format)

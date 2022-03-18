@@ -81,7 +81,7 @@ def create_partitions(disk, start_sector):
     print("Create partitions")
     uefi_start = "{}s".format(start_sector)
     uefi_end = "{}s".format(start_sector + 1046528)
-    main_start = "{}s".format(uefi_end + 2048)
+    main_start = "{}s".format(start_sector + 1046528 + 2048)
     _run_command(["parted", "--script", disk,
                   # UEFI
                   "mkpart", "ESP", "fat32", uefi_start, uefi_end,

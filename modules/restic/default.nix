@@ -19,6 +19,7 @@ in
   };
 
   systemd.services."restic-backups-${custom.username}" = {
+    unitConfig.ConditionACPower = true;
     serviceConfig = {
       User = custom.username;
       Type = "oneshot";

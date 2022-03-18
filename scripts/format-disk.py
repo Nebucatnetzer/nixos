@@ -150,16 +150,17 @@ def main():
     raspberry = _y_n("Is this a Raspberry Pi?")
     encryption = _y_n("Do you want to encrypt your data?")
 
-    create_partitions(disk_to_format)
     if raspberry:
         boot_partition = "{}{}2".format(disk_to_format, partition_suffix)
         main_partition = "{}{}3".format(disk_to_format, partition_suffix)
+        create_partitions(disk_to_format)
         create_uefi_filesystem(boot_partition)
         create_aarch64_filesystem(main_partition)
     else:
         boot_partition = "{}{}1".format(disk_to_format, partition_suffix)
         main_partition = "{}{}2".format(disk_to_format, partition_suffix)
         create_partition_table(disk_to_format)
+        create_partitions(disk_to_format)
         create_uefi_filesystem(boot_partition)
         create_x86_filesystems(main_partition, encryption)
     mount_partitions()

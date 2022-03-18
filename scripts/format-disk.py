@@ -62,7 +62,9 @@ def create_partition_table(disk):
 
 
 def _partition_suffix(disk):
-    if "nvmne" or "mmc" in disk:
+    if "nvmne" in disk:
+        return "p"
+    if "mmcblk" in disk:
         return "p"
     return ""
 

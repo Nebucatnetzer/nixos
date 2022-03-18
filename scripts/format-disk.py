@@ -28,7 +28,8 @@ def _get_system_memory():
 
 
 def get_start_sector(disk):
-    file = "/sys/block/{disk}/{disk}p1/size".format(disk=disk)
+    disk_name = disk[5:]
+    file = "/sys/block/{disk}/{disk}p1/size".format(disk=disk_name)
     with open(file, "r") as disk_size:
         return int(disk_size.read()) + 2048
 

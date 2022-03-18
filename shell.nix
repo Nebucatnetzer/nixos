@@ -9,7 +9,7 @@ pkgs.mkShell {
     python39Packages.black
     python39Packages.flake8
     python39Packages.jedi
-    python39Packages.pip
+    python39Packages.pip # required because of elpy...
     python39Packages.yapf
   ];
 

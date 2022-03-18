@@ -62,30 +62,28 @@ def create_partition_table(disk):
 
 
 def _partition_suffix(disk):
-    if "nvmne" in disk:
+    if "nvmne" or "mmc" in disk:
         return "p"
     return ""
 
 
-def create_boot_partition(disk):
-    boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
-    print("Create boot partition {}.".format(boot_partition))
-    _run_command(["parted", "--script", disk, "mkpart",
-                  "ESP", "fat32", "1MiB", "512MiB"])
-    _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
-    _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
+def create_partitions(disk):
+    print("Create partitions")
+    _run_command(["parted", "--script", disk,
+                  # UEFI
+                  "mkpart", "ESP", "fat32", "1MiB", "512MiB",
+                  "set", "1", "esp", "on",
+                  # Main
+                  "mkpart", "primary", "512MiB", "100%"])
 
 
-def create_main_partition(disk):
-    print("Create main partition.")
-    _run_command(["parted", "--script", disk, "mkpart",
-                  "primary", "512MiB", "100%"])
-    return "{}{}2".format(disk, _partition_suffix(disk))
-
-
-def _create_main_filesystem():
+def _create_ext4_filesystem():
     _run_command(["lvcreate", "-l", "100%FREE", "MainGroup", "-n", "root"])
     _run_command(["mkfs.ext4", "-L", "nixos", "/dev/MainGroup/root"])
+
+
+def _create_f2fs_filesystem(partition):
+    _run_command(["mkfs.f2fs", "-L", "nixos", partition])
 
 
 def _create_swap():
@@ -116,12 +114,16 @@ def _setup_lvm(lvm_target):
 
 def mount_partitions():
     print("Mounting partitions.")
-    _run_command(["mount", "/dev/MainGroup/root", "/mnt"])
+    _run_command(["mount", "/dev/disk/by-label/nixos", "/mnt"])
     os.mkdir("/mnt/boot")
     _run_command(["mount", "/dev/disk/by-label/BOOT", "/mnt/boot"])
 
 
-def create_file_systems(partition, swap, encryption):
+def create_uefi_filesystem(boot_partition):
+    _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
+
+
+def create_x86_filesystems(partition, encryption):
     print("Creating filesystems.")
     if encryption:
         lvm_target = "/dev/mapper/cryptlvm"
@@ -129,25 +131,35 @@ def create_file_systems(partition, swap, encryption):
     else:
         lvm_target = partition
     _setup_lvm(lvm_target)
-    if swap:
-        _create_swap()
-    _create_main_filesystem()
+    _create_swap()
+    _create_ext4_filesystem()
+
+
+def create_aarch64_filesystem(partition):
+    print("Creating filesystems.")
+    _create_f2fs_filesystem()
 
 
 def main():
     disks = read_disks()
     create_menu(disks)
     disk_to_format = disks[get_disk_to_format()]
+    partition_suffix = _partition_suffix(disk_to_format)
     raspberry = _y_n("Is this a Raspberry Pi?")
     encryption = _y_n("Do you want to encrypt your data?")
+
+    create_partitions(disk_to_format)
     if raspberry:
-        swap = False;
+        boot_partition = "{}{}2".format(disk_to_format, partition_suffix)
+        main_partition = "{}{}3".format(disk_to_format, partition_suffix)
+        create_uefi_filesystem(boot_partition)
+        create_aarch64_filesystem(main_partition)
     else:
-        swap = True
-    create_partition_table(disk_to_format)
-    create_boot_partition(disk_to_format)
-    main_partition = create_main_partition(disk_to_format)
-    create_file_systems(main_partition, swap, encryption)
+        boot_partition = "{}{}1".format(disk_to_format, partition_suffix)
+        main_partition = "{}{}2".format(disk_to_format, partition_suffix)
+        create_partition_table(disk_to_format)
+        create_uefi_filesystem(boot_partition)
+        create_x86_filesystems(main_partition, encryption)
     mount_partitions()
 
 

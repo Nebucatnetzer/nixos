@@ -88,7 +88,7 @@ def create_partitions(disk, start_sector):
         boot_partition = 2
     _run_command(["parted", "--script", disk,
                   # UEFI
-                  "mkpart", "fat32", uefi_start, uefi_end,
+                  "mkpart", "primary", "fat32", uefi_start, uefi_end,
                   "set", boot_partition, "esp", "on",
                   # Main
                   "mkpart", "primary", main_start, "100%"])

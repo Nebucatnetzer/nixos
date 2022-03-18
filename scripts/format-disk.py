@@ -27,6 +27,12 @@ def _get_system_memory():
     return round(mem_gib)
 
 
+def get_sector_size(disk):
+    file = "/sys/block/{disk}/{disk}p1/size".format(disk=disk)
+    with open(file, "r") as disk_size:
+        return int(disk_size.read())
+
+
 def _y_n(question):
     answer = input("{} (Y/N): ".format(question))
     if answer.lower() == "y":
@@ -70,11 +76,12 @@ def _partition_suffix(disk):
     return ""
 
 
-def create_partitions(disk):
+def create_partitions(disk, start_sector):
     print("Create partitions")
     _run_command(["parted", "--script", disk,
                   # UEFI
-                  "mkpart", "ESP", "fat32", "1MiB", "512MiB",
+                  "mkpart", "ESP", "fat32",
+                  "{}s".format(start_sector), "512MiB",
                   "set", "1", "esp", "on",
                   # Main
                   "mkpart", "primary", "512MiB", "100%"])
@@ -157,14 +164,15 @@ def main():
     if raspberry:
         boot_partition = "{}{}2".format(disk_to_format, partition_suffix)
         main_partition = "{}{}3".format(disk_to_format, partition_suffix)
-        create_partitions(disk_to_format)
+        start_sector = get_sector_size(disk_to_format)
+        create_partitions(disk_to_format, start_sector)
         create_uefi_filesystem(boot_partition)
         create_aarch64_filesystem(main_partition)
     else:
         boot_partition = "{}{}1".format(disk_to_format, partition_suffix)
         main_partition = "{}{}2".format(disk_to_format, partition_suffix)
         create_partition_table(disk_to_format)
-        create_partitions(disk_to_format)
+        create_partitions(disk_to_format, "2048")
         create_uefi_filesystem(boot_partition)
         create_x86_filesystems(main_partition, encryption)
     mount_partitions()

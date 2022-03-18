@@ -106,7 +106,8 @@ def _encrypt_disk(partition_path):
     print("Encrypting disk.")
     _run_command(["cryptsetup", "luksFormat", "-q",
                   "--type", "luks1", partition_path], user_input=password)
-    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"], user_input=password)
+    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"],
+                 user_input=password)
 
 
 def _setup_lvm(lvm_target):

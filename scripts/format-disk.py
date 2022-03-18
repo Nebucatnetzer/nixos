@@ -82,10 +82,14 @@ def create_partitions(disk, start_sector):
     uefi_start = "{}s".format(start_sector)
     uefi_end = "{}s".format(start_sector + 1046528)
     main_start = "{}s".format(start_sector + 1046528 + 2048)
+    if start_sector == 2048:
+        boot_partition = 1
+    else:
+        boot_partition = 2
     _run_command(["parted", "--script", disk,
                   # UEFI
-                  "mkpart", "ESP", "fat32", uefi_start, uefi_end,
-                  "set", "1", "esp", "on",
+                  "mkpart", "fat32", uefi_start, uefi_end,
+                  "set", boot_partition, "esp", "on",
                   # Main
                   "mkpart", "primary", main_start, "100%"])
 

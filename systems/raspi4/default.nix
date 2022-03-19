@@ -22,6 +22,12 @@
     fsType = "vfat";
   };
 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.device = "nodev";
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   hardware.raspberry-pi."4".audio.enable = true;
   hardware.pulseaudio.enable = true;

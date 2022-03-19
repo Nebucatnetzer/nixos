@@ -100,7 +100,7 @@ def _create_ext4_filesystem():
 
 
 def _create_f2fs_filesystem(partition):
-    _run_command(["mkfs.f2fs", "-L", "nixos", partition])
+    _run_command(["mkfs.f2fs", "-l", "nixos", partition])
 
 
 def _create_swap():

@@ -6,9 +6,15 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/NIXOS_SD";
-      fsType = "ext4";
-      options = [ "noatime" ];
+      device = "/dev/disk/by-label/nixos";
+      fsType = "f2fs";
+      options = [ "compress_algorithm=zstd:6"
+                  "compress_chksum"
+                  "whint_mode=fs-based"
+                  "atgc"
+                  "gc_merge"
+                  "lazytime"
+                ];
     };
   };
 

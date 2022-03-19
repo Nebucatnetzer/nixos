@@ -157,7 +157,7 @@ def create_x86_filesystems(partition, encryption):
 
 def create_aarch64_filesystem(partition):
     print("Creating filesystems.")
-    _create_f2fs_filesystem()
+    _create_f2fs_filesystem(partition)
 
 
 def main():

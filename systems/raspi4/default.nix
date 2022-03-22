@@ -26,6 +26,10 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.device = "nodev";
+  boot.initrd.availableKernelModules = [
+    "reset_raspberrypi"
+    "sdhci_pci"
+  ]
 
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   hardware.raspberry-pi."4".audio.enable = true;

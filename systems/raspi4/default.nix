@@ -1,7 +1,8 @@
-{ inputs, hostname, ip, pkgs, ... }:
+{ inputs, hostname, ip, pkgs, modulesPath, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    "${modulesPath}/profiles/all-hardware.nix"
   ];
 
   fileSystems = {

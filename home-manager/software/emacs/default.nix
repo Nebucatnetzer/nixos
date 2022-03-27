@@ -31,6 +31,7 @@
       epkgs.eyebrowse
       epkgs.f
       epkgs.flycheck
+      epkgs.format-all
       epkgs.general
       epkgs.helpful
       epkgs.highlight-indent-guides

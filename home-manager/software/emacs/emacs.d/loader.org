@@ -1221,6 +1221,24 @@ Enable direnv support.
  (direnv-mode))
 #+end_src
 
+*** format-all
+
+#+begin_src emacs-lisp
+(use-package format-all
+    :ensure t
+    :hook
+    ((prog-mode . format-all-ensure-formatter)
+     (prog-mode . format-all-mode))
+    :preface
+    (defun nebucatnetzer/format-code ()
+        "format buffer."
+        (interactive)
+        (format-all-buffer))
+    :config
+    (global-set-key (kbd "C-c C-f") #'nebucatnetzer/format-code)
+    (setq format-all-show-errors 'errors))
+#+end_src
+
 * UI Changes
 
 ** Hide the menu and toolbar

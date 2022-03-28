@@ -2819,6 +2819,12 @@ https://github.com/jhallen/joes-sandbox/issues/29
 (setq history-delete-duplicates t)
 #+end_src
 
+** enable mouse support in terminal
+
+#+begin_src emacs-lisp
+(xterm-mouse-mode 1)
+#+end_src
+
 * Eshell
 
 ** General

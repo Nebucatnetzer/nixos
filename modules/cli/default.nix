@@ -9,7 +9,6 @@
     ncdu
     nixpkgs-fmt
     ranger
-    tmux
     tree
     unzip
     vim

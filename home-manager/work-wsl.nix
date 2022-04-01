@@ -9,6 +9,12 @@
   ];
 
   programs.git.userEmail = "zweili@contria.com";
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    nix-direnv.enableFlakes = true;
+  };
+
 
   programs.bash = {
     enable = true;

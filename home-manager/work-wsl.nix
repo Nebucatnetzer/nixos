@@ -15,6 +15,10 @@
     nix-direnv.enableFlakes = true;
   };
 
+  home.packages = with pkgs; [
+    nixpkgs-fmt
+    nodePackages.prettier
+  ];
 
   programs.bash = {
     enable = true;

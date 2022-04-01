@@ -3,6 +3,7 @@
   imports = [
     ./common
     ./software/ansible
+    ./software/emacs
     ./software/git
     ./software/vagrant-wsl
     ./software/vim

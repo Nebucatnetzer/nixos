@@ -17,6 +17,7 @@
   hardware.pulseaudio.enable = true;
 
   environment.systemPackages = with pkgs; [
+    libraspberrypi
     raspberrypi-eeprom
   ];
 
@@ -38,6 +39,9 @@
   };
 
   environment.shellAliases = {
+    raspi-cpu = ''
+      sudo vcgencmd get_throttled && sudo vcgencmd measure_temp
+    '';
     raspi-firmware-update = ''
       sudo mount /dev/disk/by-label/FIRMWARE /mnt && \
       BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable sudo -E rpi-eeprom-update -d -a && \

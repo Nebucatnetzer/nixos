@@ -90,7 +90,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                (import ./home-manager/headless.nix { inherit custom pkgs inputs; })
+                (import ./home-manager/management.nix { inherit custom pkgs inputs; })
               ];
             }
           ]);

@@ -5,3 +5,4 @@ for i in $scripts
 do
     source $i
 done
+echo "Finished qtile autostart"

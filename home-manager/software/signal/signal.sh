@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-nohup signal-desktop &
+echo "start signal"
+signal-desktop & disown

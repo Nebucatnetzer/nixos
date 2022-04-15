@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-nohup telegram-desktop &
+echo "start telegram"
+telegram-desktop & disown

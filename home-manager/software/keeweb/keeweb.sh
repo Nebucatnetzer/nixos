@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-nohup keeweb &
+echo "start keeweb"
+keeweb & disown

@@ -3,13 +3,13 @@
   imports = [
     (import ./common { inherit custom inputs; })
     ./software/work-desktop
-    ./software/autorandr
     ./software/calibre
     ./software/czkawka
     ./software/dunst
     ./software/emacs
     ./software/evince
     ./software/git
+    ./software/grobi
     ./software/keeweb
     ./software/mime-apps
     ./software/mpv

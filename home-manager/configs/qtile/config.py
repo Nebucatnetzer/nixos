@@ -21,32 +21,30 @@ keys = [
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
-
     # Move windows up or down in current stack
     Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
     Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
-
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack"),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack",
+    ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("autorandr -c")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
     Key([mod], "w", lazy.spawn("firefox")),
-
     Key([mod], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
-
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-
     Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     Key([mod], "F3", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
@@ -98,24 +96,30 @@ def toscreen(qtile, group_name):
 groups = [Group(name=i, matches=group_matches[int(i)]) for i in "1234567890"]
 
 for i in groups:
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.function(toscreen, i.name),
-            desc="Switch to group {}".format(i.name)),
+    keys.extend(
+        [
+            # mod1 + letter of group = switch to group
+            Key(
+                [mod],
+                i.name,
+                lazy.function(toscreen, i.name),
+                desc="Switch to group {}".format(i.name),
+            ),
+            # mod1 + shift + letter of group = switch to & move focused window to group
+            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+            #    desc="Switch to & move focused window to group {}".format(i.name)),
+            # Or, use below if you prefer not to switch to that group.
+            # # mod1 + shift + letter of group = move focused window to group
+            Key(
+                [mod, "shift"],
+                i.name,
+                lazy.window.togroup(i.name),
+                desc="move focused window to group {}".format(i.name),
+            ),
+        ]
+    )
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
-        #    desc="Switch to & move focused window to group {}".format(i.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            desc="move focused window to group {}".format(i.name)),
-    ])
-
-border = dict(
-    border_width=1,
-    border_focus='#000000'
-)
+border = dict(border_width=1, border_focus="#000000")
 
 layouts = [
     layout.Columns(**border),
@@ -133,7 +137,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Source Code Pro',
+    font="Source Code Pro",
     fontsize=12,
     padding=3,
 )
@@ -153,12 +157,16 @@ screens = [
                 widget.Sep(padding=5),
                 widget.Volume(),
                 widget.Sep(padding=5),
-                widget.Battery(charge_char='⚇', discharge_char='⚡',
-                               full_char='☻', show_short_text=False),
+                widget.Battery(
+                    charge_char="⚇",
+                    discharge_char="⚡",
+                    full_char="☻",
+                    show_short_text=False,
+                ),
                 widget.Sep(padding=5),
                 widget.Systray(),
                 widget.Sep(padding=5),
-                widget.Clock(format='%Y-%m-%d %a %H:%M'),
+                widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
             24,
         ),
@@ -174,7 +182,7 @@ screens = [
                 widget.Sep(padding=5),
                 widget.Volume(),
                 widget.Sep(padding=5),
-                widget.Clock(format='%Y-%m-%d %a %H:%M'),
+                widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
             24,
         ),
@@ -183,11 +191,16 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.toggle_floating())
+    Drag(
+        [mod],
+        "Button1",
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position(),
+    ),
+    Drag(
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+    ),
+    Click([mod], "Button2", lazy.window.toggle_floating()),
 ]
 
 dgroups_key_binder = None
@@ -202,28 +215,30 @@ focus_on_window_activation = "smart"
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.run([home])
 
 
-floating_layout = layout.Floating(float_rules=[
-    # Run the utility of `xprop` to see the wm class and name of an X client.
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirm'),
-    Match(wm_class='dialog'),
-    Match(wm_class='download'),
-    Match(wm_class='error'),
-    Match(wm_class='file_progress'),
-    Match(wm_class='notification'),
-    Match(wm_class='splash'),
-    Match(wm_class='toolbar'),
-    Match(wm_class='confirmreset'),  # gitk
-    Match(wm_class='makebranch'),  # gitk
-    Match(wm_class='maketag'),  # gitk
-    Match(title='branchdialog'),  # gitk
-    Match(title='pinentry'),  # GPG key password entry
-    Match(wm_class='ssh-askpass'),  # ssh-askpass
-])
+floating_layout = layout.Floating(
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirm"),
+        Match(wm_class="dialog"),
+        Match(wm_class="download"),
+        Match(wm_class="error"),
+        Match(wm_class="file_progress"),
+        Match(wm_class="notification"),
+        Match(wm_class="splash"),
+        Match(wm_class="toolbar"),
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+    ]
+)
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

@@ -50,6 +50,12 @@ in
         --password-file ${password_file} \
         snapshots --host ${config.networking.hostName}
     '';
+    restic-unlock = ''
+      restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        unlock
+    '';
     restic-mount = ''
       mkdir -p /tmp/restic && \
       restic \

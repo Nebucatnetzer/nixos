@@ -95,7 +95,7 @@
             }
           ]);
       };
-      mkRaspi = { hostname, system ? "aarch64-linux" }: nixpkgs.lib.nixosSystem {
+      mkRaspi = { hostname, system ? "aarch64-linux", home-module }: nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit custom inputs; };
         modules = (
@@ -114,7 +114,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                (import ./home-manager/headless.nix { inherit custom pkgs inputs; })
+                (import "${self}/home-manager/${home-module}.nix" { inherit custom pkgs inputs; })
               ];
             }
           ]);
@@ -179,6 +179,7 @@
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
+          home-module = "management";
         };
         restic-server = mkVM {
           hostname = "restic-server";

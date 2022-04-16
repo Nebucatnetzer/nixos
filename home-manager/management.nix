@@ -2,9 +2,10 @@
 {
   imports = [
     (import ./common { inherit custom inputs; })
+    ./software/emacs
+    ./software/email
     ./software/git
     ./software/vim
-    ./software/emacs
   ];
 
   programs.git.userEmail = "andreas@zweili.ch";

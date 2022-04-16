@@ -17,7 +17,11 @@
   environment.shellAliases = {
     format-modules = "nixpkgs-fmt **/*.nix";
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-    rebuild = "sudo nixos-rebuild -j auto switch";
+    rebuild = ''
+      rm -rf ~/.config/qtile/__pycache__ &&
+      rm -f ~/.emacs.d/loader.el &&
+      sudo nixos-rebuild -j auto switch
+    '';
     find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";
     vm = "vim";
   };

@@ -5,7 +5,7 @@
     realName = "Andreas Zweili";
     userName = "andreas@zweili.ch";
     primary = true;
-    passwordCommand = "cat /home/andreas/.imappass";
+    passwordCommand = "cat /home/andreas/.nixos/secrets/passwords/personal_email.key";
     aliases = [
       "andreas.zweili@gmail.com"
       "andreas@2li.ch"

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ custom, pkgs, ... }:
 {
   programs.emacs = {
     enable = true;
@@ -81,4 +81,8 @@
   home.file.".emacs.d/variables.el".source = ./emacs.d/variables.el;
   home.file.".emacs.d/snippets".source = ./emacs.d/snippets;
   home.file.".Eshell/alias".source = ./Eshell/alias;
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+  };
 }

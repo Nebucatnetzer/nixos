@@ -6,7 +6,7 @@
     ./software/calibre
     ./software/czkawka
     ./software/dunst
-    ./software/emacs
+    (import ./software/emacs { inherit custom pkgs; })
     ./software/email
     ./software/evince
     ./software/git
@@ -53,6 +53,9 @@
 
   gtk.theme.name = "Arc-Darker";
 
-  xsession.numlock.enable = true;
+  xsession = {
+    enable = true;
+    numlock.enable = true;
+  };
   services.network-manager-applet.enable = true;
 }

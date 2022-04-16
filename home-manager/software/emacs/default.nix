@@ -4,6 +4,7 @@
     enable = true;
     extraPackages = epkgs: with pkgs;[
       pandoc
+      mu
       epkgs.ace-window
       epkgs.auctex
       epkgs.avy

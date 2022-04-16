@@ -7,6 +7,7 @@
     ./software/czkawka
     ./software/dunst
     ./software/emacs
+    ./software/email
     ./software/evince
     ./software/git
     ./software/grobi

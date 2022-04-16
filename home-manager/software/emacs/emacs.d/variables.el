@@ -7,3 +7,4 @@
 (setq enable-ox-pandoc t)
 (setq enable-emojis t)
 (setq disable-fringe t)
+(setq enable-email t)

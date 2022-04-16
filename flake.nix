@@ -48,7 +48,7 @@
         ];
       };
 
-      mkComputer = { hostname, system ? "x86_64-linux" }: nixpkgs.lib.nixosSystem {
+      mkComputer = { hostname, system ? "x86_64-linux", home-module ? "headless" }: nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit custom inputs; };
         modules = (
@@ -57,30 +57,7 @@
             "${self}/systems/${hostname}"
 
             # Common configuration
-            (import ./modules/common-x86 { inherit custom inputs pkgs system; })
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${custom.username}.imports = [
-                (import ./home-manager/desktop.nix { inherit custom pkgs inputs; })
-              ];
-            }
-          ]);
-      };
-      mkVM = { hostname, system ? "x86_64-linux" }: nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        specialArgs = {
-          inherit custom inputs;
-        };
-        modules = (
-          [
-            # System configuration for this host
-            "${self}/systems/${hostname}"
-
-            # Common configuration
-            ./modules/common-x86
+            "${self}/modules/common-x86"
 
             agenix.nixosModules.age
             { environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
@@ -90,7 +67,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${custom.username}.imports = [
-                (import ./home-manager/management.nix { inherit custom pkgs inputs; })
+                (import "${self}/home-manager/${home-module}.nix" { inherit custom pkgs inputs; })
               ];
             }
           ]);
@@ -124,70 +101,74 @@
       nixosConfigurations = {
         gwyn = mkComputer {
           hostname = "gwyn";
+          home-module = "desktop";
         };
         nixos-vm = mkComputer {
           hostname = "desktop-vm";
+          home-module = "desktop";
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
+          home-module = "desktop";
         };
         # Servers
-        git = mkVM {
+        git = mkComputer {
           hostname = "git";
         };
-        grav = mkVM {
+        grav = mkComputer {
           hostname = "grav";
         };
-        heimdall = mkVM {
+        heimdall = mkComputer {
           hostname = "heimdall";
         };
-        jdownloader = mkVM {
+        jdownloader = mkComputer {
           hostname = "jdownloader";
         };
-        k3s-master1 = mkVM {
+        k3s-master1 = mkComputer {
           hostname = "k3s-master1";
         };
-        k3s-node1 = mkVM {
+        k3s-node1 = mkComputer {
           hostname = "k3s-node1";
         };
-        k3s-node2 = mkVM {
+        k3s-node2 = mkComputer {
           hostname = "k3s-node2";
         };
-        mail = mkVM {
+        mail = mkComputer {
           hostname = "mail";
         };
-        nextcloud = mkVM {
+        nextcloud = mkComputer {
           hostname = "nextcloud";
         };
-        nixos-management = mkVM {
+        nixos-management = mkComputer {
           hostname = "nixos-management";
+          home-module = "management";
         };
-        nomad-master1 = mkVM {
+        nomad-master1 = mkComputer {
           hostname = "nomad-master1";
         };
-        nomad-client1 = mkVM {
+        nomad-client1 = mkComputer {
           hostname = "nomad-client1";
         };
-        pihole = mkVM {
+        pihole = mkComputer {
           hostname = "pihole";
         };
-        plex = mkVM {
+        plex = mkComputer {
           hostname = "plex";
         };
-        proxy = mkVM {
+        proxy = mkComputer {
           hostname = "proxy";
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
           home-module = "management";
         };
-        restic-server = mkVM {
+        restic-server = mkComputer {
           hostname = "restic-server";
         };
-        rss-bridge = mkVM {
+        rss-bridge = mkComputer {
           hostname = "rss-bridge";
         };
-        ttrss = mkVM {
+        ttrss = mkComputer {
           hostname = "ttrss";
         };
       };

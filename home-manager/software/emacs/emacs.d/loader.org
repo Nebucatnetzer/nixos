@@ -1319,6 +1319,7 @@ After a fresh installation you have to first sync your emails with ~offlineimap
                   (:subject       .  nil))) ;; alternatively, use :thread-subject
 
         (setq mu4e-get-mail-command "offlineimap -qo"
+            mu4e-update-interval 120
             mu4e-headers-auto-update t
             mu4e-compose-format-flowed t
             mu4e-index-update-in-background t

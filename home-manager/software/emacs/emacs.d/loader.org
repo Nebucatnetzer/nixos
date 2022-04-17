@@ -880,6 +880,10 @@ This packages provide a much better experience in the minibuffer.
 http://oremacs.com/swiper/
 
 #+BEGIN_SRC emacs-lisp
+(use-package amx
+    :ensure t
+    :config
+    (amx-mode t))
 (use-package counsel
     :ensure t
     :config

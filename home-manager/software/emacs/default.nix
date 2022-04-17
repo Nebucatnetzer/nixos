@@ -9,6 +9,7 @@
     extraPackages = epkgs: with pkgs;[
       mu
       epkgs.ace-window
+      epkgs.amx
       epkgs.auctex
       epkgs.avy
       epkgs.biblio

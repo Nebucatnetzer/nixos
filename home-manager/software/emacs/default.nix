@@ -1,9 +1,12 @@
 { custom, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    pandoc
+  ];
+
   programs.emacs = {
     enable = true;
     extraPackages = epkgs: with pkgs;[
-      pandoc
       mu
       epkgs.ace-window
       epkgs.auctex

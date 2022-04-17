@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo "start telegram"
-telegram-desktop & disown
+nohup telegram-desktop > ~/.local/share/nohup.out

@@ -4,5 +4,5 @@
     keeweb
   ];
 
-  home.file.".config/qtile/autostart.d/99_keeweb.sh".source = ./keeweb.sh;
+  home.file.".config/qtile/autostart.d/keeweb.sh".source = ./keeweb.sh;
 }

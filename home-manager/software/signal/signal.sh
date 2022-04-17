@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo "start signal"
-signal-desktop & disown
+nohup signal-desktop > ~/.local/share/nohup.out

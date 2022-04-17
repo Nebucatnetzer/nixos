@@ -1,8 +1,8 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
+    ./software/ansible
     (import ./common { inherit custom inputs; })
-    ./software/work-desktop
     ./software/calibre
     ./software/czkawka
     ./software/dunst
@@ -21,6 +21,7 @@
     ./software/signal
     ./software/telegram
     ./software/vim
+    ./software/work-desktop
   ];
   home.packages = with pkgs; [
     arc-theme
@@ -54,7 +55,6 @@
   gtk.theme.name = "Arc-Darker";
 
   xsession = {
-    enable = true;
     numlock.enable = true;
   };
   services.network-manager-applet.enable = true;

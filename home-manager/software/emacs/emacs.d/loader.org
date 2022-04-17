@@ -1254,6 +1254,7 @@ Enable direnv support.
     :ensure t
     :hook
     ((prog-mode . format-all-ensure-formatter)
+     (yaml-mode . format-all-ensure-formatter)
      (prog-mode . format-all-mode))
     :preface
     (defun nebucatnetzer/format-code ()

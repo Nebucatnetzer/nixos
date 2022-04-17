@@ -19,6 +19,7 @@
     ./software/pycharm
     ./software/rapid-photo-downloader
     ./software/signal
+    ./software/starship
     ./software/telegram
     ./software/vim
     ./software/work-desktop

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo "start keeweb"
-nohup keeweb > ~/.local/share/nohup.out
+nohup keeweb > ~/.local/share/nohup.out &

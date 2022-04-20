@@ -5,6 +5,7 @@
     ./software/ansible
     ./software/emacs
     ./software/git
+    ./software/starship
     ./software/vagrant-wsl
     ./software/vim
   ];

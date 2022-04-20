@@ -5,6 +5,7 @@
     ./software/emacs
     ./software/email
     ./software/git
+    ./software/starship
     ./software/vim
   ];
 

@@ -1289,15 +1289,9 @@ After a fresh installation you have to first sync your emails with ~offlineimap
     :config
         (require 'smtpmail)
 
-        ; smtp
-        (setq message-send-mail-function 'smtpmail-send-it
-            smtpmail-starttls-credentials
-            '(("mail.zweili.org" 587 nil nil))
-            smtpmail-default-smtp-server "mail.zweili.org"
-            smtpmail-smtp-server "mail.zweili.org"
-            smtpmail-smtp-service 587
-            smtpmail-debug-info t)
-        (setq send-mail-function (quote smtpmail-send-it))
+        ;; use msmtp
+        (setq message-send-mail-function 'message-send-mail-with-sendmail)
+        (setq sendmail-program "msmtp")
 
         (require 'mu4e)
         (require 'org-mu4e)

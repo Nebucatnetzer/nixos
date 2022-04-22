@@ -10,6 +10,7 @@
       "andreas.zweili@gmail.com"
       "andreas@2li.ch"
     ];
+    msmtp.enable = true;
     mu.enable = true;
     offlineimap = {
       enable = true;
@@ -34,4 +35,5 @@
   };
   programs.mu.enable = true;
   programs.offlineimap.enable = true;
+  programs.msmtp.enable = true;
 }

@@ -25,8 +25,11 @@
     };
     smtp = {
       host = "mail.zweili.org";
-      port = 465;
-      tls.enable = true;
+      port = 587;
+      tls = {
+        enable = true;
+        useStartTls = true;
+      };
     };
   };
   programs.mu.enable = true;

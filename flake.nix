@@ -115,12 +115,6 @@
         git = mkComputer {
           hostname = "git";
         };
-        grav = mkComputer {
-          hostname = "grav";
-        };
-        heimdall = mkComputer {
-          hostname = "heimdall";
-        };
         jdownloader = mkComputer {
           hostname = "jdownloader";
         };
@@ -164,9 +158,6 @@
         };
         restic-server = mkComputer {
           hostname = "restic-server";
-        };
-        rss-bridge = mkComputer {
-          hostname = "rss-bridge";
         };
         ttrss = mkComputer {
           hostname = "ttrss";

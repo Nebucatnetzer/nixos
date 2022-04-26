@@ -19,7 +19,7 @@
 
   home.packages = with pkgs; [
     nixpkgs-fmt
-    nodePackages.prettier
+    mosh
   ];
 
   programs.bash = {

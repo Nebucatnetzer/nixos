@@ -287,7 +287,6 @@ which I store in my sourec directory as the current theme.
 (add-hook 'after-make-frame-functions 'on-frame-open)
 
 (when (boundp 'enable-color-theme)
-(if (display-graphic-p)
     ;; load solarized color theme
     (use-package solarized-theme
         :ensure t
@@ -296,7 +295,7 @@ which I store in my sourec directory as the current theme.
         (setq solarized-scale-org-headlines nil)
         (setq solarized-high-contrast-mode-line t)
         (set-face-inverse-video 'region nil)
-        (load-theme 'solarized-light t))))
+        (load-theme 'solarized-light t)))
 #+end_src
 
 ** smooth-scrolling

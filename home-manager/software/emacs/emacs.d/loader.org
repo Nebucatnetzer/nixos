@@ -278,13 +278,12 @@ which I store in my sourec directory as the current theme.
 
 #+begin_src emacs-lisp
 ;; Color theme
+;; disable background in terminal
+(defun on-after-init ()
+    (unless (display-graphic-p (selected-frame))
+        (set-face-background 'default "unspecified-bg" (selected-frame))))
 
-(defun on-frame-open (&optional frame)
-  "If the FRAME created in terminal don't load background color."
-  (unless (display-graphic-p frame)
-    (set-face-background 'default "unspecified-bg" frame)))
-
-(add-hook 'after-make-frame-functions 'on-frame-open)
+(add-hook 'window-setup-hook 'on-after-init)
 
 (when (boundp 'enable-color-theme)
     ;; load solarized color theme

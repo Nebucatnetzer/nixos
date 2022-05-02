@@ -8,3 +8,4 @@
 (setq enable-emojis t)
 (setq disable-fringe t)
 (setq enable-email t)
+(setq enable-personal-agenda t)

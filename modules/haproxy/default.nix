@@ -35,6 +35,7 @@
         redirect scheme https code 301 if { hdr(host) -i wallabag.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i webmail.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss-bridge.2li.ch } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i test.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i www.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr_dom(host) -i 2li.ch } !{ ssl_fc }
 
@@ -56,6 +57,7 @@
         use_backend wallabag_server if { req_ssl_sni -i wallabag.2li.ch }
         use_backend webmail_server if { req_ssl_sni -i webmail.2li.ch }
         use_backend rss-bridge_server if { req_ssl_sni -i rss-bridge.2li.ch }
+        use_backend test_server if { req_ssl_sni -i test.2li.ch }
         use_backend grav_server if { req_ssl_sni -i www.2li.ch }
         use_backend grav_server if { req_ssl_sni -i 2li.ch }
 
@@ -83,6 +85,9 @@
       backend rss-bridge_server
         mode tcp
         server server1 10.7.89.111:443 check
+      backend test_server
+        mode tcp
+        server server1 10.7.89.142:443 check
     '';
   };
 }

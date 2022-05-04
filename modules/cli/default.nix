@@ -20,7 +20,7 @@
     rebuild = ''
       rm -rf ~/.config/qtile/__pycache__ &&
       rm -f ~/.emacs.d/loader.el &&
-      sudo nixos-rebuild -j auto switch
+      nixos-rebuild -j auto switch --use-remote-sudo
     '';
     find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";
     vm = "vim";

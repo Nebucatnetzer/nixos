@@ -159,6 +159,9 @@
         restic-server = mkComputer {
           hostname = "restic-server";
         };
+        test-server = mkComputer {
+          hostname = "test-server";
+        };
         ttrss = mkComputer {
           hostname = "ttrss";
         };

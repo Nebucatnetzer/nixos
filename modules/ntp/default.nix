@@ -2,7 +2,7 @@
 {
   services.ntp = {
     enable = true;
-    server = [
+    servers = [
       "loki.2li.local"
     ];
   };

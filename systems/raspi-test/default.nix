@@ -10,6 +10,7 @@
       time = "11:30"; inherit config custom inputs pkgs;
     })
     "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/ntp"
     "${inputs.self}/modules/raspi-haproxy"
   ];
 }

@@ -1,5 +1,9 @@
 { inputs, hostname, ip, ... }:
 {
+  imports = [
+    "${inputs.self}/modules/ntp"
+  ];
+
   networking = {
     useDHCP = false;
     hostName = hostname;

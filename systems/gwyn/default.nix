@@ -13,6 +13,7 @@
     "${inputs.self}/modules/lockscreen"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/restic"
+    "${inputs.self}/modules/data-share"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

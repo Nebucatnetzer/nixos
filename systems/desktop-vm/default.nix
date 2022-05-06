@@ -1,6 +1,7 @@
 { inputs, ... }:
 {
   imports = [
+    "${inputs.self}/modules/data-share"
     "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/espanso"

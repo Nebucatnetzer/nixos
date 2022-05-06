@@ -2,6 +2,8 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    "${inputs.self}/modules/ntp"
+    "${inputs.self}/modules/syslog"
   ];
 
   fileSystems = {

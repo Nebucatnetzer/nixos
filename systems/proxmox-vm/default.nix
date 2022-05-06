@@ -2,6 +2,7 @@
 {
   imports = [
     "${inputs.self}/modules/ntp"
+    "${inputs.self}/modules/syslog"
   ];
 
   networking = {

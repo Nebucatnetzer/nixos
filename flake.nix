@@ -72,7 +72,7 @@
             }
           ]);
       };
-      mkRaspi = { hostname, system ? "aarch64-linux", home-module }: nixpkgs.lib.nixosSystem {
+      mkRaspi = { hostname, system ? "aarch64-linux", home-module ? "headless" }: nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit custom inputs; };
         modules = (

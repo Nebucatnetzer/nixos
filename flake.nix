@@ -154,7 +154,6 @@
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
-          home-module = "management";
         };
         restic-server = mkComputer {
           hostname = "restic-server";

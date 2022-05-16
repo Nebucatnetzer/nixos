@@ -1,7 +1,7 @@
 #+title: Emacs Configuration
 :preamble:
 #+setupfile: ~/git_repos/dot_files/docs/html_themes/theme-readtheorg.setup
-#+latex_header: \input{/home/andreas/nextcloud/03_documents/org/settings/latex/style}
+#+latex_header: \input{/home/andreas/nextcloud/10_documents/99_archive/0000/settings/latex/style}
 #+author: Andreas Zweili
 #+options: todo:t toc:nil
 :end:
@@ -1718,7 +1718,7 @@ gets archived into an archive folder and put into a monthly file.
     (when (boundp 'enable-personal-agenda)
     (when (is-linux-p)
     (setq org-archive-location
-        (concat "~/nextcloud/12_tasks/99_archive/"
+        (concat "~/nextcloud/10_documents/99_archive/2022/projects/"
             (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))))
     (when (boundp 'enable-work-agenda)
     (when (is-windows-p)
@@ -1813,10 +1813,10 @@ easy to start the clock at the beginning of the day.
             (quote
                 (("t" "Adds a Next entry" entry
                     (file+headline "~/nextcloud/12_tasks/personal.org" "Capture")
-                    (file "~/nextcloud/12_tasks/settings/templates/temp_personal_todo.txt")
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_personal_todo.txt")
                         :empty-lines 1)
                  ("n" "Add note" plain (file my/org-capture-read-file-name)
-                    (file "~/nextcloud/12_tasks/settings/templates/temp_note.txt"))
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
 )))))
 
 (when (boundp 'enable-work-agenda)
@@ -1825,21 +1825,21 @@ easy to start the clock at the beginning of the day.
             (quote
                 (("j" "Journal Entry" entry
                     (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Clock")
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_clock_note.txt")
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_clock_note.txt")
                     :empty-lines 1)
                 ("c" "Phone call" entry (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Clock")
                     "* %U PHONE %?" :clock-in t :clock-resume t)
                 ("t" "Adds a Next entry" entry
                     (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Capture")
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_work_todo.txt")
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_work_todo.txt")
                     :clock-in t :clock-resume t)
                 ("p" "Small Project" entry
                     (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Capture")
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_work_small_project.txt"))
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_work_small_project.txt"))
                 ("m" "Meeting" entry (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Capture")
                     "* %U MEETING: with %?\n" :clock-in t :clock-resume t :empty-lines 1)
                 ("n" "Add note" plain (file my/org-capture-read-file-name)
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_note.txt"))
+                    (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
 )))))
 #+end_src
 

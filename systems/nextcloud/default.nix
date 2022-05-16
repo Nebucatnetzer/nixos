@@ -9,6 +9,7 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "04:00"; inherit config custom inputs pkgs;
     })
+    "${inputs.self}/modules/data-share"
     "${inputs.self}/modules/docker"
   ];
 }

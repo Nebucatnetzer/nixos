@@ -1811,17 +1811,12 @@ easy to start the clock at the beginning of the day.
     (when (is-linux-p)
         (setq org-capture-templates
             (quote
-                (("j" "Journal" entry (file+datetree "~/nextcloud/12_tasks/journal.org")
-                    "* %U\n\n%?" :empty-lines 1)
-                ("p" "Small Project" entry
+                (("t" "Adds a Next entry" entry
                     (file+headline "~/nextcloud/12_tasks/personal.org" "Capture")
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_personal_small_project.txt"))
-                ("t" "Adds a Next entry" entry
-                    (file+headline "~/nextcloud/12_tasks/personal.org" "Capture")
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_personal_todo.txt")
+                    (file "~/nextcloud/12_tasks/settings/templates/temp_personal_todo.txt")
                         :empty-lines 1)
-                ("n" "Add note" plain (file my/org-capture-read-file-name)
-                    (file "~/nextcloud/03_documents/org/settings/templates/temp_note.txt"))
+                 ("n" "Add note" plain (file my/org-capture-read-file-name)
+                    (file "~/nextcloud/12_tasks/settings/templates/temp_note.txt"))
 )))))
 
 (when (boundp 'enable-work-agenda)

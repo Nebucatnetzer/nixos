@@ -6,6 +6,9 @@
       ip = "10.7.89.142";
       inherit inputs;
     })
+    (import "${inputs.self}/modules/nginx-acme" {
+      domain = "test.2li.ch";
+    })
     "${inputs.self}/modules/docker"
   ];
 }

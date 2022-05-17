@@ -15,4 +15,5 @@
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
-  }
+  };
+}

@@ -1,5 +1,8 @@
 { domain, ... }:
 {
+  networking.firewall.allowedTCPPorts = [
+    443
+  ];
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;

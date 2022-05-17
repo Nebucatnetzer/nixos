@@ -3,7 +3,8 @@
 /home/*/.thumbnails
 /home/*/.dropbox
 /home/*/.steam
-home/*/.local/share/Steam/
+/home/*/.local/share/Steam/
+/home/*/.mozilla
 /home/*/snap
 /proc
 /sys

@@ -9,6 +9,9 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "03:00"; inherit config custom inputs pkgs;
     })
+    (import "${inputs.self}/modules/nginx-acme" {
+      domain = "git.2li.ch";
+    })
     "${inputs.self}/modules/docker"
   ];
 }

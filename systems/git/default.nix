@@ -10,7 +10,7 @@
       time = "03:00"; inherit config custom inputs pkgs;
     })
     (import "${inputs.self}/modules/nginx-acme" {
-      domain = "git.2li.ch";
+      domain = "git.2li.ch"; inherit inputs;
     })
     "${inputs.self}/modules/docker"
   ];

@@ -9,6 +9,7 @@
   };
   services.nginx = {
     enable = true;
+    recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
   };

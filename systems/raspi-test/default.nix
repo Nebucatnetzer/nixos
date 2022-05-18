@@ -9,18 +9,12 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "11:30"; inherit config custom inputs pkgs;
     })
+    "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/haproxy"
   ];
 
-  security.acme = {
-    acceptTerms = true;
-    email = "admin+acme@zweili.ch";
-  };
   services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
     virtualHosts = {
       "2li.ch" = {
         serverAliases = [ "www.2li.ch" ];

@@ -1,4 +1,4 @@
-{ domain, inputs, ... }:
+{ domain, inputs, port ? "8080", ... }:
 {
   imports = [
     "${inputs.self}/modules/nginx-acme-base"
@@ -35,7 +35,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
+        proxyPass = "http://127.0.0.1:${port}";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };

@@ -10,7 +10,7 @@
       time = "04:00"; inherit config custom inputs pkgs;
     })
     "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/ngix-acme-base"
+    "${inputs.self}/modules/nginx-acme-base"
   ];
 
   services.nginx = {
@@ -49,4 +49,5 @@
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
-  }
+  };
+}

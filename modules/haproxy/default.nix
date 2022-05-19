@@ -52,7 +52,6 @@
         use_backend raspi if { req_ssl_sni -i heimdall.2li.ch }
         use_backend webmail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
-        use_backend nextcloud_server if { req_ssl_sni -i photos.zweili.org }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
         use_backend wallabag_server if { req_ssl_sni -i wallabag.2li.ch }
         use_backend raspi if { req_ssl_sni -i rss-bridge.2li.ch }

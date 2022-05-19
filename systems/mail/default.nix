@@ -9,6 +9,10 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "04:30"; inherit config custom inputs pkgs;
     })
+    (import "${inputs.self}/modules/nginx-acme" {
+      domain = "mail.zweili.org"; inherit inputs;
+    })
     "${inputs.self}/modules/docker"
   ];
 }
+

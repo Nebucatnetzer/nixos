@@ -2285,6 +2285,15 @@ Otherwise this would be a two step process.
             (message "[org agenda] refreshed!"))))
 #+end_src
 
+*** Auto save org files when agenda is open
+
+#+begin_src emacs-lisp
+    (add-hook 'org-agenda-mode-hook
+            (lambda ()
+                (add-hook 'auto-save-hook 'org-save-all-org-buffers nil t)
+                (auto-save-mode)))
+#+end_src
+
 ** Clocking
 
 *** Remove clocks with a duration of 0

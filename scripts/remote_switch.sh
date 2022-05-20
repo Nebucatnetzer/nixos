@@ -34,7 +34,7 @@ do
         continue
     fi
     echo "reboot $fqdn"
-    ssh -i rsa_ey 'sudo reboot'
+    ssh -i $rsa_key $fqdn 'sudo reboot'
     echo
     echo
 done

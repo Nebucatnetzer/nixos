@@ -33,3 +33,14 @@ do
     echo
     echo
 done
+for host in "${hosts[@]}"
+do
+    fqdn="$host.2li.local"
+    if [ $host == "nixos-management" ]; then
+        continue
+    fi
+    echo "reboot $fqdn"
+    ssh -i rsa_key 'sudo reboot'
+    echo
+    echo
+done

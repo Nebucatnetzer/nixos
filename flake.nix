@@ -118,15 +118,6 @@
         jdownloader = mkComputer {
           hostname = "jdownloader";
         };
-        k3s-master1 = mkComputer {
-          hostname = "k3s-master1";
-        };
-        k3s-node1 = mkComputer {
-          hostname = "k3s-node1";
-        };
-        k3s-node2 = mkComputer {
-          hostname = "k3s-node2";
-        };
         mail = mkComputer {
           hostname = "mail";
         };
@@ -136,12 +127,6 @@
         nixos-management = mkComputer {
           hostname = "nixos-management";
           home-module = "management";
-        };
-        nomad-master1 = mkComputer {
-          hostname = "nomad-master1";
-        };
-        nomad-client1 = mkComputer {
-          hostname = "nomad-client1";
         };
         pihole = mkComputer {
           hostname = "pihole";

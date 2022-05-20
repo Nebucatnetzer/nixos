@@ -30,17 +30,11 @@ do
     fqdn="$host.2li.local"
     echo $fqdn
     nixos-rebuild switch --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"
-    echo
-    echo
-done
-for host in "${hosts[@]}"
-do
-    fqdn="$host.2li.local"
     if [ $host == "nixos-management" ]; then
         continue
     fi
     echo "reboot $fqdn"
-    ssh -i rsa_key 'sudo reboot'
+    ssh -i rsa_ey 'sudo reboot'
     echo
     echo
 done

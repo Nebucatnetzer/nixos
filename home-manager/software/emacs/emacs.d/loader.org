@@ -1353,6 +1353,7 @@ After a fresh installation you have to first sync your emails with ~offlineimap
                 "My settings for message composition."
                 (setq mu4e-compose-format-flowed t)
                 (use-hard-newlines -1)
+                (electric-indent-local-mode -1)
                 (turn-off-auto-fill)
                 (flyspell-mode)))))
 #+END_SRC
@@ -2928,6 +2929,13 @@ https://github.com/jhallen/joes-sandbox/issues/29
 #+begin_src emacs-lisp
 (xterm-mouse-mode 1)
 #+end_src
+
+** Disable electric-indent-local-mode
+
+This mode indents all the text I write in text-mode.
+Not really useful in my usecase.
+
+(add-hook 'text-mode-hook (lambda () (electric-indent-local-mode -1)))
 
 * Eshell
 

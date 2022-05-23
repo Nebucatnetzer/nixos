@@ -13,6 +13,7 @@
       domain = "mail.zweili.org"; inherit inputs;
     })
     "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/mariadb"
   ];
 }
 

@@ -3,6 +3,6 @@
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
-    bind = "172.17.0.1";
+    bind = "172.18.0.1";
   };
 }

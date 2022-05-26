@@ -987,7 +987,13 @@ Provides syntax highlighting and other functions for markdown.
     :init (setq markdown-command "multimarkdown")
     :config
     (setq markdown-enable-wiki-links t)
-    (setq markdown-link-space-sub-char " "))
+    (setq markdown-link-space-sub-char " ")
+    (defun insert-file-name-as-wikilink (filename &optional args)
+        (interactive "*fInsert file name: \nP")
+        (insert (concat "[[" (file-name-sans-extension (file-relative-name
+        filename)) "]]")))
+
+    (define-key markdown-mode-map (kbd "C-c i") 'insert-file-name-as-wikilink))
 #+end_src
 
 *** powershell

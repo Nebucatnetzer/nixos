@@ -983,7 +983,10 @@ Provides syntax highlighting and other functions for markdown.
     :mode (("README\\.md\\'" . gfm-mode)
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown"))
+    :init (setq markdown-command "multimarkdown")
+    :config
+    (setq markdown-enable-wiki-links t)
+    (setq markdown-link-space-sub-char " "))
 #+end_src
 
 *** powershell

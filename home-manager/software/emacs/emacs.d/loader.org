@@ -332,6 +332,7 @@ my org files. I search through all my org files and open deft with
     (setq deft-extensions '("md")
           deft-default-extension "md"
           deft-auto-save-interval 300.0
+          deft-file-limit 50
           deft-use-filename-as-title nil
           deft-use-filter-string-for-filename t
           deft-recursive t)

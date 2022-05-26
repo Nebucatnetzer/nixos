@@ -8,6 +8,7 @@
     enable = true;
     extraPackages = epkgs: with pkgs;[
       mu
+      multimarkdown
       epkgs.ace-window
       epkgs.amx
       epkgs.auctex

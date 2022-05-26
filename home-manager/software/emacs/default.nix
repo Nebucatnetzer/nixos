@@ -1,6 +1,7 @@
 { custom, pkgs, ... }:
 {
   home.packages = with pkgs; [
+    multimarkdown
     pandoc
   ];
 
@@ -8,7 +9,6 @@
     enable = true;
     extraPackages = epkgs: with pkgs;[
       mu
-      multimarkdown
       epkgs.ace-window
       epkgs.amx
       epkgs.auctex

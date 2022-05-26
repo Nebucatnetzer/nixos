@@ -9,6 +9,7 @@
     (import ./software/emacs { inherit custom pkgs; })
     ./software/email
     ./software/evince
+    ./software/fzf
     ./software/git
     ./software/grobi
     ./software/keeweb

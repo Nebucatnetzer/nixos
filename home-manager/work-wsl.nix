@@ -4,6 +4,7 @@
     ./common
     ./software/ansible
     ./software/emacs
+    ./software/fzf
     ./software/git
     ./software/starship
     ./software/vagrant-wsl

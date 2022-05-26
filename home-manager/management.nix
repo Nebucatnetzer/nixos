@@ -4,6 +4,7 @@
     (import ./common { inherit custom inputs; })
     ./software/emacs
     ./software/email
+    ./software/fzf
     ./software/git
     ./software/starship
     ./software/vim

@@ -2,6 +2,7 @@
 {
   imports = [
     (import ./common { inherit custom inputs; })
+    ./software/fzf
     ./software/git
     ./software/vim
     ./software/starship

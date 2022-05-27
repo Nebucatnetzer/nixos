@@ -10,6 +10,7 @@
     "${inputs.self}/modules/espanso"
     "${inputs.self}/modules/lockscreen"
     "${inputs.self}/modules/restic"
+    "${inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

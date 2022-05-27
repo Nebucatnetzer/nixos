@@ -984,11 +984,12 @@ Provides syntax highlighting and other functions for markdown.
     :mode (("README\\.md\\'" . gfm-mode)
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
-    :init (setq markdown-command "multimarkdown")
+    :init
+        (setq markdown-command "multimarkdown")
+        (setq markdown-enable-wiki-links t
+            markdown-hide-urls t
+            markdown-link-space-sub-char " ")
     :config
-    (setq markdown-enable-wiki-links t
-          markdown-hide-urls t
-          markdown-link-space-sub-char " ")
     (defun insert-file-name-as-wikilink (filename &optional args)
         (interactive "*fInsert file name: \nP")
         (insert (concat "[[" (file-name-sans-extension (file-relative-name

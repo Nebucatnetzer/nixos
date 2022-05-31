@@ -5,7 +5,7 @@
   ];
   security.acme = {
     acceptTerms = true;
-    email = "admin+acme@zweili.ch";
+    defaults.email = "admin+acme@zweili.ch";
   };
   services.nginx = {
     enable = true;

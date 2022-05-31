@@ -18,12 +18,14 @@
       RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
     };
     script = ''
-      ${pkgs.restic}/bin/restic \
+      ${pkgs.restic}/bin/restic backup \
       --exclude-file=${inputs.self}/modules/restic/excludes.txt \
-      backup /home/${custom.username} \
+      --tag home-dir \
+      /home/${custom.username} \
 
       ${pkgs.restic}/bin/restic \
       forget \
+        --tag home-dir
         --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \

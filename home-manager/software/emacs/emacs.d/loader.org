@@ -989,6 +989,7 @@ Provides syntax highlighting and other functions for markdown.
         (setq markdown-command "multimarkdown")
         (setq markdown-enable-wiki-links t
             markdown-hide-urls t
+            markdown-enable-highlighting-syntax t
             markdown-link-space-sub-char " ")
     :config
     (defun insert-file-name-as-wikilink (filename &optional args)

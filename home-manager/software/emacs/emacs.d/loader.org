@@ -331,6 +331,7 @@ my org files. I search through all my org files and open deft with
     :config
     (setq deft-extensions '("md")
           deft-default-extension "md"
+          deft-markdown-mode-title-level 1
           deft-auto-save-interval 300.0
           deft-file-limit 50
           deft-use-filename-as-title nil

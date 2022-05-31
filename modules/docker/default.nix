@@ -10,6 +10,4 @@
     docker-compose
     lazydocker
   ];
-
-
 }

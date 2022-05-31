@@ -1739,18 +1739,6 @@ gets archived into an archive folder and put into a monthly file.
         (setq org-archive-location
             (concat "~/nextcloud/03_documents/org/archive/work/"
                 (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))))
-
-    (defun org-archive-save-buffer ()
-    (let ((afile (org-extract-archive-file (org-get-local-archive-location))))
-        (if (file-exists-p afile)
-        (let ((buffer (find-file-noselect afile)))
-            (if (y-or-n-p (format "Save (%s)" buffer))
-            (with-current-buffer buffer
-                (save-buffer))
-            (message "You expressly chose _not_ to save (%s)" buffer)))
-        (message "Ooops ... (%s) does not exist." afile))))
-
-    (add-hook 'org-archive-hook 'org-archive-save-buffer)
 #+end_src
 
 *** Todo depencies

@@ -8,6 +8,7 @@
     })
     (import "${inputs.self}/modules/nginx-acme" {
       domain = "test.2li.ch";
+      inherit inputs;
     })
     "${inputs.self}/modules/docker"
   ];

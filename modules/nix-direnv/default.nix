@@ -8,6 +8,5 @@
   home-manager.users.${custom.username} = {
     programs.direnv.enable = true;
     programs.direnv.nix-direnv.enable = true;
-    programs.direnv.nix-direnv.enableFlakes = true;
   };
 }

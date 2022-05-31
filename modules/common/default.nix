@@ -71,11 +71,6 @@
     };
 
     autoOptimiseStore = true;
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      warn-dirty = false
-    '';
 
     # enable garbage collection
     gc = {

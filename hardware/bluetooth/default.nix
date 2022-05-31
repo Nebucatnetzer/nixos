@@ -12,7 +12,6 @@
 
   # aptx/LDAC support
   hardware.pulseaudio = {
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
 

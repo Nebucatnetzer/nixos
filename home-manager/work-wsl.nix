@@ -20,13 +20,6 @@
   home.packages = with pkgs; [
     nixpkgs-fmt
     mosh
-    python3
-    python39Packages.autopep8
-    python39Packages.black
-    python39Packages.flake8
-    python39Packages.jedi
-    python39Packages.pip
-    python39Packages.yapf
   ];
 
   programs.bash = {

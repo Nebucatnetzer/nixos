@@ -23,7 +23,7 @@
         --tag home-dir \
         /home/${custom.username}
 
-      ${pkgs.mariadb}/bin/mysqldump --all-databases | \
+      ${pkgs.mariadb}/bin/mysqldump --single-transaction --all-databases | \
       ${pkgs.restic}/bin/restic backup \
         --tag mariadb \
         --stdin \

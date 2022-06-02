@@ -6,10 +6,11 @@
       ip = "10.7.89.103";
       inherit inputs;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
+    (import "${inputs.self}/modules/restic-server-mysql-client" {
       time = "04:00"; inherit config custom inputs pkgs;
     })
     "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/mariadb"
     "${inputs.self}/modules/nginx-acme-base"
   ];
 

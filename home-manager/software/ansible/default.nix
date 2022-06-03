@@ -3,8 +3,8 @@
   home.packages = with pkgs; [
     ansible
     ansible-lint
-    nodejs
-    nodePackages.npm
+    #nodejs
+    #nodePackages.npm
     nodePackages.prettier
     sshpass
   ];

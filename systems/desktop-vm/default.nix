@@ -28,7 +28,7 @@
 
   networking = {
     hostName = "nixos-vm";
-    useDHCP = true;
+    interfaces.enp0s3.useDHCP = true;
   };
 
   swapDevices = [

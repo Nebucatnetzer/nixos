@@ -8,9 +8,11 @@
   programs.emacs = {
     enable = true;
     extraConfig = ''
-      (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8")
-            languagetool-console-command "${pkgs.languagetool}/bin/languagetool-commandline"
-            languagetool-server-command "${pkgs.languagetool}/bin/languagetool-server")
+      (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
+                                          "-cp" "${pkgs.languagetool}/share/")
+            languagetool-java-bin "${pkgs.jdk17_headless}/bin/java"
+            languagetool-console-command "${pkgs.languagetool}/share/languagetool-commandline.jar"
+            languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
     '';
     extraPackages = epkgs: with pkgs;[
       mu

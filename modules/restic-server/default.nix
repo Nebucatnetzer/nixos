@@ -10,6 +10,7 @@ in
   fileSystems.${repository} = {
     device = "10.7.89.108:restic-server";
     fsType = "nfs";
+    options = [ "noatime" "hard" ];
   };
   services.restic.server = {
     enable = true;

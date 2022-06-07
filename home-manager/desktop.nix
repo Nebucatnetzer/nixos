@@ -13,6 +13,7 @@
     ./software/git
     ./software/grobi
     ./software/keeweb
+    ./software/libimobiledevice
     ./software/mime-apps
     ./software/mpv
     ./software/nitrogen

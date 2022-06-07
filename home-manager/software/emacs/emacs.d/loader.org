@@ -111,6 +111,8 @@ Evil-mode is a package which emulates Vim in Emacs.
 ;; evil-mode allows to use vim keybindings
 (use-package evil
     :ensure t
+    :init
+    (setq evil-undo-system 'undo-redo)
     :config
     ;; Start these modes in emacs mode
     (add-to-list 'evil-emacs-state-modes 'deft-mode)

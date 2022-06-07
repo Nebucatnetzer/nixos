@@ -7,9 +7,15 @@
 
   programs.emacs = {
     enable = true;
+    extraConfig = ''
+      (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8")
+            languagetool-console-command "${pkgs.languagetool}/bin/languagetool-commandline"
+            languagetool-server-command "${pkgs.languagetool}/bin/languagetool-server")
+    '';
     extraPackages = epkgs: with pkgs;[
       mu
       rufo # formatter for Ruby
+      languagetool
       python39Packages.autopep8
       python39Packages.black
       python39Packages.flake8
@@ -53,6 +59,7 @@
       epkgs.htmlize
       epkgs.hydra
       epkgs.know-your-http-well
+      epkgs.languagetool
       epkgs.lv
       epkgs.magit
       epkgs.makey

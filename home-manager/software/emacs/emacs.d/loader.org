@@ -509,10 +509,7 @@ with the ~C-h m~ keybindings it's a bit easier to view in this mode.
 #+BEGIN_SRC emacs-lisp
 (when (boundp 'enable-langtool)
 (use-package langtool
-    :ensure t
-    :defer t
-    :config
-    (setq langtool-language-tool-jar "~/.emacs.d/languagetool/languagetool-commandline.jar")))
+    :ensure t))
 #+END_SRC
 
 *** hydra

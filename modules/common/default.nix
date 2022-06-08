@@ -80,7 +80,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 30d";
     };
     trustedUsers = [ "root" "@wheel" ];
   };

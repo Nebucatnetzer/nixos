@@ -157,6 +157,8 @@ screens = [
                 widget.Sep(padding=5),
                 widget.Volume(),
                 widget.Sep(padding=5),
+                widget.Backlight(backlight_name="intel_backlight"),
+                widget.Sep(padding=5),
                 widget.Battery(
                     charge_char="⚇",
                     discharge_char="⚡",

@@ -2,17 +2,13 @@
 
 hosts=(
  "nixos-management"
- #"grav"
  "git"
- #"heimdall"
- "jdownloader"
  "mail"
  "nextcloud"
  "pihole"
  "plex"
  #"proxy"
  "restic-server"
- #"rss-bridge"
  "ttrss"
 )
 

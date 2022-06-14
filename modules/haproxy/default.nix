@@ -32,7 +32,6 @@
         redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i photos.zweili.org ! {ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i ttrss.2li.ch } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i wallabag.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i webmail.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss-bridge.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i test.2li.ch } !{ ssl_fc }
@@ -53,7 +52,6 @@
         use_backend webmail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
-        use_backend wallabag_server if { req_ssl_sni -i wallabag.2li.ch }
         use_backend raspi if { req_ssl_sni -i rss-bridge.2li.ch }
         use_backend test_server if { req_ssl_sni -i test.2li.ch }
         use_backend raspi if { req_ssl_sni -i www.2li.ch }
@@ -74,9 +72,6 @@
       backend ttrss_server
         mode tcp
         server server1 10.7.89.115:443 check
-      backend wallabag_server
-        mode tcp
-        server server1 10.7.89.118:443 check
       backend webmail_server
         mode tcp
         server server1 10.7.89.123:443 check

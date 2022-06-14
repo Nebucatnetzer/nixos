@@ -10,7 +10,7 @@ in
   fileSystems."${repository}" = {
     device = "10.7.89.108:restic-server";
     fsType = "nfs";
-    options = [ "noatime" "hard" ];
+    options = [ "noatime" "hard" "nfsvers=4.0" ];
   };
   services.restic.server = {
     enable = true;

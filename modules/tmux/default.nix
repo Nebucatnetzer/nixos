@@ -5,6 +5,8 @@
     extraConfig = ''
       set -g default-terminal "tmux-256color"
       set -ga terminal-overrides ",*256col*:Tc"
+      set-option -g history-limit 300000
+
       # enable vim like key bindings
       set-window-option -g mode-keys vi
       unbind [

@@ -25,6 +25,9 @@
       bind -n M-l select-pane -R
       bind -n M-k select-pane -U
       bind -n M-j select-pane -D
+
+      # enable logging on key P
+      bind P pipe-pane -o "cat >>~/#W.log" \; display-message "Toggled logging to ~/#W.log"
     '';
   };
 }

@@ -34,6 +34,9 @@
       set -g status-bg colour234
       set -g status-fg colour137
       set -g status-attr dim
+      set -g status-right '#[fg=colour233,bg=colour245,bold] %d/%m %H:%M:%S '
+      set -g status-right-length 50
+      set -g status-left-length 20
     '';
   };
 }

@@ -28,6 +28,12 @@
 
       # enable logging on key P
       bind P pipe-pane -o "cat >>~/#W.log" \; display-message "Toggled logging to ~/#W.log"
+
+      # Statusbar
+      set -g status-position top
+      set -g status-bg colour234
+      set -g status-fg colour137
+      set -g status-attr dim
     '';
   };
 }

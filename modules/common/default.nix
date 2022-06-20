@@ -2,7 +2,6 @@
 {
   imports = [
     (import "${inputs.self}/modules/cli" { inherit inputs pkgs system; })
-    (import "${inputs.self}/modules/tmux" { inherit inputs pkgs system; })
   ];
 
   # The rough location

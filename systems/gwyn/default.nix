@@ -15,6 +15,7 @@
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/restic"
     "${inputs.self}/modules/tlp"
+    "${inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

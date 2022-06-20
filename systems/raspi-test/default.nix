@@ -12,6 +12,7 @@
     "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/haproxy"
+    "${inputs.self}/modules/tmux"
   ];
 
   services.nginx = {

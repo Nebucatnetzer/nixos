@@ -6,6 +6,7 @@
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/espanso"
     "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

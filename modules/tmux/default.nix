@@ -36,11 +36,6 @@
       set -g status-fg white
       set -g status-interval 2
 
-      # messaging
-      set -g message-fg black
-      set -g message-command-fg blue
-      set -g message-command-bg black
-
       #window mode
       setw -g mode-bg colour6
       setw -g mode-fg colour0
@@ -90,10 +85,12 @@
       setw -g window-status-bell-attr bold
       setw -g window-status-bell-fg colour255
       setw -g window-status-bell-bg colour1
+
       # The messages
       set -g message-attr bold
       set -g message-fg colour232
-      set -g message-bg colour166
+      set -g message-command-fg blue
+      set -g message-command-bg black
     '';
   };
 }

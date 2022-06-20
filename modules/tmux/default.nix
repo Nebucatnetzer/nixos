@@ -90,7 +90,6 @@
       set -g message-attr bold
       set -g message-fg colour232
       set -g message-command-fg blue
-      set -g message-command-bg black
     '';
   };
 }

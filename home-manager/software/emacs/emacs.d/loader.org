@@ -2951,6 +2951,7 @@ This mode indents all the text I write in text-mode.
 Not really useful in my usecase.
 
 (add-hook 'mu4e-compose-mode-hook (lambda () (electric-indent-local-mode -1)))
+(add-hook 'text-mode-hook (lambda () (electric-indent-local-mode -1)))
 
 * Eshell
 

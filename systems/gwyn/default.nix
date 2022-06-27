@@ -3,6 +3,7 @@
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
     "${inputs.self}/hardware/bluetooth"
     "${inputs.self}/hardware/nvidia"
     "${inputs.self}/modules/data-share"

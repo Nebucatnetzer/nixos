@@ -41,6 +41,10 @@
 
       # This might create errors
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+      # Required for large downloads
+      proxy_buffering off;
+      client_max_body_size 20G;
     '';
     virtualHosts."nextcloud.2li.ch" = {
       enableACME = true;

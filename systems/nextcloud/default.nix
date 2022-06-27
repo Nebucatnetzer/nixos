@@ -42,9 +42,6 @@
       # This might create errors
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
 
-      # Required for large downloads
-      proxy_buffering off;
-      client_max_body_size 20G;
     '';
     virtualHosts."nextcloud.2li.ch" = {
       enableACME = true;
@@ -53,6 +50,11 @@
         proxyPass = "http://127.0.0.1:8080";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
+      extraConfig = ''
+        # Required for large downloads
+        proxy_buffering off;
+        client_max_body_size 20G;
+      '';
     };
   };
 }

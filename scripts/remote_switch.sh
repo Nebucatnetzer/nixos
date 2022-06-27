@@ -7,7 +7,7 @@ hosts=(
  "nextcloud"
  "pihole"
  "plex"
- #"proxy"
+ "raspi-test"
  "restic-server"
  "ttrss"
 )
@@ -19,7 +19,7 @@ for host in "${hosts[@]}"
 do
     fqdn="$host.2li.local"
     echo $fqdn
-    nixos-rebuild switch --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"
+    nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"
     if [ $host == "nixos-management" ]; then
         continue
     fi

@@ -2748,6 +2748,8 @@ ibuffer view.
                 (mode . javascript-mode)
                 (mode . sql-mode)
                 (mode . powershell-mode)
+                (mode . nix-mode)
+                (mode . yaml-mode)
                 (mode . emacs-lisp-mode)))
                 ;; etc
         ("Dired"

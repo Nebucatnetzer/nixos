@@ -35,8 +35,12 @@
     }:
     let
       custom = import ./custom;
+      mkComputer = import "${self}/lib/mk_computer.nix";
+      mkRaspi = import "${self}/lib/mk_raspi.nix";
+
       system = custom.system;
       username = custom.username;
+
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           system = custom.system;
@@ -54,107 +58,73 @@
           inputs.nix-alien.overlay
         ];
       };
-
-      mkComputer = { hostname, system ? "x86_64-linux", home-module ? "headless" }: nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        specialArgs = { inherit custom inputs; };
-        modules = (
-          [
-            # System configuration for this host
-            "${self}/systems/${hostname}"
-
-            # Common configuration
-            "${self}/modules/common-x86"
-
-            agenix.nixosModules.age
-            { environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${custom.username}.imports = [
-                (import "${self}/home-manager/${home-module}.nix" { inherit custom pkgs inputs; })
-              ];
-            }
-          ]);
-      };
-      mkRaspi = { hostname, system ? "aarch64-linux", home-module ? "headless" }: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit custom inputs; };
-        modules = (
-          [
-            # System configuration for this host
-            "${self}/systems/${hostname}"
-
-            # Common configuration
-            ./modules/common
-
-            agenix.nixosModules.age
-            { environment.systemPackages = [ agenix.defaultPackage.${system} ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${custom.username}.imports = [
-                (import "${self}/home-manager/${home-module}.nix" { inherit custom pkgs inputs; })
-              ];
-            }
-          ]);
-      };
     in
     {
       nixosConfigurations = {
         gwyn = mkComputer {
           hostname = "gwyn";
           home-module = "desktop";
+          inherit custom pkgs inputs self;
         };
         nixos-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
+          inherit custom pkgs inputs self;
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
           home-module = "desktop";
+          inherit custom pkgs inputs self;
         };
         # Servers
         git = mkComputer {
           hostname = "git";
+          inherit custom pkgs inputs self;
         };
         jdownloader = mkComputer {
           hostname = "jdownloader";
+          inherit custom pkgs inputs self;
         };
         mail = mkComputer {
           hostname = "mail";
+          inherit custom pkgs inputs self;
         };
         nextcloud = mkComputer {
           hostname = "nextcloud";
+          inherit custom pkgs inputs self;
         };
         nixos-management = mkComputer {
           hostname = "nixos-management";
           home-module = "management";
+          inherit custom pkgs inputs self;
         };
         pihole = mkComputer {
           hostname = "pihole";
+          inherit custom pkgs inputs self;
         };
         plex = mkComputer {
           hostname = "plex";
+          inherit custom pkgs inputs self;
         };
         proxy = mkComputer {
           hostname = "proxy";
+          inherit custom pkgs inputs self;
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
+          inherit custom pkgs inputs self;
         };
         restic-server = mkComputer {
           hostname = "restic-server";
+          inherit custom pkgs inputs self;
         };
         test-server = mkComputer {
           hostname = "test-server";
+          inherit custom pkgs inputs self;
         };
         ttrss = mkComputer {
           hostname = "ttrss";
+          inherit custom pkgs inputs self;
         };
       };
       homeConfigurations = {

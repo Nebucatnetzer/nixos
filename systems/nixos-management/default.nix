@@ -13,5 +13,8 @@
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/tmux"
+
+    # Required to build aarch64 packages
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   ];
 }

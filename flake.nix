@@ -8,6 +8,11 @@
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +27,7 @@
   outputs =
     inputs@{ self
     , agenix
+    , nix-alien
     , nixpkgs
     , nixpkgs-unstable
     , nixos-hardware
@@ -45,6 +51,7 @@
         };
         overlays = [
           overlay-unstable
+          inputs.nix-alien.overlay
         ];
       };
 

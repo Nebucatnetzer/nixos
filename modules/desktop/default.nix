@@ -1,5 +1,8 @@
 { inputs, custom, pkgs, ... }:
 {
+  imports = [
+    "${inputs.self}/modules/nix-alien"
+  ];
   networking = {
     networkmanager.enable = true;
   };

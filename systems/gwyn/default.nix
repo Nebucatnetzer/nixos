@@ -37,6 +37,9 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
 
+  # Required to build aarch64 packages
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";

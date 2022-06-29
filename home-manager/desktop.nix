@@ -25,6 +25,7 @@
     ./software/telegram
     ./software/vim
     ./software/work-desktop
+    "${inputs.self}/home-manager/software/ssh"
   ];
   home.packages = with pkgs; [
     arc-theme

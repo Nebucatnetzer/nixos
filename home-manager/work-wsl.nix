@@ -1,14 +1,14 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
-    ./common
-    ./software/ansible
-    ./software/emacs
-    ./software/fzf
-    ./software/git
-    ./software/starship
-    ./software/vagrant-wsl
-    ./software/vim
+    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/software/ansible"
+    "${inputs.self}/home-manager/software/emacs"
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/starship"
+    "${inputs.self}/home-manager/software/vagrant-wsl"
+    "${inputs.self}/home-manager/software/vim"
   ];
 
   programs.git.userEmail = "zweili@contria.com";

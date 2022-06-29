@@ -1,11 +1,11 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
-    (import ./common { inherit custom inputs; })
-    ./software/fzf
-    ./software/git
-    ./software/vim
-    ./software/starship
+    (import "${inputs.self}/home-manager/common" { inherit custom inputs; })
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/vim"
+    "${inputs.self}/home-manager/software/starship"
   ];
 
   programs.git.userEmail = "andreas@zweili.ch";

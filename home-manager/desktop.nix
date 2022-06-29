@@ -1,31 +1,31 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
-    ./software/ansible
-    (import ./common { inherit custom inputs; })
-    ./software/calibre
-    ./software/czkawka
-    ./software/dunst
-    (import ./software/emacs { inherit custom pkgs; })
-    ./software/email
-    ./software/evince
-    ./software/fzf
-    ./software/git
-    ./software/grobi
-    ./software/keeweb
-    ./software/libimobiledevice
-    ./software/mime-apps
-    ./software/mpv
-    ./software/nitrogen
-    ./software/obsidian
-    ./software/pycharm
-    ./software/rapid-photo-downloader
-    ./software/signal
-    ./software/starship
-    ./software/telegram
-    ./software/vim
-    ./software/work-desktop
+    "${inputs.self}/home-manager/software/ansible"
+    (import "${inputs.self}/home-manager/common" { inherit custom inputs; })
+    "${inputs.self}/home-manager/software/calibre"
+    "${inputs.self}/home-manager/software/czkawka"
+    "${inputs.self}/home-manager/software/dunst"
+    (import "${inputs.self}/home-manager/software/emacs" { inherit custom pkgs; })
+    "${inputs.self}/home-manager/software/email"
+    "${inputs.self}/home-manager/software/evince"
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/grobi"
+    "${inputs.self}/home-manager/software/keeweb"
+    "${inputs.self}/home-manager/software/libimobiledevice"
+    "${inputs.self}/home-manager/software/mime-apps"
+    "${inputs.self}/home-manager/software/mpv"
+    "${inputs.self}/home-manager/software/nitrogen"
+    "${inputs.self}/home-manager/software/obsidian"
+    "${inputs.self}/home-manager/software/pycharm"
+    "${inputs.self}/home-manager/software/rapid-photo-downloader"
+    "${inputs.self}/home-manager/software/signal"
     "${inputs.self}/home-manager/software/ssh"
+    "${inputs.self}/home-manager/software/starship"
+    "${inputs.self}/home-manager/software/telegram"
+    "${inputs.self}/home-manager/software/vim"
+    "${inputs.self}/home-manager/software/work-desktop"
   ];
   home.packages = with pkgs; [
     arc-theme
@@ -43,9 +43,9 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile/config.py".source = ./configs/qtile/config.py;
-  home.file.".config/qtile/autostart.sh".source = ./configs/qtile/autostart.sh;
-  home.file.".config/terminator".source = ./configs/terminator;
+  home.file.".config/qtile/config.py".source = "${inputs.self}/home-manager/configs/qtile/config.py";
+  home.file.".config/qtile/autostart.sh".source = "${inputs.self}/home-manager/configs/qtile/autostart.sh";
+  home.file.".config/terminator".source = "${inputs.self}/home-manager/configs/terminator";
 
   programs.bash = {
     enable = true;

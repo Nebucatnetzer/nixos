@@ -1,8 +1,8 @@
 { ... }:
 {
   imports = [
-    ./common
-    ./software/git
+    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/software/git"
   ];
 
   programs.git.userEmail = "andreas@zweili.ch";

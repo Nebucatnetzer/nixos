@@ -143,33 +143,46 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+def top_bar_widgets():
+    widgets = [
+        widget.GroupBox(),
+        widget.Sep(padding=5),
+        widget.WindowName(),
+        widget.Sep(padding=5),
+        widget.CurrentLayout(),
+        widget.Sep(padding=5),
+        widget.DF(visible_on_warn=False),
+        widget.Sep(padding=5),
+        widget.Volume(),
+        widget.Sep(padding=5),
+    ]
+    widgets_end = [
+        widget.Battery(
+            charge_char="⚇",
+            discharge_char="⚡",
+            full_char="☻",
+            show_short_text=False,
+        ),
+        widget.Sep(padding=5),
+        widget.Systray(),
+        widget.Sep(padding=5),
+        widget.Clock(format="%Y-%m-%d %a %H:%M"),
+    ]
+    backlight_widget = [
+        widget.Backlight(backlight_name="intel_backlight"),
+        widget.Sep(padding=5),
+    ]
+    if os.path.exists("/sys/class/backlight/intel_backlight"):
+        widgets.extend(backlight_widget)
+    widgets.extend(widgets_end)
+    return widgets
+
+
 screens = [
     Screen(
         top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Sep(padding=5),
-                widget.WindowName(),
-                widget.Sep(padding=5),
-                widget.CurrentLayout(),
-                widget.Sep(padding=5),
-                widget.DF(visible_on_warn=False),
-                widget.Sep(padding=5),
-                widget.Volume(),
-                widget.Sep(padding=5),
-                widget.Backlight(backlight_name="intel_backlight"),
-                widget.Sep(padding=5),
-                widget.Battery(
-                    charge_char="⚇",
-                    discharge_char="⚡",
-                    full_char="☻",
-                    show_short_text=False,
-                ),
-                widget.Sep(padding=5),
-                widget.Systray(),
-                widget.Sep(padding=5),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
+            top_bar_widgets(),
             24,
         ),
     ),

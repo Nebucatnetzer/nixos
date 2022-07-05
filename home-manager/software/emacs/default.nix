@@ -16,8 +16,8 @@
     '';
     extraPackages = epkgs: with pkgs;[
       mu
-      rufo # formatter for Ruby
       languagetool
+      rufo # formatter for Ruby
       python39Packages.autopep8
       python39Packages.black
       python39Packages.flake8

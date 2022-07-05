@@ -93,6 +93,7 @@
       epkgs.use-package-ensure-system-package
       epkgs.web-completion-data
       epkgs.web-mode
+      epkgs.wgrep
       epkgs.which-key
       epkgs.yaml-mode
       epkgs.yasnippet-snippets

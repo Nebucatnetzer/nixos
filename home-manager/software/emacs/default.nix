@@ -97,6 +97,7 @@
       epkgs.which-key
       epkgs.yaml-mode
       epkgs.yasnippet-snippets
+      epkgs.zetteldeft
     ];
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

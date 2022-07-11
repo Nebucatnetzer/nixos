@@ -20,7 +20,7 @@ terminal = guess_terminal()
 @lazy.layout.function
 def add_treetab_section(layout):
     prompt = qtile.widgets_map["section_prompt"]
-    prompt.start_input("Section name: ", layout.cmd_add_section)
+    prompt.start_input("Section name", layout.cmd_add_section)
 
 
 keys = [

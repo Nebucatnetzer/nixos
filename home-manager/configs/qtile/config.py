@@ -6,6 +6,7 @@ from typing import List  # noqa: F401
 from libqtile import bar
 from libqtile import hook
 from libqtile import layout
+from libqtile import qtile
 from libqtile import widget
 
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -14,6 +15,13 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = guess_terminal()
+
+
+@lazy.layout.function
+def add_treetab_section(layout):
+    prompt = qtile.widgets_map["section_prompt"]
+    prompt.start_input("Section name: ", layout.cmd_add_section)
+
 
 keys = [
     # Switch between windows in current stack pane
@@ -30,24 +38,15 @@ keys = [
         lazy.layout.shuffle_up(),
         lazy.layout.move_up()
         ),
-    Key([mod, "control", "shift"], "j",
-        lazy.layout.section_down()
-        ),
-    Key([mod, "control", "shift"], "k",
-        lazy.layout.section_up()
-        ),
-    Key([mod, "shift"], "h",
-        lazy.layout.shuffle_left(),
-        ),
-    Key([mod, "shift"], "l",
-        lazy.layout.shuffle_right(),
-        ),
-    Key(
-        [mod, "shift"],
-        "Return",
+    Key([mod, "control", "shift"], "j", lazy.layout.section_down()),
+    Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([mod, "shift"], "space", add_treetab_section),
+    Key([mod, "shift"], "Return",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
-    ),
+        ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
@@ -164,6 +163,7 @@ def top_bar_widgets():
     widgets = [
         widget.GroupBox(),
         widget.Sep(padding=5),
+        widget.Prompt(name="section_prompt"),
         widget.WindowName(),
         widget.Sep(padding=5),
         widget.CurrentLayout(),

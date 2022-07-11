@@ -22,10 +22,26 @@ keys = [
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
     # Move windows up or down in current stack
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key([mod, "shift"], "j",
+        lazy.layout.shuffle_down(),
+        lazy.layout.move_down()
+        ),
+    Key([mod, "shift"], "k",
+        lazy.layout.shuffle_up(),
+        lazy.layout.move_up()
+        ),
+    Key([mod, "control", "shift"], "j",
+        lazy.layout.section_down()
+        ),
+    Key([mod, "control", "shift"], "k",
+        lazy.layout.section_up()
+        ),
+    Key([mod, "shift"], "h",
+        lazy.layout.shuffle_left(),
+        ),
+    Key([mod, "shift"], "l",
+        lazy.layout.shuffle_right(),
+        ),
     Key(
         [mod, "shift"],
         "Return",

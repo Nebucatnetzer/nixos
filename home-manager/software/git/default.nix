@@ -110,4 +110,11 @@
   };
   # raw files
   home.file.".config/git/hooks".source = ./hooks;
+  home.shellAliases = {
+    git-clean = ''
+      git fetch --all -p;
+      git branch --merged origin/master | grep -v "\*" | xargs git branch -d;
+      git branch -vv | grep -v '\[origin/'| grep -v "\*" | awk '{ print $1; }' | xargs -r git branh -D;
+    '';
+  };
 }

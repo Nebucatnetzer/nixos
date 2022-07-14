@@ -1,10 +1,10 @@
 { inputs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/data-share"
     "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/espanso"
+    "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/tmux"
   ];

@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
-  fileSystems."/mnt/data" = {
-    device = "10.7.89.108:server_data";
+  environment.systemPackages = with pkgs; [
+    lnav
+  ];
+  fileSystems."/mnt/server_logs" = {
+    device = "10.7.89.108:logs";
     fsType = "nfs";
     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=300" "noatime" "nfsvers=4.0" ];
   };

@@ -186,7 +186,7 @@ def top_bar_widgets():
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
     ]
     backlight_widget = [
-        widget.Backlight(backlight_name="intel_backlight"),
+        widget.Backlight(backlight_name="intel_backlight", fmt="⛯{}"),
         widget.Sep(padding=5),
     ]
     if os.path.exists("/sys/class/backlight/intel_backlight"):

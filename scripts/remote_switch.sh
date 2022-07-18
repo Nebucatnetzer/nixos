@@ -5,11 +5,11 @@ hosts=(
  "git"
  "mail"
  "nextcloud"
- "pihole"
  "plex"
  "raspi-test"
  "restic-server"
  "ttrss"
+ "pihole"
 )
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"

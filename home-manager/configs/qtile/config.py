@@ -29,7 +29,10 @@ keys = [
     Key([mod], "k", lazy.layout.up()),
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
-    # Move windows up or down in current stack
+
+    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+
+    # Move windows around
     Key([mod, "shift"], "j",
         lazy.layout.shuffle_down(),
         lazy.layout.move_down()),
@@ -39,18 +42,25 @@ keys = [
     Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
     Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
     Key([mod, "shift"], "q", lazy.window.kill()),
+
     Key([mod, "shift"], "space", add_treetab_section),
     Key([mod, "shift"], "Return",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
+
+    # Resize windows
     Key([mod, "control"], "j", lazy.layout.grow_down()),
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
+
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
+
+    # Move windows between sections
     Key([mod, "control", "shift"], "j", lazy.layout.section_down()),
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
+
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
     Key([mod], "d", lazy.spawn("rofi -show drun")),
@@ -60,7 +70,6 @@ keys = [
     Key([mod], "w", lazy.spawn("firefox")),
     Key([mod], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     Key([mod], "F3", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
@@ -139,17 +148,7 @@ border = dict(border_width=1, border_focus="#000000")
 layouts = [
     layout.Columns(**border),
     layout.TreeTab(**border),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
-]
+
 
 widget_defaults = dict(
     font="Source Code Pro",

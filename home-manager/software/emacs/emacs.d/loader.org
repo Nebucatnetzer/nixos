@@ -1340,7 +1340,7 @@ Enable direnv support.
             ("PHP" prettier)
             ("Protocol Buffer" clang-format)
             ("PureScript" purty)
-            ("Python" yapf)
+            ("Python" autopep8)
             ("R" styler)
             ("Reason" bsrefmt)
             ("ReScript" rescript)

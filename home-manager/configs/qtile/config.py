@@ -148,6 +148,7 @@ border = dict(border_width=1, border_focus="#000000")
 layouts = [
     layout.Columns(**border),
     layout.TreeTab(**border),
+]
 
 
 widget_defaults = dict(

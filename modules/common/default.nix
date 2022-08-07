@@ -87,6 +87,7 @@
   environment.variables = {
     EDITOR = "vim";
     HIGHLIGHT_STYLE = "solarized-light";
+    NIXPKGS_ALLOW_UNFREE = 1;
   };
 
   security.sudo = {

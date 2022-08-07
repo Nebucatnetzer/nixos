@@ -352,7 +352,10 @@ my org files. I search through all my org files and open deft with
 (use-package zetteldeft
   :ensure t
   :after deft
-  :config (zetteldeft-set-classic-keybindings))
+  :config (zetteldeft-set-classic-keybindings)
+    (setq zetteldeft-link-indicator "[["
+      zetteldeft-link-suffix "]]")
+    (setq zetteldeft-title-prefix "# "))
 #+end_src
 
 *** dash

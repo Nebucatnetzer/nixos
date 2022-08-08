@@ -12,11 +12,14 @@ let
         -dBATCH \
         -sOutputFile=compressed_$1 $1'';
 
+  files-to-lowercase = pkgs.writeScriptBin "files-to-lowercase"
+    "${builtins.readFile ./files-to-lowercase.sh}";
 in
 {
   environment.systemPackages = [
     remove-special-characters
     compress-pdf
+    files-to-lowercase
   ];
 }
 

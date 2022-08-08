@@ -1,9 +1,5 @@
 { pkgs, ... }:
 let
-  remove-special-characters = pkgs.writeScriptBin
-    "remove-special-characters"
-    "${builtins.readFile ./remove_special_characters.sh}";
-
   compress-pdf = pkgs.writeShellScriptBin "compress-pdf" ''
     ${pkgs.ghostscript}/bin/gs -sDEVICE=pdfwrite \
         -dCompatibilityLevel=1.5 \
@@ -22,13 +18,16 @@ let
     ${pkgs.libheif}/bin/heif-convert $f $f.jpg
     done'';
 
+  remove-special-characters = pkgs.writeScriptBin
+    "remove-special-characters"
+    "${builtins.readFile ./remove_special_characters.sh}";
 in
 {
   environment.systemPackages = [
-    remove-special-characters
     compress-pdf
     files-to-lowercase
     heif-to-jpeg
+    remove-special-characters
   ];
 }
 

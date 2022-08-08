@@ -25,6 +25,12 @@ let
   replace-listings = pkgs.writeScriptBin
     "replace-listings"
     "${builtins.readFile ./replace-listings.sh}";
+
+  thumbnails = pkgs.writeShellScriptBin "thumbnails" ''
+    for d in $1/*; do
+      ${pkgs.ffmpeg}/bin/ffmpeg -i "$d" -t 2 -r 0.5 "$d".jpg
+    done'';
+
 in
 {
   environment.systemPackages = [
@@ -33,6 +39,7 @@ in
     heif-to-jpeg
     remove-special-characters
     replace-listings
+    thumbnails
   ];
 }
 

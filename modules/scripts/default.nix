@@ -21,6 +21,10 @@ let
   remove-special-characters = pkgs.writeScriptBin
     "remove-special-characters"
     "${builtins.readFile ./remove_special_characters.sh}";
+
+  replace-listings = pkgs.writeScriptBin
+    "replace-listings"
+    "${builtins.readFile ./replace-listings.sh}";
 in
 {
   environment.systemPackages = [
@@ -28,6 +32,7 @@ in
     files-to-lowercase
     heif-to-jpeg
     remove-special-characters
+    replace-listings
   ];
 }
 

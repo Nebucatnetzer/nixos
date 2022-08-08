@@ -4,7 +4,7 @@ let
     "remove-special-characters"
     "${builtins.readFile ./remove_special_characters.sh}";
 
-  compress-pdf = pkgs.writeScriptBin "compress-pdf" ''
+  compress-pdf = pkgs.writeShellScriptBin "compress-pdf" ''
     ${pkgs.ghostscript}/bin/gs -sDEVICE=pdfwrite \
         -dCompatibilityLevel=1.5 \
         -dNOPAUSE \

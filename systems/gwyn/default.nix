@@ -16,6 +16,7 @@
     "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/restic"
+    "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
   ];

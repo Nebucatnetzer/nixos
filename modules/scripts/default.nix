@@ -14,12 +14,21 @@ let
 
   files-to-lowercase = pkgs.writeScriptBin "files-to-lowercase"
     "${builtins.readFile ./files-to-lowercase.sh}";
+
+  heif-to-jpeg = pkgs.writeShellScriptBin "heif-to-jpeg" ''
+    for f in *.heic
+    do
+    echo "Working on file $f"
+    ${pkgs.libheif}/bin/heif-convert $f $f.jpg
+    done'';
+
 in
 {
   environment.systemPackages = [
     remove-special-characters
     compress-pdf
     files-to-lowercase
+    heif-to-jpeg
   ];
 }
 

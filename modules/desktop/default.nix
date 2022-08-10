@@ -2,6 +2,7 @@
 {
   imports = [
     "${inputs.self}/modules/nix-alien"
+    "${inputs.self}/modules/pipewire"
   ];
   networking = {
     networkmanager.enable = true;
@@ -41,7 +42,7 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;

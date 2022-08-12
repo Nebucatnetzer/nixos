@@ -1,51 +1,5 @@
-#+title: Emacs Configuration
-:preamble:
-#+setupfile: ~/git_repos/dot_files/docs/html_themes/theme-readtheorg.setup
-#+latex_header: \input{/home/andreas/nextcloud/10_documents/99_archive/0000/settings/latex/style}
-#+author: Andreas Zweili
-#+options: todo:t toc:nil
-:end:
-
-* Enable Options
-
-This example code can be used to wrap a code section to dis-/enable it with a
-variable.
-
-#+begin_example
-(when (boundp 'enable-ox-pandoc)
-
-)
-#+end_example
-
-This file contains all the variables. It gets ignored by git so that the user
-can modify it's content. However it's default state is commited.
-
-#+begin_src emacs-lisp
 (load-file "~/.emacs.d/variables.el")
-#+end_src
 
-* Detect Environment
-
-With these functions its possible to create configuration sections
-which only run on a specific system. The can be used like this:
-
-#+begin_example
-(when (is-mac-p)
-    (set-face-attribute 'default nil :height 165))
-
-
-(add-hook 'after-make-frame-functions
-  (lambda ()
-    (if window-system
-
-      )))
-#+end_example
-
-Taken from this configuration:
-
-- https://github.com/mwfogleman/.emacs.d/blob/master/michael.org
-
-#+begin_src emacs-lisp
 (defun is-mac-p ()
     (eq system-type 'darwin))
 
@@ -59,55 +13,21 @@ Taken from this configuration:
 
 (defun is-bsd-p ()
     (eq system-type 'gnu/kfreebsd))
-#+end_src
 
-* Packages
-** Repositories
-*** MELPA
-
-Melpa is an alternative repository for Emacs packages. Usually they
-are comming directly from a git repository. This can make them
-sometimes a bit unstable.
-
-- https://melpa.org/#/
-
-#+begin_src emacs-lisp
 ;; MELPA
 (add-to-list 'package-archives
     '("melpa" . "https://melpa.org/packages/"))
-#+end_src
 
-*** Org-mode
-
-Even though org-mode comes with Emacs by default I would like to use
-the newever version from it's repository.
-
-#+begin_src emacs-lisp
 ;; org-mode
 ;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
-#+end_src
 
-** use-package
-
-Use-package is a very handy package which can automatically download
-specified packages. This helps with reinstalling Emacs. In addition it
-allows you to load the packages and their configuration only when they
-are needed. This helps with Emacs' startup time.
-
-#+begin_src emacs-lisp
 (unless (package-installed-p 'use-package)
         (package-refresh-contents)
         (package-install 'use-package))
 (require 'use-package)
 (use-package use-package-ensure-system-package
     :ensure t)
-#+end_src
 
-** evil-mode
-
-Evil-mode is a package which emulates Vim in Emacs.
-
-#+begin_src emacs-lisp
 ;; evil-mode allows to use vim keybindings
 (use-package evil
     :ensure t
@@ -225,14 +145,7 @@ Evil-mode is a package which emulates Vim in Emacs.
     (global-set-key (kbd "M-j") 'windmove-down)
 
     (evil-mode 1))
-#+end_src
 
-*** esc quits everything
-
-Comming from Vim it's a bit annoying to not be able to use ESC to quit
-basically everything. This code fixes this.
-
-#+begin_src emacs-lisp
 ;;; esc quits
 (defun minibuffer-keyboard-quit ()
     "Abort recursive edit.
@@ -251,34 +164,13 @@ basically everything. This code fixes this.
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-#+end_src
 
-*** evil-surround
-
-evil-surround emulates the vim-surround plugin for vim. Both plugins
-allow you to surround objects with an input of your choice. E.g.
-surround a word with ~"~. Which would be: ~ysiw"~
-
-- https://github.com/emacs-evil/evil-surround/blob/master/readme.org
-
-#+begin_src emacs-lisp
 (use-package evil-surround
     :ensure t
     :after evil
     :config
     (global-evil-surround-mode 1))
-#+end_src
 
-** UI
-
-Various packages related to UI changes.
-
-*** color-theme
-
-This settings provides the color-theme package and sets a color-theme
-which I store in my sourec directory as the current theme.
-
-#+begin_src emacs-lisp
 ;; Color theme
 ;; disable background in terminal
 (defun on-after-init ()
@@ -297,14 +189,7 @@ which I store in my sourec directory as the current theme.
         (setq solarized-high-contrast-mode-line t)
         (set-face-inverse-video 'region nil)
         (load-theme 'solarized-light t)))
-#+end_src
 
-** smooth-scrolling
-
-I can't recall what this package does exactly, however it has to do
-with scrolling in comparison to Vim.
-
-#+begin_src emacs-lisp
 ;; smooth scrolling
 (use-package smooth-scrolling
     :ensure t
@@ -312,20 +197,7 @@ with scrolling in comparison to Vim.
     (setq scroll-margin 1
           scroll-conservatively 9999
           scroll-step 1))
-#+end_src
 
-** Various Tools
-*** deft
-
-Deft is a mode which lets you quickly search and create notes. It
-works similarly to Notational Velocity. I configured it to use org
-files and open org-mode to edit. In addition it should search in all
-my org files. I search through all my org files and open deft with
-~F5~.
-
-- https://github.com/jrblevin/deft
-
-#+begin_src emacs-lisp
 (use-package deft
     :ensure t
     :bind ("<f5>" . deft)
@@ -344,11 +216,7 @@ my org files. I search through all my org files and open deft with
             (nospace . "_")
             (case-fn . downcase)))
         (setq deft-directory "~/nextcloud/10_documents/"))
-#+end_src
 
-*** zetteldeft
-
-#+begin_src emacs-lisp
 (use-package zetteldeft
   :ensure t
   :after deft
@@ -356,48 +224,19 @@ my org files. I search through all my org files and open deft with
     (setq zetteldeft-link-indicator "[["
       zetteldeft-link-suffix "]]")
     (setq zetteldeft-title-prefix "# "))
-#+end_src
 
-*** dash
-
-Is required by many packages. I've added it specifically because it's
-required by the org-insert-image function.
-
-#+begin_src emacs-lisp
 (use-package dash
     :defer t
     :ensure t)
-#+end_src
 
-*** swiper
-
-Another dependency for the org-insert-image function.
-
-#+begin_src emacs-lisp
 (use-package swiper
     :defer t
     :ensure t)
-#+end_src
 
-*** s
-
-The last depency for the org-insert-image function.
-
-#+begin_src emacs-lisp
 (use-package s
     :defer t
     :ensure t)
-#+end_src
 
-*** pdf-tools
-
-pdf-tools is an alternativ for doc-view which works very nicely with
-AUCTex.
-https://github.com/politza/pdf-tools/blob/master/README.org
-The config line is required so that a AUCTex compiled PDF gets updated
-after each compilation.
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-pdf-tools)
 (use-package pdf-tools
     :ensure t
@@ -415,18 +254,7 @@ after each compilation.
     (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
     (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
     (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)))
-#+end_src
 
-*** treemacs
-
-Treemacs is a tool which display a file explorer in a little buffer on
-the side of your main buffer. This is very useful if you're working on
-a project which consists of multiple files. It even understands some
-files and can display their sections (org-mode), or classes (python).
-
-- https://github.com/Alexander-Miller/treemacs
-
-#+begin_src emacs-lisp
 (use-package treemacs
     :ensure t
     :bind ("<f12>" . treemacs)
@@ -435,104 +263,35 @@ files and can display their sections (org-mode), or classes (python).
         (use-package treemacs-evil
         :ensure t
         :demand t)))
-#+end_src
 
-*** yasnippet
-
-Yasnippet is a package with which you can insert code or text snippets
-based on templates. It already comes with a wide variety of snippets
-and you can easily define your own.
-
-- https://github.com/joaotavora/yasnippet
-
-#+begin_src emacs-lisp
 ;; enable yasnippet
 (use-package yasnippet
     :ensure t
     :config
     (yas-global-mode 1))
-#+end_src
 
-**** yasnippet-snippets
-
-The default snippets got moved into their seperate package. I'm
-loading it after the main yasnippet package.
-
-#+begin_src emacs-lisp
 ;; enable yasnippet
 (use-package yasnippet-snippets
     :ensure t
     :after yasnippet
     :config
     (yas-global-mode 1))
-#+end_src
 
-**** org-mode snippets
-
-| key       | function                                |
-|-----------+-----------------------------------------|
-| img_      | insert an html snippet for images       |
-|-----------+-----------------------------------------|
-| pic_      | inserts a snippet for latex images      |
-|-----------+-----------------------------------------|
-| orgtemp   | inserts a template for org files        |
-|-----------+-----------------------------------------|
-| orgrev    | template for org-reveal                 |
-|-----------+-----------------------------------------|
-| orgbeamer | template for beamer presentations       |
-|-----------+-----------------------------------------|
-| clk       | template for a clock report             |
-|-----------+-----------------------------------------|
-| orgconf   | template for config files writen in org |
-|-----------+-----------------------------------------|
-| _project  | inserts a section for a new project     |
-|-----------+-----------------------------------------|
-
-*** which-key
-
-Displays a small buffer which shows all the possible key combinations
-you can press at the current moment.
-
-- https://github.com/justbur/emacs-which-key
-
-#+begin_src emacs-lisp
 ;; which key is a package to show which keys can be pressed
 (use-package which-key
     :ensure t
     :diminish which-key-mode
     :config
     (which-key-mode))
-#+end_src
 
-*** discover-my-major
-
-discover-my-major is a package which shows you all the keybindings
-related to the current major mode. While you can get this information
-with the ~C-h m~ keybindings it's a bit easier to view in this mode.
-
-- https://github.com/steckerhalter/discover-my-major
-
-#+begin_src emacs-lisp
 (use-package discover-my-major
     :ensure t
     :bind ("C-h C-m" . discover-my-major))
-#+end_src
 
-*** langtool
-
-#+BEGIN_SRC emacs-lisp
 (when (boundp 'enable-langtool)
 (use-package langtool
     :ensure t))
-#+END_SRC
 
-*** hydra
-
-This code has been taken from this post:
-https://sam217pa.github.io/2016/09/23/keybindings-strategies-in-emacs/
-I should read it again to get a better understanding of hydra and general.
-
-#+begin_src emacs-lisp
 (use-package hydra
     :ensure t)
 
@@ -840,11 +599,7 @@ T - tag prefix
   ("q" nil "quit")
   ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
 )
-#+end_src
 
-*** NEXT general-define-key
-
-#+begin_src emacs-lisp
 (use-package general
     :ensure t
     :config
@@ -862,11 +617,7 @@ T - tag prefix
         "p" '(hydra-pdftools/body t :which-key "PDF Tools")
         "y" '(hydra-elpy/body t :which-key "Elpy")
         "a" '(hydra-apropos/body t :which-key "Apropos Commands")))
-#+end_src
 
-*** helpful
-
-#+BEGIN_SRC emacs-lisp
 (use-package helpful
     :ensure t
     :bind (("C-h f" . helpful-function)
@@ -884,14 +635,7 @@ T - tag prefix
            ("M-?" . helpful-at-point)
            :map lisp-interaction-mode-map  ; Scratch buffer
            ("M-?" . helpful-at-point)))
-#+END_SRC
 
-*** ivy/swiper/counsel
-
-This packages provide a much better experience in the minibuffer.
-http://oremacs.com/swiper/
-
-#+BEGIN_SRC emacs-lisp
 (use-package amx
     :ensure t
     :config
@@ -915,15 +659,7 @@ http://oremacs.com/swiper/
     (global-set-key (kbd "C-c k") 'counsel-ag)
     (define-key ivy-minibuffer-map (kbd "S-SPC") (lambda () (interactive) (insert " ")))
     (global-set-key (kbd "C-c C-r") 'ivy-resume))
-#+END_SRC
 
-*** eyebrowse
-
-The eyebrowse package is a very helpful package which gives you workspaces in
-Emacs. The work very similar to the desktops in i3wm.
-https://github.com/wasamasa/eyebrowse
-
-#+BEGIN_SRC emacs-lisp
 (use-package eyebrowse
     :ensure t
     :init
@@ -939,34 +675,15 @@ https://github.com/wasamasa/eyebrowse
     (setq eyebrowse-wrap-around t)
     (eyebrowse-setup-opinionated-keys)
     (eyebrowse-mode 1))
-#+END_SRC
 
-*** move-text
-
-https://github.com/emacsfodder/move-text
-
-#+begin_src emacs-lisp
 (use-package move-text
     :ensure t
     :config
     (move-text-default-bindings))
-#+end_src
 
-*** gnu-elpa-keyring-update
-
-#+begin_src emacs-lisp
 (use-package gnu-elpa-keyring-update
     :ensure t)
-#+end_src
 
-** Language Support
-
-The following package provide an improved support for their
-corresponding language.
-
-*** web-mode
-
-#+begin_src emacs-lisp
 ;; web-mode for general web development
 (use-package web-mode
     :ensure t
@@ -982,13 +699,7 @@ corresponding language.
     :config
     (add-to-list 'auto-mode-alist '("\\.php$" . my/php-setup))
     (add-to-list 'auto-mode-alist '("\\.phpi$" . my/php-setup)))
-#+end_src
 
-*** markdown-mode
-
-Provides syntax highlighting and other functions for markdown.
-
-#+begin_src emacs-lisp
 ;; add markdown-mode to edit markdown files
 (use-package markdown-mode
     :ensure t
@@ -1011,28 +722,14 @@ Provides syntax highlighting and other functions for markdown.
         filename)) "]]")))
 
     (define-key markdown-mode-map (kbd "C-c i") 'insert-file-name-as-wikilink))
-#+end_src
 
-*** powershell
-
-Provides syntax highlighting and other functions for powershell
-scripts.
-
-#+begin_src emacs-lisp
 ;; enable powershell-mode
 (use-package powershell
     :ensure t
     :mode
     (("\\.ps1\\'" . powershell-mode)
     ("\\.psm1\\'" . powershell-mode)))
-#+end_src
 
-*** auctex
-
-Auctex is a great package which helps you a lot when you're writing
-LaTeX documents.
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-auctex)
 ;; auctex a greate plugin for latex writing
 (use-package latex
@@ -1056,13 +753,7 @@ LaTeX documents.
             (output-dvi "xdvi")
             (output-pdf "PDF Tools")
             (output-html "xdg-open"))))))
-#+end_src
 
-*** yaml-mode
-
-A mode to work with yaml files.
-
-#+begin_src emacs-lisp
 (use-package yaml-mode
     :defer t
     :mode
@@ -1070,29 +761,13 @@ A mode to work with yaml files.
     ("\\.yaml\\'" . yaml-mode))
     :interpreter ("yml" . yml-mode)
     :ensure t)
-#+end_src
 
-*** python-mode
-
-While Emacs comes by default with python-mode installed. I want to use
-the updated version from Melpa.
-
-#+begin_src emacs-lisp
 (use-package python-mode
     :ensure t
     :defer t
     :config
     (setq python-shell-interpreter "python3"))
-#+end_src
 
-*** elpy
-
-elpy is a package which helps you greatly with writing Python code. It
-provides all the things you would wish from an IDE.
-
-- https://github.com/jorgenschaefer/elpy
-
-#+begin_src emacs-lisp
 (use-package elpy
     :ensure t
     :config
@@ -1101,17 +776,7 @@ provides all the things you would wish from an IDE.
     (setq eldoc-idle-delay 1)
     (add-hook 'python-mode-hook (lambda () (highlight-indentation-mode -1)))
     (elpy-enable))
-#+end_src
 
-** Coding Tools
-
-*** company-mode
-
-company-mode is a package to provide auto-complete functionality.
-
-- https://company-mode.github.io/
-
-#+begin_src emacs-lisp
 (use-package company
     :ensure t
     :bind
@@ -1132,14 +797,7 @@ company-mode is a package to provide auto-complete functionality.
             (append (if (consp backend) backend (list backend))
               '(:with company-yasnippet))))
     (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
-#+end_src
 
-**** company-auctex
-
-Auctex support for company-mode.
-- https://github.com/alexeyr/company-auctex/
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-auctex)
 (use-package company-auctex
     :if (is-linux-p)
@@ -1148,13 +806,7 @@ Auctex support for company-mode.
     :defer t
     :init
     (add-hook 'LaTeX-mode-hook 'company-auctex-init)))
-#+end_src
 
-**** company-web
-
-https://github.com/dakra/dmacs/blob/master/init.org
-
-#+BEGIN_SRC emacs-lisp
 (use-package company-web
     :ensure t
     :after web-mode
@@ -1180,80 +832,32 @@ https://github.com/dakra/dmacs/blob/master/init.org
                     (string= web-mode-cur-language "jsx"))
                 (unless tide-mode (tide-mode))
                 (if tide-mode (tide-mode -1)))))))
-#+END_SRC
 
-**** company-restclient
-
-https://github.com/dakra/dmacs/blob/master/init.org
-
-#+BEGIN_SRC emacs-lisp
 (use-package company-restclient
     :ensure t
     :after (restclient company)
     :config (add-to-list 'company-backends 'company-restclient))
-#+END_SRC
 
-*** magit
-
-Magit is a package which allows you to control git from within Emacs.
-It's really great and makes using git so much easier. Thanks to Magit
-alone I think I became a much better git user.
-
-- https://magit.vc/
-
-#+begin_src emacs-lisp
 ;; enable magit a great git porcelain.
 (use-package magit
     :ensure t
     :commands magit-status
     :bind
     ("<f10>" . magit-status))
-#+end_src
 
-*** rainbow-delimiters
-
-Each level of parantheses has it's own colour to differentiate them
-more easily.
-
-#+begin_src emacs-lisp
 ;; change the colours of parenthesis the further out they are
 (use-package rainbow-delimiters
     :ensure t
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-#+end_src
 
-*** elisp-bug-hunter
-
-This package let's you debug your Emacs config which makes it easier
-to find bugs before you restart Emacs.
-
-https://github.com/Malabarba/elisp-bug-hunter/blob/master/README.org
-
-#+begin_src emacs-lisp
 (use-package bug-hunter
     :defer t
     :ensure t)
-#+end_src
 
-*** flycheck
-
-flycheck is a handy tool to provide syntax checking on the fly.
-
-- http://www.flycheck.org/en/latest/
-
-#+begin_src emacs-lisp
 (use-package flycheck
     :ensure t)
-#+end_src
 
-*** highlight-indent-guides
-
-This mode shows lines to display the current level of indentation. I've enabled
-it in text- and prog-modes.
-https://github.com/DarthFennec/highlight-indent-guides
-
-#+BEGIN_SRC emacs-lisp
 (use-package highlight-indent-guides
     :ensure t
     :config
@@ -1265,21 +869,11 @@ https://github.com/DarthFennec/highlight-indent-guides
     (set-face-foreground 'highlight-indent-guides-character-face "gray")
     (add-hook 'text-mode-hook 'highlight-indent-guides-mode)
     (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
-#+END_SRC
 
-*** direnv
-
-Enable direnv support.
-
-#+begin_src emacs-lisp
 (use-package direnv
  :config
  (direnv-mode))
-#+end_src
 
-*** format-all
-
-#+begin_src emacs-lisp
 (use-package format-all
     :ensure t
     :hook
@@ -1373,20 +967,7 @@ Enable direnv support.
             ("_Nginx" nginxfmt)
             ("_Snakemake" snakefmt)))
 )
-#+end_src
-* Email
 
-Requires the following packages to be installed:
-
-#+BEGIN_EXAMPLE
-offlineimap mu4e w3m
-#+END_EXAMPLE
-
-After a fresh installation you have to first sync your emails with ~offlineimap
-
--o~. Afterwards run ~mu index --maildir=~/Maildir~.
-
-#+BEGIN_SRC emacs-lisp
 (when (boundp 'enable-email)
 (use-package mu4e
     :if (is-linux-p)
@@ -1462,95 +1043,32 @@ After a fresh installation you have to first sync your emails with ~offlineimap
                 (electric-indent-local-mode -1)
                 (turn-off-auto-fill)
                 (flyspell-mode)))))
-#+END_SRC
 
-* UI Changes
-
-** Hide the menu and toolbar
-
-I like to work in a distraction free editor that's why I hide all the
-menues, toolbars and scrollbars.
-
-#+begin_src emacs-lisp
 ;; disable menu and toolbar
 (tool-bar-mode -1)
 (menu-bar-mode -99)
 (when (boundp 'enable-scroll-bar)
 (scroll-bar-mode -1))
-#+end_src
 
-** Line wrapping
-
-By default Emacs doesn't do line wrapping. Instead it shows you on the
-edge of the buffer a marker to indicate that the line continues
-further. I'm not really a fan of this behaviour, that's why I disable
-it and enable proper line wrapping.
-
-*** enable line wrapping
-
-#+begin_src emacs-lisp
 ; Proper line wrapping
 (global-visual-line-mode 1)
-#+end_src
 
-*** disable fringe mode
-
-fringe-mode are the little markers on the side of the buffer which
-show when a line continues over the edge. Since I use visual-line-mode
-this settings isn't required anymore.
-
-#+begin_src emacs-lisp
 (when (boundp 'disable-fringe)
 ; Disable fringe because I use visual-line-mode
 (set-fringe-mode '(0 . 0)))
-#+end_src
 
-** Disable the splash screen
-
-Emacs usually displays a splash screen with some helpful information
-for beginners. I don't really need that anymore.
-
-#+begin_src emacs-lisp
 ; Disable splash screen
 (setq inhibit-splash-screen t)
-#+end_src
 
-** Disable tooltips
-
-Can't remember how they look like but I've disabled them
-probably for a reason :).
-
-#+begin_src emacs-lisp
 (tooltip-mode -1)
 (setq tooltip-use-echo-area t)
-#+end_src
 
-** Prompts
-*** Y and N are enough
-
-I don't want to type the whole word. The starting characters should be
-enough.
-
-#+begin_src emacs-lisp
 ;; disable or reconfigure prompts
 (fset 'yes-or-no-p 'y-or-n-p) ;; remap yes or no to y or n
-#+end_src
 
-*** Don't prompt on buffer creation
-
-"Yes I'm sure that I want to create a new buffer.", options.
-
-#+begin_src emacs-lisp
 (setq confirm-nonexistent-file-or-buffer nil);; just create buffers don't ask
 (setq ido-create-new-buffer 'always)
-#+end_src
 
-** Hightlight whitespace
-
-This options shows you where you accidentally left some bad
-whitespace.
-
-#+begin_src emacs-lisp
 ;; highlight bad whitespace
 (use-package whitespace
     :ensure t
@@ -1558,46 +1076,20 @@ whitespace.
     (setq whitespace-style '(face lines-tail tabs trailing))
     (set-face-attribute 'whitespace-line nil :foreground "#af005f")
     (global-whitespace-mode t))
-#+end_src
 
-** Font
-
-Set the font to the nice Source Code Pro. I think it works quite well for coding
-as well as writing text.
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-font)
 (set-face-attribute 'default nil
     :family "Source Code Pro"
     :height 120
     :weight 'normal
     :width 'normal))
-#+end_src
 
-** Doc-view resolution
-
-By default the doc-view looks a bit fuzzy. With a resolution of 200
-it's much more comfortable to read a PDF.
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-pdf-tools)
 ;; improve the resolution of doc-view
 (setq doc-view-resolution 200))
-#+end_src
 
-** Start Emacs maximized
-
-I always want to run Emacs maximized. The easiest solution to this problem
-is the following code. The downside of this is, that if Emacs is already
-maximized it will switch to windowed mode.
-
-#+begin_src emacs-lisp
 (toggle-frame-maximized)
-#+end_src
 
-** mode-line settings
-
-#+begin_src emacs-lisp
 (setq-default mode-line-format
               '("%e"
                 mode-line-front-space
@@ -1617,41 +1109,14 @@ maximized it will switch to windowed mode.
                 ;; battery-mode-line-string
                 ;; mode-line-end-spaces
 ))
-#+end_src
 
-** display line numbers
-
-Since I'm an evil user I would like to display the line numbers relativ to the
-cursor position and only show the line numbers for the visible content.
-
-#+BEGIN_SRC emacs-lisp
 (setq display-line-numbers-type 'visual)
 (add-hook 'prog-mode-hook (lambda ()
     (when (version<= "26.0.50" emacs-version )
         (display-line-numbers-mode))))
-#+END_SRC
 
-** inhibit-compacting-font-caches
-
-Should improve performance a bit when working with org-mode and in general
-
-#+begin_src elisp
 (setq inhibit-compacting-font-caches t)
-#+end_src
 
-* Org-mode
-
-*Please be aware that the whole org-mode configuration is one code block.*
-*While I've splitted it here for a better understanding it needs to be used*
-*in it's entirety or it won't work.*
-
-** Additional Packages
-*** org-superstar
-
-Provides prettier bullets for org-mode headings.
-https://github.com/integral-dw/org-superstar-mode
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-org-bullets)
 ;; Enable pretty bullets in org mode
 (use-package org-superstar
@@ -1659,27 +1124,12 @@ https://github.com/integral-dw/org-superstar-mode
     :config
     (add-hook 'org-mode-hook (lambda ()
                                (org-superstar-mode 1)))))
-#+end_src
 
-*** htmlize
-
-This package is needed to export the current agenda view to a HTML file.
-The command to do so is ~C-x C-w~.
-
-#+begin_src emacs-lisp
 ;; add a package to convert the agenda view to HTML
 (use-package htmlize
     :ensure t
     :after org)
-#+end_src
 
-*** org-man
-
-Allows to link to man pages in an org-mode file. This can be quite
-useful for taking notes about a Unix system. The code is taken from here:
-https://orgmode.org/manual/Adding-hyperlink-types.html
-
-#+BEGIN_SRC emacs-lisp
 (when (is-linux-p)
 ;;; org-man.el - Support for links to manpages in Org
 
@@ -1719,11 +1169,7 @@ https://orgmode.org/manual/Adding-hyperlink-types.html
 
 ;;; org-man.el ends here
 (require 'org-man))
-#+END_SRC
 
-*** org-ref
-
-#+BEGIN_SRC emacs-lisp
 (use-package org-ref
     :ensure t
     :after org
@@ -1735,43 +1181,18 @@ https://orgmode.org/manual/Adding-hyperlink-types.html
     (setq org-ref-bibliography-notes "~/nextcloud/03_documents/org/notes/bibliography_notes.org"
         org-ref-default-bibliography '("~/nextcloud/03_documents/org/notes/_resources/references.bib")
         org-ref-pdf-directory "~/nextcloud/03_documents/org/notes/_resources/"))
-#+END_SRC
 
-*** org-pandoc
-
-Provides pandoc support for org-mode.
-https://github.com/kawabata/ox-pandoc
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-ox-pandoc)
 (use-package ox-pandoc
     :ensure t
     :after org))
-#+end_src
 
-** General config
-*** Enable org-mode
-
-This settings make sure the org-mode is downloaded from the org
-repository.
-
-#+begin_src emacs-lisp
 (use-package org
     :ensure t
     :pin gnu
     :config
-#+end_src
 
-*** Main keybindings
-
-This defines org-modes main keybindings which are:
-
-- Open the agenda ~C-c a~
-- Capture a task ~C-c c~
-- Switch org buffer ~C-c b~
-
-#+begin_src emacs-lisp
-    ;; enable org-mode keys
+;; enable org-mode keys
     (when (or (boundp 'enable-personal-agenda)
               (boundp 'enable-work-agenda))
     (define-key global-map "\C-ca" 'org-agenda))
@@ -1789,128 +1210,44 @@ This defines org-modes main keybindings which are:
     (kbd "C-u")     'evil-scroll-up
     (kbd "c")       'org-capture
     (kbd "C-w C-w") 'other-window)
-#+end_src
 
-*** Disable line split
+;; disable line split with M-RET
+(setq org-M-RET-may-split-line (quote ((default))))
 
-By default the command ~M-RET~ enters a new heading which
-splits the current line at the cursor position.
-This can get very annoying at times that's why I disable
-this behaviour.
+;; enable the correct intdentation for source code blocks
+(setq org-edit-src-content-indentation 0)
+(setq org-src-tab-acts-natively t)
+(setq org-src-preserve-indentation t)
 
-#+begin_src emacs-lisp
-    ;; disable line split with M-RET
-    (setq org-M-RET-may-split-line (quote ((default))))
-#+end_src
-
-*** Correct indentation in code blocks
-
-Indentation in source code blocks should match the
-corresponding language in the code block.
-
-#+begin_src emacs-lisp
-    ;; enable the correct intdentation for source code blocks
-    (setq org-edit-src-content-indentation 0)
-    (setq org-src-tab-acts-natively t)
-    (setq org-src-preserve-indentation t)
-#+end_src
-
-*** Archive location
-
-I've configured the archive function so that when I archive a tasks it
-gets archived into an archive folder and put into a monthly file.
-
-#+begin_src emacs-lisp
-    ;; archive files to a monthly file
-    (when (boundp 'enable-personal-agenda)
-    (when (is-linux-p)
+;; archive files to a monthly file
+(when (boundp 'enable-personal-agenda)
+(when (is-linux-p)
+(setq org-archive-location
+    (concat "~/nextcloud/10_documents/99_archive/2022/projects/"
+        (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))))
+(when (boundp 'enable-work-agenda)
+(when (is-windows-p)
     (setq org-archive-location
-        (concat "~/nextcloud/10_documents/99_archive/2022/projects/"
+        (concat "~/nextcloud/03_documents/org/archive/work/"
             (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))))
-    (when (boundp 'enable-work-agenda)
-    (when (is-windows-p)
-        (setq org-archive-location
-            (concat "~/nextcloud/03_documents/org/archive/work/"
-                (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))))
-#+end_src
 
-*** Todo depencies
+;; enable todo and checkbox depencies
+(setq org-enforce-todo-dependencies t)
+(setq org-enforce-todo-checkbox-dependencies t)
 
-This settings only lets you close a parent task if you closed all it's
-parents.
+;; quick access for todo states
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "WAITING(w!)" "PROJECT(p)" "|" "DONE(d)")
+        (sequence "|" "CANCELLED(c)")))
 
-#+begin_src emacs-lisp
-    ;; enable todo and checkbox depencies
-    (setq org-enforce-todo-dependencies t)
-    (setq org-enforce-todo-checkbox-dependencies t)
-#+end_src
+(setq org-log-done 'time)
 
-*** Workflow states
+(setq org-log-into-drawer t)
 
-This configuration defines the TODO and DONE keywords one can use for headings.
+;; enable org-indent
+(setq org-startup-indented t)
 
-*TODO keywords*
-- TODO
-- NEXT
-- WAITING
-
-*DONE keywords*
-- DONE
-- CANCELLED
-
-If you want to change the TODO states of a heading you have to toggle
-through all of them which can be quite annoying if you want to use a
-state which is somewhere at the end of the list. With this setting
-Emacs shows you the complete list and you can select the corresponding
-key to apply your desired TODO state.
-
-#+begin_src emacs-lisp
-    ;; quick access for todo states
-    (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w!)" "PROJECT(p)" "|" "DONE(d)")
-            (sequence "|" "CANCELLED(c)")))
-#+end_src
-
-*** Log workflow states
-
-In order to keep track when I finished a tasks I would like to have a
-timestamp which records this information for me.
-
-#+begin_src emacs-lisp
-    (setq org-log-done 'time)
-#+end_src
-
-In addition I would like to record when I set a WAITING state for a task. This
-way I know when I started waiting. This allows me for example to get back to a
-person if I haven't back from them for two weeks.
-
-#+BEGIN_SRC emacs-lisp
-    (setq org-log-into-drawer t)
-#+END_SRC
-
-*** Cleaner outline view
-
-This option replaces the heading stars with indents.
-Which makes the outline more readable and gives a better overview.
-
-#+begin_src emacs-lisp
-    ;; enable org-indent
-    (setq org-startup-indented t)
-#+end_src
-
-*** Capture templates
-
-Capture templates are templates with which you can predefine tasks/projects.
-Each template gets it's own keybinding which you can call from ~C-c c~.
-
-Since I'm required to report my working hours at my job I've added
-some clocking functionality to my work related capture templates. The
-one I like the most ist the daily clock. This adds an entry with the
-current date as a heading and starts a clock on it. This makes it very
-easy to start the clock at the beginning of the day.
-
-#+begin_src emacs-lisp
-    ;; capture templates
+;; capture templates
 (defun my/org-capture-read-file-name ()
     (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/12_tasks/")) ".org"))
 
@@ -1948,137 +1285,47 @@ easy to start the clock at the beginning of the day.
                 ("n" "Add note" plain (file my/org-capture-read-file-name)
                     (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
 )))))
-#+end_src
 
-*** Columns format
+;; org-columns format
+(setq org-columns-default-format
+    "%40ITEM(Task) %8Effort(Estimated Effort){:} %8CLOCKSUM %10TAGS")
 
-Adjust the format of the org-columns.
+;; available effort times
+(setq org-global-properties
+    (quote
+        (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
 
-#+begin_src emacs-lisp
-    ;; org-columns format
-    (setq org-columns-default-format
-        "%40ITEM(Task) %8Effort(Estimated Effort){:} %8CLOCKSUM %10TAGS")
-#+end_src
+;; org-refile options
+(setq org-refile-allow-creating-parent-nodes (quote confirm))
+(setq org-refile-use-outline-path 'file
+    org-outline-path-complete-in-steps nil)
 
-*** Efforts
+(defun nebucatnetzer-org-files-list ()
+    (delq nil
+        (mapcar (lambda (buffer)
+        (buffer-file-name buffer))
+        (org-buffer-list 'files t))))
 
-Configuration of the available effort times.
-You can set efforts with ~C-c C-x e~.
+(setq org-refile-targets '((nebucatnetzer-org-files-list :maxlevel . 6)))
 
-#+begin_src emacs-lisp
-    ;; available effort times
-    (setq org-global-properties
-        (quote
-            (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
-#+end_src
+(setq org-src-fontify-natively t)
 
-*** Refile options
+(setq org-highlight-latex-and-related '(latex))
 
-The refile option lets you move headings to other headings or into
-different files. I configured org-mode so that it allows to create
-parent headings and looks 6 levels deep for headings to file under.
-In addition I changed the way the refile menu works. It's a bit slower
-this way but gives in my opinion a better overview.
+(setq org-image-actual-width (quote (500)))
+(setq org-startup-with-inline-images t)
 
-The implementation of ~nebucatnetzer-org-files-list~ has been found here:
-https://emacs.stackexchange.com/questions/22128/how-to-org-refile-to-a-target-within-the-current-file
+(setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+    org-clone-delete-id t)
 
-#+begin_src emacs-lisp
-    ;; org-refile options
-    (setq org-refile-allow-creating-parent-nodes (quote confirm))
-    (setq org-refile-use-outline-path 'file
-        org-outline-path-complete-in-steps nil)
+(setq org-blank-before-new-entry
+    (quote ((heading . t)
+        (plain-list-item . auto))))
 
-    (defun nebucatnetzer-org-files-list ()
-        (delq nil
-            (mapcar (lambda (buffer)
-            (buffer-file-name buffer))
-            (org-buffer-list 'files t))))
-
-    (setq org-refile-targets '((nebucatnetzer-org-files-list :maxlevel . 6)))
-#+end_src
-
-*** Syntax highlighting in code blocks
-
-By default syntax highlighting is not enabled for code blocks however
-it's very nice to have that's why I enabled it.
-
-#+begin_src emacs-lisp
-    (setq org-src-fontify-natively t)
-#+end_src
-
-*** Syntax highlighting for latex code
-
-To make latex code in org-mode stand out a bit more we can enable
-syntax highlighting for it.
-
-#+begin_src emacs-lisp
-    (setq org-highlight-latex-and-related '(latex))
-#+end_src
-
-*** Show inline images
-
-I want to display images in org-mode.
-
-#+begin_src emacs-lisp
-    (setq org-image-actual-width (quote (500)))
-    (setq org-startup-with-inline-images t)
-#+end_src
-
-*** create custom id for links
-
-When creating an internal org link this code creates a unique ID to
-the heading. This allows the links to continue working even when the
-file is in a new location.
-
-#+begin_src emacs-lisp
-    (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-        org-clone-delete-id t)
-#+end_src
-
-*** separate headings by an empty line
-
-Headings should be separated by their content by an empty line. This
-way the files are easier to read.
-
-#+BEGIN_SRC emacs-lisp
-    (setq org-blank-before-new-entry
-        (quote ((heading . t)
-            (plain-list-item . auto))))
-#+END_SRC
-
-*** Footnotes heading
-
-I wan't to use footnotes as references. Therefore I want the footnotes to get
-stored under a heading called ressources.
-
-#+BEGIN_SRC emacs-lisp
 (setq org-footnote-section "Resources")
-#+END_SRC
 
-*** update footnotes
-
-After a change to the footnotes in a document org-mode should update the labels.
-
-#+BEGIN_SRC emacs-lips
-(setq org-footnote-auto-adjust t)
-#+END_SRC
-
-*** org-attach-directory
-
-Since all my org-files live in a git directory and I don't want to polute the
-repository with a ton of binary files I save the attachements into a directory
-synchronised by Nextcloud.
-
-#+BEGIN_SRC emacs-lisp
 (setq org-attach-directory "~/nextcloud/10_documents/99_archive/2022/resources/")
-#+END_SRC
 
-*** Faces
-
-This section defines how org-mode looks like.
-
-#+BEGIN_SRC emacs-lisp
 (setq org-todo-keyword-faces
       `(("WAITING"   :foreground "#0087ff" :weight bold)
         ("TODO" :foreground "#d75f00" :weight bold)
@@ -2099,297 +1346,129 @@ This section defines how org-mode looks like.
 (set-face-attribute 'org-todo nil :background "nil" :foreground "#d70000" :weight 'bold)
 (set-face-attribute 'org-upcoming-deadline nil :foreground "#d70000" :weight 'normal)
 (set-face-attribute 'org-warning nil :foreground "#d70000" :weight 'normal)
-#+END_SRC
 
-*** org-startup-shrink-all-tables
-
-Org-mode should display all tables in shrinked mode if the table contains a
-width cookie.
-
-#+begin_src emacs-lisp
 (setq org-startup-shrink-all-tables t)
-#+end_src
 
-** Exports
+;; org-export formats
+;;(setq org-export-backends (quote (beamer html latex md odt reveal)))
+
+(setq org-html-html5-fancy t
+    org-html-doctype "html5")
+
+;; disable the Todo keywords in the export
+(setq org-export-with-todo-keywords nil)
+
+;; disable the tags in the export
+(setq org-export-with-tags nil)
+
+(setq org-latex-caption-above nil)
+
+(setq org-export-with-sub-superscripts nil)
+
+(setq org-export-with-smart-quotes t)
+
+(setq org-export-headline-levels 5)
+
+;; options for beamer exports
+(setq org-beamer-frame-level 2)
+(setq org-beamer-outline-frame-options "")
+(setq org-beamer-outline-frame-title "Inhalt")
+(setq org-beamer-theme "metropolis")
+
+;; options for latex exports
+(setq org-latex-classes
+    (quote
+        (("beamer" "\\documentclass{beamer}"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+         ("article" "\\documentclass{article}"
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+            ("\\paragraph{%s}" . "\\paragraph*{%s}")
+            ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+         ("report" "\\documentclass[11pt]{report}"
+            ("\\part{%s}" . "\\part*{%s}")
+            ("\\chapter{%s}" . "\\chapter*{%s}")
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+         ("book" "\\documentclass[11pt]{book}"
+            ("\\part{%s}" . "\\part*{%s}")
+            ("\\chapter{%s}" . "\\chapter*{%s}")
+            ("\\section{%s}" . "\\section*{%s}")
+            ("\\subsection{%s}" . "\\subsection*{%s}")
+            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))))
+    (setq org-latex-default-packages-alist nil)
+    (setq org-latex-listings 'listings)
+    (setq org-latex-title-command "\\maketitle\\newpage")
+    (setq org-latex-toc-command "\\tableofcontents
+    \\newpage
+    ")
+
+;; Set the agenda separator to a space character.
+(setq org-agenda-block-separator " ")
+
+;; a function to call the custom agenda view.
+(defun az/custom-agenda (&optional arg)
+    (interactive "P")
+    (org-agenda arg "A"))
+
+(global-set-key [f9] 'az/custom-agenda)
+
+;; hide done tasks in the agenda
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-timestamp-if-done t)
+
+;; Custom agenda command to list the stuck projects in the normal
+;; agenda view.
+(setq org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
+(setq org-agenda-custom-commands
+    (quote (("A" "Custom Agenda"
+        ((agenda "" nil)
+        (stuck ""
+            ((org-agenda-overriding-header "Stuck Projects")
+                (org-agenda-sorting-strategy
+                    '(category-up))))
+        (tags-todo "TODO=\"PROJECT\" "
+            ((org-agenda-overriding-header "Projects")
+                (org-agenda-sorting-strategy
+                    '(category-up))))
+                nil))
+            ;; Show all headings with the corresponding TODO state
+        ("N" occur-tree "NEXT")
+        ("O" occur-tree "TODO")
+        ("W" occur-tree "WAITING"))))
+
+;; don't show the warnings for deadlines if the item is scheduled
+(setq org-agenda-skip-deadline-prewarning-if-scheduled t)
+
+;; start the agenda on the current day and show the next 13 days
+(setq org-agenda-span 14
+    org-agenda-start-on-weekday nil)
+(setq org-agenda-tags-column -80)
+(setq org-agenda-show-future-repeats (quote next))
+(setq org-agenda-sorting-strategy
+    (quote
+        ((agenda todo-state-up priority-down category-up))))
+
+;; dimm open tasks
+(setq org-agenda-dim-blocked-tasks t)
+
+;; automatically refresh the agenda after adding a task
+(add-hook 'org-capture-after-finalize-hook 'nebucatnetzer:org-agenda-redo)
+
+(defun nebucatnetzer:org-agenda-redo ()
+(interactive)
+(when (get-buffer "*Org Agenda*")
+    (with-current-buffer "*Org Agenda*"
+        (org-agenda-redo t)
+        (message "[org agenda] refreshed!"))))
+
+(setq org-clock-out-remove-zero-time-clocks t)
 
-*** TODO Export formats
-
-This is currently not working correctly that's why I customized
-it through org-customize.
-Configures the available export formats.
-
-#+begin_src emacs-lisp
-    ;; org-export formats
-    ;;(setq org-export-backends (quote (beamer html latex md odt reveal)))
-#+end_src
-
-*** html export doctype
-
-Since we live in the 21st century org-mode should use HTML5.
-
-#+begin_src emacs-lisp
-    (setq org-html-html5-fancy t
-        org-html-doctype "html5")
-#+end_src
-
-*** Disable TODO keywords
-
-Usually I don't want the TODO states being dispayed in the exported files.
-If i still want to have them displayed I can add the option:
-
-#+begin_example
-#+options: todo:t
-#+end_example
-
-To the beginning of the file.
-
-#+begin_src emacs-lisp
-    ;; disable the Todo keywords in the export
-    (setq org-export-with-todo-keywords nil)
-#+end_src
-
-*** Disable Tags
-
-As with the TODO states I want to disable the tags as well.
-The per file option for this setting is:
-
-#+begin_example
-#+options: tags:t
-#+end_example
-
-#+begin_src emacs-lisp
-    ;; disable the tags in the export
-    (setq org-export-with-tags nil)
-#+end_src
-
-*** Place captions under tables
-
-I want captions to appear below tables and not above.
-
-#+begin_src emacs-lisp
-    (setq org-latex-caption-above nil)
-#+end_src
-
-*** Disable susb superscript
-
-The default settings export text like ~10^2~ or ~this_file~ as 10^{2}
-and this_{file}. Since I often use underline in filenames and
-variables it's easiert for me to use ~10^{2}~ and ~this_{file}~ to
-achieve this.
-
-#+begin_src emacs-lisp
-    (setq org-export-with-sub-superscripts nil)
-#+end_src
-
-*** Smart quotes
-
-Different languages use different types of quotes. With this option
-org-mode tries to be smart about it and export the correct quotes.
-
-#+begin_src emacs-lisp
-    (setq org-export-with-smart-quotes t)
-#+end_src
-
-*** Headline levels
-
-By default org-mode exports headings down to level 3 as headings and
-the rest as lists. I want it to export headings down to level 5.
-
-#+begin_src emacs-lisp
-    (setq org-export-headline-levels 5)
-#+end_src
-
-*** Beamer settings
-
-This specifies my options for Beamer exports. Level 1 headings
-generate title pages, the table of contents should be called "Inhalt"
-and the theme I'm using is metropolis.
-
-#+begin_src emacs-lisp
-    ;; options for beamer exports
-    (setq org-beamer-frame-level 2)
-    (setq org-beamer-outline-frame-options "")
-    (setq org-beamer-outline-frame-title "Inhalt")
-    (setq org-beamer-theme "metropolis")
-#+end_src
-
-*** LaTeX settings
-
-Various LaTeX export settings. The most important one ist that I use
-my own class and customize the look of the title page.
-
-#+begin_src emacs-lisp
-    ;; options for latex exports
-    (setq org-latex-classes
-        (quote
-            (("beamer" "\\documentclass{beamer}"
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-             ("article" "\\documentclass{article}"
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-             ("report" "\\documentclass[11pt]{report}"
-                ("\\part{%s}" . "\\part*{%s}")
-                ("\\chapter{%s}" . "\\chapter*{%s}")
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-             ("book" "\\documentclass[11pt]{book}"
-                ("\\part{%s}" . "\\part*{%s}")
-                ("\\chapter{%s}" . "\\chapter*{%s}")
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))))
-        (setq org-latex-default-packages-alist nil)
-        (setq org-latex-listings 'listings)
-        (setq org-latex-title-command "\\maketitle\\newpage")
-        (setq org-latex-toc-command "\\tableofcontents
-        \\newpage
-        ")
-#+end_src
-
-** Agenda
-
-*** Keybinding
-
-To have easy access to my agenda view I've bound the
-F9 key to that function. Now I can access it with just
-one simple key press.
-
-#+BEGIN_SRC emacs-lisp
-    ;; Set the agenda separator to a space character.
-    (setq org-agenda-block-separator " ")
-
-    ;; a function to call the custom agenda view.
-    (defun az/custom-agenda (&optional arg)
-        (interactive "P")
-        (org-agenda arg "A"))
-#+END_SRC
-
-#+begin_src emacs-lisp
-    (global-set-key [f9] 'az/custom-agenda)
-#+end_src
-
-*** Hide tasks with a DONE state
-
-Tasks which are scheduled, have a deadline or have a timestamp but are
-marked DONE shouldn't get displayed in the Agenda. I usually clean
-them out at the end of the week.
-
-#+begin_src emacs-lisp
-    ;; hide done tasks in the agenda
-    (setq org-agenda-skip-deadline-if-done t)
-    (setq org-agenda-skip-scheduled-if-done t)
-    (setq org-agenda-skip-timestamp-if-done t)
-#+end_src
-
-*** Custom agenda commands
-
-When you open the agenda command selection with ~C-c a~ you can choose
-these settings. They allow you to filter the current file for the TODO
-state corresponding to their keybinding. This is very useful for my
-weekly review.
-
-*Sorting Strategy*
-By default org-mode sorts the agenda by the category. While this is
-great it mixes the NEXT actions with the WAITING actions which have a
-far lower priority than the NEXT actions. With this code the WAITING
-actions get sorted to the bottom.
-
-#+begin_src emacs-lisp
-    ;; Custom agenda command to list the stuck projects in the normal
-    ;; agenda view.
-    (setq org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
-    (setq org-agenda-custom-commands
-        (quote (("A" "Custom Agenda"
-            ((agenda "" nil)
-            (stuck ""
-                ((org-agenda-overriding-header "Stuck Projects")
-                    (org-agenda-sorting-strategy
-                        '(category-up))))
-            (tags-todo "TODO=\"PROJECT\" "
-                ((org-agenda-overriding-header "Projects")
-                    (org-agenda-sorting-strategy
-                        '(category-up))))
-                    nil))
-                ;; Show all headings with the corresponding TODO state
-            ("N" occur-tree "NEXT")
-            ("O" occur-tree "TODO")
-            ("W" occur-tree "WAITING"))))
-#+end_src
-
-*** Hide deadline prewarnings for scheduled tasks
-
-By default the agenda shows you prewarnings for tasks which have a deadline.
-However those don't make much sense when I already have scheduled that item
-for this reason I disable the warnings for scheduled tasks.
-
-#+begin_src emacs-lisp
-    ;; don't show the warnings for deadlines if the item is scheduled
-    (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
-#+end_src
-
-*** Default agenda settings
-
-My default agenda view starts on the current day and shows the next 14
-days. This gives me a good overview of whats comming and helps greatly
-with scheduling tasks. In addition I added an option to better display
-the tags in the agenda. With the new default settings they always get
-wrapped on a new line which is quite annoying.
-
-#+begin_src emacs-lisp
-    ;; start the agenda on the current day and show the next 13 days
-    (setq org-agenda-span 14
-        org-agenda-start-on-weekday nil)
-    (setq org-agenda-tags-column -80)
-    (setq org-agenda-show-future-repeats (quote next))
-    (setq org-agenda-sorting-strategy
-        (quote
-            ((agenda todo-state-up priority-down category-up))))
-#+end_src
-
-*** Dim blocked tasks
-
-Blocked tasks are apparently dimmed by default however I still have
-this setting enabled.
-
-#+begin_src emacs-lisp
-    ;; dimm open tasks
-    (setq org-agenda-dim-blocked-tasks t)
-#+end_src
-
-*** Refresh agenda after capturing a task
-
-This function updates the agenda after you've captured a new task.
-Otherwise this would be a two step process.
-
-#+begin_src emacs-lisp
-    ;; automatically refresh the agenda after adding a task
-    (add-hook 'org-capture-after-finalize-hook 'nebucatnetzer:org-agenda-redo)
-
-    (defun nebucatnetzer:org-agenda-redo ()
-    (interactive)
-    (when (get-buffer "*Org Agenda*")
-        (with-current-buffer "*Org Agenda*"
-            (org-agenda-redo t)
-            (message "[org agenda] refreshed!"))))
-#+end_src
-
-** Clocking
-
-*** Remove clocks with a duration of 0
-
-#+begin_src emacs-lisp
-    (setq org-clock-out-remove-zero-time-clocks t)
-#+end_src
-
-*** define clocking heading
-
-#+BEGIN_SRC emacs-lisp
 (when (boundp 'enable-clocking)
     (defun start-heading-clock (id file)
         "Start clock programmatically for heading with ID in FILE."
@@ -2408,71 +1487,24 @@ Otherwise this would be a two step process.
         (start-heading-clock "e9f71012-4370-4dd2-af8e-9ae14d86508a" "~/nextcloud/03_documents/org/agenda/work/work.org"))
 
     (global-set-key (kbd "<f6>") 'start-main-clock))
-#+END_SRC
 
-*** Resume a running clock when emacs restarts
+(org-clock-persistence-insinuate)
 
-#+begin_src emacs-lisp
-    (org-clock-persistence-insinuate)
-#+end_src
+(setq org-clock-out-when-done t)
 
-*** Clock out when moving task to a done state
+(setq org-clock-persist t)
+;; Do not prompt to resume an active clock
+(setq org-clock-persist-query-resume nil)
 
-#+begin_src emacs-lisp
-    (setq org-clock-out-when-done t)
-#+end_src
+(global-set-key (kbd "<f7>") 'org-clock-in)
+(global-set-key (kbd "<f8>") 'org-clock-out)
+(global-set-key (kbd "C-x C-d") 'org-clock-mark-default-task)
 
-*** Save the running clock when exiting Emacs
+(setq org-duration-format (quote (("h") (special . 2))))
 
-#+begin_src emacs-lisp
-    (setq org-clock-persist t)
-    ;; Do not prompt to resume an active clock
-    (setq org-clock-persist-query-resume nil)
-#+end_src
+(setq org-agenda-clockreport-parameter-plist
+    (quote (:link t :maxlevel 4 :tcolumns 3)))
 
-*** Clocking Keybindings
-
-Clock in with ~C-x C-i~ and out with ~C-x C-o~ and ~C-x C-d~ to mark a
-task as the default task.
-
-#+begin_src emacs-lisp
-    (global-set-key (kbd "<f7>") 'org-clock-in)
-    (global-set-key (kbd "<f8>") 'org-clock-out)
-    (global-set-key (kbd "C-x C-d") 'org-clock-mark-default-task)
-#+end_src
-
-*** Clock table time format
-
-At my job we have to report the times in decimal format. Therefore
-it's a bit difficult when org-mode displays the time in the normal
-format. This code snippets let's you display the time in decimal
-format in the clock table.
-
-#+BEGIN_SRC emacs-lisp
-    (setq org-duration-format (quote (("h") (special . 2))))
-#+END_SRC
-
-*** org agenda clock report
-
-For quite some time I've used a clock table in my main org file. However I
-noticed that on Windows Emacs got very slow with complicated org files.
-Therefore I've looked for a way to replicate the clock table in the agenda
-because it pulls from multiple files.
-This way I can split the tasks over many files.
-
-#+BEGIN_SRC emacs-lisp
-    (setq org-agenda-clockreport-parameter-plist
-        (quote (:link t :maxlevel 4 :tcolumns 3)))
-#+END_SRC
-
-** org-insert-image
-
-This function allows to quickly insert a picture into the current org
-file. The file will get renamed and moved to the file location.
-I found this code on this blog post:
-http://pragmaticemacs.com/emacs/a-workflow-to-quickly-add-photos-to-org-mode-notes/
-
-#+begin_src emacs-lisp
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; add image from conference phone upload                                 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -2561,15 +1593,7 @@ http://pragmaticemacs.com/emacs/a-workflow-to-quickly-add-photos-to-org-mode-not
     (insert (org-make-link-string (format "file:_resources/%s" end-file)))
     ;; display image
     (org-display-inline-images t t)))
-#+end_src
 
-** Agenda file
-
-This settings tells Emacs where to look for agenda files.
-All the files in this directories and its sub directories count as
-agenda files.
-
-#+begin_src emacs-lisp
 (load-library "find-lisp")
 (when (boundp 'enable-personal-agenda)
 (when (is-linux-p)
@@ -2579,47 +1603,23 @@ agenda files.
 (when (is-windows-p)
     (setq org-agenda-files
     (find-lisp-find-files "~/nextcloud/03_documents/org/agenda/work" "\.org$"))))
-#+end_src
 
-** org-update-cookies-after-save
+(defun org-update-cookies-after-save()
+(interactive)
+(let ((current-prefix-arg '(4)))
+(org-update-statistics-cookies "ALL")))
 
-It can happen that statistic cookies in an org-mode buffer don't get
-updated. This function updates all the statistic cookies before the
-buffer gets saved.
+(add-hook 'org-mode-hook
+    (lambda ()
+        (add-hook 'before-save-hook 'org-update-cookies-after-save nil 'make-it-local)))
 
-#+begin_src emacs-lisp
-    (defun org-update-cookies-after-save()
-    (interactive)
-    (let ((current-prefix-arg '(4)))
-    (org-update-statistics-cookies "ALL")))
+(defun org-summary-todo (n-done n-not-done)
+"Switch entry to DONE when all subentries are done, to TODO otherwise."
+(let (org-log-done org-log-states)   ; turn off logging
+    (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
-    (add-hook 'org-mode-hook
-        (lambda ()
-            (add-hook 'before-save-hook 'org-update-cookies-after-save nil 'make-it-local)))
-#+end_src
+(add-hook 'org-after-todo-statistics-hook 'org-summary-todo))
 
-** mark-task-as-done
-
-This function sets a parent to the DONE state when the last of it's
-children gets changed to DONE. This is especially usefull in
-combination with org-edna.
-
-- https://orgmode.org/manual/Breaking-down-tasks.html
-
-#+begin_src emacs-lisp
-    (defun org-summary-todo (n-done n-not-done)
-    "Switch entry to DONE when all subentries are done, to TODO otherwise."
-    (let (org-log-done org-log-states)   ; turn off logging
-        (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
-
-    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo))
-#+end_src
-
-** Personal org file
-
-I defined ~C-c p~ to quickly jump to my personal org file.
-
-#+begin_src emacs-lisp
 ;; keymap for my personal.org file
 (when (boundp 'enable-personal-agenda)
     (when (is-linux-p)
@@ -2629,25 +1629,12 @@ I defined ~C-c p~ to quickly jump to my personal org file.
 (when (is-windows-p)
     (global-set-key (kbd "C-c p")
         (lambda () (interactive) (find-file "~/nextcloud/03_documents/org/agenda/work/work.org")))))
-#+end_src
 
-* General
-** User data
-
-#+begin_src emacs-lisp
 ;; My details
 
 (setq user-full-name "Andreas Zweili")
 (setq user-mail-address "andreas@zweili.ch")
-#+end_src
 
-** Toggle window splits
-
-Sometimes when emacs opens a buffer it's in a wrong orientation. With
-the keybinding ~C-x 4~ I can toggle between horizontal and vertical
-split.
-
-#+begin_src emacs-lisp
 ;; a function to toggle the splits
 (defun toggle-window-split ()
     (interactive)
@@ -2675,15 +1662,7 @@ split.
             (if this-win-2nd (other-window 1))))))
 
 (define-key ctl-x-map "4" 'toggle-window-split)
-#+end_src
 
-** Split Windows and move cursor into it
-
-Usually when I want to split the window I want the cursor to be place
-into the new window because I need to manipulate that window. Emacs
-doesn't do this by default but we can add that functionality.
-
-#+begin_src emacs-lisp
 (defun nebucatnetzer:split-window-below-and-move-cursor ()
     (interactive)
     (split-window-below)
@@ -2696,47 +1675,19 @@ doesn't do this by default but we can add that functionality.
 
 (global-set-key (kbd "C-x 2") 'nebucatnetzer:split-window-below-and-move-cursor)
 (global-set-key (kbd "C-x 3") 'nebucatnetzer:split-window-right-and-move-cursor)
-#+end_src
 
-** Use spaces instead of tabs
-
-#+begin_src emacs-lisp
 ;; Spaces instead of TABs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
-#+end_src
 
-** Key bindings
-*** buffer switching
-
-ibuffer is a much better way to give an overview than the standard buffer
-view in emacs. Interestingly it's already built in but not configured.
-You can open it with ~C-x C-b~. Ivy is a nice tool for completions I configured
-~C-x b~ to open Ivy for switching buffers.
-
-#+begin_src emacs-lisp
 ;; keymap for buffer switching
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-#+end_src
 
-*** kill current buffer
-
-Don't ask which buffer to kill, kill the current buffer with ~C-x C-k~.
-
-#+begin_src emacs-lisp
 ;; kill THIS buffer
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
-#+end_src
 
-*** Copy buffer to clipboard
-
-Sometimes it's handy to be able the complete buffer into the clipboard.
-E.g. when you write an email in Emacs an want to copy it into Outlook.
-This function is bound to ~C-S-c~.
-
-#+begin_src emacs-lisp
 ;; copy the complete buffer to the clipboard
 (defun copy-all ()
     "Copy entire buffer to clipboard"
@@ -2744,24 +1695,7 @@ This function is bound to ~C-S-c~.
     (clipboard-kill-ring-save (point-min) (point-max)))
 
 (global-set-key (kbd "C-S-c") 'copy-all)
-#+end_src
 
-*** Frame Controls
-
-This keybindings allow to create and navigate frames.
-Frames are in a desktop environment usually called windows.
-However because Emacs is so old it has it's own terminology.
-
-- New frame ::
-    ~C-x N~
-
-- Switch to the other frame ::
-    ~C-x O~
-
-- Kill frame ::
-    ~C-x K~
-
-#+begin_src emacs-lisp
 ;; keybinding for new frame
 (global-set-key (kbd "C-x N") 'make-frame)
 
@@ -2770,57 +1704,25 @@ However because Emacs is so old it has it's own terminology.
 
 ;; kill frame
 (global-set-key (kbd "C-x K") 'delete-frame)
-#+end_src
 
-*** Hippie Expand
-
-This option enables hippie expand which allows for path complition and
-more. You can execute it with ~M-Space~.
-
-#+begin_src emacs-lisp
 ;; enable hippie expand on M-Space
 (global-set-key "\M- " 'hippie-expand)
-#+end_src
 
-*** jump to minibuffer
-
-#+begin_src emacs-lisp
 (defun switch-to-minibuffer () "Switch to minibuffer window."
     (interactive) (if (active-minibuffer-window)
         (select-window
             (active-minibuffer-window)) (error "Minibuffer is not active")))
 
 (bind-key "M-m" 'switch-to-minibuffer)
-#+end_src
 
-** File encoding
-*** Prefer Unix encoding.
-
-#+begin_src emacs-lisp
 ;; file encodings
 (prefer-coding-system 'utf-8-unix)
-#+end_src
 
-** Move backup files to the temp folder
-
-With this configuration Emacs saves the backup files into the temp
-directory. Otherwise they get created in the current directory which
-IMO is unneeded clutter.
-
-#+begin_src emacs-lisp
 (setq backup-directory-alist
     `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
     `((".*" ,temporary-file-directory t)))
-#+end_src
 
-** ibuffer, buffer groups
-
-This function groups buffers depending on their mode which gives an
-even better overview. In addition it hides temporary buffers from the
-ibuffer view.
-
-#+begin_src emacs-lisp
 ;; hide temporary buffers
 (add-hook 'ibuffer-mode-hook
     (lambda ()
@@ -2849,36 +1751,13 @@ ibuffer view.
 (add-hook 'ibuffer-mode-hook
     (lambda ()
         (ibuffer-switch-to-saved-filter-groups "default")))
-#+end_src
 
-** Initial buffer mode
-
-When I create a new buffer it should start in text-mode.
-By default Emacs uses elisp-mode.
-
-#+begin_src emacs-lisp
 ;; initial buffers should use text-mode
 (setq-default major-mode 'text-mode)
-#+end_src
 
-** Localization
-*** First day of the week
-
-In Switzerland weeks start on Monday not Sunday.
-
-#+begin_src emacs-lisp
 ; Calender should start on Monday
 (setq calendar-week-start-day 1)
-#+end_src
 
-*** Spell checking
-
-Since I write both in English and in German I need two dictionaries.
-This code configures Emacs to use the Linux dictionaries en_US and
-de_CH. If you want to switch languages you need the function:
-~ispell-change-dictionary~
-
-#+begin_src emacs-lisp
 ;; ispell settings
 (setenv "DICTIONARY" "en_US")
 (setq ispell-program-name "hunspell")
@@ -2886,95 +1765,32 @@ de_CH. If you want to switch languages you need the function:
 (setq ispell-local-dictionary-alist
       '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
         ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))
-#+end_src
 
-*** Spaces after periods.
-
-#+begin_src emacs-lisp
 ;; insert only one space after a period
 (setq sentence-end-double-space nil)
-#+end_src
 
-** Parantheses
-*** Math parantheses
-
-This setting shows matching parantheses and hightlights the ones which
-don't have a counter part.
-
-#+begin_src emacs-lisp
 ; Matches parentheses and such in every mode
 (show-paren-mode 1)
-#+end_src
 
-*** Electric parantheses
-
-When you insert a parenthesis it's counter pair gets inserted automatically.
-
-#+begin_src emacs-lisp
 ;; pair parentheses
 (electric-pair-mode 1)
-#+end_src
 
-** Auto-fill
-
-This enables auto-fill which is basically line wrapping.
-
-#+begin_src emacs-lisp
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-#+end_src
 
-** Suppressing ad-handle-definition Warnings
-
-This settings surpresses the following warning which shows up when
-Emacs starts:
-
-#+begin_example
-ad-handle-definition: `tramp-read-passwd' got redefined
-#+end_example
-
-#+begin_src emacs-lisp
 (setq ad-redefinition-action 'accept)
-#+end_src
 
-** remove bad whitespace when saving
-
-#+begin_src emacs-lisp
 (add-hook 'before-save-hook 'whitespace-cleanup)
-#+end_src
 
-** Autorefresh buffers if the file changes on disk
-
-#+BEGIN_SRC emacs-lisp
 (global-auto-revert-mode t)
-#+END_SRC
 
-** 80 characters line width
-
-#+BEGIN_SRC emacs-lisp
 (setq-default fill-column 79)
-#+END_SRC
 
-** show column number
-
-#+BEGIN_SRC emacs-lisp
 (setq column-number-mode 1)
-#+END_SRC
 
-** display emojis
-
-Display Emoji requires the ~fonts-symbola~ Debian package.
-
-#+BEGIN_SRC emacs-lisp
 (when (boundp 'enable-emojis)
 (when (is-linux-p)
     (set-fontset-font t nil "Symbola" nil 'prepend)))
-#+END_SRC
 
-** kill all buffers
-
-This function is helpful to "clean up" emacs without having to restart it.
-
-#+BEGIN_SRC emacs-lisp
 (defun kill-other-buffers ()
     "Kill all other buffers."
     (interactive)
@@ -2982,11 +1798,7 @@ This function is helpful to "clean up" emacs without having to restart it.
         (delq
             (current-buffer)
             (buffer-list))))
-#+END_SRC
 
-** insert date
-
-#+begin_src emacs-lisp
 (defun insert-date ()
     "Insert the current date."
     (interactive)
@@ -3007,14 +1819,7 @@ This function is helpful to "clean up" emacs without having to restart it.
     (let ((format "%A, %d. %B %Y")
           (system-time-locale "de_CH"))
       (insert (format-time-string format))))
-#+end_src
 
-** handling large files
-
-Taken from here:
-https://github.com/jhallen/joes-sandbox/issues/29
-
-#+begin_src emacs-lisp
 (defun buffer-too-big-p ()
   (or (> (buffer-size) (* 5000 64))
       (> (line-number-at-pos (point-max)) 5000)))
@@ -3024,58 +1829,19 @@ https://github.com/jhallen/joes-sandbox/issues/29
 
 (add-hook 'prog-mode-hook 'generic-setup)
 (add-hook 'text-mode-hook 'generic-setup)
-#+end_src
 
-** remove duplicates from history
-
-#+begin_src emacs-lisp
 (setq history-delete-duplicates t)
-#+end_src
 
-** enable mouse support in terminal
-
-#+begin_src emacs-lisp
 (xterm-mouse-mode 1)
-#+end_src
 
-** Disable electric-indent-local-mode
-
-This mode indents all the text I write in text-mode.
-Not really useful in my usecase.
-
-#+begin_src emacs-lisp
 (add-hook 'text-mode-hook (lambda () (electric-indent-local-mode -1)))
-#+end_src
 
-* Eshell
-
-** General
-
-Make the tab completion behave like in Bash.
-
-#+begin_src emacs-lisp
 (add-hook 'eshell-mode-hook
     (lambda ()
         (setq pcomplete-cycle-completions nil)))
-#+end_src
 
-* Tramp
-
-** default-tramp-method
-
-To improve the perfomance of tramp I use SSH instead of scp.
-
-#+begin_src emacs-lisp
 (setq tramp-default-method "ssh")
-#+end_src
 
-* LaTex
-** Align Tables
-
-This is a nice function to work with LaTeX tables. I've got it from
-here: https://thenybble.de/projects/inhibit-auto-fill.html
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-auctex)
 (defun LaTeX-collapse-table ()
     (interactive)
@@ -3091,23 +1857,7 @@ here: https://thenybble.de/projects/inhibit-auto-fill.html
         (save-excursion
             (LaTeX-mark-environment)
             (align (region-beginning) (region-end))))))
-#+end_src
 
-** Inhibiting auto-fill
-
-"Auto-fill is nice. Filling to 80 columns (as god intended) makes code
-or any other text easier to read.
-
-However, it's not so nice for large latex tables that you want to
-align properly (perhaps using align). This is why I hacked together
-some elisp to inhibit auto-fill when the cursor is in a table (or any
-other environment that doesn't need to be auto-filled, according to
-your whims."
-
-Taken from here:
-https://thenybble.de/projects/inhibit-auto-fill.html
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-auctex)
 (defcustom LaTeX-inhibited-auto-fill-environments
     '("tabular" "tikzpicture") "For which LaTeX environments not to run auto-fill.")
@@ -3116,57 +1866,20 @@ https://thenybble.de/projects/inhibit-auto-fill.html
     (let ((environment (LaTeX-current-environment)))
         (when (not (member environment LaTeX-inhibited-auto-fill-environments))
             (do-auto-fill)))))
-#+end_src
 
-** Enable the LaTeX tweaks
-
-#+begin_src emacs-lisp
 (when (boundp 'enable-auctex)
 (global-set-key (kbd "C-c f") 'LaTeX-align-environment)
 (setq auto-fill-function 'LaTeX-limited-auto-fill))
-#+end_src
 
-* Dired
-** open a folder in the same buffer
-
-By default dired obens a buffer for every folder one opens. With this setting
-it's possible open a folder in the current buffer when pressing ~a~ on it.
-
-#+BEGIN_SRC emacs-lisp
 (put 'dired-find-alternate-file 'disabled nil)
-#+END_SRC
 
-** use human readable formats
-
-#+BEGIN_SRC emacs-lisp
 (setq-default dired-listing-switches "-alh")
-#+END_SRC
 
-** Keybindings
-*** open
-
-You can open dired with ~C-c d~
-
-#+begin_src emacs-lisp
 ;; keymap for dired
 (global-set-key (kbd "C-c d") 'dired-jump)
-#+end_src
 
-*** kill
-
-By default ~q~ in dired just hides the dired buffer. However I prefer
-the buffer to get killed completely.
-
-#+begin_src emacs-lisp
 (bind-keys :map dired-mode-map ("q" . az-kill-dired-buffers))
-#+end_src
 
-** Kill all dired buffers
-
-Dired opens a lot of buffers when you use it. This functions helps to
-clean up afterwards.
-
-#+begin_src emacs-lisp
 ;;a function to kill all dired buffers
 (defun az-kill-dired-buffers ()
     (interactive)
@@ -3174,11 +1887,7 @@ clean up afterwards.
         (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
             (kill-buffer buffer)))
         (buffer-list)))
-#+end_src
 
-** dired hide dot folders
-
-#+BEGIN_SRC emacs-lisp
 (use-package dired-hide-dotfiles
     :ensure t
     :init
@@ -3193,4 +1902,3 @@ clean up afterwards.
     :bind
         (:map dired-mode-map
             ("." . dired-hide-dotfiles-mode)))
-    #+END_SRC

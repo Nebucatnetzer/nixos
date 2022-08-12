@@ -9,8 +9,7 @@
 ;; keep customize settings in their own file
 (setq custom-file "~/.emacs.d/custom.el")
 (when (file-exists-p custom-file)
-    (load custom-file))
+  (load custom-file))
 
 (require 'ob-tangle)
-(setq init-dir (file-name-directory (or load-file-name (buffer-file-name))))
-(org-babel-load-file (expand-file-name "loader.org" init-dir))
+(load-file "~/.emacs.d/loader.el")

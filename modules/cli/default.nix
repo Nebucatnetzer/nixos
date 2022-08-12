@@ -19,7 +19,6 @@
     nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     rebuild = ''
       rm -rf ~/.config/qtile/__pycache__ &&
-      rm -f ~/.emacs.d/loader.el &&
       nixos-rebuild -j auto switch --use-remote-sudo
     '';
     find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";

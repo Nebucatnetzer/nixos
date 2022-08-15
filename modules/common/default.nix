@@ -25,12 +25,18 @@
   };
 
   programs.mosh.enable = true;
-  services = {
-    openssh = {
-      enable = true;
-      permitRootLogin = "no";
-      passwordAuthentication = false;
-    };
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no";
+    passwordAuthentication = false;
+    kbdInteractiveAuthentication = false;
+    extraConfig = ''
+      AllowTcpForwarding yes
+      X11Forwarding no
+      AllowAgentForwarding no
+      AllowStreamLocalForwarding no
+      AuthenticationMethods publickey
+    '';
   };
 
   # Select internationalisation properties.

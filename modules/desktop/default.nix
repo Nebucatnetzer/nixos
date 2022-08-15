@@ -58,6 +58,7 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
+    quickemu
     rofi
     source-code-pro
     terminator

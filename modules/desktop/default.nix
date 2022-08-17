@@ -51,6 +51,7 @@
     # what I consider to be system packages
     appimage-run
     brightnessctl
+    freac
     lm_sensors
     lxappearance
     gnome.nautilus

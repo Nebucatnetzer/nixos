@@ -1,6 +1,7 @@
 { inputs, hostname, ip, ... }:
 {
   imports = [
+    "${inputs.self}/modules/log-to-ram"
     "${inputs.self}/modules/ntp"
     "${inputs.self}/modules/syslog"
   ];

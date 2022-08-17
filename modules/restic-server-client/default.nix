@@ -19,18 +19,16 @@
     };
     script = ''
       ${pkgs.restic}/bin/restic backup \
-      --exclude-file=${inputs.self}/modules/restic/excludes.txt \
-      --tag home-dir \
-      /home/${custom.username} \
+        --exclude-file=${inputs.self}/modules/restic/excludes.txt \
+        --tag home-dir /home/${custom.username}
 
-      ${pkgs.restic}/bin/restic \
-      forget \
-        --tag home-dir
+      ${pkgs.restic}/bin/restic forget \
+        --tag home-dir \
         --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \
-        --keep-yearly 75 \
+        --keep-yearly 75
     '';
   };
 }

@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
-  fileSystems."/tmp/log " = {
+  fileSystems."/var/log" = {
+    device = "none";
     fsType = "tmpfs";
-    options = [ "size=512M" ];
+    options = [ "defaults" "size=512M" ];
   };
   services.journald.extraConfig = ''
     SystemMaxUse=300M

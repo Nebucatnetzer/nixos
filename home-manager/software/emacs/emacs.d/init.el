@@ -12,4 +12,9 @@
   (load custom-file))
 
 (require 'ob-tangle)
-(load-file "~/.emacs.d/loader.el")
+(defun config-path (config)
+  (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/")
+  (concat emacs-config-dir config))
+
+
+(load-file (config-path "loader.el"))

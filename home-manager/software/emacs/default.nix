@@ -101,7 +101,6 @@
     ];
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;
-  home.file.".emacs.d/loader.el".source = ./emacs.d/loader.el;
   home.file.".emacs.d/snippets".source = ./emacs.d/snippets;
   home.file.".Eshell/alias".source = ./Eshell/alias;
   services.emacs = {

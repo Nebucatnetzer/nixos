@@ -49,6 +49,7 @@
       epkgs.elpy
       epkgs.epl
       epkgs.evil
+      epkgs.evil-collection
       epkgs.evil-surround
       epkgs.eyebrowse
       epkgs.f

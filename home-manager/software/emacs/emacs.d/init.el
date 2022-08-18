@@ -17,4 +17,5 @@
   (concat emacs-config-dir config))
 
 
+(load-file (config-path "evil.el"))
 (load-file (config-path "loader.el"))

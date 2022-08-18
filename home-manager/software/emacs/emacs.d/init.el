@@ -12,9 +12,6 @@
   (load custom-file))
 
 (defun config-path (config)
-  (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/")
+  (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/lib/")
   (concat emacs-config-dir config))
 
-
-(load-file (config-path "evil.el"))
-(load-file (config-path "loader.el"))

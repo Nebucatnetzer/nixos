@@ -15,3 +15,4 @@
   (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/lib/")
   (concat emacs-config-dir config))
 
+(load-file "~/.nixos/home-manager/software/emacs/emacs.d/load_file.el")

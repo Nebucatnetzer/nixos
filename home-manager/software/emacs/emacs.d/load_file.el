@@ -8,6 +8,7 @@
 
 ;; note taking
 (load-file (config-path "deft.el"))
+(load-file (config-path "pdf_tools.el"))
 
 ;; org-mode
 (load-file (config-path "org_insert.el"))

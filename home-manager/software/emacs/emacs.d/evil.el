@@ -64,32 +64,6 @@
     (kbd "C-u")     'evil-scroll-up
     (kbd "C-w C-w") 'other-window)
 
-  ;; evilificate calendar in org-mode
-  (define-key org-read-date-minibuffer-local-map (kbd "M-h")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-l")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-k")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-j")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-H")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-backward-month 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-L")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-forward-month 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-K")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-backward-year 1))))
-  (define-key org-read-date-minibuffer-local-map (kbd "M-J")
-    (lambda ()
-      (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
-
   (defun az-dired-up-directory ()
     "Take dired up one directory, but behave like dired-find-alternate-file"
     (interactive)
@@ -147,4 +121,4 @@
   :after evil
   :ensure t
   :config
-  (evil-collection-init))
+  (evil-collection-init '(calendar calc ediff magit)))

@@ -11,7 +11,6 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(require 'ob-tangle)
 (defun config-path (config)
   (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/")
   (concat emacs-config-dir config))

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/modules/nix-alien"
-    "${inputs.self}/modules/pipewire"
   ];
   networking = {
     networkmanager.enable = true;

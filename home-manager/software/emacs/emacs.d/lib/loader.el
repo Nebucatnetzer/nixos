@@ -54,13 +54,6 @@
 ;; enable hippie expand on M-Space
 (global-set-key "\M- " 'hippie-expand)
 
-(defun switch-to-minibuffer () "Switch to minibuffer window."
-       (interactive) (if (active-minibuffer-window)
-                         (select-window
-                          (active-minibuffer-window)) (error "Minibuffer is not active")))
-
-(bind-key "M-m" 'switch-to-minibuffer)
-
 ;; file encodings
 (prefer-coding-system 'utf-8-unix)
 

@@ -21,3 +21,10 @@
 
 ;; kill frame
 (global-set-key (kbd "C-x K") 'delete-frame)
+
+(defun switch-to-minibuffer () "Switch to minibuffer window."
+       (interactive) (if (active-minibuffer-window)
+                         (select-window
+                          (active-minibuffer-window)) (error "Minibuffer is not active")))
+
+(bind-key "M-m" 'switch-to-minibuffer)

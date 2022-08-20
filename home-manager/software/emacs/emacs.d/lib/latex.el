@@ -21,3 +21,12 @@
             (output-dvi "xdvi")
             (output-pdf "PDF Tools")
             (output-html "xdg-open"))))))
+
+(when (boundp 'enable-auctex)
+  (use-package company-auctex
+    :if (is-linux-p)
+    :ensure t
+    :after auctex
+    :defer t
+    :init
+    (add-hook 'LaTeX-mode-hook 'company-auctex-init)))

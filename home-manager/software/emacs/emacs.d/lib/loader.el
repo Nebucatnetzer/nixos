@@ -26,67 +26,6 @@
 (use-package gnu-elpa-keyring-update
   :ensure t)
 
-(use-package company
-  :ensure t
-  :bind
-  ("C-<tab>" . company-complete)
-  :config
-  (setq company-idle-delay 0)
-  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-  (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
-  (setq company-dabbrev-downcase nil)
-  (add-hook 'after-init-hook 'global-company-mode)
-
-  ;; Add yasnippet support for all company backends
-  (defvar company-mode/enable-yas t
-    "Enable yasnippet for all backends.")
-  (defun company-mode/backend-with-yas (backend)
-    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-        backend
-      (append (if (consp backend) backend (list backend))
-              '(:with company-yasnippet))))
-  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
-
-(when (boundp 'enable-auctex)
-  (use-package company-auctex
-    :if (is-linux-p)
-    :ensure t
-    :after auctex
-    :defer t
-    :init
-    (add-hook 'LaTeX-mode-hook 'company-auctex-init)))
-
-(use-package company-web
-  :ensure t
-  :after web-mode
-  :commands company-web-html
-  :config
-  (require 'company-web-html)
-
-  ;; Tide completion support in web-mode with company-mode
-  (defun my-web-mode-hook ()
-    "Hook for `web-mode'."
-    (set (make-local-variable 'company-backends)
-         '(company-tide company-web-html company-yasnippet company-files)))
-
-  (add-hook 'web-mode-hook 'my-web-mode-hook)
-
-  ;; Enable JavaScript completion between <script>...</script> etc.
-  (defadvice company-tide (before web-mode-set-up-ac-sources activate)
-    "Set `tide-mode' based on current language before running company-tide."
-    (if (equal major-mode 'web-mode)
-        (let ((web-mode-cur-language
-               (web-mode-language-at-pos)))
-          (if (or (string= web-mode-cur-language "javascript")
-                  (string= web-mode-cur-language "jsx"))
-              (unless tide-mode (tide-mode))
-            (if tide-mode (tide-mode -1)))))))
-
-(use-package company-restclient
-  :ensure t
-  :after (restclient company)
-  :config (add-to-list 'company-backends 'company-restclient))
-
 ;; enable magit a great git porcelain.
 (use-package magit
   :ensure t

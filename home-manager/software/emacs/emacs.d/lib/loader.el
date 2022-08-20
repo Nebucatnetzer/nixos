@@ -26,13 +26,6 @@
 (use-package gnu-elpa-keyring-update
   :ensure t)
 
-;; enable powershell-mode
-(use-package powershell
-  :ensure t
-  :mode
-  (("\\.ps1\\'" . powershell-mode)
-   ("\\.psm1\\'" . powershell-mode)))
-
 (when (boundp 'enable-auctex)
   ;; auctex a greate plugin for latex writing
   (use-package latex

@@ -18,6 +18,7 @@
 (load-file (config-path "org_insert.el"))
 
 ;; programming
+(load-file (config-path "powershell.el"))
 (load-file (config-path "webmode.el"))
 
 ;; various

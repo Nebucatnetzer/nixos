@@ -15,3 +15,7 @@
     (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
     (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
     (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)))
+
+(when (boundp 'enable-pdf-tools)
+  ;; improve the resolution of doc-view
+  (setq doc-view-resolution 200))

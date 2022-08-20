@@ -41,10 +41,6 @@
   :config
   (direnv-mode))
 
-(when (boundp 'enable-pdf-tools)
-  ;; improve the resolution of doc-view
-  (setq doc-view-resolution 200))
-
 (when (boundp 'enable-org-bullets)
   ;; Enable pretty bullets in org mode
   (use-package org-superstar

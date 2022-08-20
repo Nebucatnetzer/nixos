@@ -19,7 +19,7 @@
 ;; various
 (load-file (config-path "counsel.el"))
 (load-file (config-path "manuals.el"))
-(load-file (config-path "Yasnippet.el"))
+(load-file (config-path "yasnippet.el"))
 
 
 (load-file (config-path "loader.el"))

@@ -17,8 +17,8 @@
 (load-file (config-path "org_insert.el"))
 
 ;; various
-(load-file (config-path "helpful.el"))
 (load-file (config-path "counsel.el"))
+(load-file (config-path "helpful.el"))
 (load-file (config-path "Yasnippet.el"))
 
 

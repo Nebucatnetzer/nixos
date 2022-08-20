@@ -6,6 +6,9 @@
 (load-file (config-path "theme.el"))
 (load-file (config-path "ui.el"))
 
+;; keybindings
+(load-file (config-path "hydra.el"))
+
 ;; note taking
 (load-file (config-path "deft.el"))
 (load-file (config-path "pdf_tools.el"))

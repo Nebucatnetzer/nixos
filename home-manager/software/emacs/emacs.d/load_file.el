@@ -21,6 +21,7 @@
 
 ;; programming
 (load-file (config-path "company.el"))
+(load-file (config-path "format_all.el"))
 (load-file (config-path "powershell.el"))
 (load-file (config-path "python.el"))
 (load-file (config-path "webmode.el"))

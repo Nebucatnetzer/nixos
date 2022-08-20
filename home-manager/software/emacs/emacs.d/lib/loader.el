@@ -14,10 +14,6 @@
   :config
   (which-key-mode))
 
-(use-package discover-my-major
-  :ensure t
-  :bind ("C-h C-m" . discover-my-major))
-
 (when (boundp 'enable-langtool)
   (use-package langtool
     :ensure t))

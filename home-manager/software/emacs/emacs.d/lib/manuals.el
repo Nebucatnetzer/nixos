@@ -1,3 +1,7 @@
+(use-package discover-my-major
+  :ensure t
+  :bind ("C-h C-m" . discover-my-major))
+
 (use-package helpful
   :ensure t
   :bind (("C-h f" . helpful-function)

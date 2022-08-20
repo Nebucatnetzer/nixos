@@ -11,6 +11,7 @@
 
 ;; note taking
 (load-file (config-path "deft.el"))
+(load-file (config-path "markdown.el"))
 (load-file (config-path "pdf_tools.el"))
 
 ;; org-mode

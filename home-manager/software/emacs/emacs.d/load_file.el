@@ -16,6 +16,9 @@
 ;; org-mode
 (load-file (config-path "org_insert.el"))
 
+;; programming
+(load-file (config-path "webmode.el"))
+
 ;; various
 (load-file (config-path "counsel.el"))
 (load-file (config-path "eyebrowse.el"))

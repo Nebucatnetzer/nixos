@@ -9,8 +9,9 @@
 ;; keybindings
 (load-file (config-path "hydra.el"))
 
-;; note taking
+;; note taking and writing
 (load-file (config-path "deft.el"))
+(load-file (config-path "latex.el"))
 (load-file (config-path "markdown.el"))
 (load-file (config-path "pdf_tools.el"))
 

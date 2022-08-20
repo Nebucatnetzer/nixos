@@ -305,3 +305,21 @@ T - tag prefix
   ("q" nil "quit")
   ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
   )
+
+(use-package general
+  :ensure t
+  :config
+  (general-def
+    :states '(normal visual insert emacs)
+    :prefix "SPC"
+    :non-normal-prefix "M-SPC"
+    "b" '(hydra-buffer/body t :which-key "Buffer")
+    "w" '(hydra-window-operations/body t :which-key "Windows")
+    "r" '(hydra-restclient/body t :which-key "Restclient")
+    "f" '(hydra-flycheck/body t :which-key "Flycheck")
+    "s" '(hydra-spellchecking/body t :which-key "Spell Checking")
+    "e" '(hydra-ediff/body t :which-key "Diffing")
+    "i" '(hydra-yasnippet/body t :which-key "Yasnippets")
+    "p" '(hydra-pdftools/body t :which-key "PDF Tools")
+    "y" '(hydra-elpy/body t :which-key "Elpy")
+    "a" '(hydra-apropos/body t :which-key "Apropos Commands")))

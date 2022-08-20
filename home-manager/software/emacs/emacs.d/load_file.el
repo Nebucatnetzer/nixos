@@ -8,6 +8,7 @@
 
 ;; keybindings
 (load-file (config-path "hydra.el"))
+(load-file (config-path "keybindings.el"))
 
 ;; note taking and writing
 (load-file (config-path "deft.el"))

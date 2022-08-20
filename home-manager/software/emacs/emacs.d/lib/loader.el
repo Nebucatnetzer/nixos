@@ -37,9 +37,6 @@
   :defer t
   :ensure t)
 
-(use-package flycheck
-  :ensure t)
-
 (use-package highlight-indent-guides
   :ensure t
   :config
@@ -890,14 +887,6 @@
 
                                         ; Calender should start on Monday
 (setq calendar-week-start-day 1)
-
-;; ispell settings
-(setenv "DICTIONARY" "en_US")
-(setq ispell-program-name "hunspell")
-(setq ispell-local-dictionary "en_US")
-(setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
-        ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))
 
 ;; insert only one space after a period
 (setq sentence-end-double-space nil)

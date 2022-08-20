@@ -53,10 +53,13 @@
          :map lisp-interaction-mode-map  ; Scratch buffer
          ("M-?" . helpful-at-point)))
 
+;; Amx, an alternative interface for M-x in Emacs
+;; https://github.com/DarwinAwardWinner/amx
 (use-package amx
   :ensure t
   :config
   (amx-mode t))
+
 (use-package counsel
   :ensure t
   :config

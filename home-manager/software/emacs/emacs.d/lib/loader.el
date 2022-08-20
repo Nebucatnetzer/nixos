@@ -33,12 +33,6 @@
   :bind
   ("<f10>" . magit-status))
 
-;; change the colours of parenthesis the further out they are
-(use-package rainbow-delimiters
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
 (use-package bug-hunter
   :defer t
   :ensure t)

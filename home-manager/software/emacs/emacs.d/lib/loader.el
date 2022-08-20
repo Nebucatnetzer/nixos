@@ -7,19 +7,6 @@
       :ensure t
       :demand t)))
 
-;; enable yasnippet
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1))
-
-;; enable yasnippet
-(use-package yasnippet-snippets
-  :ensure t
-  :after yasnippet
-  :config
-  (yas-global-mode 1))
-
 ;; which key is a package to show which keys can be pressed
 (use-package which-key
   :ensure t

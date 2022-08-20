@@ -20,6 +20,7 @@
 
 ;; programming
 (load-file (config-path "powershell.el"))
+(load-file (config-path "python.el"))
 (load-file (config-path "webmode.el"))
 (load-file (config-path "yaml.el"))
 

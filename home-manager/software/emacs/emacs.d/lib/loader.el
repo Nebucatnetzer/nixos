@@ -26,14 +26,6 @@
 (use-package gnu-elpa-keyring-update
   :ensure t)
 
-(use-package yaml-mode
-  :defer t
-  :mode
-  (("\\.yml\\'" . yaml-mode)
-   ("\\.yaml\\'" . yaml-mode))
-  :interpreter ("yml" . yml-mode)
-  :ensure t)
-
 (use-package python-mode
   :ensure t
   :defer t

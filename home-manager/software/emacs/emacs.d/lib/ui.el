@@ -149,3 +149,9 @@
 (add-hook 'prog-mode-hook 'generic-setup)
 (add-hook 'text-mode-hook 'generic-setup)
 ;; )
+
+;; Matches parentheses and such in every mode
+(show-paren-mode 1)
+
+;; pair parentheses
+(electric-pair-mode 1)

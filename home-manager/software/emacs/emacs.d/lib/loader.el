@@ -39,12 +39,6 @@
 ;; insert only one space after a period
 (setq sentence-end-double-space nil)
 
-;; Matches parentheses and such in every mode
-(show-paren-mode 1)
-
-;; pair parentheses
-(electric-pair-mode 1)
-
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (setq ad-redefinition-action 'accept)

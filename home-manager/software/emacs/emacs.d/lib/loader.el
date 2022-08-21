@@ -1,6 +1,3 @@
-(use-package gnu-elpa-keyring-update
-  :ensure t)
-
 (use-package bug-hunter
   :defer t
   :ensure t)

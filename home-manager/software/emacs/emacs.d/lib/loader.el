@@ -22,9 +22,6 @@
 ;; initial buffers should use text-mode
 (setq-default major-mode 'text-mode)
 
-;; Calender should start on Monday
-(setq calendar-week-start-day 1)
-
 ;; insert only one space after a period
 (setq sentence-end-double-space nil)
 

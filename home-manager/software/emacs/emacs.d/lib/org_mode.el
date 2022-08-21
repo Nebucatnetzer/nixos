@@ -461,3 +461,6 @@
   (when (is-windows-p)
     (global-set-key (kbd "C-c p")
                     (lambda () (interactive) (find-file "~/nextcloud/03_documents/org/agenda/work/work.org")))))
+
+;; Calender should start on Monday
+(setq calendar-week-start-day 1)

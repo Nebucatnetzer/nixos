@@ -1,7 +1,3 @@
-(when (boundp 'enable-langtool)
-  (use-package langtool
-    :ensure t))
-
 (use-package move-text
   :ensure t
   :config

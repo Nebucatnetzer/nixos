@@ -11,13 +11,6 @@
   (use-package langtool
     :ensure t))
 
-;; Amx, an alternative interface for M-x in Emacs
-;; https://github.com/DarwinAwardWinner/amx
-(use-package amx
-  :ensure t
-  :config
-  (amx-mode t))
-
 (use-package move-text
   :ensure t
   :config

@@ -1,3 +1,10 @@
+;; Amx, an alternative interface for M-x in Emacs
+;; https://github.com/DarwinAwardWinner/amx
+(use-package amx
+  :ensure t
+  :config
+  (amx-mode t))
+
 ;; smooth scrolling
 (use-package smooth-scrolling
   :ensure t

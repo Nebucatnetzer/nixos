@@ -35,6 +35,7 @@
 (load-file (config-path "eyebrowse.el"))
 (load-file (config-path "manuals.el"))
 (load-file (config-path "mu4e.el"))
+(load-file (config-path "treemacs.el"))
 (load-file (config-path "utils.el"))
 (load-file (config-path "window_split.el"))
 (load-file (config-path "yasnippet.el"))

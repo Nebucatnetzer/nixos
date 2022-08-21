@@ -94,3 +94,33 @@
                               (display-line-numbers-mode))))
 
 (setq inhibit-compacting-font-caches t)
+
+;; hide temporary buffers (
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-filter-by-name "^[^*]")))
+
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+               ("Org" ;; all org-related buffers
+                (mode . org-mode))
+               ("Programming" ;; prog stuff not already in MyProjectX
+                (or
+                 (mode . python-mode)
+                 (mode . web-mode)
+                 (mode . php-mode)
+                 (mode . csharp-mode)
+                 (mode . javascript-mode)
+                 (mode . sql-mode)
+                 (mode . powershell-mode)
+                 (mode . nix-mode)
+                 (mode . yaml-mode)
+                 (mode . emacs-lisp-mode)))
+               ;; etc
+               ("Dired"
+                (mode . dired-mode))))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
+;; )

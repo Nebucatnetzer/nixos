@@ -99,34 +99,6 @@
 
 (setq tramp-default-method "ssh")
 
-(when (boundp 'enable-auctex)
-  (defun LaTeX-collapse-table ()
-    (interactive)
-    (save-excursion
-      (LaTeX-mark-environment)
-      (while (re-search-forward "[[:space:]]+\\(&\\|\\\\\\\\\\)" (region-end) t)
-        (replace-match " \\1"))))
-
-  (defun LaTeX-align-environment (arg)
-    (interactive "P")
-    (if arg
-        (LaTeX-collapse-table)
-      (save-excursion
-        (LaTeX-mark-environment)
-        (align (region-beginning) (region-end))))))
-
-(when (boundp 'enable-auctex)
-  (defcustom LaTeX-inhibited-auto-fill-environments
-    '("tabular" "tikzpicture") "For which LaTeX environments not to run auto-fill.")
-
-  (defun LaTeX-limited-auto-fill ()
-    (let ((environment (LaTeX-current-environment)))
-      (when (not (member environment LaTeX-inhibited-auto-fill-environments))
-        (do-auto-fill)))))
-
-(when (boundp 'enable-auctex)
-  (global-set-key (kbd "C-c f") 'LaTeX-align-environment)
-  (setq auto-fill-function 'LaTeX-limited-auto-fill))
 
 (put 'dired-find-alternate-file 'disabled nil)
 

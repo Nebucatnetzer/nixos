@@ -1,7 +1,3 @@
-(use-package direnv
-  :config
-  (direnv-mode))
-
 ;; My details
 
 (setq user-full-name "Andreas Zweili")

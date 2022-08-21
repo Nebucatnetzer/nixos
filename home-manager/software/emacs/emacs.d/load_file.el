@@ -26,6 +26,7 @@
 ;; programming
 (load-file (config-path "bug_hunter.el"))
 (load-file (config-path "company.el"))
+(load-file (config-path "direnv.el"))
 (load-file (config-path "format_all.el"))
 (load-file (config-path "magit.el"))
 (load-file (config-path "powershell.el"))

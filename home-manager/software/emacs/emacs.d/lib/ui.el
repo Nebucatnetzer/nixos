@@ -5,20 +5,6 @@
   :config
   (amx-mode t))
 
-;; smooth scrolling
-(use-package smooth-scrolling
-  :ensure t
-  :config
-  (setq scroll-margin 1
-        scroll-conservatively 9999
-        scroll-step 1))
-
-;; change the colours of parenthesis the further out they are
-(use-package rainbow-delimiters
-  :ensure t
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
 (use-package highlight-indent-guides
   :ensure t
   :config
@@ -30,6 +16,28 @@
   (set-face-foreground 'highlight-indent-guides-character-face "gray")
   (add-hook 'text-mode-hook 'highlight-indent-guides-mode)
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
+;; change the colours of parenthesis the further out they are
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+;; smooth scrolling
+(use-package smooth-scrolling
+  :ensure t
+  :config
+  (setq scroll-margin 1
+        scroll-conservatively 9999
+        scroll-step 1))
+
+;; highlight bad whitespace
+(use-package whitespace
+  :ensure t
+  :config
+  (setq whitespace-style '(face lines-tail tabs trailing))
+  (set-face-attribute 'whitespace-line nil :foreground "#af005f")
+  (global-whitespace-mode t))
 
 ;; disable menu and toolbar
 (tool-bar-mode -1)
@@ -57,14 +65,6 @@
 ;; just create buffers don't ask
 (setq confirm-nonexistent-file-or-buffer nil)
 (setq ido-create-new-buffer 'always)
-
-;; highlight bad whitespace
-(use-package whitespace
-  :ensure t
-  :config
-  (setq whitespace-style '(face lines-tail tabs trailing))
-  (set-face-attribute 'whitespace-line nil :foreground "#af005f")
-  (global-whitespace-mode t))
 
 (when (boundp 'enable-font)
   (set-face-attribute 'default nil

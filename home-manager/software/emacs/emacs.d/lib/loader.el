@@ -65,13 +65,13 @@
 ;; initial buffers should use text-mode
 (setq-default major-mode 'text-mode)
 
-                                        ; Calender should start on Monday
+;; Calender should start on Monday
 (setq calendar-week-start-day 1)
 
 ;; insert only one space after a period
 (setq sentence-end-double-space nil)
 
-                                        ; Matches parentheses and such in every mode
+;; Matches parentheses and such in every mode
 (show-paren-mode 1)
 
 ;; pair parentheses
@@ -92,35 +92,6 @@
 (when (boundp 'enable-emojis)
   (when (is-linux-p)
     (set-fontset-font t nil "Symbola" nil 'prepend)))
-
-(defun kill-other-buffers ()
-  "Kill all other buffers."
-  (interactive)
-  (mapc 'kill-buffer
-        (delq
-         (current-buffer)
-         (buffer-list))))
-
-(defun insert-date ()
-  "Insert the current date."
-  (interactive)
-  (let ((format "%d.%m.%Y")
-        (system-time-locale "de_CH"))
-    (insert (format-time-string format))))
-
-(defun insert-iso-date ()
-  "Insert the current date in the ISO format."
-  (interactive)
-  (let ((format "%Y-%m-%d")
-        (system-time-locale "de_CH"))
-    (insert (format-time-string format))))
-
-(defun insert-full-date ()
-  "Insert the current date, write out the day and month name."
-  (interactive)
-  (let ((format "%A, %d. %B %Y")
-        (system-time-locale "de_CH"))
-    (insert (format-time-string format))))
 
 (defun buffer-too-big-p ()
   (or (> (buffer-size) (* 5000 64))

@@ -128,3 +128,17 @@
 (when (boundp 'enable-emojis)
   (when (is-linux-p)
     (set-fontset-font t nil "Symbola" nil 'prepend)))
+
+(setq column-number-mode 1)
+
+;; improve performance with large files (
+(defun buffer-too-big-p ()
+  (or (> (buffer-size) (* 5000 64))
+      (> (line-number-at-pos (point-max)) 5000)))
+(defun generic-setup ()
+  ;; turn off `linum-mode' when there are more than 5000 lines
+  (if (buffer-too-big-p) (display-line-numbers-mode -1)))
+
+(add-hook 'prog-mode-hook 'generic-setup)
+(add-hook 'text-mode-hook 'generic-setup)
+;; )

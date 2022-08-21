@@ -87,18 +87,6 @@
 
 (setq-default fill-column 79)
 
-(setq column-number-mode 1)
-
-(defun buffer-too-big-p ()
-  (or (> (buffer-size) (* 5000 64))
-      (> (line-number-at-pos (point-max)) 5000)))
-(defun generic-setup ()
-  ;; turn off `linum-mode' when there are more than 5000 lines
-  (if (buffer-too-big-p) (display-line-numbers-mode -1)))
-
-(add-hook 'prog-mode-hook 'generic-setup)
-(add-hook 'text-mode-hook 'generic-setup)
-
 (setq history-delete-duplicates t)
 
 (xterm-mouse-mode 1)

@@ -1,8 +1,3 @@
-(use-package move-text
-  :ensure t
-  :config
-  (move-text-default-bindings))
-
 (use-package gnu-elpa-keyring-update
   :ensure t)
 

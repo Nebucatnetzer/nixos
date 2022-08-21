@@ -15,6 +15,7 @@
 (load-file (config-path "latex.el"))
 (load-file (config-path "langtool.el"))
 (load-file (config-path "markdown.el"))
+(load-file (config-path "move_text.el"))
 (load-file (config-path "org_mode.el"))
 (load-file (config-path "pdf_tools.el"))
 (load-file (config-path "spellcheck.el"))

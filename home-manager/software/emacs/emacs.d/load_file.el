@@ -31,6 +31,7 @@
 
 ;; various
 (load-file (config-path "counsel.el"))
+(load-file (config-path "dired.el"))
 (load-file (config-path "eyebrowse.el"))
 (load-file (config-path "manuals.el"))
 (load-file (config-path "mu4e.el"))

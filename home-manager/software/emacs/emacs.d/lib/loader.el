@@ -89,10 +89,6 @@
 
 (setq column-number-mode 1)
 
-(when (boundp 'enable-emojis)
-  (when (is-linux-p)
-    (set-fontset-font t nil "Symbola" nil 'prepend)))
-
 (defun buffer-too-big-p ()
   (or (> (buffer-size) (* 5000 64))
       (> (line-number-at-pos (point-max)) 5000)))

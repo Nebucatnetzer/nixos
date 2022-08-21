@@ -124,3 +124,7 @@
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
 ;; )
+
+(when (boundp 'enable-emojis)
+  (when (is-linux-p)
+    (set-fontset-font t nil "Symbola" nil 'prepend)))

@@ -1,13 +1,6 @@
 (use-package gnu-elpa-keyring-update
   :ensure t)
 
-;; enable magit a great git porcelain.
-(use-package magit
-  :ensure t
-  :commands magit-status
-  :bind
-  ("<f10>" . magit-status))
-
 (use-package bug-hunter
   :defer t
   :ensure t)

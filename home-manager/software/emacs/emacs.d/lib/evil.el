@@ -121,4 +121,4 @@
   :after evil
   :ensure t
   :config
-  (evil-collection-init '(calendar calc ediff magit)))
+  (evil-collection-init '(calendar calc dired ediff magit)))

@@ -78,12 +78,15 @@
 ;; basic settings
 (load-file "~/.emacs.d/variables.el")
 (load-file (config-path "detect_os.el"))
-(load-file (config-path "evil.el"))
+(load-file (config-path "dired.el"))
 (load-file (config-path "packages.el"))
 (load-file (config-path "theme.el"))
 (load-file (config-path "ui.el"))
+(load-file (config-path "utils.el"))
+(load-file (config-path "window_split.el"))
 
 ;; keybindings
+(load-file (config-path "evil.el"))
 (load-file (config-path "hydra.el"))
 (load-file (config-path "keybindings.el"))
 
@@ -109,14 +112,11 @@
 (load-file (config-path "webmode.el"))
 (load-file (config-path "yaml.el"))
 
-;; various
+;; various third party
 (load-file (config-path "counsel.el"))
-(load-file (config-path "dired.el"))
 (load-file (config-path "eyebrowse.el"))
 (load-file (config-path "keyring_update.el"))
 (load-file (config-path "manuals.el"))
 (load-file (config-path "mu4e.el"))
 (load-file (config-path "treemacs.el"))
-(load-file (config-path "utils.el"))
-(load-file (config-path "window_split.el"))
 (load-file (config-path "yasnippet.el"))

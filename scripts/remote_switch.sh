@@ -2,13 +2,13 @@
 
 hosts=(
  "nixos-management"
- "git"
  "mail"
  "nextcloud"
  "plex"
  "raspi-test"
  "restic-server"
  "ttrss"
+ "git"
  "pihole"
 )
 

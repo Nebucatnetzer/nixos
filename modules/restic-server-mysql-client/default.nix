@@ -20,16 +20,16 @@
     script = ''
       ${pkgs.restic}/bin/restic backup \
         --exclude-file=${inputs.self}/modules/restic/excludes.txt \
-        --tag home-dir /home/${custom.username}
+        --tag home-dir-${config.networking.hostName} /home/${custom.username}
 
       ${pkgs.mariadb}/bin/mysqldump --single-transaction --all-databases | \
       ${pkgs.restic}/bin/restic backup \
-        --tag mariadb \
+        --tag mariadb-${config.networking.hostName} \
         --stdin \
         --stdin-filename all_databases.sql
 
       ${pkgs.restic}/bin/restic forget \
-        --tag home-dir \
+        --tag home-dir-${config.networking.hostName} \
         --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \
@@ -37,7 +37,7 @@
         --keep-yearly 75
 
       ${pkgs.restic}/bin/restic forget \
-        --tag mariadb \
+        --tag mariadb-${config.networking.hostName} \
         --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \

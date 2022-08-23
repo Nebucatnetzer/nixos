@@ -43,34 +43,31 @@ in
         --keep-yearly 75 \
     '';
   };
+
   environment.shellAliases = {
     restic-list = ''
       restic \
         --repo ${repository} \
         --password-file ${password_file} \
-        snapshots --host ${config.networking.hostName}
-    '';
+        snapshots --host ${config.networking.hostName}'';
     restic-unlock = ''
       restic \
         --repo ${repository} \
         --password-file ${password_file} \
-        unlock
-    '';
+        unlock'';
     restic-mount = ''
       mkdir -p /tmp/restic && \
       restic \
         --repo ${repository} \
         --password-file ${password_file} \
         --host ${config.networking.hostName} \
-        mount /tmp/restic
-    '';
+        mount /tmp/restic'';
     restic-mount-all = ''
       mkdir -p /tmp/restic && \
       restic \
         --repo ${repository} \
         --password-file ${password_file} \
-        mount /tmp/restic
-    '';
+        mount /tmp/restic'';
     restic-forget = ''
       restic \
         --repo ${repository} \

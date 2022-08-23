@@ -64,12 +64,14 @@ in
     };
     script = ''
       ${pkgs.restic}/bin/restic \
-      --exclude-file=${inputs.self}/modules/restic/excludes.txt \
-      backup /home/${custom.username} \
+        --exclude-file=${inputs.self}/modules/restic/excludes.txt \
+        --tag home-dir \
+        backup /home/${custom.username}
 
       ${pkgs.restic}/bin/restic \
       forget \
         --host ${config.networking.hostName} \
+        --tag home-dir \
         --keep-hourly 25 \
         --keep-daily 7 \
         --keep-weekly 5 \

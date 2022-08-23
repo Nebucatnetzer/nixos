@@ -3,7 +3,7 @@ let
   password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
   repository = "rest:http://10.7.89.30:8000";
 
-  restic-mount = pkgs.writeScriptBin "restic-mount" ''
+  restic-mount = pkgs.writeShellScriptBin "restic-mount" ''
     mkdir -p /tmp/restic &&
     ${pkgs.restic}/bin/restic \
       --repo ${repository} \
@@ -11,7 +11,7 @@ let
       --host ${config.networking.hostName} \
       mount /tmp/restic'';
 
-  restic-mount-all = pkgs.writeScriptBin "restic-mount-all" ''
+  restic-mount-all = pkgs.writeShellScriptBin "restic-mount-all" ''
     mkdir -p /tmp/restic &&
     ${pkgs.restic}/bin/restic \
       --repo ${repository} \
@@ -22,7 +22,7 @@ let
   infomaniak-repo = "swift:default:/Backup 1/restic/";
   infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";
 
-  restic-infomaniak-list = pkgs.writeScriptBin "restic-infomaniak-list" ''
+  restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
     export RESTIC_REPOSITORY="${infomaniak-repo}"
     export OS_AUTH_URL="${infomaniak-auth-url}"
@@ -32,7 +32,7 @@ let
 
     ${pkgs.restic}/bin/restic --password-file ${password_file} list snapshots'';
 
-  restic-infomaniak-mount = pkgs.writeScriptBin "restic-infomaniak-mount" ''
+  restic-infomaniak-mount = pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
     export RESTIC_REPOSITORY="${infomaniak-repo}"
     export OS_AUTH_URL="${infomaniak-auth-url}"

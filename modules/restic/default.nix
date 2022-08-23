@@ -40,7 +40,7 @@ let
 
     mkdir -p /tmp/restic &&
 
-    ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/swissbackup'';
+    ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
 in
 {
   systemd.timers."restic-backups-${custom.username}" = {

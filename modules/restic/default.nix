@@ -30,7 +30,7 @@ let
 
     mkdir -p /tmp/restic &&
 
-    ${pkgs.restic}/bin/restic --password-file ${password_file} list snapshots'';
+    ${pkgs.restic}/bin/restic --password-file ${password_file} snapshots'';
 
   restic-infomaniak-mount = pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)

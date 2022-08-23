@@ -71,5 +71,10 @@ in
         --password-file ${password_file} \
         mount /tmp/restic
     '';
+    restic-forget = ''
+      restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        forget $1'';
   };
 }

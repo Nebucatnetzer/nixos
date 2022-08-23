@@ -19,7 +19,7 @@ let
       mount /tmp/restic'';
 
   infomaniak-env = "/home/${custom.username}/.nixos/secrets/passwords/infomaniak-env";
-  infomaniak-repo = "swift:default:/Backup 1/restic/";
+  infomaniak-repo = "swift:default:/";
   infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";
 
   restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''

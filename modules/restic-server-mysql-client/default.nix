@@ -1,5 +1,8 @@
 { config, inputs, custom, pkgs, time, ... }:
 {
+  imports = [
+    "${inputs.self}/modules/telegram-notifications"
+  ];
   systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-backups-${custom.username}.service" ];
@@ -17,6 +20,7 @@
       RESTIC_PASSWORD_FILE = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
       RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
     };
+    onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
         --exclude-file=${inputs.self}/modules/restic/excludes.txt \

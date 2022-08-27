@@ -58,6 +58,7 @@
     networkmanager-openvpn
     nitrogen
     pavucontrol
+    plexamp
     quickemu
     rofi
     source-code-pro

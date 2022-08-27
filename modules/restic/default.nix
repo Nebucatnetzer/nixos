@@ -43,6 +43,10 @@ let
     ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
 in
 {
+  imports = [
+    "${inputs.self}/modules/telegram-notifications"
+  ];
+
   systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-backups-${custom.username}.service" ];
@@ -62,6 +66,7 @@ in
       RESTIC_PASSWORD_FILE = password_file;
       RESTIC_REPOSITORY = repository;
     };
+    onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
         --exclude-file=${inputs.self}/modules/restic/excludes.txt \

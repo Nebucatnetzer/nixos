@@ -2,6 +2,7 @@
 {
   imports = [
     "${inputs.self}/modules/nix-alien"
+    "${inputs.self}/modules/libimobiledevice"
   ];
   networking = {
     networkmanager.enable = true;

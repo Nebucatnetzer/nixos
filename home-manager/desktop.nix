@@ -13,7 +13,6 @@
     "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/grobi"
     "${inputs.self}/home-manager/software/keeweb"
-    "${inputs.self}/home-manager/software/libimobiledevice"
     "${inputs.self}/home-manager/software/mime-apps"
     "${inputs.self}/home-manager/software/mpv"
     "${inputs.self}/home-manager/software/nitrogen"

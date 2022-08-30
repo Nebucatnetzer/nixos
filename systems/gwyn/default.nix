@@ -6,6 +6,7 @@
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     "${inputs.self}/hardware/bluetooth"
     "${inputs.self}/hardware/nvidia"
+    "${inputs.self}/hardware/dvd"
     "${inputs.self}/modules/data-share"
     "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/docker"

@@ -12,6 +12,7 @@
         markdown-hide-urls t
         markdown-fontify-code-blocks-natively t
         markdown-wiki-link-search-type '(project)
+        markdown-unordered-list-item-prefix "    - "
         markdown-link-space-sub-char " ")
   :config
   (defun insert-file-name-as-wikilink (filename &optional args)

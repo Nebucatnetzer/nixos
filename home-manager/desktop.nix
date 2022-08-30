@@ -36,6 +36,7 @@
     meld
     remmina
     shotwell
+    sound-juicer
     vscode
     yt-dlp
   ];

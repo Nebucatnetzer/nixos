@@ -8,6 +8,10 @@
         User nixos
         LogLevel QUIET
 
+      Host sensors.2li.local
+        User ubuntu
+        IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
+
       Host *.2li.local
         User andreas
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key

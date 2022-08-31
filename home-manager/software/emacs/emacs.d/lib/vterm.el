@@ -1,2 +1,4 @@
 (use-package vterm
-  :ensure t)
+  :ensure t
+  :config
+  (evil-set-initial-state 'vterm-mode 'insert))

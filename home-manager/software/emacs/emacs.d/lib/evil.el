@@ -45,20 +45,6 @@
     (kbd "C-u")     'evil-scroll-up
     (kbd "C-w C-w") 'other-window)
 
-  ;; vim keybindings for mu4e
-  (evil-add-hjkl-bindings mu4e-headers-mode-map 'emacs
-    (kbd "/")       'evil-search-forward
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
-
-  (evil-add-hjkl-bindings mu4e-view-mode-map 'emacs
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
-
   (defun az-dired-up-directory ()
     "Take dired up one directory, but behave like dired-find-alternate-file"
     (interactive)

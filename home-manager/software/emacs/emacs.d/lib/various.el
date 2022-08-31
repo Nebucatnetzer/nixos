@@ -45,9 +45,6 @@
 ;; enable mouse support in the terminal
 (xterm-mouse-mode 1)
 
-;; Disable electric indents
-(add-hook 'text-mode-hook (lambda () (electric-indent-local-mode -1)))
-
 ;; Make the tab completion behave like in Bash.
 (add-hook 'eshell-mode-hook
           (lambda ()

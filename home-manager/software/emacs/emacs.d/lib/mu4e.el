@@ -74,6 +74,5 @@
                 "My settings for message composition."
                 (setq mu4e-compose-format-flowed t)
                 (use-hard-newlines -1)
-                (electric-indent-local-mode -1)
                 (turn-off-auto-fill)
                 (flyspell-mode)))))

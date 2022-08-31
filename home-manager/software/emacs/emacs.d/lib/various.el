@@ -4,7 +4,6 @@
 ;; Spaces instead of TABs
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
 
 ;; Enable hippie expand on M-Space. It helps with path completion and more
 (global-set-key "\M- " 'hippie-expand)

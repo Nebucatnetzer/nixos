@@ -415,11 +415,11 @@
 ;; keymap for my personal.org file
 (when (boundp 'enable-personal-agenda)
   (when (is-linux-p)
-    (global-set-key (kbd "C-c p")
+    (global-set-key (kbd "C-c C-p")
                     (lambda () (interactive) (find-file "~/nextcloud/12_tasks/personal.org")))))
 (when (boundp 'enable-work-agenda)
   (when (is-windows-p)
-    (global-set-key (kbd "C-c p")
+    (global-set-key (kbd "C-c C-p")
                     (lambda () (interactive) (find-file "~/nextcloud/03_documents/org/agenda/work/work.org")))))
 
 ;; Calender should start on Monday

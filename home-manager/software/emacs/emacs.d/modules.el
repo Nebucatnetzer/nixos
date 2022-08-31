@@ -31,6 +31,7 @@
 (load-file (modules-path "format_all.el"))
 (load-file (modules-path "magit.el"))
 (load-file (modules-path "powershell.el"))
+(load-file (modules-path "projectile.el"))
 (load-file (modules-path "python.el"))
 (load-file (modules-path "webmode.el"))
 (load-file (modules-path "yaml.el"))

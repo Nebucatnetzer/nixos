@@ -7,7 +7,6 @@
   (setq evil-want-keybinding nil) ;; required by evil-collection
   :config
   ;; Start these modes in emacs mode
-  (add-to-list 'evil-emacs-state-modes 'deft-mode)
   (add-to-list 'evil-emacs-state-modes 'neotree-mode)
   (add-to-list 'evil-emacs-state-modes 'helpful-mode)
   (setq global-evil-search-highlight-persist t)

@@ -3,6 +3,7 @@
   :bind ("<f5>" . deft)
   :commands (deft)
   :config
+  (add-to-list 'evil-emacs-state-modes 'deft-mode)
   (setq deft-extensions '("md")
         deft-default-extension "md"
         deft-markdown-mode-title-level 1

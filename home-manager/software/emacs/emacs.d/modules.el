@@ -4,6 +4,7 @@
 (load-file (modules-path "theme.el"))
 (load-file (modules-path "ui.el"))
 (load-file (modules-path "utils.el"))
+(load-file (modules-path "various.el"))
 (load-file (modules-path "window_split.el"))
 
 ;; keybindings

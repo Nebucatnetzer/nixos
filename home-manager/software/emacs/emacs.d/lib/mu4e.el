@@ -2,6 +2,10 @@
   (use-package mu4e
     :if (is-linux-p)
     :config
+
+    ;; Start mu4e-compose-mode in insert mode
+    (evil-set-initial-state 'mu4e-compose-mode 'insert)
+
     (require 'smtpmail)
 
     ;; use msmtp

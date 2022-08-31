@@ -12,9 +12,6 @@
   (add-to-list 'evil-emacs-state-modes 'helpful-mode)
   (setq global-evil-search-highlight-persist t)
 
-  ;; Start these modes in insert mode
-  (evil-set-initial-state 'mu4e-compose-mode 'insert)
-
   ;; Add vim keybindings to the bookmark menu
   (evil-add-hjkl-bindings bookmark-bmenu-mode-map 'emacs
     ;; (kbd "/")       'evil-search-forward

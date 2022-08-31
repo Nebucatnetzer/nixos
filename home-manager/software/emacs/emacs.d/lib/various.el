@@ -45,6 +45,5 @@
 ;; enable mouse support in the terminal
 (xterm-mouse-mode 1)
 
-
 ;; For better performance use "ssh" instead of "scp"
 (setq tramp-default-method "ssh")

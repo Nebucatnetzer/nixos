@@ -104,7 +104,6 @@
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;
   home.file.".emacs.d/snippets".source = ./emacs.d/snippets;
-  home.file.".Eshell/alias".source = ./Eshell/alias;
   services.emacs = {
     enable = true;
     client.enable = true;

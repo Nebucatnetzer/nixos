@@ -17,7 +17,6 @@
   (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/lib/")
   (concat emacs-config-dir config))
 
-;; load specific config files
-;; basic settings
+;; load config files
 (load-file "~/.emacs.d/variables.el")
 (load-file "~/.nixos/home-manager/software/emacs/emacs.d/modules.el")

@@ -1,3 +1,4 @@
+;; basic settings
 (load-file (modules-path "detect_os.el"))
 (load-file (modules-path "dired.el"))
 (load-file (modules-path "packages.el"))

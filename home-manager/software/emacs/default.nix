@@ -92,6 +92,7 @@
       epkgs.treemacs-evil
       epkgs.use-package
       epkgs.use-package-ensure-system-package
+      epkgs.vterm
       epkgs.web-completion-data
       epkgs.web-mode
       epkgs.wgrep

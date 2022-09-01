@@ -15,9 +15,6 @@
             languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
     '';
     extraPackages = epkgs: with pkgs;[
-      hunspell
-      hunspellDicts.en_GB-ise
-      hunspellDicts.de_CH
       mu
       languagetool
       rufo # formatter for Ruby

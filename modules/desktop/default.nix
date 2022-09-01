@@ -1,6 +1,7 @@
 { inputs, custom, pkgs, ... }:
 {
   imports = [
+    "${inputs.self}/modules/hunspell"
     "${inputs.self}/modules/nix-alien"
     "${inputs.self}/modules/libimobiledevice"
   ];

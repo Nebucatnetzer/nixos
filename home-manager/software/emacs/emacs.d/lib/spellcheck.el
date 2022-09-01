@@ -26,9 +26,9 @@
   ("v" flycheck-verify-setup))
 
 ;; ispell settings
-(setenv "DICTIONARY" "en_US")
+(setenv "DICTIONARY" "en_GB")
 (setq ispell-program-name "hunspell")
-(setq ispell-local-dictionary "en_US")
+(setq ispell-local-dictionary "en_GB")
 (setq ispell-local-dictionary-alist
-      '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)
+      '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
         ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))

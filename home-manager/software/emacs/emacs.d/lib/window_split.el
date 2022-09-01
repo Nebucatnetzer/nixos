@@ -26,15 +26,15 @@
 
 (define-key ctl-x-map "4" 'toggle-window-split)
 
-(defun nebucatnetzer:split-window-below-and-move-cursor ()
+(defun az-split-window-below-and-move-cursor ()
   (interactive)
   (split-window-below)
   (other-window 1))
 
-(defun nebucatnetzer:split-window-right-and-move-cursor ()
+(defun az-split-window-right-and-move-cursor ()
   (interactive)
   (split-window-right)
   (other-window 1))
 
-(global-set-key (kbd "C-x 2") 'nebucatnetzer:split-window-below-and-move-cursor)
-(global-set-key (kbd "C-x 3") 'nebucatnetzer:split-window-right-and-move-cursor)
+(global-set-key (kbd "C-x 2") 'az-split-window-below-and-move-cursor)
+(global-set-key (kbd "C-x 3") 'az-split-window-right-and-move-cursor)

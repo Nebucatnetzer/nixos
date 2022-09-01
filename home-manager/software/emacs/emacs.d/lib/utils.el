@@ -26,3 +26,9 @@
   (let ((format "%A, %d. %B %Y")
         (system-time-locale "de_CH"))
     (insert (format-time-string format))))
+
+(defun az-toggle-window-dedication ()
+  "Toggles window dedication in the selected window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+                          (not (window-dedicated-p (selected-window)))))

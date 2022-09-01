@@ -84,7 +84,7 @@
 
     ;; spell check
     (add-hook 'mu4e-compose-mode-hook
-              (defun my-do-compose-stuff ()
+              (defun az-do-compose-stuff ()
                 "My settings for message composition."
                 (setq mu4e-compose-format-flowed t)
                 (use-hard-newlines -1)

@@ -19,14 +19,14 @@
 (use-package dired-hide-dotfiles
   :ensure t
   :init
-  (defun my-dired-mode-hook ()
+  (defun az-dired-mode-hook ()
     "My `dired' mode hook."
     ;; To hide dot-files by default
     (dired-hide-dotfiles-mode)
 
     ;; To toggle hiding
 
-    (add-hook 'dired-mode-hook #'my-dired-mode-hook))
+    (add-hook 'dired-mode-hook #'az-dired-mode-hook))
   :bind
   (:map dired-mode-map
         ("." . dired-hide-dotfiles-mode)))

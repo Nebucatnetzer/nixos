@@ -22,12 +22,12 @@
   (require 'company-web-html)
 
   ;; Tide completion support in web-mode with company-mode
-  (defun my-web-mode-hook ()
+  (defun az-web-mode-hook ()
     "Hook for `web-mode'."
     (set (make-local-variable 'company-backends)
          '(company-tide company-web-html company-yasnippet company-files)))
 
-  (add-hook 'web-mode-hook 'my-web-mode-hook)
+  (add-hook 'web-mode-hook 'az-web-mode-hook)
 
   ;; Enable JavaScript completion between <script>...</script> etc.
   (defadvice company-tide (before web-mode-set-up-ac-sources activate)

@@ -115,7 +115,7 @@
   (setq org-startup-indented t)
 
   ;; capture templates
-  (defun my/org-capture-read-file-name ()
+  (defun az-org-capture-read-file-name ()
     (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/12_tasks/")) ".org"))
 
   (when (boundp 'enable-personal-agenda)
@@ -126,7 +126,7 @@
                (file+headline "~/nextcloud/12_tasks/personal.org" "Capture")
                (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_personal_todo.txt")
                :empty-lines 1)
-              ("n" "Add note" plain (file my/org-capture-read-file-name)
+              ("n" "Add note" plain (file az-org-capture-read-file-name)
                (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
               )))))
 
@@ -149,7 +149,7 @@
                (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_work_small_project.txt"))
               ("m" "Meeting" entry (file+headline "~/nextcloud/03_documents/org/agenda/work/work.org" "Capture")
                "* %U MEETING: with %?\n" :clock-in t :clock-resume t :empty-lines 1)
-              ("n" "Add note" plain (file my/org-capture-read-file-name)
+              ("n" "Add note" plain (file az-org-capture-read-file-name)
                (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
               )))))
 
@@ -167,13 +167,13 @@
   (setq org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil)
 
-  (defun nebucatnetzer-org-files-list ()
+  (defun az-org-files-list ()
     (delq nil
           (mapcar (lambda (buffer)
                     (buffer-file-name buffer))
                   (org-buffer-list 'files t))))
 
-  (setq org-refile-targets '((nebucatnetzer-org-files-list :maxlevel . 6)))
+  (setq org-refile-targets '((az-org-files-list :maxlevel . 6)))
 
   (setq org-src-fontify-natively t)
 
@@ -325,9 +325,9 @@
   (setq org-agenda-dim-blocked-tasks t)
 
   ;; automatically refresh the agenda after adding a task
-  (add-hook 'org-capture-after-finalize-hook 'nebucatnetzer:org-agenda-redo)
+  (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
 
-  (defun nebucatnetzer:org-agenda-redo ()
+  (defun az-org-agenda-redo ()
     (interactive)
     (when (get-buffer "*Org Agenda*")
       (with-current-buffer "*Org Agenda*"

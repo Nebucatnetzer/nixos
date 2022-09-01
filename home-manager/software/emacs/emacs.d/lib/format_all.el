@@ -5,12 +5,12 @@
    (yaml-mode . format-all-ensure-formatter)
    (prog-mode . format-all-mode))
   :preface
-  (defun nebucatnetzer/format-code ()
+  (defun az-format-code ()
     "format buffer."
     (interactive)
     (format-all-buffer))
   :config
-  (global-set-key (kbd "C-c C-f") #'nebucatnetzer/format-code)
+  (global-set-key (kbd "C-c C-f") #'az-format-code)
   (setq format-all-show-errors 'errors)
   (setq format-all-default-formatters
         '(("Assembly" asmfmt)

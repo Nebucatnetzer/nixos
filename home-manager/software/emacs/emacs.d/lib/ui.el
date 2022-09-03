@@ -102,7 +102,7 @@
 
 (setq inhibit-compacting-font-caches t)
 
-;; hide temporary buffers (
+;; hide temporary buffers
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-filter-by-name "^[^*]")))
@@ -130,7 +130,6 @@
 (add-hook 'ibuffer-mode-hook
           (lambda ()
             (ibuffer-switch-to-saved-filter-groups "default")))
-;; )
 
 (when (boundp 'enable-emojis)
   (when (is-linux-p)

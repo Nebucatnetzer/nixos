@@ -1,7 +1,3 @@
-;; keymap for buffer switching
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-
 ;; kill THIS buffer
 (global-set-key (kbd "C-x C-k") 'kill-this-buffer)
 

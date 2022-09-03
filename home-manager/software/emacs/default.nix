@@ -76,6 +76,7 @@
       epkgs.ox-pandoc
       epkgs.parsebib
       epkgs.pdf-tools
+      epkgs.perspective
       epkgs.pfuture
       epkgs.pkg-info
       epkgs.posframe

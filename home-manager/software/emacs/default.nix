@@ -51,7 +51,6 @@
       epkgs.evil
       epkgs.evil-collection
       epkgs.evil-surround
-      epkgs.eyebrowse
       epkgs.f
       epkgs.flycheck
       epkgs.format-all

@@ -106,7 +106,7 @@
           hostname = "plex";
           inherit custom pkgs inputs;
         };
-        proxy = mkComputer {
+        proxy = mkRaspi {
           hostname = "proxy";
           inherit custom pkgs inputs;
         };

@@ -8,6 +8,11 @@
         User nixos
         LogLevel QUIET
 
+      Host loki.2li.local
+        User root
+        IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
+        Port 222
+
       Host sensors.2li.local
         User ubuntu
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key

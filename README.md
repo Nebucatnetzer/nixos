@@ -19,7 +19,7 @@ However this requires some prerequisites.
 
 ## Raspberry Pi installation
 
-1. Download the image from: https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image.aarch64-linux
+1. Download the image from: https://hydra.nixos.org/job/nixos/release-22.05/nixos.sd_image.aarch64-linux
 2. Extract it with: `unzstd nixos-sd-image-*-aarch64-linux.img.zst`
 3. Flash it to the SD card with `sudo dd if=$(ls nixos-sd-image-*-aarch64-linux.img) of=/dev/mmcblk0 bs=4M`
 4. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`

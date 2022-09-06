@@ -81,21 +81,12 @@
           hostname = "git";
           inherit custom pkgs inputs;
         };
-        jdownloader = mkComputer {
-          hostname = "jdownloader";
-          inherit custom pkgs inputs;
-        };
         mail = mkComputer {
           hostname = "mail";
           inherit custom pkgs inputs;
         };
         nextcloud = mkComputer {
           hostname = "nextcloud";
-          inherit custom pkgs inputs;
-        };
-        nixos-management = mkComputer {
-          hostname = "nixos-management";
-          home-module = "management";
           inherit custom pkgs inputs;
         };
         pihole = mkComputer {

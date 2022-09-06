@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ hostname, inputs, ... }:
 {
   imports = [
     "${inputs.self}/modules/desktop"
@@ -28,7 +28,7 @@
   };
 
   networking = {
-    hostName = "nixos-vm";
+    hostName = hostname;
     interfaces.enp0s3.useDHCP = true;
   };
 

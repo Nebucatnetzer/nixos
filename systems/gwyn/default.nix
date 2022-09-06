@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ custom, hostname, inputs, lib, pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
@@ -16,10 +16,10 @@
     "${inputs.self}/modules/lockscreen"
     "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/nix-direnv"
-    "${inputs.self}/modules/restic"
     "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
+    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs pkgs; })
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -52,7 +52,7 @@
     fsType = "vfat";
   };
 
-  networking.hostName = "gwyn"; # Define your hostname.
+  networking.hostName = hostname;
 
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }

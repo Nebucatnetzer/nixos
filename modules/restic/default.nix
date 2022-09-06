@@ -1,4 +1,4 @@
-{ config, inputs, custom, pkgs, ... }:
+{ hostname, inputs, custom, pkgs, ... }:
 let
   password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
   repository = "rest:http://10.7.89.30:8000";
@@ -8,7 +8,7 @@ let
     ${pkgs.restic}/bin/restic \
       --repo ${repository} \
       --password-file ${password_file} \
-      --host ${config.networking.hostName} \
+      --host ${hostname} \
       mount /tmp/restic'';
 
   restic-mount-all = pkgs.writeShellScriptBin "restic-mount-all" ''
@@ -75,7 +75,7 @@ in
 
       ${pkgs.restic}/bin/restic \
       forget \
-        --host ${config.networking.hostName} \
+        --host ${hostname} \
         --tag home-dir \
         --keep-hourly 25 \
         --keep-daily 7 \
@@ -90,7 +90,7 @@ in
       ${pkgs.restic}/bin/restic \
         --repo ${repository} \
         --password-file ${password_file} \
-        snapshots --host ${config.networking.hostName}'';
+        snapshots --host ${hostname}'';
     restic-unlock = ''
       ${pkgs.restic}/bin/restic \
         --repo ${repository} \

@@ -4,7 +4,10 @@
   modules = (
     [
       # System configuration for this host
-      "${inputs.self}/systems/${hostname}"
+      (import "${inputs.self}/systems/${hostname}" {
+        lib = pkgs.lib;
+        inherit custom inputs hostname pkgs;
+      })
 
       # Common configuration
       "${inputs.self}/modules/common-x86"

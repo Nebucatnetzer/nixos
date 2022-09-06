@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ hostname, inputs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-intel
@@ -39,7 +39,7 @@
     fsType = "vfat";
   };
 
-  networking.hostName = "staubfinger";
+  networking.hostName = hostname;
 
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }

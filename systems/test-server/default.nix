@@ -1,10 +1,9 @@
-{ config, custom, inputs, pkgs, ... }:
+{ custom, hostname, inputs, pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {
-      hostname = "test-server";
       ip = "10.7.89.142";
-      inherit inputs;
+      inherit hostname inputs;
     })
     (import "${inputs.self}/modules/nginx-acme" {
       domain = "test.2li.ch";

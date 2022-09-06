@@ -1,4 +1,4 @@
-{ config, inputs, custom, pkgs, time, ... }:
+{ hostname, inputs, custom, pkgs, time, ... }:
 {
   imports = [
     "${inputs.self}/modules/telegram-notifications"
@@ -34,7 +34,7 @@
 
       ${pkgs.restic}/bin/restic forget \
         --tag home-dir \
-        --host ${config.networking.hostName} \
+        --host ${hostname} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \
@@ -42,7 +42,7 @@
 
       ${pkgs.restic}/bin/restic forget \
         --tag mariadb \
-        --host ${config.networking.hostName} \
+        --host ${hostname} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \

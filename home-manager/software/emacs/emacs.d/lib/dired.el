@@ -1,6 +1,6 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
-(setq-default dired-listing-switches "-alh")
+(setq-default dired-listing-switches "-alh --group-directories-first")
 
 ;; keymap for dired
 (global-set-key (kbd "C-c d") 'dired-jump)

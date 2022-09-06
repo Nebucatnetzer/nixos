@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 hosts=(
- "nixos-management"
  "mail"
  "nextcloud"
  "plex"

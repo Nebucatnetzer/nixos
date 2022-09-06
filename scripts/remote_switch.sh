@@ -9,6 +9,7 @@ hosts=(
  "restic-server"
  "ttrss"
  "git"
+ "proxy"
  "pihole"
 )
 

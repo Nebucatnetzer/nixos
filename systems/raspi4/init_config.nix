@@ -18,6 +18,7 @@
     raspberrypi-eeprom
   ];
 
+  system.stateVersion = "22.05";
   services.openssh.enable = true;
   networking.hostName = "nixos";
 

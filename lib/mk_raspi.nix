@@ -4,7 +4,8 @@
   modules = (
     [
       # System configuration for this host
-      "${inputs.self}/systems/${hostname}"
+      (import "${inputs.self}/systems/${hostname}"
+        { inherit custom hostname inputs pkgs; })
 
       # Common configuration
       "${inputs.self}/modules/common"

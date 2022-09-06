@@ -1,13 +1,12 @@
-{ config, custom, inputs, pkgs, ... }:
+{ custom, hostname, inputs, pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/raspi4" {
-      hostname = "proxy";
       ip = "10.7.89.99";
-      inherit inputs pkgs;
+      inherit hostname inputs pkgs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
-      time = "11:30"; inherit config custom inputs pkgs;
+      time = "11:30"; inherit custom hostname inputs pkgs;
     })
     "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"

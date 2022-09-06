@@ -33,7 +33,7 @@
     mutableUsers = false;
     users."nixos" = {
       isNormalUser = true;
-      initalPassword = "password";
+      initialPassword = "password";
       extraGroups = [ "wheel" ];
     };
   };

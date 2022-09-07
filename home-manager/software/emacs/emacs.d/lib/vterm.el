@@ -2,9 +2,10 @@
   :ensure t
   :config
   (setq vterm-kill-buffer-on-exit t)
+  (global-set-key (kbd "M RET") 'vterm)
   (evil-set-initial-state 'vterm-mode 'emacs))
 
 (use-package multi-vterm
   :ensure t
   :config
-  (global-set-key (kbd "M-RET") 'multi-vterm))
+  (global-set-key (kbd "M-S RET") 'multi-vterm))

@@ -30,7 +30,6 @@
         redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i heimdall.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i photos.zweili.org ! {ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i ttrss.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i webmail.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss-bridge.2li.ch } !{ ssl_fc }

@@ -79,7 +79,7 @@
         server server1 127.0.0.1:4433 check
       backend test_server
         mode tcp
-        server server1 10.7.89.142:443 check
+        server server1 10.7.89.150:443 check
     '';
   };
 }

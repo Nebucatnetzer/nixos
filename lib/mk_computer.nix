@@ -1,4 +1,25 @@
-{ custom, hostname, inputs, pkgs, system ? "x86_64-linux", home-module ? "headless" }: inputs.nixpkgs.lib.nixosSystem {
+{ custom, hostname, inputs, system ? "x86_64-linux", home-module ? "headless" }:
+let
+  overlay-unstable = final: prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      system = system;
+      config.allowUnfree = true;
+    };
+  };
+
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+    };
+    overlays = [
+      overlay-unstable
+      inputs.nix-alien.overlay
+    ];
+  };
+in
+inputs.nixpkgs.lib.nixosSystem
+{
   inherit system pkgs;
   specialArgs = { inherit custom inputs; };
   modules = (

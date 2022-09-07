@@ -37,65 +37,44 @@
       custom = import ./custom;
       mkComputer = import "${inputs.self}/lib/mk_computer.nix";
       mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";
-
-      system = custom.system;
-      username = custom.username;
-
-      overlay-unstable = final: prev: {
-        unstable = import nixpkgs-unstable {
-          system = custom.system;
-          config.allowUnfree = true;
-        };
-      };
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-        overlays = [
-          overlay-unstable
-          inputs.nix-alien.overlay
-        ];
-      };
     in
     {
       nixosConfigurations = {
         gwyn = mkComputer {
           hostname = "gwyn";
           home-module = "desktop";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         nixos-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
           home-module = "desktop";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         # Servers
         git = mkComputer {
           hostname = "git";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         mail = mkComputer {
           hostname = "mail";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         nextcloud = mkComputer {
           hostname = "nextcloud";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         pihole = mkComputer {
           hostname = "pihole";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         plex = mkComputer {
           hostname = "plex";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         proxy = mkRaspi {
           hostname = "proxy";
@@ -103,25 +82,26 @@
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         restic-server = mkComputer {
           hostname = "restic-server";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         test-server = mkComputer {
           hostname = "test-server";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         ttrss = mkComputer {
           hostname = "ttrss";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import "${inputs.self}/home-manager/work-wsl.nix";
-          inherit system username;
+          system = "x86_64";
+          username = custom.username;
           homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {
             inherit custom inputs;

@@ -21,10 +21,15 @@ However this requires some prerequisites.
 
 1. Download the image from: https://hydra.nixos.org/job/nixos/release-22.05/nixos.sd_image.aarch64-linux
 2. Extract it with: `unzstd nixos-sd-image-*-aarch64-linux.img.zst`
-3. Flash it to the SD card with `sudo dd if=$(ls nixos-sd-image-*-aarch64-linux.img) of=/dev/mmcblk0 bs=4M`
-4. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
-5. `sudo cp nixos/systems/raspi4/init_config.nix /etc/nixos/configuration.nix`
-6. `sudo nixos-rebuild switch`
+3. Flash it to the SD card with `sudo dd if=$(ls
+   nixos-sd-image-*-aarch64-linux.img) of=/dev/mmcblk0 bs=4M`
+4. After booting create a password for the `nixos` user.
+5. SSH into the system.
+6. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
+7. `sudo cp nixos/systems/raspi4/init_config.nix /etc/nixos/configuration.nix`
+8. `sudo nixos-rebuild switch`
+9. Mount the `FIRMWARE` partition `sudo mount /dev/disk/by-label/FIRMWARE /mnt`
+   and make sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
 
 ## x86 installation
 

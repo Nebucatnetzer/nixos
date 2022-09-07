@@ -99,7 +99,7 @@
         };
         proxy = mkRaspi {
           hostname = "proxy";
-          inherit custom pkgs inputs;
+          inherit custom inputs;
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";

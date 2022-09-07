@@ -1,4 +1,13 @@
-{ custom, hostname, inputs, pkgs, system ? "aarch64-linux", home-module ? "headless" }: inputs.nixpkgs.lib.nixosSystem {
+{ custom, hostname, inputs, system ? "aarch64-linux", home-module ? "headless" }:
+let
+  pkgs = import inputs.nixpkgs {
+    inherit system;
+    config = {
+      allowUnfree = true;
+    };
+  };
+in
+inputs.nixpkgs.lib.nixosSystem {
   inherit system;
   specialArgs = { inherit custom inputs; };
   modules = (

@@ -62,9 +62,6 @@
       backend git_server
         mode tcp
         server server1 10.7.89.109:443 check
-      backend heimdall_server
-        mode tcp
-        server server1 10.7.89.121:443 check
       backend nextcloud_server
         mode tcp
         server server1 10.7.89.103:443 check

@@ -2,7 +2,7 @@
 let
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = system;
+      inherit system;
       config.allowUnfree = true;
     };
   };

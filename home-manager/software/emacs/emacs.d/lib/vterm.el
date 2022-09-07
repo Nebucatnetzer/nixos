@@ -9,4 +9,4 @@
 (use-package multi-vterm
   :ensure t
   :config
-  (global-set-key (kbd "M-S RET") 'multi-vterm))
+  (global-set-key (kbd "M-S-RET") 'multi-vterm))

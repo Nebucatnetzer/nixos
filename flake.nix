@@ -45,7 +45,7 @@
           home-module = "desktop";
           inherit custom inputs;
         };
-        nixos-vm = mkComputer {
+        desktop-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
           inherit custom inputs;

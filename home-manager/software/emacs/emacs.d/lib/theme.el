@@ -5,6 +5,11 @@
     (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+(defun on-frame-open (frame)
+  (if (not (display-graphic-p frame))
+      (set-face-background 'default "unspecified-bg" frame)))
+(on-frame-open (selected-frame))
+(add-hook 'after-make-frame-functions 'on-frame-open)
 
 (when (boundp 'enable-color-theme)
   ;; load solarized color theme

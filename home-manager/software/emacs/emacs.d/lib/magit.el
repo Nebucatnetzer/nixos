@@ -3,4 +3,6 @@
   :ensure t
   :commands magit-status
   :bind
-  ("<f10>" . magit-status))
+  ("<f10>" . magit-status)
+  :config
+  (setq magit-diff-refine-hunk (quote all)))

@@ -8,7 +8,7 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "04:30"; inherit custom hostname inputs pkgs;
     })
-    (import "${inputs.self}/modules/nginx-acme" {
+    (import "${inputs.self}/modules/nginx-proxy" {
       domain = "mail.zweili.org"; inherit inputs;
     })
     "${inputs.self}/modules/docker"

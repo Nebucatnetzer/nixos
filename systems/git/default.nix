@@ -8,7 +8,7 @@
     (import "${inputs.self}/modules/restic-server-mysql-client" {
       time = "03:00"; inherit custom hostname inputs pkgs;
     })
-    (import "${inputs.self}/modules/nginx-acme" {
+    (import "${inputs.self}/modules/nginx-proxy" {
       domain = "git.2li.ch"; inherit inputs;
     })
     "${inputs.self}/modules/docker"

@@ -5,7 +5,7 @@
       ip = "10.7.89.115";
       inherit hostname inputs;
     })
-    (import "${inputs.self}/modules/nginx-acme" {
+    (import "${inputs.self}/modules/nginx-proxy" {
       domain = "ttrss.2li.ch"; inherit inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {

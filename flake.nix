@@ -88,10 +88,6 @@
           hostname = "restic-server";
           inherit custom inputs;
         };
-        test-server = mkComputer {
-          hostname = "test-server";
-          inherit custom inputs;
-        };
         ttrss = mkComputer {
           hostname = "ttrss";
           inherit custom inputs;

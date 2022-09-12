@@ -37,3 +37,9 @@ avoid_warnings=1
 
 gpu_mem=16
 arm_freq=1800
+
+# disable bluetooth
+dtoverlay=disable-bt
+
+# disable wifi
+dtoverlay=disable-wifi

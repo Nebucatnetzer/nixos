@@ -6,7 +6,7 @@
       inherit hostname inputs pkgs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
-      time = "11:30"; inherit custom hostname inputs pkgs;
+      time = "00:00"; inherit custom hostname inputs pkgs;
     })
     "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"

@@ -96,7 +96,7 @@
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           configuration = import "${inputs.self}/home-manager/work-wsl.nix";
-          system = "x86_64";
+          system = "x86_64-linux";
           username = custom.username;
           homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {

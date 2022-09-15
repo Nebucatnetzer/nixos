@@ -23,6 +23,7 @@
       python39Packages.flake8
       python39Packages.jedi
       python39Packages.pip
+      python39Packages.python-lsp-server
       python39Packages.yapf
       epkgs.ace-window
       epkgs.amx
@@ -62,6 +63,7 @@
       epkgs.hydra
       epkgs.know-your-http-well
       epkgs.languagetool
+      epkgs.lsp-mode
       epkgs.lv
       epkgs.magit
       epkgs.makey

@@ -60,6 +60,10 @@
           hostname = "git";
           inherit custom inputs;
         };
+        loki-test = mkRaspi {
+          hostname = "loki-test";
+          inherit custom inputs;
+        };
         mail = mkComputer {
           hostname = "mail";
           inherit custom inputs;

@@ -13,7 +13,7 @@ However this requires some prerequisites.
 - The VM runs UEFI.
 - You've set a password for the nixos user.
 
-1. `./scripts/install_new_vm.xsh`
+1. `./scripts/install_new_vm.sh`
 2. Provide the required information and wait until the script is finished.
 3. Reboot and profit!
 
@@ -30,6 +30,7 @@ However this requires some prerequisites.
 8. `sudo nixos-rebuild switch`
 9. Mount the `FIRMWARE` partition `sudo mount /dev/disk/by-label/FIRMWARE /mnt`
    and make sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
+10. Install the system `./scripts/install_new_system.sh`
 
 ## x86 installation
 

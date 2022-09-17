@@ -16,8 +16,10 @@
   networking = {
     domain = "2li.local";
     enableIPv6 = false;
-    firewall.allowedTCPPorts = [ 22 ];
-    # firewall.allowedUDPPorts = [ ... ];
+    firewall = {
+      allowPing = true;
+      allowedTCPPorts = [ 22 ];
+    };
   };
 
   hardware = {

@@ -6,9 +6,9 @@
       inherit hostname inputs pkgs;
     })
     "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/pihole"
+    "${inputs.self}/modules/pihole" # needs to be limited to lan interface
     "${inputs.self}/modules/router"
     "${inputs.self}/modules/tmux"
-    "${inputs.self}/modules/unbound"
+    "${inputs.self}/modules/unbound" # needs to be limited to lan interface
   ];
 }

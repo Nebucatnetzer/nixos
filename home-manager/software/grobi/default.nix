@@ -4,12 +4,26 @@
     enable = true;
     rules = [
       {
+        name = "docked-with-notebook";
+        outputs_connected = [ "eDP-1" "DP-1-1" "DP-1-2" ];
+        atomic = true;
+        configure_row = [ "DP-1-2" "DP-1-1" "eDP-1" ];
+        primary = "DP-1-1";
+        execute_after = [
+          "${pkgs.nitrogen}/bin/nitrogen --restore"
+          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+        ];
+      }
+      {
         name = "docked";
         outputs_connected = [ "DP-1-1" "DP-1-2" ];
         atomic = true;
         configure_row = [ "DP-1-2" "DP-1-1" ];
         primary = "DP-1-1";
-        execute_after = [ "${pkgs.nitrogen}/bin/nitrogen --restore" ];
+        execute_after = [
+          "${pkgs.nitrogen}/bin/nitrogen --restore"
+          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+        ];
       }
       {
         name = "undocked";
@@ -17,7 +31,11 @@
         configure_single = "eDP-1";
         primary = true;
         atomic = true;
-        execute_after = [ "${pkgs.nitrogen}/bin/nitrogen --restore" ];
+        execute_after = [
+          "${pkgs.nitrogen}/bin/nitrogen --restore"
+          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+          "${pkgs.networkmanager}/bin/nmcli radio wifi on"
+        ];
       }
       {
         name = "fallback";

@@ -201,6 +201,10 @@ screens = [
         24,
     ), ),
     Screen(top=bar.Bar(
+        top_bar_widgets(),
+        24,
+    ), ),
+    Screen(top=bar.Bar(
         [
             widget.GroupBox(),
             widget.Sep(padding=5),

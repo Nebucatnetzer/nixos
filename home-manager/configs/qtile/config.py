@@ -201,7 +201,17 @@ screens = [
         24,
     ), ),
     Screen(top=bar.Bar(
-        top_bar_widgets(),
+        [
+            widget.GroupBox(),
+            widget.Sep(padding=5),
+            widget.WindowName(),
+            widget.Sep(padding=5),
+            widget.CurrentLayout(),
+            widget.Sep(padding=5),
+            widget.Volume(),
+            widget.Sep(padding=5),
+            widget.Clock(format="%Y-%m-%d %a %H:%M"),
+        ],
         24,
     ), ),
     Screen(top=bar.Bar(

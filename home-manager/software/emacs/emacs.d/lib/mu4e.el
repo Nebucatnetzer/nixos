@@ -1,6 +1,7 @@
 (when (boundp 'enable-email)
   (use-package mu4e
     :if (is-linux-p)
+    :ensure nil
     :config
 
     ;; Start mu4e-compose-mode in insert mode

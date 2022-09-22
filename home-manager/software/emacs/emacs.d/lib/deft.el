@@ -1,5 +1,4 @@
 (use-package deft
-  :ensure t
   :bind ("<f5>" . deft)
   :commands (deft)
   :config
@@ -19,7 +18,6 @@
   (setq deft-directory "~/nextcloud/10_documents/"))
 
 (use-package zetteldeft
-  :ensure t
   :after deft
   :config (zetteldeft-set-classic-keybindings)
   (setq zetteldeft-link-indicator "[["

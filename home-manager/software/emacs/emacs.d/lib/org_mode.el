@@ -1,18 +1,15 @@
 (when (boundp 'enable-org-bullets)
   ;; Enable pretty bullets in org mode
   (use-package org-superstar
-    :ensure t
     :config
     (add-hook 'org-mode-hook (lambda ()
                                (org-superstar-mode 1)))))
 
 ;; add a package to convert the agenda view to HTML
 (use-package htmlize
-  :ensure t
   :after org)
 
 (use-package org-ref
-  :ensure t
   :after org
   :init
   (setq org-ref-completion-library 'org-ref-ivy-cite)
@@ -25,11 +22,9 @@
 
 (when (boundp 'enable-ox-pandoc)
   (use-package ox-pandoc
-    :ensure t
     :after org))
 
 (use-package org
-  :ensure t
   :pin gnu
   :config
 

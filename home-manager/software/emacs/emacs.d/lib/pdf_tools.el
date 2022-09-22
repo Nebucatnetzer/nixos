@@ -1,6 +1,5 @@
 (when (boundp 'enable-pdf-tools)
   (use-package pdf-tools
-    :ensure t
     :mode ("\\.pdf\\'" . pdf-view-mode)
     :config
     (pdf-tools-install)

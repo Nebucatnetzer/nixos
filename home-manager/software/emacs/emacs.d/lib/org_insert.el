@@ -1,14 +1,11 @@
 (use-package dash
-  :defer t
-  :ensure t)
+  :defer t)
 
 (use-package swiper
-  :defer t
-  :ensure t)
+  :defer t)
 
 (use-package s
-  :defer t
-  :ensure t)
+  :defer t)
 
 (global-set-key (kbd "C-c i") 'org-insert-image)
 ;; start directory

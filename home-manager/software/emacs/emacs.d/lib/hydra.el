@@ -1,5 +1,4 @@
-(use-package hydra
-  :ensure t)
+(use-package hydra)
 
 (defhydra hydra-buffer (:color red :columns 3)
   "
@@ -283,7 +282,6 @@ T - tag prefix
   )
 
 (use-package general
-  :ensure t
   :config
   (general-def
     :states '(normal visual insert emacs)

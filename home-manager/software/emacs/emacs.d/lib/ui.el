@@ -1,12 +1,10 @@
 ;; Amx, an alternative interface for M-x in Emacs
 ;; https://github.com/DarwinAwardWinner/amx
 (use-package amx
-  :ensure t
   :config
   (amx-mode t))
 
 (use-package highlight-indent-guides
-  :ensure t
   :config
   (setq highlight-indent-guides-method 'character
         hightlight-indentation-mode nil
@@ -19,13 +17,11 @@
 
 ;; change the colours of parenthesis the further out they are
 (use-package rainbow-delimiters
-  :ensure t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; smooth scrolling
 (use-package smooth-scrolling
-  :ensure t
   :config
   (setq scroll-margin 1
         scroll-conservatively 9999
@@ -33,7 +29,6 @@
 
 ;; highlight bad whitespace
 (use-package whitespace
-  :ensure t
   :config
   (setq whitespace-style '(face lines-tail tabs trailing))
   (set-face-attribute 'whitespace-line nil :foreground "#af005f")

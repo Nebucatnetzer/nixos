@@ -1,11 +1,9 @@
 (use-package python-mode
-  :ensure t
   :defer t
   :config
   (setq python-shell-interpreter "python3"))
 
 (use-package elpy
-  :ensure t
   :config
   (setq elpy-rpc-python-command "python3")
   (setq elpy-test-runner 'elpy-test-pytest-runner)

@@ -14,7 +14,6 @@
 (when (boundp 'enable-color-theme)
   ;; load solarized color theme
   (use-package solarized-theme
-    :ensure t
     :config
     (setq solarized-use-variable-pitch nil)
     (setq solarized-scale-org-headlines nil)

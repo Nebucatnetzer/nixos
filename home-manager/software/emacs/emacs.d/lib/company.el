@@ -1,5 +1,4 @@
 (use-package company
-  :ensure t
   :bind
   ("C-<tab>" . company-complete)
   :config

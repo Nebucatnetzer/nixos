@@ -1,6 +1,5 @@
 ;; web-mode for general web development
 (use-package web-mode
-  :ensure t
   :mode
   (("\\.phtml\\'" . web-mode)
    ("\\.tpl\\'" . web-mode)
@@ -15,7 +14,6 @@
   (add-to-list 'auto-mode-alist '("\\.phpi$" . my/php-setup)))
 
 (use-package company-web
-  :ensure t
   :after web-mode
   :commands company-web-html
   :config
@@ -41,6 +39,5 @@
             (if tide-mode (tide-mode -1)))))))
 
 (use-package company-restclient
-  :ensure t
   :after (restclient company)
   :config (add-to-list 'company-backends 'company-restclient))

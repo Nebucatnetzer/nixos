@@ -17,7 +17,6 @@
         (buffer-list)))
 
 (use-package dired-hide-dotfiles
-  :ensure t
   :init
   (defun az-dired-mode-hook ()
     "My `dired' mode hook."

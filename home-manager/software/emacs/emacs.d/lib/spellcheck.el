@@ -1,5 +1,4 @@
-(use-package flycheck
-  :ensure t)
+(use-package flycheck)
 
 ;; https://www.reddit.com/r/emacs/comments/931la6/tip_how_to_adopt_flycheck_as_your_new_best_friend/
 (defhydra hydra-flycheck (:color blue)

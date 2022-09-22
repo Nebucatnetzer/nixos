@@ -1,5 +1,4 @@
 (use-package counsel
-  :ensure t
   :config
   (ivy-mode 1)
   (counsel-mode 1)

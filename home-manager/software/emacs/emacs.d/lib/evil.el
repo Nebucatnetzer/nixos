@@ -1,6 +1,5 @@
 ;; evil-mode allows to use vim keybindings
 (use-package evil
-  :ensure t
   :init
   (setq evil-undo-system 'undo-redo)
   (setq evil-want-integration t) ;; required by evil-collection
@@ -93,13 +92,11 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 (use-package evil-surround
-  :ensure t
   :after evil
   :config
   (global-evil-surround-mode 1))
 
 (use-package evil-collection
   :after evil
-  :ensure t
   :config
   (evil-collection-init '(calendar calc dired ediff magit)))

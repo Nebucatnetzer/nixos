@@ -1,9 +1,7 @@
 (use-package discover-my-major
-  :ensure t
   :bind ("C-h C-m" . discover-my-major))
 
 (use-package helpful
-  :ensure t
   :bind (("C-h f" . helpful-function)
          ("C-h v" . helpful-variable)
          ("C-h s" . helpful-symbol)
@@ -22,7 +20,6 @@
 
 ;; which key is a package to show which keys can be pressed
 (use-package which-key
-  :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode))

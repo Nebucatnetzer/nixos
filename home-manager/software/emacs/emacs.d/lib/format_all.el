@@ -1,5 +1,4 @@
 (use-package format-all
-  :ensure t
   :hook
   ((prog-mode . format-all-ensure-formatter)
    (yaml-mode . format-all-ensure-formatter)

@@ -1,2 +1,1 @@
-(use-package gnu-elpa-keyring-update
-  :ensure t)
+(use-package gnu-elpa-keyring-update)

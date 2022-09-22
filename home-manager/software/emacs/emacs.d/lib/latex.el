@@ -25,7 +25,6 @@
 (when (boundp 'enable-auctex)
   (use-package company-auctex
     :if (is-linux-p)
-    :ensure t
     :after auctex
     :defer t
     :init

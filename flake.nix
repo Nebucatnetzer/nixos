@@ -86,6 +86,7 @@
         };
         raspi-test = mkRaspi {
           hostname = "raspi-test";
+          home-module = "management";
           inherit custom inputs;
         };
         restic-server = mkComputer {

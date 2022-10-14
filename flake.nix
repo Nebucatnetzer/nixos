@@ -84,8 +84,8 @@
           hostname = "proxy";
           inherit custom inputs;
         };
-        raspi-test = mkRaspi {
-          hostname = "raspi-test";
+        management = mkRaspi {
+          hostname = "management";
           home-module = "management";
           inherit custom inputs;
         };

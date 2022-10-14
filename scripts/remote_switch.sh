@@ -4,7 +4,7 @@ hosts=(
  "mail"
  "nextcloud"
  "plex"
- "raspi-test"
+ "management"
  "restic-server"
  "ttrss"
  "git"

@@ -33,6 +33,7 @@
     gimp
     inkscape
     libreoffice-fresh
+    makemkv
     meld
     remmina
     shotwell

@@ -354,7 +354,7 @@ let
     https://www.cbc.ca/podcasting/includes/spark.xml . Spark OPT_FILENAME_RENAME_MDATE
     https://surveillance-report.castos.com/feed . Surveillance_Report
     https://ubuntupodcast.org/feed/podcast . Ubuntu_Podcast
-    https://ukw.fm/feed/mp3/ OPML_Import_2022-10-17 . UKW
+    https://ukw.fm/feed/mp3/ . UKW
     https://anchor.fm/s/64b97620/podcast/rss . Work_Beyond_Mac OPT_FILENAME_RENAME_MDATE
   '';
 in

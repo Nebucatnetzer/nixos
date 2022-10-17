@@ -339,23 +339,23 @@ let
     #
     #FEEDS:
     # ----------------------------------------------------------------------------------------------------------------------------------
-    https://feeds.pacific-content.com/commandlineheroes . Command Line Heroes OPT_FILENAME_RENAME_MDATE
+    https://rss.nexx.cloud/QBKHY4RQMECBNN0 . 5_Minuten_Harry_Podcast OPT_FILENAME_RENAME_MDATE
+    https://feeds.pacific-content.com/commandlineheroes . Command_Line_Heroes OPT_FILENAME_RENAME_MDATE
     https://feeds.metaebene.me/cre/m4a . CRE
     http://feeds.metaebene.me/forschergeist/mp3 . Forschergeist
+    http://gnuworldorder.info/m4a.xml . GNU_World_Order
     https://feeds.mozilla-podcasts.org/irl . IRL
     https://feeds.metaebene.me/lnp/m4a . LogbuchNetzpolitik
-    https://www.cbc.ca/podcasting/includes/spark.xml . Spark
-    https://anchor.fm/s/f241238/podcast/rss . Republik Tech-Podcast
-    https://ubuntupodcast.org/feed/podcast . Ubuntu Podcast
-    http://gnuworldorder.info/m4a.xml . GNU World Order Linux Cast
-    https://anchor.fm/s/64b97620/podcast/rss . Work Beyond Mac
-    https://rss.nexx.cloud/QBKHY4RQMECBNN0 . 5 Minuten Harry Podcast von Coldmirror
+    https://feeds.sounder.fm/25273/rss.xml . Practical_Stoicism OPT_FILENAME_RENAME_MDATE
     https://feeds.metaebene.me/raumzeit/m4a . Raumzeit
-    https://feeds.sounder.fm/25273/rss.xml . Practical Stoicism
-    https://surveillance-report.castos.com/feed . Surveillance Report
-    https://republik-vorgelesen.podigee.io/feed/mp3 . Republik Vorgelesen
+    https://aus-der-redaktion.podigee.io/feed/mp3 . Republik_Aus_der_Redaktion OPT_FILENAME_RENAME_MDATE
+    https://anchor.fm/s/f241238/podcast/rss . Republik_Tech-Podcast OPT_FILENAME_RENAME_MDATE
+    https://republik-vorgelesen.podigee.io/feed/mp3 . Republik_Vorgelesen OPT_FILENAME_RENAME_MDATE
+    https://www.cbc.ca/podcasting/includes/spark.xml . Spark OPT_FILENAME_RENAME_MDATE
+    https://surveillance-report.castos.com/feed . Surveillance_Report
+    https://ubuntupodcast.org/feed/podcast . Ubuntu_Podcast
     https://ukw.fm/feed/mp3/ OPML_Import_2022-10-17 . UKW
-    https://aus-der-redaktion.podigee.io/feed/mp3 . Aus der Redaktion
+    https://anchor.fm/s/64b97620/podcast/rss . Work_Beyond_Mac OPT_FILENAME_RENAME_MDATE
   '';
 in
 {

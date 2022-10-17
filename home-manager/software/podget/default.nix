@@ -79,7 +79,7 @@ let
     # Most Recent
     # 0  == download all new items.
     # 1+ == download only the <count> most recent
-    MOST_RECENT=0
+    MOST_RECENT=10
 
     # Force
     # 0 == Only download new material.

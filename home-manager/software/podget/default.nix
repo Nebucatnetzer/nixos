@@ -339,7 +339,7 @@ let
     #
     #FEEDS:
     # ----------------------------------------------------------------------------------------------------------------------------------
-    https://rss.nexx.cloud/QBKHY4RQMECBNN0 . 5_Minuten_Harry_Podcast OPT_FILENAME_RENAME_MDATE
+    https://rss.nexx.cloud/QBKHY4RQMECBNN0 . 5_Minuten_Harry_Podcast OPT_FILENAME_RENAME_MDATE OPT_FEED_ORDER_ASCENDING
     https://feeds.pacific-content.com/commandlineheroes . Command_Line_Heroes OPT_FILENAME_RENAME_MDATE
     https://feeds.metaebene.me/cre/m4a . CRE
     http://feeds.metaebene.me/forschergeist/mp3 . Forschergeist

@@ -16,6 +16,7 @@ in
     # "${inputs.self}/modules/logs-share"
     # I currently can't install lnav because it is not building on aarch64
     # https://github.com/NixOS/nixpkgs/issues/197512
+    "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/tmux"
   ];
   services.nginx.virtualHosts."${domain}".locations = {

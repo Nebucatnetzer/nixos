@@ -17,6 +17,10 @@
     "${inputs.self}/home-manager/software/mpv"
     "${inputs.self}/home-manager/software/nitrogen"
     "${inputs.self}/home-manager/software/obsidian"
+    (import "${inputs.self}/home-manager/software/podget" {
+      downloadDir = "/home/andreas/Downloads";
+      inherit custom inputs pkgs;
+    })
     "${inputs.self}/home-manager/software/pycharm"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"
     "${inputs.self}/home-manager/software/signal"

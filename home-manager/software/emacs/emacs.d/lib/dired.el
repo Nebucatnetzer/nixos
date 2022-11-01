@@ -1,3 +1,7 @@
+(add-hook 'dired-load-hook
+          (lambda ()
+            (load "dired-x")))
+
 (put 'dired-find-alternate-file 'disabled nil)
 
 (setq-default dired-listing-switches "-ahlv --group-directories-first")

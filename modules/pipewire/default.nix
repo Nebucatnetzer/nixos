@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ custom, pkgs, ... }:
 {
   security.rtkit.enable = true;
   services.pipewire = {
@@ -7,5 +7,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  environment.systemPackages = with pkgs; [ easyeffects ];
+  home-manager.users.${custom.username} = {
+    services.easyeffects.enable = true;
+  };
 }

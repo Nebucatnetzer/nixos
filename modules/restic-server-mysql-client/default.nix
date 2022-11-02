@@ -1,4 +1,12 @@
-{ hostname, inputs, custom, pkgs, time, ... }:
+{ hostname
+, inputs
+, custom
+, path ? "/home/${custom.username}"
+, pkgs
+, tag ? "home-dir"
+, time
+, ...
+}:
 {
   imports = [
     "${inputs.self}/modules/telegram-notifications"
@@ -24,7 +32,7 @@
     script = ''
       ${pkgs.restic}/bin/restic backup \
         --exclude-file=${inputs.self}/modules/restic/excludes.txt \
-        --tag home-dir /home/${custom.username}
+        --tag ${tag} ${path}
 
       ${pkgs.mariadb}/bin/mysqldump --single-transaction --all-databases | \
       ${pkgs.restic}/bin/restic backup \

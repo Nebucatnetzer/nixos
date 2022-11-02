@@ -12,6 +12,8 @@ in
       inherit domain inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {
+      path = "/var/lib/ttrss";
+      tag = "ttrss";
       time = "23:00"; inherit custom hostname inputs pkgs;
     })
     "${inputs.self}/modules/mariadb"

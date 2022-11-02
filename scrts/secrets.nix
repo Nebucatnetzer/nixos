@@ -32,6 +32,6 @@ let
   defaultKeys = [ andreas andreas-nixos-vm gwyn management nixos-vm ];
 in
 {
-  "plex_claim.age".publicKeys = users ++ systems;
+  "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
 }
 

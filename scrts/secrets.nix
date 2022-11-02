@@ -17,21 +17,20 @@ let
   systems = [ gwyn proxy git nextcloud ttrss mail pihole plex restic-server management loki-test ];
   nixos-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcmWE9b7GQKOOq61gYLdFA5uZ+hhpBYePmmdRDGwIVu";
   systems = [
-    gwyn
-    proxy
     git
-    nextcloud
-    ttrss
+    gwyn
+    loki-test
     mail
+    nextcloud
     pihole
     plex
-    restic-server
+    proxy
     raspi-test
-    loki-test
+    restic-server
+    ttrss
   ];
 in
 {
-  "test.age".publicKeys = users ++ systems;
   "plex_claim.age".publicKeys = users ++ systems;
 }
 

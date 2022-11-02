@@ -11,6 +11,7 @@
     "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/haproxy"
+    "${inputs.self}/modules/rss-bridge"
   ];
 
   services.nginx = {

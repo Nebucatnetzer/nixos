@@ -1,8 +1,5 @@
 { inputs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/docker"
-  ];
   virtualisation.oci-containers = {
     backend = "docker";
     containers."heimdall" = {

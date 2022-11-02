@@ -1,8 +1,5 @@
 { inputs, config, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/docker"
-  ];
   age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
   networking = {
     firewall.allowedTCPPorts = [

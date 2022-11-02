@@ -8,6 +8,7 @@
     (import "${inputs.self}/modules/restic-server-client" {
       time = "03:30"; inherit custom hostname inputs pkgs;
     })
+    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/media-share"
     "${inputs.self}/modules/plex"
   ];

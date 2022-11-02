@@ -16,6 +16,19 @@ let
   loki-test = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqCmY9F2nWasFtmBpk401lacclXeddDm+OTZ4+tNM94";
   systems = [ gwyn proxy git nextcloud ttrss mail pihole plex restic-server management loki-test ];
   nixos-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcmWE9b7GQKOOq61gYLdFA5uZ+hhpBYePmmdRDGwIVu";
+  systems = [
+    gwyn
+    proxy
+    git
+    nextcloud
+    ttrss
+    mail
+    pihole
+    plex
+    restic-server
+    raspi-test
+    loki-test
+  ];
 in
 {
   "test.age".publicKeys = users ++ systems;

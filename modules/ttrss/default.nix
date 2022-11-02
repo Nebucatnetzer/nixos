@@ -26,7 +26,7 @@
         "8080:80"
       ];
       volumes = [
-        "/home/andreas/docker_systems/ttrss/config:/config"
+        "/var/lib/ttrss/config:/config"
       ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };

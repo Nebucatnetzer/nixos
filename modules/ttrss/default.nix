@@ -6,6 +6,7 @@
   age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
   virtualisation.oci-containers = {
+    backend = "docker";
     containers."ttrss" = {
       image = "registry.gitlab.com/lunik1/docker-tt-rss";
       autoStart = true;
@@ -27,6 +28,7 @@
       volumes = [
         "/home/andreas/docker_systems/ttrss/config:/config"
       ];
+      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
   };
 }

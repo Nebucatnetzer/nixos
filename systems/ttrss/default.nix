@@ -1,4 +1,7 @@
 { custom, hostname, inputs, pkgs, ... }:
+let
+  domain = "ttrss.2li.ch";
+in
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {
@@ -6,7 +9,7 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/nginx-proxy" {
-      domain = "ttrss.2li.ch"; inherit inputs;
+      inherit domain inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {
       time = "23:00"; inherit custom hostname inputs pkgs;

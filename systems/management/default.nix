@@ -8,10 +8,6 @@ in
       ip = "10.7.89.150";
       inherit hostname inputs pkgs;
     })
-    (import "${inputs.self}/modules/nginx-fpm" {
-      dataDir = "/var/www/ttrss/app";
-      inherit domain inputs pkgs;
-    })
     "${inputs.self}/modules/docker"
     # "${inputs.self}/modules/logs-share"
     # I currently can't install lnav because it is not building on aarch64

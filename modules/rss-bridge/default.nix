@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 let
   whitelist = builtins.toFile "whitelist.txt" ''*'';
 in

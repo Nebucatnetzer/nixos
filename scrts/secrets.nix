@@ -29,6 +29,7 @@ let
     restic-server
     ttrss
   ];
+  defaultKeys = [ andreas andreas-nixos-vm gwyn management nixos-vm ];
 in
 {
   "plex_claim.age".publicKeys = users ++ systems;

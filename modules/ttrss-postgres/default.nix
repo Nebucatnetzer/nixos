@@ -22,7 +22,6 @@ in
   };
 
   virtualisation.oci-containers = {
-    backend = "docker";
     containers."ttrss" = {
       image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
       autoStart = false;
@@ -41,7 +40,6 @@ in
       volumes = [
         "/home/andreas/ttrss/config:/config"
       ];
-      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
   };
 }

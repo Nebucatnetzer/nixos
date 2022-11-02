@@ -3,9 +3,6 @@ let
   whitelist = builtins.toFile "whitelist.txt" ''*'';
 in
 {
-  imports = [
-    "${inputs.self}/modules/docker"
-  ];
   virtualisation.oci-containers = {
     backend = "docker";
     containers."rss-brige" = {

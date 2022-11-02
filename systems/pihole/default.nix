@@ -6,6 +6,8 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
+      path = "/var/lib/pihole";
+      tag = "pihole";
       time = "05:00"; inherit custom hostname inputs pkgs;
     })
     "${inputs.self}/modules/docker"

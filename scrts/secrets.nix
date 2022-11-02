@@ -14,7 +14,6 @@ let
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDsIpx4uigis0II6BW0s5Huum+sOnuS/R11MaNPh3qFm";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACtJWes3zBh0Hs0BEC2ZC+9+ddLALlzuAxyNjLgf5Fh";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPsjf063cd2QPTTRRP6s+VvAkDal1pHbVxBIycv5ntz+";
-  systems = [ gwyn proxy git nextcloud ttrss mail pihole plex restic-server management loki-test ];
   ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWQKvlLbat4Bp3iu4oFpdHSaiyi6x/efCMmYtCNfgfb";
   systems = [
     git

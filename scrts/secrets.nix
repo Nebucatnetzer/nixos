@@ -20,11 +20,12 @@ let
     gwyn
     loki-test
     mail
+    management
     nextcloud
+    nixos-vm
     pihole
     plex
     proxy
-    raspi-test
     restic-server
     ttrss
   ];

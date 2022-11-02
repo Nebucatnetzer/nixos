@@ -33,5 +33,6 @@ let
 in
 {
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
+  "ttrss_env.age".publicKeys = defaultKeys ++ [ ttrss ];
 }
 

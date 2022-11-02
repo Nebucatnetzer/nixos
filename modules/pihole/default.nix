@@ -24,8 +24,8 @@
       };
       environmentFiles = [ config.age.secrets.piholeEnv.path ];
       volumes = [
-        "/home/andreas/docker_systems/pihole/etc-pihole:/etc/pihole/"
-        "/home/andreas/docker_systems/pihole/etc-dnsmasq.d:/etc/dnsmasq.d/"
+        "/var/lib/pihole/etc-pihole:/etc/pihole/"
+        "/var/lib/pihole/etc-dnsmasq.d:/etc/dnsmasq.d/"
       ];
       extraOptions = [
         "--network=host"

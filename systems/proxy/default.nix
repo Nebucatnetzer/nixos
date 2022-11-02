@@ -62,15 +62,6 @@
           proxyWebsockets = true; # needed if you need to use WebSocket
         };
       };
-      "rss-bridge.2li.ch" = {
-        enableACME = true;
-        forceSSL = true;
-        listen = [{ port = 4433; addr = "127.0.0.1"; ssl = true; }];
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8082";
-          proxyWebsockets = true; # needed if you need to use WebSocket
-        };
-      };
     };
   };
 }

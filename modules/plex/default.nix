@@ -28,8 +28,8 @@
       };
       environmentFiles = [ config.age.secrets.plexClaim.path ];
       volumes = [
-        "/home/andreas/docker_systems/plex/config:/config"
-        "/home/andreas/docker_systems/plex/tmp:/transcode"
+        "/var/lib/plex/config:/config"
+        "/var/lib/plex/tmp:/transcode"
       ];
       extraOptions = [
         ''--mount=type=volume,source=media,target=/mnt/media,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/media,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''

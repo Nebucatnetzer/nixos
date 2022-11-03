@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs }: { config, ... }:
 {
   age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
   networking = {

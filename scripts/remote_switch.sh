@@ -5,6 +5,7 @@ skip=(
     "gwyn"
     "loki-test"
     "desktop-vm"
+    "staubfinger"
 )
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"

@@ -22,6 +22,7 @@ in
   };
 
   virtualisation.oci-containers = {
+    backend = "docker";
     containers."ttrss" = {
       image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
       autoStart = false;

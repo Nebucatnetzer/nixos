@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ custom, }: { ... }:
 {
   nix.extraOptions = ''
     keep-outputs = true

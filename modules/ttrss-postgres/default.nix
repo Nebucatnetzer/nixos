@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ domain, inputs }: { config, pkgs, ... }:
 let
   domain = "test.2li.ch";
 in

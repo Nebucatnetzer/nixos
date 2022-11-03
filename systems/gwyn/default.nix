@@ -1,4 +1,4 @@
-{ custom, hostname, inputs, lib, pkgs, ... }:
+{ custom, hostname, inputs }: { lib, pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530

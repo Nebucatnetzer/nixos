@@ -1,4 +1,7 @@
 { custom, hostname, inputs }: { pkgs, ... }:
+let
+  domain = "git.2li.ch";
+in
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {
@@ -9,7 +12,10 @@
       time = "03:00"; inherit custom hostname inputs;
     })
     (import "${inputs.self}/modules/nginx-proxy" {
-      domain = "git.2li.ch"; inherit inputs;
+      inherit domain inputs;
+    })
+    (import "${inputs.self}/modules/gitea" {
+      inherit domain inputs;
     })
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/mariadb"

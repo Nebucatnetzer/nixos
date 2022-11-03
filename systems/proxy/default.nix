@@ -10,6 +10,7 @@
     })
     "${inputs.self}/modules/nginx-acme-base"
     "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/grav"
     "${inputs.self}/modules/haproxy"
     "${inputs.self}/modules/heimdall"
     "${inputs.self}/modules/rss-bridge"
@@ -43,6 +44,7 @@
       # This might create errors
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
+    recommendedProxySettings = true;
     virtualHosts = {
       "2li.ch" = {
         serverAliases = [ "www.2li.ch" ];

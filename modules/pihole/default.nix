@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ inputs }: { config, ... }:
 {
   networking = {
     firewall.allowedTCPPorts = [

@@ -2,9 +2,9 @@
 
 hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'` | xargs ))
 skip=(
+    "desktop-vm"
     "gwyn"
     "loki-test"
-    "desktop-vm"
     "staubfinger"
 )
 

@@ -1,11 +1,13 @@
 { inputs }: { config, pkgs, ... }:
 let
-  mailserver-setup = pkgs.writeScriptBin "mailserver-setup"
+  mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v11.2.0/setup.sh";
       sha256 = "sha256-V4NFapoU3thbPzhSX5DGR3cZAW1kCYZpAKsFeSjMGPY=";
     })
-  }";
+      }").overrideAttrs (old: {
+    buildCommand = "${old.buildCommand}\n patchShebangs $out";
+  });
 in
 {
   environment.systemPackages = [

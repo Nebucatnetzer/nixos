@@ -11,6 +11,7 @@
     (import "${inputs.self}/modules/nginx-proxy" {
       domain = "mail.zweili.org"; inherit inputs;
     })
+    (import "${inputs.self}/modules/docker-mailserver" { inherit inputs; })
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/mariadb"
   ];

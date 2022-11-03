@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   programs.droidcam.enable = true;
   # required for USB connection

@@ -1,9 +1,9 @@
-{ hostname, inputs, pkgs, ... }:
+{ hostname, inputs }: { pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.10";
-      inherit hostname inputs pkgs;
+      inherit hostname inputs;
     })
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/pihole" # needs to be limited to lan interface

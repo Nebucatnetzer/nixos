@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   accounts.email.accounts."personal" = {
     address = "andreas@zweili.ch";

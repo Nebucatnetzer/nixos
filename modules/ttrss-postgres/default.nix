@@ -9,7 +9,6 @@ in
       inherit domain inputs pkgs;
     })
     "${inputs.self}/modules/data-share"
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/postgresql"
   ];
 

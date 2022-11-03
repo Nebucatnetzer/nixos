@@ -1,8 +1,5 @@
 { domain, inputs }: { config, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/docker"
-  ];
   age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
   virtualisation.oci-containers = {

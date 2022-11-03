@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   virtualisation.oci-containers = {
     backend = "docker";

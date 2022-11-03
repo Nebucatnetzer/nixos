@@ -1,4 +1,4 @@
-{ custom, hostname, inputs, pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {
@@ -8,7 +8,7 @@
     (import "${inputs.self}/modules/restic-server-client" {
       path = "/var/lib/pihole";
       tag = "pihole";
-      time = "05:00"; inherit custom hostname inputs pkgs;
+      time = "05:00"; inherit custom hostname inputs;
     })
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/pihole"

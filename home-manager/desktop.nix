@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ inputs, custom }: { pkgs, ... }:
 {
   imports = [
     "${inputs.self}/home-manager/software/ansible"
@@ -6,7 +6,7 @@
     "${inputs.self}/home-manager/software/calibre"
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/dunst"
-    (import "${inputs.self}/home-manager/software/emacs" { inherit custom pkgs; })
+    (import "${inputs.self}/home-manager/software/emacs" { inherit custom; })
     "${inputs.self}/home-manager/software/email"
     "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"
@@ -19,7 +19,7 @@
     "${inputs.self}/home-manager/software/obsidian"
     (import "${inputs.self}/home-manager/software/podget" {
       downloadDir = "/home/andreas/Downloads";
-      inherit custom inputs pkgs;
+      inherit custom inputs;
     })
     "${inputs.self}/home-manager/software/pycharm"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"

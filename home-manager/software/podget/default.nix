@@ -1,4 +1,4 @@
-{ custom, downloadDir, inputs, pkgs, ... }:
+{ custom, downloadDir, inputs }: { pkgs, ... }:
 let
   podget = pkgs.writeScriptBin "podget"
     "${builtins.readFile (pkgs.fetchurl {

@@ -1,4 +1,4 @@
-{ custom, pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   home.packages = with pkgs; [
     multimarkdown

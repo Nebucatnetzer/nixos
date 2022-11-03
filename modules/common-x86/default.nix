@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs }: { ... }:
 {
   imports = [
     "${inputs.self}/modules/common"

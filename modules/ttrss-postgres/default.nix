@@ -11,6 +11,7 @@ in
     "${inputs.self}/modules/data-share"
     "${inputs.self}/modules/postgresql"
   ];
+  age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
   services.postgresql = {
     ensureDatabases = [ "ttrssdb" ];
@@ -31,15 +32,16 @@ in
         TTRSS_DB_NAME = "ttrssdb";
         TTRSS_DB_PASS = "ttrss";
         TTRSS_DB_HOST = "host.docker.internal";
-        TTRSS_SELF_URL_PATH = "https://test.2li.ch";
+        TTRSS_SELF_URL_PATH = "https://${domain}";
       };
-      # environmentFiles = "";
+      environmentFiles = [ config.age.secrets.ttrssEnv.path ];
       ports = [
         "8080:80"
       ];
       volumes = [
-        "/home/andreas/ttrss/config:/config"
+        "/var/lib/ttrss/config:/config"
       ];
+      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
   };
 }

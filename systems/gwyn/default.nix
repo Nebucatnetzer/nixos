@@ -20,7 +20,7 @@
     "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
-    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs pkgs; })
+    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs; })
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

@@ -1,4 +1,4 @@
-{ hostname, inputs, custom, pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 let
   password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
   repository = "rest:http://10.7.89.30:8000";

@@ -1,5 +1,6 @@
 { custom, hostname, inputs }: { pkgs, ... }:
 let
+  # TODO: encrypt key file with agenix
   password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
   repository = "rest:http://10.7.89.30:8000";
 
@@ -18,6 +19,7 @@ let
       --password-file ${password_file} \
       mount /tmp/restic'';
 
+  # TODO: encrypt key file with agenix
   infomaniak-env = "/home/${custom.username}/.nixos/secrets/passwords/infomaniak-env";
   infomaniak-repo = "swift:default:/";
   infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";

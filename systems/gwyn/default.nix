@@ -8,7 +8,7 @@
     "${inputs.self}/hardware/nvidia"
     "${inputs.self}/hardware/dvd"
     "${inputs.self}/modules/data-share"
-    "${inputs.self}/modules/desktop"
+    (import "${inputs.self}/modules/desktop" { inherit custom inputs; })
     "${inputs.self}/modules/docker"
     "${inputs.self}/modules/droidcam"
     "${inputs.self}/modules/eog"

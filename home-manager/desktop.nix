@@ -19,7 +19,6 @@
     "${inputs.self}/home-manager/software/obsidian"
     (import "${inputs.self}/home-manager/software/podget" {
       downloadDir = "/home/andreas/Downloads";
-      inherit custom inputs;
     })
     "${inputs.self}/home-manager/software/pycharm"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"

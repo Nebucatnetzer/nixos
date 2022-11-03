@@ -16,7 +16,9 @@ in
       tag = "ttrss";
       time = "23:00"; inherit custom hostname inputs pkgs;
     })
+    (import "${inputs.self}/modules/ttrss" {
+      inherit domain inputs;
+    })
     "${inputs.self}/modules/mariadb"
-    "${inputs.self}/modules/ttrss"
   ];
 }

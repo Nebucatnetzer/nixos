@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ domain, inputs }: { config, ... }:
 {
   imports = [
     "${inputs.self}/modules/docker"
@@ -19,7 +19,7 @@
         TTRSS_DB_NAME = "ttrssdb";
         TTRSS_DB_PORT = "3306";
         TTRSS_DB_HOST = "host.docker.internal";
-        TTRSS_SELF_URL_PATH = "https://ttrss.2li.ch";
+        TTRSS_SELF_URL_PATH = "https://${domain}";
       };
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
       ports = [

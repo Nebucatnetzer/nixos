@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ inputs, custom }: { pkgs, ... }:
 {
   imports = [
     "${inputs.self}/home-manager/common"

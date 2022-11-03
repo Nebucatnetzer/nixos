@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   fileSystems."/var/log" = {
     device = "none";

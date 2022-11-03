@@ -1,4 +1,4 @@
-{ custom, pkgs, ... }:
+{ custom }: { pkgs, ... }:
 let
   telegram-notify-env = "/home/${custom.username}/.nixos/secrets/passwords/telegram_notify_env";
 

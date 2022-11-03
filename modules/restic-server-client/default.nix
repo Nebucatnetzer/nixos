@@ -1,6 +1,6 @@
-{ hostname
+{ custom
+, hostname
 , inputs
-, custom
 , path ? "/home/${custom.username}"
 , tag ? "home-dir"
 , time

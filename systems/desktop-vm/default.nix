@@ -1,4 +1,4 @@
-{ hostname, inputs, ... }:
+{ hostname, inputs }: { ... }:
 {
   imports = [
     "${inputs.self}/modules/desktop"

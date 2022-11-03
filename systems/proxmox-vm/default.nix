@@ -1,4 +1,4 @@
-{ inputs, hostname, ip, ... }:
+{ inputs, hostname, ip }: { ... }:
 {
   imports = [
     "${inputs.self}/modules/log-to-ram"

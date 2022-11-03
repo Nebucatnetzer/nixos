@@ -6,7 +6,7 @@
     "${inputs.self}/home-manager/software/calibre"
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/dunst"
-    (import "${inputs.self}/home-manager/software/emacs" { inherit custom; })
+    "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/email"
     "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"

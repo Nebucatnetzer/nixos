@@ -1,4 +1,4 @@
-{ custom, hostname, inputs, pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {
@@ -6,7 +6,7 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {
-      time = "03:00"; inherit custom hostname inputs pkgs;
+      time = "03:00"; inherit custom hostname inputs;
     })
     (import "${inputs.self}/modules/nginx-proxy" {
       domain = "git.2li.ch"; inherit inputs;

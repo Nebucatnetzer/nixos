@@ -1,4 +1,4 @@
-{ custom, inputs }: { pkgs, ... }:
+{ custom, inputs }: { ... }:
 {
   imports = [
     (import "${inputs.self}/home-manager/headless.nix" { inherit custom inputs; })

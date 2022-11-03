@@ -1,4 +1,4 @@
-{ inputs }: { config, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
@@ -19,7 +19,7 @@ in
       image = "docker.io/mailserver/docker-mailserver:11.2.0";
       autoStart = true;
       environmentFiles = [
-        "${inputs.self}/modules/docker-mailserver/mailserver.env"
+        "./mailserver.env"
       ];
       ports = [
         "25:25"
@@ -31,7 +31,7 @@ in
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
         "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
-        "${inputs.self}/modules/docker-mailserver/sa-learn:/etc/cron.d/sa-learn"
+        "./sa-learn:/etc/cron.d/sa-learn"
       ];
       extraOptions = [
         ''--mount=type=volume,source=maildata,target=/var/mail,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/maildata,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''

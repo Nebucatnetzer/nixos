@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ custom, pkgs, ... }:
 {
   services.code-server = {
     enable = true;

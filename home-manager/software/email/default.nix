@@ -5,6 +5,7 @@
     realName = "Andreas Zweili";
     userName = "andreas@zweili.ch";
     primary = true;
+    # TODO: encrypt with agenix
     passwordCommand = "cat /home/andreas/.nixos/secrets/passwords/personal_email.key";
     aliases = [
       "andreas.zweili@gmail.com"

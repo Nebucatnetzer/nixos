@@ -1,5 +1,6 @@
 { custom }: { pkgs, ... }:
 let
+  # TODO: encrypt with agenix
   telegram-notify-env = "/home/${custom.username}/.nixos/secrets/passwords/telegram_notify_env";
 
   send-to-telegram = pkgs.writeShellScript "send-to-telegram" ''

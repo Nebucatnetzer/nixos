@@ -2,11 +2,9 @@
 , inputs
 , custom
 , path ? "/home/${custom.username}"
-, pkgs
 , tag ? "home-dir"
 , time
-, ...
-}:
+}: { pkgs, ... }:
 {
   imports = [
     "${inputs.self}/modules/telegram-notifications"

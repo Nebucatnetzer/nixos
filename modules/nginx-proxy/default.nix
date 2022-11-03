@@ -1,4 +1,4 @@
-{ domain, inputs, port ? "8080", ... }: {
+{ domain, inputs, port ? "8080" }: { ... }: {
   imports = [
     "${inputs.self}/modules/nginx-acme-base"
   ];

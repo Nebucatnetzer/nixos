@@ -1,4 +1,4 @@
-{ inputs, hostname, ip, pkgs, ... }:
+{ inputs, hostname, ip }: { pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4

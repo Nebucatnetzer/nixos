@@ -1,4 +1,4 @@
-{ hostname, inputs, pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 let
   domain = "test.2li.ch";
 in
@@ -6,7 +6,7 @@ in
   imports = [
     (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.150";
-      inherit hostname inputs pkgs;
+      inherit hostname inputs;
     })
     "${inputs.self}/modules/docker"
     # "${inputs.self}/modules/logs-share"

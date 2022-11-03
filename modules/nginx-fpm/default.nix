@@ -1,4 +1,5 @@
-{ dataDir, documentRoot ? "/var/www/html", domain, inputs, pkgs, port ? "9000", ... }:
+{ dataDir, documentRoot ? "/var/www/html", domain, inputs, port ? "9000", }:
+{ pkgs, ... }:
 {
   imports = [
     "${inputs.self}/modules/nginx-acme-base"

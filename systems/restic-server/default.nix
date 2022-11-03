@@ -1,4 +1,4 @@
-{ custom, hostname, inputs, pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/proxmox-vm" {

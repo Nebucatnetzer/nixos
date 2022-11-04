@@ -12,7 +12,7 @@
       domain = "mail.zweili.org"; inherit inputs;
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/docker-mailserver"
+    (import "${inputs.self}/modules/docker-mailserver" { inherit inputs; })
     "${inputs.self}/modules/mariadb"
   ];
 }

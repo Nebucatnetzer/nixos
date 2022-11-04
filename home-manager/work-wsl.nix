@@ -1,7 +1,7 @@
 { inputs, custom }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/home-manager/common"
+    (import "${inputs.self}/home-manager/common" { inherit custom; })
     "${inputs.self}/home-manager/software/ansible"
     "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/fzf"

@@ -7,6 +7,7 @@ skip=(
     "desktop-vm"
     "gwyn"
     "loki-test"
+    "pihole"
     "staubfinger"
 )
 
@@ -21,9 +22,13 @@ do
     fi
     fqdn="$host.2li.local"
     echo $fqdn
-    nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"
-    echo "reboot $fqdn"
+    nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host" &&
     ssh -i $rsa_key $fqdn 'sudo reboot'
     echo
     echo
 done
+
+fqdn="pihole.2li.local"
+echo $fqdn
+nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host" &&
+ssh -i $rsa_key $fqdn 'sudo reboot'

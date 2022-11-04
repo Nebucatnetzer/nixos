@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'` | xargs ))
 skip=(

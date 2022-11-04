@@ -5,7 +5,7 @@
       ip = "10.7.89.10";
       inherit hostname inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/pihole" # needs to be limited to lan interface
     "${inputs.self}/modules/router"
     "${inputs.self}/modules/tmux"

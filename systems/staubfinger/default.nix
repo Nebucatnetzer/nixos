@@ -5,10 +5,10 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     "${inputs.self}/hardware/bluetooth"
-    "${inputs.self}/modules/desktop"
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/droidcam"
-    "${inputs.self}/modules/espanso"
+    (import "${inputs.self}/modules/desktop" { inherit custom inputs; })
+    (import "${inputs.self}/modules/docker" { inherit custom; })
+    (import "${inputs.self}/modules/droidcam" { inherit custom; })
+    (import "${inputs.self}/modules/espanso" { inherit custom; })
     "${inputs.self}/modules/lockscreen"
     "${inputs.self}/modules/restic"
     "${inputs.self}/modules/tlp"

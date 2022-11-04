@@ -3,7 +3,7 @@
   imports = [
     "${inputs.self}/modules/hunspell"
     "${inputs.self}/modules/nix-alien"
-    "${inputs.self}/modules/libimobiledevice"
+    (import "${inputs.self}/modules/libimobiledevice" { inherit custom; })
   ];
   networking = {
     networkmanager.enable = true;

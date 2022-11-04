@@ -9,7 +9,7 @@
       time = "00:00"; inherit custom hostname inputs;
     })
     "${inputs.self}/modules/nginx-acme-base"
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/grav"
     "${inputs.self}/modules/haproxy"
     "${inputs.self}/modules/heimdall"

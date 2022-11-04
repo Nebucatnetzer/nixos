@@ -8,7 +8,7 @@ in
       ip = "10.7.89.150";
       inherit hostname inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     # "${inputs.self}/modules/logs-share"
     # I currently can't install lnav because it is not building on aarch64
     # https://github.com/NixOS/nixpkgs/issues/197512

@@ -8,7 +8,7 @@
     (import "${inputs.self}/modules/restic-server-mysql-client" {
       time = "04:00"; inherit custom hostname inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/mariadb"
     "${inputs.self}/modules/nginx-acme-base"
   ];

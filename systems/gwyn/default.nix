@@ -9,14 +9,14 @@
     "${inputs.self}/hardware/dvd"
     "${inputs.self}/modules/data-share"
     (import "${inputs.self}/modules/desktop" { inherit custom inputs; })
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/droidcam"
-    "${inputs.self}/modules/eog"
-    "${inputs.self}/modules/espanso"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
+    (import "${inputs.self}/modules/droidcam" { inherit custom; })
+    (import "${inputs.self}/modules/eog" { inherit custom; })
+    (import "${inputs.self}/modules/espanso" { inherit custom; })
     "${inputs.self}/modules/lockscreen"
     "${inputs.self}/modules/logs-share"
-    "${inputs.self}/modules/nix-direnv"
-    "${inputs.self}/modules/pipewire"
+    (import "${inputs.self}/modules/nix-direnv" { inherit custom; })
+    (import "${inputs.self}/modules/pipewire" { inherit custom; })
     "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"

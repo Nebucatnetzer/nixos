@@ -10,7 +10,7 @@
       tag = "pihole";
       time = "05:00"; inherit custom hostname inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/pihole"
     "${inputs.self}/modules/unbound"
   ];

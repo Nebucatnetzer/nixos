@@ -19,7 +19,7 @@ in
     (import "${inputs.self}/modules/ttrss" {
       inherit domain inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/mariadb"
   ];
 }

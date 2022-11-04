@@ -10,7 +10,7 @@
       tag = "plex";
       time = "03:30"; inherit custom hostname inputs;
     })
-    "${inputs.self}/modules/docker"
+    (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/media-share"
     "${inputs.self}/modules/plex"
   ];

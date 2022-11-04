@@ -2,7 +2,7 @@
 {
   imports = [
     "${inputs.self}/home-manager/software/ansible"
-    (import "${inputs.self}/home-manager/common" { inherit custom inputs; })
+    (import "${inputs.self}/home-manager/common" { inherit custom; })
     "${inputs.self}/home-manager/software/calibre"
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/dunst"

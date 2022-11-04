@@ -28,7 +28,7 @@ inputs.nixpkgs.lib.nixosSystem {
         { inherit custom hostname inputs; })
 
       # Common configuration
-      "${inputs.self}/modules/common"
+      (import "${inputs.self}/modules/common" { inherit custom inputs; })
 
       inputs.agenix.nixosModules.age
       { environment.systemPackages = [ inputs.agenix.defaultPackage.${system} ]; }

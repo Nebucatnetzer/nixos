@@ -41,7 +41,7 @@ inputs.nixpkgs.lib.nixosSystem
       })
 
       # Common configuration
-      "${inputs.self}/modules/common-x86"
+      (import "${inputs.self}/modules/common-x86" { inherit custom inputs; })
 
       inputs.agenix.nixosModules.age
       { environment.systemPackages = [ inputs.agenix.defaultPackage.${system} ]; }

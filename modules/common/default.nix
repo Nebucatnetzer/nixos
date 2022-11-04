@@ -1,7 +1,7 @@
 { inputs, custom }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/modules/cli" { inherit inputs; })
+    "${inputs.self}/modules/cli"
   ];
 
   # The rough location

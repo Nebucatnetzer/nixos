@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    lnav
+    unstable.lnav
   ];
   fileSystems."/mnt/server_logs" = {
     device = "10.7.89.108:logs";

@@ -1,25 +1,22 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 let
   domain = "ttrss.2li.ch";
 in
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${custom.inputs.self}/systems/proxmox-vm" {
       ip = "10.7.89.115";
-      inherit hostname inputs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/nginx-proxy" {
-      inherit domain inputs;
-    })
-    (import "${inputs.self}/modules/restic-server-mysql-client" {
+    (import "${custom.inputs.self}/modules/nginx-proxy" { inherit custom domain; })
+    (import "${custom.inputs.self}/modules/restic-server-mysql-client" {
       path = "/var/lib/ttrss";
       tag = "ttrss";
-      time = "23:00"; inherit inputs;
+      time = "23:00";
+      inherit custom;
     })
-    (import "${inputs.self}/modules/ttrss" {
-      inherit domain inputs;
-    })
-    (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/mariadb"
+    (import "${custom.inputs.self}/modules/ttrss" { inherit custom domain; })
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/mariadb"
   ];
 }

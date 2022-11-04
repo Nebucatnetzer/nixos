@@ -1,10 +1,10 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${custom.inputs.self}/systems/proxmox-vm" {
       ip = "10.7.89.30";
-      inherit hostname inputs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/restic-server" { inherit inputs; })
+    (import "${custom.inputs.self}/modules/restic-server" { inherit custom; })
   ];
 }

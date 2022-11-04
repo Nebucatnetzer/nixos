@@ -1,9 +1,9 @@
-{ inputs, custom }: { pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/hunspell"
-    "${inputs.self}/modules/nix-alien"
-    (import "${inputs.self}/modules/libimobiledevice" { inherit custom; })
+    "${custom.inputs.self}/modules/hunspell"
+    "${custom.inputs.self}/modules/nix-alien"
+    (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
   ];
   networking = {
     networkmanager.enable = true;

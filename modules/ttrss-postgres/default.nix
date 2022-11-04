@@ -1,17 +1,17 @@
-{ domain, inputs }: { config, pkgs, ... }:
+{ custom, domain }: { config, pkgs, ... }:
 let
   domain = "test.2li.ch";
 in
 {
   imports = [
-    (import "${inputs.self}/modules/nginx-fpm" {
+    (import "${custom.inputs.self}/modules/nginx-fpm" {
       dataDir = "/mnt/data/ttrss/app";
-      inherit domain inputs pkgs;
+      inherit custom domain pkgs;
     })
-    "${inputs.self}/modules/data-share"
-    "${inputs.self}/modules/postgresql"
+    "${custom.inputs.self}/modules/data-share"
+    "${custom.inputs.self}/modules/postgresql"
   ];
-  age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
+  age.secrets.ttrssEnv.file = "${custom.inputs.self}/scrts/ttrss_env.age";
 
   services.postgresql = {
     ensureDatabases = [ "ttrssdb" ];

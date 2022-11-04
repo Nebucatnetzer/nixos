@@ -1,8 +1,8 @@
-{ dataDir, documentRoot ? "/var/www/html", domain, inputs, port ? "9000", }:
+{ custom, dataDir, documentRoot ? "/var/www/html", domain, port ? "9000", }:
 { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/nginx-acme-base"
+    "${custom.inputs.self}/modules/nginx-acme-base"
   ];
   services.nginx = {
     appendHttpConfig = ''

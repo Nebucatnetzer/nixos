@@ -1,7 +1,7 @@
-{ inputs, custom }: { pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/cli"
+    "${custom.inputs.self}/modules/cli"
   ];
 
   # The rough location
@@ -71,10 +71,10 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${custom.inputs.nixpkgs}" ];
     registry = {
-      nixpkgs.flake = inputs.nixpkgs;
-      nix-config.flake = inputs.self;
+      nixpkgs.flake = custom.inputs.nixpkgs;
+      nix-config.flake = custom.inputs.self;
     };
 
     autoOptimiseStore = true;

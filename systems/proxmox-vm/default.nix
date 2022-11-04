@@ -1,9 +1,9 @@
-{ inputs, hostname, ip }: { ... }:
+{ custom, hostname, ip }: { ... }:
 {
   imports = [
-    "${inputs.self}/modules/log-to-ram"
-    "${inputs.self}/modules/ntp"
-    "${inputs.self}/modules/syslog"
+    "${custom.inputs.self}/modules/log-to-ram"
+    "${custom.inputs.self}/modules/ntp"
+    "${custom.inputs.self}/modules/syslog"
   ];
 
   networking = {

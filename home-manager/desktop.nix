@@ -1,32 +1,32 @@
-{ inputs, custom }: { pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/home-manager/software/ansible"
-    (import "${inputs.self}/home-manager/common" { inherit custom; })
-    "${inputs.self}/home-manager/software/calibre"
-    "${inputs.self}/home-manager/software/czkawka"
-    "${inputs.self}/home-manager/software/dunst"
-    "${inputs.self}/home-manager/software/emacs"
-    "${inputs.self}/home-manager/software/evince"
-    "${inputs.self}/home-manager/software/fzf"
-    "${inputs.self}/home-manager/software/git"
-    "${inputs.self}/home-manager/software/grobi"
-    "${inputs.self}/home-manager/software/keeweb"
-    "${inputs.self}/home-manager/software/mime-apps"
-    "${inputs.self}/home-manager/software/mpv"
-    "${inputs.self}/home-manager/software/nitrogen"
-    "${inputs.self}/home-manager/software/obsidian"
-    (import "${inputs.self}/home-manager/software/podget" {
+    "${custom.inputs.self}/home-manager/software/ansible"
+    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/software/calibre"
+    "${custom.inputs.self}/home-manager/software/czkawka"
+    "${custom.inputs.self}/home-manager/software/dunst"
+    "${custom.inputs.self}/home-manager/software/emacs"
+    "${custom.inputs.self}/home-manager/software/evince"
+    "${custom.inputs.self}/home-manager/software/fzf"
+    "${custom.inputs.self}/home-manager/software/git"
+    "${custom.inputs.self}/home-manager/software/grobi"
+    "${custom.inputs.self}/home-manager/software/keeweb"
+    "${custom.inputs.self}/home-manager/software/mime-apps"
+    "${custom.inputs.self}/home-manager/software/mpv"
+    "${custom.inputs.self}/home-manager/software/nitrogen"
+    "${custom.inputs.self}/home-manager/software/obsidian"
+    (import "${custom.inputs.self}/home-manager/software/podget" {
       downloadDir = "/home/andreas/Downloads";
     })
-    "${inputs.self}/home-manager/software/pycharm"
-    "${inputs.self}/home-manager/software/rapid-photo-downloader"
-    "${inputs.self}/home-manager/software/signal"
-    "${inputs.self}/home-manager/software/ssh"
-    "${inputs.self}/home-manager/software/starship"
-    "${inputs.self}/home-manager/software/telegram"
-    "${inputs.self}/home-manager/software/vim"
-    "${inputs.self}/home-manager/software/work-desktop"
+    "${custom.inputs.self}/home-manager/software/pycharm"
+    "${custom.inputs.self}/home-manager/software/rapid-photo-downloader"
+    "${custom.inputs.self}/home-manager/software/signal"
+    "${custom.inputs.self}/home-manager/software/ssh"
+    "${custom.inputs.self}/home-manager/software/starship"
+    "${custom.inputs.self}/home-manager/software/telegram"
+    "${custom.inputs.self}/home-manager/software/vim"
+    "${custom.inputs.self}/home-manager/software/work-desktop"
   ];
   home.packages = with pkgs; [
     arc-theme
@@ -46,9 +46,9 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile/config.py".source = "${inputs.self}/home-manager/configs/qtile/config.py";
-  home.file.".config/qtile/autostart.sh".source = "${inputs.self}/home-manager/configs/qtile/autostart.sh";
-  home.file.".config/terminator".source = "${inputs.self}/home-manager/configs/terminator";
+  home.file.".config/qtile/config.py".source = "${custom.inputs.self}/home-manager/configs/qtile/config.py";
+  home.file.".config/qtile/autostart.sh".source = "${custom.inputs.self}/home-manager/configs/qtile/autostart.sh";
+  home.file.".config/terminator".source = "${custom.inputs.self}/home-manager/configs/terminator";
 
   programs.bash = {
     enable = true;

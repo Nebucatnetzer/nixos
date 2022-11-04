@@ -1,20 +1,20 @@
-{ custom, hostname, inputs, system ? "x86_64-linux", home-module ? "headless" }:
+{ custom, hostname, system ? "x86_64-linux", home-module ? "headless" }:
 let
   overlay-unstable = final: prev: {
-    unstable = import inputs.nixpkgs-unstable {
+    unstable = import custom.inputs.nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
   };
 
-  pkgs = import inputs.nixpkgs {
+  pkgs = import custom.inputs.nixpkgs {
     inherit system;
     config = {
       allowUnfree = true;
     };
     overlays = [
       overlay-unstable
-      inputs.nix-alien.overlay
+      custom.inputs.nix-alien.overlay
       #      (final: prev: {
       #        nextcloud-client = prev.nextcloud-client.overrideAttrs (_: rec {
       #          version = "3.6.0";
@@ -29,29 +29,29 @@ let
     ];
   };
 in
-inputs.nixpkgs.lib.nixosSystem
+custom.inputs.nixpkgs.lib.nixosSystem
 {
   inherit system pkgs;
-  specialArgs = { inherit custom inputs; };
+  specialArgs = { inherit custom; };
   modules = (
     [
       # System configuration for this host
-      (import "${inputs.self}/systems/${hostname}" {
-        inherit custom inputs hostname;
+      (import "${custom.inputs.self}/systems/${hostname}" {
+        inherit custom hostname;
       })
 
       # Common configuration
-      (import "${inputs.self}/modules/common-x86" { inherit custom inputs; })
+      (import "${custom.inputs.self}/modules/common-x86" { inherit custom; })
 
-      inputs.agenix.nixosModules.age
-      { environment.systemPackages = [ inputs.agenix.defaultPackage.${system} ]; }
+      custom.inputs.agenix.nixosModules.age
+      { environment.systemPackages = [ custom.inputs.agenix.defaultPackage.${system} ]; }
 
-      inputs.home-manager.nixosModules.home-manager
+      custom.inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${custom.username}.imports = [
-          (import "${inputs.self}/home-manager/${home-module}.nix" { inherit custom inputs; })
+          (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom; })
         ];
       }
     ]);

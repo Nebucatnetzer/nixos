@@ -1,4 +1,4 @@
-{ inputs }: { config, ... }:
+{ custom }: { config, ... }:
 {
   networking = {
     firewall.allowedTCPPorts = [
@@ -11,7 +11,7 @@
       67 # DHCP
     ];
   };
-  age.secrets.piholeEnv.file = "${inputs.self}/scrts/pihole_env.age";
+  age.secrets.piholeEnv.file = "${custom.inputs.self}/scrts/pihole_env.age";
   virtualisation.oci-containers = {
     backend = "docker";
     containers."pihole" = {

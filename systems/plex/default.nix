@@ -1,18 +1,18 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${custom.inputs.self}/systems/proxmox-vm" {
       ip = "10.7.89.112";
-      inherit hostname inputs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/var/lib/plex";
       tag = "plex";
       time = "03:30";
-      inherit inputs;
+      inherit custom;
     })
-    (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/media-share"
-    (import "${inputs.self}/modules/plex" { inherit inputs; })
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/media-share"
+    (import "${custom.inputs.self}/modules/plex" { inherit custom; })
   ];
 }

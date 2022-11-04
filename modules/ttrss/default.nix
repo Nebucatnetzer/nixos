@@ -1,6 +1,6 @@
-{ domain, inputs }: { config, ... }:
+{ custom, domain }: { config, ... }:
 {
-  age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
+  age.secrets.ttrssEnv.file = "${custom.inputs.self}/scrts/ttrss_env.age";
 
   virtualisation.oci-containers = {
     backend = "docker";

@@ -1,14 +1,14 @@
-{ inputs
+{ custom
 , path
 , tag ? "home-dir"
 , time
 }: { config, pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/modules/telegram-notifications" { inherit inputs; })
+    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
   ];
 
-  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
+  age.secrets.resticKey.file = "${custom.inputs.self}/scrts/restic.key.age";
 
   systemd.timers."restic-backups" = {
     wantedBy = [ "timers.target" ];
@@ -30,7 +30,7 @@
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
-        --exclude-file=${inputs.self}/modules/restic/excludes.txt \
+        --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
         --tag ${tag} ${path}
 
       ${pkgs.restic}/bin/restic forget \

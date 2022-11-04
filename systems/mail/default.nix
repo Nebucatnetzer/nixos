@@ -1,21 +1,21 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${custom.inputs.self}/systems/proxmox-vm" {
       ip = "10.7.89.123";
-      inherit hostname inputs;
+      inherit hostname custom;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/home/andreas";
       time = "04:30";
-      inherit inputs;
+      inherit custom;
     })
-    (import "${inputs.self}/modules/nginx-proxy" {
-      domain = "mail.zweili.org"; inherit inputs;
+    (import "${custom.inputs.self}/modules/nginx-proxy" {
+      domain = "mail.zweili.org"; inherit custom;
     })
-    (import "${inputs.self}/modules/docker" { inherit custom; })
-    (import "${inputs.self}/modules/docker-mailserver" { inherit inputs; })
-    "${inputs.self}/modules/mariadb"
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    (import "${custom.inputs.self}/modules/docker-mailserver" { inherit custom; })
+    "${custom.inputs.self}/modules/mariadb"
   ];
 }
 

@@ -1,21 +1,21 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
+    (import "${custom.inputs.self}/systems/raspi4" {
       ip = "10.7.89.99";
-      inherit hostname inputs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/home/andreas";
       time = "00:00";
-      inherit inputs;
+      inherit custom;
     })
-    "${inputs.self}/modules/nginx-acme-base"
-    (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/grav"
-    "${inputs.self}/modules/haproxy"
-    "${inputs.self}/modules/heimdall"
-    "${inputs.self}/modules/rss-bridge"
+    "${custom.inputs.self}/modules/nginx-acme-base"
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/grav"
+    "${custom.inputs.self}/modules/haproxy"
+    "${custom.inputs.self}/modules/heimdall"
+    "${custom.inputs.self}/modules/rss-bridge"
   ];
 
   services.nginx = {

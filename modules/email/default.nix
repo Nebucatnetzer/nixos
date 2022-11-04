@@ -1,8 +1,8 @@
-{ custom, inputs }: { config, ... }:
+{ custom }: { config, ... }:
 {
   age.secrets.personalEmailKey =
     {
-      file = "${inputs.self}/scrts/personal_email.key.age";
+      file = "${custom.inputs.self}/scrts/personal_email.key.age";
       mode = "600";
       owner = custom.username;
       group = "users";

@@ -1,9 +1,9 @@
-{ inputs }: { config, pkgs, ... }:
+{ custom }: { config, pkgs, ... }:
 let
   repository = "/mnt/restic-server";
 in
 {
-  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
+  age.secrets.resticKey.file = "${custom.inputs.self}/scrts/restic.key.age";
 
   environment.systemPackages = with pkgs; [
     restic

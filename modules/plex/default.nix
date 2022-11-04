@@ -1,6 +1,6 @@
-{ inputs }: { config, ... }:
+{ custom }: { config, ... }:
 {
-  age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
+  age.secrets.plexClaim.file = "${custom.inputs.self}/scrts/plex_claim.age";
   networking = {
     firewall.allowedTCPPorts = [
       32400 # Web Interface/ Remote Access

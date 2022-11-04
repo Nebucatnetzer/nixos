@@ -1,14 +1,14 @@
-{ inputs, custom }: { pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/home-manager/common" { inherit custom; })
-    "${inputs.self}/home-manager/software/ansible"
-    "${inputs.self}/home-manager/software/emacs"
-    "${inputs.self}/home-manager/software/fzf"
-    "${inputs.self}/home-manager/software/git"
-    "${inputs.self}/home-manager/software/starship"
-    "${inputs.self}/home-manager/software/vagrant-wsl"
-    "${inputs.self}/home-manager/software/vim"
+    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/software/ansible"
+    "${custom.inputs.self}/home-manager/software/emacs"
+    "${custom.inputs.self}/home-manager/software/fzf"
+    "${custom.inputs.self}/home-manager/software/git"
+    "${custom.inputs.self}/home-manager/software/starship"
+    "${custom.inputs.self}/home-manager/software/vagrant-wsl"
+    "${custom.inputs.self}/home-manager/software/vim"
   ];
 
   programs.git.userEmail = "zweili@contria.com";

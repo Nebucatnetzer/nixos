@@ -1,11 +1,11 @@
-{ custom, inputs }: { ... }:
+{ custom }: { ... }:
 {
   imports = [
-    (import "${inputs.self}/home-manager/common" { inherit custom; })
-    "${inputs.self}/home-manager/software/fzf"
-    "${inputs.self}/home-manager/software/git"
-    "${inputs.self}/home-manager/software/vim"
-    "${inputs.self}/home-manager/software/starship"
+    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/software/fzf"
+    "${custom.inputs.self}/home-manager/software/git"
+    "${custom.inputs.self}/home-manager/software/vim"
+    "${custom.inputs.self}/home-manager/software/starship"
   ];
 
   programs.git.userEmail = "andreas@zweili.ch";

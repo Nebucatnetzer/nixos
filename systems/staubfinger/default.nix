@@ -1,4 +1,4 @@
-{ hostname, inputs }: { ... }:
+{ custom, hostname, inputs }: { ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-intel
@@ -10,7 +10,7 @@
     (import "${inputs.self}/modules/droidcam" { inherit custom; })
     (import "${inputs.self}/modules/espanso" { inherit custom; })
     "${inputs.self}/modules/lockscreen"
-    "${inputs.self}/modules/restic"
+    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs; })
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
   ];

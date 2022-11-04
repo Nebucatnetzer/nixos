@@ -5,6 +5,6 @@
       ip = "10.7.89.30";
       inherit hostname inputs;
     })
-    "${inputs.self}/modules/restic-server"
+    (import "${inputs.self}/modules/restic-server" { inherit inputs; })
   ];
 }

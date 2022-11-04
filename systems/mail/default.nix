@@ -6,7 +6,9 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
-      time = "04:30"; inherit custom hostname inputs;
+      path = "/home/andreas";
+      time = "04:30";
+      inherit inputs;
     })
     (import "${inputs.self}/modules/nginx-proxy" {
       domain = "mail.zweili.org"; inherit inputs;

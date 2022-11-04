@@ -1,8 +1,10 @@
-{ inputs, custom, pkgs, ... }:
+{ inputs }: { config, pkgs, ... }:
 let
   repository = "/mnt/restic-server";
 in
 {
+  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
+
   environment.systemPackages = with pkgs; [
     restic
   ];
@@ -27,7 +29,7 @@ in
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \
-      --password-file "/etc/restic/restic.key" \
+      --password-file ${config.age.secrets.resticKey.path} \
       prune \
     '';
   };

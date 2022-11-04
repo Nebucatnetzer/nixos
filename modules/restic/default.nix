@@ -1,7 +1,7 @@
-{ custom, hostname, inputs }: { pkgs, ... }:
+{ custom, inputs }: { config, pkgs, ... }:
 let
   # TODO: encrypt key file with agenix
-  password_file = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+  password_file = config.age.secrets.resticKey.path;
   repository = "rest:http://10.7.89.30:8000";
 
   restic-mount = pkgs.writeShellScriptBin "restic-mount" ''
@@ -9,7 +9,7 @@ let
     ${pkgs.restic}/bin/restic \
       --repo ${repository} \
       --password-file ${password_file} \
-      --host ${hostname} \
+      --host ${config.networking.hostName} \
       mount /tmp/restic'';
 
   restic-mount-all = pkgs.writeShellScriptBin "restic-mount-all" ''
@@ -20,7 +20,7 @@ let
       mount /tmp/restic'';
 
   # TODO: encrypt key file with agenix
-  infomaniak-env = "/home/${custom.username}/.nixos/secrets/passwords/infomaniak-env";
+  infomaniak-env = config.age.secrets.infomaniakEnv.path;
   infomaniak-repo = "swift:default:/";
   infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";
 
@@ -48,6 +48,19 @@ in
   imports = [
     (import "${inputs.self}/modules/telegram-notifications" { inherit inputs; })
   ];
+
+  age.secrets.infomaniakEnv = {
+    file = "${inputs.self}/scrts/infomaniak_env.age";
+    mode = "600";
+    owner = custom.username;
+    group = "users";
+  };
+  age.secrets.resticKey = {
+    file = "${inputs.self}/scrts/restic.key.age";
+    mode = "600";
+    owner = custom.username;
+    group = "users";
+  };
 
   systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];
@@ -77,7 +90,7 @@ in
 
       ${pkgs.restic}/bin/restic \
       forget \
-        --host ${hostname} \
+        --host ${config.networking.hostName} \
         --tag home-dir \
         --keep-hourly 25 \
         --keep-daily 7 \
@@ -92,7 +105,7 @@ in
       ${pkgs.restic}/bin/restic \
         --repo ${repository} \
         --password-file ${password_file} \
-        snapshots --host ${hostname}'';
+        snapshots --host ${config.networking.hostName}'';
     restic-unlock = ''
       ${pkgs.restic}/bin/restic \
         --repo ${repository} \

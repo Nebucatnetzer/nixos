@@ -6,7 +6,8 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {
-      time = "04:00"; inherit custom hostname inputs;
+      path = "/home/andreas";
+      time = "04:00"; inherit inputs;
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/mariadb"

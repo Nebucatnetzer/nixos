@@ -9,7 +9,8 @@ in
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-mysql-client" {
-      time = "03:00"; inherit custom hostname inputs;
+      path = "/home/andreas";
+      time = "03:00"; inherit inputs;
     })
     (import "${inputs.self}/modules/nginx-proxy" {
       inherit domain inputs;

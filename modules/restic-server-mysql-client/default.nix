@@ -1,29 +1,30 @@
-{ custom
-, hostname
-, inputs
-, path ? "/home/${custom.username}"
+{ inputs
+, path
 , tag ? "home-dir"
 , time
-}: { pkgs, ... }:
+}: { config, pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/modules/telegram-notifications" { inherit inputs; })
   ];
-  systemd.timers."restic-backups-${custom.username}" = {
+
+  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
+
+  systemd.timers."restic-backups" = {
     wantedBy = [ "timers.target" ];
-    partOf = [ "restic-backups-${custom.username}.service" ];
+    partOf = [ "restic-backups.service" ];
     timerConfig = {
       OnCalendar = time;
     };
   };
 
-  systemd.services."restic-backups-${custom.username}" = {
+  systemd.services."restic-backups" = {
     serviceConfig = {
       User = "root";
       Type = "oneshot";
     };
     environment = {
-      RESTIC_PASSWORD_FILE = "/home/${custom.username}/.nixos/secrets/passwords/restic.key";
+      RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
       RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
     };
     onFailure = [ "unit-status-telegram@%n.service" ];
@@ -40,7 +41,7 @@
 
       ${pkgs.restic}/bin/restic forget \
         --tag home-dir \
-        --host ${hostname} \
+        --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \
@@ -48,7 +49,7 @@
 
       ${pkgs.restic}/bin/restic forget \
         --tag mariadb \
-        --host ${hostname} \
+        --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \
         --keep-monthly 12 \

@@ -6,7 +6,9 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/restic-server-client" {
-      time = "00:00"; inherit custom hostname inputs;
+      path = "/home/andreas";
+      time = "00:00";
+      inherit inputs;
     })
     "${inputs.self}/modules/nginx-acme-base"
     (import "${inputs.self}/modules/docker" { inherit custom; })

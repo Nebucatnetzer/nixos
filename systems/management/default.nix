@@ -10,6 +10,12 @@ in
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/logs-share"
+    (import "${inputs.self}/modules/restic-server-client" {
+      path = "/home/andreas";
+      tag = "management";
+      time = "23:30";
+      inherit inputs;
+    })
     "${inputs.self}/modules/tmux"
   ];
   services.nginx.virtualHosts."${domain}".locations = {

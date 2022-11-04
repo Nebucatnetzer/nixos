@@ -10,7 +10,7 @@
     (import "${inputs.self}/modules/droidcam" { inherit custom; })
     (import "${inputs.self}/modules/espanso" { inherit custom; })
     "${inputs.self}/modules/lockscreen"
-    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs; })
+    (import "${inputs.self}/modules/restic" { inherit custom inputs; })
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
   ];

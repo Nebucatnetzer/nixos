@@ -30,11 +30,13 @@ let
     ttrss
   ];
   defaultKeys = [ andreas andreas-nixos-vm gwyn management nixos-vm ];
+  all = users ++ systems;
 in
 {
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "pihole_env.age".publicKeys = defaultKeys ++ [ pihole ];
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
+  "telegram_notify_env.age".publicKeys = all;
   "ttrss_env.age".publicKeys = defaultKeys ++ [ ttrss ];
 }
 

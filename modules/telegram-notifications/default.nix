@@ -1,10 +1,9 @@
-{ custom }: { pkgs, ... }:
+{ inputs }: { config, pkgs, ... }:
 let
   # TODO: encrypt with agenix
-  telegram-notify-env = "/home/${custom.username}/.nixos/secrets/passwords/telegram_notify_env";
 
   send-to-telegram = pkgs.writeShellScript "send-to-telegram" ''
-    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${telegram-notify-env} | ${pkgs.findutils}/bin/xargs)
+    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${config.age.secrets.telegramNotifyEnv.path} | ${pkgs.findutils}/bin/xargs)
     URL="https://api.telegram.org/bot$TELEGRAM_KEY/sendMessage"
     ${pkgs.curl}/bin/curl -s -d "chat_id=$CHAT_ID&disable_web_page_preview=1&text=$1" $URL > /dev/null'';
 
@@ -19,6 +18,7 @@ let
     $UNITSTATUS"'';
 in
 {
+  age.secrets.telegramNotifyEnv.file = "${inputs.self}/scrts/telegram_notify_env.age";
   systemd.services."unit-status-telegram@" = {
     description = "Unit Status Telegram Service";
     unitConfig = {

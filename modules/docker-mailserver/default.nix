@@ -19,7 +19,7 @@ in
       image = "docker.io/mailserver/docker-mailserver:11.2.0";
       autoStart = true;
       environmentFiles = [
-        "./mailserver.env"
+        ./mailserver.env
       ];
       ports = [
         "25:25"

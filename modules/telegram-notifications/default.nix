@@ -1,7 +1,5 @@
 { inputs }: { config, pkgs, ... }:
 let
-  # TODO: encrypt with agenix
-
   send-to-telegram = pkgs.writeShellScript "send-to-telegram" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${config.age.secrets.telegramNotifyEnv.path} | ${pkgs.findutils}/bin/xargs)
     URL="https://api.telegram.org/bot$TELEGRAM_KEY/sendMessage"

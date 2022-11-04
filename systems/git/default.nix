@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.109";
       inherit hostname inputs;
     })

@@ -56,7 +56,7 @@
           inherit custom inputs;
         };
         # Servers
-        git = mkComputer {
+        git = mkRaspi {
           hostname = "git";
           inherit custom inputs;
         };

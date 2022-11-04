@@ -7,7 +7,6 @@
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/dunst"
     "${inputs.self}/home-manager/software/emacs"
-    "${inputs.self}/home-manager/software/email"
     "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"

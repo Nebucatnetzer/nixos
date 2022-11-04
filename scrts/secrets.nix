@@ -36,6 +36,7 @@ in
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "infomaniak_env.age".publicKeys = all;
   "pihole_env.age".publicKeys = defaultKeys ++ [ pihole ];
+  "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;
   "telegram_notify_env.age".publicKeys = all;

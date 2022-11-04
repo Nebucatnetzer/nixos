@@ -11,6 +11,7 @@
     (import "${inputs.self}/modules/desktop" { inherit custom inputs; })
     (import "${inputs.self}/modules/docker" { inherit custom; })
     (import "${inputs.self}/modules/droidcam" { inherit custom; })
+    (import "${inputs.self}/modules/email" { inherit custom inputs; })
     (import "${inputs.self}/modules/eog" { inherit custom; })
     (import "${inputs.self}/modules/espanso" { inherit custom; })
     "${inputs.self}/modules/lockscreen"

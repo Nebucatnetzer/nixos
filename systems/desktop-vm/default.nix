@@ -1,4 +1,4 @@
-{ hostname, inputs }: { ... }:
+{ custom, hostname, inputs }: { ... }:
 {
   imports = [
     (import "${inputs.self}/modules/desktop" { inherit custom inputs; })

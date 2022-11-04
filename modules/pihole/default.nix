@@ -13,6 +13,7 @@
   };
   age.secrets.piholeEnv.file = "${inputs.self}/scrts/pihole_env.age";
   virtualisation.oci-containers = {
+    backend = "docker";
     containers."pihole" = {
       image = "pihole/pihole";
       autoStart = true;

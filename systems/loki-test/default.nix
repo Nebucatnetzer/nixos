@@ -1,4 +1,4 @@
-{ hostname, inputs }: { pkgs, ... }:
+{ custom, hostname, inputs }: { pkgs, ... }:
 {
   imports = [
     (import "${inputs.self}/systems/raspi4" {

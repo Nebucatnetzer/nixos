@@ -7,7 +7,7 @@
 }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/telegram-notifications"
+    (import "${inputs.self}/modules/telegram-notifications" { inherit inputs; })
   ];
   systemd.timers."restic-backups-${custom.username}" = {
     wantedBy = [ "timers.target" ];

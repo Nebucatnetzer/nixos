@@ -43,4 +43,26 @@
       ];
     };
   };
+
+  security.sudo = {
+    extraRules = [
+      {
+        users = [ "nixos" ];
+        commands = [
+          {
+            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/nixos-rebuild";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "ALL";
+            options = [ "SETENV" ];
+          }
+        ];
+      }
+    ];
+  };
 }

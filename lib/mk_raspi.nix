@@ -19,7 +19,7 @@ let
   };
 in
 inputs.nixpkgs.lib.nixosSystem {
-  inherit system;
+  inherit pkgs system;
   specialArgs = { inherit custom inputs; };
   modules = (
     [

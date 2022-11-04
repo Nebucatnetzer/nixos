@@ -28,7 +28,7 @@ do
     echo
 done
 
-fqdn="pihole.2li.local"
-echo $fqdn
-nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host" &&
-ssh -i $rsa_key $fqdn 'sudo reboot'
+pihole="pihole.2li.local"
+echo $pihole
+nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $pihole --flake ".#pihole" &&
+ssh -i $rsa_key $pihole 'sudo reboot'

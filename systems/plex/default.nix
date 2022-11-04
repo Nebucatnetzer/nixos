@@ -12,6 +12,6 @@
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
     "${inputs.self}/modules/media-share"
-    "${inputs.self}/modules/plex"
+    (import "${inputs.self}/modules/plex" { inherit inputs; })
   ];
 }

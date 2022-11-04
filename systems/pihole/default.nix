@@ -11,7 +11,7 @@
       time = "05:00"; inherit custom hostname inputs;
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/pihole"
+    (import "${inputs.self}/modules/pihole" { inherit inputs; })
     "${inputs.self}/modules/unbound"
   ];
 }

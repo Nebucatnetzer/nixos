@@ -6,7 +6,7 @@
       inherit hostname inputs;
     })
     (import "${inputs.self}/modules/docker" { inherit custom; })
-    "${inputs.self}/modules/pihole" # needs to be limited to lan interface
+    (import "${inputs.self}/modules/pihole" { inherit inputs; }) # needs to be limited to lan interface
     "${inputs.self}/modules/router"
     "${inputs.self}/modules/tmux"
     "${inputs.self}/modules/unbound" # needs to be limited to lan interface

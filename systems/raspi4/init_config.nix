@@ -12,6 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     raspberrypi-eeprom
+    vim
   ];
 
   system.stateVersion = "22.05";

@@ -1,4 +1,4 @@
-{ custom }: { pkgs, ... }:
+{ custom }: { config, pkgs, ... }:
 {
   imports = [
     "${custom.inputs.self}/home-manager/software/ansible"
@@ -71,6 +71,12 @@
   };
 
   gtk.theme.name = "Arc-Darker";
+
+  xdg.userDirs = {
+    enable = true;
+    pictures = "${config.home.homeDirectory}/nextcloud/20_pictures";
+    createDirectories = true;
+  };
 
   xsession = {
     numlock.enable = true;

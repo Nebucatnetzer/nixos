@@ -10,6 +10,7 @@ let
     SMTP_SECURE = "ssl";
     SMTP_PORT = "465";
   };
+  networkName = "nextcloud";
 in
 {
   age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";
@@ -31,7 +32,7 @@ in
       extraOptions = [
         ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
         "--add-host=host.docker.internal:host-gateway"
-        "--net=nextcloud"
+        "--net=${networkName}"
       ];
     };
     containers."cron" = {
@@ -51,12 +52,12 @@ in
       image = "redis:alpine";
       autoStart = true;
       extraOptions = [
-        "--net=nextcloud"
+        "--net=${networkName}"
       ];
     };
   };
   system.activationScripts.makeDokerNetwork = ''
-    ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep nextcloud || {pkgs.docker}/bin/docker network create nextcloud
+    ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || {pkgs.docker}/bin/docker network create ${networkName}
   '';
 
 }

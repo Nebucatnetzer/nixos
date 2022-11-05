@@ -19,21 +19,9 @@ However this requires some prerequisites.
 
 ## Raspberry Pi installation
 
-1. Download the image from: https://hydra.nixos.org/job/nixos/release-22.05/nixos.sd_image.aarch64-linux
-2. Extract it with: `unzstd nixos-sd-image-*-aarch64-linux.img.zst`
-3. Flash it to the SD card with `sudo dd if=$(ls
-   nixos-sd-image-*-aarch64-linux.img) of=/dev/mmcblk0 bs=4M`
-4. After booting create a password for the `nixos` user.
-5. Get the system key and add it to `scrts/secrets.nix`. Use `ssh-keyscan
-   nixos.2li.local`.
-6. SSH into the system.
-7. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
-8. `sudo cp nixos/systems/raspi4/init_config.nix /etc/nixos/configuration.nix`
-9. `sudo nixos-rebuild switch`
-10. Mount the `FIRMWARE` partition `sudo mount /dev/disk/by-label/FIRMWARE /mnt`
-   and make sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
-11. Install the system by running this command on your computer:
-    `./scripts/install_new_system.sh`
+1. Add the new system to `flake.nix`.
+2. Build the image with `scritps/build-raspi-image.sh SYSTEMNAME`
+3. Flash the image to an SD card `dd if=~/Downloads/SYSTEMNAME.img of=/dev/mmcblk0 bs=4M`.
 
 ## x86 installation
 

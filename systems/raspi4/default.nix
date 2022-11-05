@@ -1,4 +1,4 @@
-{ custom, hostname, ip }: { pkgs, ... }:
+{ custom, hostname, ip }: { lib, pkgs, ... }:
 {
   imports = [
     custom.inputs.nixos-hardware.nixosModules.raspberry-pi-4
@@ -7,6 +7,10 @@
     "${custom.inputs.self}/modules/syslog"
   ];
 
+  boot = {
+    kernelModules = lib.mkForce [ "bridge" "macvlan" "tap" "tun" "loop" "atkbd" "ctr" ];
+    supportedFilesystems = lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" ];
+  };
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";

@@ -15,6 +15,13 @@ let
     overlays = [
       overlay-unstable
       custom.inputs.nix-alien.overlay
+      # The following is requried for building images {
+      # https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
+      (final: super: {
+        makeModulesClosure = x:
+          super.makeModulesClosure (x // { allowMissing = true; });
+      })
+      # }
     ];
   };
 in

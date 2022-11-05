@@ -39,6 +39,11 @@
       mkRaspi = import "${custom.inputs.self}/lib/mk_raspi.nix";
     in
     {
+      images = {
+        pi = (self.nixosConfigurations.management.extendModules {
+          modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
+        }).config.system.build.sdImage;
+      };
       nixosConfigurations = {
         gwyn = mkComputer {
           hostname = "gwyn";

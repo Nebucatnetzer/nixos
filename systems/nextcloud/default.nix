@@ -1,4 +1,7 @@
 { custom, hostname }: { pkgs, ... }:
+let
+  domain = "nextcloud.2li.ch";
+in
 {
   imports = [
     (import "${custom.inputs.self}/systems/proxmox-vm" {
@@ -11,6 +14,9 @@
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     "${custom.inputs.self}/modules/mariadb"
+    (import "${custom.inputs.self}/modules/nextcloud" {
+      inherit custom domain;
+    })
     "${custom.inputs.self}/modules/nginx-acme-base"
   ];
 
@@ -20,7 +26,7 @@
       add_header X-Frame-Options SAMEORIGIN;
     '';
     clientMaxBodySize = "20G";
-    virtualHosts."nextcloud.2li.ch" = {
+    virtualHosts."${domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

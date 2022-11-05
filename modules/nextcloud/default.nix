@@ -55,8 +55,8 @@ in
       ];
     };
   };
-  system.activationScripts.mkVPN = ''
     ${pkgs.docker}/bin/docker network create nextcloud
+  system.activationScripts.makeDokerNetwork = ''
   '';
 
 }

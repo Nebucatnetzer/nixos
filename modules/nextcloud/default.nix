@@ -18,7 +18,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."nextcloud" = {
-      image = "nextcloud:25.0.0-apache@sha256:c65b3a099746f9168a594adc84f586a6a40719f50889d7814a6b68f6e183b26b";
+      image = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:latest";
       autoStart = true;
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
@@ -36,7 +36,7 @@ in
       ];
     };
     containers."cron" = {
-      image = "nextcloud:25.0.0-apache@sha256:c65b3a099746f9168a594adc84f586a6a40719f50889d7814a6b68f6e183b26b";
+      image = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:latest";
       autoStart = true;
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];

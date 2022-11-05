@@ -1,0 +1,3 @@
+[submodule "secrets"]
+	path = secrets
+	url = git@git.2li.ch:Nebucatnetzer/secrets.git

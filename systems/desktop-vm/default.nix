@@ -1,12 +1,12 @@
-{ hostname, inputs, ... }:
+{ custom, hostname }: { ... }:
 {
   imports = [
-    "${inputs.self}/modules/desktop"
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/espanso"
-    "${inputs.self}/modules/logs-share"
-    "${inputs.self}/modules/nix-direnv"
-    "${inputs.self}/modules/tmux"
+    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
+    "${custom.inputs.self}/modules/logs-share"
+    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
+    "${custom.inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

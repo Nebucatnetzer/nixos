@@ -1,16 +1,21 @@
-{ custom, hostname, inputs, pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
+    (import "${custom.inputs.self}/systems/raspi4" {
       ip = "10.7.89.99";
-      inherit hostname inputs pkgs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
-      time = "00:00"; inherit custom hostname inputs pkgs;
+    (import "${custom.inputs.self}/modules/restic-server-client" {
+      path = "/home/andreas";
+      time = "00:00";
+      inherit custom;
     })
-    "${inputs.self}/modules/nginx-acme-base"
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/haproxy"
+    "${custom.inputs.self}/modules/nginx-acme-base"
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/grav"
+    "${custom.inputs.self}/modules/haproxy"
+    "${custom.inputs.self}/modules/heimdall"
+    "${custom.inputs.self}/modules/rss-bridge"
   ];
 
   services.nginx = {
@@ -41,6 +46,7 @@
       # This might create errors
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
+    recommendedProxySettings = true;
     virtualHosts = {
       "2li.ch" = {
         serverAliases = [ "www.2li.ch" ];
@@ -55,7 +61,12 @@
       "heimdall.2li.ch" = {
         enableACME = true;
         forceSSL = true;
-        listen = [{ port = 4433; addr = "127.0.0.1"; ssl = true; }];
+        listen = [{
+          port = 4433;
+          addr = "
+        127.0.0.1";
+          ssl = true;
+        }];
         locations."/" = {
           proxyPass = "http://127.0.0.1:8081";
           proxyWebsockets = true; # needed if you need to use WebSocket

@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
     gnome.eog

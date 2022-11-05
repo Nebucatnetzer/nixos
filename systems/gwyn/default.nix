@@ -1,25 +1,26 @@
-{ custom, hostname, inputs, lib, pkgs, ... }:
+{ custom, hostname }: { lib, ... }:
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.dell-precision-5530
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${inputs.self}/hardware/bluetooth"
-    "${inputs.self}/hardware/nvidia"
-    "${inputs.self}/hardware/dvd"
-    "${inputs.self}/modules/data-share"
-    "${inputs.self}/modules/desktop"
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/droidcam"
-    "${inputs.self}/modules/eog"
-    "${inputs.self}/modules/espanso"
-    "${inputs.self}/modules/lockscreen"
-    "${inputs.self}/modules/logs-share"
-    "${inputs.self}/modules/nix-direnv"
-    "${inputs.self}/modules/scripts"
-    "${inputs.self}/modules/tlp"
-    "${inputs.self}/modules/tmux"
-    (import "${inputs.self}/modules/restic" { inherit custom hostname inputs pkgs; })
+    custom.inputs.nixos-hardware.nixosModules.dell-precision-5530
+    custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
+    "${custom.inputs.self}/hardware/bluetooth"
+    "${custom.inputs.self}/hardware/nvidia"
+    "${custom.inputs.self}/hardware/dvd"
+    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
+    (import "${custom.inputs.self}/modules/email" { inherit custom; })
+    (import "${custom.inputs.self}/modules/eog" { inherit custom; })
+    (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
+    "${custom.inputs.self}/modules/lockscreen"
+    "${custom.inputs.self}/modules/logs-share"
+    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
+    (import "${custom.inputs.self}/modules/pipewire" { inherit custom; })
+    "${custom.inputs.self}/modules/scripts"
+    "${custom.inputs.self}/modules/tlp"
+    "${custom.inputs.self}/modules/tmux"
+    (import "${custom.inputs.self}/modules/restic" { inherit custom; })
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

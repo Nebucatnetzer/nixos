@@ -34,79 +34,79 @@
     , home-manager
     }:
     let
-      custom = import ./custom;
-      mkComputer = import "${inputs.self}/lib/mk_computer.nix";
-      mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";
+      custom = import ./custom { inherit inputs; };
+      mkComputer = import "${custom.inputs.self}/lib/mk_computer.nix";
+      mkRaspi = import "${custom.inputs.self}/lib/mk_raspi.nix";
     in
     {
       nixosConfigurations = {
         gwyn = mkComputer {
           hostname = "gwyn";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit custom;
         };
         desktop-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit custom;
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit custom;
         };
         # Servers
-        git = mkComputer {
+        git = mkRaspi {
           hostname = "git";
-          inherit custom inputs;
+          inherit custom;
         };
         loki-test = mkRaspi {
           hostname = "loki-test";
-          inherit custom inputs;
+          inherit custom;
         };
         mail = mkComputer {
           hostname = "mail";
-          inherit custom inputs;
+          inherit custom;
         };
         nextcloud = mkComputer {
           hostname = "nextcloud";
-          inherit custom inputs;
+          inherit custom;
         };
         pihole = mkComputer {
           hostname = "pihole";
-          inherit custom inputs;
+          inherit custom;
         };
         plex = mkComputer {
           hostname = "plex";
           home-module = "plex";
-          inherit custom inputs;
+          inherit custom;
         };
         proxy = mkRaspi {
           hostname = "proxy";
-          inherit custom inputs;
+          inherit custom;
         };
         management = mkRaspi {
           hostname = "management";
           home-module = "management";
-          inherit custom inputs;
+          inherit custom;
         };
         restic-server = mkComputer {
           hostname = "restic-server";
-          inherit custom inputs;
+          inherit custom;
         };
         ttrss = mkComputer {
           hostname = "ttrss";
-          inherit custom inputs;
+          inherit custom;
         };
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
-          configuration = import "${inputs.self}/home-manager/work-wsl.nix";
+          configuration = import "${custom.inputs.self}/home-manager/work-wsl.nix";
           system = "x86_64-linux";
           username = custom.username;
           homeDirectory = "/home/${custom.username}";
           extraSpecialArgs = {
-            inherit custom inputs;
+            inherit custom;
           };
         };
       };

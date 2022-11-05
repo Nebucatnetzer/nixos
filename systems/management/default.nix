@@ -1,23 +1,22 @@
-{ hostname, inputs, pkgs, ... }:
+{ custom, hostname }: { ... }:
 let
   domain = "test.2li.ch";
 in
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
+    (import "${custom.inputs.self}/systems/raspi4" {
       ip = "10.7.89.150";
-      inherit hostname inputs pkgs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/nginx-fpm" {
-      dataDir = "/var/www/ttrss/app";
-      inherit domain inputs pkgs;
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/logs-share"
+    (import "${custom.inputs.self}/modules/restic-server-client" {
+      path = "/home/andreas";
+      tag = "management";
+      time = "23:30";
+      inherit custom;
     })
-    "${inputs.self}/modules/docker"
-    # "${inputs.self}/modules/logs-share"
-    # I currently can't install lnav because it is not building on aarch64
-    # https://github.com/NixOS/nixpkgs/issues/197512
-    "${inputs.self}/modules/nix-direnv"
-    "${inputs.self}/modules/tmux"
+    "${custom.inputs.self}/modules/tmux"
   ];
   services.nginx.virtualHosts."${domain}".locations = {
     "/".extraConfig = ''

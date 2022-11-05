@@ -1,4 +1,4 @@
-{ inputs, custom, pkgs, ... }:
+{ custom }: { ... }:
 {
   services.espanso.enable = true;
   home-manager.users.${custom.username} = {

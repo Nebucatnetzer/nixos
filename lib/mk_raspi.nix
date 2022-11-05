@@ -1,44 +1,45 @@
-{ custom, hostname, inputs, system ? "aarch64-linux", home-module ? "headless" }:
+{ custom, hostname, system ? "aarch64-linux", home-module ? "headless" }:
 let
   overlay-unstable = final: prev: {
-    unstable = import inputs.nixpkgs-unstable {
+    unstable = import custom.inputs.nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
   };
 
-  pkgs = import inputs.nixpkgs {
+  pkgs = import custom.inputs.nixpkgs {
     inherit system;
     config = {
       allowUnfree = true;
     };
     overlays = [
       overlay-unstable
-      inputs.nix-alien.overlay
+      custom.inputs.nix-alien.overlay
     ];
   };
 in
-inputs.nixpkgs.lib.nixosSystem {
-  inherit system;
-  specialArgs = { inherit custom inputs; };
+
+custom.inputs.nixpkgs.lib.nixosSystem {
+  inherit pkgs system;
+  specialArgs = { inherit custom; };
   modules = (
     [
       # System configuration for this host
-      (import "${inputs.self}/systems/${hostname}"
-        { inherit custom hostname inputs pkgs; })
+      (import "${custom.inputs.self}/systems/${hostname}"
+        { inherit custom hostname; })
 
       # Common configuration
-      "${inputs.self}/modules/common"
+      (import "${custom.inputs.self}/modules/common" { inherit custom; })
 
-      inputs.agenix.nixosModules.age
-      { environment.systemPackages = [ inputs.agenix.defaultPackage.${system} ]; }
+      custom.inputs.agenix.nixosModules.age
+      { environment.systemPackages = [ custom.inputs.agenix.defaultPackage.${system} ]; }
 
-      inputs.home-manager.nixosModules.home-manager
+      custom.inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${custom.username}.imports = [
-          (import "${inputs.self}/home-manager/${home-module}.nix" { inherit custom pkgs inputs; })
+          (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom; })
         ];
       }
     ]);

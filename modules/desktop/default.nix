@@ -1,9 +1,9 @@
-{ inputs, custom, pkgs, ... }:
+{ custom }: { pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/hunspell"
-    "${inputs.self}/modules/nix-alien"
-    "${inputs.self}/modules/libimobiledevice"
+    "${custom.inputs.self}/modules/hunspell"
+    "${custom.inputs.self}/modules/nix-alien"
+    (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
   ];
   networking = {
     networkmanager.enable = true;
@@ -43,7 +43,6 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;

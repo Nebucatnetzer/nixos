@@ -1,15 +1,17 @@
-{ custom, hostname, inputs, pkgs, ... }:
+{ custom, hostname }: { pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/proxmox-vm" {
+    (import "${custom.inputs.self}/systems/proxmox-vm" {
       ip = "10.7.89.2";
-      inherit hostname inputs;
+      inherit custom hostname;
     })
-    (import "${inputs.self}/modules/restic-server-client" {
-      time = "05:00"; inherit custom hostname inputs pkgs;
+    (import "${custom.inputs.self}/modules/restic-server-client" {
+      path = "/var/lib/pihole";
+      tag = "pihole";
+      time = "05:00"; inherit custom;
     })
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/pihole"
-    "${inputs.self}/modules/unbound"
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    (import "${custom.inputs.self}/modules/pihole" { inherit custom; })
+    "${custom.inputs.self}/modules/unbound"
   ];
 }

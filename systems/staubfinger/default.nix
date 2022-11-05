@@ -1,18 +1,18 @@
-{ hostname, inputs, ... }:
+{ custom, hostname }: { ... }:
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-    inputs.nixos-hardware.nixosModules.common-pc-laptop
-    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${inputs.self}/hardware/bluetooth"
-    "${inputs.self}/modules/desktop"
-    "${inputs.self}/modules/docker"
-    "${inputs.self}/modules/droidcam"
-    "${inputs.self}/modules/espanso"
-    "${inputs.self}/modules/lockscreen"
-    "${inputs.self}/modules/restic"
-    "${inputs.self}/modules/tlp"
-    "${inputs.self}/modules/tmux"
+    custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
+    custom.inputs.nixos-hardware.nixosModules.common-pc-laptop
+    custom.inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    "${custom.inputs.self}/hardware/bluetooth"
+    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
+    (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
+    "${custom.inputs.self}/modules/lockscreen"
+    (import "${custom.inputs.self}/modules/restic" { inherit custom; })
+    "${custom.inputs.self}/modules/tlp"
+    "${custom.inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

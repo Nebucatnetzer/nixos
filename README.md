@@ -24,13 +24,16 @@ However this requires some prerequisites.
 3. Flash it to the SD card with `sudo dd if=$(ls
    nixos-sd-image-*-aarch64-linux.img) of=/dev/mmcblk0 bs=4M`
 4. After booting create a password for the `nixos` user.
-5. SSH into the system.
-6. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
-7. `sudo cp nixos/systems/raspi4/init_config.nix /etc/nixos/configuration.nix`
-8. `sudo nixos-rebuild switch`
-9. Mount the `FIRMWARE` partition `sudo mount /dev/disk/by-label/FIRMWARE /mnt`
+5. Get the system key and add it to `scrts/secrets.nix`. Use `ssh-keyscan
+   nixos.2li.local`.
+6. SSH into the system.
+7. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
+8. `sudo cp nixos/systems/raspi4/init_config.nix /etc/nixos/configuration.nix`
+9. `sudo nixos-rebuild switch`
+10. Mount the `FIRMWARE` partition `sudo mount /dev/disk/by-label/FIRMWARE /mnt`
    and make sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
-10. Install the system `./scripts/install_new_system.sh`
+11. Install the system by running this command on your computer:
+    `./scripts/install_new_system.sh`
 
 ## x86 installation
 

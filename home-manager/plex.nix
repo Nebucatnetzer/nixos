@@ -1,10 +1,9 @@
-{ inputs, custom, pkgs, ... }:
+{ custom }: { ... }:
 {
   imports = [
-    (import "${inputs.self}/home-manager/headless.nix" { inherit custom inputs pkgs; })
-    (import "${inputs.self}/home-manager/software/podget" {
+    (import "${custom.inputs.self}/home-manager/headless.nix" { inherit custom; })
+    (import "${custom.inputs.self}/home-manager/software/podget" {
       downloadDir = "/mnt/media/podcasts";
-      inherit custom inputs pkgs;
     })
   ];
 }

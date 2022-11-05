@@ -37,12 +37,16 @@
       custom = import ./custom { inherit inputs; };
       mkComputer = import "${custom.inputs.self}/lib/mk_computer.nix";
       mkRaspi = import "${custom.inputs.self}/lib/mk_raspi.nix";
+      mksdImage = host: (self.nixosConfigurations.${host}.extendModules {
+        modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
+      }).config.system.build.sdImage;
     in
     {
       images = {
-        pi = (self.nixosConfigurations.management.extendModules {
-          modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
-        }).config.system.build.sdImage;
+        git = mksdImage "git";
+        loki-test = mksdImage "loki-test";
+        proxy = mksdImage "proxy";
+        management = mksdImage "management";
       };
       nixosConfigurations = {
         gwyn = mkComputer {

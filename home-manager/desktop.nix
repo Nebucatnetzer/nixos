@@ -40,6 +40,7 @@
     remmina
     shotwell
     sound-juicer
+    unstable.tagger
     vscode
     yt-dlp
   ];

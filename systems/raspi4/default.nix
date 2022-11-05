@@ -8,7 +8,6 @@
   ];
 
   boot = {
-    kernelModules = lib.mkForce [ "bridge" "macvlan" "tap" "tun" "loop" "atkbd" "ctr" ];
     supportedFilesystems = lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" ];
   };
   fileSystems = {

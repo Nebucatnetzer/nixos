@@ -8,7 +8,6 @@ in
       dataDir = "/mnt/data/ttrss/app";
       inherit custom domain pkgs;
     })
-    "${custom.inputs.self}/modules/data-share"
     "${custom.inputs.self}/modules/postgresql"
   ];
   age.secrets.ttrssEnv.file = "${custom.inputs.self}/scrts/ttrss_env.age";

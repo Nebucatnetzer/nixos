@@ -7,7 +7,6 @@
     "${custom.inputs.self}/hardware/bluetooth"
     "${custom.inputs.self}/hardware/nvidia"
     "${custom.inputs.self}/hardware/dvd"
-    "${custom.inputs.self}/modules/data-share"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })

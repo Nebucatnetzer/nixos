@@ -55,8 +55,8 @@ in
       ];
     };
   };
-    ${pkgs.docker}/bin/docker network create nextcloud
   system.activationScripts.makeDokerNetwork = ''
+    ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep nextcloud || {pkgs.docker}/bin/docker network create nextcloud
   '';
 
 }

@@ -14,7 +14,6 @@ let
     };
     overlays = [
       overlay-unstable
-      custom.inputs.nix-alien.overlay
       #      (final: prev: {
       #        nextcloud-client = prev.nextcloud-client.overrideAttrs (_: rec {
       #          version = "3.6.0";

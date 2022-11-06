@@ -2,7 +2,6 @@
 {
   imports = [
     "${custom.inputs.self}/modules/hunspell"
-    "${custom.inputs.self}/modules/nix-alien"
     (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
   ];
   networking = {

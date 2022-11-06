@@ -20,21 +20,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -53,27 +38,6 @@
         "owner": "nix-community",
         "ref": "release-22.05",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "nix-alien": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1667605237,
-        "narHash": "sha256-PswElIBtdhkfB3h/FgBqK8foSfgcEgiJrhbR95C/krI=",
-        "owner": "thiagokokada",
-        "repo": "nix-alien",
-        "rev": "94cff2807a31d45b70c795fab173600ff554ec8c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "thiagokokada",
-        "repo": "nix-alien",
         "type": "github"
       }
     },
@@ -128,7 +92,6 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager",
-        "nix-alien": "nix-alien",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"

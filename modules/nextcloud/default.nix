@@ -11,7 +11,7 @@ let
     SMTP_PORT = "465";
   };
   networkName = "nextcloud";
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb@sha256:755a2606a14b34919b2a734325dffc0df532a4884872bd099f03e8f65b01b0e2";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.1@sha256:331545c8213f4774d904e662111d0725d0c625e75bbcc7cc1e74b60b1b31d135";
 in
 {
   age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";

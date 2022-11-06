@@ -11,6 +11,7 @@ let
     SMTP_PORT = "465";
   };
   networkName = "nextcloud";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb@sha256:755a2606a14b34919b2a734325dffc0df532a4884872bd099f03e8f65b01b0e2";
 in
 {
   age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";
@@ -18,7 +19,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."nextcloud" = {
-      image = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:latest";
+      image = nextcloudImage;
       autoStart = true;
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
@@ -36,7 +37,7 @@ in
       ];
     };
     containers."cron" = {
-      image = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:latest";
+      image = nextcloudImage;
       autoStart = true;
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];

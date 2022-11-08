@@ -45,4 +45,17 @@ in
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
   };
+
+  services.nginx.virtualHosts."${domain}".locations = {
+    "/".extraConfig = ''
+      try_files $uri $uri/ = 404;
+    '';
+    "/tt-rss/cache".extraConfig = ''
+      aio threads;
+      internal;
+    '';
+    "/tt-rss/backups".extraConfig = ''
+      internal;
+    '';
+  };
 }

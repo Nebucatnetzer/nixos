@@ -45,6 +45,7 @@
         management = mksdImage "management";
         nextcloud = mksdImage "nextcloud";
         pihole = mksdImage "pihole";
+        restic-server = mksdImage "restic-server";
       };
       nixosConfigurations = {
         gwyn = mkComputer {
@@ -97,7 +98,7 @@
           home-module = "management";
           inherit custom;
         };
-        restic-server = mkComputer {
+        restic-server = mkRaspi {
           hostname = "restic-server";
           inherit custom;
         };

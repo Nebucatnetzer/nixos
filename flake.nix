@@ -43,6 +43,7 @@
         proxy = mksdImage "proxy";
         mail = mksdImage "mail";
         management = mksdImage "management";
+        nextcloud = mksdImage "nextcloud";
       };
       nixosConfigurations = {
         gwyn = mkComputer {
@@ -73,7 +74,7 @@
           hostname = "mail";
           inherit custom;
         };
-        nextcloud = mkComputer {
+        nextcloud = mkRaspi {
           hostname = "nextcloud";
           inherit custom;
         };

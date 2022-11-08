@@ -57,8 +57,8 @@ in
       ];
     };
   };
-  system.activationScripts.makeDokerNetwork = ''
     ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || {pkgs.docker}/bin/docker network create ${networkName}
+  system.activationScripts.makeDockerNetwork = ''
   '';
 
 }

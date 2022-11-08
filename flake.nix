@@ -39,6 +39,7 @@
       images = {
         git = mksdImage "git";
         loki-test = mksdImage "loki-test";
+        plex = mksdImage "plex";
         proxy = mksdImage "proxy";
         management = mksdImage "management";
       };
@@ -79,7 +80,7 @@
           hostname = "pihole";
           inherit custom;
         };
-        plex = mkComputer {
+        plex = mkRaspi {
           hostname = "plex";
           home-module = "plex";
           inherit custom;

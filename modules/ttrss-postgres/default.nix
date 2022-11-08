@@ -1,6 +1,6 @@
 { custom, domain }: { config, pkgs, ... }:
 let
-  domain = "test.2li.ch";
+  domain = "ttrss.2li.ch";
 in
 {
   imports = [

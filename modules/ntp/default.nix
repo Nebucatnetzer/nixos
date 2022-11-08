@@ -3,7 +3,7 @@
   services.ntp = {
     enable = true;
     servers = [
-      "loki.2li.local"
+      "10.7.89.1"
     ];
   };
 }

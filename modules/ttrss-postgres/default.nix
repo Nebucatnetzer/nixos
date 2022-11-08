@@ -1,4 +1,4 @@
-{ custom, domain }: { config, pkgs, ... }:
+{ custom, domain }: { config, ... }:
 let
   domain = "ttrss.2li.ch";
 in
@@ -6,7 +6,7 @@ in
   imports = [
     (import "${custom.inputs.self}/modules/nginx-fpm" {
       dataDir = "/mnt/data/ttrss/app";
-      inherit custom domain pkgs;
+      inherit custom domain;
     })
     "${custom.inputs.self}/modules/postgresql"
   ];

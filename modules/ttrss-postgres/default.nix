@@ -14,10 +14,12 @@ in
 
   services.postgresql = {
     ensureDatabases = [ "ttrssdb" ];
-    initialScript = pkgs.writeText "postgresql-initScript" ''
-      CREATE ROLE ttrss WITH LOGIN PASSWORD 'ttrss' CREATEDB;
-      GRANT ALL PRIVILEGES ON DATABASE ttrssdb TO ttrss;
-    '';
+    ensureUsers = [{
+      name = "ttrss";
+      ensurePermissions = {
+        "DATABASE ttrssdb " = "ALL PRIVILEGES";
+      };
+    }];
   };
 
   virtualisation.oci-containers = {

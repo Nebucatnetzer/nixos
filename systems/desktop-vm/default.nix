@@ -2,11 +2,7 @@
 {
   imports = [
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
-    (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
     "${custom.inputs.self}/modules/logs-share"
-    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
-    "${custom.inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

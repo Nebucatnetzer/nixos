@@ -8,18 +8,9 @@
     "${custom.inputs.self}/hardware/nvidia"
     "${custom.inputs.self}/hardware/dvd"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
-    (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
-    (import "${custom.inputs.self}/modules/email" { inherit custom; })
-    (import "${custom.inputs.self}/modules/eog" { inherit custom; })
-    (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
     "${custom.inputs.self}/modules/lockscreen"
     "${custom.inputs.self}/modules/logs-share"
-    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
-    (import "${custom.inputs.self}/modules/pipewire" { inherit custom; })
-    "${custom.inputs.self}/modules/scripts"
     "${custom.inputs.self}/modules/tlp"
-    "${custom.inputs.self}/modules/tmux"
     (import "${custom.inputs.self}/modules/restic" { inherit custom; })
   ];
   boot.initrd.availableKernelModules = [

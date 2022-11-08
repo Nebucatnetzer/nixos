@@ -18,10 +18,13 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."plex" = {
-      image = "plexinc/pms-docker";
       autoStart = true;
+      image = "lscr.io/linuxserver/plex";
       environment = {
-        TZ = "Europe/Zurich";
+        TZ = " Europe/Zurich ";
+        PUID = "1000";
+        PGID = "1000";
+        VERSION = "docker";
       };
       environmentFiles = [ config.age.secrets.plexClaim.path ];
       volumes = [

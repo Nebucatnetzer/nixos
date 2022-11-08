@@ -41,6 +41,7 @@
         loki-test = mksdImage "loki-test";
         plex = mksdImage "plex";
         proxy = mksdImage "proxy";
+        mail = mksdImage "mail";
         management = mksdImage "management";
       };
       nixosConfigurations = {
@@ -68,7 +69,7 @@
           hostname = "loki-test";
           inherit custom;
         };
-        mail = mkComputer {
+        mail = mkRaspi {
           hostname = "mail";
           inherit custom;
         };

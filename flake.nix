@@ -44,6 +44,7 @@
         mail = mksdImage "mail";
         management = mksdImage "management";
         nextcloud = mksdImage "nextcloud";
+        pihole = mksdImage "pihole";
       };
       nixosConfigurations = {
         gwyn = mkComputer {
@@ -78,7 +79,7 @@
           hostname = "nextcloud";
           inherit custom;
         };
-        pihole = mkComputer {
+        pihole = mkRaspi {
           hostname = "pihole";
           inherit custom;
         };

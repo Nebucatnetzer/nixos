@@ -8,7 +8,7 @@
     (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/var/lib/plex";
       tag = "plex";
-      time = "03:30";
+      time = "02:30";
       inherit custom;
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })

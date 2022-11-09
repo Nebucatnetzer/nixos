@@ -7,7 +7,7 @@
     })
     (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/home/andreas";
-      time = "04:30";
+      time = "01:00";
       inherit custom;
     })
     (import "${custom.inputs.self}/modules/nginx-proxy" {

@@ -10,7 +10,7 @@ in
     })
     (import "${custom.inputs.self}/modules/restic-server-mysql-client" {
       path = "/home/andreas";
-      time = "03:00"; inherit custom;
+      time = "00:30"; inherit custom;
     })
     (import "${custom.inputs.self}/modules/nginx-proxy" {
       inherit custom domain;

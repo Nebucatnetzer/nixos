@@ -37,6 +37,6 @@ in
   systemd.timers.restic-prune = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-prune.service" ];
-    timerConfig.OnCalendar = [ "*-*-* 12:00:00" ];
+    timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];
   };
 }

@@ -8,7 +8,7 @@
     (import "${custom.inputs.self}/modules/restic-server-client" {
       path = "/var/lib/pihole";
       tag = "pihole";
-      time = "05:00"; inherit custom;
+      time = "02:00"; inherit custom;
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/pihole" { inherit custom; })

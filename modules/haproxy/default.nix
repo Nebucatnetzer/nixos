@@ -48,7 +48,7 @@
         # Figure out which backend (= VM) to use
         use_backend git_server if { req_ssl_sni -i git.2li.ch }
         use_backend proxy if { req_ssl_sni -i heimdall.2li.ch }
-        use_backend webmail_server if { req_ssl_sni -i mail.zweili.org }
+        use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
         use_backend proxy if { req_ssl_sni -i rss-bridge.2li.ch }
@@ -68,7 +68,7 @@
       backend ttrss_server
         mode tcp
         server server1 10.7.89.115:443 check
-      backend webmail_server
+      backend mail_server
         mode tcp
         server server1 10.7.89.123:443 check
       backend rss-bridge_server

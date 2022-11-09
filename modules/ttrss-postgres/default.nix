@@ -31,7 +31,6 @@ in
         TZ = "Europe/Zurich";
         TTRSS_DB_USER = "ttrss";
         TTRSS_DB_NAME = "ttrssdb";
-        TTRSS_DB_PASS = "ttrss";
         TTRSS_DB_HOST = "host.docker.internal";
         TTRSS_SELF_URL_PATH = "https://${domain}";
       };

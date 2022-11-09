@@ -20,8 +20,14 @@ However this requires some prerequisites.
 ## Raspberry Pi installation
 
 1. Add the new system to `flake.nix`.
-2. Build the image with `scritps/build-raspi-image.sh SYSTEMNAME`
-3. Flash the image to an SD card `dd if=~/Downloads/SYSTEMNAME.img of=/dev/mmcblk0 bs=4M`.
+2. Build the image with `scripts/build-raspi-image.sh SYSTEMNAME`
+3. Flash the image to an SD card
+   `dd if=~/Downloads/SYSTEMNAME.img of=/dev/mmcblk0 bs=4M`.
+4. After you've booted the Pi get the new SSH key with `ssh-keyscan
+    hostname.custom.domain` and add it to `scrts/secrets.nix`.
+5. Then login into the new Pi and mount the `FIRMWARE` partition with
+   `sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make sure that your
+   `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
 
 ## x86 installation
 

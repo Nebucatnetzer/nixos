@@ -32,7 +32,7 @@ in
         TTRSS_DB_USER = "ttrss";
         TTRSS_DB_NAME = "ttrssdb";
         TTRSS_DB_HOST = "host.docker.internal";
-        TTRSS_SELF_URL_PATH = "https://${domain}";
+        TTRSS_SELF_URL_PATH = "https://${domain}/tt-rss";
         TTRSS_SESSION_COOKIE_LIFETIME = "604800";
       };
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];

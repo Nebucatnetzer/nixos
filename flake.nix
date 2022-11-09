@@ -46,6 +46,7 @@
         nextcloud = mksdImage "nextcloud";
         pihole = mksdImage "pihole";
         restic-server = mksdImage "restic-server";
+        ttrss = mksdImage "ttrss";
       };
       nixosConfigurations = {
         gwyn = mkComputer {
@@ -102,7 +103,7 @@
           hostname = "restic-server";
           inherit custom;
         };
-        ttrss = mkComputer {
+        ttrss = mkRaspi {
           hostname = "ttrss";
           inherit custom;
         };

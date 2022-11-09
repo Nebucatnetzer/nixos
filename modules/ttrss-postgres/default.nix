@@ -1,7 +1,4 @@
 { custom, domain }: { config, ... }:
-let
-  domain = "ttrss.2li.ch";
-in
 {
   imports = [
     (import "${custom.inputs.self}/modules/nginx-fpm" {

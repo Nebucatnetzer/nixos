@@ -71,9 +71,6 @@
       backend mail_server
         mode tcp
         server server1 10.7.89.123:443 check
-      backend rss-bridge_server
-        mode tcp
-        server server1 10.7.89.111:443 check
       backend proxy
         mode tcp
         server server1 127.0.0.1:4433 check

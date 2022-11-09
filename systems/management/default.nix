@@ -1,7 +1,4 @@
 { custom, hostname }: { ... }:
-let
-  domain = "test.2li.ch";
-in
 {
   imports = [
     (import "${custom.inputs.self}/systems/raspi4" {
@@ -18,16 +15,4 @@ in
     })
     "${custom.inputs.self}/modules/tmux"
   ];
-  services.nginx.virtualHosts."${domain}".locations = {
-    "/".extraConfig = ''
-      try_files $uri $uri/ = 404;
-    '';
-    "/tt-rss/cache".extraConfig = ''
-      aio threads;
-      internal;
-    '';
-    "/tt-rss/backups".extraConfig = ''
-      internal;
-    '';
-  };
 }

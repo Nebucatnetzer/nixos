@@ -1,6 +1,6 @@
 { custom }: { config, pkgs, ... }:
 let
-  repository = "/mnt/restic-server";
+  repository = "/var/lib/restic-server";
 in
 {
   age.secrets.resticKey.file = "${custom.inputs.self}/scrts/restic.key.age";

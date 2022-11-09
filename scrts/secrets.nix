@@ -14,7 +14,7 @@ let
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACtJWes3zBh0Hs0BEC2ZC+9+ddLALlzuAxyNjLgf5Fh";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPsjf063cd2QPTTRRP6s+VvAkDal1pHbVxBIycv5ntz+";
-  ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILWQKvlLbat4Bp3iu4oFpdHSaiyi6x/efCMmYtCNfgfb";
+  ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfWq/ZWeMNIMqXsI4rnkwR+wc/FVdb2jA70sdLMEnyX";
   systems = [
     git
     gwyn

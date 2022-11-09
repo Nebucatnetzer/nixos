@@ -51,7 +51,7 @@
         use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
         use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
         use_backend ttrss_server if { req_ssl_sni -i ttrss.2li.ch }
-        use_backend proxy if { req_ssl_sni -i rss-bridge.2li.ch }
+        use_backend ttrss_server if { req_ssl_sni -i rss-bridge.2li.ch }
         use_backend test_server if { req_ssl_sni -i test.2li.ch }
         use_backend proxy if { req_ssl_sni -i www.2li.ch }
         use_backend proxy if { req_ssl_sni -i 2li.ch }

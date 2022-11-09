@@ -13,6 +13,7 @@ in
   age.secrets.ttrssEnv.file = "${custom.inputs.self}/scrts/ttrss_env.age";
 
   services.postgresql = {
+    authentication = "host ttrssdb ttrss 172.16.0.0/12 scram-sha-256";
     ensureDatabases = [ "ttrssdb" ];
     ensureUsers = [{
       name = "ttrss";

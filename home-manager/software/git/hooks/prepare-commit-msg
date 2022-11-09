@@ -12,7 +12,7 @@ issueId=$(echo $branchName | sed -nE 's,([A-Z]?-?[0-9]+)-.+,\1,p')
 if [[ ! -z $issueId ]]; then
  # $1 is the name of the file containing the commit message
  # sed -i.bak -e "1s/^/\n\n[$issueId]\n/" $1
- echo -e "#$issueId ""$(cat $1)" > "$1"
+ echo -e "[#$issueId] ""$(cat $1)" > "$1"
  # echo -e "[$issueId]\n""$(cat $1)" > "$1"
  # sed -i.bak -e "1s/^/$TRIMMED /" $1
 fi

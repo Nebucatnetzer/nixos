@@ -54,7 +54,7 @@ in
         "/var/lib/ttrss/html:/var/www/html"
         "/var/lib/ttrss/backup:/backup"
       ];
-      cmd = [ "/opt/tt-rss/dcron.sh -f" ];
+      cmd = [ "/opt/tt-rss/dcron.sh" "-f" ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
     containers."updater" = {

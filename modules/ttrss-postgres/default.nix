@@ -2,7 +2,7 @@
 {
   imports = [
     (import "${custom.inputs.self}/modules/nginx-fpm" {
-      dataDir = "/mnt/data/ttrss/app";
+      dataDir = "/var/lib/ttrss/html";
       inherit custom domain;
     })
     "${custom.inputs.self}/modules/postgresql"
@@ -24,7 +24,7 @@
     backend = "docker";
     containers."ttrss" = {
       image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
-      autoStart = false;
+      autoStart = true;
       environment = {
         TZ = "Europe/Zurich";
         TTRSS_DB_USER = "ttrss";
@@ -35,10 +35,10 @@
       };
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
       ports = [
-        "8080:80"
+        "9000:9000"
       ];
       volumes = [
-        "/var/lib/ttrss/config:/config"
+        "/var/lib/ttrss/html:/var/www/html"
       ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };

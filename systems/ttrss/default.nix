@@ -9,20 +9,12 @@ in
       inherit custom hostname;
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
-    (import "${custom.inputs.self}/modules/nginx-proxy" { inherit custom domain; })
+    (import "${custom.inputs.self}/modules/nginx-proxy" {
+      domain = "rss-bridge.2li.ch";
+      port = "8082";
+      inherit custom;
+    })
     "${custom.inputs.self}/modules/rss-bridge"
     (import "${custom.inputs.self}/modules/ttrss-postgres" { inherit custom domain; })
   ];
-  services.nginx = {
-    virtualHosts = {
-      "rss-bridge.2li.ch" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:8082";
-          proxyWebsockets = true; # needed if you need to use WebSocket
-        };
-      };
-    };
-  };
 }

@@ -50,9 +50,6 @@ in
       autoStart = true;
       environment = ttrssEnvironment;
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
-      ports = [
-        "9000:9000"
-      ];
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
         "/var/lib/ttrss/backup:/backup"
@@ -65,9 +62,6 @@ in
       autoStart = true;
       environment = ttrssEnvironment;
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
-      ports = [
-        "9000:9000"
-      ];
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
       ];

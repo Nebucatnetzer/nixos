@@ -1,4 +1,14 @@
 { custom, domain }: { config, ... }:
+let
+  ttrssEnvironment = {
+    TZ = "Europe/Zurich";
+    TTRSS_DB_USER = "ttrss";
+    TTRSS_DB_NAME = "ttrssdb";
+    TTRSS_DB_HOST = "host.docker.internal";
+    TTRSS_SELF_URL_PATH = "https://${domain}/tt-rss";
+    TTRSS_SESSION_COOKIE_LIFETIME = "604800";
+  };
+in
 {
   imports = [
     (import "${custom.inputs.self}/modules/nginx-fpm" {
@@ -25,14 +35,7 @@
     containers."ttrss" = {
       image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
       autoStart = true;
-      environment = {
-        TZ = "Europe/Zurich";
-        TTRSS_DB_USER = "ttrss";
-        TTRSS_DB_NAME = "ttrssdb";
-        TTRSS_DB_HOST = "host.docker.internal";
-        TTRSS_SELF_URL_PATH = "https://${domain}/tt-rss";
-        TTRSS_SESSION_COOKIE_LIFETIME = "604800";
-      };
+      environment = ttrssEnvironment;
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
       ports = [
         "9000:9000"
@@ -40,6 +43,36 @@
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
       ];
+      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+    };
+    containers."backup" = {
+      image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
+      autoStart = true;
+      environment = ttrssEnvironment;
+      environmentFiles = [ config.age.secrets.ttrssEnv.path ];
+      ports = [
+        "9000:9000"
+      ];
+      volumes = [
+        "/var/lib/ttrss/html:/var/www/html"
+        "/var/lib/ttrss/backup:/backup"
+      ];
+      cmd = [ "/opt/tt-rss/dcron.sh -f" ];
+      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+    };
+    containers."updater" = {
+      image = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static";
+      autoStart = true;
+      environment = ttrssEnvironment;
+      environmentFiles = [ config.age.secrets.ttrssEnv.path ];
+      ports = [
+        "9000:9000"
+      ];
+      volumes = [
+        "/var/lib/ttrss/html:/var/www/html"
+      ];
+      cmd = [ "/opt/tt-rss/updater.sh" ];
+      dependsOn = [ "ttrss" ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
   };

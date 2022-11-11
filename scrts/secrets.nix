@@ -13,6 +13,7 @@ let
   pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN25V7+3R6AhcJwcmx/dxK/O3x1kNpuVj5Gxttar9pNX";
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACtJWes3zBh0Hs0BEC2ZC+9+ddLALlzuAxyNjLgf5Fh";
+  staubfinger = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDcmDv8tnbuykX/0cUK+FnPD5YSjf/8wmsjWxqtXKuTYy1dtLS+Dx9X/LGS9GS1gd/LzYX+r9Kw1a4HfAz0+iinUaL/glbfGFm593BlS9jJaBz8nWV+pz3sJRj1GQ5oiKxN9bg+oNu8hZVpIqhMTpH7HkqgU5IWJfaVB5oNXaCCK7emh3fuJeqvQkKABumqji7eNr5la9qhc/XvI7O9aIc1sB05SVF+2TqYcZVpjMc27A3eSbS7+YXiOuP4I+51l9p7dH4Q1M9LB4+90XRP7DGA6kMwQ+cFTWMrFWwMy3NvaA9PnR2g3viNhbU7wLC+r6wCdS/Xu81HWwuXI/9lBScfZbxXIzfprjCUr4uifWevlTusYtgV0t1JJuWjefm8l/Sb+oJKEcGH/gxioM/pJCQiAcwoMVZRqZsNzYerNJ85VIKViuQhkek5A9EJsYhT1sOrQHYPGE+CReycwyswheXSnJ/VtkbyxRzu+q1573yfZgV5PVi8EUBI4i+gyvmz47E=";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILX9Sm69VGPrek8PRgWa8xJPqzRrixs1g+8hBu2F6265";
   ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfWq/ZWeMNIMqXsI4rnkwR+wc/FVdb2jA70sdLMEnyX";
   systems = [
@@ -29,7 +30,7 @@ let
     restic-server
     ttrss
   ];
-  defaultKeys = [ andreas andreas-nixos-vm gwyn management nixos-vm ];
+  defaultKeys = [ andreas andreas-nixos-vm gwyn management nixos-vm staubfinger ];
   all = users ++ systems;
 in
 {

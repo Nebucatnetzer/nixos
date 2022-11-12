@@ -33,7 +33,7 @@
         --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
         --tag ${tag} ${path}
 
-      sudo -u postgres ${pkgs.postgresql}/bin/pg_dumpall | \
+      ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql}/bin/pg_dumpall | \
       ${pkgs.restic}/bin/restic backup \
         --tag postgres \
         --stdin \
@@ -48,7 +48,7 @@
         --keep-yearly 75
 
       ${pkgs.restic}/bin/restic forget \
-        --tag mariadb \
+        --tag postgres \
         --host ${config.networking.hostName} \
         --keep-daily 7 \
         --keep-weekly 5 \

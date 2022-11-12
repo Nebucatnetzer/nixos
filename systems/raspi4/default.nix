@@ -3,7 +3,6 @@
   imports = [
     custom.inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${custom.inputs.self}/modules/log-to-ram"
-    "${custom.inputs.self}/modules/ntp"
     "${custom.inputs.self}/modules/syslog"
   ];
 

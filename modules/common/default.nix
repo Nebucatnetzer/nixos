@@ -12,6 +12,7 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
+  services.timesyncd.enable = true;
 
   networking = {
     domain = "2li.local";
@@ -20,6 +21,11 @@
       allowPing = true;
       allowedTCPPorts = [ 22 ];
     };
+    timeServers = [
+      "10.7.89.1"
+      "ch.pool.ntp.org"
+    ];
+
   };
 
   hardware = {

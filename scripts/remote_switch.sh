@@ -13,6 +13,14 @@ skip=(
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
 export NIX_SSHOPTS="-t -i $rsa_key"
+reboot=0
+
+while getopts ":r" option; do
+    case $option in
+        r)
+        reboot=1
+    esac
+done
 
 for host in "${hosts[@]}"
 do
@@ -23,7 +31,9 @@ do
     fqdn="$host.2li.local"
     echo $fqdn
     nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host" &&
-    ssh -i $rsa_key $fqdn 'sudo reboot'
+    if [ $reboot -eq 1 ]; then
+        ssh -i $rsa_key $fqdn 'sudo reboot'
+    fi
     echo
     echo
 done
@@ -31,4 +41,6 @@ done
 pihole="pihole.2li.local"
 echo $pihole
 nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $pihole --flake ".#pihole" &&
-ssh -i $rsa_key $pihole 'sudo reboot'
+if [ $reboot -eq 1 ]; then
+    ssh -i $rsa_key $pihole 'sudo reboot'
+fi

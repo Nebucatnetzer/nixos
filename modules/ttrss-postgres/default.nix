@@ -89,5 +89,5 @@ in
   systemd.services.${ttrssService}.after = [ "postgresql.service" ];
   systemd.services.${backupService}.after = [ "postgresql.service" ];
   systemd.services.${updaterService}.after = [ "postgresql.service" ];
-  systemd.services.${service-name}.after = [ "nginx.service" ];
+  systemd.services.${ttrssService}.after = [ "nginx.service" ];
 }

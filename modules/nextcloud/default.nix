@@ -12,6 +12,8 @@ let
   };
   networkName = "nextcloud";
   nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.1@sha256:71148efd6be127a0cae47f8d5a4d2129d24a1cd325d9a973e34cebdf0047675e";
+  nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
+  cronService = "${config.virtualisation.oci-containers.backend}-cron";
 in
 {
   age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";
@@ -70,4 +72,7 @@ in
   environment.shellAliases = {
     occ = ''${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ'';
   };
+  systemd.services.${nextcloudService}.after = [ "mysql.service" ];
+  systemd.services.${cronService}.after = [ "mysql.service" ];
+  systemd.services.${nextcloudService}.after = [ "nginx.service" ];
 }

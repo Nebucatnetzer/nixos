@@ -8,6 +8,9 @@ let
     TTRSS_SELF_URL_PATH = "https://${domain}/tt-rss";
     TTRSS_SESSION_COOKIE_LIFETIME = "604800";
   };
+  ttrssService = "${config.virtualisation.oci-containers.backend}-ttrss";
+  backupService = "${config.virtualisation.oci-containers.backend}-backup";
+  updaterService = "${config.virtualisation.oci-containers.backend}-updater";
 in
 {
   imports = [
@@ -83,4 +86,8 @@ in
       internal;
     '';
   };
+  systemd.services.${ttrssService}.after = [ "postgresql.service" ];
+  systemd.services.${backupService}.after = [ "postgresql.service" ];
+  systemd.services.${updaterService}.after = [ "postgresql.service" ];
+  systemd.services.${service-name}.after = [ "nginx.service" ];
 }

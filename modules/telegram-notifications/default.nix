@@ -20,7 +20,7 @@ in
   systemd.services."unit-status-telegram@" = {
     description = "Unit Status Telegram Service";
     unitConfig = {
-      After = "network.target";
+      After = "network-online.target";
     };
     serviceConfig = {
       Type = "simple";

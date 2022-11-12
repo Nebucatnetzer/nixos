@@ -20,7 +20,8 @@ in
 
   services.mysql.settings = {
     mysqld = {
-      "innodb_file_per_table" = 1;
+      innodb_file_per_table = 1;
+      innodb_buffer_pool_size = "2G";
     };
   };
 

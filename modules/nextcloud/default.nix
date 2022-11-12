@@ -16,6 +16,12 @@ in
 {
   age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";
 
+  services.mysql.settings = {
+    mysqld = {
+      "innodb_file_per_table" = 1;
+    };
+  };
+
   virtualisation.oci-containers = {
     backend = "docker";
     containers."nextcloud" = {

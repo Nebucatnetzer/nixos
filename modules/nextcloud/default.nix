@@ -67,4 +67,7 @@ in
     ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || ${pkgs.docker}/bin/docker network create ${networkName}
   '';
 
+  environment.shellAliases = {
+    occ = ''${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ'';
+  };
 }

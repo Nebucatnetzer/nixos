@@ -14,7 +14,7 @@ in
       port = "8082";
       inherit custom;
     })
-    (import "${custom.inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-server-postgres-client" {
       path = "/var/lib/ttrss";
       tag = "tt-rss";
       time = "23:00";

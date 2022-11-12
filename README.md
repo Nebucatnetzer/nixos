@@ -26,8 +26,8 @@ However this requires some prerequisites.
 4. After you've booted the Pi get the new SSH key with `ssh-keyscan
     hostname.custom.domain` and add it to `scrts/secrets.nix`.
 5. Then login into the new Pi and mount the `FIRMWARE` partition with
-   `sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make sure that your
-   `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
+   `sudo mkdir -p /mnt && sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make
+   sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
 
 ## x86 installation
 

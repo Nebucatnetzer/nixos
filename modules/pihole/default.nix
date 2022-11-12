@@ -1,4 +1,7 @@
 { custom }: { config, ... }:
+let
+  service-name = "${config.virtualisation.oci-containers.backend}-pihole";
+in
 {
   networking = {
     firewall.allowedTCPPorts = [
@@ -34,4 +37,5 @@
       ];
     };
   };
+  systemd.services.${service-name}.after = [ "unbound.service" ];
 }

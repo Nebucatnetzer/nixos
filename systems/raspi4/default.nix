@@ -49,6 +49,7 @@
       sudo vcgencmd get_throttled && sudo vcgencmd measure_temp
     '';
     raspi-firmware-update = ''
+      sudo mkdir -p /mnt && \
       sudo mount /dev/disk/by-label/FIRMWARE /mnt && \
       BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable sudo -E rpi-eeprom-update -d -a && \
       sudo umount /mnt

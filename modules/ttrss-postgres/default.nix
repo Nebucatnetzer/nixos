@@ -86,7 +86,6 @@ in
       internal;
     '';
   };
-  systemd.services.${ttrssService}.after = [ "nginx.service" "postgresql.service" ];
-  systemd.services.${backupService}.after = [ "postgresql.service" ];
-  systemd.services.${updaterService}.after = [ "postgresql.service" ];
+  systemd.services.${ttrssService}.after = [ "nginx.service" ];
+  systemd.services.postgresql.after = [ "${ttrssService}.service" ];
 }

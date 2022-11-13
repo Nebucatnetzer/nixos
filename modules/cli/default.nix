@@ -7,6 +7,7 @@
     killall
     ncdu
     nixpkgs-fmt
+    nmon
     ranger
     tree
     unzip

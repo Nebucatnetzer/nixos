@@ -7,6 +7,9 @@ let
     TTRSS_DB_HOST = "host.docker.internal";
     TTRSS_SELF_URL_PATH = "https://${domain}/tt-rss";
     TTRSS_SESSION_COOKIE_LIFETIME = "604800";
+    TTRSS_PLUGINS = "af_comics, af_readability, auth_internal, hotkeys_swap_jk, mailer_smtp, nginx_xaccel";
+    TTRSS_SMTP_SERVER = "mail.infomaniak.com:465";
+    TTRSS_SMTP_SECURE = "ssl";
   };
   ttrssService = "${config.virtualisation.oci-containers.backend}-ttrss";
   backupService = "${config.virtualisation.oci-containers.backend}-backup";
@@ -89,3 +92,7 @@ in
   systemd.services.${ttrssService}.after = [ "nginx.service" ];
   systemd.services.postgresql.after = [ "${ttrssService}.service" ];
 }
+
+
+
+

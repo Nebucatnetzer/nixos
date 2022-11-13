@@ -8,7 +8,6 @@
     ncdu
     nixpkgs-fmt
     nmon
-    ranger
     tree
     unzip
     vim

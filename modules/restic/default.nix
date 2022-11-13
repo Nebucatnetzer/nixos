@@ -90,7 +90,6 @@ in
       ${pkgs.restic}/bin/restic \
       forget \
         --host ${config.networking.hostName} \
-        --tag home-dir \
         --keep-hourly 25 \
         --keep-daily 7 \
         --keep-weekly 5 \

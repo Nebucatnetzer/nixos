@@ -2,7 +2,7 @@
 {
   system.autoUpgrade = {
     enable = true;
-    dates = "10:20";
+    dates = "daily";
     flake = "/home/${custom.username}/.nixos";
     flags = [
       "--update-input"

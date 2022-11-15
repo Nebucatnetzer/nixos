@@ -118,8 +118,8 @@
             options = [ "NOPASSWD" ];
           }
           {
-            command = "ALL";
-            options = [ "SETENV" ];
+            command = "/run/current-system/sw/bin/nix-env";
+            options = [ "NOPASSWD" ];
           }
         ];
       }

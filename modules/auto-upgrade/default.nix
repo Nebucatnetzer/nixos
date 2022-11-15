@@ -7,6 +7,14 @@
     flags = [
       "--update-input"
       "nixpkgs"
+      "--update-input"
+      "nixpkgs-unstable"
+      "--update-input"
+      "nixos-hardware"
+      "--update-input"
+      "agenix"
+      "--update-input"
+      "home-manager"
       "--commit-lock-file"
     ];
   };

@@ -39,6 +39,8 @@ in
       ];
       volumes = [
         "${custom.inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini"
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
       ];
       dependsOn = [ "redis" ];
       extraOptions = [
@@ -54,6 +56,10 @@ in
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
       entrypoint = "/cron.sh";
       dependsOn = [ "redis" ];
+      volumes = [
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
+      ];
       extraOptions = [
         ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
         "--add-host=host.docker.internal:host-gateway"
@@ -63,6 +69,10 @@ in
     containers."redis" = {
       image = "redis:alpine";
       autoStart = true;
+      volumes = [
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
+      ];
       extraOptions = [
         "--net=${networkName}"
       ];

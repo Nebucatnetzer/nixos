@@ -30,6 +30,8 @@
       volumes = [
         "/var/lib/plex/config:/config"
         "/var/lib/plex/tmp:/transcode"
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [
         ''--mount=type=volume,source=media,target=/mnt/media,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/media,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''

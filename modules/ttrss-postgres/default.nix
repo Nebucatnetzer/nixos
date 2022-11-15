@@ -46,6 +46,8 @@ in
       ];
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
     };
@@ -57,6 +59,8 @@ in
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
         "/var/lib/ttrss/backup:/backup"
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
       ];
       cmd = [ "/opt/tt-rss/dcron.sh" "-f" ];
       extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
@@ -68,6 +72,8 @@ in
       environmentFiles = [ config.age.secrets.ttrssEnv.path ];
       volumes = [
         "/var/lib/ttrss/html:/var/www/html"
+        "/etc/timezone:/etc/timezone:ro"
+        "/etc/localtime:/etc/localtime:ro"
       ];
       cmd = [ "/opt/tt-rss/updater.sh" ];
       dependsOn = [ "ttrss" ];

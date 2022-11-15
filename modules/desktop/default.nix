@@ -58,6 +58,7 @@
 
   environment.systemPackages = with pkgs; [
     # what I consider to be system packages
+    p7zip
     appimage-run
     brightnessctl
     lm_sensors
@@ -72,6 +73,7 @@
     rofi
     source-code-pro
     terminator
+    unrar
   ];
   environment.shellAliases = {
     management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";

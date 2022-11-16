@@ -1,7 +1,6 @@
 { custom }: { pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/modules/auto-upgrade" { inherit custom; })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
     (import "${custom.inputs.self}/modules/email" { inherit custom; })

@@ -28,6 +28,7 @@ However this requires some prerequisites.
 5. Then login into the new Pi and mount the `FIRMWARE` partition with
    `sudo mkdir -p /mnt && sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make
    sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
+6. Change the password
 
 ## x86 installation
 

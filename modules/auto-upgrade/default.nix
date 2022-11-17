@@ -18,4 +18,5 @@
       "--commit-lock-file"
     ];
   };
+  systemd.services.nixos-upgrade.after = [ "network-online.target" ];
 }

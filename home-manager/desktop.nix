@@ -1,7 +1,6 @@
 { custom }: { config, pkgs, ... }:
 {
   imports = [
-    "${custom.inputs.self}/home-manager/software/ansible"
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"

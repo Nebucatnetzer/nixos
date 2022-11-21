@@ -4,6 +4,7 @@
     enable = true;
     bindings = {
       s = "playlist-shuffle";
+      r = "cycle_values video-rotate 90 180 270 0";
     };
     config = {
       "keepaspect-window" = "no";

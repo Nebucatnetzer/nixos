@@ -39,7 +39,6 @@ in
       ];
       volumes = [
         "${custom.inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini"
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       dependsOn = [ "redis" ];
@@ -57,7 +56,6 @@ in
       entrypoint = "/cron.sh";
       dependsOn = [ "redis" ];
       volumes = [
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [
@@ -70,7 +68,6 @@ in
       image = "redis:alpine";
       autoStart = true;
       volumes = [
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [

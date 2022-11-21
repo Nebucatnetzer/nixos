@@ -62,7 +62,7 @@ in
       check \
     '';
   };
-  systemd.timers.restic-prune = {
+  systemd.timers.restic-check = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-check.service" ];
     timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];

@@ -3,6 +3,9 @@ let
   repository = "/var/lib/restic-server";
 in
 {
+  imports = [
+    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
+  ];
   age.secrets.resticKey = {
     file = "${custom.inputs.self}/scrts/restic.key.age";
     mode = "440";
@@ -31,6 +34,7 @@ in
       Type = "oneshot";
       User = "restic";
     };
+    onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
       --repo ${repository} \

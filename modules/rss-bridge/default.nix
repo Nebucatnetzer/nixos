@@ -13,7 +13,6 @@ in
       ];
       volumes = [
         "${whitelist}:/app/whitelist.txt"
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
     };

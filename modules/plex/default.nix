@@ -30,7 +30,6 @@
       volumes = [
         "/var/lib/plex/config:/config"
         "/var/lib/plex/tmp:/transcode"
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [

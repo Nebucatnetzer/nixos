@@ -30,7 +30,6 @@ in
       volumes = [
         "/var/lib/pihole/etc-pihole:/etc/pihole/"
         "/var/lib/pihole/etc-dnsmasq.d:/etc/dnsmasq.d/"
-        "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [

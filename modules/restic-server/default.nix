@@ -3,7 +3,12 @@ let
   repository = "/var/lib/restic-server";
 in
 {
-  age.secrets.resticKey.file = "${custom.inputs.self}/scrts/restic.key.age";
+  age.secrets.resticKey = {
+    file = "${custom.inputs.self}/scrts/restic.key.age";
+    mode = "440";
+    owner = "restic";
+    group = "restic";
+  };
 
   environment.systemPackages = with pkgs; [
     restic

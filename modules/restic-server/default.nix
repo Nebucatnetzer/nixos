@@ -46,6 +46,25 @@ in
   systemd.timers.restic-prune = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-prune.service" ];
+    timerConfig.OnCalendar = [ "*-*-* 08:00:00" ];
+  };
+
+  systemd.services.restic-check = {
+    serviceConfig = {
+      Type = "oneshot";
+      User = "restic";
+    };
+    onFailure = [ "unit-status-telegram@%n.service" ];
+    script = ''
+      ${pkgs.restic}/bin/restic \
+      --repo ${repository} \
+      --password-file ${config.age.secrets.resticKey.path} \
+      check \
+    '';
+  };
+  systemd.timers.restic-prune = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-check.service" ];
     timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];
   };
 }

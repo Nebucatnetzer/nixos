@@ -5,9 +5,9 @@
 
 (use-package elpy
   :config
-  (setq elpy-rpc-python-command "python3")
-  (setq elpy-test-runner 'elpy-test-pytest-runner)
-  (setq elpy-formatter 'black)
-  (setq eldoc-idle-delay 1)
+  (setq elpy-test-runner 'elpy-test-pytest-runner
+        elpy-formatter 'black
+        elpy-rpc-virtualenv-path 'system
+        eldoc-idle-delay 1)
   (add-hook 'python-mode-hook (lambda () (highlight-indentation-mode -1)))
   (elpy-enable))

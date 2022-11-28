@@ -4,7 +4,6 @@
     custom.inputs.nixos-hardware.nixosModules.dell-precision-5530
     custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
-    (import "${custom.inputs.self}/modules/auto-upgrade" { inherit custom; })
     "${custom.inputs.self}/hardware/bluetooth"
     "${custom.inputs.self}/hardware/nvidia"
     "${custom.inputs.self}/hardware/dvd"

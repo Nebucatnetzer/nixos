@@ -18,7 +18,6 @@
     (import "${custom.inputs.self}/home-manager/software/podget" {
       downloadDir = "/home/andreas/Downloads";
     })
-    "${custom.inputs.self}/home-manager/software/pycharm"
     "${custom.inputs.self}/home-manager/software/rapid-photo-downloader"
     "${custom.inputs.self}/home-manager/software/signal"
     "${custom.inputs.self}/home-manager/software/ssh"

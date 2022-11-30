@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get install -y qemu binfmt-support qemu-user-static
+
+      - name: Enable multiarch in Docker
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v18
+      - uses: cachix/cachix-action@v12
+        with:
+          name: networkinventory
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+      - name: Build
+        run: |
+          ./scripts/build-servers.sh

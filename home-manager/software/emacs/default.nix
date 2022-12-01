@@ -7,6 +7,7 @@
 
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs28NativeComp;
     extraConfig = ''
       (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
                                           "-cp" "${pkgs.languagetool}/share/")

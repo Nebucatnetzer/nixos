@@ -83,19 +83,19 @@
       nix-config.flake = custom.inputs.self;
     };
 
-    autoOptimiseStore = true;
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      warn-dirty = false
-    '';
+    package = pkgs.nix;
+    settings = {
+      warn-dirty = false;
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [ "root" "@wheel" ];
+    };
     # enable garbage collection
     gc = {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than 30d";
     };
-    trustedUsers = [ "root" "@wheel" ];
   };
 
   environment.variables = {

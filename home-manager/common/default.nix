@@ -4,5 +4,6 @@
   # paths it should manage.
   home.username = custom.username;
   home.homeDirectory = "/home/${custom.username}";
+  home.stateVersion = custom.version;
   programs.home-manager.enable = true;
 }

@@ -6,7 +6,7 @@ hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStri
 for host in "${hosts[@]}"
 do
     echo $host
-    nixos-rebuild switch -j auto dry-build --flake ".#$host"
+    nix build -j auto --dry-run .#nixosConfigurations.${host}.config.system.build.toplevel
     echo
     echo
 done

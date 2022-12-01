@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-cd /home/andreas/.nixos
-
 hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'` | xargs ))
 
 for host in "${hosts[@]}"

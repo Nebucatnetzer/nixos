@@ -110,16 +110,15 @@
       };
       homeConfigurations = {
         "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
-          configuration = import "${custom.inputs.self}/home-manager/work-wsl.nix";
-          system = "x86_64-linux";
-          username = custom.username;
-          homeDirectory = "/home/${custom.username}";
           pkgs = import custom.inputs.nixpkgs {
             system = "x86_64-linux";
             config = {
               allowUnfree = true;
             };
           };
+          modules = [
+            "${custom.inputs.self}/home-manager/work-wsl.nix"
+          ];
           extraSpecialArgs = {
             inherit custom;
           };

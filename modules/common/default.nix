@@ -14,6 +14,7 @@
   time.timeZone = "Europe/Zurich";
   services.timesyncd.enable = true;
 
+  services.nscd.enableNsncd = true;
   networking = {
     domain = "2li.local";
     enableIPv6 = false;

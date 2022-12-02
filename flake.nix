@@ -114,6 +114,12 @@
           system = "x86_64-linux";
           username = custom.username;
           homeDirectory = "/home/${custom.username}";
+          pkgs = import custom.inputs.nixpkgs {
+            system = "x86_64-linux";
+            config = {
+              allowUnfree = true;
+            };
+          };
           extraSpecialArgs = {
             inherit custom;
           };

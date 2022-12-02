@@ -29,7 +29,6 @@
       experimental-features = "nix-command flakes";
       fallback = true;
       warn-dirty = false;
-      auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"

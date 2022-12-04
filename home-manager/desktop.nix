@@ -39,7 +39,6 @@
     shotwell
     sound-juicer
     unstable.tagger
-    vscode
     yt-dlp
   ];
   programs.git.userEmail = "andreas@zweili.ch";

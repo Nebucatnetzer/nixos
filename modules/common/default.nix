@@ -90,6 +90,10 @@
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" "@wheel" ];
+      min-free = 1000000000;
+      max-free = 10000000000;
+      connect-timeout = 5;
+      fallback = true;
     };
     # enable garbage collection
     gc = {

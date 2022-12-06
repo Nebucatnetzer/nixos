@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 host=$1
-image=~/Downloads/$host.img
+image=~/Downloads/$host.img.zst
 
 cd ~/.nixos/
 
 nix build .#images.$host &&
-unzstd result/sd-image/*.img.zst -o $image
-touch $image
-chmod 644 $image
+cp result/sd-image/*.img.zst $image

@@ -92,8 +92,6 @@
       epkgs.string-inflection
       epkgs.swiper
       epkgs.system-packages
-      epkgs.treemacs
-      epkgs.treemacs-evil
       epkgs.use-package
       epkgs.use-package-ensure-system-package
       epkgs.vterm

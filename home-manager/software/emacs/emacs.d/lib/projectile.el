@@ -7,5 +7,4 @@
                                          "~/git_repos/work/")
         projectile-switch-project-action #'projectile-dired)
   :bind (:map projectile-mode-map
-              ("M-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
+              ("M-p" . projectile-command-map)))

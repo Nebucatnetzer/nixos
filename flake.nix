@@ -33,9 +33,7 @@
       mkRaspi = import "${custom.inputs.self}/lib/mk_raspi.nix";
       mksdImage = host: (self.nixosConfigurations.${host}.extendModules {
         modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
-      }).config.system.build.sdImage.overrideAttrs (oldAttrs: {
-        compressImage = false;
-      });
+      }).config.system.build.sdImage;
     in
     {
       images = {

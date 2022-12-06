@@ -25,7 +25,6 @@
 (load-file (modules-path "spellcheck.el"))
 
 ;; programming
-(load-file (modules-path "bug_hunter.el"))
 (load-file (modules-path "company.el"))
 (load-file (modules-path "direnv.el"))
 (load-file (modules-path "format_all.el"))

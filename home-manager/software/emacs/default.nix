@@ -33,7 +33,6 @@
       epkgs.biblio-core
       epkgs.bibtex-completion
       epkgs.bind-key
-      epkgs.bug-hunter
       epkgs.cfrs
       epkgs.citeproc
       epkgs.company

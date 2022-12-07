@@ -18,13 +18,13 @@
       mu
       languagetool
       rufo # formatter for Ruby
-      python39Packages.autopep8
-      python39Packages.black
-      python39Packages.flake8
-      python39Packages.jedi
-      python39Packages.pip
-      python39Packages.python-lsp-server
-      python39Packages.yapf
+      python310Packages.autopep8
+      python310Packages.black
+      python310Packages.flake8
+      python310Packages.jedi
+      python310Packages.pip
+      python310Packages.python-lsp-server
+      python310Packages.yapf
       epkgs.ace-window
       epkgs.amx
       epkgs.auctex

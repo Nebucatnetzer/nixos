@@ -7,7 +7,6 @@
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/pihole" { inherit custom; }) # needs to be limited to lan interface
-    "${custom.inputs.self}/modules/router"
     "${custom.inputs.self}/modules/tmux"
     "${custom.inputs.self}/modules/unbound" # needs to be limited to lan interface
   ];

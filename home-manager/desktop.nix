@@ -2,6 +2,7 @@
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/software/alacritty"
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"
     "${custom.inputs.self}/home-manager/software/dunst"
@@ -48,7 +49,6 @@
   # raw config files
   home.file.".config/qtile/config.py".source = "${custom.inputs.self}/home-manager/configs/qtile/config.py";
   home.file.".config/qtile/autostart.sh".source = "${custom.inputs.self}/home-manager/configs/qtile/autostart.sh";
-  home.file.".config/terminator".source = "${custom.inputs.self}/home-manager/configs/terminator";
 
   programs.bash = {
     enable = true;

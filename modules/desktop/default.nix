@@ -56,6 +56,7 @@
 
   environment.systemPackages = with pkgs; [
     # what I consider to be system packages
+    alacritty
     appimage-run
     brightnessctl
     lm_sensors
@@ -69,7 +70,6 @@
     quickemu
     rofi
     source-code-pro
-    terminator
     unrar
   ];
   environment.shellAliases = {

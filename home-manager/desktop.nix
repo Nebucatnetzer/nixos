@@ -36,6 +36,7 @@
     libreoffice-fresh
     makemkv
     meld
+    plexamp
     remmina
     shotwell
     sound-juicer

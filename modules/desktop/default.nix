@@ -56,15 +56,15 @@
 
   environment.systemPackages = with pkgs; [
     # what I consider to be system packages
-    p7zip
     appimage-run
     brightnessctl
     lm_sensors
     lxappearance
-    gnome.nautilus
     gnome.gnome-screenshot
+    gnome.nautilus
     networkmanager-openvpn
     nitrogen
+    p7zip
     pavucontrol
     quickemu
     rofi

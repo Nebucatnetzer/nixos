@@ -34,6 +34,7 @@
   };
 
   programs.mosh.enable = true;
+  programs.ssh.startAgent = true;
   services.openssh = {
     enable = true;
     permitRootLogin = "no";

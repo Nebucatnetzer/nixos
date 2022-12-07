@@ -61,6 +61,7 @@
     brightnessctl
     lm_sensors
     lxappearance
+    gnome.file-roller
     gnome.gnome-screenshot
     gnome.nautilus
     networkmanager-openvpn

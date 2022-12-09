@@ -107,6 +107,7 @@
   environment.variables = {
     EDITOR = "vim";
     HIGHLIGHT_STYLE = "solarized-light";
+    HISTTIMEFORMAT = "%F %T ";
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 

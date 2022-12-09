@@ -61,7 +61,6 @@
       epkgs.hydra
       epkgs.know-your-http-well
       epkgs.languagetool
-      epkgs.lsp-mode
       epkgs.lv
       epkgs.magit
       epkgs.makey

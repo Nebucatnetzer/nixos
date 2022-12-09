@@ -97,6 +97,7 @@
       epkgs.web-mode
       epkgs.wgrep
       epkgs.which-key
+      epkgs.xclip
       epkgs.yaml-mode
       epkgs.yasnippet-snippets
     ];

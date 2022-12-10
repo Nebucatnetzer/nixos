@@ -59,6 +59,8 @@
           mu4e-index-update-in-background t
           mu4e-compose-dont-reply-to-self t
           mu4e-attachment-dir "~/nextcloud/10_documents/01_inbox"
+          ;; don't show threading by default:
+          mu4e-headers-show-threads nil
           mu4e-compose-signature-auto-include nil)
 
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)

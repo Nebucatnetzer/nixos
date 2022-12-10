@@ -61,6 +61,8 @@
           mu4e-attachment-dir "~/nextcloud/10_documents/01_inbox"
           ;; don't show threading by default:
           mu4e-headers-show-threads nil
+          ;; hide annoying "mu4e Retrieving mail..." msg in mini buffer:
+          mu4e-hide-index-messages t
           mu4e-compose-signature-auto-include nil)
 
     (add-hook 'mu4e-view-mode-hook 'visual-line-mode)

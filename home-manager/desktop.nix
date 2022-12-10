@@ -32,7 +32,6 @@
     digikam
     firefox
     gimp
-    gnucash
     inkscape
     libreoffice-fresh
     makemkv

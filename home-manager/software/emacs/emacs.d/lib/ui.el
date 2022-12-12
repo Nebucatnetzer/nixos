@@ -36,7 +36,7 @@
 
 ;; disable menu and toolbar
 (tool-bar-mode -1)
-(menu-bar-mode -99)
+;;(menu-bar-mode -99)
 (when (boundp 'enable-scroll-bar)
   (scroll-bar-mode -1))
 

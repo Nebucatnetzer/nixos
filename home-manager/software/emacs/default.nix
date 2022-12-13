@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     multimarkdown
     pandoc
+    python310Packages.python-lsp-server
   ];
 
   programs.emacs = {
@@ -23,7 +24,6 @@
       python310Packages.flake8
       python310Packages.jedi
       python310Packages.pip
-      python310Packages.python-lsp-server
       python310Packages.yapf
       epkgs.ace-window
       epkgs.amx
@@ -61,7 +61,6 @@
       epkgs.hydra
       epkgs.know-your-http-well
       epkgs.languagetool
-      epkgs.lsp-mode
       epkgs.lv
       epkgs.magit
       epkgs.makey

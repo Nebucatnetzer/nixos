@@ -1,3 +1,3 @@
-(use-package lsp-mode
+(use-package eglot
   :config
-  (add-hook 'python-mode-hook #'lsp))
+  (add-hook 'python-mode-hook #'eglot-ensure))

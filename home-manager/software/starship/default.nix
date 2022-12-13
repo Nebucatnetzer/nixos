@@ -14,7 +14,7 @@
         "$character"
       ];
       nix_shell = {
-        format = "$symbol";
+        format = "\\[X\\] ";
       };
       python = {
         format = "[$\{symbol\}($virtualenv) ]($style)";

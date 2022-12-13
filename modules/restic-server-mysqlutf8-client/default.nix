@@ -33,7 +33,7 @@
         --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
         --tag ${tag} ${path}
 
-      ${pkgs.mariadb}/bin/mysqldump --default-character-set=utf8mb4 --single-transaction --all-databases | \
+      ${pkgs.mariadb}/bin/mysqldump --default-character-set=utf8mb4 --add-drop-database --opt --single-transaction --all-databases | \
       ${pkgs.restic}/bin/restic backup \
         --tag mariadb \
         --stdin \

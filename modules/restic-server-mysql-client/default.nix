@@ -33,7 +33,7 @@
         --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
         --tag ${tag} ${path}
 
-      ${pkgs.mariadb}/bin/mysqldump --single-transaction --all-databases | \
+      ${pkgs.mariadb}/bin/mysqldump --add-drop-database --opt --single-transaction --all-databases | \
       ${pkgs.restic}/bin/restic backup \
         --tag mariadb \
         --stdin \

@@ -114,19 +114,11 @@
   security.sudo = {
     extraRules = [
       {
-        users = [ "andreas" ];
+        users = [ "%wheel" ];
         commands = [
           {
-            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/nix-env";
-            options = [ "NOPASSWD" ];
+            command = "ALL";
+            options = [ "SETENV" "NOPASSWD" ];
           }
         ];
       }

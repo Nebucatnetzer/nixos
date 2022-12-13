@@ -41,7 +41,7 @@
         };
         bold = {
           family = "Source Code Pro";
-          style = "Bold";
+          style = "Regular";
         };
         italic = {
           family = "Source Code Pro";

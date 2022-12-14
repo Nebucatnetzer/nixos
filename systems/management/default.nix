@@ -6,6 +6,7 @@
       inherit custom hostname;
     })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/data-share"
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
     (import "${custom.inputs.self}/modules/restic-server-client" {

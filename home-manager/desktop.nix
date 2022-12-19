@@ -26,6 +26,7 @@
     "${custom.inputs.self}/home-manager/software/telegram"
     "${custom.inputs.self}/home-manager/software/vim"
     "${custom.inputs.self}/home-manager/software/work-desktop"
+    "${custom.inputs.self}/home-manager/software/yt-dlp"
   ];
   home.packages = with pkgs; [
     arc-theme
@@ -41,7 +42,6 @@
     shotwell
     sound-juicer
     unstable.tagger
-    yt-dlp
   ];
   programs.git.userEmail = "andreas@zweili.ch";
 

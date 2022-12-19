@@ -32,6 +32,7 @@
     arc-theme
     digikam
     firefox
+    freetube
     gimp
     inkscape
     libreoffice-fresh

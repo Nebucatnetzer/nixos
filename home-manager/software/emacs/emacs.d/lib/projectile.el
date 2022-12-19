@@ -7,5 +7,6 @@
                                          "~/git_repos/work/")
         projectile-completion-system 'ivy
         projectile-switch-project-action #'projectile-dired)
+  (global-set-key (kbd "C-c g") 'projectile-find-file)
   :bind (:map projectile-mode-map
               ("M-p" . projectile-command-map)))

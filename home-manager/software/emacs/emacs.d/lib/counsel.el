@@ -11,7 +11,6 @@
   (global-set-key (kbd "C-c V") 'ivy-pop-view)
   ;; (global-set-key (kbd "C-s") 'swiper-isearch)
   (evil-define-key 'normal 'global "/" 'swiper-isearch)
-  (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
   (define-key ivy-minibuffer-map (kbd "S-SPC") (lambda () (interactive) (insert " ")))

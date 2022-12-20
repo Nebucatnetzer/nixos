@@ -18,6 +18,7 @@
   };
 
   home.packages = with pkgs; [
+    keychain
     nixpkgs-fmt
     mosh
   ];

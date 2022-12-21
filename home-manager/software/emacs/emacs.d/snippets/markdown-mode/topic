@@ -1,0 +1,20 @@
+# -*- mode: markdown-mode -*-
+# name: Markdown Topic
+# key: _topic
+# --
+---
+aliases:
+tags:
+date_created:
+date_modified:
+---
+
+# $1
+
+- meta:
+    - topics: $2
+    - url: $3
+
+---
+
+$0

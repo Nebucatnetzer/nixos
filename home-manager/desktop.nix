@@ -60,6 +60,9 @@
         sudo iptables -D INPUT -p tcp --dport $port -j ACCEPT
       }
     '';
+    profileExtra = ''
+      export XDG_DATA_DIRS:$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
+    '';
   };
 
   services.nextcloud-client = {

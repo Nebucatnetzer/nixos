@@ -46,6 +46,7 @@
   # raw config files
   home.file.".config/qtile/config.py".source = "${custom.inputs.self}/home-manager/configs/qtile/config.py";
   home.file.".config/qtile/autostart.sh".source = "${custom.inputs.self}/home-manager/configs/qtile/autostart.sh";
+  home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${custom.inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
   programs.bash = {
     enable = true;
@@ -83,3 +84,4 @@
   };
   services.network-manager-applet.enable = true;
 }
+

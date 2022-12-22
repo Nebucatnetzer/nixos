@@ -16,9 +16,6 @@
     "${custom.inputs.self}/home-manager/software/mpv"
     "${custom.inputs.self}/home-manager/software/nitrogen"
     "${custom.inputs.self}/home-manager/software/obsidian"
-    (import "${custom.inputs.self}/home-manager/software/podget" {
-      downloadDir = "/home/andreas/Downloads";
-    })
     "${custom.inputs.self}/home-manager/software/rapid-photo-downloader"
     "${custom.inputs.self}/home-manager/software/signal"
     "${custom.inputs.self}/home-manager/software/ssh"

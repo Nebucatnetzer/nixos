@@ -54,6 +54,13 @@
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;
 
+  # Enable Flatpack
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   environment.systemPackages = with pkgs; [
     # what I consider to be system packages
     alacritty

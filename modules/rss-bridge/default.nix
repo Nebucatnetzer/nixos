@@ -5,7 +5,7 @@ in
 {
   virtualisation.oci-containers = {
     backend = "docker";
-    containers."rss-brige" = {
+    containers."rss-bridge" = {
       image = "rssbridge/rss-bridge:latest";
       autoStart = true;
       ports = [

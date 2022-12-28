@@ -20,4 +20,7 @@
     enable = true;
   };
 
+  programs.emacs.package = pkgs.emacs-nox;
+  services.emacs.package = pkgs.emacs-nox;
+
 }

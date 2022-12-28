@@ -48,4 +48,6 @@
       . /home/${custom.username}/.nix-profile/etc/profile.d/nix.sh
     '';
   };
+  programs.emacs.package = pkgs.emacs-nox;
+  services.emacs.package = pkgs.emacs-nox;
 }

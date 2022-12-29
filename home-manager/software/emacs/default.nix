@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     multimarkdown
+    nodePackages.prettier # formatting files
     pandoc
     python310Packages.python-lsp-server
   ];

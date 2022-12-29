@@ -17,8 +17,8 @@
             languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
     '';
     extraPackages = epkgs: with pkgs;[
-      mu
       languagetool
+      mu # needed for mailing
       rufo # formatter for Ruby
       python310Packages.autopep8
       python310Packages.black

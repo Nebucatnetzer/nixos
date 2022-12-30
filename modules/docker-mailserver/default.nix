@@ -10,6 +10,9 @@ let
   });
 in
 {
+  imports = [
+    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
+  ];
   environment.systemPackages = [
     mailserver-setup
   ];
@@ -31,7 +34,6 @@ in
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
         "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
-        "${custom.inputs.self}/modules/docker-mailserver/sa-learn:/etc/cron.d/sa-learn"
       ];
       extraOptions = [
         ''--mount=type=volume,source=maildata,target=/var/mail,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/maildata,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
@@ -43,5 +45,31 @@ in
         "--cap-add=SYS_PTRACE"
       ];
     };
+  };
+  systemd.timers."mailserver-sa-learn" = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "mailserver-sa-learn.service" ];
+    timerConfig = {
+      OnCalendar = "daily";
+    };
+  };
+
+  systemd.services."mailserver-sa-learn" = {
+    serviceConfig = {
+      User = "root";
+      Type = "oneshot";
+    };
+    onFailure = [ "unit-status-telegram@%n.service" ];
+    script = ''
+      # learn spam
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --spam /var/mail/2li.ch/*/.Junk --dbpath /var/mail-state/lib-amavis/.spamassassin
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --spam /var/mail/zweili.ch/*/.Junk --dbpath /var/mail-state/lib-amavis/.spamassassin
+      # ham: archive directories
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/2li.ch/*/.Archive* --dbpath /var/mail-state/lib-amavis/.spamassassin
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/zweili.ch/*/.Archive* --dbpath /var/mail-state/lib-amavis/.spamassassin
+      # ham: inbox subdirectories
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/2li.ch/*/cur* --dbpath /var/mail-state/lib-amavis/.spamassassin
+      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/zweili.ch/*/cur* --dbpath /var/mail-state/lib-amavis/.spamassassin
+    '';
   };
 }

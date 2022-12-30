@@ -43,6 +43,7 @@
       epkgs.company-restclient
       epkgs.company-web
       epkgs.counsel
+      epkgs.deft
       epkgs.dired-hide-dotfiles
       epkgs.direnv
       epkgs.discover-my-major
@@ -101,6 +102,7 @@
       epkgs.xclip
       epkgs.yaml-mode
       epkgs.yasnippet-snippets
+      epkgs.zetteldeft
     ];
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

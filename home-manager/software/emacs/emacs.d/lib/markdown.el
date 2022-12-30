@@ -14,6 +14,9 @@
         markdown-unordered-list-item-prefix "    - "
         markdown-italic-underscore t
         markdown-link-space-sub-char " ")
+  (add-hook 'markdown-mode-hook '(lambda ()
+                                   (set (make-local-variable
+                                         'yas-indent-line) 'fixed)))
   :config
   (defun insert-file-name-as-wikilink (filename &optional args)
     (interactive "*fInsert file name: \nP")

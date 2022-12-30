@@ -5,6 +5,8 @@
     nodePackages.prettier # formatting files
     pandoc
     python310Packages.python-lsp-server
+    ripgrep
+    silver-searcher
   ];
 
   programs.emacs = {

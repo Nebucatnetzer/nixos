@@ -12,8 +12,8 @@ date_modified:
 # $1
 
 - meta:
-    - topics: $2
-    - url: $3
+  - topics: $2
+  - url: $3
 
 ---
 

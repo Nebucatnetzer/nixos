@@ -1,5 +1,5 @@
 { inputs }: {
   username = "andreas";
-  version = "22.05";
+  version = "22.11";
   inputs = inputs;
 }

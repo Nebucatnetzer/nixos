@@ -28,7 +28,6 @@
       python310Packages.jedi
       python310Packages.pip
       python310Packages.yapf
-      epkgs.ace-window
       epkgs.amx
       epkgs.auctex
       epkgs.avy

@@ -28,20 +28,9 @@
   ("v" split-window-horizontally "vertical split")
   ("o" delete-other-windows "Delete all other")
   ("X" delete-window "Delete this")
-  ("x" (lambda ()
-         (interactive)
-         (ace-window 16)
-         (add-hook 'ace-window-end-once-hook
-                   'hydra-window/body)) "Unknown")
-  ("z" (lambda ()
-         (interactive)
-         (ace-window 4)
-         (add-hook 'ace-window-end-once-hook
-                   'hydra-window/body)) "Swap")
   ("=" balance-windows "Balance")
   ("K" kill-this-buffer "Kill Buffer")
   ("D" kill-all-dired-buffers "Kill all dired")
-  ("a" ace-window "Ace")
   ("S" toggle-window-split "Toggle Split"))
 
 (defhydra hydra-ediff (:color blue :columns 3)

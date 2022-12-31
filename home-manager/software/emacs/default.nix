@@ -83,6 +83,7 @@
       epkgs.pkg-info
       epkgs.posframe
       epkgs.powershell
+      epkgs.projectile
       epkgs.python-mode
       epkgs.queue
       epkgs.rainbow-delimiters

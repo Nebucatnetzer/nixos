@@ -45,6 +45,7 @@
         management = mksdImage "management";
         nextcloud = mksdImage "nextcloud";
         pihole = mksdImage "pihole";
+        test-raspi = mksdImage "test-raspi";
         restic-server = mksdImage "restic-server";
         ttrss = mksdImage "ttrss";
       };
@@ -101,6 +102,10 @@
         };
         restic-server = mkRaspi {
           hostname = "restic-server";
+          inherit custom;
+        };
+        test-raspi = mkRaspi {
+          hostname = "test-raspi";
           inherit custom;
         };
         ttrss = mkRaspi {

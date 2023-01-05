@@ -66,6 +66,7 @@
     alacritty
     appimage-run
     brightnessctl
+    firefox
     lm_sensors
     lxappearance
     gnome.file-roller

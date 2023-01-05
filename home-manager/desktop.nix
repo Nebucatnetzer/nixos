@@ -28,7 +28,6 @@
   home.packages = with pkgs; [
     arc-theme
     digikam
-    firefox
     freetube
     gimp
     inkscape

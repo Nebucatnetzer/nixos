@@ -30,7 +30,7 @@
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
-        --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
+        --exclude-file=${custom.inputs.self}/modules/restic-client/excludes.txt \
         --tag ${tag} ${path}
 
       ${pkgs.mariadb}/bin/mariabackup --backup --stream=xbstream | \

@@ -5,7 +5,7 @@
       ip = "10.7.89.112";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-client-server" {
       path = "/var/lib/plex";
       tag = "plex";
       time = "02:30";

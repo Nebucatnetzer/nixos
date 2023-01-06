@@ -5,7 +5,7 @@
       ip = "10.7.89.99";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";
       time = "00:00";
       inherit custom;

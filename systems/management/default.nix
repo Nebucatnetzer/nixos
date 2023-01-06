@@ -9,7 +9,7 @@
     "${custom.inputs.self}/modules/data-share"
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
-    (import "${custom.inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";
       tag = "management";
       time = "23:30";

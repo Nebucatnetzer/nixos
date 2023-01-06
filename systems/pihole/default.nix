@@ -5,7 +5,7 @@
       ip = "10.7.89.2";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-server-client" {
+    (import "${custom.inputs.self}/modules/restic-client-server" {
       path = "/var/lib/pihole";
       tag = "pihole";
       time = "02:00"; inherit custom;

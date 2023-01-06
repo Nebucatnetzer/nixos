@@ -33,7 +33,7 @@
         --exclude-file=${custom.inputs.self}/modules/restic-client/excludes.txt \
         --tag ${tag} ${path}
 
-      ${pkgs.mariadb}/bin/mariabackup --backup --stream=xbstream | \
+      ${pkgs.mariadb}/bin/mariabackup --backup --user=root --stream=xbstream | \
       ${pkgs.restic}/bin/restic backup \
         --tag mariadb \
         --stdin \

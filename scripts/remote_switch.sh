@@ -9,6 +9,7 @@ skip=(
     "loki-test"
     "pihole"
     "staubfinger"
+    "test-raspi"
 )
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"

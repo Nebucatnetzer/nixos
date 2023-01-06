@@ -33,11 +33,11 @@
         --exclude-file=${custom.inputs.self}/modules/restic/excludes.txt \
         --tag ${tag} ${path}
 
-      ${pkgs.mariadb}/bin/mysqldump --add-drop-database --opt --single-transaction --all-databases | \
+      ${pkgs.mariadb}/bin/mariabackup --backup --stream=xbstream | \
       ${pkgs.restic}/bin/restic backup \
         --tag mariadb \
         --stdin \
-        --stdin-filename all_databases.sql
+        --stdin-filename mariadb.xb
 
       ${pkgs.restic}/bin/restic forget \
         --tag home-dir \

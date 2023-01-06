@@ -8,7 +8,7 @@ in
       ip = "10.7.89.103";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-server-mysqlutf8-client" {
+    (import "${custom.inputs.self}/modules/restic-client-server-mysql" {
       path = "/home/andreas";
       time = "01:30"; inherit custom;
     })

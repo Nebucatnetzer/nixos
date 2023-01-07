@@ -99,4 +99,4 @@
 (use-package evil-collection
   :after evil
   :config
-  (evil-collection-init '(calendar calc dired ediff magit)))
+  (evil-collection-init '(calendar calc dired ediff info magit)))

@@ -34,7 +34,7 @@
       ip = [ "${hostname}.2li.local" ];
     };
     defaultGateway = "10.7.89.1";
-    nameservers = [ "10.7.89.2" ];
+    nameservers = [ "10.7.89.1" ];
     interfaces.eth0.ipv4.addresses = [
       {
         address = ip;

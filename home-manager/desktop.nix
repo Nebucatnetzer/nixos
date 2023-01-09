@@ -29,9 +29,7 @@
     arc-theme
     digikam
     freetube
-    gimp
     google-chrome
-    inkscape
     libreoffice-fresh
     makemkv
     meld

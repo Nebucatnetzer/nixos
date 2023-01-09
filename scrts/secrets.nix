@@ -10,7 +10,6 @@ let
   management = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENM7fUohjQY2BfkjCwMJ/hZzneBynREusTXBLX5LVnD";
   nextcloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHASRPSKyADQUBe6lQEo8EHixPwktbHQjAPX24GIoWwg";
   nixos-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcmWE9b7GQKOOq61gYLdFA5uZ+hhpBYePmmdRDGwIVu";
-  pihole = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN25V7+3R6AhcJwcmx/dxK/O3x1kNpuVj5Gxttar9pNX";
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIACtJWes3zBh0Hs0BEC2ZC+9+ddLALlzuAxyNjLgf5Fh";
   staubfinger = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDcmDv8tnbuykX/0cUK+FnPD5YSjf/8wmsjWxqtXKuTYy1dtLS+Dx9X/LGS9GS1gd/LzYX+r9Kw1a4HfAz0+iinUaL/glbfGFm593BlS9jJaBz8nWV+pz3sJRj1GQ5oiKxN9bg+oNu8hZVpIqhMTpH7HkqgU5IWJfaVB5oNXaCCK7emh3fuJeqvQkKABumqji7eNr5la9qhc/XvI7O9aIc1sB05SVF+2TqYcZVpjMc27A3eSbS7+YXiOuP4I+51l9p7dH4Q1M9LB4+90XRP7DGA6kMwQ+cFTWMrFWwMy3NvaA9PnR2g3viNhbU7wLC+r6wCdS/Xu81HWwuXI/9lBScfZbxXIzfprjCUr4uifWevlTusYtgV0t1JJuWjefm8l/Sb+oJKEcGH/gxioM/pJCQiAcwoMVZRqZsNzYerNJ85VIKViuQhkek5A9EJsYhT1sOrQHYPGE+CReycwyswheXSnJ/VtkbyxRzu+q1573yfZgV5PVi8EUBI4i+gyvmz47E=";
@@ -24,7 +23,6 @@ let
     management
     nextcloud
     nixos-vm
-    pihole
     plex
     proxy
     restic-server
@@ -37,7 +35,6 @@ in
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "infomaniak_env.age".publicKeys = all;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
-  "pihole_env.age".publicKeys = defaultKeys ++ [ pihole ];
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;

@@ -7,7 +7,6 @@ skip=(
     "desktop-vm"
     "gwyn"
     "loki-test"
-    "pihole"
     "staubfinger"
     "test-raspi"
 )
@@ -38,10 +37,3 @@ do
     echo
     echo
 done
-
-pihole="pihole.2li.local"
-echo $pihole
-nixos-rebuild switch -j auto --use-remote-sudo --build-host localhost --target-host $pihole --flake ".#pihole" &&
-if [ $reboot -eq 1 ]; then
-    ssh -i $rsa_key $pihole 'sudo reboot'
-fi

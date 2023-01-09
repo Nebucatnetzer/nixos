@@ -2,6 +2,7 @@
   :hook
   ((prog-mode . format-all-ensure-formatter)
    (yaml-mode . format-all-ensure-formatter)
+   (markdown-mode . format-all-ensure-formatter)
    (prog-mode . format-all-mode))
   :preface
   (defun az-format-code ()

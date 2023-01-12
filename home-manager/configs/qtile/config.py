@@ -89,10 +89,9 @@ group_matches = [
     [
         Match(wm_class="KeeWeb"),
         Match(wm_class="JDownloader"),
-    ],  # 6
-    [
         Match(wm_class="Plexamp"),
-    ],  # 7
+    ],  # 6
+    None,  # 7
     [
         Match(wm_class="linphone"),
     ],  # 8

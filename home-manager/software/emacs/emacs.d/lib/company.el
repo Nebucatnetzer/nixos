@@ -1,4 +1,6 @@
 (use-package company
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
   :bind
   ("C-<tab>" . company-complete)
   :config
@@ -6,7 +8,6 @@
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
   (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
   (setq company-dabbrev-downcase nil)
-  (add-hook 'after-init-hook 'global-company-mode)
 
   ;; Add yasnippet support for all company backends
   (defvar company-mode/enable-yas t

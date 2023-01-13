@@ -7,7 +7,7 @@
   home.file.".config/qtile/autostart.d/signal.sh".source = ./signal.sh;
   xdg.desktopEntries = {
     signal = {
-      name = "Signal";
+      name = "Signal with tray icon";
       exec = "${pkgs.unstable.signal-desktop}/bin/signal-desktop --use-tray-icon --no-sandbox %U";
       terminal = false;
       type = "Application";

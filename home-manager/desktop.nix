@@ -33,6 +33,7 @@
     libreoffice-fresh
     makemkv
     meld
+    pulseaudio # required for volume controls in qtile
     plexamp
     remmina
     shotwell

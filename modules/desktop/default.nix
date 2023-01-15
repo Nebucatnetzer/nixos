@@ -60,29 +60,43 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-
-  environment.systemPackages = with pkgs; [
-    # what I consider to be system packages
-    alacritty
-    appimage-run
-    brightnessctl
-    firefox
-    lm_sensors
-    lxappearance
-    gnome.file-roller
-    gnome.gnome-screenshot
-    gnome.nautilus
-    networkmanager-openvpn
-    nitrogen
-    p7zip
-    pavucontrol
-    quickemu
-    rofi
-    source-code-pro
-    unrar
-  ];
-  environment.shellAliases = {
-    management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";
+  xdg.mime.defaultApplications = {
+    "text/html" = "org.firefox.firefox.desktop";
+    "x-scheme-handler/http" = "org.firefox.firefox.desktop";
+    "x-scheme-handler/https" = "org.firefox.firefox.desktop";
+    "x-scheme-handler/about" = "org.firefox.firefox.desktop";
+    "x-scheme-handler/unknown" = "org.firefox.firefox.desktop";
+  };
+  environment = {
+    systemPackages = with pkgs; [
+      # what I consider to be system packages
+      alacritty
+      appimage-run
+      brightnessctl
+      firefox
+      lm_sensors
+      lxappearance
+      gnome.file-roller
+      gnome.gnome-screenshot
+      gnome.nautilus
+      networkmanager-openvpn
+      nitrogen
+      p7zip
+      pavucontrol
+      quickemu
+      rofi
+      source-code-pro
+      unrar
+    ];
+    shellAliases = {
+      management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";
+    };
+    variables = {
+      WINIT_X11_SCALE_FACTOR = "1";
+    };
+    sessionVariables = {
+      DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+    };
   };
 }
 

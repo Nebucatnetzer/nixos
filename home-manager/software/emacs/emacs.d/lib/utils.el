@@ -51,3 +51,8 @@
                (file-exists-p new-location)
                (not (string-equal old-location new-location)))
       (delete-file old-location))))
+
+(defun az-center-buffer ()
+  (interactive)
+  (let ((margin-size (/ (- (frame-width) 80) 2)))
+    (set-window-margins nil margin-size margin-size)))

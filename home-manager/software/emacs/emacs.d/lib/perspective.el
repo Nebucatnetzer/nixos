@@ -11,5 +11,4 @@
   (define-key evil-normal-state-map "gr" 'persp-rename)
   (define-key evil-normal-state-map "gc" 'persp-kill)
   (setq persp-state-default-file "~/.emacs.d/persp-session")
-  (add-hook 'kill-emacs-hook #'persp-state-save)
   (persp-mode))

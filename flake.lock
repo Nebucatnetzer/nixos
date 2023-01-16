@@ -73,6 +73,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-rpdfix": {
+      "locked": {
+        "lastModified": 1671661856,
+        "narHash": "sha256-8y4fBAENBtYdH2vtvwo6eUn8UbygMiXWSKVn7XrkOy4=",
+        "owner": "callahad",
+        "repo": "nixpkgs",
+        "rev": "9f60e3c05331f5f2a01451c763aed63b8dc7439a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "callahad",
+        "repo": "nixpkgs",
+        "rev": "9f60e3c05331f5f2a01451c763aed63b8dc7439a",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1672262501,
@@ -95,6 +111,7 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-rpdfix": "nixpkgs-rpdfix",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },

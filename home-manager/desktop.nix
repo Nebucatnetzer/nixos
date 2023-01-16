@@ -16,7 +16,7 @@
     "${custom.inputs.self}/home-manager/software/mpv"
     "${custom.inputs.self}/home-manager/software/nitrogen"
     "${custom.inputs.self}/home-manager/software/obsidian"
-    "${custom.inputs.self}/home-manager/software/rapid-photo-downloader"
+    (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit custom; })
     "${custom.inputs.self}/home-manager/software/signal"
     "${custom.inputs.self}/home-manager/software/ssh"
     "${custom.inputs.self}/home-manager/software/starship"

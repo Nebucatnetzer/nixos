@@ -18,9 +18,7 @@
 
 (use-package counsel-tramp
   :config
-  (add-hook 'counsel-tramp-pre-command-hook '(lambda () (global-aggressive-indent-mode 0)
-                                               (projectile-mode 0)
-                                               (editorconfig-mode 0)))
-  (add-hook 'counsel-tramp-quit-hook '(lambda () (global-aggressive-indent-mode 1)
-                                        (projectile-mode 1)
-                                        (editorconfig-mode 1))))
+  (add-hook 'counsel-tramp-pre-command-hook '(lambda ()
+                                               (projectile-mode 0)))
+  (add-hook 'counsel-tramp-quit-hook '(lambda ()
+                                        (projectile-mode 1))))

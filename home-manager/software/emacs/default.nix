@@ -42,6 +42,7 @@
       epkgs.company-restclient
       epkgs.company-web
       epkgs.counsel
+      epkgs.counsel-tramp
       epkgs.deft
       epkgs.dired-hide-dotfiles
       epkgs.direnv

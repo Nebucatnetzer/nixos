@@ -16,6 +16,7 @@
   (define-key ivy-minibuffer-map (kbd "S-SPC") (lambda () (interactive) (insert " ")))
   (global-set-key (kbd "C-c C-r") 'ivy-resume))
 
+;; stil to be tested, I currently don't have a real use case
 (use-package counsel-tramp
   :config
   (add-hook 'counsel-tramp-pre-command-hook '(lambda ()

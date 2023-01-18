@@ -5,6 +5,7 @@
     nodePackages.prettier # formatting files
     pandoc
     python310Packages.python-lsp-server
+    fd
     ripgrep
     silver-searcher
   ];

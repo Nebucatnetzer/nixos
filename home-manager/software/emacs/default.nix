@@ -5,6 +5,7 @@
     nodePackages.prettier # formatting files
     pandoc
     python310Packages.python-lsp-server
+    fd
     ripgrep
     silver-searcher
   ];
@@ -28,6 +29,7 @@
       python310Packages.jedi
       python310Packages.pip
       python310Packages.yapf
+      epkgs.ag
       epkgs.amx
       epkgs.auctex
       epkgs.avy
@@ -84,10 +86,12 @@
       epkgs.posframe
       epkgs.powershell
       epkgs.projectile
+      epkgs.projectile-ripgrep
       epkgs.python-mode
       epkgs.queue
       epkgs.rainbow-delimiters
       epkgs.restclient
+      epkgs.ripgrep
       epkgs.smooth-scrolling
       epkgs.solarized-theme
       epkgs.string-inflection

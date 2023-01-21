@@ -40,5 +40,6 @@ in
   "restic.key.age".publicKeys = all;
   "telegram_notify_env.age".publicKeys = all;
   "ttrss_env.age".publicKeys = defaultKeys ++ [ ttrss ];
+  "webdav_andreas.age".publicKeys = defaultKeys;
 }
 

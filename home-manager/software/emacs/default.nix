@@ -22,6 +22,7 @@
     extraPackages = epkgs: with pkgs;[
       epkgs.ag
       epkgs.amx
+      epkgs.annotate
       epkgs.auctex
       epkgs.avy
       epkgs.biblio

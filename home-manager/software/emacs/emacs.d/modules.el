@@ -26,6 +26,7 @@
 (load-file (modules-path "spellcheck.el"))
 
 ;; programming
+(load-file (modules-path "annotate.el"))
 (load-file (modules-path "company.el"))
 (load-file (modules-path "direnv.el"))
 (load-file (modules-path "format_all.el"))

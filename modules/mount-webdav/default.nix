@@ -21,6 +21,8 @@
       "noauto"
       "x-systemd.idle-timeout=300"
       "noatime"
+      "uid=${custom.username}"
+      "gid=users"
     ];
   };
 }

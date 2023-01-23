@@ -3,6 +3,7 @@
   ((prog-mode . format-all-ensure-formatter)
    (yaml-mode . format-all-ensure-formatter)
    (markdown-mode . format-all-ensure-formatter)
+   (markdown-mode . format-all-mode)
    (prog-mode . format-all-mode))
   :preface
   (defun az-format-code ()

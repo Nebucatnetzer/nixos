@@ -9,9 +9,9 @@
   services.davfs2 = {
     enable = true;
     davUser = custom.username;
-    # extraConfig = ''
-    #   use_locks 0
-    # '';
+    extraConfig = ''
+      use_locks 0
+    '';
   };
   fileSystems."/mnt/10_documents" = {
     device = "https://nextcloud.2li.ch/remote.php/dav/files/${custom.username}/10_documents/";

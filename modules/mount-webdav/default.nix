@@ -15,7 +15,6 @@
     device = "https://nextcloud.2li.ch/remote.php/dav/files/${custom.username}/10_documents/";
     fsType = "davfs";
     options = [
-      "user"
       "rw"
       "x-systemd.automount"
       "noauto"

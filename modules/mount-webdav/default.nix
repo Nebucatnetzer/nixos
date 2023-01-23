@@ -13,8 +13,8 @@
     #   use_locks 0
     # '';
   };
-  fileSystems."/home/${custom.username}/10_documents" = {
-    device = "https://nextcloud.2li.ch/remote.php/dav/files/${custom.username}";
+  fileSystems."/mnt/10_documents" = {
+    device = "https://nextcloud.2li.ch/remote.php/dav/files/${custom.username}/10_documents/";
     fsType = "davfs";
     options = [
       "user"

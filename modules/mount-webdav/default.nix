@@ -1,10 +1,8 @@
 { custom }: { ... }: {
   age.secrets.webdavSecrets = {
     file = "${custom.inputs.self}/scrts/webdav_andreas.age";
-    path = "/home/${custom.username}/.davfs2/secrets";
+    path = "/etc/davfs2/secrets";
     mode = "600";
-    owner = custom.username;
-    group = "users";
   };
   services.davfs2 = {
     enable = true;

@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    fd
     multimarkdown
     nodePackages.prettier # formatting files
     pandoc
     python310Packages.python-lsp-server
-    fd
     ripgrep
     silver-searcher
   ];
@@ -20,17 +20,9 @@
             languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
     '';
     extraPackages = epkgs: with pkgs;[
-      languagetool
-      mu # needed for mailing
-      rufo # formatter for Ruby
-      python310Packages.autopep8
-      python310Packages.black
-      python310Packages.flake8
-      python310Packages.jedi
-      python310Packages.pip
-      python310Packages.yapf
       epkgs.ag
       epkgs.amx
+      epkgs.annotate
       epkgs.auctex
       epkgs.avy
       epkgs.biblio
@@ -108,6 +100,15 @@
       epkgs.yaml-mode
       epkgs.yasnippet-snippets
       epkgs.zetteldeft
+      languagetool
+      mu # needed for mailing
+      python310Packages.autopep8
+      python310Packages.black
+      python310Packages.flake8
+      python310Packages.jedi
+      python310Packages.pip
+      python310Packages.yapf
+      rufo # formatter for Ruby
     ];
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

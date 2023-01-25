@@ -2,8 +2,8 @@
 let
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v11.2.0/setup.sh";
-      sha256 = "sha256-V4NFapoU3thbPzhSX5DGR3cZAW1kCYZpAKsFeSjMGPY=";
+      url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v11.3.1/setup.sh";
+      sha256 = "sha256-G2el0HNuecB4Y136hIdwcINdkBq29nnTTk/iC9QQuHI=";
     })
       }").overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";
@@ -19,7 +19,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."mailserver" = {
-      image = "docker.io/mailserver/docker-mailserver:11.2.0";
+      image = "docker.io/mailserver/docker-mailserver:11.3.1";
       autoStart = true;
       environmentFiles = [
         ./mailserver.env

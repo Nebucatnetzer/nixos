@@ -16,6 +16,10 @@
       Host 10.7.89.*
         User andreas
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
+
+      Host 10.49.0.100
+        User zweili
+        IdentityFile ~/.ssh/zweili.key
     '';
   };
 }

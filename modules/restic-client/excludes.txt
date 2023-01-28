@@ -4,6 +4,7 @@
 /home/*/.dropbox
 /home/*/.steam
 /home/*/.local/share/Steam/
+/home/*/.local/share/tor-browser/
 /home/*/.mozilla
 /home/*/snap
 /proc

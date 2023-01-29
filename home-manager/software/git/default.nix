@@ -18,6 +18,9 @@
       pull = {
         rebase = false;
       };
+      push = {
+        autoSetupRemote = true;
+      };
     };
     ignores = [
       # ---> VisualStudioCode

@@ -38,7 +38,7 @@ custom.inputs.nixpkgs.lib.nixosSystem {
       (import "${custom.inputs.self}/modules/common" { inherit custom; })
 
       custom.inputs.agenix.nixosModules.age
-      { environment.systemPackages = [ custom.inputs.agenix.defaultPackage.${system} ]; }
+      { environment.systemPackages = [ custom.inputs.agenix.packages.${system}.default ]; }
 
       custom.inputs.home-manager.nixosModules.home-manager
       {

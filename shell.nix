@@ -5,12 +5,12 @@ pkgs.mkShell {
     git
     nixFlakes
     python3
-    python39Packages.autopep8
-    python39Packages.black
-    python39Packages.flake8
-    python39Packages.jedi
-    python39Packages.pip
-    python39Packages.yapf
+    python310Packages.autopep8
+    python310Packages.black
+    python310Packages.flake8
+    python310Packages.jedi
+    python310Packages.pip
+    python310Packages.yapf
   ];
 
   shellHook = ''

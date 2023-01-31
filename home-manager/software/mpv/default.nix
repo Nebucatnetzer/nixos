@@ -1,15 +1,33 @@
-{ ... }:
+{ lib, pkgs, ... }:
+let
+  delete-current-file = (pkgs.stdenvNoCC.mkDerivation rec {
+    name = "mpv-delete-current-file";
+    src = pkgs.fetchurl {
+      url = "https://git.2li.ch/various/mpv-scripts/raw/commit/e8ff33e18197e10e458e0392b337b5da4a420049/delete_current_file.lua";
+      sha256 = "sha256-tsN7zB1eTgGVSKyE010DNajV7/e0tNDvxbVYlMsdoKs=";
+    };
+    dontBuild = true;
+    dontUnpack = true;
+    installPhase = ''
+      install -Dm644 ${src} $out/share/mpv/scripts/delete_current_file.lua
+    '';
+    passthru.scriptName = "delete_current_file.lua";
+  });
+in
 {
   programs.mpv = {
     enable = true;
     bindings = {
       s = "playlist-shuffle";
       r = "cycle_values video-rotate 90 180 270 0";
+      d = "script-message-to delete_current_file delete-file";
     };
     config = {
       "keepaspect-window" = "no";
     };
+    scripts = [ delete-current-file ];
   };
+
   xdg.mimeApps = {
     enable = true;
     associations.added = {
@@ -75,3 +93,4 @@
     };
   };
 }
+

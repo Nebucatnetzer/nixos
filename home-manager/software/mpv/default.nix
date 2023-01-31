@@ -20,7 +20,6 @@ in
     bindings = {
       s = "playlist-shuffle";
       r = "cycle_values video-rotate 90 180 270 0";
-      # d = "script-message-to delete_current_file delete-file";
     };
     config = {
       "keepaspect-window" = "no";

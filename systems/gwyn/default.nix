@@ -10,6 +10,7 @@
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     "${custom.inputs.self}/modules/lockscreen"
     "${custom.inputs.self}/modules/logs-share"
+    "${custom.inputs.self}/modules/rdp"
     "${custom.inputs.self}/modules/tlp"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
   ];

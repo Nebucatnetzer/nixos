@@ -111,7 +111,7 @@
         };
       };
       homeConfigurations = {
-        "${custom.username}@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+        "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           pkgs = import custom.inputs.nixpkgs {
             system = "x86_64-linux";
             config = {

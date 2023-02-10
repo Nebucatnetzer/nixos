@@ -1,7 +1,9 @@
 { custom, pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    (import "${custom.inputs.self}/home-manager/common" {
+      custom = { username = "zweili"; version = "22.11"; };
+    })
     "${custom.inputs.self}/home-manager/software/ansible"
     "${custom.inputs.self}/home-manager/software/emacs"
     "${custom.inputs.self}/home-manager/software/fzf"
@@ -45,7 +47,7 @@
     enable = true;
     bashrcExtra = ''
       . ~/.nixos/home-manager/configs/bash/work_wsl_bashrc
-      . /home/${custom.username}/.nix-profile/etc/profile.d/nix.sh
+      . /home/zweili/.nix-profile/etc/profile.d/nix.sh
     '';
   };
 }

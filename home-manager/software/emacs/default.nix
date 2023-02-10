@@ -66,10 +66,6 @@
       epkgs.move-text
       epkgs.multi-vterm
       epkgs.nix-mode
-      epkgs.org
-      epkgs.org-ref
-      epkgs.org-superstar
-      epkgs.ox-pandoc
       epkgs.parsebib
       epkgs.pdf-tools
       epkgs.perspective

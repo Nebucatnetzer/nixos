@@ -20,8 +20,6 @@
 (load-file (modules-path "langtool.el"))
 (load-file (modules-path "markdown.el"))
 (load-file (modules-path "move_text.el"))
-(load-file (modules-path "org_mode.el"))
-(load-file (modules-path "org_insert.el"))
 (load-file (modules-path "pdf_tools.el"))
 (load-file (modules-path "spellcheck.el"))
 

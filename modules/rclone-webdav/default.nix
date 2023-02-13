@@ -37,7 +37,7 @@
     };
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
-      ${pkgs.rclone}/bin/rclone bisync -P --stats-one-line --max-delete=10 --exclude=/99_archive/** nextcloud:10_documents /home/${custom.username}/10_documents
+      ${pkgs.rclone}/bin/rclone bisync -P --max-delete=10 --exclude=/99_archive/** nextcloud:10_documents /home/${custom.username}/10_documents
     '';
   };
 }

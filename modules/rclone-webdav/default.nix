@@ -25,6 +25,7 @@
     pathConfig = {
       PathChanged = "/home/${custom.username}/10_documents";
     };
+    wantedBy = [ "multi-user.target" ];
   };
 
   systemd.services."rclone-webdav" = {

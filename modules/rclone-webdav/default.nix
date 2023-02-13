@@ -23,7 +23,7 @@
   systemd.paths."rclone-webdav" = {
     enable = true;
     pathConfig = {
-      PathModified = "/home/${custom.username}/10_documents";
+      PathChanged = "/home/${custom.username}/10_documents";
       TriggerLimitIntervalSec = "10s";
       TriggerLimitBurst = 1;
     };

@@ -85,7 +85,6 @@
         };
         plex = mkRaspi {
           hostname = "plex";
-          home-module = "plex";
           inherit custom;
         };
         proxy = mkRaspi {

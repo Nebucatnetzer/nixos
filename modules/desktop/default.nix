@@ -32,7 +32,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager.gdm.enable = true;
     displayManager.defaultSession = "none+qtile";
     windowManager.qtile.enable = true;
     layout = "us";
@@ -57,10 +57,6 @@
   # Enable Flatpack
   services.flatpak.enable = true;
   xdg = {
-    portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    };
     mime = {
       addedAssociations = {
         "x-scheme-handler/http" = "firefox.desktop";

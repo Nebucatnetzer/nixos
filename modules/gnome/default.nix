@@ -1,8 +1,11 @@
 { pkgs, ... }: {
   services.xserver.desktopManager.gnome.enable = true;
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment = {
     systemPackages = with pkgs; [
       gnome.gnome-tweaks
+      gnomeExtensions.appindicator
+      gnomeExtensions.gtk-title-bar
     ];
     gnome.excludePackages = (with pkgs; [
       gnome-console

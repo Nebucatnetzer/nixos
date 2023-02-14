@@ -8,7 +8,6 @@
     "${custom.inputs.self}/hardware/nvidia"
     "${custom.inputs.self}/hardware/dvd"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
-    "${custom.inputs.self}/modules/gnome"
     "${custom.inputs.self}/modules/lockscreen"
     "${custom.inputs.self}/modules/logs-share"
     "${custom.inputs.self}/modules/rdp"

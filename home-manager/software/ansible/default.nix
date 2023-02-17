@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ansible
-    ansible-lint
-    nodePackages.prettier
-    sshpass
+    sshpass # it's the only system package that I need to run Ansible
   ];
 }

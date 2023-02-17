@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  services.touchegg.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   environment = {
@@ -6,6 +7,7 @@
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
       gnomeExtensions.gtk-title-bar
+      gnomeExtensions.x11-gestures
     ];
     gnome.excludePackages = (with pkgs; [
       gnome-console

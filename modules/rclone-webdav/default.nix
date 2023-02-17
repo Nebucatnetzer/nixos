@@ -2,7 +2,7 @@
 let
   pathToMonitor = "/home/${custom.username}/10_documents/";
   syncNotes = pkgs.writeShellScriptBin "monitor-notes" ''
-    ${pkgs.rclone}/bin/rclone bisync -P --max-delete=10 --exclude=/99_archive/** nextcloud:10_documents ${pathToMonitor}
+    ${pkgs.rclone}/bin/rclone bisync -P --remove-empty-dirs --max-delete=10 --exclude=/99_archive/** nextcloud:10_documents ${pathToMonitor}
   '';
 in
 {

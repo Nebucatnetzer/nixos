@@ -6,6 +6,7 @@
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"
     "${custom.inputs.self}/home-manager/software/emacs"
+    "${custom.inputs.self}/home-manager/software/espanso"
     "${custom.inputs.self}/home-manager/software/evince"
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"

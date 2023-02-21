@@ -46,3 +46,6 @@
 
 ;; For better performance use "ssh" instead of "scp"
 (setq tramp-default-method "ssh")
+
+;; Prompt when quitting Emacs
+(setq confirm-kill-emacs 'yes-or-no-p)

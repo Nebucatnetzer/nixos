@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ custom }: { pkgs, ... }:
+{
   services.switcherooControl.enable = true;
   services.touchegg.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
@@ -33,5 +34,8 @@
       totem # video player
       yelp
     ]);
+  };
+  home-manager.users.${custom.username} = {
+    home.file.".config/touchegg/touchegg.conf".source = ./touchegg.conf;
   };
 }

@@ -1,7 +1,6 @@
 { custom }: { pkgs, ... }:
 {
   services.switcherooControl.enable = true;
-  services.touchegg.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   services.xserver.desktopManager.gnome.enable = true;
   environment = {
@@ -35,6 +34,7 @@
       yelp
     ]);
   };
+  services.touchegg.enable = true;
   home-manager.users.${custom.username} = {
     home.file.".config/touchegg/touchegg.conf".source = ./touchegg.conf;
   };

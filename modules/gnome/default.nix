@@ -9,7 +9,6 @@
       gnomeExtensions.appindicator
       gnomeExtensions.gtk-title-bar
       gnomeExtensions.switcheroo
-      gnomeExtensions.x11-gestures
     ];
     gnome.excludePackages = (with pkgs; [
       gnome-console

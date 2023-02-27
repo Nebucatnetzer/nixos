@@ -3,7 +3,7 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."heimdall" = {
-      image = "linuxserver/heimdall";
+      image = "linuxserver/heimdall:2.5.5";
       autoStart = true;
       environment = {
         TZ = "Europe/Zurich";

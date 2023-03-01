@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ custom }: { pkgs, ... }:
+{
   services.switcherooControl.enable = true;
-  services.touchegg.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   services.xserver.desktopManager.gnome.enable = true;
   environment = {
@@ -9,7 +9,6 @@
       gnomeExtensions.appindicator
       gnomeExtensions.gtk-title-bar
       gnomeExtensions.switcheroo
-      gnomeExtensions.x11-gestures
     ];
     gnome.excludePackages = (with pkgs; [
       gnome-console
@@ -33,5 +32,9 @@
       totem # video player
       yelp
     ]);
+  };
+  services.touchegg.enable = true;
+  home-manager.users.${custom.username} = {
+    home.file.".config/touchegg/touchegg.conf".source = ./touchegg.conf;
   };
 }

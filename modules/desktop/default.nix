@@ -5,7 +5,7 @@
     (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
     (import "${custom.inputs.self}/modules/email" { inherit custom; })
     (import "${custom.inputs.self}/modules/eog" { inherit custom; })
-    "${custom.inputs.self}/modules/gnome"
+    (import "${custom.inputs.self}/modules/gnome" { inherit custom; })
     "${custom.inputs.self}/modules/hunspell"
     (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
     (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })

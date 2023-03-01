@@ -24,7 +24,6 @@
     "${custom.inputs.self}/home-manager/software/yt-dlp"
   ];
   home.packages = with pkgs; [
-    arc-theme
     digikam
     freetube
     chromium

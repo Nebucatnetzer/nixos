@@ -8,6 +8,7 @@
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher
+    python310
   ];
 
   programs.emacs = {

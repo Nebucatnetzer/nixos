@@ -9,7 +9,6 @@
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
     (import "${custom.inputs.self}/modules/espanso" { inherit custom; })
-    "${custom.inputs.self}/modules/lockscreen"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
     "${custom.inputs.self}/modules/tlp"
     "${custom.inputs.self}/modules/tmux"

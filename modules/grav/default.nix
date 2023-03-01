@@ -3,7 +3,7 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."grav" = {
-      image = "lscr.io/linuxserver/grav:latest";
+      image = "lscr.io/linuxserver/grav:1.7.39";
       autoStart = true;
       environment = {
         TZ = "Europe/Zurich";

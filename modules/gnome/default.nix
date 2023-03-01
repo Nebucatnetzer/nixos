@@ -11,6 +11,7 @@
       gnomeExtensions.switcheroo
     ];
     gnome.excludePackages = (with pkgs; [
+      gnome-console
       gnome-text-editor
       gnome-tour
     ]) ++ (with pkgs.gnome; [

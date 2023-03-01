@@ -2,6 +2,7 @@
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/software/alacritty"
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"
     "${custom.inputs.self}/home-manager/software/emacs"

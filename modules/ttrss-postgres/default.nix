@@ -50,7 +50,10 @@ in
         "/var/lib/ttrss/html:/var/www/html"
         "/etc/localtime:/etc/localtime:ro"
       ];
-      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+      extraOptions = [
+        "--add-host=host.docker.internal:host-gateway"
+        "--log-opt=tag='ttrss'"
+      ];
     };
     containers."backup" = {
       image = ttrssImage;
@@ -63,7 +66,10 @@ in
         "/etc/localtime:/etc/localtime:ro"
       ];
       cmd = [ "/opt/tt-rss/dcron.sh" "-f" ];
-      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+      extraOptions = [
+        "--add-host=host.docker.internal:host-gateway"
+        "--log-opt=tag='ttrss-backup'"
+      ];
     };
     containers."updater" = {
       image = ttrssImage;
@@ -76,7 +82,10 @@ in
       ];
       cmd = [ "/opt/tt-rss/updater.sh" ];
       dependsOn = [ "ttrss" ];
-      extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+      extraOptions = [
+        "--add-host=host.docker.internal:host-gateway"
+        "--log-opt=tag='ttrss-updater'"
+      ];
     };
   };
 

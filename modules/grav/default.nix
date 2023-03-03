@@ -19,6 +19,7 @@
       ];
       extraOptions = [
         ''--mount=type=volume,source=grav,target=/config,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/grav,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
+        "--log-opt=tag='grav'"
       ];
     };
   };

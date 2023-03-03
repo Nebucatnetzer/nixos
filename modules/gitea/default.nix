@@ -30,6 +30,7 @@
       extraOptions = [
         ''--mount=type=volume,source=gitea_data,target=/data,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/gitea/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
         "--add-host=host.docker.internal:host-gateway"
+        "--log-opt=tag='gitea'"
       ];
     };
   };

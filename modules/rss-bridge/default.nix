@@ -16,6 +16,9 @@ in
         "${whitelist}:/app/whitelist.txt"
         "/etc/localtime:/etc/localtime:ro"
       ];
+      extraOptions = [
+        "--log-opt=tag='rss-brige'"
+      ];
     };
   };
 }

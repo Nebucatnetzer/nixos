@@ -46,6 +46,7 @@ in
         ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
         "--add-host=host.docker.internal:host-gateway"
         "--net=${networkName}"
+        "--log-opt=tag='nextcloud'"
       ];
     };
     containers."cron" = {
@@ -62,6 +63,7 @@ in
         ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
         "--add-host=host.docker.internal:host-gateway"
         "--net=nextcloud"
+        "--log-opt=tag='nextcloud-cron'"
       ];
     };
     containers."redis" = {
@@ -72,6 +74,7 @@ in
       ];
       extraOptions = [
         "--net=${networkName}"
+        "--log-opt=tag='redis'"
       ];
     };
   };

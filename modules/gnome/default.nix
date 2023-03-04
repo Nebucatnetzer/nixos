@@ -36,5 +36,53 @@
   services.touchegg.enable = true;
   home-manager.users.${custom.username} = {
     home.file.".config/touchegg/touchegg.conf".source = ./touchegg.conf;
-  };
-}
+    dconf.settings = {
+      "/org/gnome/desktop" = {
+        input-sources = {
+          xkb-options = [ "compose:ralt" ];
+        };
+        "wm/keybindings" = {
+          show-desktop = [ "<Super> d" ];
+          switch-applications = [ "<Super>Tab" ];
+          witch-windows = [ "<Alt>Tab" ];
+        };
+        interface = {
+          color-scheme = "default";
+        };
+        privacy = {
+          recent-files-max-age = 30;
+          remember-recent-files = true;
+          remove-old-trash-files = true;
+          remove-old-temp-files = true;
+          old-files-age = "uint32 30";
+        };
+        screensaver = {
+          lock-delay = "uint32 0";
+          lock-enabled = true;
+        };
+        "session/idle-delay" = "uint32 300";
+      };
+      "/org/gnome/settings-daemon/plugins/media-keys" = {
+        home = [ "<Super>e" ];
+        www = [ "<Super>w" ];
+        volume-mute = [ "<Super>F1" ];
+        volume-down = [ "<Super>F2" ];
+        volume-up = [ "<Super>F3" ];
+        play = [ "<Super>F6" ];
+        previous = [ "<Super>F5" ];
+        next = [ "<Super>F7" ];
+      };
+      "/org/freedesktop/tracker/miner/files/index-recursive-directories" = [
+        "&DOCUMENTS"
+        "&MUSIC"
+        "&PICTURES"
+        "&VIDEOS"
+        "/home/andreas/nextcloud/10_documents"
+        "&DOWNLOAD"
+      ];
+      "/org/gnome/shell/app-switcher/current-workspace-only" = true;
+    };
+  }
+
+
+

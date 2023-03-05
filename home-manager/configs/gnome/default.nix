@@ -37,16 +37,16 @@
       previous = [ "<Super>F5" ];
       next = [ "<Super>F7" ];
     };
-    #    "org/freedesktop/tracker/miner/files" = {
-    #      index-recursive-directories = [
-    #        "&DOCUMENTS"
-    #        "&DOWNLOAD"
-    #        "&MUSIC"
-    #        "&PICTURES"
-    #        "&VIDEOS"
-    #        "/home/andreas/nextcloud/10_documents"
-    #      ];
-    #    };
+    "org/freedesktop/tracker/miner/files" = {
+      index-recursive-directories = [
+        "&DOCUMENTS"
+        "&MUSIC"
+        "&PICTURES"
+        "&VIDEOS"
+        "&DOWNLOAD"
+        "/home/andreas/nextcloud/10_documents"
+      ];
+    };
     "org/gnome/shell/app-switcher" = {
       current-workspace-only = true;
     };

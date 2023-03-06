@@ -19,7 +19,8 @@
     backend = "docker";
     containers."plex" = {
       autoStart = true;
-      image = "lscr.io/linuxserver/plex:1.31.0";
+      # https://fleet.linuxserver.io/image?name=linuxserver/plex
+      image = "lscr.io/linuxserver/plex:1.31.1";
       environment = {
         TZ = " Europe/Zurich ";
         PUID = "1000";

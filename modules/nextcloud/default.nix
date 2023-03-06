@@ -11,7 +11,8 @@ let
     SMTP_PORT = "465";
   };
   networkName = "nextcloud";
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.3@sha256:d88cb1486fe3ca5a796725dc82042808dc3bc728dd38654be6a451e50b9e249a";
+  # https://github.com/Nebucatnetzer/nextcloud-smb
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.4@sha256:ca77120a6661341daa60199d088fe95d54cb34516ec543b37a077ff63d74f682";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   cronService = "${config.virtualisation.oci-containers.backend}-cron";
 in

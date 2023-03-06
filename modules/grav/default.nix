@@ -3,6 +3,7 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."grav" = {
+      # https://fleet.linuxserver.io/image?name=linuxserver/grav
       image = "lscr.io/linuxserver/grav:1.7.39";
       autoStart = true;
       environment = {

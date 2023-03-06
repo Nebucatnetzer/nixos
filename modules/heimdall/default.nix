@@ -3,6 +3,7 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."heimdall" = {
+      # https://fleet.linuxserver.io/image?name=linuxserver/heimdall
       image = "linuxserver/heimdall:2.5.5";
       autoStart = true;
       environment = {

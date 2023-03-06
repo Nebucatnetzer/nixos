@@ -19,6 +19,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."mailserver" = {
+      # https://hub.docker.com/r/mailserver/docker-mailserver/tags
       image = "docker.io/mailserver/docker-mailserver:11.3.1";
       autoStart = true;
       environmentFiles = [

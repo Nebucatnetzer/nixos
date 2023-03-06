@@ -5,7 +5,9 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers."gitea" = {
-      image = "gitea/gitea:1.18.3";
+      # https://blog.gitea.io/
+      # https://hub.docker.com/r/gitea/gitea/tags
+      image = "gitea/gitea:1.18.5";
       autoStart = true;
       environment = {
         PUID = "1000";

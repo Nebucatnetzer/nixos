@@ -27,8 +27,8 @@
       lock-delay = "uint32 0";
       lock-enabled = true;
     };
-    "/org/gnome/desktop/notifications" = {
-      "show-in-lock-screen" = false;
+    "org/gnome/desktop/notifications" = {
+      show-in-lock-screen = false;
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       home = [ "<Super>e" ];

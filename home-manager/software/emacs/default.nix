@@ -110,10 +110,10 @@
   };
   home.file.".emacs.d/init.el".source = ./emacs.d/init.el;
   home.file.".emacs.d/snippets".source = ./emacs.d/snippets;
-  #services.emacs = {
-  #  enable = true;
-  #  client.enable = true;
-  #};
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+  };
 
   programs.bash = {
     enable = true;

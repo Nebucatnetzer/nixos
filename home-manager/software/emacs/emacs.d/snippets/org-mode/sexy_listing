@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: Sexy listing for latex export
-# key: _sexy
-# --
-#+begin_export latex
-\begin{sexylisting}{$1}
-$2
-\end{sexylisting}
-#+end_export

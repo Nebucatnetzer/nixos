@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Red LaTeX cell
-# key: redcell
-# --
-\cellcolor[HTML]{f44336}

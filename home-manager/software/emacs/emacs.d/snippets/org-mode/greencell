@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: Green LaTeX cell
-# key: greencell
-# --
-\cellcolor[HTML]{4CAF50}

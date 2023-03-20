@@ -16,7 +16,6 @@
 
 ;; note taking and writing
 (load-file (modules-path "deft.el"))
-(load-file (modules-path "latex.el"))
 (load-file (modules-path "langtool.el"))
 (load-file (modules-path "markdown.el"))
 (load-file (modules-path "move_text.el"))

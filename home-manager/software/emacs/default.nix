@@ -24,16 +24,11 @@
       epkgs.ag
       epkgs.amx
       epkgs.annotate
-      epkgs.auctex
       epkgs.avy
-      epkgs.biblio
-      epkgs.biblio-core
-      epkgs.bibtex-completion
       epkgs.bind-key
       epkgs.cfrs
       epkgs.citeproc
       epkgs.company
-      epkgs.company-auctex
       epkgs.company-restclient
       epkgs.company-web
       epkgs.counsel

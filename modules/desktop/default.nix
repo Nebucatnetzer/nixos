@@ -2,7 +2,6 @@
 {
   imports = [
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
-    (import "${custom.inputs.self}/modules/droidcam" { inherit custom; })
     (import "${custom.inputs.self}/modules/email" { inherit custom; })
     (import "${custom.inputs.self}/modules/eog" { inherit custom; })
     (import "${custom.inputs.self}/modules/gnome" { inherit custom; })

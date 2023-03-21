@@ -1,4 +1,7 @@
-{ custom }: { config, pkgs, ... }:
+{ custom, system }: { config, pkgs, ... }:
+let
+  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
+in
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
@@ -6,7 +9,7 @@
     "${custom.inputs.self}/home-manager/software/alacritty"
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"
-    "${custom.inputs.self}/home-manager/software/emacs"
+    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/espanso"
     "${custom.inputs.self}/home-manager/software/evince"
     "${custom.inputs.self}/home-manager/software/fzf"
@@ -15,7 +18,7 @@
     "${custom.inputs.self}/home-manager/software/mime-apps"
     "${custom.inputs.self}/home-manager/software/mpv"
     "${custom.inputs.self}/home-manager/software/obsidian"
-    (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit custom; })
+    (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/signal"
     "${custom.inputs.self}/home-manager/software/ssh"
     "${custom.inputs.self}/home-manager/software/starship"

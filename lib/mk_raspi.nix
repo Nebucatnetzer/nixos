@@ -45,7 +45,7 @@ custom.inputs.nixpkgs.lib.nixosSystem {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${custom.username}.imports = [
-          (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom; })
+          (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom system; })
         ];
       }
     ]);

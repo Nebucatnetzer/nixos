@@ -1,4 +1,4 @@
-{ custom }: { ... }:
+{ custom, system }: { ... }:
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })

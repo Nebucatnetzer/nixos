@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ unstable }: { pkgs, ... }:
 {
   home.packages = with pkgs; [
     fd
@@ -102,6 +102,7 @@
       python310Packages.pip
       python310Packages.yapf
       rufo # formatter for Ruby
+      unstable.ansible-language-server
       xclip # X11 clipboard from terminal
     ];
   };

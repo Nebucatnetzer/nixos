@@ -1,4 +1,7 @@
 { custom, pkgs, ... }:
+let
+  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
+in
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" {

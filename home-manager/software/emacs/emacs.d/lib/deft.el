@@ -16,7 +16,8 @@
         '((noslash . "-")
           (nospace . "_")
           (case-fn . downcase)))
-  (setq deft-directory "~/nextcloud/10_documents/"))
+  (setq deft-directory "~/nextcloud/10_documents/")
+  (add-hook 'deft-mode-hook (lambda() (display-line-numbers-mode -1))))
 
 (use-package zetteldeft
   :after deft

@@ -5,6 +5,7 @@
     multimarkdown
     nodePackages.prettier # formatting files
     pandoc
+    python310Packages.pip
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher

@@ -10,6 +10,7 @@
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher
+    unstable.ansible-language-server
   ];
 
   programs.emacs = {
@@ -102,7 +103,6 @@
       python310Packages.pip
       python310Packages.yapf
       rufo # formatter for Ruby
-      unstable.ansible-language-server
       xclip # X11 clipboard from terminal
     ];
   };

@@ -12,8 +12,7 @@
     (define-key pdf-view-mode-map (kbd "k") 'pdf-view-previous-page-command)
     (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
     (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
-    (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
-    (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)))
+    (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)))
 
 (when (boundp 'enable-pdf-tools)
   ;; improve the resolution of doc-view

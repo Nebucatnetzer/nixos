@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: New Page
-# key: _newpage
-# --
-#+latex:\newpage

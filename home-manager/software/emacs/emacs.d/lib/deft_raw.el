@@ -1094,20 +1094,21 @@ See `deft-generation-rules'."
 
 (defun deft-parse-title (file contents)
   "Parse the given FILE and CONTENTS and determine the title.
-If `deft-use-filename-as-title' is nil, the title is taken to
-be the first non-empty line of the FILE.  Else the base name of the FILE is
-used as title."
+If `deft-use-filename-as-title' is nil, the title is taken to be
+the first line matching `deft-title-regexp' of the FILE.  Else
+the base name of the FILE is used as title."
   (if deft-use-filename-as-title
       (deft-base-filename file)
-    (let ((begin (string-match "^.+$" contents)))
+    (let ((begin (string-match deft-title-regexp contents)))
       (if begin
           (funcall deft-parse-title-function
                    (substring contents begin (match-end 0)))))))
 
+
 (defun deft-parse-summary (contents title)
   "Parse the file CONTENTS, given the TITLE, and extract a summary.
-The summary is a string extracted from the contents following the
-title."
+  The summary is a string extracted from the contents following the
+  title."
   (let ((summary (let ((case-fold-search nil))
                    (replace-regexp-in-string deft-strip-summary-regexp " " contents))))
     (deft-chomp
@@ -1157,7 +1158,7 @@ title."
 
 (defun deft-file-title-lessp (file1 file2)
   "Return non-nil if FILE1 title is lexicographically less than FILE2's.
-Case is ignored."
+  Case is ignored."
   (let ((t1 (deft-file-title file1))
         (t2 (deft-file-title file2)))
     (string-lessp (and t1 (downcase t1))
@@ -1183,8 +1184,8 @@ Case is ignored."
 
 (defun deft-current-files ()
   "Return list `deft-current-files', possibly truncated.
-Whether the list is truncated depends on the value of
-the variable `deft-file-limit'."
+  Whether the list is truncated depends on the value of
+  the variable `deft-file-limit'."
   (let ((len (length deft-current-files)))
     (if (and (integerp deft-file-limit)
              (> len 0)
@@ -1227,8 +1228,8 @@ the variable `deft-file-limit'."
 
 (defun deft-current-window-width ()
   "Return current width of window displaying `deft-buffer'.
-If the frame has a fringe, it will absorb the newline.
-Otherwise, we reduce the line length by a one-character offset."
+  If the frame has a fringe, it will absorb the newline.
+  Otherwise, we reduce the line length by a one-character offset."
   (let* ((window (get-buffer-window deft-buffer))
          (fringe-right (ceiling (or (cadr (window-fringes)) 0)))
          (offset (if (> fringe-right 0) 0 1)))
@@ -1237,7 +1238,7 @@ Otherwise, we reduce the line length by a one-character offset."
 
 (defun deft-buffer-setup (&optional refresh)
   "Render the file browser in the *Deft* buffer.
-When REFRESH is true, attempt to restore the point afterwards."
+  When REFRESH is true, attempt to restore the point afterwards."
   (let ((orig-line (line-number-at-pos))
         (orig-col (current-column)))
     (when (deft-buffer-visible-p)
@@ -1265,8 +1266,8 @@ When REFRESH is true, attempt to restore the point afterwards."
 
 (defun deft-string-width (str)
   "Return 0 if STR is nil and call `string-width` otherwise.
-This is simply a wrapper function for `string-width' which
-handles nil values gracefully."
+  This is simply a wrapper function for `string-width' which
+  handles nil values gracefully."
   (if str (string-width str) 0))
 
 (define-button-type 'deft-button
@@ -1309,7 +1310,7 @@ handles nil values gracefully."
 
 (defun deft-open-button (button)
   "Open the file tagged by BUTTON.
-This is used as the action for buttons of type ``deft-button''."
+  This is used as the action for buttons of type ``deft-button''."
   (deft-open-file (button-get button 'tag)))
 
 (defun deft-buffer-visible-p ()
@@ -1318,9 +1319,9 @@ This is used as the action for buttons of type ``deft-button''."
 
 (defun deft-window-size-change-function (frame)
   "Possibly refresh Deft buffer when size of a window in FRAME is changed.
-If there are pending updates, refresh the filtered files list and
-update the Deft browser.  Otherwise, if the window width changed,
-only update the Deft browser."
+  If there are pending updates, refresh the filtered files list and
+  update the Deft browser.  Otherwise, if the window width changed,
+  only update the Deft browser."
   (when (deft-buffer-visible-p)
     (cond (deft-pending-updates (deft-refresh-filter))
           ((/= deft-window-width (deft-current-window-width))
@@ -1338,14 +1339,14 @@ only update the Deft browser."
 
 (defun deft-refresh-filter ()
   "Reapply the filter and refresh the *Deft* buffer.
-Call this after any actions which update the cache."
+  Call this after any actions which update the cache."
   (interactive)
   (deft-filter-update)
   (deft-refresh-browser))
 
 (defun deft-refresh-browser ()
   "Refresh the *Deft* buffer in the background.
-Call this function after any actions which update the filter and file list."
+  Call this function after any actions which update the filter and file list."
   (when (get-buffer deft-buffer)
     (with-current-buffer deft-buffer
       (deft-buffer-setup t))))
@@ -1364,10 +1365,10 @@ Call this function after any actions which update the filter and file list."
 
 (defun deft-absolute-filename (slug &optional extension)
   "Return an absolute filename to file named SLUG with optional EXTENSION.
-If EXTENSION is not given, `deft-default-extension' is assumed.
+  If EXTENSION is not given, `deft-default-extension' is assumed.
 
-Refer to `deft-file-naming-rules' for setting rules for formatting the file
-name."
+  Refer to `deft-file-naming-rules' for setting rules for formatting the file
+  name."
   (let* ((slug (deft-chomp slug)) ; remove leading/trailing spaces
          (slash-replacement (cdr (assq 'noslash deft-file-naming-rules)))
          (space-replacement (cdr (assq 'nospace deft-file-naming-rules)))
@@ -1403,9 +1404,9 @@ name."
 
 (defun deft-open-file (file &optional other switch)
   "Open FILE in a new buffer and setting its mode.
-When OTHER is non-nil, open the file in another window.  When
-OTHER and SWITCH are both non-nil, switch to the other window.
-FILE must be a relative or absolute path, with extension."
+  When OTHER is non-nil, open the file in another window.  When
+  OTHER and SWITCH are both non-nil, switch to the other window.
+  FILE must be a relative or absolute path, with extension."
   (let ((buffer (find-file-noselect (file-truename file))))
     (with-current-buffer buffer
       (hack-local-variables)
@@ -1435,8 +1436,8 @@ FILE must be a relative or absolute path, with extension."
 ;;;###autoload
 (defun deft-find-file (file)
   "Find FILE interactively using the minibuffer.
-FILE must exist and be a relative or absolute path, with extension.
-If FILE is not inside `deft-directory', fall back to using `find-file'."
+  FILE must exist and be a relative or absolute path, with extension.
+  If FILE is not inside `deft-directory', fall back to using `find-file'."
   (interactive
    (list (completing-read "Deft find file: " (deft-find-all-files-no-prefix))))
   (let* ((dir (expand-file-name deft-directory)))
@@ -1447,9 +1448,9 @@ If FILE is not inside `deft-directory', fall back to using `find-file'."
 
 (defun deft-auto-populate-title-maybe (file)
   "Possibly populate title line for FILE using filter string.
-If the filter string is non-nil and `deft-use-filename-as-title'
-is nil, then use the filter string to populate the title line in
-the newly created FILE."
+  If the filter string is non-nil and `deft-use-filename-as-title'
+  is nil, then use the filter string to populate the title line in
+  the newly created FILE."
   (when (and deft-filter-regexp (not deft-use-filename-as-title))
     (write-region
      (concat
@@ -1467,7 +1468,7 @@ the newly created FILE."
 
 (defun deft-new-file-named (slug)
   "Create a new file named SLUG.
-SLUG is the short file name, without a path or a file extension."
+  SLUG is the short file name, without a path or a file extension."
   (interactive "sNew filename (without extension): ")
   (let ((file (deft-absolute-filename slug)))
     (if (file-exists-p file)
@@ -1482,9 +1483,9 @@ SLUG is the short file name, without a path or a file extension."
 ;;;###autoload
 (defun deft-new-file ()
   "Create a new file quickly.
-Use either an automatically generated filename or the filter string if non-nil
-and `deft-use-filter-string-for-filename' is set.  If the filter string is
-non-nil and title is not from filename, use it as the title."
+  Use either an automatically generated filename or the filter string if non-nil
+  and `deft-use-filter-string-for-filename' is set.  If the filter string is
+  non-nil and title is not from filename, use it as the title."
   (interactive)
   (let (slug)
     (if (and deft-filter-regexp deft-use-filter-string-for-filename)
@@ -1498,14 +1499,14 @@ non-nil and title is not from filename, use it as the title."
 
 (defun deft-filename-at-point ()
   "Return the name of the file represented by the button at the point.
-Return nil if the point is not on a file button."
+  Return nil if the point is not on a file button."
   (let ((button (button-at (point))))
     (when button
       (button-get button 'tag))))
 
 (defun deft-open-file-other-window (&optional arg)
   "When the point is at a button, open the file in the other window.
-The argument ARG is passed to `deft-open-file'."
+  The argument ARG is passed to `deft-open-file'."
   (interactive "P")
   (let ((file (deft-filename-at-point)))
     (when file
@@ -1513,8 +1514,8 @@ The argument ARG is passed to `deft-open-file'."
 
 (defun deft-delete-file ()
   "Delete the file represented by the button at the point.
-If the point is not on a file button, do nothing.  Prompts before
-proceeding."
+  If the point is not on a file button, do nothing.  Prompts before
+  proceeding."
   (interactive)
   (let ((filename (deft-filename-at-point)))
     (when filename
@@ -1529,7 +1530,7 @@ proceeding."
 
 (defun deft-rename-file ()
   "Rename the file represented by the button at the point.
-If the point is not on a file button, do nothing."
+  If the point is not on a file button, do nothing."
   (interactive)
   (let ((old-filename (deft-filename-at-point))
         (deft-dir (file-name-as-directory deft-directory))
@@ -1547,7 +1548,7 @@ If the point is not on a file button, do nothing."
 
 (defun deft-archive-file ()
   "Archive the file represented by the button at the point.
-If the point is not on a file button, do nothing."
+  If the point is not on a file button, do nothing."
   (interactive)
   (let (old new name-ext)
     (setq old (deft-filename-at-point))
@@ -1589,8 +1590,8 @@ If the point is not on a file button, do nothing."
 
 (defun deft-filter-match-file (file &optional batch)
   "Return FILE if it is a match against the current filter regexp.
-If BATCH is non-nil, treat `deft-filter-regexp' as a list and match
-all elements."
+  If BATCH is non-nil, treat `deft-filter-regexp' as a list and match
+  all elements."
   (with-temp-buffer
     (insert file)
     (let ((title (deft-file-title file))
@@ -1609,8 +1610,8 @@ all elements."
 
 (defun deft-filter-files (files)
   "Update `deft-current-files' given a list of paths, FILES.
-Apply `deft-filter-match-file' to `deft-all-files', handling
-any errors that occur."
+  Apply `deft-filter-match-file' to `deft-all-files', handling
+  any errors that occur."
   (delq nil
         (condition-case nil
             ;; Map `deft-filter-match-file' onto FILES.  Return
@@ -1626,8 +1627,8 @@ any errors that occur."
 
 (defun deft-filter-update ()
   "Update the filtered files list using the current filter regexp.
-Starts from scratch using `deft-all-files'.  Does not refresh the
-Deft buffer."
+  Starts from scratch using `deft-all-files'.  Does not refresh the
+  Deft buffer."
   (if (not deft-filter-regexp)
       (setq deft-current-files deft-all-files)
     (setq deft-current-files
@@ -1648,18 +1649,18 @@ Deft buffer."
 (defun deft-filter (str &optional reset)
   "Update the filter with STR and update the file browser.
 
-In incremental search mode, the car of `deft-filter-regexp' will
-be replaced with STR.  If STR has zero length and the length of
-the list is greater than one, the empty string will be retained
-to simulate whitespace.  However, if STR has zero length and the
-list is of length one, then the filter will be cleared.  If STR
-is nil, then the car is removed from the list.
+  In incremental search mode, the car of `deft-filter-regexp' will
+  be replaced with STR.  If STR has zero length and the length of
+  the list is greater than one, the empty string will be retained
+  to simulate whitespace.  However, if STR has zero length and the
+  list is of length one, then the filter will be cleared.  If STR
+  is nil, then the car is removed from the list.
 
-In regexp search mode, the current filter string will be replaced
-with STR.
+  In regexp search mode, the current filter string will be replaced
+  with STR.
 
-When called interactively, or when RESET is non-nil, always
-replace the entire filter string."
+  When called interactively, or when RESET is non-nil, always
+  replace the entire filter string."
   (interactive
    (list (read-from-minibuffer "Filter: " (deft-whole-filter-regexp)
                                nil nil 'deft-filter-history)))
@@ -1709,11 +1710,11 @@ replace the entire filter string."
 (defun deft-filter-decrement ()
   "Remove last character from the filter, if possible, and update.
 
-In incremental search mode, the elements of `deft-filter-regexp'
-are the words of the filter string in reverse order.  In regexp
-search mode, the list is a single element containing the entire
-filter regexp.  Therefore, in both cases, only the car of
-`deft-filter-regexp' is modified."
+  In incremental search mode, the elements of `deft-filter-regexp'
+  are the words of the filter string in reverse order.  In regexp
+  search mode, the list is a single element containing the entire
+  filter regexp.  Therefore, in both cases, only the car of
+  `deft-filter-regexp' is modified."
   (interactive)
   (let ((str (car deft-filter-regexp)))
     (deft-filter
@@ -1751,11 +1752,11 @@ filter regexp.  Therefore, in both cases, only the car of
 
 (defun deft-complete ()
   "Complete the current action.
-If there is a button at the point, press it.  If a filter is
-applied and there is at least one match, open the first matching
-file.  If there is an active filter but there are no matches,
-quick create a new file using the filter string as the title.
-Otherwise, quick create a new file."
+  If there is a button at the point, press it.  If a filter is
+  applied and there is at least one match, open the first matching
+  file.  If there is an active filter but there are no matches,
+  quick create a new file using the filter string as the title.
+  Otherwise, quick create a new file."
   (interactive)
   (cond
    ;; Activate button
@@ -1838,9 +1839,9 @@ Otherwise, quick create a new file."
 
 (defun deft-mode ()
   "Major mode for quickly browsing, filtering, and editing plain text notes.
-Turning on `deft-mode' runs the hook `deft-mode-hook'.
+  Turning on `deft-mode' runs the hook `deft-mode-hook'.
 
-\\{deft-mode-map}."
+  \\{deft-mode-map}."
   (message "Deft initializing...")
   (kill-all-local-variables)
   (setq truncate-lines t)

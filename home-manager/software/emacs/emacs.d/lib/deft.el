@@ -9,7 +9,7 @@
         deft-markdown-mode-title-level 1
         deft-auto-save-interval 300.0
         deft-file-limit 50
-        deft-use-filename-as-title t
+        deft-use-filename-as-title nil
         deft-use-filter-string-for-filename t
         deft-recursive t)
   (setq deft-file-naming-rules

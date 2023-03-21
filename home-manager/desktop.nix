@@ -34,6 +34,7 @@ in
     libreoffice-fresh
     makemkv
     meld
+    nodePackages.prettier # formatting files
     plexamp
     remmina
     shotwell

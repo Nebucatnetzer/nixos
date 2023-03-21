@@ -22,6 +22,7 @@ in
     nix-direnv.enable = true;
   };
 
+  home.sessionPath = [ "$HOME/node_modules/.bin" ];
   home.packages = with pkgs; [
     keychain
     nixpkgs-fmt

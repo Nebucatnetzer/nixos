@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     fd
     multimarkdown
-    nodePackages.prettier # formatting files
     pandoc
     python310
     python310Packages.pip

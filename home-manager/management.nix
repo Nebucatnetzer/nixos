@@ -14,6 +14,7 @@ in
   ];
 
   home.packages = with pkgs; [
+    nodePackages.prettier # formatting files
     rclone
     xclip
   ];

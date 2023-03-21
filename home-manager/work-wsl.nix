@@ -1,6 +1,6 @@
 { custom, pkgs, ... }:
 let
-  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
+  unstable = import custom.inputs.nixpkgs-unstable { system = "x86_64-linux"; };
 in
 {
   imports = [
@@ -8,7 +8,7 @@ in
       custom = { username = "zweili"; version = "22.11"; };
     })
     "${custom.inputs.self}/home-manager/software/ansible"
-    "${custom.inputs.self}/home-manager/software/emacs"
+    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
     "${custom.inputs.self}/home-manager/software/starship"

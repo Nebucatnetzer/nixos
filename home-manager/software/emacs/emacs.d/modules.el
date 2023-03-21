@@ -15,6 +15,7 @@
 (load-file (modules-path "keybindings.el"))
 
 ;; note taking and writing
+(load-file (modules-path "deft_raw.el"))
 (load-file (modules-path "deft.el"))
 (load-file (modules-path "langtool.el"))
 (load-file (modules-path "markdown.el"))

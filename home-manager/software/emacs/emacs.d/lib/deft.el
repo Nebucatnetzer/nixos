@@ -1,4 +1,5 @@
 (use-package deft
+  :ensure nil
   :bind ("<f5>" . deft)
   :commands (deft)
   :config

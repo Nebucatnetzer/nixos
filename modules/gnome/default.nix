@@ -8,7 +8,6 @@
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
       gnomeExtensions.gtk-title-bar
-      gnomeExtensions.switcheroo
     ];
     gnome.excludePackages = (with pkgs; [
       gnome-console

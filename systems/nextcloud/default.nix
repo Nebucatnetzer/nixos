@@ -8,16 +8,16 @@ in
       ip = "10.7.89.103";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-client-server-mysql" {
-      path = "/home/andreas";
-      time = "01:30"; inherit custom;
-    })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     "${custom.inputs.self}/modules/mariadb"
     (import "${custom.inputs.self}/modules/nextcloud" {
       inherit custom domain;
     })
     "${custom.inputs.self}/modules/nginx-acme-base"
+    (import "${custom.inputs.self}/modules/restic-client-server-mysql" {
+      path = "/home/andreas";
+      time = "01:30"; inherit custom;
+    })
   ];
 
   services.nginx = {

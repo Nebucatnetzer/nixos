@@ -143,6 +143,8 @@
 (add-hook 'text-mode-hook 'generic-setup)
 ;; )
 
+(setq use-short-answers t)
+
 ;; Matches parentheses and such in every mode
 (show-paren-mode 1)
 

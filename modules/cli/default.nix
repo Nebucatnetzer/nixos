@@ -21,6 +21,8 @@
     '';
     find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";
     vm = "vim";
+    less = "less -FiRX";
+    ls = "ls -lhF";
   };
 }
 

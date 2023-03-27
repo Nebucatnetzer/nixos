@@ -43,6 +43,7 @@
         proxy = mksdImage "proxy";
         mail = mksdImage "mail";
         management = mksdImage "management";
+        mobile = mksdImage "mobile";
         nextcloud = mksdImage "nextcloud";
         test-raspi = mksdImage "test-raspi";
         restic-server = mksdImage "restic-server";
@@ -91,6 +92,11 @@
         };
         management = mkRaspi {
           hostname = "management";
+          home-module = "management";
+          inherit custom;
+        };
+        mobile = mkRaspi {
+          hostname = "mobile";
           home-module = "management";
           inherit custom;
         };

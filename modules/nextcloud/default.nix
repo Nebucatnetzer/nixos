@@ -12,7 +12,7 @@ let
   };
   networkName = "nextcloud";
   # https://github.com/Nebucatnetzer/nextcloud-smb
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.4@sha256:ca77120a6661341daa60199d088fe95d54cb34516ec543b37a077ff63d74f682";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:25.0.4@sha256:4ece9eff15420b39cf5c63b72ef9ad83d1eed6e774084233946b649539287bf8";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   cronService = "${config.virtualisation.oci-containers.backend}-cron";
 in
@@ -35,9 +35,6 @@ in
       autoStart = true;
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
-      ports = [
-        "8080:80"
-      ];
       volumes = [
         "${custom.inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini"
         "/etc/localtime:/etc/localtime:ro"
@@ -48,6 +45,22 @@ in
         "--add-host=host.docker.internal:host-gateway"
         "--net=${networkName}"
         "--log-opt=tag='nextcloud'"
+      ];
+    };
+    containers."nginx" = {
+      image = "nginx:1.22.1";
+      autoStart = true;
+      ports = [
+        "8080:80"
+      ];
+      volumes = [
+        "${custom.inputs.self}/modules/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
+        "/etc/localtime:/etc/localtime:ro"
+      ];
+      extraOptions = [
+        ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,ro,nfsvers=4.0,nolock,hard,noatime"''
+        "--net=${networkName}"
+        "--log-opt=tag='nextcloud-nginx'"
       ];
     };
     containers."cron" = {

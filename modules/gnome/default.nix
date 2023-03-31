@@ -7,7 +7,6 @@
     systemPackages = with pkgs; [
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
-      gnomeExtensions.dash-to-dock
       gnomeExtensions.gtk-title-bar
     ];
     gnome.excludePackages = (with pkgs; [

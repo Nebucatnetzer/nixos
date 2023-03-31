@@ -1,9 +1,5 @@
 { custom }: { pkgs, ... }:
 {
-  imports = [
-    "${custom.inputs.self}/modules/cli"
-  ];
-
   # The rough location
   location = {
     latitude = 46.948;

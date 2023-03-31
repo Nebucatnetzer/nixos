@@ -1,4 +1,4 @@
-{ custom }: { ... }:
+{ custom }: { pkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -17,4 +17,16 @@
     less = "less -FiRX";
     ls = "ls -lhF";
   };
+  home.packages = with pkgs; [
+    git
+    highlight
+    htop
+    killall
+    ncdu
+    nixpkgs-fmt
+    nmon
+    tree
+    unzip
+    wget
+  ];
 }

@@ -9,7 +9,6 @@
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher
-    unstable.ansible-language-server
   ];
 
   programs.emacs = {

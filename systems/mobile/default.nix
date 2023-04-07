@@ -13,7 +13,7 @@ in
 
   boot = {
     supportedFilesystems = lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
-    # kernelModules = [ "libcomposite" ];
+    kernelModules = [ "libcomposite" ];
   };
   fileSystems = {
     "/" = {

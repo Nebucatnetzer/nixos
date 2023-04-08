@@ -45,6 +45,16 @@ in
         prefixLength = 24;
       }
     ];
+    wireless = {
+      enable = true;
+      userControlled.enable = true;
+      interfaces = [ "wlan0" ];
+      networks = {
+        "Gröibschi" = {
+          psk = "schottland";
+        };
+      };
+    };
   };
 
   boot.loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";

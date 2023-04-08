@@ -95,7 +95,7 @@ in
       echo 0x01 > bDeviceProtocol
       mkdir -p /sys/kernel/config/usb_gadget/pi4/strings/0x409
       echo "fedcba9876543211" > strings/0x409/serialnumber
-      echo "TheWifiNinja" > strings/0x409/manufacturer
+      echo "Nebucatnetzer" > strings/0x409/manufacturer
       echo "PI4 USB Device" > strings/0x409/product
       mkdir -p /sys/kernel/config/usb_gadget/pi4/configs/c.1/strings/0x409
       echo "Config 1: ECM network" > configs/c.1/strings/0x409/configuration

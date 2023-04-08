@@ -29,6 +29,7 @@ in
   ];
   home.packages = with pkgs; [
     digikam
+    exercism
     freetube
     chromium
     libreoffice-fresh

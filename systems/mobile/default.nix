@@ -69,6 +69,7 @@ in
       option broadcast-address 10.213.0.255;
       option domain-name-servers 84.200.69.80, 84.200.70.40;
       subnet 10.213.0.0 netmask 255.255.255.0 {
+        option routers 10.213.0.1;
         range 10.213.0.100 10.213.0.200;
       }
     '';

@@ -33,7 +33,6 @@ in
     freetube
     chromium
     libreoffice-fresh
-    makemkv
     meld
     nodePackages.prettier # formatting files
     plexamp

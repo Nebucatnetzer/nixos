@@ -25,7 +25,7 @@
     "xhci_pci"
   ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "sg" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

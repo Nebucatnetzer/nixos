@@ -20,7 +20,7 @@
     containers."plex" = {
       autoStart = true;
       # https://fleet.linuxserver.io/image?name=linuxserver/plex
-      image = "lscr.io/linuxserver/plex:1.31.2";
+      image = "lscr.io/linuxserver/plex:1.32.0";
       environment = {
         TZ = " Europe/Zurich ";
         PUID = "1000";

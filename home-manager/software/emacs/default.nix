@@ -61,6 +61,7 @@
       epkgs.move-text
       epkgs.multi-vterm
       epkgs.nix-mode
+      epkgs.olivetti
       epkgs.parsebib
       epkgs.pdf-tools
       epkgs.perspective

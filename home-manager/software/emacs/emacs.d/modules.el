@@ -39,6 +39,7 @@
 
 ;; various third party
 (load-file (modules-path "counsel.el"))
+(load-file (modules-path "counsel-git-grep-current-mode.el"))
 (load-file (modules-path "keyring_update.el"))
 (load-file (modules-path "manuals.el"))
 (load-file (modules-path "mu4e.el"))

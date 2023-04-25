@@ -29,6 +29,7 @@
 (load-file (modules-path "company.el"))
 (load-file (modules-path "direnv.el"))
 (load-file (modules-path "format_all.el"))
+(load-file (modules-path "flycheck.el"))
 (load-file (modules-path "magit.el"))
 (load-file (modules-path "languageserver.el"))
 (load-file (modules-path "powershell.el"))

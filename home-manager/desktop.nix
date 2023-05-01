@@ -35,6 +35,7 @@ in
     chromium
     libreoffice-fresh
     meld
+    nodejs # needed for ansible-language-server
     nodePackages.prettier # formatting files
     plexamp
     remmina

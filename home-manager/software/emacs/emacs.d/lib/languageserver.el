@@ -7,7 +7,6 @@
          (ansible . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
-  :config
   :commands lsp)
 
 ;; optionally

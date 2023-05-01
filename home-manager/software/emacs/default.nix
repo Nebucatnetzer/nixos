@@ -38,7 +38,6 @@
       epkgs.discover-my-major
       epkgs.eglot
       epkgs.elisp-refs
-      epkgs.elpy
       epkgs.epl
       epkgs.evil
       epkgs.evil-collection

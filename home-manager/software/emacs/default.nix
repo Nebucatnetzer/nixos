@@ -33,6 +33,7 @@
       epkgs.company-web
       epkgs.counsel
       epkgs.counsel-tramp
+      epkgs.dap-mode
       epkgs.dired-hide-dotfiles
       epkgs.direnv
       epkgs.discover-my-major
@@ -52,7 +53,10 @@
       epkgs.hydra
       epkgs.know-your-http-well
       epkgs.languagetool
+      epkgs.lsp-ivy
       epkgs.lsp-mode
+      epkgs.lsp-treemacs
+      epkgs.lsp-ui
       epkgs.lv
       epkgs.magit
       epkgs.makey

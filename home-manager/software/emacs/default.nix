@@ -36,7 +36,6 @@
       epkgs.dired-hide-dotfiles
       epkgs.direnv
       epkgs.discover-my-major
-      epkgs.eglot
       epkgs.elisp-refs
       epkgs.epl
       epkgs.evil
@@ -53,6 +52,7 @@
       epkgs.hydra
       epkgs.know-your-http-well
       epkgs.languagetool
+      epkgs.lsp-mode
       epkgs.lv
       epkgs.magit
       epkgs.makey

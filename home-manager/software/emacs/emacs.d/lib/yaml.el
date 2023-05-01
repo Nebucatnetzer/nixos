@@ -1,6 +1,9 @@
-(use-package yaml-mode
+(use-package ansible
   :defer t
   :mode
-  (("\\.yml\\'" . yaml-mode)
-   ("\\.yaml\\'" . yaml-mode))
-  :interpreter ("yml" . yml-mode))
+  (("\\.yml\\'" . ansible-mode)
+   ("\\.yaml\\'" . ansible-mode))
+  :init
+  (define-derived-mode ansible-mode yaml-mode "Ansible"
+    "Major mode which is YAML-mode + ansible minor mode."
+    (ansible)))

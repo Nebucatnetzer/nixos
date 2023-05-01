@@ -11,4 +11,9 @@
       sshpass # it's the only system package that I need to run Ansible
     ];
   };
+  programs.emacs = {
+    extraPackages = epkgs: with pkgs;[
+      epkgs.ansible
+    ];
+  };
 }

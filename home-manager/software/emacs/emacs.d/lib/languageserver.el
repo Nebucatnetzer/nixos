@@ -7,6 +7,8 @@
          (ansible . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
+  :config
+  (lsp-treemacs-sync-mode 1)
   :commands lsp)
 
 ;; optionally

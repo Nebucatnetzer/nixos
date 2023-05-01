@@ -1,8 +1,9 @@
 { custom }: { config, pkgs, ... }:
 let
+  version = "12.0.0";
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v11.3.1/setup.sh";
+      url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
       sha256 = "sha256-G2el0HNuecB4Y136hIdwcINdkBq29nnTTk/iC9QQuHI=";
     })
       }").overrideAttrs (old: {
@@ -20,7 +21,7 @@ in
     backend = "docker";
     containers."mailserver" = {
       # https://hub.docker.com/r/mailserver/docker-mailserver/tags
-      image = "docker.io/mailserver/docker-mailserver:11.3.1";
+      image = "docker.io/mailserver/docker-mailserver:{version}";
       autoStart = true;
       environmentFiles = [
         ./mailserver.env

@@ -7,7 +7,6 @@
 (load-file (modules-path "utils.el"))
 (load-file (modules-path "various.el"))
 (load-file (modules-path "window_split.el"))
-(load-file (modules-path "persp.el"))
 ;;(load-file (modules-path "xclip.el"))
 
 ;; keybindings

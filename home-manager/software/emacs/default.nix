@@ -67,6 +67,7 @@
       epkgs.olivetti
       epkgs.parsebib
       epkgs.pdf-tools
+      epkgs.persp-mode
       epkgs.pfuture
       epkgs.pkg-info
       epkgs.posframe

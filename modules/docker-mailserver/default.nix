@@ -21,7 +21,7 @@ in
     backend = "docker";
     containers."mailserver" = {
       # https://hub.docker.com/r/mailserver/docker-mailserver/tags
-      image = "docker.io/mailserver/docker-mailserver:{version}";
+      image = "docker.io/mailserver/docker-mailserver:${version}";
       autoStart = true;
       environmentFiles = [
         ./mailserver.env

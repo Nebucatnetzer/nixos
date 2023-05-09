@@ -6,7 +6,7 @@
   (setq evil-want-keybinding nil) ;; required by evil-collection
   :config
   ;; Start these modes in emacs mode
-  (add-to-list 'evil-emacs-state-modes 'helpful-mode)
+  (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
   (setq global-evil-search-highlight-persist t)
 
   ;; Add vim keybindings to the bookmark menu

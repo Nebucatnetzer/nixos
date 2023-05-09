@@ -5,6 +5,9 @@
         persp-nil-name "main"
         persp-keymap-prefix (kbd "C-x x"))
   :config
+  (persp-def-auto-persp "mail"
+                        :parameters '((dont-save-to-file . t))
+                        :buffer-name "mu4e*")
   (with-eval-after-load "persp-mode"
     (with-eval-after-load "ivy"
       (add-hook 'ivy-ignore-buffers

@@ -2,7 +2,6 @@
   :hook (after-init . persp-mode)
   :init
   (setq persp-set-ido-hooks t
-        persp-nil-name "main"
         persp-keymap-prefix (kbd "C-x x"))
   :config
   (persp-def-auto-persp "mail"

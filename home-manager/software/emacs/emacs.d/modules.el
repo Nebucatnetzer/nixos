@@ -46,5 +46,6 @@
 (load-file (modules-path "manuals.el"))
 (load-file (modules-path "mu4e.el"))
 (load-file (modules-path "treemacs.el"))
+(load-file (modules-path "perspective.el"))
 (load-file (modules-path "vterm.el"))
 (load-file (modules-path "yasnippet.el"))

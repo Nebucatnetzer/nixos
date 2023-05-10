@@ -31,7 +31,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
+    displayManager.lightdm.enable = true;
     displayManager.defaultSession = "none+qtile";
     windowManager.qtile.enable = true;
     layout = "us";
@@ -125,4 +125,3 @@
     };
   };
 }
-

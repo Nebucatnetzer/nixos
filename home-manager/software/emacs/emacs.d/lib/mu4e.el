@@ -89,6 +89,13 @@
     ;; Don't ask to quit
     (setq mu4e-confirm-quit nil)
 
+    ;; A function to create a persp for reading mail
+    (defun open-mail ()
+      "Create a mail perspective and open mu4e"
+      (interactive)
+      (persp-switch "mail")
+      (mu4e~headers-jump-to-maildir "/personal/INBOX"))
+
     ;; spell check
     (add-hook 'mu4e-compose-mode-hook
               (defun az-do-compose-stuff ()

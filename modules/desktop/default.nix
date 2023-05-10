@@ -4,7 +4,6 @@
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/email" { inherit custom; })
     (import "${custom.inputs.self}/modules/eog" { inherit custom; })
-    (import "${custom.inputs.self}/modules/gnome" { inherit custom; })
     "${custom.inputs.self}/modules/hunspell"
     (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
     (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
@@ -56,6 +55,10 @@
   # Enable Flatpack
   services.flatpak.enable = true;
   xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
     mime = {
       addedAssociations = {
         "x-scheme-handler/http" = "firefox.desktop";

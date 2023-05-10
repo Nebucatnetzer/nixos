@@ -5,7 +5,6 @@ in
 {
   imports = [
     (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
-    "${custom.inputs.self}/home-manager/configs/gnome"
     "${custom.inputs.self}/home-manager/software/alacritty"
     "${custom.inputs.self}/home-manager/software/ansible"
     "${custom.inputs.self}/home-manager/software/calibre"

@@ -2,7 +2,7 @@
 {
   services.xrdp = {
     enable = true;
-    defaultWindowManager = "${pkgs.gnome.gnome-shell}/bin/gnome-shell";
+    defaultWindowManager = "${pkgs.qtile}/bin/qtile start";
   };
   networking.firewall.allowedTCPPorts = [ 3389 ];
 }

@@ -75,7 +75,12 @@ keys = [
 ]
 
 group_matches = [
-    None,  # 0
+    [
+        Match(wm_class="TelegramDesktop"),
+        Match(wm_class="Signal"),
+        Match(title="WhatsApp"),
+        Match(title="Threema"),
+    ],  # 0
     None,  # 1
     None,  # 2
     None,  # 3

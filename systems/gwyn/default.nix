@@ -31,7 +31,7 @@
   boot.kernelModules = [ "kvm-intel" "sg" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
 
   # Required to build aarch64 packages

@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ unstable }: { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    vagrant
+    unstable.vagrant
   ];
 
   programs.bash = {

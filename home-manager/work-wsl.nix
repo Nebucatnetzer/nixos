@@ -12,7 +12,7 @@ in
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
     "${custom.inputs.self}/home-manager/software/starship"
-    "${custom.inputs.self}/home-manager/software/vagrant-wsl"
+    (import "${custom.inputs.self}/home-manager/software/vagrant-wsl" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/vim"
   ];
 

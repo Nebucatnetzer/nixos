@@ -12,12 +12,15 @@ in
     "${custom.inputs.self}/home-manager/software/czkawka"
     (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/espanso"
+    "${custom.inputs.self}/home-manager/software/dunst"
     "${custom.inputs.self}/home-manager/software/evince"
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
+    "${custom.inputs.self}/home-manager/software/grobi"
     "${custom.inputs.self}/home-manager/software/keeweb"
     "${custom.inputs.self}/home-manager/software/mime-apps"
     "${custom.inputs.self}/home-manager/software/mpv"
+    "${custom.inputs.self}/home-manager/software/nitrogen"
     "${custom.inputs.self}/home-manager/software/obsidian"
     (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/signal"
@@ -37,6 +40,7 @@ in
     meld
     nodejs # needed for ansible-language-server
     nodePackages.prettier # formatting files
+    pulseaudio # required for volume controls in qtile
     plexamp
     remmina
     shotwell
@@ -44,6 +48,11 @@ in
     unstable.tagger
   ];
   programs.git.userEmail = "andreas@zweili.ch";
+
+  # raw config files
+  home.file.".config/qtile/config.py".source = "${custom.inputs.self}/home-manager/configs/qtile/config.py";
+  home.file.".config/qtile/autostart.sh".source = "${custom.inputs.self}/home-manager/configs/qtile/autostart.sh";
+  home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${custom.inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
   programs.bash = {
     enable = true;
@@ -76,5 +85,6 @@ in
   xsession = {
     numlock.enable = true;
   };
+  services.network-manager-applet.enable = true;
 }
 

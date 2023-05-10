@@ -22,6 +22,9 @@
     picom = {
       enable = true;
     };
+    redshift = {
+      enable = true;
+    };
     fwupd.enable = true;
   };
 
@@ -29,6 +32,8 @@
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
+    displayManager.defaultSession = "none+qtile";
+    windowManager.qtile.enable = true;
     layout = "us";
     xkbOptions = "compose:ralt";
     libinput.enable = true;
@@ -38,8 +43,15 @@
     source-code-pro
   ];
 
+  # Enable keyring
+  security.pam.services.lightdm.enableGnomeKeyring = true;
+  services.gnome.gnome-keyring.enable = true;
+
   # Enable sound.
   sound.enable = true;
+
+  # Enable dconf to be able to save Nautilus settings
+  programs.dconf.enable = true;
 
   # Enable Flatpack
   services.flatpak.enable = true;
@@ -94,9 +106,11 @@
       gnome.gnome-screenshot
       gnome.nautilus
       networkmanager-openvpn
+      nitrogen
       p7zip
       pavucontrol
       quickemu
+      rofi
       source-code-pro
       unrar
     ];

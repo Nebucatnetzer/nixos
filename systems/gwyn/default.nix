@@ -13,6 +13,7 @@
     (import "${custom.inputs.self}/modules/makemkv" { inherit custom; })
     "${custom.inputs.self}/modules/rdp"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
+    "${custom.inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

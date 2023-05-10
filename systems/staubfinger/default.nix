@@ -9,6 +9,7 @@
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     "${custom.inputs.self}/modules/lockscreen"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
+    "${custom.inputs.self}/modules/tlp"
     "${custom.inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [

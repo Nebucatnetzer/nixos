@@ -11,6 +11,12 @@
         deft-file-limit 50
         deft-use-filename-as-title nil
         deft-use-filter-string-for-filename t
+        deft-strip-summary-regexp (concat "\\("
+                                          "[\n\t]" ;; blank
+                                          "\\|^#\\+[[:upper:]_]+:.*$" ;; org-mode metadata
+                                          "^---\\(?:\n.*\\)*---.*$"
+                                          "\\)")
+
         deft-recursive t)
   (setq deft-file-naming-rules
         '((noslash . "-")

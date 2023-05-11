@@ -1,6 +1,6 @@
 (use-package deft
   :ensure nil
-  :bind ("<f5>" . deft)
+  :bind ("<f5>" . open-notes)
   :commands (deft)
   :config
   (add-to-list 'evil-emacs-state-modes 'deft-mode)
@@ -23,7 +23,14 @@
           (nospace . "_")
           (case-fn . downcase)))
   (setq deft-directory "~/nextcloud/10_documents/")
-  (add-hook 'deft-mode-hook (lambda() (display-line-numbers-mode -1))))
+  (add-hook 'deft-mode-hook (lambda() (display-line-numbers-mode -1)))
+
+  ;; A function to create a persp for my notes
+  (defun open-notes ()
+    "Create a notes perspective and open deft"
+    (interactive)
+    (persp-switch "notes")
+    (deft)))
 
 (use-package zetteldeft
   :after deft

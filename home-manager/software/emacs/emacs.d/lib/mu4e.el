@@ -94,7 +94,7 @@
       "Create a mail perspective and open mu4e"
       (interactive)
       (persp-switch "mail")
-      (mu4e~headers-jump-to-maildir "/personal/INBOX"))
+      (mu4e))
 
     ;; spell check
     (add-hook 'mu4e-compose-mode-hook

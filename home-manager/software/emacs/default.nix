@@ -51,6 +51,7 @@
       epkgs.ht
       epkgs.htmlize
       epkgs.hydra
+      epkgs.hyperbole
       epkgs.know-your-http-well
       epkgs.languagetool
       epkgs.lsp-ivy

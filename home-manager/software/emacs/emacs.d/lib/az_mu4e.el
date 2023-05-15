@@ -2,6 +2,8 @@
   (use-package mu4e
     :if (is-linux-p)
     :ensure nil
+    :bind
+    ([f4] . open-mail)
     :config
 
     ;; Start mu4e-compose-mode in insert mode

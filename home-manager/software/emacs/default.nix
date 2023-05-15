@@ -63,7 +63,6 @@
       epkgs.makey
       epkgs.markdown-mode
       epkgs.move-text
-      epkgs.multi-vterm
       epkgs.nix-mode
       epkgs.olivetti
       epkgs.parsebib

@@ -24,8 +24,10 @@
       vm = "vim";
       less = "less -FiRX";
       ls = "ls -lhF";
+      btm = "btm --color default-light";
     };
     packages = with pkgs; [
+      bottom
       git
       highlight
       htop

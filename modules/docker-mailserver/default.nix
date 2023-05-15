@@ -1,6 +1,6 @@
 { custom }: { config, pkgs, ... }:
 let
-  version = "12.0.0";
+  version = "12.1.0";
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";

@@ -32,6 +32,7 @@ in
         "465:465"
         "587:587"
         "993:993"
+        "11334:11334"
       ];
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
@@ -48,31 +49,5 @@ in
         "--log-opt=tag='mailserver'"
       ];
     };
-  };
-  systemd.timers."mailserver-sa-learn" = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "mailserver-sa-learn.service" ];
-    timerConfig = {
-      OnCalendar = "daily";
-    };
-  };
-
-  systemd.services."mailserver-sa-learn" = {
-    serviceConfig = {
-      User = "root";
-      Type = "oneshot";
-    };
-    onFailure = [ "unit-status-telegram@%n.service" ];
-    script = ''
-      # learn spam
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --spam /var/mail/2li.ch/*/.Junk --dbpath /var/mail-state/lib-amavis/.spamassassin
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --spam /var/mail/zweili.ch/*/.Junk --dbpath /var/mail-state/lib-amavis/.spamassassin
-      # ham: archive directories
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/2li.ch/*/.Archive* --dbpath /var/mail-state/lib-amavis/.spamassassin
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/zweili.ch/*/.Archive* --dbpath /var/mail-state/lib-amavis/.spamassassin
-      # ham: inbox subdirectories
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/2li.ch/*/cur* --dbpath /var/mail-state/lib-amavis/.spamassassin
-      ${pkgs.docker}/bin/docker exec mailserver sa-learn --ham /var/mail/zweili.ch/*/cur* --dbpath /var/mail-state/lib-amavis/.spamassassin
-    '';
   };
 }

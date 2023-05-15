@@ -37,6 +37,7 @@ in
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
         "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
+        "/var/lib/redis:/var/lib/redis"
       ];
       extraOptions = [
         ''--mount=type=volume,source=maildata,target=/var/mail,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/maildata,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''

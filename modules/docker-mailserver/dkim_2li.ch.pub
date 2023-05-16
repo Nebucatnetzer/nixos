@@ -1,0 +1,3 @@
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvK+Xel8uf7abb45Ab2NGPD8VlkXfFzmga+WPmFBy/knh/mCtHJbF70dil0/gV5Br/yTzjy4ZOo73USkaaQHDY2OF4acQ9PqLfMFvDTeEc7wOf/UAAVr2eM7vbU2I2yDTNbgPxIh+Necifa1Xpgz24VoWwZFt1etRVGBkMYoxtayyA/WFXWWinTrCKGnFJ1Ley1CQwtlPukdvud"
+	  "vLdmaIV+oTSX8Yvs4UwAOK4TQpvJ3bglGMlF3z3iv8D5EZ52tZFCz9pu4PZfez14P9AMRSnktAbYfPVQ1SdWA/n/4CGte7cEGpeS2jxQXMtQbjFDsJqiEZV869xgrPlcFcE77IKwIDAQAB" )  ; ----- DKIM key mail for 2li.ch

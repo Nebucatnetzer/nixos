@@ -14,6 +14,31 @@ in
   imports = [
     (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
   ];
+
+  age.secrets.dkim2liCh = {
+    file = "${custom.inputs.self}/scrts/dkim_2li.ch.age";
+    mode = "600";
+    owner = "113";
+    group = "115";
+  };
+  age.secrets.dkimZweiliCh = {
+    file = "${custom.inputs.self}/scrts/dkim_zweili.ch.age";
+    mode = "600";
+    owner = "113";
+    group = "115";
+  };
+
+  environment.etc = {
+    "dkim/2li.ch.private" = {
+      enable = true;
+      source = config.age.secrets.dkim2liCh.path;
+    };
+    "dkim/zweili.ch.private" = {
+      enable = true;
+      source = config.age.secrets.dkimZweiliCh.path;
+    };
+  };
+
   environment.systemPackages = [
     mailserver-setup
   ];
@@ -36,6 +61,9 @@ in
       ];
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
+        "/etc/dkim:/etc/dkim:ro"
+        "/etc/static:/etc/static:ro"
+        "/run/agenix:/run/agenix:ro"
         "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
         "/var/lib/redis:/var/lib/redis"
       ];

@@ -32,6 +32,8 @@ let
   all = users ++ systems;
 in
 {
+  "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
+  "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "infomaniak_env.age".publicKeys = all;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];

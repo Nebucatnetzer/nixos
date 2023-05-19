@@ -8,7 +8,7 @@
         outputs_connected = [ "eDP-1" "DP-1" ];
         atomic = true;
         configure_row = [ "DP-1" "eDP-1" ];
-        primary = "DP-1-1";
+        primary = "DP-1";
         execute_after = [
           "${pkgs.nitrogen}/bin/nitrogen --restore"
           "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"

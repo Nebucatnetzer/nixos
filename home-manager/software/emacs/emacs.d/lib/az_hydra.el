@@ -143,11 +143,11 @@
   "
     Spell Checking
     "
-  ("g" langtool-check "Check grammar")
-  ("q" langtool-check-done "Finish grammar check")
-  ("l" langtool-switch-default-language "Switch grammar language")
-  ("m" langtool-show-message-at-point "unkown")
-  ("b" langtool-correct-buffer "Correct grammar in buffer")
+  ("g" languagetool-check "Check grammar")
+  ("q" languagetool-check-done "Finish grammar check")
+  ("l" languagetool-switch-default-language "Switch grammar language")
+  ("m" languagetool-show-message-at-point "unkown")
+  ("b" languagetool-correct-buffer "Correct grammar in buffer")
   ("s" ispell "Correct Spelling")
   ("d" ispell-change-dictionary "Change dictionary"))
 

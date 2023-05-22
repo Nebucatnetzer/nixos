@@ -20,6 +20,7 @@
     printing.enable = true;
     picom = {
       enable = true;
+      vSync = true;
     };
     redshift = {
       enable = true;

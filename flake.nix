@@ -6,7 +6,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware.url = "github:nixos/nixos-hardware?rev=b3a8d308a13390df35b198d4db36a654ec29e25a";
 
     agenix = {
       url = "github:ryantm/agenix";

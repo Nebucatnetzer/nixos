@@ -254,22 +254,6 @@ T - tag prefix
   ("l" image-forward-hscroll :color red)
   ("h" image-backward-hscroll :color red))
 
-(defhydra hydra-elpy (:color red)
-  "
-  Navigate errors
-  "
-  ("n" next-error "next error")
-  ("p" previous-error "previous error")
-  ("d" (progn (call-interactively 'elpy-test-django-runner) (elpy-nav-errors/body)) "current test, Django runner" :color blue)
-  ("t" (progn (call-interactively 'elpy-test-pytest-runner) (elpy-nav-errors/body)) "current test, pytest runner" :color blue)
-  ("s" (progn
-         (switch-to-buffer-other-window "*compilation*")
-         (goto-char (point-max))) "switch to compilation buffer" :color blue)
-  ("w" (venv-workon) "Workon venv…")
-  ("q" nil "quit")
-  ("Q" (kill-buffer "*compilation*") "quit and kill compilation buffer" :color blue)
-  )
-
 (use-package general
   :config
   (general-def
@@ -284,5 +268,4 @@ T - tag prefix
     "e" '(hydra-ediff/body t :which-key "Diffing")
     "i" '(hydra-yasnippet/body t :which-key "Yasnippets")
     "p" '(hydra-pdftools/body t :which-key "PDF Tools")
-    "y" '(hydra-elpy/body t :which-key "Elpy")
     "a" '(hydra-apropos/body t :which-key "Apropos Commands")))

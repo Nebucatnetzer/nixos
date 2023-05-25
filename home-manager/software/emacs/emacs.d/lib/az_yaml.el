@@ -1,5 +1,4 @@
 (use-package ansible
-  :defer t
   :mode
   (("\\.yml\\'" . ansible-mode)
    ("\\.yaml\\'" . ansible-mode))

@@ -2,4 +2,4 @@
 # name: PDB
 # key: _pdb
 # --
-import pdb; pdb.set_trace() # fmt: skip
+import pdb; pdb.set_trace()  # fmt: skip

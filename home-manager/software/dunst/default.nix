@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       global = {
-        font = "Source Code Pro 11";
+        font = "Source Code Pro 14";
         markup = "yes";
         format = "<b>%s</b>\\n%b";
         sort = "no";

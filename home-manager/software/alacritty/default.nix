@@ -51,7 +51,7 @@
           family = "Source Code Pro";
           style = "Bold Italic";
         };
-        size = 12;
+        size = 14;
       };
     };
   };

@@ -65,7 +65,7 @@
 (when (boundp 'enable-font)
   (set-face-attribute 'default nil
                       :family "Source Code Pro"
-                      :height 120
+                      :height 140
                       :weight 'normal
                       :width 'normal))
 

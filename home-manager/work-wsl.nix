@@ -53,5 +53,8 @@ in
       . ~/.nixos/home-manager/configs/bash/work_wsl_bashrc
       . /home/zweili/.nix-profile/etc/profile.d/nix.sh
     '';
+    shellAliases = {
+      work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+    };
   };
 }

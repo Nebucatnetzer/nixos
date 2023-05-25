@@ -118,9 +118,6 @@
       source-code-pro
       unrar
     ];
-    shellAliases = {
-      management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";
-    };
     variables = {
       WINIT_X11_SCALE_FACTOR = "1";
     };

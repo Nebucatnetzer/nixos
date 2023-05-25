@@ -66,6 +66,10 @@ in
         sudo iptables -D INPUT -p tcp --dport $port -j ACCEPT
       }
     '';
+    shellAliases = {
+      management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";
+      work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+    };
   };
 
   services.nextcloud-client = {

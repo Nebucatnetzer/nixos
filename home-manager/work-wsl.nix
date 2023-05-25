@@ -50,7 +50,6 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      . ~/.nixos/home-manager/configs/bash/work_wsl_bashrc
       . /home/zweili/.nix-profile/etc/profile.d/nix.sh
     '';
     shellAliases = {

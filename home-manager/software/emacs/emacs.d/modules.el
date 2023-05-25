@@ -7,7 +7,7 @@
 (load-file (modules-path "az_utils.el"))
 (load-file (modules-path "az_various.el"))
 (load-file (modules-path "az_window_split.el"))
-;;(load-file (modules-path "xclip.el"))
+(load-file (modules-path "az_xclip.el"))
 
 ;; keybindings
 (load-file (modules-path "az_evil.el"))

@@ -75,6 +75,7 @@
       epkgs.projectile
       epkgs.projectile-ripgrep
       epkgs.python-mode
+      epkgs.python-pytest
       epkgs.queue
       epkgs.rainbow-delimiters
       epkgs.restclient

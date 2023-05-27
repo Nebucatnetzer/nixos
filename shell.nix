@@ -4,6 +4,7 @@ let
     origin=$(${pkgs.coreutils-full}/bin/readlink /run/current-system)
     result=$(${pkgs.lib.getExe pkgs.nixos-rebuild} build && ${pkgs.coreutils-full}/bin/readlink result)
     ${pkgs.diffutils}/bin/diff -q <(echo "$origin" ) <(echo "$result")
+    rm ./result
   '';
 in
 pkgs.mkShell {

@@ -1,9 +1,18 @@
-{ custom }: { pkgs, ... }:
+{ custom }: { config, lib, pkgs, ... }:
+let
+  cfg = config.programs.makemkv;
+in
 {
-  home-manager.users.${custom.username} = {
-    home.packages = with pkgs; [
-      makemkv
-    ];
+  options = {
+    programs.makemkv.enable = lib.mkEnableOption "MakeMKV";
   };
-  boot.kernelModules = [ "sg" ];
+
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${custom.username} = {
+      home.packages = with pkgs; [
+        makemkv
+      ];
+    };
+    boot.kernelModules = [ "sg" ];
+  };
 }

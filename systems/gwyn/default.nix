@@ -53,6 +53,7 @@
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
+  programs.makemkv.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
 }

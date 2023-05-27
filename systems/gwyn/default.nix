@@ -5,7 +5,6 @@
     custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
     "${custom.inputs.self}/hardware/bluetooth"
-    "${custom.inputs.self}/hardware/nvidia"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
@@ -51,6 +50,7 @@
   ];
 
   hardware = {
+    az_nvidia.enable = true;
     dvd.enable = true;
   };
 

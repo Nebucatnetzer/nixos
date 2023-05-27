@@ -42,6 +42,10 @@
     { device = "/dev/disk/by-label/swap"; }
   ];
 
+  hardware = {
+    dvd.enable = true;
+  };
+
   programs = {
     lockscreen.enable = true;
     makemkv.enable = true;

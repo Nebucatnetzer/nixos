@@ -6,7 +6,6 @@
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
     "${custom.inputs.self}/hardware/bluetooth"
     "${custom.inputs.self}/hardware/nvidia"
-    "${custom.inputs.self}/hardware/dvd"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
@@ -50,6 +49,10 @@
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
+
+  hardware = {
+    dvd.enable = true;
+  };
 
   programs = {
     lockscreen.enable = true;

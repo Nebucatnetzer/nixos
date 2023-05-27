@@ -1,4 +1,4 @@
-{ custom }: { config, lib, pkgs, ... }:
+{ config, custom, lib, pkgs, ... }:
 let
   cfg = config.programs.makemkv;
 in

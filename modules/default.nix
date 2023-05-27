@@ -1,9 +1,9 @@
 { custom }: { ... }:
 {
   imports = [
-    (import ./eog { inherit custom; })
+    ./eog
     ./lockscreen
-    (import ./makemkv { inherit custom; })
+    ./makemkv
     ./rdp
   ];
 }

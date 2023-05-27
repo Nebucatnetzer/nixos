@@ -1,4 +1,4 @@
-{ custom }: { pkgs, ... }:
+{ custom }: { lib, pkgs, ... }:
 {
   # The rough location
   location = {
@@ -8,7 +8,7 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
-  services.timesyncd.enable = true;
+  services.timesyncd.enable = lib.mkForce true;
 
   services.nscd.enableNsncd = true;
   networking = {

@@ -1,8 +1,17 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.services.rdp;
+in
 {
-  services.xrdp = {
-    enable = true;
-    defaultWindowManager = "${pkgs.qtile}/bin/qtile start";
+  options = {
+    services.rdp.enable = lib.mkEnableOption "enable rdp";
   };
-  networking.firewall.allowedTCPPorts = [ 3389 ];
+
+  config = lib.mkIf cfg.enable {
+    services.xrdp = {
+      enable = true;
+      defaultWindowManager = "${pkgs.qtile}/bin/qtile start";
+    };
+    networking.firewall.allowedTCPPorts = [ 3389 ];
+  };
 }

@@ -9,7 +9,6 @@
     "${custom.inputs.self}/hardware/dvd"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     "${custom.inputs.self}/modules/logs-share"
-    "${custom.inputs.self}/modules/rdp"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
     "${custom.inputs.self}/modules/tlp"
   ];
@@ -56,6 +55,8 @@
     lockscreen.enable = true;
     makemkv.enable = true;
   };
+
+  services.rdp.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
 }

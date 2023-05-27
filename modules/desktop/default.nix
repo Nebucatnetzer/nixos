@@ -3,7 +3,6 @@
   imports = [
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/email" { inherit custom; })
-    (import "${custom.inputs.self}/modules/eog" { inherit custom; })
     "${custom.inputs.self}/modules/hunspell"
     (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
     (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
@@ -52,6 +51,9 @@
 
   # Enable dconf to be able to save Nautilus settings
   programs.dconf.enable = true;
+
+  # Gnome Image Viewer
+  programs.eog.enable = true;
 
   # Enable Flatpack
   services.flatpak.enable = true;

@@ -1,14 +1,21 @@
-{ pkgs, ... }:
-
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.programs.lockscreen;
+in
 {
-  # enable lockscreen
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = "${pkgs.i3lock}/bin/i3lock -c 000000";
+  options = {
+    programs.lockscreen.enable = lib.mkEnableOption "Lockscreen";
   };
 
-  environment.systemPackages = with pkgs; [
-    i3lock
-  ];
+  config = lib.mkIf cfg.enable {
+    programs.xss-lock = {
+      enable = true;
+      lockerCommand = "${pkgs.i3lock}/bin/i3lock -c 000000";
+    };
+
+    environment.systemPackages = with pkgs; [
+      i3lock
+    ];
+  };
 }
 

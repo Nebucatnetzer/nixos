@@ -8,7 +8,6 @@
     "${custom.inputs.self}/hardware/nvidia"
     "${custom.inputs.self}/hardware/dvd"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
-    "${custom.inputs.self}/modules/lockscreen"
     "${custom.inputs.self}/modules/logs-share"
     "${custom.inputs.self}/modules/rdp"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
@@ -52,7 +51,11 @@
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
-  programs.makemkv.enable = true;
+
+  programs = {
+    lockscreen.enable = true;
+    makemkv.enable = true;
+  };
 
   virtualisation.virtualbox.host.enable = true;
 }

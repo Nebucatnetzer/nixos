@@ -4,7 +4,6 @@
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
     custom.inputs.nixos-hardware.nixosModules.common-pc-laptop
     custom.inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${custom.inputs.self}/hardware/bluetooth"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     (import "${custom.inputs.self}/modules/docker" { inherit custom; })
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
@@ -43,6 +42,7 @@
   ];
 
   hardware = {
+    az_bluetooth.enable = true;
     dvd.enable = true;
   };
 

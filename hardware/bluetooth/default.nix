@@ -1,19 +1,26 @@
-{ ... }:
-
+{ config, lib, ... }:
+let
+  cfg = config.hardware.az_bluetooth;
+in
 {
-  # Blueooth support in general
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = false;
+  options = {
+    hardware.az_bluetooth.enable = lib.mkEnableOption "Enable Bluetooth";
   };
 
-  # Blueman applet
-  services.blueman.enable = true;
+  config = lib.mkIf cfg.enable {
+    # Blueooth support in general
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
 
-  systemd.user.services.blueman-applet = {
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
+    # Blueman applet
+    services.blueman.enable = true;
+
+    systemd.user.services.blueman-applet = {
+      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+    };
   };
-
 }
 

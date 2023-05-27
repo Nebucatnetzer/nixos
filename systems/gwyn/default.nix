@@ -4,7 +4,6 @@
     custom.inputs.nixos-hardware.nixosModules.dell-precision-5530
     custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${custom.inputs.self}/hardware/bluetooth"
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
@@ -50,6 +49,7 @@
   ];
 
   hardware = {
+    az_bluetooth.enable = true;
     az_nvidia.enable = true;
     dvd.enable = true;
   };

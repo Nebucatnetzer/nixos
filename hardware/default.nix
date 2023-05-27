@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./bluetooth
     ./dvd
     ./nvidia
   ];

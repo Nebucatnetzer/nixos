@@ -6,7 +6,6 @@
 (use-package flycheck
   :hook
   ((python-mode . flycheck-mode)
-   (nix-mode . flycheck-mode)
    (yaml-mode . flycheck-mode)))
 
 (defhydra hydra-flycheck (:color blue)

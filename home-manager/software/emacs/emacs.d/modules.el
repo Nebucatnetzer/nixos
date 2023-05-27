@@ -33,6 +33,7 @@
 (load-file (modules-path "az_flycheck.el"))
 (load-file (modules-path "az_languageserver.el"))
 (load-file (modules-path "az_magit.el"))
+(load-file (modules-path "az_nix.el"))
 (load-file (modules-path "az_powershell.el"))
 (load-file (modules-path "az_projectile.el"))
 (load-file (modules-path "az_python.el"))

@@ -9,6 +9,7 @@
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher
+    unstable.nil # Nix language server
   ];
 
   programs.emacs = {

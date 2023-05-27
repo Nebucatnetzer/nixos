@@ -23,8 +23,8 @@ However this requires some prerequisites.
 2. Build the image with `scripts/build-raspi-image.sh SYSTEMNAME`
 3. Flash the image to an SD card
    `dd if=~/Downloads/SYSTEMNAME.img of=/dev/mmcblk0 bs=4M`.
-4. After you've booted the Pi get the new SSH key with `ssh-keyscan
-    hostname.custom.domain` and add it to `scrts/secrets.nix`.
+4. After you've booted the Pi get the new SSH key with
+   `ssh-keyscan hostname.custom.domain` and add it to `scrts/secrets.nix`.
 5. Then login into the new Pi and mount the `FIRMWARE` partition with
    `sudo mkdir -p /mnt && sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make
    sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
@@ -46,3 +46,22 @@ The script requires Xonsh but can be easily adapted to BASH or similar.
 ## Non-Nixos System
 
 1. `scripts/install-home-manager.sh`
+
+## Development
+
+### Options template
+
+```nix
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.programs.NAME;
+in
+{
+  options = {
+    programs.NAME.enable = lib.mkEnableOption "DESCRIPTION";
+  };
+
+  config = lib.mkIf cfg.enable {
+  };
+}
+```

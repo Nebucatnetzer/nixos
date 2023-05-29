@@ -4,7 +4,7 @@
     custom.inputs.nixos-hardware.nixosModules.dell-precision-5530
     custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
-    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    "${custom.inputs.self}/modules/desktop"
     "${custom.inputs.self}/modules/logs-share"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
     "${custom.inputs.self}/modules/tlp"

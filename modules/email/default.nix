@@ -1,8 +1,8 @@
-{ custom }: { config, ... }:
+{ config, inputs, ... }:
 {
   age.secrets.personalEmailKey =
     {
-      file = "${custom.inputs.self}/scrts/personal_email.key.age";
+      file = "${inputs.self}/scrts/personal_email.key.age";
       mode = "600";
       owner = config.az-username;
       group = "users";

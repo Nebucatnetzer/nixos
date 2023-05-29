@@ -1,7 +1,7 @@
 { custom, hostname }: { config, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    "${custom.inputs.self}/modules/desktop"
     "${custom.inputs.self}/modules/logs-share"
   ];
   boot.initrd.availableKernelModules = [

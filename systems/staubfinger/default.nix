@@ -4,7 +4,7 @@
     custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
     custom.inputs.nixos-hardware.nixosModules.common-pc-laptop
     custom.inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
+    "${custom.inputs.self}/modules/desktop"
     "${custom.inputs.self}/modules/docker"
     (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
     "${custom.inputs.self}/modules/tlp"

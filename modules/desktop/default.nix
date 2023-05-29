@@ -1,14 +1,14 @@
-{ custom }: { pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
-    "${custom.inputs.self}/modules/docker"
-    (import "${custom.inputs.self}/modules/email" { inherit custom; })
-    "${custom.inputs.self}/modules/hunspell"
-    "${custom.inputs.self}/modules/libimobiledevice"
-    "${custom.inputs.self}/modules/nix-direnv"
-    "${custom.inputs.self}/modules/pipewire"
-    "${custom.inputs.self}/modules/scripts"
-    "${custom.inputs.self}/modules/tmux"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/email"
+    "${inputs.self}/modules/hunspell"
+    "${inputs.self}/modules/libimobiledevice"
+    "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/pipewire"
+    "${inputs.self}/modules/scripts"
+    "${inputs.self}/modules/tmux"
   ];
   networking = {
     networkmanager.enable = true;

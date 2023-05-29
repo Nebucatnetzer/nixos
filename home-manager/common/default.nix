@@ -6,7 +6,7 @@
   home = {
     username = custom.username;
     homeDirectory = "/home/${custom.username}";
-    stateVersion = custom.version;
+    stateVersion = "22.11";
     sessionVariables = {
       EDITOR = "vim";
       HIGHLIGHT_STYLE = "solarized-light";

@@ -1,12 +1,12 @@
 { custom }: { pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     (import "${custom.inputs.self}/modules/email" { inherit custom; })
     "${custom.inputs.self}/modules/hunspell"
-    (import "${custom.inputs.self}/modules/libimobiledevice" { inherit custom; })
-    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
-    (import "${custom.inputs.self}/modules/pipewire" { inherit custom; })
+    "${custom.inputs.self}/modules/libimobiledevice"
+    "${custom.inputs.self}/modules/nix-direnv"
+    "${custom.inputs.self}/modules/pipewire"
     "${custom.inputs.self}/modules/scripts"
     "${custom.inputs.self}/modules/tmux"
   ];

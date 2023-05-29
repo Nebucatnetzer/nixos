@@ -11,7 +11,7 @@
       inherit custom;
     })
     "${custom.inputs.self}/modules/nginx-acme-base"
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     "${custom.inputs.self}/modules/grav"
     "${custom.inputs.self}/modules/haproxy"
     "${custom.inputs.self}/modules/heimdall"

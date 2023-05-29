@@ -51,29 +51,29 @@ in
   age.secrets.infomaniakEnv = {
     file = "${custom.inputs.self}/scrts/infomaniak_env.age";
     mode = "600";
-    owner = custom.username;
+    owner = config.az-username;
     group = "users";
   };
   age.secrets.resticKey = {
     file = "${custom.inputs.self}/scrts/restic.key.age";
     mode = "600";
-    owner = custom.username;
+    owner = config.az-username;
     group = "users";
   };
 
-  systemd.timers."restic-backups-${custom.username}" = {
+  systemd.timers."restic-backups-${config.az-username}" = {
     wantedBy = [ "timers.target" ];
-    partOf = [ "restic-backups-${custom.username}.service" ];
+    partOf = [ "restic-backups-${config.az-username}.service" ];
     timerConfig = {
       OnCalendar = "hourly";
       RandomizedDelaySec = "15min";
     };
   };
 
-  systemd.services."restic-backups-${custom.username}" = {
+  systemd.services."restic-backups-${config.az-username}" = {
     unitConfig.ConditionACPower = true;
     serviceConfig = {
-      User = custom.username;
+      User = config.az-username;
       Type = "oneshot";
     };
     environment = {
@@ -85,7 +85,7 @@ in
       ${pkgs.restic}/bin/restic \
         --exclude-file=${custom.inputs.self}/modules/restic-client/excludes.txt \
         --tag home-dir \
-        backup /home/${custom.username}
+        backup /home/${config.az-username}
 
       ${pkgs.restic}/bin/restic \
       forget \

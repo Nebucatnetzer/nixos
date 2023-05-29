@@ -11,7 +11,7 @@
       time = "02:30";
       inherit custom;
     })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     "${custom.inputs.self}/modules/media-share"
     (import "${custom.inputs.self}/modules/plex" { inherit custom; })
   ];

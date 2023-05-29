@@ -18,7 +18,7 @@ in
     (import "${custom.inputs.self}/modules/gitea" {
       inherit custom domain;
     })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     "${custom.inputs.self}/modules/mariadb"
   ];
 }

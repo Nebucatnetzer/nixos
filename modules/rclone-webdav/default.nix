@@ -1,6 +1,6 @@
-{ custom }: { pkgs, ... }:
+{ custom }: { config, pkgs, ... }:
 let
-  pathToMonitor = "/home/${custom.username}/10_documents/";
+  pathToMonitor = "/home/${config.az-username}/10_documents/";
   syncNotes = pkgs.writeShellScriptBin "monitor-notes" ''
     ${pkgs.rclone}/bin/rclone bisync -P --remove-empty-dirs --max-delete=10 --exclude=/99_archive/** nextcloud:10_documents ${pathToMonitor}
   '';
@@ -14,9 +14,9 @@ in
   ];
   age.secrets.webdavSecrets = {
     file = "${custom.inputs.self}/scrts/webdav_andreas.age";
-    path = "/home/${custom.username}/.config/rclone/rclone.conf";
+    path = "/home/${config.az-username}/.config/rclone/rclone.conf";
     mode = "600";
-    owner = "${custom.username}";
+    owner = "${config.az-username}";
     group = "users";
   };
 
@@ -32,7 +32,7 @@ in
   systemd.services."rclone-webdav-sync" = {
     after = [ "network-online.target" ];
     serviceConfig = {
-      User = custom.username;
+      User = config.az-username;
       Type = "oneshot";
     };
     onFailure = [ "unit-status-telegram@%n.service" ];
@@ -43,7 +43,7 @@ in
     requires = [ "network-online.target" ];
     after = [ "network-online.target" ];
     serviceConfig = {
-      User = custom.username;
+      User = config.az-username;
     };
     onFailure = [ "unit-status-telegram@%n.service" ];
     wantedBy = [ "multi-user.target" ];

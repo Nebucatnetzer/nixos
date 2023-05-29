@@ -5,5 +5,6 @@
     ./lockscreen
     ./makemkv
     ./rdp
+    ./username
   ];
 }

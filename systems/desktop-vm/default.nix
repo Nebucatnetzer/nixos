@@ -1,4 +1,4 @@
-{ custom, hostname }: { ... }:
+{ custom, hostname }: { config, ... }:
 {
   imports = [
     (import "${custom.inputs.self}/modules/desktop" { inherit custom; })
@@ -38,7 +38,7 @@
 
   virtualisation.virtualbox.guest.enable = true;
   virtualisation.virtualbox.guest.x11 = true;
-  users.users.${custom.username} = {
+  users.users.${config.az-username} = {
     extraGroups = [
       "vboxsf"
     ];

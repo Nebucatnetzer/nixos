@@ -6,8 +6,8 @@ in
   imports = [
     custom.inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${custom.inputs.self}/modules/log-to-ram"
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
-    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
+    "${custom.inputs.self}/modules/nix-direnv"
     "${custom.inputs.self}/modules/tmux"
   ];
 

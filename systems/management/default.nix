@@ -5,10 +5,10 @@
       ip = "10.7.89.150";
       inherit custom hostname;
     })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     "${custom.inputs.self}/modules/data-share"
     "${custom.inputs.self}/modules/logs-share"
-    (import "${custom.inputs.self}/modules/nix-direnv" { inherit custom; })
+    "${custom.inputs.self}/modules/nix-direnv"
     (import "${custom.inputs.self}/modules/rclone-webdav" { inherit custom; })
     (import "${custom.inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";

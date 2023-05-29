@@ -5,7 +5,7 @@
       ip = "10.7.89.10";
       inherit hostname custom;
     })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     "${custom.inputs.self}/modules/tmux"
   ];
 }

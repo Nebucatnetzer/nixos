@@ -1,4 +1,4 @@
-{ custom }: { lib, pkgs, ... }:
+{ custom }: { config, lib, pkgs, ... }:
 {
   # The rough location
   location = {
@@ -65,7 +65,7 @@
   # Disable the root user
   users.users.root.hashedPassword = "!";
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${custom.username} = {
+  users.users.${config.az-username} = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [
@@ -123,6 +123,8 @@
       }
     ];
   };
+  az-username = "andreas";
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

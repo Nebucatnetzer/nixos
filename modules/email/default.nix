@@ -4,11 +4,11 @@
     {
       file = "${custom.inputs.self}/scrts/personal_email.key.age";
       mode = "600";
-      owner = custom.username;
+      owner = config.az-username;
       group = "users";
     };
 
-  home-manager.users.${custom.username} = {
+  home-manager.users.${config.az-username} = {
     accounts.email.accounts."personal" = {
       address = "andreas@zweili.ch";
       realName = "Andreas Zweili";

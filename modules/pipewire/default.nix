@@ -1,4 +1,4 @@
-{ custom }: { lib, ... }:
+{ config, lib, ... }:
 {
   hardware.pulseaudio.enable = lib.mkForce false;
   security.rtkit.enable = true;
@@ -14,7 +14,7 @@
       }];
     };
   };
-  home-manager.users.${custom.username} = {
+  home-manager.users.${config.az-username} = {
     services.easyeffects.enable = true;
   };
 }

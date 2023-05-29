@@ -13,7 +13,7 @@
     (import "${custom.inputs.self}/modules/nginx-proxy" {
       domain = "mail.zweili.org"; inherit custom;
     })
-    (import "${custom.inputs.self}/modules/docker" { inherit custom; })
+    "${custom.inputs.self}/modules/docker"
     (import "${custom.inputs.self}/modules/docker-mailserver" { inherit custom; })
   ];
 }

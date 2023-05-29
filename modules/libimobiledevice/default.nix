@@ -1,4 +1,4 @@
-{ custom }: { pkgs, ... }:
+{ config, pkgs, ... }:
 {
   services.usbmuxd.enable = true;
   environment.systemPackages = with pkgs;
@@ -6,7 +6,7 @@
       libimobiledevice
     ];
 
-  home-manager.users.${custom.username} = {
+  home-manager.users.${config.az-username} = {
     home.shellAliases = {
       iphone-backup = ''
         backup_dir=~/Downloads/$(date -I)_iphone &&

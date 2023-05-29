@@ -1,4 +1,4 @@
-{ config, custom, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.programs.az-makemkv;
 in
@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.${custom.username} = {
+    home-manager.users.${config.az-username} = {
       home.packages = with pkgs; [
         makemkv
       ];

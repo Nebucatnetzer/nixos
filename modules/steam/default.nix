@@ -1,4 +1,4 @@
-{ custom }: { ... }:
+{ config, ... }:
 {
   programs.steam.enable = true;
   hardware.steam-hardware.enable = true;
@@ -6,7 +6,7 @@
     allowedTCPPorts = [ 27036 ];
     allowedUDPPorts = [ 27031 ];
   };
-  home-manager.users.${custom.username} = {
+  home-manager.users.${config.az-username} = {
     home.file.".local/share/applications/steam.desktop".source = ./steam.desktop;
   };
 }

@@ -1,4 +1,4 @@
-{ config, custom, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.programs.az-eog;
 in
@@ -11,7 +11,7 @@ in
     environment.systemPackages = with pkgs; [
       gnome.eog
     ];
-    home-manager.users.${custom.username} = {
+    home-manager.users.${config.az-username} = {
       xdg.mimeApps = {
         enable = true;
         associations.added = {

@@ -3,9 +3,8 @@ let
   repository = "/var/lib/restic-server";
 in
 {
-  imports = [
-    "${inputs.self}/modules/telegram-notifications"
-  ];
+  services.az-telegram-notifications.enable = true;
+
   age.secrets.resticKey = {
     file = "${inputs.self}/scrts/restic.key.age";
     mode = "440";

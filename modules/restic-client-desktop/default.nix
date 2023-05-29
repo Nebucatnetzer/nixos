@@ -43,9 +43,7 @@ let
     ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
 in
 {
-  imports = [
-    "${inputs.self}/modules/telegram-notifications"
-  ];
+  services.az-telegram-notifications.enable = true;
 
   age.secrets.infomaniakEnv = {
     file = "${inputs.self}/scrts/infomaniak_env.age";

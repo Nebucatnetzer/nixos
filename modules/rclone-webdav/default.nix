@@ -6,9 +6,8 @@ let
   '';
 in
 {
-  imports = [
-    "${inputs.self}/modules/telegram-notifications"
-  ];
+  services.az-telegram-notifications.enable = true;
+
   age.secrets.webdavSecrets = {
     file = "${inputs.self}/scrts/webdav_andreas.age";
     path = "/home/${config.az-username}/.config/rclone/rclone.conf";

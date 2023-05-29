@@ -11,9 +11,7 @@ let
   });
 in
 {
-  imports = [
-    "${inputs.self}/modules/telegram-notifications"
-  ];
+  services.az-telegram-notifications.enable = true;
 
   age.secrets.dkim2liCh = {
     file = "${inputs.self}/scrts/dkim_2li.ch.age";

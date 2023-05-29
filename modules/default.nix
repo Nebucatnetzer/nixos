@@ -9,6 +9,7 @@
     ./lockscreen
     ./makemkv
     ./rdp
+    ./telegram-notifications
     ./username
   ];
 }

@@ -35,7 +35,6 @@ custom.inputs.nixpkgs.lib.nixosSystem {
         { inherit custom hostname; })
 
       # Common configuration
-      (import "${custom.inputs.self}/modules/common" { inherit custom; })
       (import "${custom.inputs.self}/modules/default.nix" { inherit custom; })
       "${custom.inputs.self}/hardware/default.nix"
 

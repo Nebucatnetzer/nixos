@@ -6,7 +6,6 @@
       inherit custom hostname;
     })
     "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/data-share"
     "${custom.inputs.self}/modules/logs-share"
     "${custom.inputs.self}/modules/nix-direnv"
     (import "${custom.inputs.self}/modules/rclone-webdav" { inherit custom; })
@@ -25,4 +24,5 @@
       options = [ "x-systemd.automount" "noauto" "noatime" "uid=1000" "gid=100" ];
     };
   };
+  services.az-data-share.enable = true;
 }

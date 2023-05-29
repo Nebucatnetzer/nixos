@@ -1,13 +1,13 @@
-{ custom, hostname }: { lib, ... }:
+{ hostname }: { inputs, lib, ... }:
 {
   imports = [
-    custom.inputs.nixos-hardware.nixosModules.dell-precision-5530
-    custom.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
-    custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${custom.inputs.self}/modules/desktop"
-    "${custom.inputs.self}/modules/logs-share"
-    (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
-    "${custom.inputs.self}/modules/tlp"
+    inputs.nixos-hardware.nixosModules.dell-precision-5530
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/logs-share"
+    "${inputs.self}/modules/restic-client-desktop"
+    "${inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

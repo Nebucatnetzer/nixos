@@ -36,7 +36,7 @@ custom.inputs.nixpkgs.lib.nixosSystem
     [
       # System configuration for this host
       (import "${custom.inputs.self}/systems/${hostname}" {
-        inherit custom hostname;
+        inherit hostname;
       })
 
       # Common configuration

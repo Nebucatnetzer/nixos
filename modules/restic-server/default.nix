@@ -1,13 +1,13 @@
-{ custom }: { config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 let
   repository = "/var/lib/restic-server";
 in
 {
   imports = [
-    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
+    "${inputs.self}/modules/telegram-notifications"
   ];
   age.secrets.resticKey = {
-    file = "${custom.inputs.self}/scrts/restic.key.age";
+    file = "${inputs.self}/scrts/restic.key.age";
     mode = "440";
     owner = "restic";
     group = "restic";

@@ -1,4 +1,4 @@
-{ custom }: { config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 let
   password_file = config.age.secrets.resticKey.path;
   repository = "rest:http://10.7.89.30:8000";
@@ -44,18 +44,17 @@ let
 in
 {
   imports = [
-    (import "${custom.inputs.self}/modules/telegram-notifications"
-      { inherit custom; })
+    "${inputs.self}/modules/telegram-notifications"
   ];
 
   age.secrets.infomaniakEnv = {
-    file = "${custom.inputs.self}/scrts/infomaniak_env.age";
+    file = "${inputs.self}/scrts/infomaniak_env.age";
     mode = "600";
     owner = config.az-username;
     group = "users";
   };
   age.secrets.resticKey = {
-    file = "${custom.inputs.self}/scrts/restic.key.age";
+    file = "${inputs.self}/scrts/restic.key.age";
     mode = "600";
     owner = config.az-username;
     group = "users";
@@ -83,7 +82,7 @@ in
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
-        --exclude-file=${custom.inputs.self}/modules/restic-client/excludes.txt \
+        --exclude-file=${inputs.self}/modules/restic-client/excludes.txt \
         --tag home-dir \
         backup /home/${config.az-username}
 

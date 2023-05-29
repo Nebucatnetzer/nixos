@@ -1,18 +1,17 @@
-{ custom, hostname }: { pkgs, ... }:
+{ hostname }: { inputs, pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/systems/raspi4" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.112";
-      inherit custom hostname;
+      inherit hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-client-server" {
+    (import "${inputs.self}/modules/restic-client-server" {
       path = "/var/lib/plex";
       tag = "plex";
       time = "02:30";
-      inherit custom;
     })
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/media-share"
-    (import "${custom.inputs.self}/modules/plex" { inherit custom; })
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/media-share"
+    "${inputs.self}/modules/plex"
   ];
 }

@@ -1,8 +1,8 @@
-{ custom, hostname }: { config, ... }:
+{ hostname }: { config, inputs, ... }:
 {
   imports = [
-    "${custom.inputs.self}/modules/desktop"
-    "${custom.inputs.self}/modules/logs-share"
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/logs-share"
   ];
   boot.initrd.availableKernelModules = [
     "ata_piix"

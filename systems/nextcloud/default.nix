@@ -1,22 +1,22 @@
-{ custom, hostname }: { pkgs, ... }:
+{ hostname }: { inputs, pkgs, ... }:
 let
   domain = "nextcloud.2li.ch";
 in
 {
   imports = [
-    (import "${custom.inputs.self}/systems/raspi4" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.103";
-      inherit custom hostname;
+      inherit hostname;
     })
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/mariadb"
-    (import "${custom.inputs.self}/modules/nextcloud" {
-      inherit custom domain;
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/mariadb"
+    (import "${inputs.self}/modules/nextcloud" {
+      inherit domain;
     })
-    "${custom.inputs.self}/modules/nginx-acme-base"
-    (import "${custom.inputs.self}/modules/restic-client-server-mysql" {
+    "${inputs.self}/modules/nginx-acme-base"
+    (import "${inputs.self}/modules/restic-client-server-mysql" {
       path = "/home/andreas";
-      time = "01:30"; inherit custom;
+      time = "01:30";
     })
   ];
 

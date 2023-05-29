@@ -1,6 +1,6 @@
-{ custom, domain }: { config, ... }:
+{ domain }: { config, inputs, ... }:
 {
-  age.secrets.giteaEnv.file = "${custom.inputs.self}/scrts/gitea_env.age";
+  age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
   virtualisation.oci-containers = {
     backend = "docker";

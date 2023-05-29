@@ -1,6 +1,6 @@
-{ custom, domain, port ? "8080" }: { ... }: {
+{ domain, port ? "8080" }: { inputs, ... }: {
   imports = [
-    "${custom.inputs.self}/modules/nginx-acme-base"
+    "${inputs.self}/modules/nginx-acme-base"
   ];
   services.nginx = {
     appendHttpConfig = ''

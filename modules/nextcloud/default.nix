@@ -1,4 +1,4 @@
-{ custom, domain }: { config, pkgs, ... }:
+{ domain }: { config, inputs, pkgs, ... }:
 let
   nextcloudEnvironment = {
     MYSQL_DATABASE = "nextcloud";
@@ -17,7 +17,7 @@ let
   cronService = "${config.virtualisation.oci-containers.backend}-cron";
 in
 {
-  age.secrets.nextcloudEnv.file = "${custom.inputs.self}/scrts/nextcloud_env.age";
+  age.secrets.nextcloudEnv.file = "${inputs.self}/scrts/nextcloud_env.age";
 
   services.mysql.settings = {
     mysqld = {
@@ -36,7 +36,7 @@ in
       environment = nextcloudEnvironment;
       environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
       volumes = [
-        "${custom.inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini"
+        "${inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini"
         "/etc/localtime:/etc/localtime:ro"
       ];
       dependsOn = [ "redis" ];
@@ -54,7 +54,7 @@ in
         "8080:80"
       ];
       volumes = [
-        "${custom.inputs.self}/modules/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
+        "${inputs.self}/modules/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [

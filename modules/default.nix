@@ -1,4 +1,4 @@
-{ custom }: { ... }:
+{ ... }:
 {
   imports = [
     ./common

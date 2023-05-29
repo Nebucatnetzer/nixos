@@ -1,14 +1,13 @@
-{ custom
-, path
+{ path
 , tag ? "home-dir"
 , time
-}: { config, pkgs, ... }:
+}: { config, inputs, pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
+    "${inputs.self}/modules/telegram-notifications"
   ];
 
-  age.secrets.resticKey.file = "${custom.inputs.self}/scrts/restic.key.age";
+  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
 
   systemd.timers."restic-backups" = {
     wantedBy = [ "timers.target" ];
@@ -30,7 +29,7 @@
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
-        --exclude-file=${custom.inputs.self}/modules/restic-client/excludes.txt \
+        --exclude-file=${inputs.self}/modules/restic-client/excludes.txt \
         --tag ${tag} ${path}
 
       ${pkgs.mariadb}/bin/mariabackup --backup --user=root --stream=xbstream | \

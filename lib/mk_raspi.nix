@@ -32,10 +32,10 @@ custom.inputs.nixpkgs.lib.nixosSystem {
     [
       # System configuration for this host
       (import "${custom.inputs.self}/systems/${hostname}"
-        { inherit custom hostname; })
+        { inherit hostname; })
 
       # Common configuration
-      (import "${custom.inputs.self}/modules/default.nix" { inherit custom; })
+      "${custom.inputs.self}/modules/default.nix"
       "${custom.inputs.self}/hardware/default.nix"
 
       custom.inputs.agenix.nixosModules.age

@@ -1,12 +1,12 @@
-{ custom, hostname }: { pkgs, ... }:
+{ hostname }: { inputs, pkgs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/systems/raspi4" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.40";
-      inherit hostname custom;
+      inherit hostname;
     })
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/nix-direnv"
-    "${custom.inputs.self}/modules/tmux"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/tmux"
   ];
 }

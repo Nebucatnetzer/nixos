@@ -1,4 +1,4 @@
-{ custom, domain }: { config, ... }:
+{ domain }: { config, inputs, ... }:
 let
   ttrssEnvironment = {
     TZ = "Europe/Zurich";
@@ -17,13 +17,13 @@ let
 in
 {
   imports = [
-    (import "${custom.inputs.self}/modules/nginx-fpm" {
+    (import "${inputs.self}/modules/nginx-fpm" {
       dataDir = "/var/lib/ttrss/html";
-      inherit custom domain;
+      inherit domain;
     })
-    "${custom.inputs.self}/modules/postgresql"
+    "${inputs.self}/modules/postgresql"
   ];
-  age.secrets.ttrssEnv.file = "${custom.inputs.self}/scrts/ttrss_env.age";
+  age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
   services.postgresql = {
     authentication = "host ttrssdb ttrss 172.16.0.0/12 scram-sha-256";

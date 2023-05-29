@@ -1,24 +1,24 @@
-{ custom, hostname }: { pkgs, ... }:
+{ hostname }: { inputs, pkgs, ... }:
 let
   domain = "git.2li.ch";
 in
 {
   imports = [
-    (import "${custom.inputs.self}/systems/raspi4" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.109";
-      inherit custom hostname;
+      inherit hostname;
     })
-    (import "${custom.inputs.self}/modules/restic-client-server-mysql" {
+    (import "${inputs.self}/modules/restic-client-server-mysql" {
       path = "/home/andreas";
-      time = "00:30"; inherit custom;
+      time = "00:30";
     })
-    (import "${custom.inputs.self}/modules/nginx-proxy" {
-      inherit custom domain;
+    (import "${inputs.self}/modules/nginx-proxy" {
+      inherit domain;
     })
-    (import "${custom.inputs.self}/modules/gitea" {
-      inherit custom domain;
+    (import "${inputs.self}/modules/gitea" {
+      inherit domain;
     })
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/mariadb"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/mariadb"
   ];
 }

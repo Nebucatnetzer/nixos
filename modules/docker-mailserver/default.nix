@@ -1,4 +1,4 @@
-{ custom }: { config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 let
   version = "12.1.0";
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
@@ -12,17 +12,17 @@ let
 in
 {
   imports = [
-    (import "${custom.inputs.self}/modules/telegram-notifications" { inherit custom; })
+    "${inputs.self}/modules/telegram-notifications"
   ];
 
   age.secrets.dkim2liCh = {
-    file = "${custom.inputs.self}/scrts/dkim_2li.ch.age";
+    file = "${inputs.self}/scrts/dkim_2li.ch.age";
     mode = "600";
     owner = "113";
     group = "115";
   };
   age.secrets.dkimZweiliCh = {
-    file = "${custom.inputs.self}/scrts/dkim_zweili.ch.age";
+    file = "${inputs.self}/scrts/dkim_zweili.ch.age";
     mode = "600";
     owner = "113";
     group = "115";

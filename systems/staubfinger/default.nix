@@ -1,14 +1,14 @@
-{ custom, hostname }: { ... }:
+{ hostname }: { inputs, ... }:
 {
   imports = [
-    custom.inputs.nixos-hardware.nixosModules.common-gpu-intel
-    custom.inputs.nixos-hardware.nixosModules.common-pc-laptop
-    custom.inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${custom.inputs.self}/modules/desktop"
-    "${custom.inputs.self}/modules/docker"
-    (import "${custom.inputs.self}/modules/restic-client-desktop" { inherit custom; })
-    "${custom.inputs.self}/modules/tlp"
-    "${custom.inputs.self}/modules/tmux"
+    inputs.nixos-hardware.nixosModules.common-gpu-intel
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    "${inputs.self}/modules/desktop"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/restic-client-desktop"
+    "${inputs.self}/modules/tlp"
+    "${inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"

@@ -1,4 +1,4 @@
-{ custom }: { config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 let
   send-to-telegram = pkgs.writeShellScript "send-to-telegram" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${config.age.secrets.telegramNotifyEnv.path} | ${pkgs.findutils}/bin/xargs)
@@ -16,7 +16,7 @@ let
     $UNITSTATUS"'';
 in
 {
-  age.secrets.telegramNotifyEnv.file = "${custom.inputs.self}/scrts/telegram_notify_env.age";
+  age.secrets.telegramNotifyEnv.file = "${inputs.self}/scrts/telegram_notify_env.age";
   systemd.services."unit-status-telegram@" = {
     description = "Unit Status Telegram Service";
     unitConfig = {

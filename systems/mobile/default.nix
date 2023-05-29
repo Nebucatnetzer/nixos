@@ -1,14 +1,14 @@
-{ custom, hostname }: { lib, pkgs, ... }:
+{ hostname }: { inputs, lib, pkgs, ... }:
 let
   ip = "10.213.0.1";
 in
 {
   imports = [
-    custom.inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    "${custom.inputs.self}/modules/log-to-ram"
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/nix-direnv"
-    "${custom.inputs.self}/modules/tmux"
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    "${inputs.self}/modules/log-to-ram"
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/tmux"
   ];
 
   boot = {

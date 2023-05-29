@@ -1,21 +1,20 @@
-{ custom, hostname }: { ... }:
+{ hostname }: { inputs, ... }:
 {
   imports = [
-    (import "${custom.inputs.self}/systems/raspi4" {
+    (import "${inputs.self}/systems/raspi4" {
       ip = "10.7.89.150";
-      inherit custom hostname;
+      inherit hostname;
     })
-    "${custom.inputs.self}/modules/docker"
-    "${custom.inputs.self}/modules/logs-share"
-    "${custom.inputs.self}/modules/nix-direnv"
-    (import "${custom.inputs.self}/modules/rclone-webdav" { inherit custom; })
-    (import "${custom.inputs.self}/modules/restic-client-server" {
+    "${inputs.self}/modules/docker"
+    "${inputs.self}/modules/logs-share"
+    "${inputs.self}/modules/nix-direnv"
+    "${inputs.self}/modules/rclone-webdav"
+    (import "${inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";
       tag = "management";
       time = "23:30";
-      inherit custom;
     })
-    "${custom.inputs.self}/modules/tmux"
+    "${inputs.self}/modules/tmux"
   ];
   fileSystems = {
     "/mnt/external" = {

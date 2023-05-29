@@ -1,4 +1,4 @@
-{ custom }: { config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   pathToMonitor = "/home/${config.az-username}/10_documents/";
   syncNotes = pkgs.writeShellScriptBin "monitor-notes" ''
@@ -7,13 +7,10 @@ let
 in
 {
   imports = [
-    (import "${custom.inputs.self}/modules/telegram-notifications"
-      {
-        inherit custom;
-      })
+    "${inputs.self}/modules/telegram-notifications"
   ];
   age.secrets.webdavSecrets = {
-    file = "${custom.inputs.self}/scrts/webdav_andreas.age";
+    file = "${inputs.self}/scrts/webdav_andreas.age";
     path = "/home/${config.az-username}/.config/rclone/rclone.conf";
     mode = "600";
     owner = "${config.az-username}";

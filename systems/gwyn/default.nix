@@ -59,7 +59,10 @@
     az-makemkv.enable = true;
   };
 
-  services.az-rdp.enable = true;
+  services = {
+    az-rdp.enable = true;
+    az-x86.enable = true;
+  };
 
   virtualisation.virtualbox.host.enable = true;
 }

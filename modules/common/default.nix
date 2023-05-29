@@ -1,4 +1,4 @@
-{ custom }: { config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 {
   # The rough location
   location = {
@@ -85,10 +85,10 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    nixPath = [ "nixpkgs=${custom.inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     registry = {
-      nixpkgs.flake = custom.inputs.nixpkgs;
-      nix-config.flake = custom.inputs.self;
+      nixpkgs.flake = inputs.nixpkgs;
+      nix-config.flake = inputs.self;
     };
 
     package = pkgs.nix;

@@ -43,5 +43,6 @@
       "vboxsf"
     ];
   };
+  services.az-x86.enable = true;
 }
 

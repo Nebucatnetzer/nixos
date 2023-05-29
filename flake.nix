@@ -53,64 +53,64 @@
         gwyn = mkComputer {
           hostname = "gwyn";
           home-module = "desktop";
-          inherit custom;
+          inherit custom inputs;
         };
         desktop-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
-          inherit custom;
+          inherit custom inputs;
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
           home-module = "desktop";
-          inherit custom;
+          inherit custom inputs;
         };
         # Servers
         git = mkRaspi {
           hostname = "git";
-          inherit custom;
+          inherit custom inputs;
         };
         loki-test = mkRaspi {
           hostname = "loki-test";
-          inherit custom;
+          inherit custom inputs;
         };
         mail = mkRaspi {
           hostname = "mail";
-          inherit custom;
+          inherit custom inputs;
         };
         nextcloud = mkRaspi {
           hostname = "nextcloud";
-          inherit custom;
+          inherit custom inputs;
         };
         plex = mkRaspi {
           hostname = "plex";
-          inherit custom;
+          inherit custom inputs;
         };
         proxy = mkRaspi {
           hostname = "proxy";
-          inherit custom;
+          inherit custom inputs;
         };
         management = mkRaspi {
           hostname = "management";
           home-module = "management";
-          inherit custom;
+          inherit custom inputs;
         };
         mobile = mkRaspi {
           hostname = "mobile";
           home-module = "management";
-          inherit custom;
+          inherit custom inputs;
         };
         restic-server = mkRaspi {
           hostname = "restic-server";
-          inherit custom;
+          inherit custom inputs;
         };
         test-raspi = mkRaspi {
           hostname = "test-raspi";
-          inherit custom;
+          inherit custom inputs;
         };
         ttrss = mkRaspi {
           hostname = "ttrss";
-          inherit custom;
+          inherit custom inputs;
         };
       };
       homeConfigurations = {
@@ -125,7 +125,7 @@
             "${custom.inputs.self}/home-manager/work-wsl.nix"
           ];
           extraSpecialArgs = {
-            inherit custom;
+            inherit custom inputs;
           };
         };
       };

@@ -1,4 +1,4 @@
-{ custom, hostname, system ? "aarch64-linux", home-module ? "headless", username ? "andreas" }:
+{ custom, hostname, inputs, system ? "aarch64-linux", home-module ? "headless", username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
     unstable = import custom.inputs.nixpkgs-unstable {
@@ -27,7 +27,7 @@ in
 
 custom.inputs.nixpkgs.lib.nixosSystem {
   inherit pkgs system;
-  specialArgs = { inherit custom; };
+  specialArgs = { inherit custom inputs; };
   modules = (
     [
       # System configuration for this host

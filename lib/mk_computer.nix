@@ -1,4 +1,4 @@
-{ custom, hostname, system ? "x86_64-linux", home-module ? "headless", username ? "andreas" }:
+{ custom, hostname, inputs, system ? "x86_64-linux", home-module ? "headless", username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
     unstable = import custom.inputs.nixpkgs-unstable {
@@ -31,7 +31,7 @@ in
 custom.inputs.nixpkgs.lib.nixosSystem
 {
   inherit system pkgs;
-  specialArgs = { inherit custom; };
+  specialArgs = { inherit custom inputs; };
   modules = (
     [
       # System configuration for this host
@@ -40,7 +40,6 @@ custom.inputs.nixpkgs.lib.nixosSystem
       })
 
       # Common configuration
-      (import "${custom.inputs.self}/modules/common-x86" { inherit custom; })
       (import "${custom.inputs.self}/modules/default.nix" { inherit custom; })
       "${custom.inputs.self}/hardware/default.nix"
 

@@ -50,6 +50,7 @@
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
   };
+  services.az-x86.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
 }

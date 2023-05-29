@@ -12,7 +12,6 @@
     (import "${inputs.self}/modules/nginx-proxy" {
       domain = "mail.zweili.org";
     })
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/docker-mailserver"
   ];
 }

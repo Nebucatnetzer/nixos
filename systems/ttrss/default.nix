@@ -8,7 +8,6 @@ in
       ip = "10.7.89.115";
       inherit hostname;
     })
-    "${inputs.self}/modules/docker"
     (import "${inputs.self}/modules/nginx-proxy" {
       domain = "rss-bridge.2li.ch";
       port = "8082";

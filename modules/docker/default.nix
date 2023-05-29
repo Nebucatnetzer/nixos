@@ -1,13 +1,21 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+let
+  cfg = config.services.az-docker;
+in
 {
-  virtualisation.docker =
-    {
-      enable = true;
-      autoPrune.enable = true;
-    };
-  users.users.${config.az-username}.extraGroups = [ "docker" ];
-  environment.systemPackages = with pkgs; [
-    docker-compose
-    lazydocker
-  ];
+  options = {
+    services.az-docker.enable = lib.mkEnableOption "DESCRIPTION";
+  };
+
+  config = lib.mkIf cfg.enable {
+    virtualisation.docker =
+      {
+        enable = true;
+        autoPrune.enable = true;
+      };
+    users.users.${config.az-username}.extraGroups = [ "docker" ];
+    environment.systemPackages = with pkgs; [
+      lazydocker
+    ];
+  };
 }

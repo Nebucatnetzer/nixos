@@ -8,7 +8,6 @@ in
       ip = "10.7.89.103";
       inherit hostname;
     })
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/mariadb"
     (import "${inputs.self}/modules/nextcloud" {
       inherit domain;

@@ -5,7 +5,6 @@
       ip = "10.7.89.150";
       inherit hostname;
     })
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/rclone-webdav"
@@ -24,4 +23,5 @@
     };
   };
   services.az-data-share.enable = true;
+  services.az-docker.enable = true;
 }

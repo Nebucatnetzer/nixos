@@ -34,6 +34,7 @@ in
     }];
   };
 
+  services.az-docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
     containers."ttrss" = {

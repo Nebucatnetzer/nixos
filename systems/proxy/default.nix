@@ -10,7 +10,6 @@
       time = "00:00";
     })
     "${inputs.self}/modules/nginx-acme-base"
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/grav"
     "${inputs.self}/modules/haproxy"
     "${inputs.self}/modules/heimdall"

@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/email"
     "${inputs.self}/modules/hunspell"
     "${inputs.self}/modules/libimobiledevice"
@@ -57,6 +56,9 @@
 
   # Enable Flatpack
   services.flatpak.enable = true;
+
+  services.az-docker.enable = true;
+
   xdg = {
     portal = {
       enable = true;

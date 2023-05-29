@@ -6,7 +6,6 @@ in
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${inputs.self}/modules/log-to-ram"
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/tmux"
   ];
@@ -125,4 +124,6 @@ in
   };
   systemd.services.dhcpd4.after = [ "usb-otg.service" ];
   systemd.services."network-addresses-usb0".after = [ "usb-otg.service" ];
+
+  services.az-docker.enable = true;
 }

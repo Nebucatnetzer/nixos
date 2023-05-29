@@ -34,6 +34,7 @@ in
     username = nixosConfig.az-username;
     packages = with pkgs; [
       digikam
+      docker-compose
       exercism
       freetube
       chromium

@@ -2,6 +2,8 @@
 {
   age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
+  services.az-docker.enable = true;
+
   virtualisation.oci-containers = {
     backend = "docker";
     containers."gitea" = {

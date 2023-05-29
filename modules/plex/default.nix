@@ -15,6 +15,9 @@
       32469 # Plex DLNA Server
     ];
   };
+
+  services.az-docker.enable = true;
+
   virtualisation.oci-containers = {
     backend = "docker";
     containers."plex" = {

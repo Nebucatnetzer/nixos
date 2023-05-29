@@ -15,6 +15,7 @@ in
 
   home.username = nixosConfig.az-username;
   home.packages = with pkgs; [
+    docker-compose
     exercism
     nodePackages.prettier # formatting files
     rclone

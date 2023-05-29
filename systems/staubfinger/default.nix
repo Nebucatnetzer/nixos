@@ -5,7 +5,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     "${inputs.self}/modules/desktop"
-    "${inputs.self}/modules/docker"
     "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
     "${inputs.self}/modules/tmux"
@@ -50,7 +49,10 @@
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
   };
-  services.az-x86.enable = true;
+  services = {
+    az-docker.enable = true;
+    az-x86.enable = true;
+  };
 
   virtualisation.virtualbox.host.enable = true;
 }

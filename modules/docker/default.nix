@@ -4,7 +4,7 @@ let
 in
 {
   options = {
-    services.az-docker.enable = lib.mkEnableOption "DESCRIPTION";
+    services.az-docker.enable = lib.mkEnableOption "Enable Docker";
   };
 
   config = lib.mkIf cfg.enable {

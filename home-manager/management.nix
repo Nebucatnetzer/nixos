@@ -1,10 +1,10 @@
-{ custom, system }: { pkgs, ... }:
+{ custom, system }: { config, nixosConfig, pkgs, ... }:
 let
   unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
 in
 {
   imports = [
-    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/common"
     (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
@@ -13,6 +13,7 @@ in
     "${custom.inputs.self}/home-manager/software/vim"
   ];
 
+  home.username = nixosConfig.az-username;
   home.packages = with pkgs; [
     exercism
     nodePackages.prettier # formatting files

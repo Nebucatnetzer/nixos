@@ -1,10 +1,10 @@
-{ custom, system }: { config, pkgs, ... }:
+{ custom, system }: { config, nixosConfig, pkgs, ... }:
 let
   unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
 in
 {
   imports = [
-    (import "${custom.inputs.self}/home-manager/common" { inherit custom; })
+    "${custom.inputs.self}/home-manager/common"
     "${custom.inputs.self}/home-manager/software/alacritty"
     "${custom.inputs.self}/home-manager/software/ansible"
     "${custom.inputs.self}/home-manager/software/calibre"
@@ -30,22 +30,25 @@ in
     "${custom.inputs.self}/home-manager/software/work-desktop"
     "${custom.inputs.self}/home-manager/software/yt-dlp"
   ];
-  home.packages = with pkgs; [
-    digikam
-    exercism
-    freetube
-    chromium
-    libreoffice-fresh
-    meld
-    nodejs # needed for ansible-language-server
-    nodePackages.prettier # formatting files
-    pulseaudio # required for volume controls in qtile
-    plexamp
-    remmina
-    shotwell
-    sound-juicer
-    unstable.tagger
-  ];
+  home = {
+    username = nixosConfig.az-username;
+    packages = with pkgs; [
+      digikam
+      exercism
+      freetube
+      chromium
+      libreoffice-fresh
+      meld
+      nodejs # needed for ansible-language-server
+      nodePackages.prettier # formatting files
+      pulseaudio # required for volume controls in qtile
+      plexamp
+      remmina
+      shotwell
+      sound-juicer
+      unstable.tagger
+    ];
+  };
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
@@ -67,7 +70,7 @@ in
       }
     '';
     shellAliases = {
-      management-server = "mosh ${custom.username}@10.7.89.150 -- tmux new -A -s 0";
+      management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
       work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
     };
   };

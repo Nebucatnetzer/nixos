@@ -1,11 +1,10 @@
-{ custom }: { pkgs, ... }:
+{ config, pkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs.home-manager.enable = true;
   home = {
-    username = custom.username;
-    homeDirectory = "/home/${custom.username}";
+    homeDirectory = "/home/${config.home.username}";
     stateVersion = "22.11";
     sessionVariables = {
       EDITOR = "vim";

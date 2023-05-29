@@ -1,4 +1,4 @@
-{ custom, hostname, system ? "x86_64-linux", home-module ? "headless" }:
+{ custom, hostname, system ? "x86_64-linux", home-module ? "headless", username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
     unstable = import custom.inputs.nixpkgs-unstable {
@@ -45,13 +45,16 @@ custom.inputs.nixpkgs.lib.nixosSystem
       "${custom.inputs.self}/hardware/default.nix"
 
       custom.inputs.agenix.nixosModules.age
-      { environment.systemPackages = [ custom.inputs.agenix.packages.${system}.default ]; }
+      {
+        environment.systemPackages = [ custom.inputs.agenix.packages.${system}.default ];
+        az-username = username;
+      }
 
       custom.inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-        home-manager.users.${custom.username}.imports = [
+        home-manager.users.andreas.imports = [
           (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom system; })
         ];
       }

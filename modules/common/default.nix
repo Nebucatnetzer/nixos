@@ -123,7 +123,6 @@
       }
     ];
   };
-  az-username = "andreas";
 
 
   # This value determines the NixOS release from which the default

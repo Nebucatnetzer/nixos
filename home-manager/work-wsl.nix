@@ -4,9 +4,7 @@ let
 in
 {
   imports = [
-    (import "${custom.inputs.self}/home-manager/common" {
-      custom = { username = "zweili"; version = "22.11"; };
-    })
+    "${custom.inputs.self}/home-manager/common"
     "${custom.inputs.self}/home-manager/software/ansible"
     (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${custom.inputs.self}/home-manager/software/fzf"
@@ -22,12 +20,15 @@ in
     nix-direnv.enable = true;
   };
 
-  home.sessionPath = [ "$HOME/node_modules/.bin" ];
-  home.packages = with pkgs; [
-    keychain
-    nixpkgs-fmt
-    mosh
-  ];
+  home = {
+    username = "zweili";
+    sessionPath = [ "$HOME/node_modules/.bin" ];
+    home.packages = with pkgs; [
+      keychain
+      nixpkgs-fmt
+      mosh
+    ];
+  };
   nix = {
     package = pkgs.nix;
     settings = {

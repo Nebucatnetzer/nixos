@@ -1,10 +1,10 @@
 { config, custom, lib, pkgs, ... }:
 let
-  cfg = config.programs.makemkv;
+  cfg = config.programs.az-makemkv;
 in
 {
   options = {
-    programs.makemkv.enable = lib.mkEnableOption "MakeMKV";
+    programs.az-makemkv.enable = lib.mkEnableOption "MakeMKV";
   };
 
   config = lib.mkIf cfg.enable {

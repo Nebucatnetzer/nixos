@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.hardware.dvd;
+  cfg = config.hardware.az-dvd;
 in
 {
   options = {
-    hardware.dvd.enable = lib.mkEnableOption "DVD";
+    hardware.az-dvd.enable = lib.mkEnableOption "DVD";
   };
 
   config = lib.mkIf cfg.enable {

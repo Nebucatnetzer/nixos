@@ -1,10 +1,10 @@
 { config, custom, lib, pkgs, ... }:
 let
-  cfg = config.programs.eog;
+  cfg = config.programs.az-eog;
 in
 {
   options = {
-    programs.eog.enable = lib.mkEnableOption "Gnome Image Viewer";
+    programs.az-eog.enable = lib.mkEnableOption "Gnome Image Viewer";
   };
 
   config = lib.mkIf cfg.enable {

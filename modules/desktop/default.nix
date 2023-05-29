@@ -53,7 +53,7 @@
   programs.dconf.enable = true;
 
   # Gnome Image Viewer
-  programs.eog.enable = true;
+  programs.az-eog.enable = true;
 
   # Enable Flatpack
   services.flatpak.enable = true;

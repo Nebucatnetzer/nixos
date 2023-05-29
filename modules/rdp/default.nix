@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.services.rdp;
+  cfg = config.services.az-rdp;
 in
 {
   options = {
-    services.rdp.enable = lib.mkEnableOption "enable rdp";
+    services.az-rdp.enable = lib.mkEnableOption "enable rdp";
   };
 
   config = lib.mkIf cfg.enable {

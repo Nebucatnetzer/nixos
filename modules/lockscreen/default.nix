@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.programs.lockscreen;
+  cfg = config.programs.az-lockscreen;
 in
 {
   options = {
-    programs.lockscreen.enable = lib.mkEnableOption "Lockscreen";
+    programs.az-lockscreen.enable = lib.mkEnableOption "Lockscreen";
   };
 
   config = lib.mkIf cfg.enable {

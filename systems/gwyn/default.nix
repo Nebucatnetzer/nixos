@@ -49,17 +49,17 @@
   ];
 
   hardware = {
-    az_bluetooth.enable = true;
-    az_nvidia.enable = true;
-    dvd.enable = true;
+    az-bluetooth.enable = true;
+    az-dvd.enable = true;
+    az-nvidia.enable = true;
   };
 
   programs = {
-    lockscreen.enable = true;
-    makemkv.enable = true;
+    az-lockscreen.enable = true;
+    az-makemkv.enable = true;
   };
 
-  services.rdp.enable = true;
+  services.az-rdp.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
 }

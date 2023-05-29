@@ -42,13 +42,13 @@
   ];
 
   hardware = {
-    az_bluetooth.enable = true;
-    dvd.enable = true;
+    az-bluetooth.enable = true;
+    az-dvd.enable = true;
   };
 
   programs = {
-    lockscreen.enable = true;
-    makemkv.enable = true;
+    az-lockscreen.enable = true;
+    az-makemkv.enable = true;
   };
 
   virtualisation.virtualbox.host.enable = true;

@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.hardware.az_nvidia;
+  cfg = config.hardware.az-nvidia;
 in
 {
   options = {
-    hardware.az_nvidia.enable = lib.mkEnableOption "Nvidia GPU Support";
+    hardware.az-nvidia.enable = lib.mkEnableOption "Nvidia GPU Support";
   };
 
   config = lib.mkIf cfg.enable {

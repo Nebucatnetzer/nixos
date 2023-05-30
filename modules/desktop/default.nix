@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/modules/hunspell"
-    "${inputs.self}/modules/libimobiledevice"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/pipewire"
     "${inputs.self}/modules/scripts"
@@ -54,6 +53,8 @@
     az-email.enable = true;
     # Gnome Image Viewer
     az-eog.enable = true;
+
+    az-idevices.enable = true;
   };
   # Enable Flatpack
   services.flatpak.enable = true;

@@ -7,6 +7,7 @@
     ./docker
     ./email
     ./eog
+    ./libimobiledevice
     ./lockscreen
     ./makemkv
     ./rdp

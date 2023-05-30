@@ -4,7 +4,7 @@ let
 in
 {
   options = {
-    programs.az-email.enable = lib.mkEnableOption "DESCRIPTION";
+    programs.az-email.enable = lib.mkEnableOption "Configure everything required for sending emails.";
   };
 
   config = lib.mkIf cfg.enable {

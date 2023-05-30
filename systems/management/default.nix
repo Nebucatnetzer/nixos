@@ -22,6 +22,10 @@
       options = [ "x-systemd.automount" "noauto" "noatime" "uid=1000" "gid=100" ];
     };
   };
+
+  # Features
   services.az-data-share.enable = true;
   services.az-docker.enable = true;
+  # Enable dictionaries
+  programs.az-hunspell.enable = true;
 }

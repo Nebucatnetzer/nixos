@@ -7,6 +7,7 @@
     ./docker
     ./email
     ./eog
+    ./hunspell
     ./libimobiledevice
     ./lockscreen
     ./makemkv

@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/hunspell"
     "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/pipewire"
     "${inputs.self}/modules/scripts"
@@ -53,6 +52,9 @@
     az-email.enable = true;
     # Gnome Image Viewer
     az-eog.enable = true;
+
+    # Enable dictionaries
+    az-hunspell.enable = true;
 
     az-idevices.enable = true;
   };

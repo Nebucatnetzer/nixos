@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/email"
     "${inputs.self}/modules/hunspell"
     "${inputs.self}/modules/libimobiledevice"
     "${inputs.self}/modules/nix-direnv"
@@ -48,12 +47,14 @@
   # Enable sound.
   sound.enable = true;
 
-  # Enable dconf to be able to save Nautilus settings
-  programs.dconf.enable = true;
+  programs = {
+    # Enable dconf to be able to save Nautilus settings
+    dconf.enable = true;
 
-  # Gnome Image Viewer
-  programs.az-eog.enable = true;
-
+    az-email.enable = true;
+    # Gnome Image Viewer
+    az-eog.enable = true;
+  };
   # Enable Flatpack
   services.flatpak.enable = true;
 

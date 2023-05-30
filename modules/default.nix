@@ -5,6 +5,7 @@
     ./common-x86
     ./data-share
     ./docker
+    ./email
     ./eog
     ./lockscreen
     ./makemkv

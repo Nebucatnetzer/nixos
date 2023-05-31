@@ -4,6 +4,7 @@
     ./common
     ./common-x86
     ./data-share
+    ./desktop
     ./docker
     ./email
     ./eog

@@ -1,7 +1,6 @@
 { hostname }: { config, inputs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/logs-share"
   ];
   boot.initrd.availableKernelModules = [
@@ -43,6 +42,7 @@
       "vboxsf"
     ];
   };
+  profiles.az-desktop.enable = true;
   services.az-x86.enable = true;
 }
 

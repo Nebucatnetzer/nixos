@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
@@ -54,6 +53,7 @@
     az-nvidia.enable = true;
   };
 
+  profiles.az-desktop.enable = true;
   programs = {
     az-lockscreen.enable = true;
     az-makemkv.enable = true;

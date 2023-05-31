@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
   ];
@@ -43,6 +42,7 @@
     az-bluetooth.enable = true;
     az-dvd.enable = true;
   };
+  profiles.az-desktop.enable = true;
   programs = {
     az-lockscreen.enable = true;
     az-makemkv.enable = true;

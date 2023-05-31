@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  cfg = config.serivces.az-syslog;
+  cfg = config.services.az-syslog;
 in
 {
   options = {

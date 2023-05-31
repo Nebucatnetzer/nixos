@@ -18,6 +18,7 @@
     ./restic-client-desktop
     ./scripts
     ./telegram-notifications
+    ./tlp
     ./tmux
     ./username
     ./virtualbox-guest

@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -50,6 +49,7 @@
   services = {
     az-docker.enable = true;
     az-restic-client-desktop = true;
+    az-tlp.enable = true;
     az-x86.enable = true;
   };
   virtualisation.virtualbox.host.enable = true;

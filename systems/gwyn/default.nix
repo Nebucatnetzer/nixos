@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -61,6 +60,7 @@
     az-logs-share.enable = true;
     az-rdp.enable = true;
     az-restic-client-desktop.enable = true;
+    az-tlp.enable = true;
     az-x86.enable = true;
   };
 

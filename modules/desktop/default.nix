@@ -48,15 +48,13 @@
   programs = {
     # Enable dconf to be able to save Nautilus settings
     dconf.enable = true;
-
     az-email.enable = true;
     # Gnome Image Viewer
     az-eog.enable = true;
-
     # Enable dictionaries
     az-hunspell.enable = true;
-
     az-idevices.enable = true;
+    az-nix-direnv.enable = true;
   };
   # Enable Flatpack
   services.flatpak.enable = true;

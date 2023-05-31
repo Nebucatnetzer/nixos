@@ -9,4 +9,6 @@
     "${inputs.self}/modules/tmux"
   ];
   services.az-docker.enable = true;
+  programs.az-nix-direnv.enable = true;
+
 }

@@ -11,6 +11,7 @@
     ./libimobiledevice
     ./lockscreen
     ./makemkv
+    ./nix-direnv
     ./rdp
     ./telegram-notifications
     ./username

@@ -27,5 +27,9 @@
   services.az-data-share.enable = true;
   services.az-docker.enable = true;
   # Enable dictionaries
-  programs.az-hunspell.enable = true;
+  programs = {
+    az-hunspell.enable = true;
+    az-nix-direnv.enable = true;
+  };
+
 }

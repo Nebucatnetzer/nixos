@@ -126,4 +126,6 @@ in
   systemd.services."network-addresses-usb0".after = [ "usb-otg.service" ];
 
   services.az-docker.enable = true;
+  programs.az-nix-direnv.enable = true;
+
 }

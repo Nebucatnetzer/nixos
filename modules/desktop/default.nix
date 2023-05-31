@@ -53,7 +53,7 @@
     az-idevices.enable = true;
     az-nix-direnv.enable = true;
     az-scripts.enable = true;
-    az-tmux = true;
+    az-tmux.enable = true;
   };
 
   xdg = {

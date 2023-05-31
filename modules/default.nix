@@ -4,7 +4,6 @@
     ./common
     ./common-x86
     ./data-share
-    ./desktop
     ./docker
     ./email
     ./eog
@@ -19,5 +18,6 @@
     ./telegram-notifications
     ./tmux
     ./username
+    ./profiles/desktop
   ];
 }

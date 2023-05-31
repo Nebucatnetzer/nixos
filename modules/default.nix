@@ -11,6 +11,7 @@
     ./libimobiledevice
     ./lockscreen
     ./logs-share
+    ./log-to-ram
     ./makemkv
     ./nix-direnv
     ./pipewire

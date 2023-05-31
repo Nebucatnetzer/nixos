@@ -5,7 +5,6 @@ in
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    "${inputs.self}/modules/log-to-ram"
   ];
 
   boot = {
@@ -123,7 +122,10 @@ in
   systemd.services.dhcpd4.after = [ "usb-otg.service" ];
   systemd.services."network-addresses-usb0".after = [ "usb-otg.service" ];
 
-  services.az-docker.enable = true;
+  services = {
+    az-docker.enable = true;
+    az-log2ram.enable = true;
+  };
   programs = {
     az-nix-direnv.enable = true;
     az-tmux.enable = true;

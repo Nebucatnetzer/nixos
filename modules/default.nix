@@ -18,6 +18,7 @@
     ./rdp
     ./restic-client-desktop
     ./scripts
+    ./syslog
     ./telegram-notifications
     ./tlp
     ./tmux

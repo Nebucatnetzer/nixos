@@ -2,7 +2,6 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    "${inputs.self}/modules/syslog"
   ];
 
   boot = {
@@ -53,5 +52,8 @@
       sudo umount /mnt
     '';
   };
-  services.az-log2ram.enable = true;
+  services = {
+    az-log2ram.enable = true;
+    az-syslog.enable = true;
+  };
 }

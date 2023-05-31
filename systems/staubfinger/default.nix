@@ -48,7 +48,7 @@
   };
   services = {
     az-docker.enable = true;
-    az-restic-client-desktop = true;
+    az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
   };

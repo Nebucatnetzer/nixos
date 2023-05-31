@@ -18,6 +18,7 @@
     ./telegram-notifications
     ./tmux
     ./username
+    ./virtualbox-guest
     ./profiles/desktop
   ];
 }

@@ -35,14 +35,10 @@
     { device = "/dev/disk/by-label/swap"; }
   ];
 
-  virtualisation.virtualbox.guest.enable = true;
-  virtualisation.virtualbox.guest.x11 = true;
-  users.users.${config.az-username} = {
-    extraGroups = [
-      "vboxsf"
-    ];
-  };
   profiles.az-desktop.enable = true;
-  services.az-x86.enable = true;
+  services = {
+    az-virtualbox-guest.enable = true;
+    az-x86.enable = true;
+  };
 }
 

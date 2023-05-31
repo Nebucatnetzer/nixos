@@ -12,6 +12,7 @@
     ./lockscreen
     ./makemkv
     ./nix-direnv
+    ./pipewire
     ./rdp
     ./telegram-notifications
     ./username

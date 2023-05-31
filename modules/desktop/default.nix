@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/pipewire"
     "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tmux"
   ];
@@ -11,6 +10,7 @@
 
   services = {
     az-docker.enable = true;
+    az-pipewire.enable = true;
     # Enable Flatpack
     flatpak.enable = true;
     fwupd.enable = true;

@@ -11,27 +11,30 @@
   };
 
   services = {
+    az-docker.enable = true;
+    # Enable Flatpack
+    flatpak.enable = true;
+    fwupd.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
-    printing.enable = true;
     picom = {
       enable = true;
       vSync = true;
     };
+    printing.enable = true;
     redshift = {
       enable = true;
     };
-    fwupd.enable = true;
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.defaultSession = "none+qtile";
-    windowManager.qtile.enable = true;
-    layout = "us";
-    xkbOptions = "compose:ralt";
-    libinput.enable = true;
+    # Enable the X11 windowing system.
+    xserver = {
+      enable = true;
+      displayManager.lightdm.enable = true;
+      displayManager.defaultSession = "none+qtile";
+      windowManager.qtile.enable = true;
+      layout = "us";
+      xkbOptions = "compose:ralt";
+      libinput.enable = true;
+    };
   };
 
   fonts.fonts = with pkgs; [
@@ -40,7 +43,6 @@
 
   # Enable keyring
   security.pam.services.lightdm.enableGnomeKeyring = true;
-  services.gnome.gnome-keyring.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -56,10 +58,6 @@
     az-idevices.enable = true;
     az-nix-direnv.enable = true;
   };
-  # Enable Flatpack
-  services.flatpak.enable = true;
-
-  services.az-docker.enable = true;
 
   xdg = {
     portal = {

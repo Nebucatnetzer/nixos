@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/modules/scripts"
-    "${inputs.self}/modules/tmux"
   ];
   networking = {
     networkmanager.enable = true;
@@ -56,6 +55,7 @@
     az-hunspell.enable = true;
     az-idevices.enable = true;
     az-nix-direnv.enable = true;
+    az-tmux = true;
   };
 
   xdg = {

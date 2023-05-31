@@ -12,7 +12,6 @@
       tag = "management";
       time = "23:30";
     })
-    "${inputs.self}/modules/tmux"
   ];
   fileSystems = {
     "/mnt/external" = {
@@ -29,6 +28,7 @@
   programs = {
     az-hunspell.enable = true;
     az-nix-direnv.enable = true;
+    az-tmux.enable = true;
   };
 
 }

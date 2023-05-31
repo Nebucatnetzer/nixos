@@ -15,6 +15,7 @@
     ./pipewire
     ./rdp
     ./telegram-notifications
+    ./tmux
     ./username
   ];
 }

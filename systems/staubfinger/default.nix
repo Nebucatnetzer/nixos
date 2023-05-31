@@ -7,7 +7,6 @@
     "${inputs.self}/modules/desktop"
     "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
-    "${inputs.self}/modules/tmux"
   ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -44,16 +43,15 @@
     az-bluetooth.enable = true;
     az-dvd.enable = true;
   };
-
   programs = {
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
+    az-tmux.enable = true;
   };
   services = {
     az-docker.enable = true;
     az-x86.enable = true;
   };
-
   virtualisation.virtualbox.host.enable = true;
 }
 

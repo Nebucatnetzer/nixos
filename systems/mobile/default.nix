@@ -6,7 +6,6 @@ in
   imports = [
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
     "${inputs.self}/modules/log-to-ram"
-    "${inputs.self}/modules/tmux"
   ];
 
   boot = {
@@ -125,6 +124,8 @@ in
   systemd.services."network-addresses-usb0".after = [ "usb-otg.service" ];
 
   services.az-docker.enable = true;
-  programs.az-nix-direnv.enable = true;
-
+  programs = {
+    az-nix-direnv.enable = true;
+    az-tmux.enable = true;
+  };
 }

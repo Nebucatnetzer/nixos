@@ -6,7 +6,6 @@
       inherit hostname;
     })
     "${inputs.self}/modules/logs-share"
-    "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/rclone-webdav"
     (import "${inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";

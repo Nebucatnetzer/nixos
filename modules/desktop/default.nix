@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }:
 {
   imports = [
-    "${inputs.self}/modules/nix-direnv"
     "${inputs.self}/modules/pipewire"
     "${inputs.self}/modules/scripts"
     "${inputs.self}/modules/tmux"

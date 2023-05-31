@@ -15,6 +15,7 @@
     ./nix-direnv
     ./pipewire
     ./rdp
+    ./restic-client-desktop
     ./scripts
     ./telegram-notifications
     ./tmux

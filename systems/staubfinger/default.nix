@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
   ];
   boot.initrd.availableKernelModules = [
@@ -50,6 +49,7 @@
   };
   services = {
     az-docker.enable = true;
+    az-restic-client-desktop = true;
     az-x86.enable = true;
   };
   virtualisation.virtualbox.host.enable = true;

@@ -1,8 +1,5 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/scripts"
-  ];
   networking = {
     networkmanager.enable = true;
   };
@@ -55,6 +52,7 @@
     az-hunspell.enable = true;
     az-idevices.enable = true;
     az-nix-direnv.enable = true;
+    az-scripts.enable = true;
     az-tmux = true;
   };
 

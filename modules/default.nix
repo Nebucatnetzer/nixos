@@ -14,6 +14,7 @@
     ./nix-direnv
     ./pipewire
     ./rdp
+    ./scripts
     ./telegram-notifications
     ./tmux
     ./username

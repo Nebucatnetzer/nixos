@@ -23,7 +23,7 @@ in
   home = {
     username = "zweili";
     sessionPath = [ "$HOME/node_modules/.bin" ];
-    home.packages = with pkgs; [
+    packages = with pkgs; [
       keychain
       nixpkgs-fmt
       mosh

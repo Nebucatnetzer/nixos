@@ -9,6 +9,6 @@
   services.az-docker.enable = true;
   programs = {
     az-nix-direnv.enable = true;
-    az-tmux = true;
+    az-tmux.enable = true;
   };
 }

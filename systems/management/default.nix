@@ -5,7 +5,6 @@
       ip = "10.7.89.150";
       inherit hostname;
     })
-    "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/rclone-webdav"
     (import "${inputs.self}/modules/restic-client-server" {
       path = "/home/andreas";
@@ -22,8 +21,11 @@
   };
 
   # Features
-  services.az-data-share.enable = true;
-  services.az-docker.enable = true;
+  services = {
+    az-data-share.enable = true;
+    az-docker.enable = true;
+    az-logs-share.enable = true;
+  };
   # Enable dictionaries
   programs = {
     az-hunspell.enable = true;

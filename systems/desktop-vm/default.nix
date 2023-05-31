@@ -1,8 +1,5 @@
 { hostname }: { config, inputs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/logs-share"
-  ];
   boot.initrd.availableKernelModules = [
     "ata_piix"
     "ohci_pci"
@@ -37,6 +34,7 @@
 
   profiles.az-desktop.enable = true;
   services = {
+    az-logs-share.enable = true;
     az-virtualbox-guest.enable = true;
     az-x86.enable = true;
   };

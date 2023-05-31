@@ -10,6 +10,7 @@
     ./hunspell
     ./libimobiledevice
     ./lockscreen
+    ./logs-share
     ./makemkv
     ./nix-direnv
     ./pipewire

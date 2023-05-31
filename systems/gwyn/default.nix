@@ -4,7 +4,6 @@
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-gpu-intel
-    "${inputs.self}/modules/logs-share"
     "${inputs.self}/modules/restic-client-desktop"
     "${inputs.self}/modules/tlp"
   ];
@@ -60,6 +59,7 @@
   };
 
   services = {
+    az-logs-share.enable = true;
     az-rdp.enable = true;
     az-x86.enable = true;
   };

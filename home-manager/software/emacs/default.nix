@@ -1,15 +1,15 @@
-{ unstable }: { pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     fd
     multimarkdown
+    nil # Nix language server
     pandoc
     python310
     python310Packages.pip
     python310Packages.python-lsp-server
     ripgrep
     silver-searcher
-    unstable.nil # Nix language server
   ];
 
   programs.emacs = {

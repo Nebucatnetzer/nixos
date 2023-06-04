@@ -9,7 +9,7 @@ in
     "${custom.inputs.self}/home-manager/software/ansible"
     "${custom.inputs.self}/home-manager/software/calibre"
     "${custom.inputs.self}/home-manager/software/czkawka"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${custom.inputs.self}/home-manager/software/emacs"
     "${custom.inputs.self}/home-manager/software/espanso"
     "${custom.inputs.self}/home-manager/software/dunst"
     "${custom.inputs.self}/home-manager/software/evince"
@@ -21,7 +21,7 @@ in
     "${custom.inputs.self}/home-manager/software/mpv"
     "${custom.inputs.self}/home-manager/software/nitrogen"
     "${custom.inputs.self}/home-manager/software/obsidian"
-    (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit unstable; })
+    "${custom.inputs.self}/home-manager/software/rapid-photo-downloader"
     "${custom.inputs.self}/home-manager/software/signal"
     "${custom.inputs.self}/home-manager/software/ssh"
     "${custom.inputs.self}/home-manager/software/starship"

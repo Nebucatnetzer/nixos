@@ -40,6 +40,20 @@ in
       };
     };
 
+    # taken from here: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/hardware/video/hidpi.nix
+    # {
+    # Needed when typing in passwords for full disk encryption
+    console.earlySetup = true;
+    boot.loader.systemd-boot.consoleMode = "1";
+    fonts.fontconfig = {
+      antialias = true;
+      subpixel = {
+        rgba = "none";
+        lcdfilter = "none";
+      };
+    };
+    # }
+
     fonts.fonts = with pkgs; [
       source-code-pro
     ];

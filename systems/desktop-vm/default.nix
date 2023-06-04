@@ -21,8 +21,6 @@
     fsType = "vfat";
   };
 
-  hardware.video.hidpi.enable = true;
-
   networking = {
     hostName = hostname;
     interfaces.enp0s3.useDHCP = true;

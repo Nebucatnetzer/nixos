@@ -36,8 +36,6 @@
     fsType = "vfat";
   };
 
-  hardware.video.hidpi.enable = true;
-
   networking.hostName = hostname;
 
   swapDevices = [

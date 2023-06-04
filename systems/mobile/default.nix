@@ -58,21 +58,20 @@ in
   services.dnsmasq = {
     enable = true;
     resolveLocalQueries = false;
-    extraConfig = ''
-      domain-needed
-      bogus-priv
-      interface = usb0
-      dhcp-range = 10.213.0.100,10.213.0.200,8h
-      dhcp-option=3,10.213.0.1
-      dhcp-option=121,10.213.0.0/24,10.213.0.1
-      local=/2li.mobile/
-      domain=2li.mobile
-      expand-hosts
-    '';
-    server = [
-      "84.200.69.80"
-      "84.200.70.40"
-    ];
+    settings = {
+      domain-needed = true;
+      bogus-priv = true;
+      interface = "usb0";
+      dhcp-range = [ "10.213.0.100,10.213.0.200,8h" ];
+      dhcp-option = [ "3,10.213.0.1" "121,10.213.0.0/24,10.213.0.1" ];
+      local = "/2li.mobile/";
+      domain = "2li.mobile";
+      expand-hosts = true;
+      server = [
+        "84.200.69.80"
+        "84.200.70.40"
+      ];
+    };
   };
   networking.firewall.allowedUDPPorts = [
     53 # DNS

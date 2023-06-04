@@ -55,21 +55,29 @@ in
 
   boot.loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";
   networking.dhcpcd.denyInterfaces = [ "usb0" ];
-
-  services.dhcpd4 = {
+  services.dnsmasq = {
     enable = true;
-    interfaces = [ "usb0" ];
+    resolveLocalQueries = false;
     extraConfig = ''
-      option domain-name "2li.mobile";
-      option subnet-mask 255.255.255.0;
-      option broadcast-address 10.213.0.255;
-      option domain-name-servers 84.200.69.80, 84.200.70.40;
-      subnet 10.213.0.0 netmask 255.255.255.0 {
-        option routers 10.213.0.1;
-        range 10.213.0.100 10.213.0.200;
-      }
+      domain-needed
+      bogus-priv
+      interface = usb0
+      dhcp-range = 10.213.0.100,10.213.0.200,8h
+      dhcp-option=3,10.213.0.1
+      dhcp-option=121,10.213.0.0/24,10.213.0.1
+      local=/2li.mobile/
+      domain=2li.mobile
+      expand-hosts
     '';
+    server = [
+      "84.200.69.80"
+      "84.200.70.40"
+    ];
   };
+  networking.firewall.allowedUDPPorts = [
+    53 # DNS
+    67 # DHCP
+  ];
 
   environment.shellAliases = {
     raspi-cpu = ''

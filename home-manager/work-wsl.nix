@@ -1,16 +1,13 @@
 { custom, pkgs, ... }:
-let
-  unstable = import custom.inputs.nixpkgs-unstable { system = "x86_64-linux"; };
-in
 {
   imports = [
     "${custom.inputs.self}/home-manager/common"
     "${custom.inputs.self}/home-manager/software/ansible"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${custom.inputs.self}/home-manager/software/emacs"
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
     "${custom.inputs.self}/home-manager/software/starship"
-    (import "${custom.inputs.self}/home-manager/software/vagrant-wsl" { inherit unstable; })
+    "${custom.inputs.self}/home-manager/software/vagrant-wsl"
     "${custom.inputs.self}/home-manager/software/vim"
   ];
 

@@ -1,11 +1,8 @@
-{ custom, system }: { config, nixosConfig, pkgs, ... }:
-let
-  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
-in
+{ custom }: { config, nixosConfig, pkgs, ... }:
 {
   imports = [
     "${custom.inputs.self}/home-manager/common"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${custom.inputs.self}/home-manager/software/emacs"
     "${custom.inputs.self}/home-manager/software/fzf"
     "${custom.inputs.self}/home-manager/software/git"
     "${custom.inputs.self}/home-manager/software/ssh"

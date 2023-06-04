@@ -1,4 +1,4 @@
-{ custom }: { config, nixosConfig, pkgs, ... }:
+{ custom, system }: { config, nixosConfig, pkgs, ... }:
 {
   imports = [
     "${custom.inputs.self}/home-manager/common"

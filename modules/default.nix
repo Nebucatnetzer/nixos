@@ -28,7 +28,7 @@
     ./services/log-to-ram
     ./services/mariadb-for-containers
     ./services/media-share
-    ./nextcloud
+    ./services/nextcloud
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

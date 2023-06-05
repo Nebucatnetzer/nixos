@@ -21,6 +21,7 @@
     ./services/docker
     ./services/docker-mailserver
     ./services/gitea
+    ./grav
     ./services/logs-share
     ./services/log-to-ram
     ./services/pipewire

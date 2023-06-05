@@ -20,6 +20,7 @@
     ./services/data-share
     ./services/docker
     ./services/docker-mailserver
+    ./gitea
     ./services/logs-share
     ./services/log-to-ram
     ./services/pipewire

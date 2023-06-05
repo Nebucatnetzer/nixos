@@ -5,24 +5,24 @@
     ./common-x86
     ./data-share
     ./docker
-    ./email
-    ./eog
-    ./hunspell
-    ./libimobiledevice
-    ./lockscreen
     ./logs-share
     ./log-to-ram
-    ./makemkv
-    ./nix-direnv
     ./pipewire
+    ./programs/email
+    ./programs/eog
+    ./programs/hunspell
+    ./programs/libimobiledevice
+    ./programs/lockscreen
+    ./programs/makemkv
+    ./programs/nix-direnv
+    ./programs/scripts
+    ./programs/steam
+    ./programs/tmux
     ./rdp
     ./restic-client-desktop
-    ./scripts
-    ./steam
     ./syslog
     ./telegram-notifications
     ./tlp
-    ./tmux
     ./username
     ./virtualbox-guest
     ./profiles/desktop

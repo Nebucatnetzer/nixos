@@ -35,7 +35,7 @@ custom.inputs.nixpkgs.lib.nixosSystem {
         { inherit hostname; })
 
       # Common configuration
-      "${custom.inputs.self}/modules/default.nix"
+      "${custom.inputs.self}/modules"
 
       custom.inputs.agenix.nixosModules.age
       {

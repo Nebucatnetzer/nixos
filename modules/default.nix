@@ -23,7 +23,7 @@
     ./services/gitea
     ./services/grav
     ./services/haproxy
-    ./heimdall
+    ./services/heimdall
     ./services/logs-share
     ./services/log-to-ram
     ./services/pipewire

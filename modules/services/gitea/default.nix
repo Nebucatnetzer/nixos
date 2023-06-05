@@ -14,7 +14,10 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
-    services.az-docker.enable = true;
+    services = {
+      az-docker.enable = true;
+      az-mariadb-for-containers.enable = true;
+    };
 
     virtualisation.oci-containers = {
       backend = "docker";

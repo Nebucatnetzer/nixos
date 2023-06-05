@@ -21,6 +21,5 @@ in
       enable = true;
       domain = domain;
     };
-    az-mariadb-for-containers.enable = true;
   };
 }

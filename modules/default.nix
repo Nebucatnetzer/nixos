@@ -27,6 +27,7 @@
     ./services/logs-share
     ./services/log-to-ram
     ./services/mariadb-for-containers
+    ./media-share
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

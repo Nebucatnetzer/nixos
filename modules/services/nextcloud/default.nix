@@ -30,6 +30,7 @@ in
     age.secrets.nextcloudEnv.file = "${inputs.self}/scrts/nextcloud_env.age";
 
     services = {
+      az-acme-base.enable = true;
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;
       mysql.settings = {

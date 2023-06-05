@@ -9,10 +9,10 @@
       path = "/home/andreas";
       time = "00:00";
     })
-    "${inputs.self}/modules/nginx-acme-base"
   ];
 
   services = {
+    az-acme-base.enable = true;
     az-grav.enable = true;
     az-haproxy.enable = true;
     az-heimdall.enable = true;

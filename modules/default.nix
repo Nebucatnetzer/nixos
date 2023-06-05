@@ -29,6 +29,7 @@
     ./services/mariadb-for-containers
     ./services/media-share
     ./services/nextcloud
+    ./nginx-acme-base
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

@@ -2,12 +2,7 @@
 {
   imports = [
     ./common
-    ./common-x86
-    ./data-share
-    ./docker
-    ./logs-share
-    ./log-to-ram
-    ./pipewire
+    ./profiles/desktop
     ./programs/email
     ./programs/eog
     ./programs/hunspell
@@ -18,13 +13,18 @@
     ./programs/scripts
     ./programs/steam
     ./programs/tmux
-    ./rdp
-    ./restic-client-desktop
-    ./syslog
-    ./telegram-notifications
-    ./tlp
+    ./services/common-x86
+    ./services/data-share
+    ./services/docker
+    ./services/logs-share
+    ./services/log-to-ram
+    ./services/pipewire
+    ./services/rdp
+    ./services/restic-client-desktop
+    ./services/syslog
+    ./services/telegram-notifications
+    ./services/tlp
+    ./services/virtualbox-guest
     ./username
-    ./virtualbox-guest
-    ./profiles/desktop
   ];
 }

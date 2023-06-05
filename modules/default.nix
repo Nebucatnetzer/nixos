@@ -19,6 +19,7 @@
     ./services/logs-share
     ./services/log-to-ram
     ./services/pipewire
+    ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop
     ./services/syslog

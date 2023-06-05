@@ -8,7 +8,6 @@ in
       ip = "10.7.89.103";
       inherit hostname;
     })
-    "${inputs.self}/modules/mariadb"
     (import "${inputs.self}/modules/nextcloud" {
       inherit domain;
     })
@@ -19,23 +18,26 @@ in
     })
   ];
 
-  services.nginx = {
-    appendHttpConfig = ''
-      # Allow embedding from same domain
-      add_header X-Frame-Options SAMEORIGIN;
-    '';
-    clientMaxBodySize = "20G";
-    virtualHosts."${domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
-        proxyWebsockets = true; # needed if you need to use WebSocket
-      };
-      extraConfig = ''
-        # Required for large downloads
-        proxy_buffering off;
+  services = {
+    az-mariadb-for-containers.enable = true;
+    nginx = {
+      appendHttpConfig = ''
+        # Allow embedding from same domain
+        add_header X-Frame-Options SAMEORIGIN;
       '';
+      clientMaxBodySize = "20G";
+      virtualHosts."${domain}" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8080";
+          proxyWebsockets = true; # needed if you need to use WebSocket
+        };
+        extraConfig = ''
+          # Required for large downloads
+          proxy_buffering off;
+        '';
+      };
     };
   };
 }

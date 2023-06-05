@@ -26,6 +26,7 @@
     ./services/heimdall
     ./services/logs-share
     ./services/log-to-ram
+    ./mariadb
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

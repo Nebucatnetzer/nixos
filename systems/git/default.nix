@@ -15,12 +15,12 @@ in
     (import "${inputs.self}/modules/nginx-proxy" {
       inherit domain;
     })
-    "${inputs.self}/modules/mariadb"
   ];
   services = {
     az-gitea = {
       enable = true;
       domain = domain;
     };
+    az-mariadb-for-containers.enable = true;
   };
 }

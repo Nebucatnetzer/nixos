@@ -19,7 +19,7 @@
     ./services/common-x86
     ./services/data-share
     ./services/docker
-    ./docker-mailserver
+    ./services/docker-mailserver
     ./services/logs-share
     ./services/log-to-ram
     ./services/pipewire

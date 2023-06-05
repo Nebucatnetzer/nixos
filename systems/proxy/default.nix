@@ -10,12 +10,12 @@
       time = "00:00";
     })
     "${inputs.self}/modules/nginx-acme-base"
-    "${inputs.self}/modules/heimdall"
   ];
 
   services = {
     az-grav.enable = true;
     az-haproxy.enable = true;
+    az-heimdall.enable = true;
     nginx = {
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.

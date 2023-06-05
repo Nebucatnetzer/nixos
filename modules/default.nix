@@ -2,6 +2,9 @@
 {
   imports = [
     ./common
+    ./hardware/bluetooth
+    ./hardware/dvd
+    ./hardware/nvidia
     ./profiles/desktop
     ./programs/email
     ./programs/eog

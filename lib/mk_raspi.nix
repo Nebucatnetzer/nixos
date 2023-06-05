@@ -36,7 +36,6 @@ custom.inputs.nixpkgs.lib.nixosSystem {
 
       # Common configuration
       "${custom.inputs.self}/modules/default.nix"
-      "${custom.inputs.self}/hardware/default.nix"
 
       custom.inputs.agenix.nixosModules.age
       {

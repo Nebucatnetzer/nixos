@@ -1,8 +1,8 @@
 (use-package lsp-nix
   :after (lsp-mode)
   :demand t
-  :custom
   :ensure nil
+  :custom
   (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 (use-package nix-mode

@@ -1,13 +1,13 @@
 { custom, hostname, inputs, system ? "aarch64-linux", home-module ? "headless", username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
-    unstable = import custom.inputs.nixpkgs-unstable {
+    unstable = import inputs.nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
   };
 
-  pkgs = import custom.inputs.nixpkgs {
+  pkgs = import inputs.nixpkgs {
     inherit system;
     config = {
       allowUnfree = true;
@@ -25,31 +25,30 @@ let
   };
 in
 
-custom.inputs.nixpkgs.lib.nixosSystem {
+inputs.nixpkgs.lib.nixosSystem {
   inherit pkgs system;
-  specialArgs = { inherit custom inputs; };
+  specialArgs = { inherit inputs; };
   modules = (
     [
       # System configuration for this host
-      (import "${custom.inputs.self}/systems/${hostname}"
+      (import "${inputs.self}/systems/${hostname}"
         { inherit hostname; })
 
       # Common configuration
-      "${custom.inputs.self}/modules/default.nix"
-      "${custom.inputs.self}/hardware/default.nix"
+      "${inputs.self}/modules"
 
-      custom.inputs.agenix.nixosModules.age
+      inputs.agenix.nixosModules.age
       {
-        environment.systemPackages = [ custom.inputs.agenix.packages.${system}.default ];
+        environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
         az-username = username;
       }
 
-      custom.inputs.home-manager.nixosModules.home-manager
+      inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.${username}.imports = [
-          (import "${custom.inputs.self}/home-manager/${home-module}.nix" { inherit custom system; })
+          (import "${inputs.self}/home-manager/${home-module}.nix" { inherit custom system; })
         ];
       }
     ]);

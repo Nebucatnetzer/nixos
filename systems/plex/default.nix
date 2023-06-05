@@ -10,7 +10,9 @@
       tag = "plex";
       time = "02:30";
     })
-    "${inputs.self}/modules/media-share"
     "${inputs.self}/modules/plex"
   ];
+  services = {
+    az-media-share.enable = true;
+  };
 }

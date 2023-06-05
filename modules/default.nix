@@ -2,29 +2,42 @@
 {
   imports = [
     ./common
-    ./common-x86
-    ./data-share
-    ./docker
-    ./email
-    ./eog
-    ./hunspell
-    ./libimobiledevice
-    ./lockscreen
-    ./logs-share
-    ./log-to-ram
-    ./makemkv
-    ./nix-direnv
-    ./pipewire
-    ./rdp
-    ./restic-client-desktop
-    ./scripts
-    ./steam
-    ./syslog
-    ./telegram-notifications
-    ./tlp
-    ./tmux
-    ./username
-    ./virtualbox-guest
+    ./hardware/bluetooth
+    ./hardware/dvd
+    ./hardware/nvidia
     ./profiles/desktop
+    ./programs/email
+    ./programs/eog
+    ./programs/hunspell
+    ./programs/libimobiledevice
+    ./programs/lockscreen
+    ./programs/makemkv
+    ./programs/nix-direnv
+    ./programs/scripts
+    ./programs/steam
+    ./programs/tmux
+    ./services/common-x86
+    ./services/data-share
+    ./services/docker
+    ./services/docker-mailserver
+    ./services/gitea
+    ./services/grav
+    ./services/haproxy
+    ./services/heimdall
+    ./services/logs-share
+    ./services/log-to-ram
+    ./services/mariadb-for-containers
+    ./services/media-share
+    ./services/nextcloud
+    ./services/nginx-acme-base
+    ./services/pipewire
+    ./services/rclone-webdav
+    ./services/rdp
+    ./services/restic-client-desktop
+    ./services/syslog
+    ./services/telegram-notifications
+    ./services/tlp
+    ./services/virtualbox-guest
+    ./username
   ];
 }

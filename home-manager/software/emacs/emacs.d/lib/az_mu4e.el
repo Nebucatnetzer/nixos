@@ -30,7 +30,6 @@
     (setq sendmail-program "msmtp")
 
     (require 'mu4e)
-    (require 'org-mu4e)
 
     (setq mu4e-completing-read-function (quote ivy-completing-read))
     (setq mail-user-agent 'mu4e-user-agent)

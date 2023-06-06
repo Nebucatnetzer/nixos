@@ -8,7 +8,6 @@ in
       ip = "10.7.89.115";
       inherit hostname;
     })
-    "${inputs.self}/modules/rss-bridge"
     (import "${inputs.self}/modules/ttrss-postgres" { inherit domain; })
   ];
   services = {
@@ -23,5 +22,6 @@ in
       tag = "tt-rss";
       time = "23:00";
     };
+    az-rss-bridge.enable = true;
   };
 }

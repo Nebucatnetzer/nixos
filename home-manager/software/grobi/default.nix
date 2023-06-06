@@ -4,6 +4,16 @@
     enable = true;
     rules = [
       {
+        name = "virtualbox";
+        configure_single = "Virtual1@3840x2160";
+        primary = true;
+        atomic = true;
+        execute_after = [
+          "${pkgs.nitrogen}/bin/nitrogen --restore"
+          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+        ];
+      }
+      {
         name = "docked";
         outputs_connected = [ "eDP-1" "DP-1-2" ];
         atomic = true;
@@ -25,16 +35,6 @@
           "${pkgs.nitrogen}/bin/nitrogen --restore"
           "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
           "${pkgs.networkmanager}/bin/nmcli radio wifi on"
-        ];
-      }
-      {
-        name = "virtualbox";
-        configure_single = "Virtual1";
-        primary = true;
-        atomic = true;
-        execute_after = [
-          "${pkgs.nitrogen}/bin/nitrogen --restore"
-          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
         ];
       }
       {

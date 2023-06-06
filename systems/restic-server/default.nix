@@ -5,6 +5,8 @@
       ip = "10.7.89.30";
       inherit hostname;
     })
-    "${inputs.self}/modules/restic-server"
   ];
+  services = {
+    az-restic-server.enable = true;
+  };
 }

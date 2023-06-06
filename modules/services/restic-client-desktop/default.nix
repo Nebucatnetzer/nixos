@@ -84,7 +84,7 @@ in
       onFailure = [ "unit-status-telegram@%n.service" ];
       script = ''
         ${pkgs.restic}/bin/restic \
-          --exclude-file=${inputs.self}/modules/restic-client/excludes.txt \
+          --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
           --tag home-dir \
           backup /home/${config.az-username}
 

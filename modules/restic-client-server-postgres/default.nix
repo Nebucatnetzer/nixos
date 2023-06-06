@@ -27,7 +27,7 @@
     onFailure = [ "unit-status-telegram@%n.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
-        --exclude-file=${inputs.self}/modules/restic-client/excludes.txt \
+        --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
         --tag ${tag} ${path}
 
       ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql}/bin/pg_dumpall | \

@@ -1,10 +1,11 @@
 { ... }:
 {
   imports = [
-    ./common
     ./hardware/bluetooth
     ./hardware/dvd
     ./hardware/nvidia
+    ./misc/common
+    ./misc/username
     ./profiles/desktop
     ./programs/email
     ./programs/eog
@@ -24,20 +25,29 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
-    ./services/logs-share
     ./services/log-to-ram
+    ./services/logs-share
     ./services/mariadb-for-containers
     ./services/media-share
     ./services/nextcloud
     ./services/nginx-acme-base
+    ./services/nginx-fpm
+    ./services/nginx-proxy
     ./services/pipewire
+    ./services/plex
+    ./services/postgresql
     ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop
+    ./services/restic-client-server
+    ./services/restic-client-server-mysql
+    ./services/restic-client-server-postgres
+    ./services/restic-server
+    ./services/rss-bridge
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp
+    ./services/ttrss-postgres
     ./services/virtualbox-guest
-    ./username
   ];
 }

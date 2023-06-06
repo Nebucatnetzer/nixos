@@ -5,10 +5,6 @@
       ip = "10.7.89.99";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/restic-client-server" {
-      path = "/home/andreas";
-      time = "00:00";
-    })
   ];
 
   services = {
@@ -16,6 +12,11 @@
     az-grav.enable = true;
     az-haproxy.enable = true;
     az-heimdall.enable = true;
+    az-restic-client-server = {
+      enable = true;
+      path = "/home/andreas";
+      time = "00:00";
+    };
     nginx = {
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.

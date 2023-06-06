@@ -5,11 +5,6 @@
       ip = "10.7.89.150";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/restic-client-server" {
-      path = "/home/andreas";
-      tag = "management";
-      time = "23:30";
-    })
   ];
   fileSystems = {
     "/mnt/external" = {
@@ -25,6 +20,12 @@
     az-docker.enable = true;
     az-logs-share.enable = true;
     az-rclone-webdav.enable = true;
+    az-restic-client-server = {
+      enable = true;
+      path = "/home/andreas";
+      tag = "management";
+      time = "23:30";
+    };
   };
   # Enable dictionaries
   programs = {

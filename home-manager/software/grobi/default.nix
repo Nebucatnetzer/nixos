@@ -28,6 +28,16 @@
         ];
       }
       {
+        name = "virtualbox";
+        configure_single = "Virtual1";
+        primary = true;
+        atomic = true;
+        execute_after = [
+          "${pkgs.nitrogen}/bin/nitrogen --restore"
+          "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+        ];
+      }
+      {
         name = "fallback";
         configure_single = "eDP-1";
       }

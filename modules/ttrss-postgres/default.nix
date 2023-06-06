@@ -15,26 +15,41 @@ let
 in
 {
   imports = [
-    (import "${inputs.self}/modules/nginx-fpm" {
-      dataDir = "/var/lib/ttrss/html";
-      inherit domain;
-    })
     "${inputs.self}/modules/postgresql"
   ];
   age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
-  services.postgresql = {
-    authentication = "host ttrssdb ttrss 172.16.0.0/12 scram-sha-256";
-    ensureDatabases = [ "ttrssdb" ];
-    ensureUsers = [{
-      name = "ttrss";
-      ensurePermissions = {
-        "DATABASE ttrssdb " = "ALL PRIVILEGES";
-      };
-    }];
+  services = {
+    az-docker.enable = true;
+    az-nginx-fpm = {
+      enable = true;
+      dataDir = "/var/lib/ttrss/html";
+      domain = domain;
+    };
+    nginx.virtualHosts."${domain}".locations = {
+      "/".extraConfig = ''
+        try_files $uri $uri/ = 404;
+      '';
+      "/tt-rss/cache".extraConfig = ''
+        aio threads;
+        internal;
+      '';
+      "/tt-rss/backups".extraConfig = ''
+        internal;
+      '';
+    };
+    postgresql = {
+      authentication = "host ttrssdb ttrss 172.16.0.0/12 scram-sha-256";
+      ensureDatabases = [ "ttrssdb" ];
+      ensureUsers = [{
+        name = "ttrss";
+        ensurePermissions = {
+          "DATABASE ttrssdb " = "ALL PRIVILEGES";
+        };
+      }];
+    };
   };
 
-  services.az-docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
     containers."ttrss" = {
@@ -88,18 +103,6 @@ in
     };
   };
 
-  services.nginx.virtualHosts."${domain}".locations = {
-    "/".extraConfig = ''
-      try_files $uri $uri/ = 404;
-    '';
-    "/tt-rss/cache".extraConfig = ''
-      aio threads;
-      internal;
-    '';
-    "/tt-rss/backups".extraConfig = ''
-      internal;
-    '';
-  };
   systemd.services.${ttrssService}.after = [ "nginx.service" ];
   systemd.services.postgresql.after = [ "${ttrssService}.service" ];
 }

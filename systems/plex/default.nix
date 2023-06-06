@@ -5,14 +5,15 @@
       ip = "10.7.89.112";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/restic-client-server" {
-      path = "/var/lib/plex";
-      tag = "plex";
-      time = "02:30";
-    })
   ];
   services = {
     az-media-share.enable = true;
     az-plex.enable = true;
+    az-restic-client-server = {
+      enable = true;
+      path = "/var/lib/plex";
+      tag = "plex";
+      time = "02:30";
+    };
   };
 }

@@ -39,6 +39,7 @@
     ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop
+    ./restic-client-server
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp

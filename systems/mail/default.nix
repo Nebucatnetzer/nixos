@@ -9,12 +9,13 @@
       path = "/home/andreas";
       time = "01:00";
     })
-    (import "${inputs.self}/modules/nginx-proxy" {
-      domain = "mail.zweili.org";
-    })
   ];
   services = {
     az-mailserver.enable = true;
+    az-nginx-proxy = {
+      enable = true;
+      domain = "mail.zweili.org";
+    };
   };
 }
 

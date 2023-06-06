@@ -8,10 +8,6 @@ in
       ip = "10.7.89.115";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/nginx-proxy" {
-      domain = "rss-bridge.2li.ch";
-      port = "8082";
-    })
     (import "${inputs.self}/modules/restic-client-server-postgres" {
       path = "/var/lib/ttrss";
       tag = "tt-rss";
@@ -20,4 +16,11 @@ in
     "${inputs.self}/modules/rss-bridge"
     (import "${inputs.self}/modules/ttrss-postgres" { inherit domain; })
   ];
+  services = {
+    az-nginx-proxy = {
+      enable = true;
+      domain = "rss-bridge.2li.ch";
+      port = 8082;
+    };
+  };
 }

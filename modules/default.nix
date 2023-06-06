@@ -31,6 +31,7 @@
     ./services/nextcloud
     ./services/nginx-acme-base
     ./services/nginx-fpm
+    ./nginx-proxy
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

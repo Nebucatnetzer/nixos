@@ -3,6 +3,7 @@
   services.espanso = {
     enable = true;
     settings = {
+      undo_backspace = false;
       matches = [
         {
           trigger = "<dd";

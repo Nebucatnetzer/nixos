@@ -40,7 +40,7 @@
     ./services/rdp
     ./services/restic-client-desktop
     ./services/restic-client-server
-    ./restic-client-server-mysql
+    ./services/restic-client-server-mysql
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp

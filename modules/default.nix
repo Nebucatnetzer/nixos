@@ -1,10 +1,11 @@
 { ... }:
 {
   imports = [
-    ./common
     ./hardware/bluetooth
     ./hardware/dvd
     ./hardware/nvidia
+    ./misc/common
+    ./misc/username
     ./profiles/desktop
     ./programs/email
     ./programs/eog
@@ -40,6 +41,5 @@
     ./services/telegram-notifications
     ./services/tlp
     ./services/virtualbox-guest
-    ./username
   ];
 }

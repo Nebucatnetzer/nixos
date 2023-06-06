@@ -34,7 +34,7 @@
     ./services/nginx-fpm
     ./services/nginx-proxy
     ./services/pipewire
-    ./plex
+    ./services/plex
     ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop

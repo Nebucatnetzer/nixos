@@ -25,8 +25,8 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
-    ./services/logs-share
     ./services/log-to-ram
+    ./services/logs-share
     ./services/mariadb-for-containers
     ./services/media-share
     ./services/nextcloud

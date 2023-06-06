@@ -14,9 +14,6 @@ let
   ttrssService = "${config.virtualisation.oci-containers.backend}-ttrss";
 in
 {
-  imports = [
-    "${inputs.self}/modules/postgresql"
-  ];
   age.secrets.ttrssEnv.file = "${inputs.self}/scrts/ttrss_env.age";
 
   services = {
@@ -26,6 +23,7 @@ in
       dataDir = "/var/lib/ttrss/html";
       domain = domain;
     };
+    az-postgresql.enable = true;
     nginx.virtualHosts."${domain}".locations = {
       "/".extraConfig = ''
         try_files $uri $uri/ = 404;

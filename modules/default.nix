@@ -35,6 +35,7 @@
     ./services/nginx-proxy
     ./services/pipewire
     ./services/plex
+    ./postgresql
     ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop

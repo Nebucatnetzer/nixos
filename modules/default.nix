@@ -41,6 +41,7 @@
     ./services/restic-client-desktop
     ./services/restic-client-server
     ./services/restic-client-server-mysql
+    ./restic-client-server-postgres
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp

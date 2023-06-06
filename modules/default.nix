@@ -30,7 +30,7 @@
     ./services/media-share
     ./services/nextcloud
     ./services/nginx-acme-base
-    ./nginx-fpm
+    ./services/nginx-fpm
     ./services/pipewire
     ./services/rclone-webdav
     ./services/rdp

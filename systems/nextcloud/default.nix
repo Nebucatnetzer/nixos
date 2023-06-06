@@ -5,16 +5,17 @@
       ip = "10.7.89.103";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/restic-client-server-mysql" {
-      path = "/home/andreas";
-      time = "01:30";
-    })
   ];
 
   services = {
     az-nextcloud = {
       enable = true;
       domain = "nextcloud.2li.ch";
+    };
+    az-restic-client-server-mysql = {
+      enable = true;
+      path = "/home/andreas";
+      time = "01:30";
     };
   };
 }

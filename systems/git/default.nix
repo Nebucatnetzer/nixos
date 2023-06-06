@@ -8,10 +8,6 @@ in
       ip = "10.7.89.109";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/restic-client-server-mysql" {
-      path = "/home/andreas";
-      time = "00:30";
-    })
   ];
   services = {
     az-gitea = {
@@ -21,6 +17,11 @@ in
     az-nginx-proxy = {
       enable = true;
       domain = domain;
+    };
+    az-restic-client-server-mysql = {
+      enable = true;
+      path = "/home/andreas";
+      time = "00:30";
     };
   };
 }

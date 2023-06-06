@@ -43,7 +43,7 @@
     ./services/restic-client-server-mysql
     ./services/restic-client-server-postgres
     ./services/restic-server
-    ./rss-bridge
+    ./services/rss-bridge
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp

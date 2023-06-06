@@ -47,6 +47,7 @@
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp
+    ./ttrss-postgres
     ./services/virtualbox-guest
   ];
 }

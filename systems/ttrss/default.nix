@@ -8,7 +8,6 @@ in
       ip = "10.7.89.115";
       inherit hostname;
     })
-    (import "${inputs.self}/modules/ttrss-postgres" { inherit domain; })
   ];
   services = {
     az-nginx-proxy = {
@@ -23,5 +22,9 @@ in
       time = "23:00";
     };
     az-rss-bridge.enable = true;
+    az-ttrss-postgres = {
+      enable = true;
+      domain = domain;
+    };
   };
 }

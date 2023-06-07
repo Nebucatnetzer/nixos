@@ -64,7 +64,7 @@
 
   # Disable the root user
   users.users.root.hashedPassword = "!";
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with `passwd`.
   users.users.${config.az-username} = {
     isNormalUser = true;
     initialPassword = "password";

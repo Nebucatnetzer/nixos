@@ -1,34 +1,34 @@
-{ custom, system }: { config, nixosConfig, pkgs, ... }:
+{ config, inputs, nixosConfig, pkgs, system, ... }:
 let
-  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
+  unstable = import inputs.nixpkgs-unstable { inherit system; };
 in
 {
   imports = [
-    "${custom.inputs.self}/home-manager/common"
-    "${custom.inputs.self}/home-manager/software/alacritty"
-    "${custom.inputs.self}/home-manager/software/ansible"
-    "${custom.inputs.self}/home-manager/software/calibre"
-    "${custom.inputs.self}/home-manager/software/czkawka"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
-    "${custom.inputs.self}/home-manager/software/espanso"
-    "${custom.inputs.self}/home-manager/software/dunst"
-    "${custom.inputs.self}/home-manager/software/evince"
-    "${custom.inputs.self}/home-manager/software/fzf"
-    "${custom.inputs.self}/home-manager/software/git"
-    "${custom.inputs.self}/home-manager/software/grobi"
-    "${custom.inputs.self}/home-manager/software/keeweb"
-    "${custom.inputs.self}/home-manager/software/mime-apps"
-    "${custom.inputs.self}/home-manager/software/mpv"
-    "${custom.inputs.self}/home-manager/software/nitrogen"
-    "${custom.inputs.self}/home-manager/software/obsidian"
-    (import "${custom.inputs.self}/home-manager/software/rapid-photo-downloader" { inherit unstable; })
-    "${custom.inputs.self}/home-manager/software/signal"
-    "${custom.inputs.self}/home-manager/software/ssh"
-    "${custom.inputs.self}/home-manager/software/starship"
-    "${custom.inputs.self}/home-manager/software/telegram"
-    "${custom.inputs.self}/home-manager/software/vim"
-    "${custom.inputs.self}/home-manager/software/work-desktop"
-    "${custom.inputs.self}/home-manager/software/yt-dlp"
+    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/software/alacritty"
+    "${inputs.self}/home-manager/software/ansible"
+    "${inputs.self}/home-manager/software/calibre"
+    "${inputs.self}/home-manager/software/czkawka"
+    (import "${inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${inputs.self}/home-manager/software/espanso"
+    "${inputs.self}/home-manager/software/dunst"
+    "${inputs.self}/home-manager/software/evince"
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/grobi"
+    "${inputs.self}/home-manager/software/keeweb"
+    "${inputs.self}/home-manager/software/mime-apps"
+    "${inputs.self}/home-manager/software/mpv"
+    "${inputs.self}/home-manager/software/nitrogen"
+    "${inputs.self}/home-manager/software/obsidian"
+    (import "${inputs.self}/home-manager/software/rapid-photo-downloader" { inherit unstable; })
+    "${inputs.self}/home-manager/software/signal"
+    "${inputs.self}/home-manager/software/ssh"
+    "${inputs.self}/home-manager/software/starship"
+    "${inputs.self}/home-manager/software/telegram"
+    "${inputs.self}/home-manager/software/vim"
+    "${inputs.self}/home-manager/software/work-desktop"
+    "${inputs.self}/home-manager/software/yt-dlp"
   ];
   home = {
     username = nixosConfig.az-username;
@@ -53,9 +53,9 @@ in
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile/config.py".source = "${custom.inputs.self}/home-manager/configs/qtile/config.py";
-  home.file.".config/qtile/autostart.sh".source = "${custom.inputs.self}/home-manager/configs/qtile/autostart.sh";
-  home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${custom.inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
+  home.file.".config/qtile/config.py".source = "${inputs.self}/home-manager/configs/qtile/config.py";
+  home.file.".config/qtile/autostart.sh".source = "${inputs.self}/home-manager/configs/qtile/autostart.sh";
+  home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
   programs.bash = {
     enable = true;

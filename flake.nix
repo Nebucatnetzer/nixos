@@ -28,9 +28,8 @@
     , home-manager
     }:
     let
-      custom = import ./custom { inherit inputs; };
-      mkComputer = import "${custom.inputs.self}/lib/mk_computer.nix";
-      mkRaspi = import "${custom.inputs.self}/lib/mk_raspi.nix";
+      mkComputer = import "${inputs.self}/lib/mk_computer.nix";
+      mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";
       mksdImage = host: (self.nixosConfigurations.${host}.extendModules {
         modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
       }).config.system.build.sdImage;
@@ -53,79 +52,79 @@
         gwyn = mkComputer {
           hostname = "gwyn";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit inputs;
         };
         desktop-vm = mkComputer {
           hostname = "desktop-vm";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit inputs;
         };
         staubfinger = mkComputer {
           hostname = "staubfinger";
           home-module = "desktop";
-          inherit custom inputs;
+          inherit inputs;
         };
         # Servers
         git = mkRaspi {
           hostname = "git";
-          inherit custom inputs;
+          inherit inputs;
         };
         loki-test = mkRaspi {
           hostname = "loki-test";
-          inherit custom inputs;
+          inherit inputs;
         };
         mail = mkRaspi {
           hostname = "mail";
-          inherit custom inputs;
+          inherit inputs;
         };
         nextcloud = mkRaspi {
           hostname = "nextcloud";
-          inherit custom inputs;
+          inherit inputs;
         };
         plex = mkRaspi {
           hostname = "plex";
-          inherit custom inputs;
+          inherit inputs;
         };
         proxy = mkRaspi {
           hostname = "proxy";
-          inherit custom inputs;
+          inherit inputs;
         };
         management = mkRaspi {
           hostname = "management";
           home-module = "management";
-          inherit custom inputs;
+          inherit inputs;
         };
         mobile = mkRaspi {
           hostname = "mobile";
           home-module = "management";
-          inherit custom inputs;
+          inherit inputs;
         };
         restic-server = mkRaspi {
           hostname = "restic-server";
-          inherit custom inputs;
+          inherit inputs;
         };
         test-raspi = mkRaspi {
           hostname = "test-raspi";
-          inherit custom inputs;
+          inherit inputs;
         };
         ttrss = mkRaspi {
           hostname = "ttrss";
-          inherit custom inputs;
+          inherit inputs;
         };
       };
       homeConfigurations = {
         "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
-          pkgs = import custom.inputs.nixpkgs {
+          pkgs = import inputs.nixpkgs {
             system = "x86_64-linux";
             config = {
               allowUnfree = true;
             };
           };
           modules = [
-            "${custom.inputs.self}/home-manager/work-wsl.nix"
+            "${inputs.self}/home-manager/work-wsl.nix"
           ];
           extraSpecialArgs = {
-            inherit custom inputs;
+            inherit inputs;
           };
         };
       };

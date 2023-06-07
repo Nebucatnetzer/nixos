@@ -1,4 +1,4 @@
-{ custom, hostname, inputs, system ? "x86_64-linux", home-module ? "headless", username ? "andreas" }:
+{ hostname, inputs, system ? "x86_64-linux", home-module ? "headless", username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -52,8 +52,9 @@ inputs.nixpkgs.lib.nixosSystem
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        home-manager.extraSpecialArgs = { inherit inputs system; };
         home-manager.users.andreas.imports = [
-          (import "${inputs.self}/home-manager/${home-module}.nix" { inherit custom system; })
+          "${inputs.self}/home-manager/${home-module}.nix"
         ];
       }
     ]);

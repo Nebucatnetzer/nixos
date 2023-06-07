@@ -1,16 +1,16 @@
-{ custom, system }: { config, nixosConfig, pkgs, ... }:
+{ inputs, nixosConfig, pkgs, system, ... }:
 let
-  unstable = import custom.inputs.nixpkgs-unstable { inherit system; };
+  unstable = import inputs.nixpkgs-unstable { inherit system; };
 in
 {
   imports = [
-    "${custom.inputs.self}/home-manager/common"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
-    "${custom.inputs.self}/home-manager/software/fzf"
-    "${custom.inputs.self}/home-manager/software/git"
-    "${custom.inputs.self}/home-manager/software/ssh"
-    "${custom.inputs.self}/home-manager/software/starship"
-    "${custom.inputs.self}/home-manager/software/vim"
+    "${inputs.self}/home-manager/common"
+    (import "${inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/ssh"
+    "${inputs.self}/home-manager/software/starship"
+    "${inputs.self}/home-manager/software/vim"
   ];
 
   home.username = nixosConfig.az-username;

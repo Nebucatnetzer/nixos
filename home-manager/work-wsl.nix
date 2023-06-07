@@ -1,17 +1,17 @@
-{ custom, pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
-  unstable = import custom.inputs.nixpkgs-unstable { system = "x86_64-linux"; };
+  unstable = import inputs.nixpkgs-unstable { system = "x86_64-linux"; };
 in
 {
   imports = [
-    "${custom.inputs.self}/home-manager/common"
-    "${custom.inputs.self}/home-manager/software/ansible"
-    (import "${custom.inputs.self}/home-manager/software/emacs" { inherit unstable; })
-    "${custom.inputs.self}/home-manager/software/fzf"
-    "${custom.inputs.self}/home-manager/software/git"
-    "${custom.inputs.self}/home-manager/software/starship"
-    (import "${custom.inputs.self}/home-manager/software/vagrant-wsl" { inherit unstable; })
-    "${custom.inputs.self}/home-manager/software/vim"
+    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/software/ansible"
+    (import "${inputs.self}/home-manager/software/emacs" { inherit unstable; })
+    "${inputs.self}/home-manager/software/fzf"
+    "${inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/software/starship"
+    (import "${inputs.self}/home-manager/software/vagrant-wsl" { inherit unstable; })
+    "${inputs.self}/home-manager/software/vim"
   ];
 
   programs.git.userEmail = "zweili@contria.com";

@@ -5,6 +5,7 @@
     rules = [
       {
         name = "virtualbox";
+        outputs_connected = [ "Virtual1" ];
         configure_single = "Virtual1@3840x2160";
         primary = true;
         atomic = true;

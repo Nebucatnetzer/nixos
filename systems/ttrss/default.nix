@@ -1,7 +1,4 @@
 { hostname }: { inputs, pkgs, ... }:
-let
-  domain = "ttrss.2li.ch";
-in
 {
   imports = [
     "${inputs.self}/modules/hardware/raspi4"
@@ -29,7 +26,7 @@ in
     az-rss-bridge.enable = true;
     az-ttrss-postgres = {
       enable = true;
-      domain = domain;
+      domain = "ttrss.2li.ch";
     };
   };
 }

@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/modules"
     "${inputs.self}/home-manager/software/ansible"
     (import "${inputs.self}/home-manager/software/emacs" { inherit unstable; })
     "${inputs.self}/home-manager/software/fzf"

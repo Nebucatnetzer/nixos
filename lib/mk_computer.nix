@@ -54,7 +54,7 @@ inputs.nixpkgs.lib.nixosSystem
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs system; };
         home-manager.users.andreas.imports = [
-          "${inputs.self}/home-manager/${home-module}.nix"
+          "${inputs.self}/home-manager/profiles/${home-module}.nix"
         ];
       }
     ]);

@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    "${inputs.self}/home-manager/common"
+    "${inputs.self}/home-manager/modules"
     "${inputs.self}/home-manager/software/alacritty"
     "${inputs.self}/home-manager/software/ansible"
     "${inputs.self}/home-manager/software/calibre"

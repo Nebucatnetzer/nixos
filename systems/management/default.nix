@@ -1,10 +1,7 @@
 { hostname }: { inputs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
-      ip = "10.7.89.150";
-      inherit hostname;
-    })
+    "${inputs.self}/modules/hardware/raspi4"
   ];
   fileSystems = {
     "/mnt/external" = {
@@ -14,6 +11,13 @@
     };
   };
 
+  hardware = {
+    az-raspi4 = {
+      enable = true;
+      hostname = hostname;
+      ip = "10.7.89.150";
+    };
+  };
   # Features
   services = {
     az-data-share.enable = true;

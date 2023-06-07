@@ -1,11 +1,16 @@
 { hostname }: { inputs, pkgs, ... }:
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
-      ip = "10.7.89.112";
-      inherit hostname;
-    })
+    "${inputs.self}/modules/hardware/raspi4"
   ];
+  hardware = {
+    az-raspi4 = {
+      enable = true;
+      hostname = hostname;
+      ip = "10.7.89.112";
+    };
+  };
+
   services = {
     az-media-share.enable = true;
     az-plex.enable = true;

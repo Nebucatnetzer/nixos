@@ -4,11 +4,16 @@ let
 in
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
-      ip = "10.7.89.109";
-      inherit hostname;
-    })
+    "${inputs.self}/modules/hardware/raspi4"
   ];
+  hardware = {
+    az-raspi4 = {
+      enable = true;
+      hostname = hostname;
+      ip = "10.7.89.109";
+    };
+  };
+
   services = {
     az-gitea = {
       enable = true;

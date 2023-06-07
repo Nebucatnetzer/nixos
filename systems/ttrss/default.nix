@@ -1,14 +1,16 @@
 { hostname }: { inputs, pkgs, ... }:
-let
-  domain = "ttrss.2li.ch";
-in
 {
   imports = [
-    (import "${inputs.self}/systems/raspi4" {
-      ip = "10.7.89.115";
-      inherit hostname;
-    })
+    "${inputs.self}/modules/hardware/raspi4"
   ];
+  hardware = {
+    az-raspi4 = {
+      enable = true;
+      hostname = hostname;
+      ip = "10.7.89.115";
+    };
+  };
+
   services = {
     az-nginx-proxy = {
       enable = true;
@@ -24,7 +26,7 @@ in
     az-rss-bridge.enable = true;
     az-ttrss-postgres = {
       enable = true;
-      domain = domain;
+      domain = "ttrss.2li.ch";
     };
   };
 }

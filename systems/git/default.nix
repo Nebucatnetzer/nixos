@@ -4,10 +4,10 @@ let
 in
 {
   imports = [
-    "${inputs.self}/modules/hardware/raspi4"
+    "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix"
   ];
   hardware = {
-    az-raspi4 = {
+    az-raspi4-ethernet = {
       enable = true;
       hostname = hostname;
       ip = "10.7.89.109";

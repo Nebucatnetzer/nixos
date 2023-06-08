@@ -1,8 +1,8 @@
-{ custom, inputs }: { config, nixosConfig, ... }:
+{ inputs, nixosConfig, ... }:
 {
   imports = [
-    "${custom.inputs.self}/home-manager/common"
-    "${custom.inputs.self}/home-manager/software/git"
+    "${inputs.self}/home-manager/modules"
+    "${inputs.self}/home-manager/software/git"
   ];
 
   home.username = nixosConfig.az-username;

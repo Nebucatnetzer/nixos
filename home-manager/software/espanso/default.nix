@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       undo_backspace = false;
-      search_trigger = "off";
+      search_trigger = false;
       matches = [
         {
           trigger = "<dd";

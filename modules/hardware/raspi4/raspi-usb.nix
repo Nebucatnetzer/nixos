@@ -22,8 +22,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.raspberry-pi."4".dwc2.enable = true;
-
     networking = {
       hostName = cfg.hostname;
       hosts = {

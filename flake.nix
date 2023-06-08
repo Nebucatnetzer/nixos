@@ -121,7 +121,7 @@
             };
           };
           modules = [
-            "${inputs.self}/home-manager/work-wsl.nix"
+            "${inputs.self}/home-manager/profiles/work-wsl.nix"
           ];
           extraSpecialArgs = {
             inherit inputs;

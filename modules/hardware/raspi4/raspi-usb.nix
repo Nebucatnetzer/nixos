@@ -24,6 +24,7 @@ in
   config = lib.mkIf cfg.enable {
     boot = {
       kernelModules = [ "libcomposite" ];
+      loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";
     };
     networking = {
       hostName = cfg.hostname;
@@ -49,7 +50,7 @@ in
       };
     };
 
-    boot.loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";
+
     networking.dhcpcd.denyInterfaces = [ "usb0" ];
 
     services.dhcpd4 = {

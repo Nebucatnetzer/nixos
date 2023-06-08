@@ -22,6 +22,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    boot = {
+      kernelModules = [ "libcomposite" ];
+    };
     networking = {
       hostName = cfg.hostname;
       hosts = {

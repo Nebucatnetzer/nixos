@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/ansible"
     "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
@@ -45,13 +44,16 @@
     };
   };
 
-  programs.bash = {
-    enable = true;
-    bashrcExtra = ''
-      . /home/zweili/.nix-profile/etc/profile.d/nix.sh
-    '';
-    shellAliases = {
-      work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+  programs = {
+    az-ansible.enable = true;
+    bash = {
+      enable = true;
+      bashrcExtra = ''
+        . /home/zweili/.nix-profile/etc/profile.d/nix.sh
+      '';
+      shellAliases = {
+        work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+      };
     };
   };
 }

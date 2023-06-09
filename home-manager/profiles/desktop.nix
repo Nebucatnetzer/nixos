@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/ansible"
     "${inputs.self}/home-manager/software/calibre"
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/emacs"
@@ -35,7 +34,6 @@
       chromium
       libreoffice-fresh
       meld
-      nodejs # needed for ansible-language-server
       nodePackages.prettier # formatting files
       plexamp
       remmina

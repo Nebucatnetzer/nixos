@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/ssh"
@@ -21,8 +20,11 @@
 
   programs.git.userEmail = "andreas@zweili.ch";
 
-  programs.bash = {
-    enable = true;
+  programs = {
+    az-emacs.enable = true;
+    bash = {
+      enable = true;
+    };
   };
 
 }

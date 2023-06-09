@@ -37,6 +37,7 @@
     ./services/pipewire
     ./services/plex
     ./services/postgresql
+    ./services/qtile
     ./services/rclone-webdav
     ./services/rdp
     ./services/restic-client-desktop

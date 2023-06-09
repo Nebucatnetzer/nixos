@@ -15,6 +15,7 @@ in
     services = {
       az-docker.enable = true;
       az-pipewire.enable = true;
+      az-qtile.enable = true;
       # Enable Flatpack
       flatpak.enable = true;
       fwupd.enable = true;
@@ -32,8 +33,6 @@ in
       xserver = {
         enable = true;
         displayManager.lightdm.enable = true;
-        displayManager.defaultSession = "none+qtile";
-        windowManager.qtile.enable = true;
         layout = "us";
         xkbOptions = "compose:ralt";
         libinput.enable = true;

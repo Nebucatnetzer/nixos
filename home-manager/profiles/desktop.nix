@@ -39,7 +39,6 @@
       meld
       nodejs # needed for ansible-language-server
       nodePackages.prettier # formatting files
-      pulseaudio # required for volume controls in qtile
       plexamp
       remmina
       shotwell
@@ -50,8 +49,6 @@
   programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
-  home.file.".config/qtile/config.py".source = "${inputs.self}/home-manager/configs/qtile/config.py";
-  home.file.".config/qtile/autostart.sh".source = "${inputs.self}/home-manager/configs/qtile/autostart.sh";
   home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
   programs.bash = {

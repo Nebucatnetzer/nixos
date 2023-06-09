@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/calibre"
     "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/espanso"
@@ -47,22 +46,25 @@
   # raw config files
   home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
-  programs.bash = {
-    enable = true;
-    bashrcExtra = ''
-      open-port() {
-        local port=$1
-        sudo iptables -A INPUT -p tcp --dport $port -j ACCEPT
-      }
+  programs = {
+    az-calibre.enable = true;
+    bash = {
+      enable = true;
+      bashrcExtra = ''
+        open-port() {
+          local port=$1
+          sudo iptables -A INPUT -p tcp --dport $port -j ACCEPT
+        }
 
-      close-port() {
-        local port=$1
-        sudo iptables -D INPUT -p tcp --dport $port -j ACCEPT
-      }
-    '';
-    shellAliases = {
-      management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
-      work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+        close-port() {
+          local port=$1
+          sudo iptables -D INPUT -p tcp --dport $port -j ACCEPT
+        }
+      '';
+      shellAliases = {
+        management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
+        work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+      };
     };
   };
 

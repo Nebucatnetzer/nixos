@@ -12,6 +12,7 @@ in
       fd
       multimarkdown
       nil # Nix language server
+      nodejs # needed for ansible-language-server
       pandoc
       python310
       python310Packages.pip

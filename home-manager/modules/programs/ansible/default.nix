@@ -16,7 +16,6 @@ in
         NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
       };
       packages = [
-        pkgs.nodejs # needed for ansible-language-server
         pkgs.sshpass # it's the only system package that I need to run Ansible
       ];
     };

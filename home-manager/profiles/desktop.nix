@@ -44,6 +44,7 @@
   home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
 
   programs = {
+    az-alacritty.enable = true;
     az-calibre.enable = true;
     az-czkawka.enable = true;
     az-emacs.enable = true;

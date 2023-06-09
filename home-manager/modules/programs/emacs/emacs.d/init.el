@@ -14,9 +14,9 @@
   (load custom-file))
 
 (defun modules-path (config)
-  (setq emacs-config-dir "~/.nixos/home-manager/software/emacs/emacs.d/lib/")
+  (setq emacs-config-dir "~/.nixos/home-manager/programs/emacs/emacs.d/lib/")
   (concat emacs-config-dir config))
 
 ;; load config files
 (load-file "~/.emacs.d/variables.el")
-(load-file "~/.nixos/home-manager/software/emacs/emacs.d/modules.el")
+(load-file "~/.nixos/home-manager/programs/emacs/emacs.d/modules.el")

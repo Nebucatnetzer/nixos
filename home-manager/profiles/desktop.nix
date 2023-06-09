@@ -12,7 +12,6 @@
     "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
-    "${inputs.self}/home-manager/software/grobi"
     "${inputs.self}/home-manager/software/keeweb"
     "${inputs.self}/home-manager/software/mime-apps"
     "${inputs.self}/home-manager/software/mpv"
@@ -70,9 +69,12 @@
     };
   };
 
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
+  services = {
+    az-grobi.enable = true;
+    nextcloud-client = {
+      enable = true;
+      startInBackground = true;
+    };
   };
 
   gtk.theme.name = "Arc-Darker";

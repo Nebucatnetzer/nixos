@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
     ./common
+    ./services/grobi
   ];
 }

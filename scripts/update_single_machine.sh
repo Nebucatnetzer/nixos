@@ -5,4 +5,4 @@ export NIX_SSHOPTS="-t -i $rsa_key"
 
 host=$1
 fqdn="$host.2li.local"
-nixos-rebuild switch --use-remote-sudo --build-host localhost --target-host $fqdn --flake ".#$host"
+nixos-rebuild switch --use-remote-sudo --target-host $fqdn --flake ".#$host"

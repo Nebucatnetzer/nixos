@@ -1,10 +1,10 @@
 { config, lib, ... }:
 let
-  cfg = config.programs.az-dunst;
+  cfg = config.services.az-dunst;
 in
 {
   options = {
-    programs.az-dunst.enable = lib.mkEnableOption "Enable dunst.";
+    services.az-dunst.enable = lib.mkEnableOption "Enable dunst.";
   };
 
   config = lib.mkIf cfg.enable {

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/czkawka"
     "${inputs.self}/home-manager/software/emacs"
     "${inputs.self}/home-manager/software/espanso"
     "${inputs.self}/home-manager/software/dunst"
@@ -48,6 +47,7 @@
 
   programs = {
     az-calibre.enable = true;
+    az-czkawka.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

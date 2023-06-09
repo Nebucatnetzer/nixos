@@ -22,8 +22,8 @@ in
     };
 
     programs.emacs = {
-      extraPackages = epkgs: [
-        epkgs.pkgs.ansible
+      extraPackages = epkgs: with pkgs;[
+        pkgs.ansible
       ];
     };
   };

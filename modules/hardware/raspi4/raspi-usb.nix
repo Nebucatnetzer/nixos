@@ -3,10 +3,6 @@ let
   cfg = config.hardware.az-raspi4-usb;
 in
 {
-  imports = [
-    ./base.nix
-  ];
-
   options = {
     hardware.az-raspi4-usb = {
       enable = lib.mkEnableOption "Enable options required for Raspberry Pi 4.";
@@ -22,6 +18,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.az-raspi4-base.enable = true;
+
     boot = {
       kernelModules = [ "libcomposite" ];
       loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";

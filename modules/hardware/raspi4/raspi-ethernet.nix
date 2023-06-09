@@ -3,10 +3,6 @@ let
   cfg = config.hardware.az-raspi4-ethernet;
 in
 {
-  imports = [
-    ./base.nix
-  ];
-
   options = {
     hardware.az-raspi4-ethernet = {
       enable = lib.mkEnableOption "Enable options required for Raspberry Pi 4.";
@@ -22,6 +18,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.az-raspi4-base.enable = true;
     networking = {
       useDHCP = false;
       hostName = cfg.hostname;

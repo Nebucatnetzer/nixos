@@ -4,6 +4,7 @@
     ./hardware/bluetooth
     ./hardware/dvd
     ./hardware/nvidia
+    ./hardware/raspi4
     ./misc/common
     ./misc/username
     ./profiles/desktop

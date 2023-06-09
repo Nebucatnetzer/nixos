@@ -50,9 +50,7 @@ in
       };
     };
 
-
     networking.dhcpcd.denyInterfaces = [ "usb0" ];
-
     services.dhcpd4 = {
       enable = true;
       interfaces = [ "usb0" ];

@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.services.az-qtile;
 in
@@ -15,8 +15,8 @@ in
       };
     };
     home-manager.users.${config.az-username} = {
-      home.file.".config/qtile/config.py".source = "${inputs.self}/home-manager/configs/qtile/config.py";
-      home.file.".config/qtile/autostart.sh".source = "${inputs.self}/home-manager/configs/qtile/autostart.sh";
+      home.file.".config/qtile/config.py".source = ./config.py;
+      home.file.".config/qtile/autostart.sh".source = ./autostart.sh;
       home.packages = [
         pkgs.pulseaudio # required for volume controls in qtile
       ];

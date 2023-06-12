@@ -16,6 +16,7 @@
     ./programs/telegram
     ./programs/vagrant-wsl
     ./programs/work-desktop
+    ./programs/yt-dlp
     ./services/dunst
     ./services/espanso
     ./services/grobi

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/yt-dlp"
   ];
   home = {
     username = nixosConfig.az-username;
@@ -42,6 +41,7 @@
     az-ssh.enable = true;
     az-telegram.enable = true;
     az-work-desktop.enable = true;
+    az-yt-dlp.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

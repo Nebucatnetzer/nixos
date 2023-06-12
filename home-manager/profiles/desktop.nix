@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/keeweb"
     "${inputs.self}/home-manager/software/mime-apps"

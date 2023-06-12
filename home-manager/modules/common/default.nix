@@ -2,7 +2,14 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    fzf = {
+      enable = true;
+      enableBashIntegration = true;
+    };
+  };
+
   home = {
     homeDirectory = "/home/${config.home.username}";
     stateVersion = "22.11";

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/ssh"
     "${inputs.self}/home-manager/software/starship"
     "${inputs.self}/home-manager/software/vim"
@@ -17,10 +16,9 @@
     xclip
   ];
 
-  programs.git.userEmail = "andreas@zweili.ch";
-
   programs = {
     az-emacs.enable = true;
+    az-git.enable = true;
     bash = {
       enable = true;
     };

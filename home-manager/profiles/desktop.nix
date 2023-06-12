@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/keeweb"
     "${inputs.self}/home-manager/software/mime-apps"
     "${inputs.self}/home-manager/software/mpv"
@@ -35,7 +34,6 @@
       unstable.tagger
     ];
   };
-  programs.git.userEmail = "andreas@zweili.ch";
 
   # raw config files
   home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = "${inputs.self}/home-manager/configs/flatpak/xdg-portal-add-path.sh";
@@ -46,6 +44,7 @@
     az-czkawka.enable = true;
     az-emacs.enable = true;
     az-evince.enable = true;
+    az-git.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

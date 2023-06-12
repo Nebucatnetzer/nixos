@@ -2,13 +2,11 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/starship"
     "${inputs.self}/home-manager/software/vagrant-wsl"
     "${inputs.self}/home-manager/software/vim"
   ];
 
-  programs.git.userEmail = "zweili@contria.com";
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -45,6 +43,10 @@
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;
+    az-git = {
+      enable = true;
+      userEmail = "zweili@contria.com";
+    };
     bash = {
       enable = true;
       bashrcExtra = ''

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/nitrogen"
     "${inputs.self}/home-manager/software/obsidian"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"
     "${inputs.self}/home-manager/software/signal"
@@ -23,6 +22,7 @@
       chromium
       libreoffice-fresh
       meld
+      nitrogen
       nodePackages.prettier # formatting files
       plexamp
       remmina

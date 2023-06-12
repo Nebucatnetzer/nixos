@@ -130,7 +130,6 @@ in
         gnome.gnome-screenshot
         gnome.nautilus
         networkmanager-openvpn
-        nitrogen
         p7zip
         pavucontrol
         quickemu

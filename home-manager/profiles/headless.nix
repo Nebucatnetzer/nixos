@@ -3,7 +3,6 @@
   imports = [
     "${inputs.self}/home-manager/modules"
     "${inputs.self}/home-manager/software/vim"
-    "${inputs.self}/home-manager/software/starship"
   ];
 
   home.username = nixosConfig.az-username;

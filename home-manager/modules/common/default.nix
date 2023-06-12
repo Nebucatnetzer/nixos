@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -7,6 +7,28 @@
     fzf = {
       enable = true;
       enableBashIntegration = true;
+    };
+    starship = {
+      settings = {
+        add_newline = false;
+        format = lib.concatStrings [
+          "$username"
+          "$hostname"
+          "$directory"
+          "$nix_shell"
+          "$python"
+          "$git_branch"
+          "$git_status"
+          "$character"
+        ];
+        nix_shell = {
+          format = "\\[X\\] ";
+        };
+        python = {
+          format = "[$\{symbol\}($virtualenv) ]($style)";
+        };
+      };
+      enable = true;
     };
   };
 

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/starship"
     "${inputs.self}/home-manager/software/vagrant-wsl"
     "${inputs.self}/home-manager/software/vim"
   ];

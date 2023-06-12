@@ -16,7 +16,6 @@ in
       az-docker.enable = true;
       az-pipewire.enable = true;
       az-qtile.enable = true;
-      # Enable Flatpack
       flatpak.enable = true;
       fwupd.enable = true;
       gnome = {
@@ -29,9 +28,7 @@ in
         vSync = true;
       };
       printing.enable = true;
-      redshift = {
-        enable = true;
-      };
+      redshift.enable = true;
       udisks2.enable = true;
       # Enable the X11 windowing system.
       xserver = {
@@ -68,13 +65,10 @@ in
     sound.enable = true;
 
     programs = {
-      # Enable dconf to be able to save Nautilus settings
-      dconf.enable = true;
+      dconf.enable = true; # Enable dconf to be able to save Nautilus settings
       az-email.enable = true;
-      # Gnome Image Viewer
-      az-eog.enable = true;
-      # Enable dictionaries
-      az-hunspell.enable = true;
+      az-eog.enable = true; # Gnome Image Viewer
+      az-hunspell.enable = true; # Enable dictionaries
       az-idevices.enable = true;
       az-nix-direnv.enable = true;
       az-scripts.enable = true;

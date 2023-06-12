@@ -10,6 +10,7 @@
     ./programs/git
     ./programs/keeweb
     ./programs/mpv
+    ./programs/open-port
     ./programs/rapid-photo-downloader
     ./programs/signal
     ./programs/ssh
@@ -17,6 +18,7 @@
     ./programs/vagrant-wsl
     ./programs/work-desktop
     ./programs/yt-dlp
+    ./services/desktop-base
     ./services/dunst
     ./services/espanso
     ./services/grobi

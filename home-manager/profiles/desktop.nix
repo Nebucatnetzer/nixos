@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/ssh"
     "${inputs.self}/home-manager/software/starship"
     "${inputs.self}/home-manager/software/telegram"
     "${inputs.self}/home-manager/software/vim"
@@ -44,6 +43,7 @@
     az-mpv.enable = true;
     az-rapid-photo-downloader.enable = true;
     az-signal.enable = true;
+    az-ssh.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

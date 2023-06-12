@@ -12,6 +12,7 @@
     ./programs/mpv
     ./programs/rapid-photo-downloader
     ./programs/signal
+    ./programs/ssh
     ./services/dunst
     ./services/espanso
     ./services/grobi

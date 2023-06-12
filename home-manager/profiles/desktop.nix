@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/obsidian"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"
     "${inputs.self}/home-manager/software/signal"
     "${inputs.self}/home-manager/software/ssh"
@@ -28,6 +27,7 @@
       remmina
       shotwell
       sound-juicer
+      unstable.obsidian
       unstable.tagger
     ];
   };

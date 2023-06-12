@@ -13,6 +13,7 @@
     ./programs/rapid-photo-downloader
     ./programs/signal
     ./programs/ssh
+    ./programs/telegram
     ./services/dunst
     ./services/espanso
     ./services/grobi

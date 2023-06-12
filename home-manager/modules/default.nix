@@ -10,6 +10,7 @@
     ./programs/git
     ./programs/keeweb
     ./programs/mpv
+    ./programs/rapid-photo-downloader
     ./services/dunst
     ./services/espanso
     ./services/grobi

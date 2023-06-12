@@ -9,6 +9,7 @@
     ./programs/evince
     ./programs/git
     ./programs/keeweb
+    ./programs/mpv
     ./services/dunst
     ./services/espanso
     ./services/grobi

@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/mpv"
     "${inputs.self}/home-manager/software/nitrogen"
     "${inputs.self}/home-manager/software/obsidian"
     "${inputs.self}/home-manager/software/rapid-photo-downloader"
@@ -44,6 +43,7 @@
     az-evince.enable = true;
     az-git.enable = true;
     az-keeweb.enable = true;
+    az-mpv.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

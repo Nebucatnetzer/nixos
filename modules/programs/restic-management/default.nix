@@ -1,6 +1,6 @@
 { config, inputs, lib, pkgs, ... }:
 let
-  cfg = config.services.az-restic-client-desktop;
+  cfg = config.programs.az-restic-management;
   password_file = config.age.secrets.resticKey.path;
   repository = "rest:http://10.7.89.30:8000";
 
@@ -48,7 +48,6 @@ in
     programs.az-restic-management.enable = lib.mkEnableOption "Enable restic management commands.";
   };
   config = lib.mkIf cfg.enable {
-    programs.az-restic-management.enable = true;
     age.secrets.infomaniakEnv = {
       file = "${inputs.self}/scrts/infomaniak_env.age";
       mode = "600";

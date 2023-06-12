@@ -15,6 +15,7 @@
     ./programs/ssh
     ./programs/telegram
     ./programs/vagrant-wsl
+    ./programs/work-desktop
     ./services/dunst
     ./services/espanso
     ./services/grobi

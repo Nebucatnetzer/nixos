@@ -9,7 +9,6 @@
     docker-compose
     exercism
     nodePackages.prettier # formatting files
-    rclone
     xclip
   ];
 

@@ -12,6 +12,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.rclone
+    ];
     services.az-telegram-notifications.enable = true;
 
     age.secrets.webdavSecrets = {

@@ -125,6 +125,9 @@
           ];
           extraSpecialArgs = {
             inherit inputs;
+            nixosConfig = {
+              az-username = "zweili";
+            };
           };
         };
       };

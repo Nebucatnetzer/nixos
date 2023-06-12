@@ -10,7 +10,6 @@
   };
 
   home = {
-    username = "zweili";
     sessionPath = [ "$HOME/node_modules/.bin" ];
     packages = with pkgs; [
       keychain
@@ -41,12 +40,10 @@
     az-ansible.enable = true;
     az-emacs.enable = true;
     az-git = {
-      enable = true;
       userEmail = "zweili@contria.com";
     };
     az-vagrant-wsl.enable = true;
     bash = {
-      enable = true;
       bashrcExtra = ''
         . /home/zweili/.nix-profile/etc/profile.d/nix.sh
       '';

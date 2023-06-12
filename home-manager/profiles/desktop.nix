@@ -1,10 +1,9 @@
-{ config, inputs, nixosConfig, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports = [
     "${inputs.self}/home-manager/modules"
   ];
   home = {
-    username = nixosConfig.az-username;
     packages = with pkgs; [
       digikam
       docker-compose

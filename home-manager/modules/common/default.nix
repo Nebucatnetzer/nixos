@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, nixosConfig, pkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs = {
+    az-git.enable = true;
+    bash.enable = true;
     home-manager.enable = true;
     fzf = {
       enable = true;
@@ -66,6 +68,7 @@
 
   home = {
     homeDirectory = "/home/${config.home.username}";
+    username = nixosConfig.az-username;
     stateVersion = "22.11";
     sessionVariables = {
       EDITOR = "vim";

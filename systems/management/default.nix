@@ -1,8 +1,5 @@
 { hostname }: { inputs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix"
-  ];
   fileSystems = {
     "/mnt/external" = {
       device = "/dev/disk/by-uuid/F73C-AA4F";

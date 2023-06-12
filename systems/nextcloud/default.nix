@@ -1,8 +1,5 @@
 { hostname }: { inputs, pkgs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix"
-  ];
   hardware = {
     az-raspi4-ethernet = {
       enable = true;

@@ -8,6 +8,7 @@
     ./programs/emacs
     ./programs/evince
     ./programs/git
+    ./programs/keeweb
     ./services/dunst
     ./services/espanso
     ./services/grobi

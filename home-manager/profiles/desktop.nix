@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/keeweb"
     "${inputs.self}/home-manager/software/mime-apps"
     "${inputs.self}/home-manager/software/mpv"
     "${inputs.self}/home-manager/software/nitrogen"
@@ -45,6 +44,7 @@
     az-emacs.enable = true;
     az-evince.enable = true;
     az-git.enable = true;
+    az-keeweb.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

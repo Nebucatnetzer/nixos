@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/vim"
   ];
 
   home.username = nixosConfig.az-username;

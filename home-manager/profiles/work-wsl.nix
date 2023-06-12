@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/vagrant-wsl"
     "${inputs.self}/home-manager/software/vim"
   ];
 
@@ -46,6 +45,7 @@
       enable = true;
       userEmail = "zweili@contria.com";
     };
+    az-vagrant-wsl.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

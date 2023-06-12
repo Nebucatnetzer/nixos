@@ -14,6 +14,7 @@
     ./programs/signal
     ./programs/ssh
     ./programs/telegram
+    ./programs/vagrant-wsl
     ./services/dunst
     ./services/espanso
     ./services/grobi

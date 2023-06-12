@@ -1,0 +1,40 @@
+{ config, lib, ... }:
+let
+  cfg = config.services.az-espanso;
+in
+{
+  options = {
+    services.az-espanso.enable = lib.mkEnableOption "Enable espanso.";
+  };
+
+  config = lib.mkIf cfg.enable {
+    services.espanso = {
+      enable = true;
+      settings = {
+        undo_backspace = false;
+        search_trigger = false;
+        matches = [
+          {
+            trigger = "<dd";
+            replace = "{{current_date}}";
+            vars = [{
+              name = "current_date";
+              type = "date";
+              params = { format = "%Y-%m-%d"; };
+            }];
+          }
+          {
+            trigger = "<ds";
+            replace = "{{current_date}}";
+            vars = [{
+              name = "current_date";
+              type = "date";
+              params = { format = "%Y-%m-%d_%H%M%S"; };
+            }];
+          }
+        ];
+      };
+    };
+  };
+}
+

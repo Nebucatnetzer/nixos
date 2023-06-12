@@ -7,6 +7,7 @@
     ./programs/czkawka
     ./programs/emacs
     ./services/dunst
+    ./services/espanso
     ./services/grobi
   ];
 }

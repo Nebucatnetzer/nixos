@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/espanso"
     "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
@@ -70,6 +69,7 @@
 
   services = {
     az-dunst.enable = true;
+    az-espanso.enable = true;
     az-grobi.enable = true;
     nextcloud-client = {
       enable = true;

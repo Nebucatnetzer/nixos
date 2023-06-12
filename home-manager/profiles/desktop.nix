@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/evince"
     "${inputs.self}/home-manager/software/fzf"
     "${inputs.self}/home-manager/software/git"
     "${inputs.self}/home-manager/software/keeweb"
@@ -47,6 +46,7 @@
     az-calibre.enable = true;
     az-czkawka.enable = true;
     az-emacs.enable = true;
+    az-evince.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

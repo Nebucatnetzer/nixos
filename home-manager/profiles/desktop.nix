@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/signal"
     "${inputs.self}/home-manager/software/ssh"
     "${inputs.self}/home-manager/software/starship"
     "${inputs.self}/home-manager/software/telegram"
@@ -44,6 +43,7 @@
     az-keeweb.enable = true;
     az-mpv.enable = true;
     az-rapid-photo-downloader.enable = true;
+    az-signal.enable = true;
     bash = {
       enable = true;
       bashrcExtra = ''

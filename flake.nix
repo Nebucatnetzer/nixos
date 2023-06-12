@@ -56,7 +56,7 @@
         };
         desktop-vm = mkComputer {
           hostname = "desktop-vm";
-          home-module = "desktop";
+          home-module = "work-vm";
           inherit inputs;
         };
         staubfinger = mkComputer {

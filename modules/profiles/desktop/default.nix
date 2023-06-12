@@ -19,7 +19,10 @@ in
       # Enable Flatpack
       flatpak.enable = true;
       fwupd.enable = true;
-      gnome.gnome-keyring.enable = true;
+      gnome = {
+        gnome-keyring.enable = true;
+        tracker.enable = true;
+      };
       gvfs.enable = true;
       picom = {
         enable = true;

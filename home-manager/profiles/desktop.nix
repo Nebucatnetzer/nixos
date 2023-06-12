@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/home-manager/modules"
-    "${inputs.self}/home-manager/software/mime-apps"
     "${inputs.self}/home-manager/software/mpv"
     "${inputs.self}/home-manager/software/nitrogen"
     "${inputs.self}/home-manager/software/obsidian"
@@ -82,6 +81,11 @@
     pictures = "${config.home.homeDirectory}/nextcloud/20_pictures";
     createDirectories = true;
   };
+  # forcecully override the mimeapps.list
+  # this is required because it isn't a file nix can easily lock
+  # https://github.com/nix-community/home-manager/issues/1213
+  xdg.configFile."mimeapps.list".force = true;
+
 
   xsession = {
     numlock.enable = true;

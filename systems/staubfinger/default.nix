@@ -20,6 +20,8 @@
     "acpi_osi="
   ];
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
+  boot.initrd.luks.devices."cryptswap".device = "/dev/sda3";
+
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   fileSystems."/" = {
@@ -34,7 +36,7 @@
   networking.hostName = hostname;
 
   swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    { device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; }
   ];
 
   hardware = {

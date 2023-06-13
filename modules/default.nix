@@ -15,6 +15,7 @@
     ./programs/lockscreen
     ./programs/makemkv
     ./programs/nix-direnv
+    ./programs/restic-management
     ./programs/scripts
     ./programs/steam
     ./programs/tmux

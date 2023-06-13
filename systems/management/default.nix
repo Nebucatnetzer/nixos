@@ -1,8 +1,5 @@
 { hostname }: { inputs, ... }:
 {
-  imports = [
-    "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix"
-  ];
   fileSystems = {
     "/mnt/external" = {
       device = "/dev/disk/by-uuid/F73C-AA4F";
@@ -35,6 +32,7 @@
   programs = {
     az-hunspell.enable = true;
     az-nix-direnv.enable = true;
+    az-restic-management.enable = true;
     az-tmux.enable = true;
   };
 

@@ -20,20 +20,23 @@
     "acpi_osi="
   ];
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
+  boot.initrd.luks.devices."cryptswap".device = "/dev/sda3";
+
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-uuid/5d2e0ae2-8604-4921-b8b7-731358220a0f";
     fsType = "ext4";
   };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/ED86-8844";
     fsType = "vfat";
   };
 
   networking.hostName = hostname;
 
   swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    { device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; }
   ];
 
   hardware = {
@@ -44,6 +47,7 @@
   programs = {
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
+    az-restic-management.enable = true;
     az-tmux.enable = true;
   };
   services = {

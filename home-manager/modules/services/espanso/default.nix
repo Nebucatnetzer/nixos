@@ -10,10 +10,12 @@ in
   config = lib.mkIf cfg.enable {
     services.espanso = {
       enable = true;
-      settings = {
+      configs.default = {
         undo_backspace = false;
         search_trigger = false;
-        matches = [
+      };
+      matches = {
+        default = [
           {
             trigger = "<dd";
             replace = "{{current_date}}";

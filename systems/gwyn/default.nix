@@ -61,6 +61,7 @@
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
+    hardware.bolt.enable = true; # Enable Thunderbolt control
   };
 
   virtualisation.virtualbox.host.enable = true;

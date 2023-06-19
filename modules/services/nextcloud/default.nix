@@ -70,7 +70,7 @@ in
         environment = nextcloudEnvironment;
         environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
         volumes = [
-          "${inputs.self}/modules/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini:ro"
+          "${inputs.self}/modules/services/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini:ro"
           "/etc/localtime:/etc/localtime:ro"
         ];
         dependsOn = [ "redis" ];
@@ -88,7 +88,7 @@ in
           "8080:80"
         ];
         volumes = [
-          "${inputs.self}/modules/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
+          "${inputs.self}/modules/services/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
           "/etc/localtime:/etc/localtime:ro"
         ];
         extraOptions = [

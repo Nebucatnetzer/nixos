@@ -11,7 +11,7 @@ in
     home.packages = with pkgs; [
       fd
       multimarkdown
-      nil # Nix language server
+      unstable.nixd # Nix language server
       nodejs # needed for ansible-language-server
       pandoc
       python310

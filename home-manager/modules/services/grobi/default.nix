@@ -26,8 +26,8 @@ in
           name = "docked";
           outputs_connected = [ "eDP-1" "DP-1-2" ];
           atomic = true;
-          configure_row = [ "DP-1-2" "eDP-1" ];
-          primary = "DP-1-2";
+          configure_single = "DP-1-2";
+          primary = true;
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"

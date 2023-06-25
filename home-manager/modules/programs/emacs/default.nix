@@ -14,9 +14,6 @@ in
       unstable.nixd # Nix language server
       nodejs # needed for ansible-language-server
       pandoc
-      python310
-      python310Packages.pip
-      python310Packages.python-lsp-server
       ripgrep
       silver-searcher
     ];
@@ -110,12 +107,6 @@ in
         epkgs.zetteldeft
         languagetool
         mu # needed for mailing
-        python310Packages.autopep8
-        python310Packages.black
-        python310Packages.flake8
-        python310Packages.jedi
-        python310Packages.pip
-        python310Packages.yapf
         rufo # formatter for Ruby
         xclip # X11 clipboard from terminal
       ];

@@ -23,9 +23,6 @@
           "$git_status"
           "$character"
         ];
-        nix_shell = {
-          format = "\\[X\\] ";
-        };
         python = {
           format = "[$\{symbol\}($virtualenv) ]($style)";
         };

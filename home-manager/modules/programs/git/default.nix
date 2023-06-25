@@ -27,6 +27,10 @@ in
           syntax-theme = "GitHub";
         };
       };
+      includes = [{
+        path = "~/.config/git/workconfig";
+        condition = "gitdir:~/git_repos/work/";
+      }];
       extraConfig = {
         core = {
           hooksPath = "~/.config/git/hooks/";
@@ -129,6 +133,7 @@ in
     };
     # raw files
     home.file.".config/git/hooks".source = ./hooks;
+    home.file.".config/git/workconfig".source = ./workconfig;
     home.shellAliases = {
       git-clean = ''
         git fetch --all -p;

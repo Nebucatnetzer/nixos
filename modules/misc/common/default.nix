@@ -137,6 +137,15 @@
           ];
           groups = [ "wheel" ];
         }
+        {
+          commands = [
+            {
+              command = "/run/current-system/sw/bin/reboot";
+              options = [ "NOPASSWD" ];
+            }
+          ];
+          groups = [ "wheel" ];
+        }
       ];
   };
 

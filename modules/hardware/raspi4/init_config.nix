@@ -15,7 +15,7 @@
     vim
   ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
   services.openssh.enable = true;
   networking.hostName = "nixos";
 

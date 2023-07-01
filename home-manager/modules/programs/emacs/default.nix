@@ -16,6 +16,7 @@ in
       pandoc
       ripgrep
       silver-searcher
+      xclip # X11 clipboard from terminal
     ];
 
     programs.emacs = {
@@ -108,7 +109,6 @@ in
         languagetool
         mu # needed for mailing
         rufo # formatter for Ruby
-        xclip # X11 clipboard from terminal
       ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

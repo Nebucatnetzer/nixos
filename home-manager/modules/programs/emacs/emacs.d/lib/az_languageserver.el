@@ -13,6 +13,8 @@
         gc-cons-threshold 100000000
         read-process-output-max (* 1024 1024)
         lsp-idle-delay 0.500
+        lsp-pylsp-plugins-pycodestyle-enabled nil
+        lsp-pyls-plugins-pycodestyle-enabled nil
         lsp-pylsp-plugins-pylint-enabled t)
   :commands lsp)
 

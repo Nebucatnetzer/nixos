@@ -3,6 +3,12 @@
   imports = [
     "${inputs.self}/home-manager/modules"
   ];
+  home = {
+    packages = with pkgs; [
+      plexamp
+    ];
+  };
+
   programs = {
     az-git = {
       userEmail = "zweili@contria.com";

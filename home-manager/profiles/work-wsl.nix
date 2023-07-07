@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports = [
     "${inputs.self}/home-manager/modules"
@@ -10,6 +10,9 @@
   };
 
   home = {
+    activation.report-changes = config.lib.dag.entryAnywhere ''
+      ${pkgs.nix}/bin/nix store diff-closures $oldGenPath $newGenPath || true
+    '';
     sessionPath = [ "$HOME/node_modules/.bin" ];
     sessionVariables = {
       NIX_PATH = "nixpkgs=${inputs.nixpkgs}";

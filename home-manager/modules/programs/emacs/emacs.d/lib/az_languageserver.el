@@ -15,6 +15,7 @@
         lsp-idle-delay 0.500
         lsp-pylsp-plugins-pycodestyle-enabled nil
         lsp-pyls-plugins-pycodestyle-enabled nil
+        lsp-pylsp-plugins-flake8-enabled nil
         lsp-pylsp-plugins-pylint-enabled t)
   :commands lsp)
 

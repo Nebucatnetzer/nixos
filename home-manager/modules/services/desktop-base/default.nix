@@ -34,6 +34,7 @@ in
       nodePackages.prettier # formatting files
       remmina
       unstable.obsidian
+      unstable.thunderbird
     ];
     # raw config files
     home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;

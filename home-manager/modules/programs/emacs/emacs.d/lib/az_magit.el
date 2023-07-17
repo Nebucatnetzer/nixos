@@ -4,4 +4,5 @@
   :bind
   ("<f10>" . magit-status)
   :config
-  (setq magit-diff-refine-hunk (quote all)))
+  (setq magit-diff-refine-hunk (quote all)
+        magit-save-repository-buffers t))

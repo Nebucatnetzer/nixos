@@ -8,11 +8,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.personalEmailKey =
-      {
-        file = "${inputs.self}/scrts/personal_email.key.age";
-        mode = "600";
-      };
+    age.secrets.personalEmailKey = {
+      file = "${inputs.self}/scrts/personal_email.key.age";
+      mode = "600";
+    };
 
     accounts.email.accounts."personal" = {
       address = "andreas@zweili.ch";

@@ -33,3 +33,5 @@
   :bind
   (:map dired-mode-map
         ("." . dired-hide-dotfiles-mode)))
+
+(setq dired-auto-revert-buffer t)

@@ -37,7 +37,8 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Refresh buffers if the file changes on disk
-(global-auto-revert-mode t)
+(setq global-auto-revert-mode t)
+(setq global-auto-revert-non-file-buffers t)
 
 (setq history-delete-duplicates t)
 
@@ -49,3 +50,9 @@
 
 ;; Prompt when quitting Emacs
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+;; Save bookmarks right away
+(setq bookmark-save-flag t)
+
+;; switch focus to man page
+(setq man-notify-method t)

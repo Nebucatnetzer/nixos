@@ -12,8 +12,6 @@ in
       {
         file = "${inputs.self}/scrts/personal_email.key.age";
         mode = "600";
-        owner = nixosConfig.az-username;
-        group = "users";
       };
 
     accounts.email.accounts."personal" = {

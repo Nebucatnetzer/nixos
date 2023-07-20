@@ -34,7 +34,6 @@ in
       libreoffice-fresh
       nodePackages.prettier # formatting files
       remmina
-      unstable.obsidian
     ];
     # raw config files
     home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;

@@ -48,7 +48,6 @@
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
     az-restic-management.enable = true;
-    az-tmux.enable = true;
   };
   services = {
     az-docker.enable = true;

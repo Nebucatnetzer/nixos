@@ -15,6 +15,7 @@
     ./programs/signal
     ./programs/ssh
     ./programs/telegram
+    ./programs/tmux
     ./programs/vagrant-wsl
     ./programs/work-desktop
     ./programs/yt-dlp

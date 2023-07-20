@@ -10,6 +10,5 @@
 
   programs = {
     az-nix-direnv.enable = true;
-    az-tmux.enable = true;
   };
 }

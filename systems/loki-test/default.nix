@@ -9,5 +9,4 @@
   };
 
   services.az-docker.enable = true;
-  programs.az-tmux.enable = true;
 }

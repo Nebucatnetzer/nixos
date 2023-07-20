@@ -19,6 +19,7 @@ in
       az-signal.enable = true;
       az-ssh.enable = true;
       az-telegram.enable = true;
+      az-tmux.enable = true;
       bash = {
         shellAliases = {
           management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";

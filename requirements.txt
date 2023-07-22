@@ -1,7 +1,0 @@
-pep8
-rope
-pylint
-autopep8
-yapf
-black
-flake8

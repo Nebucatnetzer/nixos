@@ -16,5 +16,6 @@
       (user-error
        "No region is available")))
   (setq denote-rename-buffer-mode 1
+        denote-excluded-directories-regexp "99_archive"
         denote-file-type "markdown-yaml"
         denote-directory "~/nextcloud/10_documents/"))

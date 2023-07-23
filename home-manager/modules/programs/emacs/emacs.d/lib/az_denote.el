@@ -15,5 +15,6 @@
                 (denote-title-prompt) (denote-keywords-prompt)) (insert text))
       (user-error
        "No region is available")))
-  (setq denote-file-type "markdown-yaml"
+  (setq denote-rename-buffer-mode 1
+        denote-file-type "markdown-yaml"
         denote-directory "~/nextcloud/10_documents/"))

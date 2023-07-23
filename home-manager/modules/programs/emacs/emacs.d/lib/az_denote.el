@@ -1,8 +1,8 @@
 (use-package denote
   :bind
-  (("C-c C-n r" . denote-rename-file)
-   ("C-c C-n p" . az-denote-create-new-note-from-region)
-   ("C-c C-n n" . denote))
+  (("C-c n r" . denote-rename-file)
+   ("C-c n p" . az-denote-create-new-note-from-region)
+   ("C-c n n" . denote))
   :config
   (defun az-denote-create-new-note-from-region (beg end)
     "Create note whose contents include the text between BEG and END. Prompt

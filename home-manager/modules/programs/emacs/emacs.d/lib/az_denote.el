@@ -15,6 +15,7 @@
                 (denote-title-prompt) (denote-keywords-prompt)) (insert text))
       (user-error
        "No region is available")))
+  (add-hook 'find-file-hook #'denote-link-buttonize-buffer)
   (setq denote-rename-buffer-mode 1
         denote-excluded-directories-regexp "99_archive"
         denote-file-type "markdown-yaml"

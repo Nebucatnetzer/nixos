@@ -106,7 +106,6 @@ in
         epkgs.xclip
         epkgs.yaml-mode
         epkgs.yasnippet-snippets
-        epkgs.zetteldeft
         languagetool
         mu # needed for mailing
         rufo # formatter for Ruby

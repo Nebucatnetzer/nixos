@@ -1,13 +1,5 @@
 { hostname }: { inputs, ... }:
 {
-  fileSystems = {
-    "/mnt/external" = {
-      device = "/dev/disk/by-uuid/F73C-AA4F";
-      fsType = "exfat";
-      options = [ "x-systemd.automount" "noauto" "noatime" "uid=1000" "gid=100" ];
-    };
-  };
-
   hardware = {
     az-raspi4-ethernet = {
       enable = true;

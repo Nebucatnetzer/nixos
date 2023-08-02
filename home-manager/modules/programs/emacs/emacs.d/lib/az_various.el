@@ -56,3 +56,16 @@
 
 ;; switch focus to man page
 (setq man-notify-method t)
+
+;; use ripgrep or rg if possible
+(setq xref-search-program (cond ((or (executable-find "ripgrep")
+                                     (executable-find "rg")) 'ripgrep)
+                                ((executable-find "ugrep") 'ugrep) (t
+                                                                    'grep)))
+
+;; required for autoloading packages on nixos
+(dolist (path load-path)
+  (when (string-match-p "/nix/store/[a-z0-9]\\{32\\}-emacs-packages-deps.*" path)
+    (dolist (autoload-file (directory-files path t "-autoloads.el"))
+      (with-demoted-errors "init.el error: %s"
+        (load autoload-file nil t)))))

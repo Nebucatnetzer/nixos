@@ -31,10 +31,3 @@
     (interactive)
     (persp-switch "notes")
     (deft)))
-
-(use-package zetteldeft
-  :after deft
-  :config (zetteldeft-set-classic-keybindings)
-  (setq zetteldeft-link-indicator "[["
-        zetteldeft-link-suffix "]]")
-  (setq zetteldeft-title-prefix "# "))

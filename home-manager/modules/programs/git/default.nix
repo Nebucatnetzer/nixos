@@ -35,6 +35,9 @@ in
         core = {
           hooksPath = "~/.config/git/hooks/";
         };
+        safe = {
+          directory = "*";
+        };
         pull = {
           rebase = false;
         };

@@ -12,7 +12,6 @@ in
       fd
       multimarkdown
       unstable.nixd # Nix language server
-      nodejs # needed for ansible-language-server
       pandoc
       ripgrep
       silver-searcher

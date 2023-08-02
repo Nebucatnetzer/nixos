@@ -5,6 +5,7 @@
   ];
   home = {
     packages = with pkgs; [
+      nodejs # needed for ansible-language-server
       plexamp
     ];
   };

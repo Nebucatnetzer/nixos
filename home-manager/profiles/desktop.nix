@@ -19,6 +19,7 @@ in
       exercism
       freetube
       chromium
+      nodejs # needed for ansible-language-server
       plexamp
       shotwell
       sound-juicer

@@ -37,7 +37,6 @@
   };
   profiles.az-desktop.enable = true;
   services = {
-    az-logs-share.enable = true;
     az-virtualbox-guest.enable = true;
     az-x86.enable = true;
   };

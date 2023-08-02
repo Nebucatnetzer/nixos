@@ -56,6 +56,7 @@
       '';
       shellAliases = {
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+        work-vm = "mosh --ssh='ssh -p 2222' andreas@localhost -- tmux new -A -s 0";
       };
     };
   };

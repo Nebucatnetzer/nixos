@@ -27,7 +27,7 @@
   # Required to build aarch64 packages
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot = {
-    supportedFilesystems = [ "apfs" "ext4" "nfs" "nfs4" "ntfs" "cifs" ];
+    supportedFilesystems = [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" ];
   };
 
   fileSystems."/" = {

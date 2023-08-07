@@ -5,7 +5,7 @@ let
     directory="''${1:-videos}"
     for i in $(seq 1 4);
     do
-        nvidia-offload mpv --shuffle --mute=yes "/run/media/andreas/e7c05e7e-79ec-45af-b1c8-840020fcf708/$directory/" &
+        nvidia-offload mpv --shuffle --mute=yes "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=various/$directory/" &
     done
   '';
 in

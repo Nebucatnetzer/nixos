@@ -60,7 +60,6 @@
 
   services = {
     az-logs-share.enable = true;
-    az-rdp.enable = true;
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;

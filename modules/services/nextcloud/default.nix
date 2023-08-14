@@ -13,7 +13,7 @@ let
   };
   networkName = "nextcloud";
   # https://github.com/Nebucatnetzer/nextcloud-smb
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:27.0.1@sha256:b7634b3e770ed186d3a9fdd1b5aa31ddb239a9b3ee91547b79c3ad21fa69b2a9";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:27.0.1@sha256:9154780dcab8b25e22d0704ce9b3b71d14fe31f4de52c276ceb9a5a6c69d719f";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   cronService = "${config.virtualisation.oci-containers.backend}-cron";
 in

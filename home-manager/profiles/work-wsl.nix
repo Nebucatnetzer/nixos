@@ -16,6 +16,7 @@
     sessionPath = [ "$HOME/node_modules/.bin" ];
     sessionVariables = {
       NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+      PATH = "PATH:~/.local/bin";
     };
     packages = with pkgs; [
       keychain

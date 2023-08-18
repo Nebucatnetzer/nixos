@@ -14,7 +14,7 @@ in
         {
           name = "virtualbox";
           outputs_connected = [ "Virtual1" ];
-          configure_single = "Virtual1@3840x2160";
+          configure_single = "Virtual1@1920x1080";
           primary = true;
           atomic = true;
           execute_after = [

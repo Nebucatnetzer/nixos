@@ -134,6 +134,7 @@
           inherit pkgs;
           modules = [
             "${inputs.self}/home-manager/profiles/work-wsl.nix"
+            inputs.agenix.homeManagerModules.age
           ];
           extraSpecialArgs = {
             inherit inputs;

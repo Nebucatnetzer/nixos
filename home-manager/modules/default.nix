@@ -6,6 +6,7 @@
     ./programs/calibre
     ./programs/czkawka
     ./programs/emacs
+    ./programs/email
     ./programs/evince
     ./programs/git
     ./programs/keeweb

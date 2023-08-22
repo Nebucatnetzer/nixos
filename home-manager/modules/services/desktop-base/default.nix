@@ -12,6 +12,7 @@ in
       az-alacritty.enable = true;
       az-czkawka.enable = true;
       az-emacs.enable = true;
+      az-email.enable = true;
       az-evince.enable = true;
       az-keeweb.enable = true;
       az-mpv.enable = true;

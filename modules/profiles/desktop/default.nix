@@ -66,7 +66,6 @@ in
 
     programs = {
       dconf.enable = true; # Enable dconf to be able to save Nautilus settings
-      az-email.enable = true;
       az-eog.enable = true; # Gnome Image Viewer
       az-hunspell.enable = true; # Enable dictionaries
       az-idevices.enable = true;

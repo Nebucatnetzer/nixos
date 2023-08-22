@@ -53,7 +53,9 @@ inputs.nixpkgs.lib.nixosSystem
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs system; };
-        home-manager.users.andreas.imports = [
+        age.identityPaths = [ "/home/${username}/.ssh/id_rsa" ];
+        home-manager.users.${username}.imports = [
+          inputs.agenix.homeManagerModules.default
           "${inputs.self}/home-manager/profiles/${home-module}.nix"
         ];
       }

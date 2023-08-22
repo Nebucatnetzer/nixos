@@ -49,6 +49,7 @@ inputs.nixpkgs.lib.nixosSystem {
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = { inherit inputs system; };
         home-manager.users.${username}.imports = [
+          inputs.agenix.homeManagerModules.default
           "${inputs.self}/home-manager/profiles/${home-module}.nix"
         ];
       }

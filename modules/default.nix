@@ -9,7 +9,6 @@
     ./misc/username
     ./profiles/desktop
     ./programs/distrobox
-    ./programs/email
     ./programs/eog
     ./programs/hunspell
     ./programs/libimobiledevice

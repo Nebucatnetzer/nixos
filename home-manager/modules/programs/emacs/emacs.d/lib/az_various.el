@@ -45,8 +45,9 @@
 ;; enable mouse support in the terminal
 (xterm-mouse-mode 1)
 
-;; For better performance use "ssh" instead of "scp"
-(setq tramp-default-method "ssh")
+(use-package tramp
+  :config
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; Prompt when quitting Emacs
 (setq confirm-kill-emacs 'yes-or-no-p)

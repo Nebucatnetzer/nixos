@@ -36,6 +36,9 @@
     ];
   };
   profiles.az-desktop.enable = true;
+  programs = {
+    az-distrobox.enable = true;
+  };
   services = {
     az-virtualbox-guest.enable = true;
     az-x86.enable = true;

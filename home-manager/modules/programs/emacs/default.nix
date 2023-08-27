@@ -108,6 +108,7 @@ in
         languagetool
         mu # needed for mailing
         rufo # formatter for Ruby
+        shfmt # formatting bash scripts
       ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

@@ -14,6 +14,7 @@ in
       unstable.nixd # Nix language server
       pandoc
       ripgrep
+      shfmt # formatting bash scripts
       silver-searcher
       xclip # X11 clipboard from terminal
     ];
@@ -108,7 +109,6 @@ in
         languagetool
         mu # needed for mailing
         rufo # formatter for Ruby
-        shfmt # formatting bash scripts
       ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

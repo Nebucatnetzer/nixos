@@ -103,7 +103,8 @@
 
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("Org" ;; all org-related buffers
+               ("Notes" ;; all org-related buffers
+                (mode . markdown-mode)
                 (mode . org-mode))
                ("Programming" ;; prog stuff not already in MyProjectX
                 (or

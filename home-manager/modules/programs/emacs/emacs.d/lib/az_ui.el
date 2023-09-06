@@ -116,6 +116,7 @@
                  (mode . powershell-mode)
                  (mode . nix-mode)
                  (mode . yaml-mode)
+                 (mode . ansible-mode)
                  (mode . emacs-lisp-mode)))
                ;; etc
                ("Dired"

@@ -91,7 +91,7 @@
                 ;; mode-line-end-spaces
                 ))
 
-(setq display-line-numbers-type 'visual)
+(setq display-line-numbers-type t)
 (global-display-line-numbers-mode)
 
 (setq inhibit-compacting-font-caches t)

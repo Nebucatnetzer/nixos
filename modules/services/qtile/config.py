@@ -147,9 +147,9 @@ layouts = [
 
 
 widget_defaults = dict(
-    font="Source Code Pro",
-    fontsize=14,
-    padding=3,
+    font="SourceCodePro",
+    fontsize=12,
+    padding=5,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -161,27 +161,32 @@ def top_bar_widgets():
         widget.Prompt(name="section_prompt"),
         widget.WindowName(),
         widget.Sep(padding=5),
-        widget.CurrentLayout(),
+        widget.DF(fmt="🗄️ {}", visible_on_warn=False),
         widget.Sep(padding=5),
-        widget.DF(visible_on_warn=False),
-        widget.Sep(padding=5),
-        widget.Volume(),
+        widget.Volume(emoji=True),
         widget.Sep(padding=5),
     ]
     widgets_end = [
         widget.Battery(
-            charge_char="⚇",
+            charge_char="🔌",
             discharge_char="⚡",
-            full_char="☻",
+            full_char="🔋",
             show_short_text=False,
         ),
+        widget.Sep(padding=5),
+        widget.Maildir(maildir_path="~/Maildir/personal", sub_folders=[
+            {
+                "label":"📬",
+                "path": "INBOX",
+            }
+        ]),
         widget.Sep(padding=5),
         widget.Systray(),
         widget.Sep(padding=5),
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
     ]
     backlight_widget = [
-        widget.Backlight(backlight_name="intel_backlight", fmt="⛯{}"),
+        widget.Backlight(backlight_name="intel_backlight", fmt="☀️ {}"),
         widget.Sep(padding=5),
     ]
     if os.path.exists("/sys/class/backlight/intel_backlight"):
@@ -194,7 +199,7 @@ screens = [
     Screen(
         top=bar.Bar(
             top_bar_widgets(),
-            24,
+            30,
         ),
     ),
     Screen(
@@ -210,7 +215,7 @@ screens = [
                 widget.Sep(padding=5),
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
-            24,
+            30,
         ),
     ),
     Screen(
@@ -226,7 +231,7 @@ screens = [
                 widget.Sep(padding=5),
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
-            24,
+            30,
         ),
     ),
 ]

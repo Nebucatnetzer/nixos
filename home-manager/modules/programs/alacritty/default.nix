@@ -50,7 +50,7 @@ in
           };
           bold = {
             family = "Source Code Pro";
-            style = "Regular";
+            style = "Bold";
           };
           italic = {
             family = "Source Code Pro";

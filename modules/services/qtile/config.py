@@ -184,7 +184,7 @@ def top_bar_widgets():
             ],
         ),
         widget.Sep(padding=5),
-        widget.Systray(),
+        widget.Systray(background="#00000000"),
         widget.Sep(padding=5),
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
     ]
@@ -203,6 +203,7 @@ screens = [
         top=bar.Bar(
             top_bar_widgets(),
             30,
+            background="#00000080",
         ),
     ),
     Screen(
@@ -219,6 +220,7 @@ screens = [
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
             30,
+            background="#00000080",
         ),
     ),
     Screen(
@@ -235,6 +237,7 @@ screens = [
                 widget.Clock(format="%Y-%m-%d %a %H:%M"),
             ],
             30,
+            background="#00000080",
         ),
     ),
 ]

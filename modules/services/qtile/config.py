@@ -55,7 +55,7 @@ keys = [
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
-    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "d", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("xrandr --auto")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),

@@ -156,7 +156,11 @@ extension_defaults = widget_defaults.copy()
 
 def top_bar_widgets():
     widgets = [
-        widget.GroupBox(),
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
         widget.Sep(padding=5),
         widget.Prompt(name="section_prompt"),
         widget.WindowName(),

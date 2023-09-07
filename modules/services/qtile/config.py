@@ -163,7 +163,9 @@ def top_bar_widgets():
         ),
         widget.Sep(padding=5),
         widget.Prompt(name="section_prompt"),
-        widget.WindowName(),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
         widget.Sep(padding=5),
         widget.DF(fmt="🗄️ {}", visible_on_warn=False),
         widget.Sep(padding=5),
@@ -202,48 +204,36 @@ def top_bar_widgets():
     return widgets
 
 
+secondary_bar = bar.Bar(
+    [
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
+        widget.Sep(padding=5),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
+        widget.Sep(padding=5),
+        widget.Volume(emoji=True),
+        widget.Sep(padding=5),
+        widget.Clock(format="%Y-%m-%d %a %H:%M"),
+    ],
+    36,
+    background="#00000080",
+)
+
 screens = [
     Screen(
         top=bar.Bar(
             top_bar_widgets(),
-            30,
+            36,
             background="#00000080",
         ),
     ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Sep(padding=5),
-                widget.WindowName(),
-                widget.Sep(padding=5),
-                widget.CurrentLayout(),
-                widget.Sep(padding=5),
-                widget.Volume(),
-                widget.Sep(padding=5),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            30,
-            background="#00000080",
-        ),
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Sep(padding=5),
-                widget.WindowName(),
-                widget.Sep(padding=5),
-                widget.CurrentLayout(),
-                widget.Sep(padding=5),
-                widget.Volume(),
-                widget.Sep(padding=5),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            30,
-            background="#00000080",
-        ),
-    ),
+    Screen(top=secondary_bar),
+    Screen(top=secondary_bar),
 ]
 
 # Drag floating layouts.

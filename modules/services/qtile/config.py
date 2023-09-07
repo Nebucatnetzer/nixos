@@ -154,7 +154,8 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def top_bar_widgets():
+def primary_widgets():
+    """Widgets for the primary monitor."""
     widgets = [
         widget.GroupBox(
             highlight_method="line",
@@ -204,8 +205,9 @@ def top_bar_widgets():
     return widgets
 
 
-secondary_bar = bar.Bar(
-    [
+def secondary_widgets():
+    """Widgets for the secondary monitor."""
+    widgets = [
         widget.GroupBox(
             highlight_method="line",
             highlight_color=["002b36", "268bd2"],
@@ -219,22 +221,100 @@ secondary_bar = bar.Bar(
         widget.Volume(emoji=True),
         widget.Sep(padding=5),
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
-    ],
-    36,
-    background="#00000080",
-)
+    ]
+    return widgets
 
-screens = [
+
+def virtual_widgets():
+    """Widgets for fake_screens which arent the primary screen."""
+    widgets = [
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
+        widget.Sep(padding=5),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
+    ]
+    return widgets
+
+
+physical_screens = [
     Screen(
         top=bar.Bar(
-            top_bar_widgets(),
+            primary_widgets(),
             36,
             background="#00000080",
         ),
     ),
-    Screen(top=secondary_bar),
-    Screen(top=secondary_bar),
+    Screen(
+        top=bar.Bar(
+            secondary_widgets(),
+            36,
+            background="#00000080",
+        )
+    ),
+    Screen(
+        top=bar.Bar(
+            secondary_widgets(),
+            36,
+            background="#00000080",
+        )
+    ),
 ]
+
+fullhd_screens = [
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=0,
+        y=0,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            primary_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=1920,
+        y=0,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=0,
+        y=1080,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=1920,
+        y=1080,
+        width=1920,
+        height=1080,
+    ),
+]
+
+screens_list = [physical_screens, fullhd_screens]
+# fake_screens = fullhd_screens
+screens = physical_screens
 
 # Drag floating layouts.
 mouse = [

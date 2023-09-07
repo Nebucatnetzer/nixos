@@ -8,6 +8,7 @@ pkgs.mkShell {
     python310Packages.black
     python310Packages.mypy
     python310Packages.pylint
+    qtile
     vim
   ];
 

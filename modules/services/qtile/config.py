@@ -138,7 +138,7 @@ for i in groups:
         ]
     )
 
-border = dict(border_width=1, border_focus="#000000")
+border = {"border_width": 1, "border_focus": "#000000"}
 
 layouts = [
     layout.Columns(**border),
@@ -146,11 +146,11 @@ layouts = [
 ]
 
 
-widget_defaults = dict(
-    font="SourceCodePro",
-    fontsize=16,
-    padding=5,
-)
+widget_defaults = {
+    "font": "SourceCodePro",
+    "fontsize": 16,
+    "padding": 5,
+}
 extension_defaults = widget_defaults.copy()
 
 

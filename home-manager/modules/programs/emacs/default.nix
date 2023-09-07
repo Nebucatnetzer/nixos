@@ -42,7 +42,7 @@ in
         epkgs.counsel
         epkgs.counsel-tramp
         epkgs.dap-mode
-        epkgs.denote
+        unstable.emacsPackages.denote
         epkgs.dired-hide-dotfiles
         epkgs.direnv
         epkgs.discover-my-major

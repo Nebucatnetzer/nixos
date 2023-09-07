@@ -45,18 +45,18 @@ in
     # Needed when typing in passwords for full disk encryption
     console.earlySetup = true;
     boot.loader.systemd-boot.consoleMode = "1";
-    fonts.fontconfig = {
-      antialias = true;
-      subpixel = {
-        rgba = "none";
-        lcdfilter = "none";
-      };
-    };
     # }
 
-    fonts.fonts = with pkgs; [
-      source-code-pro
-    ];
+    fonts = {
+      fontconfig.defaultFonts = {
+        serif = [ "TeX Gyre Pagella" ];
+        monospace = [ "Source Code Pro" ];
+      };
+      fonts = with pkgs; [
+        gyre-fonts
+        source-code-pro
+      ];
+    };
 
     # Enable keyring
     security.pam.services.lightdm.enableGnomeKeyring = true;

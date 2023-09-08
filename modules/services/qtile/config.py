@@ -48,8 +48,9 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload config"),
+    Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    Key([mod, "control", "shift"], "r", lazy.restart(), desc="Restart qtile"),
     # Move windows between sections
     Key([mod, "control", "shift"], "j", lazy.layout.section_down()),
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),

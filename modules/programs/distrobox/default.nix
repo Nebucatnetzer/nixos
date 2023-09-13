@@ -2,7 +2,7 @@
 let
   cfg = config.programs.az-distrobox;
   boosteroid = pkgs.writeShellScriptBin "boosteroid" ''
-    ${pkgs.unstable.distrobox}/bin/distrobox enter boosteroid -- /opt/BoosteroidGamesS.R.L./bin/Boosteroid -vaapi
+    ${pkgs.unstable.distrobox}/bin/distrobox enter boosteroid -- /opt/BoosteroidGamesS.R.L./bin/Boosteroid
   '';
   boosteroid-install = pkgs.writeShellScriptBin "boosteroid-install" ''
     # setup audio

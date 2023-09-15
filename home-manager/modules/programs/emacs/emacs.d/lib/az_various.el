@@ -37,7 +37,7 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Refresh buffers if the file changes on disk
-(setq global-auto-revert-mode t)
+(global-auto-revert-mode t)
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-use-notify nil)
 

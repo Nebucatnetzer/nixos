@@ -11,7 +11,7 @@ let
     TTRSS_PLUGINS = "af_comics, af_readability, auth_internal, hotkeys_swap_jk, nginx_xaccel";
   };
   # https://github.com/Nebucatnetzer/tt-rss-aarch64/pkgs/container/tt-rss-aarch64%2Fttrss-fpm-pgsql-static/versions
-  ttrssImage = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static@sha256:587c971b8f18619f7b5a4433800d14bfa3ff240a82e0cc4bfb4165df15c4e90b";
+  ttrssImage = "ghcr.io/nebucatnetzer/tt-rss-aarch64/ttrss-fpm-pgsql-static@sha256:59efa2df3b026f435413c7f0b17bb9ec0519d2ff788c92b50107fac80eced4cd";
   ttrssService = "${config.virtualisation.oci-containers.backend}-ttrss";
 in
 {

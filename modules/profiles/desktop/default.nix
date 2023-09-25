@@ -129,6 +129,7 @@ in
         gnome.file-roller
         gnome.gnome-screenshot
         gnome.nautilus
+        libheif
         networkmanager-openvpn
         p7zip
         pavucontrol

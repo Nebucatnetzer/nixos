@@ -12,7 +12,7 @@ in
       enable = true;
       configs.default = {
         undo_backspace = false;
-        search_trigger = false;
+        search_trigger = "off";
       };
       matches.default.matches = [
         {

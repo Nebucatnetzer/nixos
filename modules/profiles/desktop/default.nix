@@ -124,12 +124,12 @@ in
         appimage-run
         brightnessctl
         firefox
-        lm_sensors
-        lxappearance
         gnome.file-roller
         gnome.gnome-screenshot
         gnome.nautilus
         libheif
+        lm_sensors
+        lxappearance
         networkmanager-openvpn
         p7zip
         pavucontrol

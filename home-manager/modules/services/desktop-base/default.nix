@@ -34,6 +34,7 @@ in
       nitrogen
       libreoffice-fresh
       nodePackages.prettier # formatting files
+      nodePackages.prettier-plugin-toml
       remmina
     ];
     # raw config files

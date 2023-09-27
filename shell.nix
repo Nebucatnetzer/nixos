@@ -4,8 +4,11 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     nixFlakes
-    python3
+    python310
+    python310Packages.black
+    python310Packages.mypy
     python310Packages.pylint
+    qtile
     vim
   ];
 

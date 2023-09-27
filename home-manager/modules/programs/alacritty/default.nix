@@ -12,6 +12,7 @@ in
       enable = true;
       settings = {
         env.TERM = "xterm-256color";
+        window.opacity = 0.8;
         colors = {
           primary = {
             background = "#fdf6e3";
@@ -49,7 +50,7 @@ in
           };
           bold = {
             family = "Source Code Pro";
-            style = "Regular";
+            style = "Bold";
           };
           italic = {
             family = "Source Code Pro";

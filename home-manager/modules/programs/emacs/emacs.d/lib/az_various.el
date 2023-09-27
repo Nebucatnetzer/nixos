@@ -37,16 +37,18 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Refresh buffers if the file changes on disk
-(setq global-auto-revert-mode t)
+(global-auto-revert-mode t)
 (setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-use-notify nil)
 
 (setq history-delete-duplicates t)
 
 ;; enable mouse support in the terminal
 (xterm-mouse-mode 1)
 
-;; For better performance use "ssh" instead of "scp"
-(setq tramp-default-method "ssh")
+(use-package tramp
+  :config
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; Prompt when quitting Emacs
 (setq confirm-kill-emacs 'yes-or-no-p)

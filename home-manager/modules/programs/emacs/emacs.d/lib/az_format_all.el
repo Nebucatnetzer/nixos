@@ -1,6 +1,7 @@
 (use-package format-all
   :hook
   ((prog-mode . format-all-ensure-formatter)
+   (ansible-mode . format-all-ensure-formatter)
    (yaml-mode . format-all-ensure-formatter)
    (markdown-mode . format-all-ensure-formatter)
    (markdown-mode . format-all-mode)

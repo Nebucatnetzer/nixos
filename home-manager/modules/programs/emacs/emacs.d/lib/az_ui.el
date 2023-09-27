@@ -37,7 +37,7 @@
 
 ;; disable menu and toolbar
 (tool-bar-mode -1)
-;;(menu-bar-mode -99)
+(menu-bar-mode -99)
 (when (boundp 'enable-scroll-bar)
   (scroll-bar-mode -1))
 
@@ -91,7 +91,7 @@
                 ;; mode-line-end-spaces
                 ))
 
-(setq display-line-numbers-type 'visual)
+(setq display-line-numbers-type t)
 (global-display-line-numbers-mode)
 
 (setq inhibit-compacting-font-caches t)
@@ -103,7 +103,8 @@
 
 (setq ibuffer-saved-filter-groups
       (quote (("default"
-               ("Org" ;; all org-related buffers
+               ("Notes" ;; all org-related buffers
+                (mode . markdown-mode)
                 (mode . org-mode))
                ("Programming" ;; prog stuff not already in MyProjectX
                 (or
@@ -116,6 +117,7 @@
                  (mode . powershell-mode)
                  (mode . nix-mode)
                  (mode . yaml-mode)
+                 (mode . ansible-mode)
                  (mode . emacs-lisp-mode)))
                ;; etc
                ("Dired"

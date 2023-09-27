@@ -1,9 +1,9 @@
 ;; evil-mode allows to use vim keybindings
 (use-package evil
   :init
-  (setq evil-undo-system 'undo-redo)
-  (setq evil-want-integration t) ;; required by evil-collection
-  (setq evil-want-keybinding nil) ;; required by evil-collection
+  (setq evil-undo-system 'undo-redo
+        evil-want-integration t ;; required by evil-collection
+        evil-want-keybinding nil) ;; required by evil-collection
   :config
   ;; Start these modes in emacs mode
   (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
@@ -97,6 +97,6 @@
   (global-evil-surround-mode 1))
 
 (use-package evil-collection
-  :after evil
+  :after (evil magit)
   :config
   (evil-collection-init))

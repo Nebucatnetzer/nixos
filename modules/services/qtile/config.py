@@ -48,14 +48,15 @@ keys = [
     Key([mod, "control"], "k", lazy.layout.grow_up()),
     Key([mod, "control"], "h", lazy.layout.grow_left()),
     Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload config"),
+    Key([mod, "control", "shift"], "q", lazy.shutdown(), desc="Shutdown qtile"),
+    Key([mod, "control", "shift"], "r", lazy.restart(), desc="Restart qtile"),
     # Move windows between sections
     Key([mod, "control", "shift"], "j", lazy.layout.section_down()),
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
-    Key([mod], "d", lazy.spawn("rofi -show drun")),
+    Key([mod], "d", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("xrandr --auto")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
@@ -138,7 +139,7 @@ for i in groups:
         ]
     )
 
-border = dict(border_width=1, border_focus="#000000")
+border = {"border_width": 1, "border_focus": "#000000"}
 
 layouts = [
     layout.Columns(**border),
@@ -146,42 +147,57 @@ layouts = [
 ]
 
 
-widget_defaults = dict(
-    font="Source Code Pro",
-    fontsize=14,
-    padding=3,
-)
+widget_defaults = {
+    "font": "SourceCodePro",
+    "fontsize": 16,
+    "padding": 5,
+}
 extension_defaults = widget_defaults.copy()
 
 
-def top_bar_widgets():
+def primary_widgets():
+    """Widgets for the primary monitor."""
     widgets = [
-        widget.GroupBox(),
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
         widget.Sep(padding=5),
         widget.Prompt(name="section_prompt"),
-        widget.WindowName(),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
         widget.Sep(padding=5),
-        widget.CurrentLayout(),
+        widget.DF(fmt="🗄️ {}", visible_on_warn=False),
         widget.Sep(padding=5),
-        widget.DF(visible_on_warn=False),
-        widget.Sep(padding=5),
-        widget.Volume(),
+        widget.Volume(emoji=True),
         widget.Sep(padding=5),
     ]
     widgets_end = [
         widget.Battery(
-            charge_char="⚇",
+            charge_char="🔌",
             discharge_char="⚡",
-            full_char="☻",
+            full_char="🔋",
             show_short_text=False,
         ),
         widget.Sep(padding=5),
-        widget.Systray(),
+        widget.Maildir(
+            maildir_path="~/Maildir/personal",
+            sub_folders=[
+                {
+                    "label": "📬",
+                    "path": "INBOX",
+                }
+            ],
+        ),
+        widget.Sep(padding=5),
+        widget.Systray(background="#00000000"),
         widget.Sep(padding=5),
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
     ]
     backlight_widget = [
-        widget.Backlight(backlight_name="intel_backlight", fmt="⛯{}"),
+        widget.Backlight(backlight_name="intel_backlight", fmt="☀️ {}"),
         widget.Sep(padding=5),
     ]
     if os.path.exists("/sys/class/backlight/intel_backlight"):
@@ -190,46 +206,116 @@ def top_bar_widgets():
     return widgets
 
 
-screens = [
+def secondary_widgets():
+    """Widgets for the secondary monitor."""
+    widgets = [
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
+        widget.Sep(padding=5),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
+        widget.Sep(padding=5),
+        widget.Volume(emoji=True),
+        widget.Sep(padding=5),
+        widget.Clock(format="%Y-%m-%d %a %H:%M"),
+    ]
+    return widgets
+
+
+def virtual_widgets():
+    """Widgets for fake_screens which arent the primary screen."""
+    widgets = [
+        widget.GroupBox(
+            highlight_method="line",
+            highlight_color=["002b36", "268bd2"],
+            inactive="657b83",
+        ),
+        widget.Sep(padding=5),
+        widget.TaskList(
+            border="268bd2", font="sans", highlight_method="border", icon_size=20
+        ),
+    ]
+    return widgets
+
+
+physical_screens = [
     Screen(
         top=bar.Bar(
-            top_bar_widgets(),
-            24,
+            primary_widgets(),
+            36,
+            background="#00000080",
         ),
     ),
     Screen(
         top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Sep(padding=5),
-                widget.WindowName(),
-                widget.Sep(padding=5),
-                widget.CurrentLayout(),
-                widget.Sep(padding=5),
-                widget.Volume(),
-                widget.Sep(padding=5),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            24,
-        ),
+            secondary_widgets(),
+            36,
+            background="#00000080",
+        )
     ),
     Screen(
         top=bar.Bar(
-            [
-                widget.GroupBox(),
-                widget.Sep(padding=5),
-                widget.WindowName(),
-                widget.Sep(padding=5),
-                widget.CurrentLayout(),
-                widget.Sep(padding=5),
-                widget.Volume(),
-                widget.Sep(padding=5),
-                widget.Clock(format="%Y-%m-%d %a %H:%M"),
-            ],
-            24,
-        ),
+            secondary_widgets(),
+            36,
+            background="#00000080",
+        )
     ),
 ]
+
+fullhd_screens = [
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=0,
+        y=0,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            primary_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=1920,
+        y=0,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=0,
+        y=1080,
+        width=1920,
+        height=1080,
+    ),
+    Screen(
+        top=bar.Bar(
+            virtual_widgets(),
+            36,
+            background="#00000080",
+        ),
+        x=1920,
+        y=1080,
+        width=1920,
+        height=1080,
+    ),
+]
+
+screens_list = [physical_screens, fullhd_screens]
+# fake_screens = fullhd_screens
+screens = physical_screens
 
 # Drag floating layouts.
 mouse = [

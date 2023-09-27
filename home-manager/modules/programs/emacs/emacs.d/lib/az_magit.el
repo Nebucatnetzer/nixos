@@ -1,5 +1,6 @@
 ;; enable magit a great git porcelain.
 (use-package magit
+  :demand t
   :commands magit-status
   :bind
   ("<f10>" . magit-status)

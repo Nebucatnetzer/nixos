@@ -45,18 +45,18 @@ in
     # Needed when typing in passwords for full disk encryption
     console.earlySetup = true;
     boot.loader.systemd-boot.consoleMode = "1";
-    fonts.fontconfig = {
-      antialias = true;
-      subpixel = {
-        rgba = "none";
-        lcdfilter = "none";
-      };
-    };
     # }
 
-    fonts.fonts = with pkgs; [
-      source-code-pro
-    ];
+    fonts = {
+      fontconfig.defaultFonts = {
+        serif = [ "TeX Gyre Pagella" ];
+        monospace = [ "Source Code Pro" ];
+      };
+      fonts = with pkgs; [
+        gyre-fonts
+        source-code-pro
+      ];
+    };
 
     # Enable keyring
     security.pam.services.lightdm.enableGnomeKeyring = true;
@@ -123,11 +123,12 @@ in
         appimage-run
         brightnessctl
         firefox
-        lm_sensors
-        lxappearance
         gnome.file-roller
         gnome.gnome-screenshot
         gnome.nautilus
+        libheif
+        lm_sensors
+        lxappearance
         networkmanager-openvpn
         p7zip
         pavucontrol

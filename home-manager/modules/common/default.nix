@@ -81,7 +81,7 @@
       rebuild = ''
         nixos-rebuild -j auto switch --use-remote-sudo
       '';
-      find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort";
+      find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
       vm = "vim";
       less = "less -FiRX";
       ls = "ls -lhF";

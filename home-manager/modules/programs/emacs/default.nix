@@ -14,6 +14,7 @@ in
       unstable.nixd # Nix language server
       pandoc
       ripgrep
+      shfmt # formatting bash scripts
       silver-searcher
       xclip # X11 clipboard from terminal
     ];
@@ -41,7 +42,7 @@ in
         epkgs.counsel
         epkgs.counsel-tramp
         epkgs.dap-mode
-        epkgs.denote
+        unstable.emacsPackages.denote
         epkgs.dired-hide-dotfiles
         epkgs.direnv
         epkgs.discover-my-major

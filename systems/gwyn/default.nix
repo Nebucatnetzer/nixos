@@ -21,7 +21,6 @@
   boot.kernelModules = [ "kvm-intel" "sg" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
 
   # Required to build aarch64 packages
@@ -66,6 +65,7 @@
     az-tlp.enable = true;
     az-x86.enable = true;
     hardware.bolt.enable = true; # Enable Thunderbolt control
+    logind.lidSwitchExternalPower = "ignore";
   };
 
   virtualisation.virtualbox.host.enable = true;

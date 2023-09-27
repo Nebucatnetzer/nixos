@@ -61,4 +61,5 @@
       };
     };
   };
+  systemd.user.startServices = "suggest";
 }

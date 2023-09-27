@@ -68,6 +68,7 @@ in
         startInBackground = true;
       };
     };
+    systemd.user.startServices = "sd-switch";
   };
 }
 

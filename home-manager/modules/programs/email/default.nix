@@ -18,7 +18,7 @@ in
       realName = "Andreas Zweili";
       userName = "andreas@zweili.ch";
       primary = true;
-      passwordCommand = "cat ${config.age.secrets.personalEmailKey.path}";
+      passwordCommand = "cat /run/user/1000/agenix/personalEmailKey";
       aliases = [
         "andreas.zweili@gmail.com"
         "andreas@2li.ch"

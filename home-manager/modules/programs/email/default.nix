@@ -1,4 +1,4 @@
-{ config, inputs, lib, nixosConfig, ... }:
+{ config, inputs, lib, ... }:
 let
   cfg = config.programs.az-email;
 in

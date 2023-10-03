@@ -36,7 +36,14 @@ in
         displayManager.lightdm.enable = true;
         layout = "us";
         xkbOptions = "compose:ralt";
-        libinput.enable = true;
+        libinput = {
+          enable = true;
+          touchpad = {
+            accelSpeed = "0.3";
+            disableWhileTyping = true;
+            scrollMethod = "twofinger";
+          };
+        };
       };
     };
 

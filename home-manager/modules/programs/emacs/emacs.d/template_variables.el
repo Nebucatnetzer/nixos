@@ -4,5 +4,6 @@
 ;;(setq enable-emojis t)
 ;;(setq enable-font t)
 ;;(setq enable-lantool t)
+;;(setq enable-notes t)
 ;;(setq enable-pdf-tools t)
 ;;(setq enable-scroll-bar t)

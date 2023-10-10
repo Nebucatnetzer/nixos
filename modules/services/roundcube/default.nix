@@ -1,6 +1,14 @@
 { config, inputs, lib, pkgs, ... }:
 let
   cfg = config.services.az-roundcube;
+  twofactor_gauthenticator = pkgs.roundcubePlugins.roundcubePlugin rec {
+    pname = "twofactor_gauthenticator";
+    version = "v2023-09-13";
+    src = pkgs.fetchzip {
+      url = "https://github.com/alexandregz/twofactor_gauthenticator/archive/95f7b5a8c17db9e9f089656e06ae6703d139e76e.zip";
+      hash = "sha256-BsGLLJ4YP+y+DFSwbSEx8Hqh9wfJAS/V6iLQEym1W10=";
+    };
+  };
 in
 {
   options = {
@@ -76,9 +84,9 @@ in
         '';
         hostName = "mail.zweili.org";
         maxAttachmentSize = 25;
-        plugins = [ "carddav" "persistent_login" ];
+        plugins = [ "carddav" "persistent_login" "twofactor_gauthenticator" ];
         package = pkgs.roundcube.withPlugins (plugins:
-          with plugins; [ carddav persistent_login ]
+          with plugins; [ carddav persistent_login twofactor_gauthenticator ]
         );
       };
     };

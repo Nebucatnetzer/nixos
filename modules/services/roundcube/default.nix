@@ -76,7 +76,7 @@ in
         '';
         hostName = "mail.zweili.org";
         maxAttachmentSize = 25;
-        plugins = [ "carddav" "persistent_login" "managesieve" ];
+        plugins = [ "carddav" "persistent_login" ];
         package = pkgs.roundcube.withPlugins (plugins:
           with plugins; [ carddav persistent_login ]
         );

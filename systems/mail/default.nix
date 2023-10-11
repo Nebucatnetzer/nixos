@@ -10,9 +10,10 @@
 
   services = {
     az-mailserver.enable = true;
-    az-restic-client-server = {
+    az-restic-client-server-postgres = {
       enable = true;
       path = "/home/andreas";
+      tag = "mail";
       time = "01:00";
     };
     az-roundcube.enable = true;

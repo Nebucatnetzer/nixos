@@ -35,6 +35,8 @@ in
 {
   "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];
+  "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
+  "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "infomaniak_env.age".publicKeys = all;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
@@ -42,7 +44,6 @@ in
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;
   "telegram_notify_env.age".publicKeys = all;
-  "ttrss_env.age".publicKeys = defaultKeys ++ [ ttrss ];
   "webdav_andreas.age".publicKeys = defaultKeys;
 }
 

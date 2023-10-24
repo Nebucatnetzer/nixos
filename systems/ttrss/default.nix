@@ -1,4 +1,4 @@
-{ hostname }: { inputs, pkgs, ... }:
+{ hostname }: { config, inputs, pkgs, ... }:
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -11,19 +11,15 @@
   services = {
     az-nginx-proxy = {
       enable = true;
-      domain = "rss-bridge.2li.ch";
+      domain = "rss-bridge.zweili.org";
       port = 8082;
     };
-    az-restic-client-server-postgres = {
+    az-restic-client-server-mysql = {
       enable = true;
-      path = "/var/lib/ttrss";
-      tag = "tt-rss";
+      path = config.services.freshrss.dataDir;
       time = "23:00";
     };
     az-rss-bridge.enable = true;
-    az-ttrss-postgres = {
-      enable = true;
-      domain = "ttrss.2li.ch";
-    };
+    az-freshrss.enable = true;
   };
 }

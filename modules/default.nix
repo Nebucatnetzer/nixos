@@ -22,6 +22,7 @@
     ./services/data-share
     ./services/docker
     ./services/docker-mailserver
+    ./services/freshrss
     ./services/gitea
     ./services/grav
     ./services/haproxy
@@ -48,7 +49,6 @@
     ./services/syslog
     ./services/telegram-notifications
     ./services/tlp
-    ./services/ttrss-postgres
     ./services/virtualbox-guest
   ];
 }

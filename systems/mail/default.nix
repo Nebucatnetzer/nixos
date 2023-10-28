@@ -10,13 +10,10 @@
 
   services = {
     az-mailserver.enable = true;
-    az-restic-client-server-postgres = {
+    az-nginx-proxy = {
       enable = true;
-      path = "/home/andreas";
-      tag = "mail";
-      time = "01:00";
+      domain = "mail.zweili.org";
     };
-    az-roundcube.enable = true;
   };
 }
 

@@ -44,7 +44,6 @@
     ./services/restic-client-server-mysql
     ./services/restic-client-server-postgres
     ./services/restic-server
-    ./services/roundcube
     ./services/rss-bridge
     ./services/syslog
     ./services/telegram-notifications

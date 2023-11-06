@@ -21,7 +21,6 @@ in
       chromium
       nodejs # needed for ansible-language-server
       plexamp
-      shotwell
       sound-juicer
       unstable.tagger
       az-media

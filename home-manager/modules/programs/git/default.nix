@@ -44,6 +44,7 @@ in
         push = {
           autoSetupRemote = true;
         };
+        merge.conflictStyle = "diff3";
       };
       ignores = [
         # ---> VisualStudioCode

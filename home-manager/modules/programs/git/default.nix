@@ -45,6 +45,7 @@ in
           autoSetupRemote = true;
         };
         merge.conflictStyle = "diff3";
+        rerere.enabled = true;
       };
       ignores = [
         # ---> VisualStudioCode

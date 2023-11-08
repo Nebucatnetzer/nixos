@@ -13,6 +13,7 @@ in
         gnome.nautilus
         libheif.bin
         libheif.out
+        nufraw
       ];
     };
     programs = {

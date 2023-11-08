@@ -18,6 +18,7 @@ in
         PartOf = [ "graphical-session.target" ];
       };
       Service = {
+        Environment = "QT_SCALE_FACTOR=1.25";
         ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
       };
       Install = {

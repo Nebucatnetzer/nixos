@@ -90,3 +90,4 @@ nohup.out
 result
 /.direnv/
 /secrets
+flycheck_*

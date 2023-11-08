@@ -14,6 +14,7 @@
     ./programs/libimobiledevice
     ./programs/lockscreen
     ./programs/makemkv
+    ./programs/nautilus
     ./programs/nix-direnv
     ./programs/restic-management
     ./programs/scripts

@@ -72,10 +72,10 @@ in
     sound.enable = true;
 
     programs = {
-      dconf.enable = true; # Enable dconf to be able to save Nautilus settings
       az-eog.enable = true; # Gnome Image Viewer
       az-hunspell.enable = true; # Enable dictionaries
       az-idevices.enable = true;
+      az-nautilus.enable = true;
       az-nix-direnv.enable = true;
       az-scripts.enable = true;
     };
@@ -132,9 +132,6 @@ in
         firefox
         gnome.file-roller
         gnome.gnome-screenshot
-        gnome.nautilus
-        libheif.bin
-        libheif.out
         lm_sensors
         lxappearance
         networkmanager-openvpn

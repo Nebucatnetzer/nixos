@@ -133,7 +133,8 @@ in
         gnome.file-roller
         gnome.gnome-screenshot
         gnome.nautilus
-        libheif
+        libheif.bin
+        libheif.out
         lm_sensors
         lxappearance
         networkmanager-openvpn

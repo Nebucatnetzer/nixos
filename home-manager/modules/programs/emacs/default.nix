@@ -61,6 +61,7 @@ in
         epkgs.htmlize
         epkgs.hydra
         epkgs.hyperbole
+        unstable.emacsPackages.journalctl-mode
         epkgs.know-your-http-well
         epkgs.languagetool
         epkgs.lsp-ivy

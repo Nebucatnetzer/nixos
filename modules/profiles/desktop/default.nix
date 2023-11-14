@@ -147,6 +147,7 @@ in
       };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
+        QT_SCALE_FACTOR = "1.25";
       };
     };
   };

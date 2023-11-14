@@ -56,7 +56,6 @@
     az-lockscreen.enable = true;
     az-makemkv.enable = true;
     az-restic-management.enable = true;
-    steam.enable = true;
   };
 
   services = {

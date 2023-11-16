@@ -9,7 +9,7 @@
     ./programs/email
     ./programs/evince
     ./programs/git
-    ./programs/keepassxc
+    ./programs/keeweb
     ./programs/mpv
     ./programs/open-port
     ./programs/rapid-photo-downloader

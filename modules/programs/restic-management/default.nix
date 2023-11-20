@@ -66,6 +66,10 @@ in
           --repo ${repository} \
           --password-file ${password_file} \
           snapshots --host ${config.networking.hostName}'';
+      restic-list-all = ''
+        ${pkgs.restic}/bin/restic \
+          --repo ${repository} \
+          --password-file ${password_file} snapshots'';
       restic-unlock = ''
         ${pkgs.restic}/bin/restic \
           --repo ${repository} \

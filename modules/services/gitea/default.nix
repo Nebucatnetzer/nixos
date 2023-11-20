@@ -17,6 +17,20 @@ in
     services = {
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;
+      mysql.settings = {
+        mysql = {
+          default-character-set = "utf8mb4";
+        };
+        mysqld = {
+          collation-server = "utf8mb4_unicode_ci";
+          init-connect = "SET NAMES utf8mb4";
+          character-set-server = "utf8mb4";
+          innodb_file_per_table = 1;
+          innodb_buffer_pool_size = "2G";
+          read_rnd_buffer_size = "4M";
+          sort_buffer_size = "4M";
+        };
+      };
     };
 
     virtualisation.oci-containers = {

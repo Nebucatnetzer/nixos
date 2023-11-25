@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     services.mysql = {
       enable = true;
-      package = pkgs.mariadb;
+      package = pkgs.mariadb_106;
       settings = {
         mysqld = {
           bind-address = "172.17.0.1";

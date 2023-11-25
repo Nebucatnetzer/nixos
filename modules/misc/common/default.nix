@@ -87,6 +87,7 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
+    daemonCPUSchedPolicy = "idle";
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     registry = {
       nixpkgs.flake = inputs.nixpkgs;

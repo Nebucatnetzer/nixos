@@ -19,6 +19,7 @@ in
       exercism
       freetube
       chromium
+      nix-output-monitor
       nodejs # needed for ansible-language-server
       plexamp
       sound-juicer

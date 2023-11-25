@@ -50,7 +50,7 @@ in
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
           --tag ${cfg.tag} ${cfg.path}
 
-        ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql}/bin/pg_dumpall | \
+        ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql_14}/bin/pg_dumpall | \
         ${pkgs.restic}/bin/restic backup \
           --tag postgres \
           --stdin \

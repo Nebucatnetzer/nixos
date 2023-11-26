@@ -60,6 +60,7 @@ keys = [
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("xrandr --auto")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
+    Key([mod], "s", lazy.spawn("rofi-search")),
     Key([mod], "w", lazy.spawn("firefox")),
     Key([mod], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below

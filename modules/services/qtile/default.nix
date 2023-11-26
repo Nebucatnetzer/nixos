@@ -1,6 +1,20 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.services.az-qtile;
+  rofi-search = pkgs.writeShellScriptBin "rofi-search" ''
+    # Use rofi to get user input
+    raw_user_input=$(echo "" | ${pkgs.rofi}/bin/rofi -dmenu -p "What do you want to search:")
+    user_input=$(${pkgs.jq}/bin/jq --raw-output --null-input --arg x "$raw_user_input" '$x|@uri')
+
+    # Check if user provided input
+    if [ -n "$user_input" ]; then
+        # Execute your command with the user input as an argument
+        # Replace 'your_command' with the actual command you want to run
+        $DEFAULT_BROWSER "https://duckduckgo.com/?q=$user_input"
+    else
+        echo "No input provided."
+    fi
+  '';
 in
 {
   options = {
@@ -19,6 +33,7 @@ in
       home.file.".config/qtile/autostart.sh".source = ./autostart.sh;
       home.packages = [
         pkgs.pulseaudio # required for volume controls in qtile
+        rofi-search
       ];
     };
   };

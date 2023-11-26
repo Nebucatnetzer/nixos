@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'` | xargs ))
+hosts=($(echo $(nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
     "gwyn"
@@ -10,10 +10,8 @@ skip=(
     "staubfinger"
 )
 
-
-for host in "${hosts[@]}"
-do
-    if [[ " ${skip[*]} " =~ " ${host} " ]];then
+for host in "${hosts[@]}"; do
+    if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
     fi
     echo $host

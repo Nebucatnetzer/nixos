@@ -2,7 +2,7 @@
 
 cd /home/andreas/.nixos
 
-hosts=($(echo `nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'` | xargs ))
+hosts=($(echo $(nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
     "gwyn"
@@ -18,15 +18,15 @@ reboot=0
 
 while getopts ":r" option; do
     case $option in
-        r)
+    r)
         reboot=1
+        ;;
     esac
 done
 
-for host in "${hosts[@]}"
-do
+for host in "${hosts[@]}"; do
     # Check if the host is in the skip list
-    if [[ " ${skip[*]} " =~ " ${host} " ]];then
+    if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
     fi
     fqdn="$host.2li.local"

@@ -50,7 +50,7 @@ in
           --tag ${cfg.tag} ${cfg.path}
 
         ${pkgs.restic}/bin/restic forget \
-          --tag home-dir \
+          --tag ${cfg.tag} \
           --host ${config.networking.hostName} \
           --keep-daily 7 \
           --keep-weekly 5 \

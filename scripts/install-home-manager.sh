@@ -6,4 +6,4 @@ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
 nix-shell '<home-manager>' -A install
 rm ~/.config/nixpkgs/home.nix
 ln -s $HOME/.nixos/flake.nix $HOME/.config/nixpkgs/flake.nix
-home-manager switch
+home-manager switch |& nom

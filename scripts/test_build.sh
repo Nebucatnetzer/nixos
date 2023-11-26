@@ -17,7 +17,7 @@ do
         continue
     fi
     echo $host
-    nixos-rebuild dry-build --flake .#${host}
+    nixos-rebuild dry-build --flake .#${host} |& nom
     echo
     echo
 done

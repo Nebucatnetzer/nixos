@@ -79,7 +79,7 @@
       format-modules = "nixpkgs-fmt **/*.nix";
       nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       rebuild = ''
-        nixos-rebuild -j auto switch --use-remote-sudo
+        nixos-rebuild -j auto switch --use-remote-sudo |& nom
       '';
       find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
       vm = "vim";

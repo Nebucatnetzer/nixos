@@ -39,7 +39,7 @@ let
 
     # Run benchmarks.
     printf "Running hdparm test...\n"
-    ${pkgs.hdparm}/bin/hdparm -t /dev/mmcblk0
+    ${pkgs.hdparm}/bin/hdparm -t /dev/mmcblk1
     printf "\n"
 
     printf "Running dd test...\n\n"

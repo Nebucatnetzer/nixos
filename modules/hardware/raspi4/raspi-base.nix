@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.hardware.az-raspi4-base;
-  test-sd-card = pkgs.writeShellScriptBin "az-media" ''
+  test-sd-card = pkgs.writeShellScriptBin "test-sd-card" ''
     # Raspberry Pi microSD card benchmark script.
     #
     # A script I use to automate the running and reporting of benchmarks I compile

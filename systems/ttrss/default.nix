@@ -17,6 +17,7 @@
     az-restic-client-server-mysql = {
       enable = true;
       path = config.services.freshrss.dataDir;
+      tag = "freshrss";
       time = "23:00";
     };
     az-rss-bridge.enable = true;

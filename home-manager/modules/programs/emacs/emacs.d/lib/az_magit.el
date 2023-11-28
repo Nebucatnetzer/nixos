@@ -4,6 +4,7 @@
   :commands magit-status
   :bind
   ("<f10>" . magit-status)
+  :hook (git-commit-setup . flyspell-mode)
   :config
   (setq magit-diff-refine-hunk (quote all)
         magit-save-repository-buffers 'dontask))

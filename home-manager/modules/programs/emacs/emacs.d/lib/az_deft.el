@@ -5,8 +5,8 @@
     :commands (deft)
     :config
     (add-to-list 'evil-emacs-state-modes 'deft-mode)
-    (setq deft-extensions '("md")
-          deft-default-extension "md"
+    (setq deft-extensions '("md" "org" "txt")
+          deft-default-extension "org"
           deft-markdown-mode-title-level 1
           deft-auto-save-interval 300.0
           deft-file-limit 50

@@ -93,6 +93,8 @@ in
         epkgs.smooth-scrolling
         epkgs.solarized-theme
         epkgs.string-inflection
+        epkgs.org-superstar
+        epkgs.ox-pandoc
         epkgs.swiper
         epkgs.system-packages
         epkgs.treemacs

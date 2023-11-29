@@ -95,6 +95,7 @@
       killall
       ncdu
       nixpkgs-fmt
+      nix-output-monitor
       nmon
       tree
       unzip

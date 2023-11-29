@@ -81,6 +81,7 @@
       rebuild = ''
         nixos-rebuild -j auto switch --use-remote-sudo |& nom
       '';
+      htop = "bottom";
       find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
       vm = "vim";
       less = "less -FiRX";
@@ -91,7 +92,6 @@
       bottom
       git
       highlight
-      htop
       killall
       ncdu
       nixpkgs-fmt

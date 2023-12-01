@@ -59,9 +59,9 @@ in
         serif = [ "TeX Gyre Pagella" ];
         monospace = [ "Source Code Pro" ];
       };
-      fonts = with pkgs; [
-        gyre-fonts
-        source-code-pro
+      packages = [
+        pkgs.gyre-fonts
+        pkgs.source-code-pro
       ];
     };
 
@@ -85,6 +85,16 @@ in
         enable = true;
         xdgOpenUsePortal = true;
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        config = {
+          common = {
+            default = [
+              "gtk"
+            ];
+            "org.freedesktop.impl.portal.Secret" = [
+              "gnome-keyring"
+            ];
+          };
+        };
       };
     };
     environment = {

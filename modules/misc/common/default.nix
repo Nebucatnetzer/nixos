@@ -83,9 +83,6 @@
     ];
   };
 
-  # allow non-free packages
-  nixpkgs.config.allowUnfree = true;
-
   nix = {
     daemonCPUSchedPolicy = "idle";
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

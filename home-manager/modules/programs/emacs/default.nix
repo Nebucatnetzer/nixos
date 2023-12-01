@@ -73,6 +73,7 @@ in
         epkgs.makey
         epkgs.markdown-mode
         epkgs.move-text
+        epkgs.mu4e
         epkgs.nix-mode
         epkgs.olivetti
         epkgs.parsebib

@@ -35,7 +35,7 @@ for host in "${hosts[@]}"; do
         nixos-rebuild switch -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host" |& nom
     else
         echo "$fqdn with reboot"
-        nixos-rebuild boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host" |& nom
+        nixos-rebuild boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
         ssh -i $rsa_key $fqdn 'sudo reboot'
     fi
     echo

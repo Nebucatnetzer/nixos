@@ -79,7 +79,7 @@
       format-modules = "nixpkgs-fmt **/*.nix";
       nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       rebuild = ''
-        nixos-rebuild -j auto switch --use-remote-sudo |& nom
+        nixos-rebuild -j auto switch --use-remote-sudo
       '';
       htop = "btm";
       find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
@@ -95,7 +95,6 @@
       killall
       ncdu
       nixpkgs-fmt
-      nix-output-monitor
       nmon
       tree
       unzip

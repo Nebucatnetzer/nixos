@@ -59,10 +59,12 @@
       shellAliases = {
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';
-        hm-rebuild = "home-manager switch |& nom";
+        rebuild = "home-manager switch";
       };
     };
   };
   services.emacs.package = pkgs.emacs29-pgtk;
-  systemd.user.startServices = "suggest";
+  systemd.user.startServices = " suggest ";
 }
+
+

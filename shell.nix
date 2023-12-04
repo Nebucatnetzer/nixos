@@ -4,7 +4,6 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     nixFlakes
-    nix-output-monitor
     python310
     python310Packages.black
     python310Packages.mypy

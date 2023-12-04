@@ -15,7 +15,7 @@ in
       backend = "docker";
       containers."rss-bridge" = {
         # https://hub.docker.com/r/rssbridge/rss-bridge/tags
-        image = "rssbridge/rss-bridge@sha256:c1cc311b154175f5ff11a8aa72f2cb1b21d3b657bd01d16c99812cc476bd2838";
+        image = "rssbridge/rss-bridge@sha256:02bffc572e134a9f25243cd48af74acf48667fd33618615ffcd82cda59ac5683";
         autoStart = true;
         ports = [
           "8082:80"

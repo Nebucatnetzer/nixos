@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd /home/andreas/.nixos
+
 rsa_key="~/.nixos/secrets/ssh_keys/ansible/ansible.key"
 export NIX_SSHOPTS="-t -i $rsa_key"
 

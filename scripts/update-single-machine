@@ -14,7 +14,7 @@ while getopts ":r" option; do
         host=$2
         fqdn="$host.2li.local"
         echo "$fqdn with reboot"
-        nixos-rebuild boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host" |& nom
+        nixos-rebuild boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
         ssh -i $rsa_key $fqdn 'sudo reboot'
         ;;
     esac

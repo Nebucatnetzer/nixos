@@ -19,7 +19,7 @@ in
       };
       Service = {
         Environment = "QT_SCALE_FACTOR=1.25";
-        ExecStart = "${pkgs.keeweb}/bin/keeweb";
+        ExecStart = "${pkgs.keeweb}/bin/keeweb --no-sandbox";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];

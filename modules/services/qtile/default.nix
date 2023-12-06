@@ -35,6 +35,12 @@ in
         pkgs.pulseaudio # required for volume controls in qtile
         rofi-search
       ];
+      systemd.user.targets.tray = {
+        Unit = {
+          Description = "Home Manager System Tray";
+          Requires = [ "graphical-session-pre.target" ];
+        };
+      };
     };
   };
 }

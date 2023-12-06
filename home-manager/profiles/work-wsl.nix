@@ -64,7 +64,7 @@
     };
   };
   services.emacs.package = pkgs.emacs29-pgtk;
-  systemd.user.startServices = " suggest ";
+  systemd.user.startServices = "suggest";
 }
 
 

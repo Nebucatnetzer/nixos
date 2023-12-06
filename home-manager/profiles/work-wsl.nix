@@ -46,7 +46,6 @@
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;
-    emacs.package = pkgs.emacs29-pgtk;
     az-git = {
       userEmail = "zweili@contria.com";
     };
@@ -63,7 +62,6 @@
       };
     };
   };
-  services.emacs.package = pkgs.emacs29-pgtk;
   systemd.user.startServices = "suggest";
 }
 

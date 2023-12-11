@@ -1,4 +1,4 @@
-{ hostname }: { inputs, lib, ... }:
+{ hostname }: { inputs, lib, pkgs, ... }:
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
@@ -21,6 +21,9 @@
   boot.kernelModules = [ "kvm-intel" "sg" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_6_5;
+
+
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
 
   # Required to build aarch64 packages

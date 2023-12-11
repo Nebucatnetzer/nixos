@@ -48,6 +48,7 @@
     az-bluetooth.enable = true;
     az-dvd.enable = true;
     az-nvidia.enable = true;
+    opengl.enable = true;
   };
 
   profiles.az-desktop.enable = true;

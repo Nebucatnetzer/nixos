@@ -73,7 +73,6 @@ in
 
     programs = {
       az-eog.enable = true; # Gnome Image Viewer
-      az-hunspell.enable = true; # Enable dictionaries
       az-idevices.enable = true;
       az-nautilus.enable = true;
       az-nix-direnv.enable = true;

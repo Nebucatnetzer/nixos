@@ -13,6 +13,7 @@
 
   programs = {
     az-emacs.enable = true;
+    az-hunspell.enable = true;
     az-open-port.enable = true;
     az-ssh.enable = true;
     az-tmux.enable = true;

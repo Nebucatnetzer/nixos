@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       hunspell
       hunspellDicts.en_GB-ise
       hunspellDicts.de_CH

@@ -10,7 +10,6 @@
     ./profiles/desktop
     ./programs/distrobox
     ./programs/eog
-    ./programs/hunspell
     ./programs/libimobiledevice
     ./programs/lockscreen
     ./programs/makemkv

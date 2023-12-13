@@ -31,6 +31,7 @@
 ;; programming
 (load-file (modules-path "az_annotate.el"))
 (load-file (modules-path "az_company.el"))
+(load-file (modules-path "az_copilot.el"))
 (load-file (modules-path "az_direnv.el"))
 (load-file (modules-path "az_format_all.el"))
 (load-file (modules-path "az_flycheck.el"))

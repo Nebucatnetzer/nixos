@@ -21,7 +21,6 @@
   };
   # Enable dictionaries
   programs = {
-    az-hunspell.enable = true;
     az-nix-direnv.enable = true;
     az-restic-management.enable = true;
   };

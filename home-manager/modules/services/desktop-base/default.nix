@@ -14,6 +14,7 @@ in
       az-emacs.enable = true;
       az-email.enable = true;
       az-evince.enable = true;
+      az-hunspell.enable = true;
       az-keeweb.enable = true;
       az-mpv.enable = true;
       az-open-port.enable = true;

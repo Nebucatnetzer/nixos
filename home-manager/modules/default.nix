@@ -9,6 +9,7 @@
     ./programs/email
     ./programs/evince
     ./programs/git
+    ./programs/hunspell
     ./programs/keeweb
     ./programs/mpv
     ./programs/open-port

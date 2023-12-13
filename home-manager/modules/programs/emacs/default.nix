@@ -11,6 +11,7 @@ in
     home.packages = with pkgs; [
       fd
       multimarkdown
+      nodejs_20 # required for copilot
       unstable.nixd # Nix language server
       pandoc
       ripgrep

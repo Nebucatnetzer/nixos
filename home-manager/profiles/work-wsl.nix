@@ -49,6 +49,7 @@
     az-git = {
       userEmail = "zweili@contria.com";
     };
+    az-hunspell.enable = true;
     az-tmux.enable = true;
     az-vagrant-wsl.enable = true;
     bash = {

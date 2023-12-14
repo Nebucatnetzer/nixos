@@ -8,6 +8,12 @@
   (use-package ox-pandoc
     :after org)
 
+  (use-package ob-restclient
+    :after org
+    :config
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((restclient . t))))
 
   (use-package org
     :config

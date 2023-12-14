@@ -76,6 +76,7 @@ in
         epkgs.move-text
         epkgs.mu4e
         epkgs.nix-mode
+        epkgs.ob-restclient
         epkgs.olivetti
         epkgs.parsebib
         epkgs.pdf-tools

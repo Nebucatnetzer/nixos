@@ -16,6 +16,8 @@
      '((restclient . t))))
 
   (use-package org
+    :bind (:map org-mode-map
+                ("C-c C-," . org-insert-structure-template))
     :config
     ;; enable org-mode keys
     (global-set-key "\C-cl" 'org-store-link)

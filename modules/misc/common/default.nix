@@ -111,40 +111,7 @@
   };
 
   security.sudo = {
-    extraRules =
-      let
-        storePrefix = "/nix/store/*";
-        systemName = "nixos-system-${config.networking.hostName}-*";
-      in
-      [
-        {
-          commands = [
-            {
-              command = "${storePrefix}-nix-*/bin/nix-env -p /nix/var/nix/profiles/system --set ${storePrefix}-${systemName}";
-              options = [ "NOPASSWD" ];
-            }
-          ];
-          groups = [ "wheel" ];
-        }
-        {
-          commands = [
-            {
-              command = "${storePrefix}-${systemName}/bin/switch-to-configuration";
-              options = [ "NOPASSWD" ];
-            }
-          ];
-          groups = [ "wheel" ];
-        }
-        {
-          commands = [
-            {
-              command = "/run/current-system/sw/bin/reboot";
-              options = [ "NOPASSWD" ];
-            }
-          ];
-          groups = [ "wheel" ];
-        }
-      ];
+    wheelNeedsPassword = false;
   };
 
   system.activationScripts.diff = {

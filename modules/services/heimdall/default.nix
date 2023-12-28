@@ -14,7 +14,7 @@ in
       backend = "docker";
       containers."heimdall" = {
         # https://fleet.linuxserver.io/image?name=linuxserver/heimdall
-        image = "linuxserver/heimdall:2.5.8@sha256:e84b058bc7391b12beb56e056d528ad48041d1310a6e130366340db1be92073e";
+        image = "linuxserver/heimdall:2.5.8@sha256:2bf4feba39a64ceabb8e8aef1395c69513c8ab7dd122caa605c307d7ffcdad6f";
         autoStart = true;
         environment = {
           TZ = "Europe/Zurich";

@@ -1,6 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 let
   cfg = config.services.az-nextcloud;
+  cronService = "${config.virtualisation.oci-containers.backend}-cron";
   nextcloudEnvironment = {
     MYSQL_DATABASE = "nextcloud";
     MYSQL_USER = "nextcloud";
@@ -15,7 +16,6 @@ let
   # https://github.com/Nebucatnetzer/nextcloud-smb
   nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:28.0.1@sha256:2fc015f2844e44e861099474927696244ddb59bcfb3fc7b693468a30543a211e";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
-  cronService = "${config.virtualisation.oci-containers.backend}-cron";
   volumePath = "/mnt/server-data/nextcloud";
 in
 {

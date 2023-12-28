@@ -5,7 +5,7 @@ let
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
-      sha256 = "sha256-i5RaupuYo3Bh99/FKbxXKFITO3Ko3LrWPvTD6xPBXzY";
+      sha256 = "sha256-HMT790mp5ADdNYaOLUJfHJq9LWI0OPilTabAhogVXnc=";
     })
       }").overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";

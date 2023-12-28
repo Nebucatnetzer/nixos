@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+cd /home/andreas/.nixos
+
+hosts=($(echo $(nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
+skip=(
+    "desktop-vm"
+    "gwyn"
+    "loki-test"
+    "mobile"
+    "staubfinger"
+    "test-raspi"
+)
+
+rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
+export NIX_SSHOPTS="-t -i $rsa_key"
+
+for host in "${hosts[@]}"; do
+    fqdn="$host.2li.local"
+    echo $fqdn
+    ssh -i $rsa_key $fqdn 'sudo reboot'
+    echo
+    echo
+done

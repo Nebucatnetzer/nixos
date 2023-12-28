@@ -16,6 +16,10 @@ rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
 export NIX_SSHOPTS="-t -i $rsa_key"
 
 for host in "${hosts[@]}"; do
+    # Check if the host is in the skip list
+    if [[ " ${skip[*]} " =~ " ${host} " ]]; then
+        continue
+    fi
     fqdn="$host.2li.local"
     echo $fqdn
     ssh -i $rsa_key $fqdn 'sudo reboot'

@@ -10,6 +10,7 @@ let
       }").overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";
   });
+  volumePath = "/mnt/server-data/docker-mailserver";
 in
 {
   options = {
@@ -47,6 +48,11 @@ in
       mailserver-setup
     ];
 
+    fileSystems."${volumePath}" = {
+      device = "10.7.89.108:server_data/docker-mailserver";
+      fsType = "nfs";
+      options = [ "hard" "noatime" "rw" ];
+    };
     services.az-docker.enable = true;
 
     virtualisation.oci-containers = {
@@ -73,12 +79,12 @@ in
           "/run/agenix:/run/agenix:ro"
           "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
           "/var/lib/redis:/var/lib/redis"
+          "${volumePath}/maildata:/var/mail"
+          "${volumePath}/mailstate:/var/mail-state"
+          "${volumePath}/maillogs:/var/log/mail"
+          "${volumePath}/config:/tmp/docker-mailserver"
         ];
         extraOptions = [
-          ''--mount=type=volume,source=maildata,target=/var/mail,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/maildata,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
-          ''--mount=type=volume,source=mailstate,target=/var/mail-state,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/mailstate,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
-          ''--mount=type=volume,source=maillogs,target=/var/log/mail,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/maillogs,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
-          ''--mount=type=volume,source=config,target=/tmp/docker-mailserver,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/docker-mailserver/config,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--add-host=host.docker.internal:host-gateway"
           "--cap-add=NET_ADMIN"
           "--cap-add=SYS_PTRACE"

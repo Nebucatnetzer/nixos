@@ -16,6 +16,7 @@ let
   nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:28.0.1@sha256:2fc015f2844e44e861099474927696244ddb59bcfb3fc7b693468a30543a211e";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   cronService = "${config.virtualisation.oci-containers.backend}-cron";
+  volumePath = "/mnt/server-data/nextcloud";
 in
 {
   options = {
@@ -29,6 +30,11 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.nextcloudEnv.file = "${inputs.self}/scrts/nextcloud_env.age";
 
+    fileSystems."${volumePath}" = {
+      device = "10.7.89.108:server_data/nextcloud/data";
+      fsType = "nfs";
+      options = [ "hard" "noatime" "rw" ];
+    };
     services = {
       az-acme-base.enable = true;
       az-docker.enable = true;
@@ -108,7 +114,6 @@ in
           "/etc/localtime:/etc/localtime:ro"
         ];
         extraOptions = [
-          ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--add-host=host.docker.internal:host-gateway"
           "--net=nextcloud"
           "--log-opt=tag='nextcloud-cron'"
@@ -119,6 +124,7 @@ in
         autoStart = true;
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
+          "${volumePath}:/var/www/html"
         ];
         extraOptions = [
           "--net=${networkName}"

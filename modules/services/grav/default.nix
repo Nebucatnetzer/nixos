@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.services.az-grav;
+  volumePath = "/mnt/server-data/grav";
 in
 {
   options = {
@@ -10,6 +11,11 @@ in
   config = lib.mkIf cfg.enable {
     services.az-docker.enable = true;
 
+    fileSystems."${volumePath}" = {
+      device = "10.7.89.108:server_data/grav";
+      fsType = "nfs";
+      options = [ "hard" "noatime" "rw" ];
+    };
     virtualisation.oci-containers = {
       backend = "docker";
       containers."grav" = {
@@ -27,9 +33,9 @@ in
         volumes = [
           "/etc/timezone:/etc/timezone:ro"
           "/etc/localtime:/etc/localtime:ro"
+          "${volumePath}:/config"
         ];
         extraOptions = [
-          ''--mount=type=volume,source=grav,target=/config,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/grav,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--log-opt=tag='grav'"
         ];
       };

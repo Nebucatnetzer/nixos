@@ -1,6 +1,7 @@
 { config, inputs, lib, ... }:
 let
   cfg = config.services.az-gitea;
+  volumePath = "/mnt/server-data/gitea";
 in
 {
   options = {
@@ -14,6 +15,11 @@ in
   config = lib.mkIf cfg.enable {
     age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
+    fileSystems."${volumePath}" = {
+      device = "10.7.89.108:server_data/gitea/data";
+      fsType = "nfs";
+      options = [ "hard" "noatime" "rw" ];
+    };
     services = {
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;
@@ -59,9 +65,9 @@ in
         volumes = [
           "/etc/timezone:/etc/timezone:ro"
           "/etc/localtime:/etc/localtime:ro"
+          "${volumePath}:/data"
         ];
         extraOptions = [
-          ''--mount=type=volume,source=gitea_data,target=/data,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/gitea/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--add-host=host.docker.internal:host-gateway"
           "--log-opt=tag='gitea'"
         ];

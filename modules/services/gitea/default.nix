@@ -38,7 +38,7 @@ in
       containers."gitea" = {
         # https://blog.gitea.io/
         # https://hub.docker.com/r/gitea/gitea/tags
-        image = "gitea/gitea:1.21";
+        image = "gitea/gitea:1.21.3";
         autoStart = true;
         environment = {
           PUID = "1000";

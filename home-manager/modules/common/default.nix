@@ -70,6 +70,7 @@
     stateVersion = "23.05";
     sessionVariables = {
       EDITOR = "vim";
+      VISUAL = "vim";
       HIGHLIGHT_STYLE = "solarized-light";
       HISTTIMEFORMAT = "%F %T ";
       NIXPKGS_ALLOW_UNFREE = "1";

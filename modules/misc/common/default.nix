@@ -64,6 +64,15 @@
     keyMap = "us";
   };
 
+  environment = {
+    variables = {
+      EDITOR = "vim";
+      VISUAL = "vim";
+    };
+    systemPackages = [
+      pkgs.vim
+    ];
+  };
   # Disable the root user
   users.users.root.hashedPassword = "!";
   # Define a user account. Don't forget to set a password with `passwd`.

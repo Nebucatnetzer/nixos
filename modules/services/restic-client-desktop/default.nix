@@ -2,7 +2,8 @@
 let
   cfg = config.services.az-restic-client-desktop;
   password_file = config.age.secrets.resticKey.path;
-  repository = "rest:http://10.7.89.30:8000";
+  backup_server = "10.7.89.30";
+  repository = "rest:http://${backup_server}:8000";
 in
 {
   options = {
@@ -44,19 +45,24 @@ in
       };
       onFailure = [ "unit-status-telegram@%n.service" ];
       script = ''
-        ${pkgs.restic}/bin/restic \
-          --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-          --tag home-dir \
-          backup /home/${config.az-username}
+        # first make sure we can reach the backup server
+        if ${pkgs.iputils}/bin/ping -c 1 ${backup_server} >/dev/null; then
+            ${pkgs.restic}/bin/restic \
+            --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
+            --tag home-dir \
+            backup /home/${config.az-username}
 
-        ${pkgs.restic}/bin/restic \
-        forget \
-          --host ${config.networking.hostName} \
-          --keep-hourly 25 \
-          --keep-daily 7 \
-          --keep-weekly 5 \
-          --keep-monthly 12 \
-          --keep-yearly 2 \
+            ${pkgs.restic}/bin/restic \
+            forget \
+            --host ${config.networking.hostName} \
+            --keep-hourly 25 \
+            --keep-daily 7 \
+            --keep-weekly 5 \
+            --keep-monthly 12 \
+            --keep-yearly 2 \
+        else
+          echo "Backup server unreachable."
+        fi
       '';
     };
   };

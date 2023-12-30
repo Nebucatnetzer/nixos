@@ -49,19 +49,19 @@ in
     };
 
     networking.dhcpcd.denyInterfaces = [ "usb0" ];
-    services.dhcpd4 = {
+    services.dnsmasq = {
       enable = true;
-      interfaces = [ "usb0" ];
-      extraConfig = ''
-        option domain-name "2li.mobile";
-        option subnet-mask 255.255.255.0;
-        option broadcast-address 10.213.0.255;
-        option domain-name-servers 84.200.69.80, 84.200.70.40;
-        subnet 10.213.0.0 netmask 255.255.255.0 {
-          option routers ${cfg.ip};
-          range 10.213.0.100 10.213.0.200;
-        }
-      '';
+      settings = {
+        domain = "2li.mobile";
+        domain-needed = true;
+        dhcp-range = [ "10.213.0.100,10.213.0.200,255.255.255.0,24h" ];
+        dhcp-option = [ "option:router,${cfg.ip}" ];
+        interface = "usb0";
+        server = [
+          "84.200.69.80"
+          "84.200.70.40"
+        ];
+      };
     };
 
     systemd.services."usb-otg" = {

@@ -1,7 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 let
   cfg = config.services.az-mailserver;
-  version = "13.0.1";
+  version = "13.1.0";
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";

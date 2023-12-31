@@ -7,10 +7,6 @@
       ip = "10.7.89.30";
     };
   };
-  fileSystems."/var/lib/restic-server" = {
-    device = "/dev/disk/by-label/backups";
-    fsType = "ext4";
-  };
   services = {
     az-restic-server.enable = true;
   };

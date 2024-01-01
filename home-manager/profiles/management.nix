@@ -1,8 +1,5 @@
-{ inputs, pkgs, ... }:
-{
-  imports = [
-    "${inputs.self}/home-manager/modules"
-  ];
+{ inputs, pkgs, ... }: {
+  imports = [ "${inputs.self}/home-manager/modules" ];
 
   home.packages = with pkgs; [
     docker-compose

@@ -1,11 +1,7 @@
 { config, lib, ... }:
-let
-  cfg = config.programs.az-tmux;
-in
-{
-  options = {
-    programs.az-tmux.enable = lib.mkEnableOption "Enable tmux";
-  };
+let cfg = config.programs.az-tmux;
+in {
+  options = { programs.az-tmux.enable = lib.mkEnableOption "Enable tmux"; };
 
   config = lib.mkIf cfg.enable {
     programs.tmux = {

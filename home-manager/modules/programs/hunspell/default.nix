@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.az-hunspell;
-in
-{
+let cfg = config.programs.az-hunspell;
+in {
   options = {
     programs.az-hunspell.enable = lib.mkEnableOption "Add dictionaries";
   };

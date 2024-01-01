@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{ lib, ... }: {
   options = {
     az-username = lib.mkOption {
       type = lib.types.str;

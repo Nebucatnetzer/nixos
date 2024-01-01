@@ -1,17 +1,13 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-acme-base;
-in
-{
+let cfg = config.services.az-acme-base;
+in {
   options = {
-    services.az-acme-base.enable = lib.mkEnableOption "All the common options I need for ACME certs.";
+    services.az-acme-base.enable =
+      lib.mkEnableOption "All the common options I need for ACME certs.";
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      80
-      443
-    ];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
     security.acme = {
       acceptTerms = true;
       defaults.email = "admin+acme@zweili.ch";

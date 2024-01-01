@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.az-lockscreen;
-in
-{
+let cfg = config.programs.az-lockscreen;
+in {
   options = {
     programs.az-lockscreen.enable = lib.mkEnableOption "Lockscreen";
   };
@@ -13,9 +11,7 @@ in
       lockerCommand = "${pkgs.i3lock}/bin/i3lock -c 000000";
     };
 
-    environment.systemPackages = with pkgs; [
-      i3lock
-    ];
+    environment.systemPackages = with pkgs; [ i3lock ];
   };
 }
 

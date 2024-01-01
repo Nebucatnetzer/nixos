@@ -1,24 +1,16 @@
-{ hostname }: { inputs, ... }:
-{
+{ hostname }:
+{ inputs, ... }: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
-  boot.initrd.availableKernelModules = [
-    "aesni_intel"
-    "ahci"
-    "cryptd"
-    "sd_mod"
-    "usb_storage"
-    "xhci_pci"
-  ];
+  boot.initrd.availableKernelModules =
+    [ "aesni_intel" "ahci" "cryptd" "sd_mod" "usb_storage" "xhci_pci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [
-    "acpi_osi="
-  ];
+  boot.kernelParams = [ "acpi_osi=" ];
   boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
   boot.initrd.luks.devices."cryptswap".device = "/dev/sda3";
 
@@ -35,9 +27,8 @@
 
   networking.hostName = hostname;
 
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; }
-  ];
+  swapDevices =
+    [{ device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; }];
 
   hardware = {
     az-bluetooth.enable = true;

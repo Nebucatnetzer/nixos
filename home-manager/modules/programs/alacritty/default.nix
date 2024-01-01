@@ -1,10 +1,9 @@
 { config, lib, ... }:
-let
-  cfg = config.programs.az-alacritty;
-in
-{
+let cfg = config.programs.az-alacritty;
+in {
   options = {
-    programs.az-alacritty.enable = lib.mkEnableOption "Enable alacritty terminal.";
+    programs.az-alacritty.enable =
+      lib.mkEnableOption "Enable alacritty terminal.";
   };
 
   config = lib.mkIf cfg.enable {

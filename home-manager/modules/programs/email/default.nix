@@ -1,10 +1,9 @@
 { config, inputs, lib, ... }:
-let
-  cfg = config.programs.az-email;
-in
-{
+let cfg = config.programs.az-email;
+in {
   options = {
-    programs.az-email.enable = lib.mkEnableOption "Configure everything required for sending emails.";
+    programs.az-email.enable =
+      lib.mkEnableOption "Configure everything required for sending emails.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -19,10 +18,7 @@ in
       userName = "andreas@zweili.ch";
       primary = true;
       passwordCommand = "cat /run/user/1000/agenix/personalEmailKey";
-      aliases = [
-        "andreas.zweili@gmail.com"
-        "andreas@2li.ch"
-      ];
+      aliases = [ "andreas.zweili@gmail.com" "andreas@2li.ch" ];
       msmtp.enable = true;
       mu.enable = true;
       offlineimap = {

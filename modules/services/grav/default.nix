@@ -2,11 +2,8 @@
 let
   cfg = config.services.az-grav;
   volumePath = "/mnt/server-data/grav";
-in
-{
-  options = {
-    services.az-grav.enable = lib.mkEnableOption "Enable Grav.";
-  };
+in {
+  options = { services.az-grav.enable = lib.mkEnableOption "Enable Grav."; };
 
   config = lib.mkIf cfg.enable {
     services.az-docker.enable = true;
@@ -20,24 +17,21 @@ in
       backend = "docker";
       containers."grav" = {
         # https://fleet.linuxserver.io/image?name=linuxserver/grav
-        image = "lscr.io/linuxserver/grav:1.7.43@sha256:6cc4e340eda8c72f4671f9b9a4c1fad195deac59b9a88b6221f8b31d4fd64c08";
+        image =
+          "lscr.io/linuxserver/grav:1.7.43@sha256:6cc4e340eda8c72f4671f9b9a4c1fad195deac59b9a88b6221f8b31d4fd64c08";
         autoStart = true;
         environment = {
           TZ = "Europe/Zurich";
           PUID = "100";
           PGID = "101";
         };
-        ports = [
-          "8080:80"
-        ];
+        ports = [ "8080:80" ];
         volumes = [
           "/etc/timezone:/etc/timezone:ro"
           "/etc/localtime:/etc/localtime:ro"
           "${volumePath}:/config"
         ];
-        extraOptions = [
-          "--log-opt=tag='grav'"
-        ];
+        extraOptions = [ "--log-opt=tag='grav'" ];
       };
     };
   };

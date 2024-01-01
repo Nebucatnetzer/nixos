@@ -1,16 +1,12 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.az-calibre;
-in
-{
+let cfg = config.programs.az-calibre;
+in {
   options = {
     programs.az-calibre.enable = lib.mkEnableOption "Enable calibre.";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      calibre
-    ];
+    home.packages = with pkgs; [ calibre ];
 
     xdg.mimeApps = {
       enable = true;

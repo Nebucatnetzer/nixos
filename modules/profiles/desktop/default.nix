@@ -1,16 +1,12 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.profiles.az-desktop;
-in
-{
+let cfg = config.profiles.az-desktop;
+in {
   options = {
     profiles.az-desktop.enable = lib.mkEnableOption "Enable desktop";
   };
 
   config = lib.mkIf cfg.enable {
-    networking = {
-      networkmanager.enable = true;
-    };
+    networking = { networkmanager.enable = true; };
 
     services = {
       az-docker.enable = true;
@@ -59,10 +55,7 @@ in
         serif = [ "TeX Gyre Pagella" ];
         monospace = [ "Source Code Pro" ];
       };
-      packages = [
-        pkgs.gyre-fonts
-        pkgs.source-code-pro
-      ];
+      packages = [ pkgs.gyre-fonts pkgs.source-code-pro ];
     };
 
     # Enable keyring
@@ -86,12 +79,8 @@ in
         extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
         config = {
           common = {
-            default = [
-              "gtk"
-            ];
-            "org.freedesktop.impl.portal.Secret" = [
-              "gnome-keyring"
-            ];
+            default = [ "gtk" ];
+            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           };
         };
       };
@@ -115,9 +104,7 @@ in
         source-code-pro
         unrar
       ];
-      variables = {
-        WINIT_X11_SCALE_FACTOR = "1";
-      };
+      variables = { WINIT_X11_SCALE_FACTOR = "1"; };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
         QT_SCALE_FACTOR = "1.25";

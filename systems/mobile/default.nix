@@ -1,5 +1,5 @@
-{ hostname }: { inputs, lib, pkgs, ... }:
-{
+{ hostname }:
+{ inputs, lib, pkgs, ... }: {
   hardware = {
     az-raspi4-usb = {
       enable = true;
@@ -8,7 +8,5 @@
     };
   };
 
-  programs = {
-    az-nix-direnv.enable = true;
-  };
+  programs = { az-nix-direnv.enable = true; };
 }

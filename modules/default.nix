@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [
     ./hardware/bluetooth
     ./hardware/dvd

@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.az-ansible;
-in
-{
+let cfg = config.programs.az-ansible;
+in {
   options = {
     programs.az-ansible.enable = lib.mkEnableOption "Enable ansible.";
   };

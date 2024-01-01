@@ -4,17 +4,19 @@ let
   version = "13.1.0";
   mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
     "${builtins.readFile (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
+      url =
+        "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
       sha256 = "sha256-HMT790mp5ADdNYaOLUJfHJq9LWI0OPilTabAhogVXnc=";
-    })
-      }").overrideAttrs (old: {
-    buildCommand = "${old.buildCommand}\n patchShebangs $out";
-  });
+    })}").overrideAttrs (old: {
+      buildCommand = ''
+        ${old.buildCommand}
+         patchShebangs $out'';
+    });
   volumePath = "/mnt/server-data/docker-mailserver";
-in
-{
+in {
   options = {
-    services.az-mailserver.enable = lib.mkEnableOption "Enable docker-mailserver";
+    services.az-mailserver.enable =
+      lib.mkEnableOption "Enable docker-mailserver";
   };
 
   config = lib.mkIf cfg.enable {
@@ -44,9 +46,7 @@ in
       };
     };
 
-    environment.systemPackages = [
-      mailserver-setup
-    ];
+    environment.systemPackages = [ mailserver-setup ];
 
     fileSystems."${volumePath}" = {
       device = "10.7.89.108:server_data/docker-mailserver";
@@ -61,17 +61,9 @@ in
         # https://hub.docker.com/r/mailserver/docker-mailserver/tags
         image = "docker.io/mailserver/docker-mailserver:${version}";
         autoStart = true;
-        environmentFiles = [
-          ./mailserver.env
-        ];
-        ports = [
-          "25:25"
-          "143:143"
-          "465:465"
-          "587:587"
-          "993:993"
-          "11334:11334"
-        ];
+        environmentFiles = [ ./mailserver.env ];
+        ports =
+          [ "25:25" "143:143" "465:465" "587:587" "993:993" "11334:11334" ];
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
           "/etc/dkim:/etc/dkim:ro"

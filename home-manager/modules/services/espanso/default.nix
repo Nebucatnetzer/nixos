@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-espanso;
-in
-{
+let cfg = config.services.az-espanso;
+in {
   options = {
     services.az-espanso.enable = lib.mkEnableOption "Enable espanso.";
   };

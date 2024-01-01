@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.programs.az-git;
-in
-{
+let cfg = config.programs.az-git;
+in {
   options = {
     programs.az-git = {
       enable = lib.mkEnableOption "Enable git.";
@@ -32,18 +30,10 @@ in
         condition = "gitdir:~/git_repos/work/";
       }];
       extraConfig = {
-        core = {
-          hooksPath = "~/.config/git/hooks/";
-        };
-        safe = {
-          directory = "*";
-        };
-        pull = {
-          rebase = false;
-        };
-        push = {
-          autoSetupRemote = true;
-        };
+        core = { hooksPath = "~/.config/git/hooks/"; };
+        safe = { directory = "*"; };
+        pull = { rebase = false; };
+        push = { autoSetupRemote = true; };
         merge.conflictStyle = "diff3";
         rerere.enabled = true;
       };
@@ -62,13 +52,13 @@ in
         # ---> Emacs"
         # -*- mode: gitignore; -*-"
         "*~"
-        "\#*\#"
+        "#*#"
         "/.emacs.desktop"
         "/.emacs.desktop.lock"
         "*.elc"
         "auto-save-list"
         "tramp"
-        ".\#*"
+        ".#*"
 
         # Org-mode"
         ".org-id-locations"
@@ -108,7 +98,6 @@ in
 
         # network security"
         "/network-security.data"
-
 
         # ---> Vim"
         # Swap"

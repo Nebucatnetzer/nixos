@@ -1,16 +1,12 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.programs.az-eog;
-in
-{
+let cfg = config.programs.az-eog;
+in {
   options = {
     programs.az-eog.enable = lib.mkEnableOption "Gnome Image Viewer";
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      gnome.eog
-    ];
+    environment.systemPackages = with pkgs; [ gnome.eog ];
     home-manager.users.${config.az-username} = {
       xdg.mimeApps = {
         enable = true;

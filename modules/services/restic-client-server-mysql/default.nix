@@ -1,8 +1,6 @@
 { config, inputs, lib, pkgs, ... }:
-let
-  cfg = config.services.az-restic-client-server-mysql;
-in
-{
+let cfg = config.services.az-restic-client-server-mysql;
+in {
   options = {
     services.az-restic-client-server-mysql = {
       enable = lib.mkEnableOption "Enable restic backups for MariaDB.";
@@ -23,18 +21,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications = {
-      enable = true;
-    };
+    services.az-telegram-notifications = { enable = true; };
 
     age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
 
     systemd.timers."restic-backups" = {
       wantedBy = [ "timers.target" ];
       partOf = [ "restic-backups.service" ];
-      timerConfig = {
-        OnCalendar = cfg.time;
-      };
+      timerConfig = { OnCalendar = cfg.time; };
     };
 
     systemd.services."restic-backups" = {

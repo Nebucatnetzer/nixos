@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-haproxy;
-in
-{
+let cfg = config.services.az-haproxy;
+in {
   options = {
     services.az-haproxy.enable = lib.mkEnableOption "Enable HAProxy";
   };

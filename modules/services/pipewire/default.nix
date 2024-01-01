@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-pipewire;
-in
-{
+let cfg = config.services.az-pipewire;
+in {
   options = {
     services.az-pipewire.enable = lib.mkEnableOption "Enable pipewire";
   };

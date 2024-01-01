@@ -1,4 +1,5 @@
-{ hostname, inputs, system ? "aarch64-linux", home-module ? "headless", username ? "andreas" }:
+{ hostname, inputs, system ? "aarch64-linux", home-module ? "headless"
+, username ? "andreas" }:
 let
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -9,9 +10,7 @@ let
 
   pkgs = import inputs.nixpkgs {
     inherit system;
-    config = {
-      allowUnfree = true;
-    };
+    config = { allowUnfree = true; };
     overlays = [
       overlay-unstable
       # The following is requried for building images {
@@ -23,35 +22,32 @@ let
       # }
     ];
   };
-in
 
-inputs.nixpkgs.lib.nixosSystem {
+in inputs.nixpkgs.lib.nixosSystem {
   inherit pkgs system;
   specialArgs = { inherit inputs; };
-  modules = (
-    [
-      # System configuration for this host
-      (import "${inputs.self}/systems/${hostname}"
-        { inherit hostname; })
+  modules = ([
+    # System configuration for this host
+    (import "${inputs.self}/systems/${hostname}" { inherit hostname; })
 
-      # Common configuration
-      "${inputs.self}/modules"
+    # Common configuration
+    "${inputs.self}/modules"
 
-      inputs.agenix.nixosModules.age
-      {
-        environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
-        az-username = username;
-      }
+    inputs.agenix.nixosModules.age
+    {
+      environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
+      az-username = username;
+    }
 
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs system; };
-        home-manager.users.${username}.imports = [
-          inputs.agenix.homeManagerModules.default
-          "${inputs.self}/home-manager/profiles/${home-module}.nix"
-        ];
-      }
-    ]);
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = { inherit inputs system; };
+      home-manager.users.${username}.imports = [
+        inputs.agenix.homeManagerModules.default
+        "${inputs.self}/home-manager/profiles/${home-module}.nix"
+      ];
+    }
+  ]);
 }

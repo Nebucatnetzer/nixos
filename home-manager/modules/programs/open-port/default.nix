@@ -1,10 +1,9 @@
 { config, lib, ... }:
-let
-  cfg = config.programs.az-open-port;
-in
-{
+let cfg = config.programs.az-open-port;
+in {
   options = {
-    programs.az-open-port.enable = lib.mkEnableOption "Two functions to quickly open a port in iptables.";
+    programs.az-open-port.enable =
+      lib.mkEnableOption "Two functions to quickly open a port in iptables.";
   };
 
   config = lib.mkIf cfg.enable {

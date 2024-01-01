@@ -1,5 +1,5 @@
-{ hostname }: { inputs, lib, pkgs, ... }:
-{
+{ hostname }:
+{ inputs, lib, pkgs, ... }: {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
@@ -22,7 +22,6 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
 
-
   boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
 
   # Required to build aarch64 packages
@@ -42,9 +41,7 @@
 
   networking.hostName = hostname;
 
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   hardware = {
     az-bluetooth.enable = true;

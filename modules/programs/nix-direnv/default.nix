@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.programs.az-nix-direnv;
-in
-{
+let cfg = config.programs.az-nix-direnv;
+in {
   options = {
     programs.az-nix-direnv.enable = lib.mkEnableOption "Enable nix-direnv";
   };

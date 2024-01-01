@@ -1,10 +1,9 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.services.az-grobi;
-in
-{
+let cfg = config.services.az-grobi;
+in {
   options = {
-    services.az-grobi.enable = lib.mkEnableOption "Enabel grobi display manager.";
+    services.az-grobi.enable =
+      lib.mkEnableOption "Enabel grobi display manager.";
   };
 
   config = lib.mkIf cfg.enable {

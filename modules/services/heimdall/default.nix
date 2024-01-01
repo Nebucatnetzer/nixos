@@ -2,8 +2,7 @@
 let
   cfg = config.services.az-heimdall;
   volumePath = "/mnt/server-data/heimdall";
-in
-{
+in {
   options = {
     services.az-heimdall.enable = lib.mkEnableOption "Enable Heimdall";
   };
@@ -20,23 +19,18 @@ in
       backend = "docker";
       containers."heimdall" = {
         # https://fleet.linuxserver.io/image?name=linuxserver/heimdall
-        image = "linuxserver/heimdall:2.5.8@sha256:2bf4feba39a64ceabb8e8aef1395c69513c8ab7dd122caa605c307d7ffcdad6f";
+        image =
+          "linuxserver/heimdall:2.5.8@sha256:2bf4feba39a64ceabb8e8aef1395c69513c8ab7dd122caa605c307d7ffcdad6f";
         autoStart = true;
         environment = {
           TZ = "Europe/Zurich";
           PUID = "1000";
           PGID = "100";
         };
-        ports = [
-          "8081:80"
-        ];
-        volumes = [
-          "/etc/localtime:/etc/localtime:ro"
-          "${volumePath}:/config"
-        ];
-        extraOptions = [
-          "--log-opt=tag='heimdall'"
-        ];
+        ports = [ "8081:80" ];
+        volumes =
+          [ "/etc/localtime:/etc/localtime:ro" "${volumePath}:/config" ];
+        extraOptions = [ "--log-opt=tag='heimdall'" ];
       };
     };
   };

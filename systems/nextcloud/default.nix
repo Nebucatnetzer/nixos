@@ -1,5 +1,5 @@
-{ hostname }: { inputs, pkgs, ... }:
-{
+{ hostname }:
+{ inputs, pkgs, ... }: {
   hardware = {
     az-raspi4-ethernet = {
       enable = true;
@@ -7,7 +7,6 @@
       ip = "10.7.89.103";
     };
   };
-
 
   services = {
     az-nextcloud = {

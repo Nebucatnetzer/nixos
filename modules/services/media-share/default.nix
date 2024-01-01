@@ -1,10 +1,9 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-media-share;
-in
-{
+let cfg = config.services.az-media-share;
+in {
   options = {
-    services.az-media-share.enable = lib.mkEnableOption "Mount the NFS share for with my media.";
+    services.az-media-share.enable =
+      lib.mkEnableOption "Mount the NFS share for with my media.";
   };
 
   config = lib.mkIf cfg.enable {

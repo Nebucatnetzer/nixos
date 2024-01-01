@@ -1,8 +1,5 @@
-{ inputs, ... }:
-{
-  imports = [
-    "${inputs.self}/home-manager/modules"
-  ];
+{ inputs, ... }: {
+  imports = [ "${inputs.self}/home-manager/modules" ];
 
   targets.genericLinux.enable = true;
 }

@@ -8,11 +8,8 @@ let
         nvidia-offload mpv --shuffle --mute=yes "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=various/$directory/" &
     done
   '';
-in
-{
-  imports = [
-    "${inputs.self}/home-manager/modules"
-  ];
+in {
+  imports = [ "${inputs.self}/home-manager/modules" ];
   home = {
     packages = with pkgs; [
       digikam
@@ -34,8 +31,6 @@ in
     az-yt-dlp.enable = true;
   };
 
-  services = {
-    az-desktop-base.enable = true;
-  };
+  services = { az-desktop-base.enable = true; };
 }
 

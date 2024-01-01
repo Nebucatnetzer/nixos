@@ -1,8 +1,6 @@
 { config, inputs, lib, pkgs, ... }:
-let
-  cfg = config.services.az-restic-server;
-in
-{
+let cfg = config.services.az-restic-server;
+in {
   options = {
     services.az-restic-server = {
       enable = lib.mkEnableOption "Enable a restic server.";
@@ -24,9 +22,7 @@ in
       group = "restic";
     };
 
-    environment.systemPackages = with pkgs; [
-      restic
-    ];
+    environment.systemPackages = with pkgs; [ restic ];
 
     fileSystems."${cfg.repository}" = {
       device = "10.7.89.108:restic-server";

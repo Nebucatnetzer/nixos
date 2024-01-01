@@ -1,8 +1,6 @@
 { config, inputs, lib, pkgs, ... }:
-let
-  cfg = config.services.az-restic-client-server;
-in
-{
+let cfg = config.services.az-restic-client-server;
+in {
   options = {
     services.az-restic-client-server = {
       enable = lib.mkEnableOption "Enable restic backups on server systems.";
@@ -29,9 +27,7 @@ in
     systemd.timers."restic-backups" = {
       wantedBy = [ "timers.target" ];
       partOf = [ "restic-backups.service" ];
-      timerConfig = {
-        OnCalendar = cfg.time;
-      };
+      timerConfig = { OnCalendar = cfg.time; };
     };
 
     systemd.services."restic-backups" = {

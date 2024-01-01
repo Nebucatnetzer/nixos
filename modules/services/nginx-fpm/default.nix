@@ -1,11 +1,10 @@
 { config, lib, pkgs, ... }:
-let
-  cfg = config.services.az-nginx-fpm;
-in
-{
+let cfg = config.services.az-nginx-fpm;
+in {
   options = {
     services.az-nginx-fpm = {
-      enable = lib.mkEnableOption "Enable Nginx with config for FPM in a container.";
+      enable =
+        lib.mkEnableOption "Enable Nginx with config for FPM in a container.";
       dataDir = lib.mkOption {
         type = lib.types.str;
         description = "The directory where the application lives on the host.";

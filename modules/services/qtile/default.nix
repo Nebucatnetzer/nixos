@@ -15,10 +15,10 @@ let
         echo "No input provided."
     fi
   '';
-in
-{
+in {
   options = {
-    services.az-qtile.enable = lib.mkEnableOption "Enable Qtile window manager.";
+    services.az-qtile.enable =
+      lib.mkEnableOption "Enable Qtile window manager.";
   };
 
   config = lib.mkIf cfg.enable {

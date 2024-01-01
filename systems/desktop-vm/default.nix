@@ -1,11 +1,7 @@
-{ hostname }: { config, inputs, ... }:
-{
-  boot.initrd.availableKernelModules = [
-    "ata_piix"
-    "ohci_pci"
-    "sd_mod"
-    "sr_mod"
-  ];
+{ hostname }:
+{ config, inputs, ... }: {
+  boot.initrd.availableKernelModules =
+    [ "ata_piix" "ohci_pci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
@@ -26,9 +22,7 @@
     interfaces.enp0s3.useDHCP = true;
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   users.users.${config.az-username} = {
     openssh.authorizedKeys.keys = [
@@ -36,9 +30,7 @@
     ];
   };
   profiles.az-desktop.enable = true;
-  programs = {
-    az-distrobox.enable = true;
-  };
+  programs = { az-distrobox.enable = true; };
   services = {
     az-virtualbox-guest.enable = true;
     az-x86.enable = true;

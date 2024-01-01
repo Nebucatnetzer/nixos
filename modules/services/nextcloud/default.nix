@@ -6,7 +6,8 @@ let
     MYSQL_DATABASE = "nextcloud";
     MYSQL_USER = "nextcloud";
     MYSQL_HOST = "172.17.0.1";
-    NEXTCLOUD_TRUSTED_DOMAINS = "${cfg.domain} ${config.networking.hostName}.2li.local 10.7.89.103";
+    NEXTCLOUD_TRUSTED_DOMAINS =
+      "${cfg.domain} ${config.networking.hostName}.2li.local 10.7.89.103";
     REDIS_HOST = "redis";
     SMTP_HOST = "mail.infomaniak.com";
     SMTP_SECURE = "ssl";
@@ -14,13 +15,15 @@ let
   };
   networkName = "nextcloud";
   # https://github.com/Nebucatnetzer/nextcloud-smb
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:28.0.1@sha256:2fc015f2844e44e861099474927696244ddb59bcfb3fc7b693468a30543a211e";
-  nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
+  nextcloudImage =
+    "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:28.0.1@sha256:2fc015f2844e44e861099474927696244ddb59bcfb3fc7b693468a30543a211e";
+  nextcloudService =
+    "${config.virtualisation.oci-containers.backend}-nextcloud";
   volumePath = "/mnt/server-data/nextcloud";
-in
-{
+in {
   options = {
-    services.az-nextcloud.enable = lib.mkEnableOption "Enable Nextcloud running in a container.";
+    services.az-nextcloud.enable =
+      lib.mkEnableOption "Enable Nextcloud running in a container.";
     services.az-nextcloud.domain = lib.mkOption {
       type = lib.types.str;
       description = "The domain Nextcloud is being run from.";
@@ -81,7 +84,8 @@ in
         ];
         dependsOn = [ "redis" ];
         extraOptions = [
-          ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
+          ''
+            --mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--add-host=host.docker.internal:host-gateway"
           "--net=${networkName}"
           "--log-opt=tag='nextcloud'"
@@ -90,15 +94,14 @@ in
       containers."nginx" = {
         image = "nginx:1.22.1";
         autoStart = true;
-        ports = [
-          "8080:80"
-        ];
+        ports = [ "8080:80" ];
         volumes = [
           "${inputs.self}/modules/services/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
           "/etc/localtime:/etc/localtime:ro"
         ];
         extraOptions = [
-          ''--mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,ro,nfsvers=4.0,nolock,hard,noatime"''
+          ''
+            --mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,ro,nfsvers=4.0,nolock,hard,noatime"''
           "--net=${networkName}"
           "--log-opt=tag='nextcloud-nginx'"
         ];
@@ -110,9 +113,7 @@ in
         environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
         entrypoint = "/cron.sh";
         dependsOn = [ "redis" ];
-        volumes = [
-          "/etc/localtime:/etc/localtime:ro"
-        ];
+        volumes = [ "/etc/localtime:/etc/localtime:ro" ];
         extraOptions = [
           "--add-host=host.docker.internal:host-gateway"
           "--net=nextcloud"
@@ -122,14 +123,9 @@ in
       containers."redis" = {
         image = "redis:alpine";
         autoStart = true;
-        volumes = [
-          "/etc/localtime:/etc/localtime:ro"
-          "${volumePath}:/var/www/html"
-        ];
-        extraOptions = [
-          "--net=${networkName}"
-          "--log-opt=tag='redis'"
-        ];
+        volumes =
+          [ "/etc/localtime:/etc/localtime:ro" "${volumePath}:/var/www/html" ];
+        extraOptions = [ "--net=${networkName}" "--log-opt=tag='redis'" ];
       };
     };
     system.activationScripts.makeDockerNetwork = ''
@@ -137,9 +133,10 @@ in
     '';
 
     environment.shellAliases = {
-      occ = ''${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ'';
+      occ = "${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ";
     };
-    systemd.services.${nextcloudService}.after = [ "mysql.service" "nginx.service" ];
+    systemd.services.${nextcloudService}.after =
+      [ "mysql.service" "nginx.service" ];
     systemd.services.${cronService}.after = [ "mysql.service" ];
   };
 }

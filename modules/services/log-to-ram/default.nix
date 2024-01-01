@@ -1,8 +1,6 @@
 { config, lib, ... }:
-let
-  cfg = config.services.az-log2ram;
-in
-{
+let cfg = config.services.az-log2ram;
+in {
   options = {
     services.az-log2ram.enable = lib.mkEnableOption "Enable log to RAM";
   };

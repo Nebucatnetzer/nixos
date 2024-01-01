@@ -53,15 +53,16 @@ let
 
     printf "microSD card benchmark complete!\n\n"
   '';
-in
-{
+in {
   options = {
-    hardware.az-raspi4-base.enable = lib.mkEnableOption "Enable the base config for a Raspberry Pi 4.";
+    hardware.az-raspi4-base.enable =
+      lib.mkEnableOption "Enable the base config for a Raspberry Pi 4.";
   };
 
   config = lib.mkIf cfg.enable {
     boot = {
-      supportedFilesystems = lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
+      supportedFilesystems =
+        lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
     };
     fileSystems = {
       "/" = {

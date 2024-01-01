@@ -14,6 +14,12 @@
       enable = true;
       domain = "mail.zweili.org";
     };
+    az-restic-client-server = {
+      enable = true;
+      path = "/mnt/server-data";
+      tag = "mail";
+      time = "01:00";
+    };
   };
 }
 

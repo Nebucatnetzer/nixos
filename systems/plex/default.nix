@@ -15,7 +15,7 @@
       enable = true;
       path = "/var/lib/plex";
       tag = "plex";
-      time = "02:30";
+      time = "01:30";
     };
   };
 }

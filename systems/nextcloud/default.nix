@@ -15,8 +15,8 @@
     };
     az-restic-client-server-mysql = {
       enable = true;
-      path = "/home/andreas";
-      time = "01:30";
+      path = "/mnt/server-data";
+      time = "02:00";
     };
   };
 }

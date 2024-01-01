@@ -15,7 +15,8 @@
     az-heimdall.enable = true;
     az-restic-client-server = {
       enable = true;
-      path = "/home/andreas";
+      path = "/mnt/server-data";
+      tag = "proxy";
       time = "00:00";
     };
     nginx = {

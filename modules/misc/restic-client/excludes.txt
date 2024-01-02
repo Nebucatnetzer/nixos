@@ -21,3 +21,5 @@ __pycache__
 /home/*/Downloads
 /home/*/git_repos/work
 /home/*/VMs
+*.log
+*.lock

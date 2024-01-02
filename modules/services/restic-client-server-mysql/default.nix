@@ -46,7 +46,7 @@ in {
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
           --tag ${cfg.tag} ${cfg.path}
 
-        ${pkgs.mariadb_110}/bin/mariabackup --backup --user=root --stream=xbstream | \
+        ${pkgs.mariadb_110}/bin/mariadb-backup --backup --user=root --stream=xbstream | \
         ${pkgs.restic}/bin/restic backup \
           --tag mariadb \
           --stdin \

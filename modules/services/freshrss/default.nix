@@ -30,6 +30,7 @@ in {
       az-data-share.enable = true;
       freshrss = {
         enable = true;
+        package = pkgs.unstable.freshrss;
         baseUrl = "https://rss.zweili.org";
         database = {
           passFile = config.age.secrets.freshrss_db_pass.path;

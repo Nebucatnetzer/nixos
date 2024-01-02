@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    freshrss.url = "/home/andreas/git_repos/resources/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
@@ -20,7 +21,7 @@
   };
 
   outputs = inputs@{ self, agenix, nixpkgs, nixpkgs-unstable, nixos-hardware
-    , home-manager }:
+    , home-manager, freshrss }:
     let
       mkComputer = import "${inputs.self}/lib/mk_computer.nix";
       mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";

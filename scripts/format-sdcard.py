@@ -27,7 +27,7 @@ def create_boot_partition(disk):
         ["parted", "--script", disk, "mkpart", "ESP", "fat32", "1MiB", "1024MiB"]
     )
     _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
-    _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
+    _run_command(["mkfs.fat", "-F", "32", "-n", "SdBoot", boot_partition])
 
 
 def create_main_partition(disk):
@@ -38,14 +38,14 @@ def create_main_partition(disk):
 
 def _create_main_filesystem():
     _run_command(["lvcreate", "-l", "100%FREE", "MainGroupSd", "-n", "sdroot"])
-    _run_command(["mkfs.ext4", "-L", "NixosSd", "/dev/MainGroupSd/root"])
+    _run_command(["mkfs.ext4", "-L", "NixosSd", "/dev/MainGroupSd/sdroot"])
 
 
 def _encrypt_disk(partition_path):
     password = getpass.getpass()
     print("Encrypting disk.")
     _run_command(
-        ["cryptsetup", "luksFormat", "-q", "--type", "luks2", partition_path],
+        ["cryptsetup", "luksFormat", "-q", partition_path],
         user_input=password,
     )
     _run_command(

@@ -37,8 +37,8 @@ def create_main_partition(disk):
 
 
 def _create_main_filesystem():
-    _run_command(["lvcreate", "-l", "100%FREE", "MainGroupSd", "-n", "root"])
-    _run_command(["mkfs.ext4", "-L", "nixos", "/dev/MainGroupSd/root"])
+    _run_command(["lvcreate", "-l", "100%FREE", "MainGroupSd", "-n", "sdroot"])
+    _run_command(["mkfs.ext4", "-L", "NixosSd", "/dev/MainGroupSd/root"])
 
 
 def _encrypt_disk(partition_path):

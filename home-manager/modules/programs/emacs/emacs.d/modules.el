@@ -1,18 +1,18 @@
 ;; basic settings
 (load-file (modules-path "az_detect_os.el"))
-(load-file (modules-path "az_dired.el"))
 (load-file (modules-path "az_packages.el"))
+;; keybindings
+(load-file (modules-path "az_evil.el"))
+(load-file (modules-path "az_hydra.el"))
+(load-file (modules-path "az_keybindings.el"))
+
+(load-file (modules-path "az_dired.el"))
 (load-file (modules-path "az_theme.el"))
 (load-file (modules-path "az_ui.el"))
 (load-file (modules-path "az_utils.el"))
 (load-file (modules-path "az_various.el"))
 (load-file (modules-path "az_window_split.el"))
 (load-file (modules-path "az_xclip.el"))
-
-;; keybindings
-(load-file (modules-path "az_evil.el"))
-(load-file (modules-path "az_hydra.el"))
-(load-file (modules-path "az_keybindings.el"))
 
 ;; note taking and writing
 (load-file (modules-path "az_deft_raw.el"))

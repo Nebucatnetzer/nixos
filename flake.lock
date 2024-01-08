@@ -45,21 +45,6 @@
         "type": "github"
       }
     },
-    "freshrss": {
-      "locked": {
-        "lastModified": 1704200707,
-        "narHash": "sha256-LQnnma6cr3xJwkttCMo4X5WyQb+OwUYDXcWVYPtZm50=",
-        "ref": "refs/heads/freshrss",
-        "rev": "c1c1dbeeda592ab346c5c060e9aa86aac46b19ee",
-        "revCount": 564142,
-        "type": "git",
-        "url": "file:///home/andreas/git_repos/resources/nixpkgs"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///home/andreas/git_repos/resources/nixpkgs"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -152,7 +137,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "freshrss": "freshrss",
         "home-manager": "home-manager_2",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

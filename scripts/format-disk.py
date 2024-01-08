@@ -9,22 +9,17 @@ import sys
 
 def _run_command(command, user_input=""):
     if user_input:
-        result = subprocess.run(command,
-                                capture_output=True,
-                                text=True,
-                                check=True,
-                                input=user_input)
+        result = subprocess.run(
+            command, capture_output=True, text=True, check=True, input=user_input
+        )
     else:
-        result = subprocess.run(command,
-                                capture_output=True,
-                                text=True,
-                                check=True)
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
     return result
 
 
 def _get_system_memory():
-    mem_bytes = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
-    mem_gib = mem_bytes / (1024.**3)
+    mem_bytes = os.sysconf("SC_PAGE_SIZE") * os.sysconf("SC_PHYS_PAGES")
+    mem_gib = mem_bytes / (1024.0**3)
     return round(mem_gib)
 
 
@@ -72,16 +67,16 @@ def _partition_suffix(disk):
 def create_boot_partition(disk):
     boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
     print("Create boot partition {}.".format(boot_partition))
-    _run_command(["parted", "--script", disk, "mkpart",
-                  "ESP", "fat32", "1MiB", "512MiB"])
+    _run_command(
+        ["parted", "--script", disk, "mkpart", "ESP", "fat32", "1MiB", "512MiB"]
+    )
     _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
     _run_command(["mkfs.fat", "-F", "32", "-n", "BOOT", boot_partition])
 
 
 def create_main_partition(disk):
     print("Create main partition.")
-    _run_command(["parted", "--script", disk, "mkpart",
-                  "primary", "512MiB", "100%"])
+    _run_command(["parted", "--script", disk, "mkpart", "primary", "512MiB", "100%"])
     return "{}{}2".format(disk, _partition_suffix(disk))
 
 
@@ -93,21 +88,20 @@ def _create_main_filesystem():
 def _create_swap():
     memory = _get_system_memory()
     print("Create swap partition of {} GiB in size".format(memory))
-    _run_command(["lvcreate",
-                  "-L",
-                  "{}G".format(memory),
-                  "MainGroup",
-                  "-n",
-                  "swap"])
+    _run_command(["lvcreate", "-L", "{}G".format(memory), "MainGroup", "-n", "swap"])
     _run_command(["mkswap", "-L", "swap", "/dev/MainGroup/swap"])
 
 
 def _encrypt_disk(partition_path):
     password = getpass.getpass()
     print("Encrypting disk.")
-    _run_command(["cryptsetup", "luksFormat", "-q",
-                  "--type", "luks1", partition_path], user_input=password)
-    _run_command(["cryptsetup", "open", partition_path, "cryptlvm"], user_input=password)
+    _run_command(
+        ["cryptsetup", "luksFormat", "-q", "--type", "luks1", partition_path],
+        user_input=password,
+    )
+    _run_command(
+        ["cryptsetup", "open", partition_path, "cryptlvm"], user_input=password
+    )
 
 
 def _setup_lvm(lvm_target):

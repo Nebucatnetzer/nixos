@@ -2,6 +2,7 @@
 #! nix-shell -i python3 -p python3 parted
 
 import getpass
+import os
 import subprocess
 
 
@@ -15,24 +16,29 @@ def _run_command(command, user_input=""):
     return result
 
 
-def create_partition_table(disk):
-    print("Create partition table.")
-    _run_command(["parted", "--script", disk, "mklabel", "gpt"])
+def read_disks():
+    output = _run_command(["lsblk", "-dpno", "name"])
+    disks = []
+    for disk in output.stdout.splitlines():
+        if "loop" in disk:
+            continue
+        disks.append(disk)
+    return disks
 
 
-def create_boot_partition(disk):
-    boot_partition = f"{disk}p1"
-    print(f"Create boot partition {boot_partition}.")
-    _run_command(
-        ["parted", "--script", disk, "mkpart", "ESP", "fat32", "1MiB", "1024MiB"]
-    )
-    _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
-    _run_command(["mkfs.fat", "-F", "32", "-n", "SdBoot", boot_partition])
+def create_menu(disks):
+    for position, disk in enumerate(disks):
+        print("{}: {}".format(position, disk))
+
+
+def get_disk_to_format():
+    disk_to_format = input("Which disk dou you want to format?: ")
+    return int(disk_to_format)
 
 
 def create_main_partition(disk):
     print("Create main partition.")
-    _run_command(["parted", "--script", disk, "mkpart", "primary", "1024MiB", "100%"])
+    _run_command(["parted", "--script", disk, "mkpart", "primary", "1GiB", "100%"])
     return f"{disk}p2"
 
 
@@ -67,12 +73,20 @@ def create_file_systems(partition):
     _create_main_filesystem()
 
 
+def mount_partitions():
+    print("Mounting partitions.")
+    _run_command(["mount", "/dev/MainGroupSd/sdroot", "/mnt"])
+    os.mkdir("/mnt/boot")
+    _run_command(["mount", "/dev/disk/by-label/SdBoot", "/mnt/boot"])
+
+
 def main():
-    disk_to_format = "/dev/mmcblk0"
-    create_partition_table(disk_to_format)
-    create_boot_partition(disk_to_format)
+    disks = read_disks()
+    create_menu(disks)
+    disk_to_format = disks[get_disk_to_format()]
     main_partition = create_main_partition(disk_to_format)
     create_file_systems(main_partition)
+    mount_partitions()
 
 
 if __name__ == "__main__":

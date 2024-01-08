@@ -11,7 +11,10 @@ in {
           StrictHostKeyChecking no
           UserKnownHostsFile /dev/null
           User nixos
-          LogLevel QUIET
+
+        Host mobile.2li.local
+          StrictHostKeyChecking no
+          UserKnownHostsFile /dev/null
 
         Host *.2li.local
           User andreas

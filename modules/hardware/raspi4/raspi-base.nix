@@ -64,16 +64,20 @@ in {
       supportedFilesystems =
         lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
     };
-    fileSystems = {
-      "/" = {
-        device = "/dev/disk/by-label/NIXOS_SD";
-        fsType = "ext4";
-        options = [ "noatime" ];
-      };
+    fileSystems."/" = {
+      device = "/dev/disk/by-label/NixosSd";
+      fsType = "ext4";
+      options = [ "noatime" ];
+    };
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-label/SdBoot";
+      fsType = "vfat";
     };
 
     boot = {
       initrd.availableKernelModules = [
+        "cryptd"
+        "genet" # required for the ethernet to work at initrd
         "usbhid"
         "usb_storage"
         "vc4"
@@ -81,13 +85,24 @@ in {
         "reset-raspberrypi" # required for vl805 firmware to load
       ];
 
-      loader = {
-        grub.enable = false;
-        generic-extlinux-compatible.enable = true;
+      initrd.luks.devices."cryptlvmsd".device = "/dev/mmcblk1p2";
+      initrd.network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          port = 22;
+          shell = "/bin/cryptsetup-askpass";
+          authorizedKeys =
+            config.users.users.${config.az-username}.openssh.authorizedKeys.keys;
+          hostKeys = [
+            "/etc/secrets/initrd/ssh_host_rsa_key"
+            "/etc/secrets/initrd/ssh_host_ed25519_key"
+          ];
+        };
       };
+      loader = { systemd-boot.enable = true; };
     };
     boot.extraModulePackages = [ ];
-    boot.kernelParams = [ ];
 
     hardware.enableRedistributableFirmware = true;
     hardware.pulseaudio.enable = true;

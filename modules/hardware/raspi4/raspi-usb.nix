@@ -18,6 +18,8 @@ in {
   config = lib.mkIf cfg.enable {
     hardware.az-raspi4-base.enable = true;
 
+    boot.kernelParams =
+      [ "ip=10.7.89.159::10.7.89.1:255.255.255.0:mobile:enabcm6e4ei0" ];
     boot = {
       kernelModules = [ "libcomposite" ];
       loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";

@@ -4,25 +4,26 @@ This repository contains my configuration for my Nixos systems.
 I don't provide any garantuees that it will work on other systems.
 In addition some of the scripts required for installation will destroy your data when used.
 
-## Raspberry Pi installation
+## Preparation
 
-1. Add the new system to `flake.nix`.
-2. Build the image with `scripts/build-raspi-image.sh SYSTEMNAME`
-3. Flash the image to an SD card
-   `dd if=~/Downloads/SYSTEMNAME.img of=/dev/mmcblk0 bs=4M`.
-4. After you've booted the Pi get the new SSH key with
-   `ssh-keyscan hostname.custom.domain` and add it to `scrts/secrets.nix`.
-5. Then login into the new Pi and mount the `FIRMWARE` partition with
-   `sudo mkdir -p /mnt && sudo mount /dev/disk/by-label/FIRMWARE /mnt` and make
-   sure that your `config.txt` looks like [./systems/raspi4/config.txt](./systems/raspi4/config.txt)
-6. Change the password
+On a PC you don't have to do anything special.
 
-## x86 installation
+For a Raspberry Pi you need to prepare the SD card first with a UEFI partition. On a PC navigate into this project and run the following commands:
 
+- `nix-shell`
+- `sudo create-uefi-partition.sh`
+
+This will format the SD card at `/dev/mmcblk0`, create a partition and download and copy all the required files for running UEFI on a Pi 4.
+
+## Installation
+
+1. Insert an USB stick with the latest NixOS ISO into your device.
 1. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
-2. `cd nixos && nix-shell`
-3. `sudo ./scripts/format-disk.py`
-4. `sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#SYSTEMNAME`
+1. `cd nixos && nix-shell setup-shell.nix`
+1. For a normal PC run: `sudo ./scripts/format-disk.py` on a Raspberry Pi 4 run: `sudo ./scripts/format-sdcard.py`
+1. `sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#SYSTEMNAME`
+
+When everything is finished you can reboot the system and remove the USB stick. You have now a fully encrypted NixOS system.
 
 ## Update remote systems
 

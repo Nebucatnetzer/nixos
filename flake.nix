@@ -114,6 +114,7 @@
         };
         test-raspi = mkRaspi {
           hostname = "test-raspi";
+          home-module = "management";
           inherit inputs;
         };
         ttrss = mkRaspi {

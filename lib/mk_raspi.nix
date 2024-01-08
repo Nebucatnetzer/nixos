@@ -13,6 +13,18 @@ let
     config = { allowUnfree = true; };
     overlays = [
       overlay-unstable
+      (final: prev: {
+        freshrss = prev.freshrss.overrideAttrs (_: rec {
+          version = "1.32.1";
+          src = pkgs.fetchFromGitHub {
+            owner = "FreshRSS";
+            repo = "FreshRSS";
+            rev = "c89073d60e491f775a13a9ec57915313eb073964";
+            sha256 = "sha256-DqfkbfvqGkAMQ2oawfb7Ggiv2u6/Qq6UgygLTNov9CA=";
+          };
+        });
+      })
+
       # The following is requried for building images {
       # https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
       (final: super: {

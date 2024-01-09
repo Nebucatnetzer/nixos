@@ -5,6 +5,7 @@
     ./hardware/nvidia
     ./hardware/raspi4
     ./misc/common
+    ./misc/initrd-ssh
     ./misc/username
     ./profiles/desktop
     ./programs/distrobox

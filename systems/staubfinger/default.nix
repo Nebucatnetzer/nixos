@@ -10,7 +10,6 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [ "acpi_osi=" ];
   boot.initrd.luks.devices."cryptlvm" = {
     allowDiscards = true;
     device = "/dev/sda2";
@@ -19,6 +18,10 @@
     allowDiscards = true;
     device = "/dev/sda3";
   };
+  boot.kernelParams = [
+    "acpi_osi=" # required for hardware support
+    "ip=dhcp" # required for ssh at initrd
+  ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 

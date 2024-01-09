@@ -16,8 +16,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    boot.kernelParams =
-      [ "ip=${cfg.ip}::10.7.89.1:255.255.255.0:${cfg.hostname}:eth0" ];
+    boot.kernelParams = [
+      "ip=${cfg.ip}::10.7.89.1:255.255.255.0:${cfg.hostname}:eth0" # required for ssh at initrd
+    ];
     hardware.az-raspi4-base.enable = true;
     networking = {
       useDHCP = false;

@@ -17,10 +17,13 @@
     "usb_storage"
     "xhci_pci"
   ];
+
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" "sg" ];
   boot.extraModulePackages = [ ];
-  boot.kernelParams = [ ];
+  boot.kernelParams = [
+    "ip=dhcp" # required for ssh at initrd
+  ];
 
   boot.initrd.luks.devices."cryptlvm" = {
     allowDiscards = true;

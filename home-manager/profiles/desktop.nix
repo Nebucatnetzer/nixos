@@ -22,6 +22,10 @@ in {
       unstable.tagger
       az-media
     ];
+    shellAliases = {
+      unlock-luks =
+        "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
+    };
   };
 
   programs = {

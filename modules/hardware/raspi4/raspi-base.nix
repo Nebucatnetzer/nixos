@@ -87,7 +87,7 @@ in {
 
       initrd.luks.devices."cryptlvmsd" = {
         device = "/dev/mmcblk1p2";
-        allowDiscards = true;
+        allowDiscards = true; # required for TRIM
       };
       initrd.network = {
         enable = true;
@@ -126,5 +126,7 @@ in {
         sudo umount /mnt/firmware
       '';
     };
+    # Enable TRIM for SD cards
+    services.fstrim.enable = true;
   };
 }

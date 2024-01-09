@@ -22,7 +22,10 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ ];
 
-  boot.initrd.luks.devices."cryptlvm".device = "/dev/nvme0n1p2";
+  boot.initrd.luks.devices."cryptlvm" = {
+    allowDiscards = true;
+    device = "/dev/nvme0n1p2";
+  };
 
   # Required to build aarch64 packages
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -63,6 +66,7 @@
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
+    fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";
   };

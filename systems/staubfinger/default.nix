@@ -11,8 +11,14 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "acpi_osi=" ];
-  boot.initrd.luks.devices."cryptlvm".device = "/dev/sda2";
-  boot.initrd.luks.devices."cryptswap".device = "/dev/sda3";
+  boot.initrd.luks.devices."cryptlvm" = {
+    allowDiscards = true;
+    device = "/dev/sda2";
+  };
+  boot.initrd.luks.devices."cryptswap" = {
+    allowDiscards = true;
+    device = "/dev/sda3";
+  };
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
@@ -45,6 +51,7 @@
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
+    fstrim.enable = true; # Enable TRIM for SD cards
   };
   virtualisation.virtualbox.host.enable = true;
 }

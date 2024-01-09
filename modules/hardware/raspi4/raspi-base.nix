@@ -85,7 +85,10 @@ in {
         "reset-raspberrypi" # required for vl805 firmware to load
       ];
 
-      initrd.luks.devices."cryptlvmsd".device = "/dev/mmcblk1p2";
+      initrd.luks.devices."cryptlvmsd" = {
+        device = "/dev/mmcblk1p2";
+        allowDiscards = true;
+      };
       initrd.network = {
         enable = true;
         ssh = {

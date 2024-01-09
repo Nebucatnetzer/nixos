@@ -35,6 +35,7 @@ in {
           epkgs.cfrs
           epkgs.citeproc
           epkgs.company
+          epkgs.company-org-block
           epkgs.company-restclient
           epkgs.company-web
           epkgs.counsel

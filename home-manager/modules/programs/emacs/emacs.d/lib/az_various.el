@@ -43,6 +43,9 @@
 
 (setq history-delete-duplicates t)
 
+;; disbale the bell
+(setq ring-bell-function 'ignore)
+
 ;; enable mouse support in the terminal
 (xterm-mouse-mode 1)
 

@@ -9,6 +9,7 @@ pkgs.mkShell {
     python310Packages.mypy
     python310Packages.pylint
     qtile
+    python310Packages.python-lsp-server
     vim
   ];
 

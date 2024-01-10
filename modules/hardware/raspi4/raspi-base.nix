@@ -60,14 +60,21 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    boot = {
-      supportedFilesystems =
-        lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
-    };
+    boot.supportedFilesystems =
+      lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
+    boot.kernelParams = [ "rootflags=atgc" "rw" ];
+
     fileSystems."/" = {
       device = "/dev/disk/by-label/NixosSd";
-      fsType = "ext4";
-      options = [ "noatime" ];
+      fsType = "f2fs";
+      options = [
+        "atgc,gc_merge"
+        "compress_algorithm=lz4"
+        "compress_extension=*"
+        "compress_chksum"
+        "discard"
+        "lazytime"
+      ];
     };
     fileSystems."/boot" = {
       device = "/dev/disk/by-label/SdBoot";
@@ -85,7 +92,7 @@ in {
         "reset-raspberrypi" # required for vl805 firmware to load
       ];
 
-      initrd.luks.devices."cryptlvmsd" = {
+      initrd.luks.devices."cryptsd" = {
         device = "/dev/mmcblk1p2";
         allowDiscards = true; # required for TRIM
       };
@@ -109,7 +116,5 @@ in {
         sudo umount /mnt/firmware
       '';
     };
-    # Enable TRIM for SD cards
-    services.fstrim.enable = true;
   };
 }

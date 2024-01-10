@@ -16,6 +16,12 @@ def _run_command(command, user_input=""):
     return result
 
 
+def _partition_suffix(disk):
+    if ("nvmne" or "mmc") in disk:
+        return "p"
+    return ""
+
+
 def read_disks():
     output = _run_command(["lsblk", "-dpno", "name"])
     disks = []
@@ -39,12 +45,20 @@ def get_disk_to_format():
 def create_main_partition(disk):
     print("Create main partition.")
     _run_command(["parted", "--script", disk, "mkpart", "primary", "1GiB", "100%"])
-    return f"{disk}p2"
+    return f"{disk}{_partition_suffix(disk)}2"
 
 
 def _create_main_filesystem():
-    _run_command(["lvcreate", "-l", "100%FREE", "MainGroupSd", "-n", "sdroot"])
-    _run_command(["mkfs.ext4", "-L", "NixosSd", "/dev/MainGroupSd/sdroot"])
+    _run_command(
+        [
+            "mkfs.f2fs",
+            "-l",
+            "NixosSd",
+            "-O",
+            "extra_attr,inode_checksum,sb_checksum,compression",
+            "/dev/mapper/cryptsd",
+        ]
+    )
 
 
 def _encrypt_disk(partition_path):
@@ -54,28 +68,18 @@ def _encrypt_disk(partition_path):
         ["cryptsetup", "luksFormat", "-q", partition_path],
         user_input=password,
     )
-    _run_command(
-        ["cryptsetup", "open", partition_path, "cryptlvmsd"], user_input=password
-    )
-
-
-def _setup_lvm(lvm_target):
-    print("Set up LVM on {}.".format(lvm_target))
-    _run_command(["pvcreate", lvm_target])
-    _run_command(["vgcreate", "MainGroupSd", lvm_target])
+    _run_command(["cryptsetup", "open", partition_path, "cryptsd"], user_input=password)
 
 
 def create_file_systems(partition):
     print("Creating filesystems.")
-    lvm_target = "/dev/mapper/cryptlvmsd"
     _encrypt_disk(partition)
-    _setup_lvm(lvm_target)
     _create_main_filesystem()
 
 
 def mount_partitions():
     print("Mounting partitions.")
-    _run_command(["mount", "/dev/MainGroupSd/sdroot", "/mnt"])
+    _run_command(["mount", "/dev/disk/by-label/NixosSd", "/mnt"])
     os.mkdir("/mnt/boot")
     _run_command(["mount", "/dev/disk/by-label/SdBoot", "/mnt/boot"])
 

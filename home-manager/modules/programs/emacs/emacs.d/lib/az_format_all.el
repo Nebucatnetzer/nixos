@@ -56,7 +56,7 @@
           ("Literate Haskell" brittany)
           ("Lua" lua-fmt)
           ("Markdown" prettier)
-          ("Nix" nixpkgs-fmt)
+          ("Nix" nixfmt)
           ("Objective-C" clang-format)
           ("OCaml" ocp-indent)
           ("Perl" perltidy)

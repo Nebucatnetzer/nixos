@@ -24,6 +24,8 @@
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.supportedFilesystems =
+    [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" "f2fs" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5d2e0ae2-8604-4921-b8b7-731358220a0f";

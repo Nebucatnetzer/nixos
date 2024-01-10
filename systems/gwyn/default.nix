@@ -32,9 +32,8 @@
 
   # Required to build aarch64 packages
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot = {
-    supportedFilesystems = [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" ];
-  };
+  boot.supportedFilesystems =
+    [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" "f2fs" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

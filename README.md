@@ -4,24 +4,11 @@ This repository contains my configuration for my Nixos systems.
 I don't provide any garantuees that it will work on other systems.
 In addition some of the scripts required for installation will destroy your data when used.
 
-## Preparation
-
-On a PC you don't have to do anything special.
-
-For a Raspberry Pi you need to prepare the SD card first with a UEFI partition. On a PC navigate into this project and run the following commands:
-
-- `nix-shell`
-- `sudo create-uefi-partition.sh`
-
-This will format the SD card at `/dev/mmcblk0`, create a partition and download and copy all the required files for running UEFI on a Pi 4.
-
 ## Installation
 
-1. Insert an USB stick with the latest NixOS ISO into your device.
-1. `curl https://git.2li.ch/Nebucatnetzer/nixos/archive/master.tar.gz | tar xz`
-1. `cd nixos && nix-shell setup-shell.nix`
-1. For a normal PC run: `sudo ./scripts/format-disk.py` on a Raspberry Pi 4 run: `sudo ./scripts/format-sdcard.py`
-1. `sudo nixos-install --no-root-passwd --root /mnt --impure --flake .#SYSTEMNAME`
+1. For Raspis it's the easiest if you prepare the SD card/disk on another system. For a PC you can just boot the installation ISO directly.
+1. For both devices you can format the disk/card with the following script `sudo ./scripts/format-disk.py`. It will walk you through the formatting process and for a Raspi4 it will prepare it for UEFI setup.
+1. Next install the system with `sudo nixos-install --no-root-passwd --root /mnt/nixos --impure --flake .#SYSTEMNAME`
 
 When everything is finished you can reboot the system and remove the USB stick. You have now a fully encrypted NixOS system.
 

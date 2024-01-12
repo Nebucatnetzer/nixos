@@ -65,7 +65,7 @@ in {
     boot.kernelParams = [ "rootflags=atgc" "rw" ];
 
     fileSystems."/" = {
-      device = "/dev/disk/by-label/NixosSd";
+      device = "/dev/disk/by-label/NIXOSSD";
       fsType = "f2fs";
       options = [
         "atgc,gc_merge"
@@ -77,7 +77,7 @@ in {
       ];
     };
     fileSystems."/boot" = {
-      device = "/dev/disk/by-label/SdBoot";
+      device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
     };
 

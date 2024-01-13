@@ -65,7 +65,7 @@ in {
     boot.kernelParams = [ "rootflags=atgc" "rw" ];
 
     fileSystems."/" = {
-      device = "/dev/disk/by-label/NIXOSSD";
+      device = "/dev/disk/by-label/root";
       fsType = "f2fs";
       options = [
         "atgc,gc_merge"

@@ -92,8 +92,11 @@ def _create_uefi():
 def create_boot_partition(disk):
     boot_partition = "{}{}1".format(disk, _partition_suffix(disk))
     print("Create boot partition {}.".format(boot_partition))
+    sleep(1)
     _run_command(["parted", "--script", disk, "mkpart", "ESP", "fat32", "0%", "1GiB"])
+    sleep(1)
     _run_command(["parted", "--script", disk, "set", "1", "esp", "on"])
+    sleep(1)
     _run_command(["mkfs.fat", "-F", "32", "-n", "BOOTTOFRMT", boot_partition])
     sleep(5)
 

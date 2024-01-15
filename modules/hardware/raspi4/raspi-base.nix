@@ -93,7 +93,7 @@ in {
       ];
 
       initrd.luks.devices."cryptsd" = {
-        device = "/dev/mmcblk1p2";
+        device = "/dev/disk/by-label/cryptroot";
         allowDiscards = true; # required for TRIM
       };
       loader = { systemd-boot.enable = true; };

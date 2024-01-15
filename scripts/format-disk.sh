@@ -69,6 +69,14 @@ mount_partitions() {
     mount /dev/disk/by-label/BOOTTOFRMT $BOOT_DIR
 }
 
+umount_partitions() {
+    echo "Unmount partitions."
+    sleep 5
+    umount $BOOT_DIR
+    umount $ROOT_DIR
+    cryptsetup close $LUKS_NAME
+}
+
 create_uefi() {
     echo "Create UEFI"
     curl -o /tmp/pi4-uefi.zip -L https://github.com/pftf/RPi4/releases/download/v1.35/RPi4_UEFI_Firmware_v1.35.zip

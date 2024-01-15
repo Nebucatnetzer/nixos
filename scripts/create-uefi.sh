@@ -8,6 +8,7 @@ echo "Create partition table."
 parted --script $DISK mklabel gpt
 parted --script $DISK mkpart ESP fat32 0% 1GiB
 parted --script $DISK set 1 esp on
+sleep 5
 
 echo "Create boot partition."
 mkfs.fat -F32 -n BOOTTOFRMT "$DISK"p1
@@ -23,3 +24,6 @@ unzip /tmp/pi4-uefi.zip -d $BOOT_DIR
 sync
 
 umount $BOOT_DIR
+
+echo "Rename boot partition."
+fatlabel /dev/disk/by-label/BOOTTOFRMT BOOT

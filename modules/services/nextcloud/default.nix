@@ -91,7 +91,7 @@ in {
         ];
       };
       containers."nginx" = {
-        image = "nginx:1.22.1";
+        image = "nginx:1.25.3";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [

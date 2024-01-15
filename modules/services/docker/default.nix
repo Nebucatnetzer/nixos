@@ -10,5 +10,6 @@ in {
     };
     users.users.${config.az-username}.extraGroups = [ "docker" ];
     environment.systemPackages = with pkgs; [ lazydocker ];
+    systemd.services.docker.after = [ "network-online.target" ];
   };
 }

@@ -7,10 +7,15 @@ In addition some of the scripts required for installation will destroy your data
 ## Installation
 
 1. For Raspis it's the easiest if you prepare the SD card/disk on another system. For a PC you can just boot the installation ISO directly.
-1. For both devices you can format the disk/card with the following script `sudo ./scripts/format-disk.py`. It will walk you through the formatting process and for a Raspi4 it will prepare it for UEFI setup.
-1. Next install the system with `sudo nixos-install --no-root-passwd --root /mnt/nixos --impure --flake .#SYSTEMNAME`
+2. For both devices you can format the disk/card with the following script `sudo ./scripts/format-disk.sh`. Make sure to edit it beforehand, to point it to the correct disk.
+3. Next install the system with `sudo nixos-install --no-root-passwd --root /mnt/nixos --impure --flake .#SYSTEMNAME`
+4. Rename the partitions with the script `sudo ./scripts/rename-partitions.sh`. With this script as well. Check that you're pointing to the correct disk.
 
 When everything is finished you can reboot the system and remove the USB stick. You have now a fully encrypted NixOS system.
+
+### Additional script
+
+- If you only want to prepare an SD card with an UEFI partition for a Raspberry Pi 4 you can use the script `sudo ./scripts/create-uefi.sh`
 
 ## Update remote systems
 

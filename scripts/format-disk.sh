@@ -14,6 +14,7 @@ VGROUP=grouptoformat
 
 create_gpt() {
     echo "Create partition table."
+    wipefs -a $DISK
     parted --script $DISK mklabel gpt
     parted --script $DISK mkpart ESP fat32 0% 1GiB
     parted --script $DISK set 1 esp on

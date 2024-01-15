@@ -2,6 +2,8 @@
 #! nix-shell -i bash -p parted
 
 DISK=/dev/mmcblk0
+set -e
+
 BOOT_DIR=/mnt/nixos/boot
 
 echo "Create partition table."

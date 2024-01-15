@@ -2,6 +2,8 @@
 #! nix-shell -i bash -p parted
 
 DISK=/dev/sdb
+set -e
+
 BOOT_PARTITION="$DISK"1
 ROOT_PARTITION="$DISK"2
 ROOT_DIR=/mnt/nixos

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 cd /home/andreas/.nixos
 
 rsa_key="~/.nixos/secrets/ssh_keys/ansible/ansible.key"

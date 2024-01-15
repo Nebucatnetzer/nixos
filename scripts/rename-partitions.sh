@@ -1,6 +1,8 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p parted
 
+set -e
+
 rename_boot_partition() {
     echo "Rename boot partition."
     fatlabel /dev/disk/by-label/BOOTTOFRMT BOOT

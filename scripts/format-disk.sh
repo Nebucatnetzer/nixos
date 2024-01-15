@@ -1,8 +1,9 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p parted
 
-DISK=/dev/mmcblk0
-ROOT_PARTITION="$DISK"p2
+DISK=/dev/sdb
+BOOT_PARTITION="$DISK"1
+ROOT_PARTITION="$DISK"2
 ROOT_DIR=/mnt/nixos
 BOOT_DIR=/mnt/nixos/boot
 LUKS_NAME=crypttoformat
@@ -18,7 +19,7 @@ create_gpt() {
 
 create_boot_partition() {
 	echo "Create boot partition."
-	mkfs.fat -F32 -n BOOTTOFRMT "$DISK"p1
+	mkfs.fat -F32 -n BOOTTOFRMT $BOOT_PARTITION
 	sleep 5
 }
 

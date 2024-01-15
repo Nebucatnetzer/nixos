@@ -60,6 +60,7 @@ create_f2fs() {
 
 mount_partitions() {
 	echo "Mount partitions."
+	sleep 5
 	mkdir -p $ROOT_DIR
 	mount /dev/disk/by-label/ROOTTOFRMT $ROOT_DIR
 	mkdir -p $BOOT_DIR

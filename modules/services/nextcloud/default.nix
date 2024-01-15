@@ -109,7 +109,8 @@ in {
         environmentFiles = [ config.age.secrets.nextcloudEnv.path ];
         entrypoint = "/cron.sh";
         dependsOn = [ "redis" ];
-        volumes = [ "/etc/localtime:/etc/localtime:ro" ];
+        volumes =
+          [ "/etc/localtime:/etc/localtime:ro" "${volumePath}:/var/www/html" ];
         extraOptions = [
           "--add-host=host.docker.internal:host-gateway"
           "--net=nextcloud"
@@ -119,8 +120,7 @@ in {
       containers."redis" = {
         image = "redis:alpine";
         autoStart = true;
-        volumes =
-          [ "/etc/localtime:/etc/localtime:ro" "${volumePath}:/var/www/html" ];
+        volumes = [ "/etc/localtime:/etc/localtime:ro" ];
         extraOptions = [ "--net=${networkName}" "--log-opt=tag='redis'" ];
       };
     };

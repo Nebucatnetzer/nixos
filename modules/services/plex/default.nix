@@ -1,5 +1,7 @@
 { config, inputs, lib, ... }:
-let cfg = config.services.az-plex;
+let
+  cfg = config.services.az-plex;
+  volumePath = "/mnt/media";
 in {
   options = {
     services.az-plex.enable =
@@ -8,6 +10,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
+
+    fileSystems."${volumePath}" = {
+      device = "10.7.89.108:server_data/nextcloud/data";
+      fsType = "nfs";
+      options = [ "hard" "noatime" "rw" ];
+    };
     networking = {
       firewall.allowedTCPPorts = [
         32400 # Web Interface/ Remote Access
@@ -40,16 +48,12 @@ in {
         };
         environmentFiles = [ config.age.secrets.plexClaim.path ];
         volumes = [
+          "${volumePath}:/media"
           "/var/lib/plex/config:/config"
           "/var/lib/plex/tmp:/transcode"
           "/etc/localtime:/etc/localtime:ro"
         ];
-        extraOptions = [
-          ''
-            --mount=type=volume,source=media,target=/mnt/media,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/media,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
-          "--network=host"
-          "--log-opt=tag='plex'"
-        ];
+        extraOptions = [ "--network=host" "--log-opt=tag='plex'" ];
       };
     };
   };

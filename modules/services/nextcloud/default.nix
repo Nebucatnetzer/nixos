@@ -81,11 +81,10 @@ in {
         volumes = [
           "${inputs.self}/modules/services/nextcloud/custom-php.ini:/usr/local/etc/php/conf.d/zzz-custom.ini:ro"
           "/etc/localtime:/etc/localtime:ro"
+          "${volumePath}:/var/www/html"
         ];
         dependsOn = [ "redis" ];
         extraOptions = [
-          ''
-            --mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,rw,nfsvers=4.0,nolock,hard,noatime"''
           "--add-host=host.docker.internal:host-gateway"
           "--net=${networkName}"
           "--log-opt=tag='nextcloud'"
@@ -98,13 +97,10 @@ in {
         volumes = [
           "${inputs.self}/modules/services/nextcloud/nginx.conf:/etc/nginx/nginx.conf:ro"
           "/etc/localtime:/etc/localtime:ro"
+          "${volumePath}:/var/www/html"
         ];
-        extraOptions = [
-          ''
-            --mount=type=volume,source=nextcloud_data,target=/var/www/html,volume-driver=local,volume-opt=type=nfs,volume-opt=device=:/server_data/nextcloud/data,"volume-opt=o=addr=10.7.89.108,ro,nfsvers=4.0,nolock,hard,noatime"''
-          "--net=${networkName}"
-          "--log-opt=tag='nextcloud-nginx'"
-        ];
+        extraOptions =
+          [ "--net=${networkName}" "--log-opt=tag='nextcloud-nginx'" ];
       };
       containers."cron" = {
         image = nextcloudImage;

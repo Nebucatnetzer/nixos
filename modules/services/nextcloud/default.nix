@@ -138,7 +138,7 @@ in {
     systemd.timers.nextcloud-cron = {
       wantedBy = [ "timers.target" ];
       partOf = [ "nextcloud-cron.service" ];
-      timerConfig.OnCalendar = "*:0/5";
+      timerConfig.OnCalendar = "*:0/10";
     };
     environment.shellAliases = {
       occ = "${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ";

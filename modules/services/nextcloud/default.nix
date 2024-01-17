@@ -128,18 +128,17 @@ in {
       ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || ${pkgs.docker}/bin/docker network create ${networkName}
     '';
 
-    systemd.services.nexctcloud-cron = {
+    systemd.services.nexctcloud-previews = {
       serviceConfig = { Type = "oneshot"; };
       script = ''
         ${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ preview:pre-generate
       '';
     };
-
-    systemd.timers.nextcloud-cron = {
+    systemd.timers.nextcloud-previews = {
       wantedBy = [ "timers.target" ];
-      partOf = [ "nextcloud-cron.service" ];
       timerConfig.OnCalendar = "*:0/10";
     };
+
     environment.shellAliases = {
       occ = "${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ";
     };

@@ -59,7 +59,6 @@ in {
           epkgs.ht
           epkgs.htmlize
           epkgs.hydra
-          epkgs.hyperbole
           unstable.emacsPackages.journalctl-mode
           epkgs.know-your-http-well
           epkgs.languagetool

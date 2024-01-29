@@ -92,7 +92,7 @@ create_uefi() {
 }
 
 create_initrd_keys() {
-    mkdir -p /etc/secrets/initrd
+    mkdir -p $ROOT_DIR/etc/secrets/initrd
     ssh-keygen -t ed25519 -N "" -C "" -f $ROOT_DIR/etc/secrets/initrd/ssh_host_ed25519_key
 }
 

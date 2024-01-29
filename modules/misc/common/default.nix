@@ -69,7 +69,7 @@
       EDITOR = "vim";
       VISUAL = "vim";
     };
-    shellAliases = { btm = "btm --color default-light"; };
+    shellAliases = { btm = "sudo btm --color default-light"; };
     systemPackages = [ pkgs.bottom pkgs.man-pages pkgs.vim ];
   };
   # Disable the root user

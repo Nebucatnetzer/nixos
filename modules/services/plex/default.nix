@@ -43,7 +43,7 @@ in {
         };
         environmentFiles = [ config.age.secrets.plexClaim.path ];
         volumes = [
-          "${volumePath}:/media"
+          "${volumePath}:/mnt/media"
           "/var/lib/plex/config:/config"
           "/var/lib/plex/tmp:/transcode"
           "/etc/localtime:/etc/localtime:ro"

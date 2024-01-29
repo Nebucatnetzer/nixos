@@ -12,7 +12,7 @@ in {
     age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
 
     fileSystems."${volumePath}" = {
-      device = "10.7.89.108:server_data/nextcloud/data";
+      device = "10.7.89.108:media";
       fsType = "nfs";
       options = [ "hard" "noatime" "rw" ];
     };

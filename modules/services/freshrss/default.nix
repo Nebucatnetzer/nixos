@@ -27,7 +27,6 @@ in {
     };
 
     services = {
-      az-data-share.enable = true;
       freshrss = {
         enable = true;
         baseUrl = "https://rss.zweili.org";

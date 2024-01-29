@@ -23,6 +23,12 @@
 
   hardware = { enableRedistributableFirmware = true; };
 
+  # required in order to have apropos and whatis working
+  documentation = {
+    man.generateCaches = true;
+    nixos.includeAllModules = true;
+  };
+
   programs.mosh.enable = true;
   programs.ssh.startAgent = true;
   services.openssh = {
@@ -63,7 +69,7 @@
       EDITOR = "vim";
       VISUAL = "vim";
     };
-    systemPackages = [ pkgs.vim ];
+    systemPackages = [ pkgs.bottom pkgs.man-pages pkgs.vim ];
   };
   # Disable the root user
   users.users.root.hashedPassword = "!";

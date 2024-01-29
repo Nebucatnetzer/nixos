@@ -24,11 +24,6 @@
   hardware = { enableRedistributableFirmware = true; };
 
   # required in order to have apropos and whatis working
-  documentation = {
-    man.generateCaches = true;
-    nixos.includeAllModules = true;
-  };
-
   programs.mosh.enable = true;
   programs.ssh.startAgent = true;
   services.openssh = {

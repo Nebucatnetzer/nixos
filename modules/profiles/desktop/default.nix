@@ -8,6 +8,11 @@ in {
   config = lib.mkIf cfg.enable {
     networking = { networkmanager.enable = true; };
 
+    documentation = {
+      man.generateCaches = true;
+      nixos.includeAllModules = true;
+    };
+
     services = {
       az-docker.enable = true;
       az-pipewire.enable = true;

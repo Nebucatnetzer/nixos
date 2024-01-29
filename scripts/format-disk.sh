@@ -84,6 +84,11 @@ create_uefi() {
     sync
 }
 
+create_initrd_keys() {
+    mkdir -p /etc/secrets/initrd
+    ssh-keygen -t ed25519 -N "" -C "" -f $ROOT_DIR/etc/secrets/initrd/ssh_host_ed25519_key
+}
+
 create_pi() {
     create_gpt
     create_boot_partition
@@ -92,6 +97,7 @@ create_pi() {
     create_f2fs
     mount_partitions
     create_uefi
+    create_initrd_keys
 }
 
 create_pc() {
@@ -103,6 +109,7 @@ create_pc() {
     create_swap
     create_ext4
     mount_partitions
+    create_initrd_keys
 }
 
 create_pi

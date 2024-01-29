@@ -3,6 +3,12 @@
 
 set -e
 
+# Fail if $SUDO_USER is empty.
+if [ -z "$SUDO_USER" ]; then
+    printf "This script must be run with sudo.\n"
+    exit 1
+fi
+
 rename_boot_partition() {
     echo "Rename boot partition."
     fatlabel /dev/disk/by-label/BOOTTOFRMT BOOT

@@ -1,8 +1,15 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p parted
 
-DISK=/dev/sdb
 set -e
+
+# Fail if $SUDO_USER is empty.
+if [ -z "$SUDO_USER" ]; then
+    printf "This script must be run with sudo.\n"
+    exit 1
+fi
+
+DISK=/dev/sdb
 
 BOOT_PARTITION="$DISK"1
 ROOT_PARTITION="$DISK"2

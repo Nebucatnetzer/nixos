@@ -11,11 +11,6 @@ in {
   config = lib.mkIf cfg.enable {
     age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
 
-    fileSystems."${volumePath}" = {
-      device = "10.7.89.108:media";
-      fsType = "nfs";
-      options = [ "hard" "noatime" "rw" ];
-    };
     networking = {
       firewall.allowedTCPPorts = [
         32400 # Web Interface/ Remote Access

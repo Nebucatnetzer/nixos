@@ -15,7 +15,6 @@ in {
       digikam
       exercism
       freetube
-      chromium
       nodejs # needed for ansible-language-server
       plexamp
       sound-juicer

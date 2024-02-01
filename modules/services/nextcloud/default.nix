@@ -128,7 +128,7 @@ in {
       ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || ${pkgs.docker}/bin/docker network create ${networkName}
     '';
 
-    systemd.services.nexctcloud-previews = {
+    systemd.services.nextcloud-previews = {
       serviceConfig = { Type = "oneshot"; };
       script = ''
         ${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ preview:pre-generate

@@ -15,7 +15,7 @@
       NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
       PATH = "$PATH:$HOME/.local/bin";
     };
-    packages = with pkgs; [ keychain nixfmt mosh ];
+    packages = with pkgs; [ keychain nixfmt mosh gyre-fonts source-code-pro ];
   };
   nix = {
     package = pkgs.nix;
@@ -34,6 +34,7 @@
     };
   };
 
+  fonts.fontconfig.enable = true;
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;

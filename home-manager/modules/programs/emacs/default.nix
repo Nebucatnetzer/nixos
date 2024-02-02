@@ -1,7 +1,16 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-emacs;
-in {
-  options = { programs.az-emacs.enable = lib.mkEnableOption "Enable emacs."; };
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-emacs;
+in
+{
+  options = {
+    programs.az-emacs.enable = lib.mkEnableOption "Enable emacs.";
+  };
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
@@ -25,8 +34,8 @@ in {
               languagetool-console-command "${pkgs.languagetool}/share/languagetool-commandline.jar"
               languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
       '';
-      extraPackages = epkgs:
-        with pkgs; [
+      extraPackages =
+        epkgs: with pkgs; [
           epkgs.ag
           epkgs.amx
           epkgs.annotate

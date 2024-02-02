@@ -1,7 +1,11 @@
 { config, lib, ... }:
-let cfg = config.services.az-tlp;
-in {
-  options = { services.az-tlp.enable = lib.mkEnableOption "Enable TLP"; };
+let
+  cfg = config.services.az-tlp;
+in
+{
+  options = {
+    services.az-tlp.enable = lib.mkEnableOption "Enable TLP";
+  };
 
   config = lib.mkIf cfg.enable {
     services.tlp = {

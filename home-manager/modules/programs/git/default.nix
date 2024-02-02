@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.programs.az-git;
-in {
+let
+  cfg = config.programs.az-git;
+in
+{
   options = {
     programs.az-git = {
       enable = lib.mkEnableOption "Enable git.";
@@ -25,15 +27,25 @@ in {
           syntax-theme = "GitHub";
         };
       };
-      includes = [{
-        path = "~/.config/git/workconfig";
-        condition = "gitdir:~/git_repos/work/";
-      }];
+      includes = [
+        {
+          path = "~/.config/git/workconfig";
+          condition = "gitdir:~/git_repos/work/";
+        }
+      ];
       extraConfig = {
-        core = { hooksPath = "~/.config/git/hooks/"; };
-        safe = { directory = "*"; };
-        pull = { rebase = false; };
-        push = { autoSetupRemote = true; };
+        core = {
+          hooksPath = "~/.config/git/hooks/";
+        };
+        safe = {
+          directory = "*";
+        };
+        pull = {
+          rebase = false;
+        };
+        push = {
+          autoSetupRemote = true;
+        };
         merge.conflictStyle = "diff3";
         rerere.enabled = true;
       };
@@ -122,7 +134,6 @@ in {
 
         # ignore pycache"
         "__pycache__/"
-
       ];
     };
     # raw files

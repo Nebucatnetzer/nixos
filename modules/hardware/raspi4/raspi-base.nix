@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.hardware.az-raspi4-base;
   test-sd-card = pkgs.writeShellScriptBin "test-sd-card" ''
@@ -53,16 +58,26 @@ let
 
     printf "microSD card benchmark complete!\n\n"
   '';
-in {
+in
+{
   options = {
-    hardware.az-raspi4-base.enable =
-      lib.mkEnableOption "Enable the base config for a Raspberry Pi 4.";
+    hardware.az-raspi4-base.enable = lib.mkEnableOption "Enable the base config for a Raspberry Pi 4.";
   };
 
   config = lib.mkIf cfg.enable {
-    boot.supportedFilesystems =
-      lib.mkForce [ "f2fs" "ntfs" "cifs" "ext4" "vfat" "nfs" "nfs4" ];
-    boot.kernelParams = [ "rootflags=atgc" "rw" ];
+    boot.supportedFilesystems = lib.mkForce [
+      "f2fs"
+      "ntfs"
+      "cifs"
+      "ext4"
+      "vfat"
+      "nfs"
+      "nfs4"
+    ];
+    boot.kernelParams = [
+      "rootflags=atgc"
+      "rw"
+    ];
 
     fileSystems."/" = {
       device = "/dev/disk/by-label/root";
@@ -96,7 +111,9 @@ in {
         device = "/dev/disk/by-label/cryptroot";
         allowDiscards = true; # required for TRIM
       };
-      loader = { systemd-boot.enable = true; };
+      loader = {
+        systemd-boot.enable = true;
+      };
     };
     boot.extraModulePackages = [ ];
 

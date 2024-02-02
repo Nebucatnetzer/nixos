@@ -1,12 +1,18 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.az-restic-client-desktop;
   password_file = config.age.secrets.resticKey.path;
   repository = "rest:http://10.7.89.30:8000";
-in {
+in
+{
   options = {
-    services.az-restic-client-desktop.enable =
-      lib.mkEnableOption "Enable restic backups";
+    services.az-restic-client-desktop.enable = lib.mkEnableOption "Enable restic backups";
   };
   config = lib.mkIf cfg.enable {
     services.az-telegram-notifications.enable = true;

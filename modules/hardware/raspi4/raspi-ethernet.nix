@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.hardware.az-raspi4-ethernet;
-in {
+let
+  cfg = config.hardware.az-raspi4-ethernet;
+in
+{
   options = {
     hardware.az-raspi4-ethernet = {
       enable = lib.mkEnableOption "Enable options required for Raspberry Pi 4.";
@@ -29,10 +31,12 @@ in {
       };
       defaultGateway = "10.7.89.1";
       nameservers = [ "10.7.89.1" ];
-      interfaces.eth0.ipv4.addresses = [{
-        address = cfg.ip;
-        prefixLength = 24;
-      }];
+      interfaces.eth0.ipv4.addresses = [
+        {
+          address = cfg.ip;
+          prefixLength = 24;
+        }
+      ];
     };
 
     services = {
@@ -41,4 +45,3 @@ in {
     };
   };
 }
-

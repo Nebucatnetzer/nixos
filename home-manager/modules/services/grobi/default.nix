@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.services.az-grobi;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.az-grobi;
+in
+{
   options = {
-    services.az-grobi.enable =
-      lib.mkEnableOption "Enabel grobi display manager.";
+    services.az-grobi.enable = lib.mkEnableOption "Enabel grobi display manager.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -23,7 +29,10 @@ in {
         }
         {
           name = "docked";
-          outputs_connected = [ "eDP-1" "DP-1-2" ];
+          outputs_connected = [
+            "eDP-1"
+            "DP-1-2"
+          ];
           atomic = true;
           configure_single = "DP-1-2";
           primary = true;

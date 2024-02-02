@@ -1,5 +1,6 @@
 { hostname }:
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   hardware = {
     az-raspi4-ethernet = {
       enable = true;
@@ -9,5 +10,7 @@
   };
 
   services.az-docker.enable = true;
-  programs = { az-nix-direnv.enable = true; };
+  programs = {
+    az-nix-direnv.enable = true;
+  };
 }

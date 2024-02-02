@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-eog;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-eog;
+in
+{
   options = {
     programs.az-eog.enable = lib.mkEnableOption "Gnome Image Viewer";
   };
@@ -24,4 +31,3 @@ in {
     };
   };
 }
-

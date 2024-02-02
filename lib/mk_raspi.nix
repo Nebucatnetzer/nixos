@@ -1,5 +1,10 @@
-{ hostname, inputs, system ? "aarch64-linux", home-module ? "headless"
-, username ? "andreas" }:
+{
+  hostname,
+  inputs,
+  system ? "aarch64-linux",
+  home-module ? "headless",
+  username ? "andreas",
+}:
 let
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -10,34 +15,39 @@ let
 
   pkgs = import inputs.nixpkgs {
     inherit system;
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
     overlays = [
       overlay-unstable
       (final: prev: {
-        freshrss = prev.freshrss.overrideAttrs (_: rec {
-          version = "1.32.1";
-          src = pkgs.fetchFromGitHub {
-            owner = "FreshRSS";
-            repo = "FreshRSS";
-            rev = "c89073d60e491f775a13a9ec57915313eb073964";
-            sha256 = "sha256-DqfkbfvqGkAMQ2oawfb7Ggiv2u6/Qq6UgygLTNov9CA=";
-          };
-        });
+        freshrss = prev.freshrss.overrideAttrs (
+          _: rec {
+            version = "1.32.1";
+            src = pkgs.fetchFromGitHub {
+              owner = "FreshRSS";
+              repo = "FreshRSS";
+              rev = "c89073d60e491f775a13a9ec57915313eb073964";
+              sha256 = "sha256-DqfkbfvqGkAMQ2oawfb7Ggiv2u6/Qq6UgygLTNov9CA=";
+            };
+          }
+        );
       })
 
       # The following is requried for building images {
       # https://github.com/NixOS/nixpkgs/issues/126755#issuecomment-869149243
       (final: super: {
-        makeModulesClosure = x:
-          super.makeModulesClosure (x // { allowMissing = true; });
+        makeModulesClosure = x: super.makeModulesClosure (x // { allowMissing = true; });
       })
       # }
     ];
   };
-
-in inputs.nixpkgs.lib.nixosSystem {
+in
+inputs.nixpkgs.lib.nixosSystem {
   inherit pkgs system;
-  specialArgs = { inherit inputs; };
+  specialArgs = {
+    inherit inputs;
+  };
   modules = ([
     # System configuration for this host
     (import "${inputs.self}/systems/${hostname}" { inherit hostname; })
@@ -55,7 +65,9 @@ in inputs.nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = { inherit inputs system; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs system;
+      };
       home-manager.users.${username}.imports = [
         inputs.agenix.homeManagerModules.default
         "${inputs.self}/home-manager/profiles/${home-module}.nix"

@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.services.az-espanso;
-in {
+let
+  cfg = config.services.az-espanso;
+in
+{
   options = {
     services.az-espanso.enable = lib.mkEnableOption "Enable espanso.";
   };
@@ -16,23 +18,30 @@ in {
         {
           trigger = "<dd";
           replace = "{{current_date}}";
-          vars = [{
-            name = "current_date";
-            type = "date";
-            params = { format = "%Y-%m-%d"; };
-          }];
+          vars = [
+            {
+              name = "current_date";
+              type = "date";
+              params = {
+                format = "%Y-%m-%d";
+              };
+            }
+          ];
         }
         {
           trigger = "<ds";
           replace = "{{current_date}}";
-          vars = [{
-            name = "current_date";
-            type = "date";
-            params = { format = "%Y-%m-%d_%H%M%S"; };
-          }];
+          vars = [
+            {
+              name = "current_date";
+              type = "date";
+              params = {
+                format = "%Y-%m-%d_%H%M%S";
+              };
+            }
+          ];
         }
       ];
     };
   };
 }
-

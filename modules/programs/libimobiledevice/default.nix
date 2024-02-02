@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-idevices;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-idevices;
+in
+{
   options = {
-    programs.az-idevices.enable =
-      lib.mkEnableOption "Enable support for iDevices.";
+    programs.az-idevices.enable = lib.mkEnableOption "Enable support for iDevices.";
   };
 
   config = lib.mkIf cfg.enable {

@@ -1,9 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
-    "${
-      fetchTarball
-      "https://github.com/NixOS/nixos-hardware/archive/32f61571b486efc987baca553fb35df22532ba63.tar.gz"
-    }/raspberry-pi/4"
+    "${fetchTarball "https://github.com/NixOS/nixos-hardware/archive/32f61571b486efc987baca553fb35df22532ba63.tar.gz"}/raspberry-pi/4"
   ];
 
   fileSystems = {
@@ -14,7 +12,10 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ raspberrypi-eeprom vim ];
+  environment.systemPackages = with pkgs; [
+    raspberrypi-eeprom
+    vim
+  ];
 
   system.stateVersion = "23.05";
   services.openssh.enable = true;
@@ -26,7 +27,12 @@
       experimental-features = nix-command flakes
       warn-dirty = false
     '';
-    settings = { trusted-users = [ "root" "@wheel" ]; };
+    settings = {
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+    };
   };
 
   users = {
@@ -46,22 +52,24 @@
   };
 
   security.sudo = {
-    extraRules = [{
-      users = [ "nixos" ];
-      commands = [
-        {
-          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command = "ALL";
-          options = [ "SETENV" ];
-        }
-      ];
-    }];
+    extraRules = [
+      {
+        users = [ "nixos" ];
+        commands = [
+          {
+            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "/run/current-system/sw/bin/nixos-rebuild";
+            options = [ "NOPASSWD" ];
+          }
+          {
+            command = "ALL";
+            options = [ "SETENV" ];
+          }
+        ];
+      }
+    ];
   };
 }

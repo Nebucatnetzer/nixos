@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-evince;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-evince;
+in
+{
   options = {
     programs.az-evince.enable = lib.mkEnableOption "Enable evince.";
   };

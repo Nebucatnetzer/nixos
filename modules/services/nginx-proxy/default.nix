@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.services.az-nginx-proxy;
-in {
+let
+  cfg = config.services.az-nginx-proxy;
+in
+{
   options = {
     services.az-nginx-proxy = {
       enable = lib.mkEnableOption "Enable Nginx proxy, mainly to provide SSL.";

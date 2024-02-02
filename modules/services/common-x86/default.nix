@@ -1,9 +1,10 @@
 { config, lib, ... }:
-let cfg = config.services.az-x86;
-in {
+let
+  cfg = config.services.az-x86;
+in
+{
   options = {
-    services.az-x86.enable =
-      lib.mkEnableOption "Enable options for x86 systems";
+    services.az-x86.enable = lib.mkEnableOption "Enable options for x86 systems";
   };
 
   config = lib.mkIf cfg.enable {
@@ -14,6 +15,8 @@ in {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    hardware = { cpu.intel.updateMicrocode = true; };
+    hardware = {
+      cpu.intel.updateMicrocode = true;
+    };
   };
 }

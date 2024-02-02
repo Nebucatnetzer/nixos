@@ -1,6 +1,14 @@
-{ config, inputs, lib, pkgs, ... }:
-let cfg = config.services.az-restic-server;
-in {
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.az-restic-server;
+in
+{
   options = {
     services.az-restic-server = {
       enable = lib.mkEnableOption "Enable a restic server.";
@@ -27,7 +35,11 @@ in {
     fileSystems."${cfg.repository}" = {
       device = "10.7.89.108:restic-server";
       fsType = "nfs";
-      options = [ "noatime" "hard" "nfsvers=4.0" ];
+      options = [
+        "noatime"
+        "hard"
+        "nfsvers=4.0"
+      ];
     };
     services.restic.server = {
       enable = true;

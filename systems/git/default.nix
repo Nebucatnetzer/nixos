@@ -1,7 +1,9 @@
 { hostname }:
 { inputs, pkgs, ... }:
-let domain = "git.2li.ch";
-in {
+let
+  domain = "git.2li.ch";
+in
+{
   hardware = {
     az-raspi4-ethernet = {
       enable = true;

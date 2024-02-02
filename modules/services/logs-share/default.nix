@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.services.az-logs-share;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.az-logs-share;
+in
+{
   options = {
     services.az-logs-share.enable = lib.mkEnableOption "Enable mount share";
   };

@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.services.az-desktop-base;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.az-desktop-base;
+in
+{
   options = {
-    services.az-desktop-base.enable =
-      lib.mkEnableOption "Base configuration for a destkop.";
+    services.az-desktop-base.enable = lib.mkEnableOption "Base configuration for a destkop.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -23,10 +29,8 @@ in {
       az-tmux.enable = true;
       bash = {
         shellAliases = {
-          management-server =
-            "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
-          work-management =
-            "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+          management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
+          work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
         };
       };
     };
@@ -40,8 +44,7 @@ in {
       remmina
     ];
     # raw config files
-    home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source =
-      ./xdg-portal-add-path.sh;
+    home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;
 
     gtk.theme.name = "Arc-Darker";
 
@@ -94,7 +97,9 @@ in {
       configFile."mimeapps.list".force = true;
     };
 
-    xsession = { numlock.enable = true; };
+    xsession = {
+      numlock.enable = true;
+    };
 
     services = {
       az-dunst.enable = true;
@@ -109,4 +114,3 @@ in {
     systemd.user.startServices = "sd-switch";
   };
 }
-

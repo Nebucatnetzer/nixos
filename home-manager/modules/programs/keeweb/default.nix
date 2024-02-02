@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-keeweb;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-keeweb;
+in
+{
   options = {
     programs.az-keeweb.enable = lib.mkEnableOption "Enable keeweb.";
   };
@@ -17,7 +24,9 @@ in {
         Environment = "QT_SCALE_FACTOR=1.25";
         ExecStart = "${pkgs.keeweb}/bin/keeweb --no-sandbox";
       };
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
     };
   };
 }

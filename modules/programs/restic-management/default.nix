@@ -1,4 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.programs.az-restic-management;
   password_file = config.age.secrets.resticKey.path;
@@ -33,20 +39,19 @@ let
 
     ${pkgs.restic}/bin/restic --password-file ${password_file} snapshots'';
 
-  restic-infomaniak-mount =
-    pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
-      export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
-      export RESTIC_REPOSITORY="${infomaniak-repo}"
-      export OS_AUTH_URL="${infomaniak-auth-url}"
-      export OS_USER_DOMAIN_NAME=default
+  restic-infomaniak-mount = pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
+    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
+    export RESTIC_REPOSITORY="${infomaniak-repo}"
+    export OS_AUTH_URL="${infomaniak-auth-url}"
+    export OS_USER_DOMAIN_NAME=default
 
-      mkdir -p /tmp/restic &&
+    mkdir -p /tmp/restic &&
 
-      ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
-in {
+    ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
+in
+{
   options = {
-    programs.az-restic-management.enable =
-      lib.mkEnableOption "Enable restic management commands.";
+    programs.az-restic-management.enable = lib.mkEnableOption "Enable restic management commands.";
   };
   config = lib.mkIf cfg.enable {
     age.secrets.infomaniakEnv = {

@@ -1,22 +1,31 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.programs.az-mpv;
-  delete-file = (pkgs.stdenvNoCC.mkDerivation rec {
-    name = "mpv-delete-file";
-    src = pkgs.fetchurl {
-      url =
-        "https://git.2li.ch/various/mpv-scripts/raw/commit/19ea069abcb794d1bf8fac2f59b50d71ab992130/delete_file.lua";
-      sha256 = "sha256-1FX23t+O1aFZnbuvl+9zDT8OcKEziWNGj5cAMSvRIas=";
-    };
-    dontBuild = true;
-    dontUnpack = true;
-    installPhase = ''
-      install -Dm644 ${src} $out/share/mpv/scripts/delete_file.lua
-    '';
-    passthru.scriptName = "delete_file.lua";
-  });
-in {
-  options = { programs.az-mpv.enable = lib.mkEnableOption "Enable MPV."; };
+  delete-file = (
+    pkgs.stdenvNoCC.mkDerivation rec {
+      name = "mpv-delete-file";
+      src = pkgs.fetchurl {
+        url = "https://git.2li.ch/various/mpv-scripts/raw/commit/19ea069abcb794d1bf8fac2f59b50d71ab992130/delete_file.lua";
+        sha256 = "sha256-1FX23t+O1aFZnbuvl+9zDT8OcKEziWNGj5cAMSvRIas=";
+      };
+      dontBuild = true;
+      dontUnpack = true;
+      installPhase = ''
+        install -Dm644 ${src} $out/share/mpv/scripts/delete_file.lua
+      '';
+      passthru.scriptName = "delete_file.lua";
+    }
+  );
+in
+{
+  options = {
+    programs.az-mpv.enable = lib.mkEnableOption "Enable MPV.";
+  };
 
   config = lib.mkIf cfg.enable {
     programs.mpv = {
@@ -25,13 +34,17 @@ in {
         s = "playlist-shuffle";
         r = "cycle_values video-rotate 90 180 270 0";
       };
-      config = { "keepaspect-window" = "no"; };
+      config = {
+        "keepaspect-window" = "no";
+      };
       scripts = [ delete-file ];
     };
 
     xdg.mimeApps = {
       enable = true;
-      associations.added = { "inode/directory" = [ "mpv.desktop" ]; };
+      associations.added = {
+        "inode/directory" = [ "mpv.desktop" ];
+      };
       defaultApplications = {
         "application/mxf" = "mpv.desktop";
         "application/sdp" = "mpv.desktop";

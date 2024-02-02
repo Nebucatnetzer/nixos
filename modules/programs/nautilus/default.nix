@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-nautilus;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-nautilus;
+in
+{
   options = {
     programs.az-nautilus.enable = lib.mkEnableOption "Enable Nautilus";
   };

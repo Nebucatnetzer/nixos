@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-vagrant-wsl;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-vagrant-wsl;
+in
+{
   options = {
-    programs.az-vagrant-wsl.enable =
-      lib.mkEnableOption "Enable Vagrant in WSL.";
+    programs.az-vagrant-wsl.enable = lib.mkEnableOption "Enable Vagrant in WSL.";
   };
 
   config = lib.mkIf cfg.enable {

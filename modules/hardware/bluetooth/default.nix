@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.hardware.az-bluetooth;
-in {
+let
+  cfg = config.hardware.az-bluetooth;
+in
+{
   options = {
     hardware.az-bluetooth.enable = lib.mkEnableOption "Enable Bluetooth";
   };
@@ -21,4 +23,3 @@ in {
     };
   };
 }
-

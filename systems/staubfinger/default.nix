@@ -1,12 +1,19 @@
 { hostname }:
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-intel
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
   ];
-  boot.initrd.availableKernelModules =
-    [ "aesni_intel" "ahci" "cryptd" "sd_mod" "usb_storage" "xhci_pci" ];
+  boot.initrd.availableKernelModules = [
+    "aesni_intel"
+    "ahci"
+    "cryptd"
+    "sd_mod"
+    "usb_storage"
+    "xhci_pci"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -24,8 +31,16 @@
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.supportedFilesystems =
-    [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" "f2fs" ];
+  boot.supportedFilesystems = [
+    "apfs"
+    "exfat"
+    "ext4"
+    "nfs"
+    "nfs4"
+    "ntfs"
+    "cifs"
+    "f2fs"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5d2e0ae2-8604-4921-b8b7-731358220a0f";
@@ -38,8 +53,7 @@
 
   networking.hostName = hostname;
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; }];
+  swapDevices = [ { device = "/dev/disk/by-uuid/17a8bd01-095b-41ae-8b90-ecc70ab7b7eb"; } ];
 
   hardware = {
     az-bluetooth.enable = true;
@@ -60,4 +74,3 @@
   };
   virtualisation.virtualbox.host.enable = true;
 }
-

@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-rapid-photo-downloader;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-rapid-photo-downloader;
+in
+{
   options = {
-    programs.az-rapid-photo-downloader.enable =
-      lib.mkEnableOption "Enable Rapid Photo Downloader.";
+    programs.az-rapid-photo-downloader.enable = lib.mkEnableOption "Enable Rapid Photo Downloader.";
   };
 
   config = lib.mkIf cfg.enable {

@@ -1,22 +1,33 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.az-mailserver;
   version = "13.2.0";
-  mailserver-setup = (pkgs.writeScriptBin "mailserver-setup"
-    "${builtins.readFile (pkgs.fetchurl {
-      url =
-        "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
-      sha256 = "sha256-HMT790mp5ADdNYaOLUJfHJq9LWI0OPilTabAhogVXnc=";
-    })}").overrideAttrs (old: {
-      buildCommand = ''
-        ${old.buildCommand}
-         patchShebangs $out'';
-    });
+  mailserver-setup =
+    (pkgs.writeScriptBin "mailserver-setup" "${builtins.readFile (
+      pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
+        sha256 = "sha256-HMT790mp5ADdNYaOLUJfHJq9LWI0OPilTabAhogVXnc=";
+      }
+    )}"
+    ).overrideAttrs
+      (
+        old: {
+          buildCommand = ''
+            ${old.buildCommand}
+             patchShebangs $out'';
+        }
+      );
   volumePath = "/mnt/server-data/docker-mailserver";
-in {
+in
+{
   options = {
-    services.az-mailserver.enable =
-      lib.mkEnableOption "Enable docker-mailserver";
+    services.az-mailserver.enable = lib.mkEnableOption "Enable docker-mailserver";
   };
 
   config = lib.mkIf cfg.enable {
@@ -51,7 +62,11 @@ in {
     fileSystems."${volumePath}" = {
       device = "10.7.89.108:server_data/docker-mailserver";
       fsType = "nfs";
-      options = [ "hard" "noatime" "rw" ];
+      options = [
+        "hard"
+        "noatime"
+        "rw"
+      ];
     };
     services.az-docker.enable = true;
 
@@ -62,8 +77,14 @@ in {
         image = "docker.io/mailserver/docker-mailserver:${version}";
         autoStart = true;
         environmentFiles = [ ./mailserver.env ];
-        ports =
-          [ "25:25" "143:143" "465:465" "587:587" "993:993" "11334:11334" ];
+        ports = [
+          "25:25"
+          "143:143"
+          "465:465"
+          "587:587"
+          "993:993"
+          "11334:11334"
+        ];
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
           "/etc/dkim:/etc/dkim:ro"

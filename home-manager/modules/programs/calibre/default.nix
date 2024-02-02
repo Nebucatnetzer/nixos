@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-calibre;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-calibre;
+in
+{
   options = {
     programs.az-calibre.enable = lib.mkEnableOption "Enable calibre.";
   };

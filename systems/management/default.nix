@@ -1,5 +1,6 @@
 { hostname }:
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   hardware = {
     az-raspi4-ethernet = {
       enable = true;
@@ -24,5 +25,4 @@
     az-nix-direnv.enable = true;
     az-restic-management.enable = true;
   };
-
 }

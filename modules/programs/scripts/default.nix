@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.programs.az-scripts;
   compress-pdf = pkgs.writeShellScriptBin "compress-pdf" ''
@@ -9,8 +14,7 @@ let
         -dBATCH \
         -sOutputFile=compressed_$1 $1'';
 
-  files-to-lowercase = pkgs.writeScriptBin "files-to-lowercase"
-    "${builtins.readFile ./files-to-lowercase.sh}";
+  files-to-lowercase = pkgs.writeScriptBin "files-to-lowercase" "${builtins.readFile ./files-to-lowercase.sh}";
 
   heif-to-jpeg = pkgs.writeShellScriptBin "heif-to-jpeg" ''
     for f in *.heic
@@ -19,17 +23,16 @@ let
     ${pkgs.libheif}/bin/heif-convert $f $f.jpg
     done'';
 
-  remove-special-characters = pkgs.writeScriptBin "remove-special-characters"
-    "${builtins.readFile ./remove_special_characters.sh}";
+  remove-special-characters = pkgs.writeScriptBin "remove-special-characters" "${builtins.readFile ./remove_special_characters.sh}";
 
-  replace-listings = pkgs.writeScriptBin "replace-listings"
-    "${builtins.readFile ./replace-listings.sh}";
+  replace-listings = pkgs.writeScriptBin "replace-listings" "${builtins.readFile ./replace-listings.sh}";
 
   thumbnails = pkgs.writeShellScriptBin "thumbnails" ''
     for d in $1/*; do
       ${pkgs.ffmpeg}/bin/ffmpeg -i "$d" -t 2 -r 0.5 "$d".jpg
     done'';
-in {
+in
+{
   options = {
     programs.az-scripts.enable = lib.mkEnableOption "Enable scripts";
   };
@@ -44,6 +47,4 @@ in {
       thumbnails
     ];
   };
-
 }
-

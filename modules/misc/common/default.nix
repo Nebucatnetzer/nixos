@@ -1,4 +1,11 @@
-{ config, inputs, lib, pkgs, ... }: {
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
   # The rough location
   location = {
     latitude = 46.948;
@@ -17,11 +24,15 @@
       allowPing = true;
       allowedTCPPorts = [ 22 ];
     };
-    timeServers = [ "10.7.89.1" "ch.pool.ntp.org" ];
-
+    timeServers = [
+      "10.7.89.1"
+      "ch.pool.ntp.org"
+    ];
   };
 
-  hardware = { enableRedistributableFirmware = true; };
+  hardware = {
+    enableRedistributableFirmware = true;
+  };
 
   # required in order to have apropos and whatis working
   programs.mosh.enable = true;
@@ -68,7 +79,11 @@
       btm = "btm --color default-light";
       sudo = "sudo ";
     };
-    systemPackages = [ pkgs.bottom pkgs.man-pages pkgs.vim ];
+    systemPackages = [
+      pkgs.bottom
+      pkgs.man-pages
+      pkgs.vim
+    ];
   };
   # Disable the root user
   users.users.root.hashedPassword = "!";
@@ -76,7 +91,10 @@
   users.users.${config.az-username} = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCR+JXNHSAEQamn2QiaKV0vejCPy6OmzOePXoaQF6CEknXyvBO4j7+qpgZ5RAhe7ups8xZrEpBKdtxRMf7OdQQEXg1PLlfWZSJTC8EGu1TbMltbwwHizgsK/15LkDhJ0Gk/GFz9O9GvGqjizik8Kvvqz8XWY0tEtYs5Riq8bB5D5Ctwl10iultqnIQkdaX0bNa/2X57XKeutWdbqhuSC/C7awC1aVDIdfy1BNT3weHhQhFVAeAlH7Fy4rx3gYPclICfzu27lulLeXKJj9F+NdeY84zEy7E8IkE7eqdo1zfdJJpXSIh3FqekWen5njzWJsXqZCa2Ynk1poK/Rv/ti+ySE+4XicyXp0VJM8fDz6iUI0S/pjumHwzpoN9CeNe5PDK3Y7iQzSlO9REvkj/+v7r2s6XKslk9B7hTKunvH5JgHlIeYymzXb4r2LggNrP/1KUgNk1Ztu+s1c5onXYfBNul1iQOFU3+kgTk8Oh/UFK3FA0dYeWrOLA02TdH2S7U6yE= andreas@gwyn"
 
@@ -98,8 +116,14 @@
     settings = {
       warn-dirty = false;
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       min-free = 1000000000;
       max-free = 10000000000;
       connect-timeout = 5;
@@ -113,7 +137,9 @@
     };
   };
 
-  security.sudo = { wheelNeedsPassword = false; };
+  security.sudo = {
+    wheelNeedsPassword = false;
+  };
 
   system.activationScripts.diff = {
     supportsDryActivation = true;
@@ -132,4 +158,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05";
 }
-

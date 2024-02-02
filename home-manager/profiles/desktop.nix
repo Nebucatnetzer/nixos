@@ -8,7 +8,8 @@ let
         nvidia-offload mpv --shuffle --mute=yes "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=various2/$directory/" &
     done
   '';
-in {
+in
+{
   imports = [ "${inputs.self}/home-manager/modules" ];
   home = {
     packages = with pkgs; [
@@ -22,8 +23,7 @@ in {
       az-media
     ];
     shellAliases = {
-      unlock-luks =
-        "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
+      unlock-luks = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
     };
   };
 
@@ -34,6 +34,7 @@ in {
     az-yt-dlp.enable = true;
   };
 
-  services = { az-desktop-base.enable = true; };
+  services = {
+    az-desktop-base.enable = true;
+  };
 }
-

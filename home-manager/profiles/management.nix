@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   imports = [ "${inputs.self}/home-manager/modules" ];
 
   home = {
@@ -9,8 +10,7 @@
       xclip
     ];
     shellAliases = {
-      unlock-luks =
-        "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
+      unlock-luks = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
     };
   };
 

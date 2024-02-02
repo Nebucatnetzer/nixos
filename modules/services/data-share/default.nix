@@ -1,9 +1,10 @@
 { config, lib, ... }:
-let cfg = config.services.az-data-share;
-in {
+let
+  cfg = config.services.az-data-share;
+in
+{
   options = {
-    services.az-data-share.enable =
-      lib.mkEnableOption "Enable the server data FNS share";
+    services.az-data-share.enable = lib.mkEnableOption "Enable the server data FNS share";
   };
   config = lib.mkIf cfg.enable {
     fileSystems."/mnt/data" = {
@@ -19,4 +20,3 @@ in {
     };
   };
 }
-

@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-czkawka;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-czkawka;
+in
+{
   options = {
     programs.az-czkawka.enable = lib.mkEnableOption "Enable czkawka.";
   };

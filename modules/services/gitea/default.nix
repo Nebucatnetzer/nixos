@@ -1,8 +1,14 @@
-{ config, inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   cfg = config.services.az-gitea;
   volumePath = "/mnt/server-data/gitea";
-in {
+in
+{
   options = {
     services.az-gitea.enable = lib.mkEnableOption "Enable Gitea in Docker.";
     services.az-gitea.domain = lib.mkOption {
@@ -17,13 +23,19 @@ in {
     fileSystems."${volumePath}" = {
       device = "10.7.89.108:server_data/gitea/data";
       fsType = "nfs";
-      options = [ "hard" "noatime" "rw" ];
+      options = [
+        "hard"
+        "noatime"
+        "rw"
+      ];
     };
     services = {
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;
       mysql.settings = {
-        mysql = { default-character-set = "utf8mb4"; };
+        mysql = {
+          default-character-set = "utf8mb4";
+        };
         mysqld = {
           collation-server = "utf8mb4_unicode_ci";
           init-connect = "SET NAMES utf8mb4";
@@ -55,7 +67,10 @@ in {
           DISABLE_REGISTRATION = "true";
         };
         environmentFiles = [ config.age.secrets.giteaEnv.path ];
-        ports = [ "2222:22" "8080:3000" ];
+        ports = [
+          "2222:22"
+          "8080:3000"
+        ];
         volumes = [
           "/etc/timezone:/etc/timezone:ro"
           "/etc/localtime:/etc/localtime:ro"

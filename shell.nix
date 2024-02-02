@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 pkgs.mkShell {
   name = "nixosbuildshell";
   nativeBuildInputs = with pkgs; [
@@ -14,11 +16,8 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    PATH=${
-      pkgs.writeShellScriptBin "nix" ''
-        ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
-      ''
-    }/bin:$PATH
+    PATH=${pkgs.writeShellScriptBin "nix" ''
+      ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
+    ''}/bin:$PATH
   '';
 }
-

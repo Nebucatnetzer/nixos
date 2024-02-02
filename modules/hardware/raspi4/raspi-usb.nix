@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.hardware.az-raspi4-usb;
-in {
+let
+  cfg = config.hardware.az-raspi4-usb;
+in
+{
   options = {
     hardware.az-raspi4-usb = {
       enable = lib.mkEnableOption "Enable options required for Raspberry Pi 4.";
@@ -31,15 +33,21 @@ in {
         "127.0.0.1" = [ "${cfg.hostname}.2li.local" ];
         ip = [ "${cfg.hostname}.2li.local" ];
       };
-      interfaces.usb0.ipv4.addresses = [{
-        address = cfg.ip;
-        prefixLength = 24;
-      }];
+      interfaces.usb0.ipv4.addresses = [
+        {
+          address = cfg.ip;
+          prefixLength = 24;
+        }
+      ];
       wireless = {
         enable = true;
         userControlled.enable = true;
         interfaces = [ "wlan0" ];
-        networks = { "Gröibschi" = { psk = "schottland"; }; };
+        networks = {
+          "Gröibschi" = {
+            psk = "schottland";
+          };
+        };
       };
     };
 
@@ -52,7 +60,10 @@ in {
         dhcp-range = [ "10.213.0.100,10.213.0.200,255.255.255.0,24h" ];
         dhcp-option = [ "option:router,${cfg.ip}" ];
         interface = "usb0";
-        server = [ "84.200.69.80" "84.200.70.40" ];
+        server = [
+          "84.200.69.80"
+          "84.200.70.40"
+        ];
       };
     };
 
@@ -96,4 +107,3 @@ in {
     systemd.services."network-addresses-usb0".after = [ "usb-otg.service" ];
   };
 }
-

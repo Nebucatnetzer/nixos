@@ -1,4 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.az-telegram-notifications;
 
@@ -16,18 +22,19 @@ let
     ${send-to-telegram} "$ALERT Unit failed $UNIT $ALERT
     Status:
     $UNITSTATUS"'';
-in {
+in
+{
   options = {
-    services.az-telegram-notifications.enable =
-      lib.mkEnableOption "Enable Telegram Notifications";
+    services.az-telegram-notifications.enable = lib.mkEnableOption "Enable Telegram Notifications";
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.telegramNotifyEnv.file =
-      "${inputs.self}/scrts/telegram_notify_env.age";
+    age.secrets.telegramNotifyEnv.file = "${inputs.self}/scrts/telegram_notify_env.age";
     systemd.services."unit-status-telegram@" = {
       description = "Unit Status Telegram Service";
-      unitConfig = { After = "network-online.target"; };
+      unitConfig = {
+        After = "network-online.target";
+      };
       serviceConfig = {
         Type = "simple";
         ExecStart = "${unit-status-telegram} %I";

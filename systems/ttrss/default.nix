@@ -1,5 +1,11 @@
 { hostname }:
-{ config, inputs, pkgs, ... }: {
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
   hardware = {
     az-raspi4-ethernet = {
       enable = true;

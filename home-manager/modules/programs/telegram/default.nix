@@ -1,6 +1,13 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.programs.az-telegram;
-in {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.az-telegram;
+in
+{
   options = {
     programs.az-telegram.enable = lib.mkEnableOption "Enable Telegram.";
   };

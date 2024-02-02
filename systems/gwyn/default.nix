@@ -1,5 +1,11 @@
 { hostname }:
-{ inputs, lib, pkgs, ... }: {
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
@@ -19,7 +25,10 @@
   ];
 
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" "sg" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "sg"
+  ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "ip=dhcp" # required for ssh at initrd
@@ -32,8 +41,16 @@
 
   # Required to build aarch64 packages
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.supportedFilesystems =
-    [ "apfs" "exfat" "ext4" "nfs" "nfs4" "ntfs" "cifs" "f2fs" ];
+  boot.supportedFilesystems = [
+    "apfs"
+    "exfat"
+    "ext4"
+    "nfs"
+    "nfs4"
+    "ntfs"
+    "cifs"
+    "f2fs"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -46,7 +63,7 @@
 
   networking.hostName = hostname;
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   hardware = {
     az-bluetooth.enable = true;
@@ -75,4 +92,3 @@
 
   virtualisation.virtualbox.host.enable = true;
 }
-

@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.services.az-log2ram;
-in {
+let
+  cfg = config.services.az-log2ram;
+in
+{
   options = {
     services.az-log2ram.enable = lib.mkEnableOption "Enable log to RAM";
   };
@@ -9,7 +11,10 @@ in {
     fileSystems."/var/log" = {
       device = "none";
       fsType = "tmpfs";
-      options = [ "defaults" "size=512M" ];
+      options = [
+        "defaults"
+        "size=512M"
+      ];
     };
     services.journald.extraConfig = ''
       SystemMaxUse=300M

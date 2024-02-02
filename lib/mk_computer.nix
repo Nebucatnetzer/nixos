@@ -1,5 +1,10 @@
-{ hostname, inputs, system ? "x86_64-linux", home-module ? "headless"
-, username ? "andreas" }:
+{
+  hostname,
+  inputs,
+  system ? "x86_64-linux",
+  home-module ? "headless",
+  username ? "andreas",
+}:
 let
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -10,7 +15,9 @@ let
 
   pkgs = import inputs.nixpkgs {
     inherit system;
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
     overlays = [
       overlay-unstable
       #      (final: prev: {
@@ -26,9 +33,12 @@ let
       #      })
     ];
   };
-in inputs.nixpkgs.lib.nixosSystem {
+in
+inputs.nixpkgs.lib.nixosSystem {
   inherit system pkgs;
-  specialArgs = { inherit inputs; };
+  specialArgs = {
+    inherit inputs;
+  };
   modules = ([
     # System configuration for this host
     (import "${inputs.self}/systems/${hostname}" { inherit hostname; })
@@ -46,7 +56,9 @@ in inputs.nixpkgs.lib.nixosSystem {
     {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = { inherit inputs system; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs system;
+      };
       age.identityPaths = [ "/home/${username}/.ssh/id_rsa" ];
       home-manager.users.${username}.imports = [
         inputs.agenix.homeManagerModules.default

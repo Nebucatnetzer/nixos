@@ -1,6 +1,8 @@
 { config, lib, ... }:
-let cfg = config.services.az-haproxy;
-in {
+let
+  cfg = config.services.az-haproxy;
+in
+{
   options = {
     services.az-haproxy.enable = lib.mkEnableOption "Enable HAProxy";
   };
@@ -8,7 +10,11 @@ in {
   config = lib.mkIf cfg.enable {
     networking = {
       enableIPv6 = false;
-      firewall.allowedTCPPorts = [ 80 443 1936 ];
+      firewall.allowedTCPPorts = [
+        80
+        443
+        1936
+      ];
     };
     services.haproxy = {
       enable = true;

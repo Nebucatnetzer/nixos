@@ -1,7 +1,11 @@
 { config, lib, ... }:
-let cfg = config.services.az-syslog;
-in {
-  options = { services.az-syslog.enable = lib.mkEnableOption "Enable syslog"; };
+let
+  cfg = config.services.az-syslog;
+in
+{
+  options = {
+    services.az-syslog.enable = lib.mkEnableOption "Enable syslog";
+  };
 
   config = lib.mkIf cfg.enable {
     services.rsyslogd = {
@@ -15,4 +19,3 @@ in {
     systemd.services.syslog.after = [ "network-online.target" ];
   };
 }
-

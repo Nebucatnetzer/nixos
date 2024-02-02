@@ -1,7 +1,11 @@
 { config, lib, ... }:
-let cfg = config.programs.az-ssh;
-in {
-  options = { programs.az-ssh.enable = lib.mkEnableOption "Enable SSH host."; };
+let
+  cfg = config.programs.az-ssh;
+in
+{
+  options = {
+    programs.az-ssh.enable = lib.mkEnableOption "Enable SSH host.";
+  };
 
   config = lib.mkIf cfg.enable {
     programs.ssh = {

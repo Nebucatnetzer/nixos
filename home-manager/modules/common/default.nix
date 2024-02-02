@@ -1,4 +1,11 @@
-{ config, lib, nixosConfig, pkgs, ... }: {
+{
+  config,
+  lib,
+  nixosConfig,
+  pkgs,
+  ...
+}:
+{
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs = {
@@ -23,7 +30,9 @@
           "$git_status"
           "$character"
         ];
-        python = { format = "[\${symbol}($virtualenv) ]($style)"; };
+        python = {
+          format = "[\${symbol}($virtualenv) ]($style)";
+        };
       };
       enable = true;
     };
@@ -74,9 +83,8 @@
     };
 
     shellAliases = {
-      format-modules = "nixfmt **/*.nix";
-      nix-generations =
-        "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      format-modules = "unstable.nixfmt-rfc-style **/*.nix";
+      nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       rebuild = ''
         nixos-rebuild -j auto switch --use-remote-sudo
       '';
@@ -93,7 +101,7 @@
       highlight
       killall
       ncdu
-      nixfmt
+      unstable.nixfmt-rfc-style
       nmon
       tree
       unzip

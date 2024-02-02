@@ -1,6 +1,14 @@
-{ config, inputs, lib, pkgs, ... }:
-let cfg = config.services.az-freshrss;
-in {
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.services.az-freshrss;
+in
+{
   options = {
     services.az-freshrss.enable = lib.mkEnableOption "Enable FreshRSS.";
   };
@@ -20,7 +28,10 @@ in {
       group = config.services.freshrss.user;
     };
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     security.acme = {
       acceptTerms = true;
       defaults.email = "admin+acme@zweili.ch";
@@ -42,11 +53,15 @@ in {
       mysql = {
         enable = true;
         package = pkgs.mariadb_110;
-        ensureUsers = [{
-          name = "freshrss";
-          ensurePermissions = { "freshrss.*" = "ALL PRIVILEGES"; };
-        }];
-        initialDatabases = [{ name = "freshrss"; }];
+        ensureUsers = [
+          {
+            name = "freshrss";
+            ensurePermissions = {
+              "freshrss.*" = "ALL PRIVILEGES";
+            };
+          }
+        ];
+        initialDatabases = [ { name = "freshrss"; } ];
         settings = {
           mysqld = {
             innodb_file_per_table = 1;
@@ -95,4 +110,3 @@ in {
     };
   };
 }
-

@@ -19,16 +19,22 @@
     };
   };
 
-  outputs = inputs@{ self, agenix, nixpkgs, nixpkgs-unstable, nixos-hardware
-    , home-manager }:
+  outputs =
+    inputs@{
+      self,
+      agenix,
+      nixpkgs,
+      nixpkgs-unstable,
+      nixos-hardware,
+      home-manager,
+    }:
     let
       mkComputer = import "${inputs.self}/lib/mk_computer.nix";
       mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";
-      mksdImage = host:
+      mksdImage =
+        host:
         (self.nixosConfigurations.${host}.extendModules {
-          modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ];
+          modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
         }).config.system.build.sdImage;
       # required for home-manager only setup {
       overlay-unstable = final: prev: {
@@ -39,11 +45,14 @@
       };
       pkgs = import inputs.nixpkgs {
         system = "x86_64-linux";
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
         overlays = [ overlay-unstable ];
       };
-      # }
-    in {
+    in
+    # }
+    {
       images = {
         git = mksdImage "git";
         loki-test = mksdImage "loki-test";
@@ -131,7 +140,9 @@
           ];
           extraSpecialArgs = {
             inherit inputs;
-            nixosConfig = { az-username = "zweili"; };
+            nixosConfig = {
+              az-username = "zweili";
+            };
           };
         };
       };

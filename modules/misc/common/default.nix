@@ -124,6 +124,8 @@
         "root"
         "@wheel"
       ];
+      substituters = [ "https://nix-community.cachix.org" ];
+      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
       min-free = 1000000000;
       max-free = 10000000000;
       connect-timeout = 5;

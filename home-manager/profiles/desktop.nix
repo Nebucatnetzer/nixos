@@ -8,6 +8,16 @@ let
         nvidia-offload mpv --shuffle --mute=yes "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=various2/$directory/" &
     done
   '';
+  unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
+    until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
+        sleep 1
+    done &&
+        ${pkgs.openssh}/bin/ssh \
+          -o UserKnownHostsFile=/dev/null \
+          -o StrictHostKeyChecking=no \
+          -o User=root \
+          $1
+  '';
 in
 {
   imports = [ "${inputs.self}/home-manager/modules" ];
@@ -21,10 +31,8 @@ in
       sound-juicer
       unstable.tagger
       az-media
+      unlock-luks
     ];
-    shellAliases = {
-      unlock-luks = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
-    };
   };
 
   programs = {

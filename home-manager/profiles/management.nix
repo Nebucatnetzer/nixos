@@ -1,4 +1,16 @@
 { inputs, pkgs, ... }:
+let
+  unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
+    until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
+        sleep 1
+    done &&
+        ${pkgs.openssh}/bin/ssh \
+          -o UserKnownHostsFile=/dev/null \
+          -o StrictHostKeyChecking=no \
+          -o User=root \
+          $1
+  '';
+in
 {
   imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
 
@@ -7,9 +19,9 @@
       docker-compose
       exercism
       git
+      unlock-luks
     ];
     shellAliases = {
-      unlock-luks = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";
       format-modules = "${pkgs.unstable.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
     };
   };

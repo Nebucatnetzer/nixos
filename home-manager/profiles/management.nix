@@ -23,5 +23,4 @@
     az-starship.enable = true;
     az-tmux.enable = true;
   };
-  systemd.user.startServices = "sd-switch";
 }

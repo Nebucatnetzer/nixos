@@ -20,7 +20,7 @@ let
   '';
 in
 {
-  imports = [ "${inputs.self}/home-manager/modules" ];
+  imports = [ "${inputs.self}/home-manager/profiles/management.nix" ];
   home = {
     packages = with pkgs; [
       digikam

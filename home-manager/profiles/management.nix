@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ "${inputs.self}/home-manager/modules" ];
+  imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
 
   home = {
     packages = with pkgs; [

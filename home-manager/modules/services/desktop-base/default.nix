@@ -16,17 +16,11 @@ in
     programs = {
       az-alacritty.enable = true;
       az-czkawka.enable = true;
-      az-emacs.enable = true;
-      az-email.enable = true;
       az-evince.enable = true;
-      az-hunspell.enable = true;
       az-keeweb.enable = true;
       az-mpv.enable = true;
-      az-open-port.enable = true;
       az-signal.enable = true;
-      az-ssh.enable = true;
       az-telegram.enable = true;
-      az-tmux.enable = true;
       bash = {
         shellAliases = {
           management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";

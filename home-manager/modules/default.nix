@@ -9,6 +9,7 @@
     ./programs/emacs
     ./programs/email
     ./programs/evince
+    ./programs/fzf
     ./programs/git
     ./programs/hunspell
     ./programs/keeweb

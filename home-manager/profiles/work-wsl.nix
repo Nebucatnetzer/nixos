@@ -59,6 +59,7 @@
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;
+    az-fzf.enable = true;
     az-git = {
       userEmail = "zweili@contria.com";
     };

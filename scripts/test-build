@@ -17,7 +17,7 @@ for host in "${hosts[@]}"; do
         continue
     fi
     echo $host
-    nixos-rebuild dry-build --flake .#${host} |& nom
+    nixos-rebuild dry-build --flake .#${host}
     echo
     echo
 done

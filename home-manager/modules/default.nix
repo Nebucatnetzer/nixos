@@ -17,6 +17,7 @@
     ./programs/rapid-photo-downloader
     ./programs/signal
     ./programs/ssh
+    ./programs/starship
     ./programs/telegram
     ./programs/tmux
     ./programs/vagrant-wsl

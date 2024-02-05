@@ -64,7 +64,6 @@
     };
 
     shellAliases = {
-      format-modules = "unstable.nixfmt-rfc-style **/*.nix";
       nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
       rebuild = ''
         nixos-rebuild -j auto switch --use-remote-sudo

@@ -18,6 +18,7 @@ in
       multimarkdown
       nodejs_20 # required for copilot
       unstable.nixd # Nix language server
+      unstable.nixfmt-rfc-style
       pandoc
       ripgrep
       shfmt # formatting bash scripts

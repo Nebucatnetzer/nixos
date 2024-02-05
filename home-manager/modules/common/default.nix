@@ -76,17 +76,5 @@
       ls = "ls -lhF";
       btm = "btm --color default-light";
     };
-    packages = with pkgs; [
-      bottom
-      git
-      highlight
-      killall
-      ncdu
-      unstable.nixfmt-rfc-style
-      nmon
-      tree
-      unzip
-      wget
-    ];
   };
 }

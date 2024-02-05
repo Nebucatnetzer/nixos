@@ -6,8 +6,8 @@
     packages = with pkgs; [
       docker-compose
       exercism
+      git
       nodePackages.prettier # formatting files
-      xclip
     ];
     shellAliases = {
       unlock-luks = "ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o User=root";

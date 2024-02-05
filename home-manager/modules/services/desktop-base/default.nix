@@ -35,12 +35,9 @@ in
       };
     };
     home.packages = with pkgs; [
-      docker-compose
       meld
       nitrogen
       libreoffice-fresh
-      nodePackages.prettier # formatting files
-      nodePackages.prettier-plugin-toml
       remmina
     ];
     # raw config files

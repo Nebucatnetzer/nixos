@@ -22,11 +22,18 @@
       PATH = "$PATH:$HOME/.local/bin";
     };
     packages = with pkgs; [
-      keychain
-      unstable.nixfmt-rfc-style
-      mosh
+      bottom
       gyre-fonts
+      highlight
+      keychain
+      killall
+      mosh
+      ncdu
+      nmon
       source-code-pro
+      tree
+      unzip
+      wget
     ];
   };
   nix = {

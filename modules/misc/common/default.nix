@@ -81,8 +81,15 @@
     };
     systemPackages = [
       pkgs.bottom
+      pkgs.highlight
+      pkgs.killall
       pkgs.man-pages
+      pkgs.ncdu
+      pkgs.nmon
+      pkgs.tree
+      pkgs.unzip
       pkgs.vim
+      pkgs.wget
     ];
   };
   # Disable the root user

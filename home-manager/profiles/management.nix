@@ -17,6 +17,7 @@
 
   programs = {
     az-emacs.enable = true;
+    az-git.enable = true;
     az-hunspell.enable = true;
     az-open-port.enable = true;
     az-ssh.enable = true;

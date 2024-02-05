@@ -73,7 +73,7 @@
   home = {
     homeDirectory = "/home/${config.home.username}";
     username = nixosConfig.az-username;
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";

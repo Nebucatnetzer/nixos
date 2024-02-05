@@ -28,6 +28,7 @@ in
 
   programs = {
     az-emacs.enable = true;
+    az-email.enable = true;
     az-fzf.enable = true;
     az-git.enable = true;
     az-hunspell.enable = true;

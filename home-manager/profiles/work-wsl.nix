@@ -61,6 +61,7 @@
     az-emacs.enable = true;
     az-fzf.enable = true;
     az-git = {
+      enable = true;
       userEmail = "zweili@contria.com";
     };
     az-hunspell.enable = true;

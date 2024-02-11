@@ -58,5 +58,4 @@ in
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;
   "telegram_notify_env.age".publicKeys = all;
-  "webdav_andreas.age".publicKeys = defaultKeys;
 }

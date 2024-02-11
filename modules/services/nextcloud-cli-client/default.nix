@@ -63,7 +63,7 @@ in
       onFailure = [ "unit-status-telegram@%n.service" ];
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move "${pathToMonitor}" |
+        ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move --exclude '\.sync_*\.db*' "${pathToMonitor}" |
           while read -r directory event file; do
               sleep 10
               ${monitor-notes}/bin/monitor-notes

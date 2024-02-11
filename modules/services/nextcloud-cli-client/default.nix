@@ -66,6 +66,7 @@ in
         ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move --exclude '\.sync_*\.db*' "${pathToMonitor}" |
           while read -r directory event file; do
               sleep 10
+              echo "triggered because of $event on $file in $directory"
               ${monitor-notes}/bin/monitor-notes
           done
       '';

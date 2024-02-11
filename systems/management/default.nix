@@ -13,6 +13,7 @@
     az-data-share.enable = true;
     az-docker.enable = true;
     az-logs-share.enable = true;
+    az-nextcloud-cli-client.enable = true;
     az-restic-client-server = {
       enable = true;
       path = "/home/andreas";

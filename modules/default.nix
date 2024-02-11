@@ -33,6 +33,7 @@
     ./services/mariadb-for-containers
     ./services/media-share
     ./services/nextcloud
+    ./services/nextcloud-cli-client
     ./services/nginx-acme-base
     ./services/nginx-fpm
     ./services/nginx-proxy

@@ -53,6 +53,7 @@ in
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "infomaniak_env.age".publicKeys = all;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
+  "nextcloud_cli.age".publicKeys = defaultKeys;
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;

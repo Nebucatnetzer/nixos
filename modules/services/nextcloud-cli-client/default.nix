@@ -10,6 +10,7 @@ let
   pathToMonitor = "/home/${config.az-username}/nextcloud/10_documents/";
   monitor-notes = pkgs.writeShellScriptBin "monitor-notes" ''
     ${pkgs.nextcloud-client}/bin/nextcloudcmd \
+      --silent \
       --user andreas \
       --password $(cat ${config.age.secrets.nextcloudCliSecrets.path}) \
       --non-interactive \
@@ -63,7 +64,7 @@ in
       onFailure = [ "unit-status-telegram@%n.service" ];
       wantedBy = [ "multi-user.target" ];
       script = ''
-        ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move --excludei '\.sync.*\.db.*' "${pathToMonitor}" |
+        ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move --excludei '/\.' "${pathToMonitor}" |
           while read -r directory event file; do
               sleep 10
               echo "triggered because of $event on $file in $directory"

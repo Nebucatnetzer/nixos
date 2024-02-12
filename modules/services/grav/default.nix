@@ -24,7 +24,7 @@ in
       backend = "docker";
       containers."grav" = {
         # https://fleet.linuxserver.io/image?name=linuxserver/grav
-        image = "lscr.io/linuxserver/grav:1.7.44@sha256:e8f211a145405c177a8452a84b9a2655506c3025b786238fdca64f7f42304377";
+        image = "lscr.io/linuxserver/grav:1.7.44@sha256:4aa6c584958f62d113318e4e2af0a29b995171baa56de8b2337c90a9c684a27a";
         autoStart = true;
         environment = {
           TZ = "Europe/Zurich";

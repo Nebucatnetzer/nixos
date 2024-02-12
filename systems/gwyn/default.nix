@@ -88,6 +88,11 @@
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";
+
+    # Disable the integrated webcam
+    udev.extraRules = ''
+      ACTION=="add", ATTR{idVendor}=="0c45", ATTR{idProduct}=="671d", RUN="${pkgs.bash}/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"
+    '';
   };
 
   virtualisation.virtualbox.host.enable = true;

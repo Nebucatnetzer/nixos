@@ -48,7 +48,6 @@ in
           epkgs.citeproc
           epkgs.company
           epkgs.company-org-block
-          epkgs.company-restclient
           epkgs.company-web
           epkgs.counsel
           epkgs.counsel-tramp
@@ -85,7 +84,6 @@ in
           epkgs.move-text
           epkgs.mu4e
           epkgs.nix-mode
-          epkgs.ob-restclient
           epkgs.olivetti
           epkgs.parsebib
           epkgs.pdf-tools
@@ -100,7 +98,6 @@ in
           epkgs.python-pytest
           epkgs.queue
           epkgs.rainbow-delimiters
-          epkgs.restclient
           epkgs.ripgrep
           epkgs.smooth-scrolling
           epkgs.solarized-theme
@@ -113,6 +110,7 @@ in
           epkgs.treemacs-evil
           epkgs.use-package
           epkgs.use-package-ensure-system-package
+          epkgs.verb
           epkgs.vterm
           epkgs.web-completion-data
           epkgs.web-mode

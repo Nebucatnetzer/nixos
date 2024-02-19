@@ -37,7 +37,3 @@
                   (string= web-mode-cur-language "jsx"))
               (unless tide-mode (tide-mode))
             (if tide-mode (tide-mode -1)))))))
-
-(use-package company-restclient
-  :after (restclient company)
-  :config (add-to-list 'company-backends 'company-restclient))

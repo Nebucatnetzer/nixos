@@ -8,13 +8,6 @@
   (use-package ox-pandoc
     :after org)
 
-  (use-package ob-restclient
-    :after org
-    :config
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((restclient . t))))
-
   (use-package org
     :bind (:map org-mode-map
                 ("C-c C-," . org-insert-structure-template))

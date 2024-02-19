@@ -262,7 +262,6 @@ T - tag prefix
     :non-normal-prefix "M-SPC"
     "b" '(hydra-buffer/body t :which-key "Buffer")
     "w" '(hydra-window-operations/body t :which-key "Windows")
-    "r" '(hydra-restclient/body t :which-key "Restclient")
     "f" '(hydra-flycheck/body t :which-key "Flycheck")
     "s" '(hydra-spellchecking/body t :which-key "Spell Checking")
     "e" '(hydra-ediff/body t :which-key "Diffing")

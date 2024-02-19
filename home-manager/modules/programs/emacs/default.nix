@@ -71,7 +71,7 @@ in
           epkgs.ht
           epkgs.htmlize
           epkgs.hydra
-          unstable.emacsPackages.journalctl-mode
+          # epkgs.journalctl-mode
           epkgs.know-your-http-well
           epkgs.languagetool
           epkgs.lsp-ivy
@@ -79,7 +79,7 @@ in
           epkgs.lsp-treemacs
           epkgs.lsp-ui
           epkgs.lv
-          unstable.emacsPackages.magit
+          # epkgs.magit
           epkgs.makey
           epkgs.markdown-mode
           epkgs.move-text

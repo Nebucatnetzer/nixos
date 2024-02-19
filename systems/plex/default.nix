@@ -9,6 +9,7 @@
     };
   };
 
+  profiles.az-server.enable = true;
   services = {
     az-media-share.enable = true;
     az-plex.enable = true;

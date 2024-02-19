@@ -9,6 +9,7 @@
     ./misc/initrd-ssh
     ./misc/username
     ./profiles/desktop
+    ./profiles/server
     ./programs/distrobox
     ./programs/eog
     ./programs/libimobiledevice

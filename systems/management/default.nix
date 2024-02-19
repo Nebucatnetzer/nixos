@@ -9,6 +9,7 @@
     };
   };
   # Features
+  profiles.az-server.enable = true;
   services = {
     az-data-share.enable = true;
     az-docker.enable = true;

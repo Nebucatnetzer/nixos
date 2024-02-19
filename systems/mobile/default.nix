@@ -14,6 +14,7 @@
     };
   };
 
+  profiles.az-server.enable = true;
   programs = {
     az-nix-direnv.enable = true;
   };

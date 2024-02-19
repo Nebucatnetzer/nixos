@@ -12,6 +12,7 @@ in
     };
   };
 
+  profiles.az-server.enable = true;
   services = {
     az-gitea = {
       enable = true;

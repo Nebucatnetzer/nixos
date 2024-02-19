@@ -41,7 +41,6 @@ in
 
     services = {
       az-log2ram.enable = true;
-      az-syslog.enable = true;
     };
   };
 }

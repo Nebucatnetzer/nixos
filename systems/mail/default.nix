@@ -9,6 +9,7 @@
     };
   };
 
+  profiles.az-server.enable = true;
   services = {
     az-mailserver.enable = true;
     az-nginx-proxy = {

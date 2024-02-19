@@ -9,6 +9,7 @@
     };
   };
 
+  profiles.az-server.enable = true;
   services = {
     az-acme-base.enable = true;
     az-grav.enable = true;

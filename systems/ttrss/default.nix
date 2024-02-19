@@ -14,6 +14,7 @@
     };
   };
 
+  profiles.az-server.enable = true;
   services = {
     az-nginx-proxy = {
       enable = true;

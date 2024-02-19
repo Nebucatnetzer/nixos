@@ -79,7 +79,7 @@ in
           epkgs.lsp-treemacs
           epkgs.lsp-ui
           epkgs.lv
-          # epkgs.magit
+          unstable.emacsPackages.magit
           epkgs.makey
           epkgs.markdown-mode
           epkgs.move-text

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ "${inputs.self}/home-manager/modules" ];
+  imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
 
   programs.direnv = {
     enable = true;
@@ -79,5 +79,4 @@
       };
     };
   };
-  systemd.user.startServices = "suggest";
 }

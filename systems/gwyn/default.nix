@@ -8,7 +8,6 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-gpu-intel
   ];
   boot.initrd.availableKernelModules = [

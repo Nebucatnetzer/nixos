@@ -25,6 +25,7 @@ in
       ripgrep
       shfmt # formatting bash scripts
       silver-searcher
+      source-code-pro
       xclip # X11 clipboard from terminal
     ];
 

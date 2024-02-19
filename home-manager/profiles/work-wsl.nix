@@ -30,7 +30,6 @@
       mosh
       ncdu
       nmon
-      source-code-pro
       tree
       unzip
       wget

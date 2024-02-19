@@ -118,7 +118,6 @@ in
         pavucontrol
         quickemu
         rofi
-        source-code-pro
         unrar
       ];
       variables = {

@@ -38,6 +38,10 @@
   nix = {
     package = pkgs.nix;
     settings = {
+      trusted-users = [
+        "root"
+        "@sudo"
+      ];
       connect-timeout = 5;
       log-lines = 25;
       experimental-features = "nix-command flakes";

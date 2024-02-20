@@ -13,6 +13,7 @@ in
   imports = [ "${inputs.self}/home-manager/profiles/management.nix" ];
   home = {
     packages = with pkgs; [
+      chromium # needed for cloud gaming
       digikam
       exercism
       freetube

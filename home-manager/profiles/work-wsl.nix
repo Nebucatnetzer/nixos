@@ -66,7 +66,6 @@
     az-hunspell.enable = true;
     az-starship.enable = true;
     az-tmux.enable = true;
-    az-vagrant-wsl.enable = true;
     bash = {
       bashrcExtra = ''
         . /home/zweili/.nix-profile/etc/profile.d/nix.sh

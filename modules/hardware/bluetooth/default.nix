@@ -13,6 +13,8 @@ in
       enable = true;
       powerOnBoot = true;
     };
+    # Xbox Controller support
+    hardware.xpadneo.enable = true;
 
     # Blueman applet
     services.blueman.enable = true;

@@ -71,9 +71,6 @@
     az-starship.enable = true;
     az-tmux.enable = true;
     bash = {
-      bashrcExtra = ''
-        . /home/zweili/.nix-profile/etc/profile.d/nix.sh
-      '';
       shellAliases = {
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';

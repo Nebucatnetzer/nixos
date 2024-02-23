@@ -37,4 +37,5 @@ in
     az-starship.enable = true;
     az-tmux.enable = true;
   };
+  services.ssh-agent.enable = true;
 }

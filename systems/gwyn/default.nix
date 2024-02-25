@@ -73,6 +73,7 @@
 
   profiles.az-desktop.enable = true;
   programs = {
+    az-adb.enable = true;
     az-distrobox.enable = true;
     az-lockscreen.enable = true;
     az-makemkv.enable = true;

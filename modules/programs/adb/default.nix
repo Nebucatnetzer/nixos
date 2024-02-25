@@ -13,6 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.unstable.sidequest ];
     programs.adb.enable = true;
     users.users."${config.az-username}".extraGroups = [ "adbusers" ];
   };

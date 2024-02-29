@@ -100,7 +100,6 @@ in
         extraOptions = [
           "--add-host=host.docker.internal:host-gateway"
           "--cap-add=NET_ADMIN"
-          "--cap-add=SYS_PTRACE"
           "--log-opt=tag='mailserver'"
         ];
       };

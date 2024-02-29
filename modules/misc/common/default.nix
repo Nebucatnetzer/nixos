@@ -86,6 +86,8 @@
       pkgs.man-pages
       pkgs.ncdu
       pkgs.nmon
+      pkgs.pciutils # lspci
+      pkgs.usbutils # lsusb
       pkgs.tree
       pkgs.unzip
       pkgs.vim

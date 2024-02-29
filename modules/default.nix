@@ -10,6 +10,7 @@
     ./misc/username
     ./profiles/desktop
     ./profiles/server
+    ./programs/adb
     ./programs/distrobox
     ./programs/eog
     ./programs/libimobiledevice

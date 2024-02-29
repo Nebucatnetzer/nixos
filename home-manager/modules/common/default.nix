@@ -8,7 +8,21 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs = {
-    bash.enable = true;
+    bash = {
+      enable = true;
+      shellAliases = {
+        nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        rebuild = ''
+          nixos-rebuild -j auto switch --use-remote-sudo
+        '';
+        htop = "btm";
+        find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
+        vm = "vim";
+        less = "less -FiRX";
+        ls = "ls -lhF --color=auto";
+        btm = "btm --color default-light";
+      };
+    };
     home-manager.enable = true;
     vim = {
       enable = true;
@@ -54,19 +68,6 @@
       HIGHLIGHT_STYLE = "solarized-light";
       HISTTIMEFORMAT = "%F %T ";
       NIXPKGS_ALLOW_UNFREE = "1";
-    };
-
-    shellAliases = {
-      nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-      rebuild = ''
-        nixos-rebuild -j auto switch --use-remote-sudo
-      '';
-      htop = "btm";
-      find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
-      vm = "vim";
-      less = "less -FiRX";
-      ls = "ls -lhF";
-      btm = "btm --color default-light";
     };
   };
 }

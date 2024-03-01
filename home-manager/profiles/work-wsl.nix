@@ -44,7 +44,7 @@
       ];
       connect-timeout = 5;
       log-lines = 25;
-      experimental-features = "nix-command flakes";
+      experimental-features = "nix-command flakes repl-flake";
       fallback = true;
       warn-dirty = false;
       substituters = [

@@ -64,7 +64,9 @@ in
       fsType = "nfs";
       options = [
         "hard"
+        "nfsvers=4.0"
         "noatime"
+        "nolock"
         "rw"
       ];
     };

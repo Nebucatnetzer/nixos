@@ -36,6 +36,7 @@ in
       extraConfig = {
         core = {
           hooksPath = "~/.config/git/hooks/";
+          autocrlf = "input";
         };
         safe = {
           directory = "*";

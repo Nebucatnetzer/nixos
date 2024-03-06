@@ -121,6 +121,15 @@ in
         systemd-boot.enable = true;
       };
     };
+    boot.blacklistedKernelModules = [
+      "brcmfmac" # diable the wifi driver
+      "hci_uart" # disable the bluetooth driver
+      "btbcm" # disable the bluetooth driver
+      "btintel" # disable the bluetooth driver
+      "btqca" # disable the bluetooth driver
+      "btsdio" # disable the bluetooth driver
+      "bluetooth" # disable the bluetooth driver
+    ];
     boot.extraModulePackages = [ ];
 
     hardware.enableRedistributableFirmware = true;

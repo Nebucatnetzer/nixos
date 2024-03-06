@@ -147,6 +147,10 @@
       dates = "daily";
       options = "--delete-older-than 30d";
     };
+    optimise = {
+      automatic = true;
+      dates = [ "17:00" ];
+    };
   };
 
   security.sudo = {

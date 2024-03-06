@@ -144,7 +144,7 @@
     # enable garbage collection
     gc = {
       automatic = true;
-      dates = "daily";
+      dates = "16:00";
       options = "--delete-older-than 30d";
     };
     optimise = {

@@ -23,6 +23,7 @@ in
       unstable.nixfmt-rfc-style
       pandoc
       ripgrep
+      shellcheck # shell script linter
       shfmt # formatting bash scripts
       silver-searcher
       source-code-pro
@@ -64,6 +65,7 @@ in
           epkgs.evil-surround
           epkgs.f
           epkgs.flycheck
+          epkgs.flymake-shellcheck
           epkgs.format-all
           epkgs.general
           epkgs.helpful

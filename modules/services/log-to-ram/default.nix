@@ -13,7 +13,7 @@ in
       fsType = "tmpfs";
       options = [
         "defaults"
-        "size=512M"
+        "size=300M"
       ];
     };
     services.journald.extraConfig = ''

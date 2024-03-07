@@ -8,6 +8,12 @@
       ip = "10.7.89.150";
     };
   };
+
+  zramSwap = {
+    enable = true;
+    writebackDevice = "/var/lib/zwram_writeback";
+  };
+
   # Features
   profiles.az-server.enable = true;
   services = {

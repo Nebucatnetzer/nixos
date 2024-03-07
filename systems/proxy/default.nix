@@ -9,6 +9,11 @@
     };
   };
 
+  zramSwap = {
+    enable = true;
+    writebackDevice = "/var/lib/zwram_writeback";
+  };
+
   profiles.az-server.enable = true;
   services = {
     az-acme-base.enable = true;

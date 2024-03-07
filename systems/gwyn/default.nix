@@ -62,6 +62,11 @@
 
   networking.hostName = hostname;
 
+  zramSwap = {
+    enable = true;
+    writebackDevice = "/var/lib/zwram_writeback";
+  };
+
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   hardware = {

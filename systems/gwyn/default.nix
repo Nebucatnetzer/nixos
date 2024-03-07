@@ -62,11 +62,6 @@
 
   networking.hostName = hostname;
 
-  zramSwap = {
-    enable = true;
-    priority = 100;
-  };
-
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   hardware = {
@@ -90,6 +85,7 @@
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
+    az-zram-swap.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";

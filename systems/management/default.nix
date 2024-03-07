@@ -9,11 +9,6 @@
     };
   };
 
-  zramSwap = {
-    enable = true;
-    priority = 100;
-  };
-
   # Features
   profiles.az-server.enable = true;
   services = {
@@ -27,6 +22,7 @@
       tag = "management";
       time = "23:30";
     };
+    az-zram-swap.enable = true;
   };
   # Enable dictionaries
   programs = {

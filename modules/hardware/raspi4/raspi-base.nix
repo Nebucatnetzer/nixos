@@ -60,6 +60,7 @@ in
         size = 4 * 1024;
       }
     ];
+    services.az-zram-swap.enable = true;
 
     boot = {
       initrd.availableKernelModules = [

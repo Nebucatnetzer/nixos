@@ -21,7 +21,6 @@
       tag = "proxy";
       time = "00:00";
     };
-    az-zram-swap.enable = true;
     nginx = {
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.

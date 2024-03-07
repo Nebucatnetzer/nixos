@@ -22,7 +22,6 @@
       tag = "management";
       time = "23:30";
     };
-    az-zram-swap.enable = true;
   };
   # Enable dictionaries
   programs = {

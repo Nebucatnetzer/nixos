@@ -64,7 +64,7 @@
 
   zramSwap = {
     enable = true;
-    writebackDevice = "/var/lib/zwram_writeback";
+    writebackDevice = "/var/lib/zram_writeback";
   };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];

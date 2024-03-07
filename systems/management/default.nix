@@ -11,7 +11,7 @@
 
   zramSwap = {
     enable = true;
-    writebackDevice = "/var/lib/zwram_writeback";
+    writebackDevice = "/var/lib/zram_writeback";
   };
 
   # Features

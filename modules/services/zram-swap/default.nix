@@ -9,7 +9,7 @@ let
 in
 {
   options = {
-    services.az-ram-swap.enable = lib.mkEnableOption "Enable zram swap";
+    services.az-zram-swap.enable = lib.mkEnableOption "Enable zram swap";
   };
 
   config = lib.mkIf cfg.enable {

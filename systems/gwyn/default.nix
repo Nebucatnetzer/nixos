@@ -64,6 +64,7 @@
 
   zramSwap = {
     enable = true;
+    priority = 100;
   };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];

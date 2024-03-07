@@ -11,6 +11,7 @@
 
   zramSwap = {
     enable = true;
+    priority = 100;
   };
 
   profiles.az-server.enable = true;

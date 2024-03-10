@@ -19,6 +19,7 @@ in
       pkgs.docker-compose
       pkgs.exercism
       pkgs.git
+      pkgs.nix-tree
       unlock-luks
     ];
     shellAliases = {

@@ -15,10 +15,10 @@ in
   imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
 
   home = {
-    packages = with pkgs; [
-      docker-compose
-      exercism
-      git
+    packages = [
+      pkgs.docker-compose
+      pkgs.exercism
+      pkgs.git
       unlock-luks
     ];
     shellAliases = {

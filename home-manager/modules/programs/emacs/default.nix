@@ -16,10 +16,10 @@ in
     home.packages = with pkgs; [
       fd
       multimarkdown
+      nil # Nix language server
       nodejs_20 # required for copilot
       nodePackages.prettier # formatting files
       nodePackages.prettier-plugin-toml
-      unstable.nixd # Nix language server
       unstable.nixfmt-rfc-style
       pandoc
       ripgrep

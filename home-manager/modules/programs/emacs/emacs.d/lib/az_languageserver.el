@@ -7,12 +7,6 @@
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :config
-  (with-eval-after-load 'lsp-mode
-    (lsp-register-client
-     (make-lsp-client :new-connection (lsp-stdio-connection "nixd")
-                      :major-modes '(nix-mode)
-                      :priority 0
-                      :server-id 'nixd)))
   (lsp-treemacs-sync-mode 1)
   (setq company-minimum-prefix-length 1
         company-idle-delay 0.0 ;; default is 0.2
@@ -24,6 +18,13 @@
         lsp-pylsp-plugins-flake8-enabled nil
         lsp-pylsp-plugins-pylint-enabled t)
   :commands lsp)
+
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nixfmt"]))
 
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)

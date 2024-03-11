@@ -19,7 +19,8 @@
         find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
         vm = "vim";
         less = "less -FiRX";
-        ls = "ls -lhF --color=auto";
+        ls = "ls --color=auto";
+        ll = "ls -lhF";
         btm = "btm --color default-light";
       };
     };

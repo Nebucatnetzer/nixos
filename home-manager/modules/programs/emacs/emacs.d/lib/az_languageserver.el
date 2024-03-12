@@ -17,6 +17,10 @@
         lsp-pyls-plugins-pycodestyle-enabled nil
         lsp-pylsp-plugins-flake8-enabled nil
         lsp-pylsp-plugins-pylint-enabled t)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\node_modules\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\var'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.devenv\\'")
   :commands lsp)
 
 (use-package lsp-nix

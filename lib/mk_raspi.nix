@@ -22,7 +22,7 @@ let
       overlay-unstable
       (final: prev: {
         freshrss = prev.freshrss.overrideAttrs (_: {
-          version = "1.32.1";
+          version = "1.23.1";
           src = pkgs.fetchFromGitHub {
             owner = "FreshRSS";
             repo = "FreshRSS";

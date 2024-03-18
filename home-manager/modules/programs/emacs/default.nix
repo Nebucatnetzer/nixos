@@ -89,6 +89,7 @@ in
           epkgs.mu4e
           epkgs.nix-mode
           epkgs.olivetti
+          epkgs.org-modern
           epkgs.parsebib
           epkgs.pdf-tools
           epkgs.perspective

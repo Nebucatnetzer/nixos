@@ -29,6 +29,7 @@
       killall
       mosh
       ncdu
+      nix-tree
       nmon
       tree
       unzip

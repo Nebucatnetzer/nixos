@@ -74,3 +74,6 @@
     (dolist (autoload-file (directory-files path t "-autoloads.el"))
       (with-demoted-errors "init.el error: %s"
         (load autoload-file nil t)))))
+
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)

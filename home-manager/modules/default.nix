@@ -21,7 +21,6 @@
     ./programs/starship
     ./programs/telegram
     ./programs/tmux
-    ./programs/vagrant-wsl
     ./programs/work-desktop
     ./programs/yt-dlp
     ./services/desktop-base

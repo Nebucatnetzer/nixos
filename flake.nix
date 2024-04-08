@@ -25,8 +25,8 @@
       home-manager,
     }:
     let
-      mkComputer = import "${inputs.self}/lib/mk_computer.nix";
-      mkRaspi = import "${inputs.self}/lib/mk_raspi.nix";
+      mkComputer = import ./lib/mk_computer.nix;
+      mkRaspi = import ./lib/mk_raspi.nix;
       mksdImage =
         host:
         (self.nixosConfigurations.${host}.extendModules {
@@ -93,7 +93,7 @@
         "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            "${inputs.self}/home-manager/profiles/work-wsl.nix"
+            ./home-manager/profiles/work-wsl.nix
             inputs.agenix.homeManagerModules.age
           ];
           extraSpecialArgs = {

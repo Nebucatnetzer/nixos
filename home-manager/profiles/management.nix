@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 let
   unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
     until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
@@ -12,7 +12,7 @@ let
   '';
 in
 {
-  imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
+  imports = [ ./headless.nix ];
 
   home = {
     packages = [

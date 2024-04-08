@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 let
   az-media = pkgs.writeShellScriptBin "az-media" ''
     videos="videos"
@@ -10,7 +10,7 @@ let
   '';
 in
 {
-  imports = [ "${inputs.self}/home-manager/profiles/management.nix" ];
+  imports = [ ./management.nix ];
   home = {
     packages = with pkgs; [
       chromium # needed for cloud gaming

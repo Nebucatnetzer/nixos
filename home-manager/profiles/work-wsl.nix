@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ "${inputs.self}/home-manager/profiles/headless.nix" ];
+  imports = [ ./headless.nix ];
 
   programs.direnv = {
     enable = true;

@@ -50,87 +50,58 @@
         };
         overlays = [ overlay-unstable ];
       };
+      # }
+      raspis = {
+        "git" = { };
+        "plex" = { };
+        "proxy" = { };
+        "mail" = { };
+        "management" = {
+          home-module = "management";
+        };
+        "nextcloud" = { };
+        "restic-server" = { };
+        "ttrss" = { };
+      };
+      raspiConfigs = nixpkgs.lib.attrsets.mapAttrs (
+        hostname:
+        {
+          home-module ? "headless",
+        }:
+        (mkRaspi { inherit inputs hostname home-module; })
+      ) raspis;
+
+      pcs = {
+        "gwyn" = {
+          home-module = "desktop";
+        };
+        "staubfinger" = {
+          home-module = "desktop";
+        };
+        "desktop-vm" = {
+          home-module = "work-vm";
+        };
+      };
+      pcConfigs = nixpkgs.lib.attrsets.mapAttrs (
+        hostname:
+        {
+          home-module ? "headless",
+        }:
+        (mkComputer { inherit inputs hostname home-module; })
+      ) pcs;
     in
-    # }
     {
       images = {
         git = mksdImage "git";
-        loki-test = mksdImage "loki-test";
         plex = mksdImage "plex";
         proxy = mksdImage "proxy";
         mail = mksdImage "mail";
         management = mksdImage "management";
-        mobile = mksdImage "mobile";
         nextcloud = mksdImage "nextcloud";
-        test-raspi = mksdImage "test-raspi";
         restic-server = mksdImage "restic-server";
         ttrss = mksdImage "ttrss";
       };
-      nixosConfigurations = {
-        gwyn = mkComputer {
-          hostname = "gwyn";
-          home-module = "desktop";
-          inherit inputs;
-        };
-        desktop-vm = mkComputer {
-          hostname = "desktop-vm";
-          home-module = "work-vm";
-          inherit inputs;
-        };
-        staubfinger = mkComputer {
-          hostname = "staubfinger";
-          home-module = "desktop";
-          inherit inputs;
-        };
-        # Servers
-        git = mkRaspi {
-          hostname = "git";
-          inherit inputs;
-        };
-        loki-test = mkRaspi {
-          hostname = "loki-test";
-          inherit inputs;
-        };
-        mail = mkRaspi {
-          hostname = "mail";
-          inherit inputs;
-        };
-        nextcloud = mkRaspi {
-          hostname = "nextcloud";
-          inherit inputs;
-        };
-        plex = mkRaspi {
-          hostname = "plex";
-          inherit inputs;
-        };
-        proxy = mkRaspi {
-          hostname = "proxy";
-          inherit inputs;
-        };
-        management = mkRaspi {
-          hostname = "management";
-          home-module = "management";
-          inherit inputs;
-        };
-        mobile = mkRaspi {
-          hostname = "mobile";
-          home-module = "management";
-          inherit inputs;
-        };
-        restic-server = mkRaspi {
-          hostname = "restic-server";
-          inherit inputs;
-        };
-        test-raspi = mkRaspi {
-          hostname = "test-raspi";
-          home-module = "management";
-          inherit inputs;
-        };
-        ttrss = mkRaspi {
-          hostname = "ttrss";
-          inherit inputs;
-        };
-      };
+      nixosConfigurations = raspiConfigs // pcConfigs;
       homeConfigurations = {
         "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;

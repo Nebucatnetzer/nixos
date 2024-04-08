@@ -23,8 +23,8 @@
           '((noslash . "-")
             (nospace . "_")
             (case-fn . downcase)))
-    (setq deft-directory "~/nextcloud/10_documents/"
-          deft-archive-directory "./99_archive")
+    (setq deft-directory "~/nextcloud/10_documents/03_notes"
+          deft-archive-directory "../99_archive")
     (add-hook 'deft-mode-hook (lambda() (display-line-numbers-mode -1)))
 
     ;; A function to create a persp for my notes

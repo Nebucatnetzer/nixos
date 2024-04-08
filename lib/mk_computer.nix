@@ -1,11 +1,11 @@
 {
+  home-module,
   hostname,
   inputs,
-  system ? "x86_64-linux",
-  home-module ? "headless",
   username ? "andreas",
 }:
 let
+  system = "x86_64-linux";
   overlay-unstable = final: prev: {
     unstable = import inputs.nixpkgs-unstable {
       inherit system;

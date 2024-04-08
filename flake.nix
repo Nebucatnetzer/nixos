@@ -91,16 +91,7 @@
       ) pcs;
     in
     {
-      images = {
-        git = mksdImage "git";
-        plex = mksdImage "plex";
-        proxy = mksdImage "proxy";
-        mail = mksdImage "mail";
-        management = mksdImage "management";
-        nextcloud = mksdImage "nextcloud";
-        restic-server = mksdImage "restic-server";
-        ttrss = mksdImage "ttrss";
-      };
+      images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) raspis;
       nixosConfigurations = raspiConfigs // pcConfigs;
       homeConfigurations = {
         "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {

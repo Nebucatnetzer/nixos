@@ -19,5 +19,6 @@ pkgs.mkShell {
     PATH=${pkgs.writeShellScriptBin "nix" ''
       ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
     ''}/bin:$PATH
+    export DEVENV_ROOT=$(pwd)
   '';
 }

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-cd /home/andreas/.nixos
-
-hosts=($(echo $(nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
+hosts=($(echo $(nix eval "$DEVENV_ROOT"#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
     "gwyn"
@@ -18,7 +16,7 @@ for host in "${hosts[@]}"; do
         continue
     fi
     echo $host
-    nixos-rebuild dry-build --flake .#${host}
+    nixos-rebuild dry-build --flake $DEVENV_ROOT#${host}
     echo
     echo
 done

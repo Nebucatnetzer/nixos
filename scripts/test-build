@@ -8,6 +8,7 @@ skip=(
     "desktop-vm"
     "gwyn"
     "loki-test"
+    "mobile"
     "test-raspi"
     "staubfinger"
 )

@@ -76,18 +76,19 @@
       nixosConfigurations = raspiConfigs // pcConfigs;
       homeConfigurations =
         let
+          system = "x86_64-linux";
           overlay-unstable = final: prev: {
             unstable = import inputs.nixpkgs-unstable {
-              system = "x86_64-linux";
               config.allowUnfree = true;
+              inherit system;
             };
           };
           pkgs = import inputs.nixpkgs {
-            system = "x86_64-linux";
             config = {
               allowUnfree = true;
             };
             overlays = [ overlay-unstable ];
+            inherit system;
           };
         in
         {

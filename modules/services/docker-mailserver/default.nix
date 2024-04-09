@@ -14,15 +14,12 @@ let
         url = "https://raw.githubusercontent.com/docker-mailserver/docker-mailserver/v${version}/setup.sh";
         sha256 = "sha256-HMT790mp5ADdNYaOLUJfHJq9LWI0OPilTabAhogVXnc=";
       }
-    )}"
-    ).overrideAttrs
-      (
-        old: {
-          buildCommand = ''
-            ${old.buildCommand}
-             patchShebangs $out'';
-        }
-      );
+    )}").overrideAttrs
+      (old: {
+        buildCommand = ''
+          ${old.buildCommand}
+           patchShebangs $out'';
+      });
   volumePath = "/mnt/server-data/docker-mailserver";
 in
 {

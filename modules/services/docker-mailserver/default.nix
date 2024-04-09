@@ -92,6 +92,7 @@ in
           "/etc/dkim:/etc/dkim:ro"
           "/etc/static:/etc/static:ro"
           "/run/agenix:/run/agenix:ro"
+          "/run/agenix.d:/run/agenix.d:ro"
           "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
           "/var/lib/redis:/var/lib/redis"
           "${volumePath}/maildata:/var/mail"

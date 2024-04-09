@@ -32,21 +32,6 @@
         (self.nixosConfigurations.${host}.extendModules {
           modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
         }).config.system.build.sdImage;
-      # required for home-manager only setup {
-      overlay-unstable = final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-      };
-      pkgs = import inputs.nixpkgs {
-        system = "x86_64-linux";
-        config = {
-          allowUnfree = true;
-        };
-        overlays = [ overlay-unstable ];
-      };
-      # }
       raspis = {
         "git" = { };
         "plex" = { };
@@ -89,20 +74,36 @@
     {
       images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) raspis;
       nixosConfigurations = raspiConfigs // pcConfigs;
-      homeConfigurations = {
-        "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./home-manager/profiles/work-wsl.nix
-            inputs.agenix.homeManagerModules.age
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            nixosConfig = {
-              az-username = "zweili";
+      homeConfigurations =
+        let
+          overlay-unstable = final: prev: {
+            unstable = import inputs.nixpkgs-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+          pkgs = import inputs.nixpkgs {
+            system = "x86_64-linux";
+            config = {
+              allowUnfree = true;
+            };
+            overlays = [ overlay-unstable ];
+          };
+        in
+        {
+          "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              ./home-manager/profiles/work-wsl.nix
+              inputs.agenix.homeManagerModules.age
+            ];
+            extraSpecialArgs = {
+              inherit inputs;
+              nixosConfig = {
+                az-username = "zweili";
+              };
             };
           };
         };
-      };
     };
 }

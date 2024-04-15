@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  nixPath = "/etc/nixPath";
+in
 {
   # The rough location
   location = {
@@ -112,10 +115,10 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHcFlnVRZEjvblLMbQX0W644Rf6oRz9ibUv1uHIZyqNQ andreas@ipad"
     ];
   };
-
+  systemd.tmpfiles.rules = [ "L+ ${nixPath} - - - - ${pkgs.path}" ];
   nix = {
     daemonCPUSchedPolicy = "idle";
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${nixPath}" ];
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       nix-config.flake = inputs.self;

@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   imports = [ ./headless.nix ];
 
@@ -18,7 +13,7 @@
     '';
     sessionPath = [ "$HOME/node_modules/.bin" ];
     sessionVariables = {
-      NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+      NIX_PATH = "nixpkgs=${pkgs.path}";
       PATH = "$PATH:$HOME/.local/bin";
     };
     packages = with pkgs; [

@@ -39,7 +39,7 @@ in
       credentialsFile = config.age.secrets.atticEnv.path;
       settings = {
         listen = "[::]:${toString atticPort}";
-        api-endpoint = "http://management.2li.local/";
+        api-endpoint = "http://management.2li.local:${toString atticPort}/";
         allowed-hosts = [ ];
         storage = {
           type = "local";

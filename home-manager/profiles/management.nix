@@ -20,6 +20,7 @@ in
       pkgs.exercism
       pkgs.git
       pkgs.nix-tree
+      pkgs.unstable.attic-client
       unlock-luks
     ];
     shellAliases = {

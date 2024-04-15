@@ -46,6 +46,7 @@ let
   all = users ++ systems;
 in
 {
+  "attic_env.age".publicKeys = defaultKeys;
   "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];

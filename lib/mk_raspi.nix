@@ -54,6 +54,7 @@ inputs.nixpkgs.lib.nixosSystem {
     "${inputs.self}/modules"
 
     inputs.agenix.nixosModules.age
+    inputs.attic.nixosModules.atticd
     {
       environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
       az-username = username;

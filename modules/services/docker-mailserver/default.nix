@@ -71,7 +71,7 @@ in
 
     systemd.services."nixos-upgrade" = {
       serviceConfig = {
-        ExecStartPost = "${pkgs.systemd}/bin/systemctl restart restart-mailserver.service";
+        ExecStartPost = "${pkgs.systemd}/bin/systemctl restart docker-mailserver.service";
       };
     };
     virtualisation.oci-containers = {

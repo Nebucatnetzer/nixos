@@ -69,6 +69,11 @@ in
     };
     services.az-docker.enable = true;
 
+    systemd.services."nixos-upgrade" = {
+      serviceConfig = {
+        ExecStartPost = "${pkgs.systemd}/bin/systemctl restart restart-mailserver.service";
+      };
+    };
     virtualisation.oci-containers = {
       backend = "docker";
       containers."mailserver" = {

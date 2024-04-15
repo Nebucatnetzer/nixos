@@ -157,8 +157,9 @@ in
     # enable garbage collection
     gc = {
       automatic = true;
-      dates = "16:00";
+      dates = "weekly";
       options = "--delete-older-than 30d";
+      persistent = true;
     };
     optimise = {
       automatic = true;

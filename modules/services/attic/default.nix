@@ -63,6 +63,7 @@ in
     };
     services.postgresql = {
       enable = true;
+      package = pkgs.postgresql_15;
       ensureUsers = [
         {
           name = "atticd";

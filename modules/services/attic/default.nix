@@ -6,9 +6,15 @@
   ...
 }:
 let
+  system = pkgs.system;
   cfg = config.services.az-attic-server;
   cacheStorage = "/mnt/binary-cache";
   atticPort = 8080;
+  attic-garbage-collect = pkgs.writeShellScriptBin "attic-garbage-collect" ''
+    ${
+      inputs.attic.packages.${system}.attic-server
+    }/bin/atticd --config ${config.services.atticd.configFile} --mode garbage-collector-once
+  '';
 in
 {
   options = {
@@ -31,7 +37,10 @@ in
         "rw"
       ];
     };
-    environment.systemPackages = [ pkgs.unstable.attic-client ];
+    environment.systemPackages = [
+      inputs.attic.packages.${system}.attic-client
+      attic-garbage-collect
+    ];
 
     networking.firewall.allowedTCPPorts = [ atticPort ];
     services.atticd = {
@@ -56,7 +65,7 @@ in
         };
         database.url = "postgresql:///atticd?host=/run/postgresql";
         garbage-collection = {
-          interval = "24h";
+          interval = "0h";
           default-retention-period = "6 months";
         };
       };

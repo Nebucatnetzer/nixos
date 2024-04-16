@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
     until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
@@ -20,7 +20,7 @@ in
       pkgs.exercism
       pkgs.git
       pkgs.nix-tree
-      pkgs.unstable.attic-client
+      inputs.attic.packages.${pkgs.system}.attic-client
       unlock-luks
     ];
     shellAliases = {

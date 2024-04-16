@@ -17,7 +17,7 @@
     az-docker.enable = true;
     az-logs-share.enable = true;
     az-nextcloud-cli-client.enable = true;
-    az-restic-client-server = {
+    az-restic-client-server-postgres = {
       enable = true;
       path = "/home/andreas";
       tag = "management";

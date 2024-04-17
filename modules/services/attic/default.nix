@@ -20,6 +20,7 @@ let
         printf "This script must be run with sudo.\n"
         exit 1
     fi
+    source ${config.services.atticd.credentialsFile}
   '';
 in
 {

@@ -3,6 +3,13 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   programs = {
+    dircolors = {
+      enable = true;
+      enableBashIntegration = true;
+      settings = {
+        DIR = "0;34";
+      };
+    };
     bash = {
       enable = true;
       shellAliases = {

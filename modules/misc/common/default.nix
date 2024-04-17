@@ -141,7 +141,7 @@ in
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
         "https://devenv.cachix.org"
-        "http://10.7.89.150:8080/prod"
+        "https://cache.zweili.org/prod"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="

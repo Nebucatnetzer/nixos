@@ -10,6 +10,7 @@ let
   cfg = config.services.az-attic-server;
   cacheStorage = "/mnt/binary-cache";
   atticPort = 8080;
+  atticDomain = "cache.zweili.org";
   attic-garbage-collect = pkgs.writeShellScriptBin "attic-garbage-collect" ''
     ${
       inputs.attic.packages.${system}.attic-server
@@ -42,14 +43,20 @@ in
       attic-garbage-collect
     ];
 
-    networking.firewall.allowedTCPPorts = [ atticPort ];
+    networking.firewall.allowedTCPPorts = [ 443 ];
+
+    services.az-nginx-proxy = {
+      enable = true;
+      domain = atticDomain;
+      port = atticPort;
+    };
     services.atticd = {
       enable = true;
       credentialsFile = config.age.secrets.atticEnv.path;
       settings = {
         listen = "[::]:${toString atticPort}";
-        api-endpoint = "http://10.7.89.150:${toString atticPort}/";
-        allowed-hosts = [ ];
+        api-endpoint = "https://${atticDomain}/";
+        allowed-hosts = [ atticDomain ];
         storage = {
           type = "local";
           path = "${cacheStorage}";

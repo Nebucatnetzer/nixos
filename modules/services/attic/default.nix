@@ -34,6 +34,7 @@ let
   '';
 in
 {
+  imports = [ inputs.attic.nixosModules.atticd ];
   options = {
     services.az-attic-server.enable = lib.mkEnableOption "Enable attic server and related services";
   };

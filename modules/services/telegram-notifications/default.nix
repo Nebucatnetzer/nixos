@@ -29,7 +29,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.telegramNotifyEnv.file = "${inputs.self}/scrts/telegram_notify_env.age";
+    age.secrets.telegramNotifyEnv = {
+      file = "${inputs.self}/scrts/telegram_notify_env.age";
+      mode = "644";
+    };
     environment.systemPackages = [ send-to-telegram ];
     systemd.services."unit-status-telegram@" = {
       description = "Unit Status Telegram Service";

@@ -8,7 +8,7 @@
 let
   cfg = config.services.az-telegram-notifications;
 
-  send-to-telegram = pkgs.writeShellScript "send-to-telegram" ''
+  send-to-telegram = pkgs.writeShellScriptBin "send-to-telegram" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${config.age.secrets.telegramNotifyEnv.path} | ${pkgs.findutils}/bin/xargs)
     URL="https://api.telegram.org/bot$TELEGRAM_KEY/sendMessage"
     ${pkgs.curl}/bin/curl -s -d "chat_id=$CHAT_ID&disable_web_page_preview=1&text=$1" $URL > /dev/null'';

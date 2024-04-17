@@ -70,6 +70,8 @@ in
     services.atticd = {
       enable = true;
       credentialsFile = config.age.secrets.atticEnv.path;
+      user = "atticd";
+      group = "atticd";
       settings = {
         listen = "[::]:${toString atticPort}";
         api-endpoint = "https://${atticDomain}/";
@@ -87,7 +89,7 @@ in
           # The preferred maximum size of a chunk, in bytes
           max-size = 256 * 1024; # 256 KiB
         };
-        database.url = "postgresql:///atticd?host=/run/postgresql";
+        database.url = "postgresql:///${config.services.atticd.user}?host=/run/postgresql";
         garbage-collection = {
           interval = "0h";
           default-retention-period = "6 months";
@@ -99,11 +101,11 @@ in
       package = pkgs.postgresql_15;
       ensureUsers = [
         {
-          name = "atticd";
+          name = "${config.services.atticd.user}";
           ensureDBOwnership = true;
         }
       ];
-      ensureDatabases = [ "atticd" ];
+      ensureDatabases = [ "${config.services.atticd.user}" ];
     };
   };
 }

@@ -11,16 +11,26 @@ let
   cacheStorage = "/mnt/binary-cache";
   atticPort = 8080;
   atticDomain = "cache.zweili.org";
-  attic-garbage-collect = pkgs.writeShellScriptBin "attic-garbage-collect" ''
-    ${
-      inputs.attic.packages.${system}.attic-server
-    }/bin/atticd --config ${config.services.atticd.configFile} --mode garbage-collector-once
-    # Fail if $SUDO_USER is empty.
-    if [ -z "$SUDO_USER" ]; then
-        printf "This script must be run with sudo.\n"
-        exit 1
-    fi
-    source ${config.services.atticd.credentialsFile}
+  atticCollectGarbage = pkgs.writeShellScriptBin "attic-collect-garbage" ''
+    ATTICD=${inputs.attic.packages.${system}.attic-server}/bin/atticd
+
+    exec ${pkgs.systemd}/bin/systemd-run \
+      --quiet \
+      --pty \
+      --same-dir \
+      --wait \
+      --collect \
+      --service-type=exec \
+      --property=EnvironmentFile=${config.services.atticd.credentialsFile} \
+      --property=DynamicUser=yes \
+      --property=User=${config.services.atticd.user} \
+      --property=Environment=ATTICADM_PWD=$(pwd) \
+      --property=ReadWritePaths=${config.services.atticd.settings.storage.path} \
+      --working-directory / \
+      -- \
+      $ATTICD \
+      --config ${config.services.atticd.configFile} \
+      --mode garbage-collector-once
   '';
 in
 {
@@ -46,7 +56,7 @@ in
     };
     environment.systemPackages = [
       inputs.attic.packages.${system}.attic-client
-      attic-garbage-collect
+      atticCollectGarbage
     ];
 
     networking.firewall.allowedTCPPorts = [ 443 ];

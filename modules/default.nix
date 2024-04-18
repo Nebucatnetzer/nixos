@@ -21,7 +21,7 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
-    ./services/attic
+    ./services/attic-server
     ./services/common-x86
     ./services/data-share
     ./services/docker

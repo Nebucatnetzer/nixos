@@ -68,7 +68,7 @@ in
       port = atticPort;
     };
     services.nginx = {
-      clientMaxBodySize = "1G";
+      clientMaxBodySize = "0";
       proxyTimeout = "300s";
     };
     services.atticd = {

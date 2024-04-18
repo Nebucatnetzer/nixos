@@ -87,6 +87,8 @@ in
           server server1 127.0.0.1:4433 check
         backend cache_server
           mode tcp
+          timeout client  300s
+          timeout server  300s
           server server1 10.7.89.150:443 check
       '';
     };

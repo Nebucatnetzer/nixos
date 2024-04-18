@@ -81,6 +81,7 @@
   };
 
   services = {
+    az-attic-client.enable = true;
     az-logs-share.enable = true;
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;

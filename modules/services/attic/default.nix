@@ -67,7 +67,7 @@ in
       domain = atticDomain;
       port = atticPort;
     };
-    services.nginx.clientMaxBodySize = "512M";
+    services.nginx.clientMaxBodySize = "1G";
     services.atticd = {
       enable = true;
       credentialsFile = config.age.secrets.atticEnv.path;

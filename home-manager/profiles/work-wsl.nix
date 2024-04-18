@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   imports = [ ./headless.nix ];
 
@@ -29,6 +34,7 @@
       tree
       unzip
       wget
+      inputs.attic.packages.${pkgs.system}.attic-client
     ];
   };
   nix = {

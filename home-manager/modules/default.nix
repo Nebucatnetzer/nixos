@@ -23,6 +23,7 @@
     ./programs/tmux
     ./programs/work-desktop
     ./programs/yt-dlp
+    ./services/attic-client
     ./services/desktop-base
     ./services/dunst
     ./services/espanso

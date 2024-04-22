@@ -33,6 +33,7 @@ in
   };
 
   services = {
+    az-attic-client.enable = true;
     az-desktop-base.enable = true;
   };
 }

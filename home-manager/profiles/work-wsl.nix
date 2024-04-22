@@ -84,5 +84,8 @@
       };
     };
   };
-  services.ssh-agent.enable = true;
+  services = {
+    az-attic-client.enable = true;
+    ssh-agent.enable = true;
+  };
 }

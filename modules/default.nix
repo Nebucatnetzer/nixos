@@ -21,7 +21,6 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
-    ./services/attic-client
     ./services/attic-server
     ./services/common-x86
     ./services/data-share

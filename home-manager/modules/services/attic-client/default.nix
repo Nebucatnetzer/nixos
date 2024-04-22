@@ -20,19 +20,19 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ inputs.attic.packages.${system}.attic-client ];
-    # sytemd service
-    systemd.services.az-attic-client = {
-      description = "Watch the nix store and upload new paths to attic";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
+    home.packages = [ inputs.attic.packages.${system}.attic-client ];
+    systemd.user.services.az-attic-client = {
+      Unit = {
+        Description = "Watch the nix store and upload new paths to attic";
+        After = [ "network.target" ];
+      };
+      Install = {
+        WantedBy = [ "multi-user.target" ];
+      };
+      Service = {
         Type = "simple";
         ExecStart = "${atticWatcher}";
         Restart = "always";
-        RestartSec = "5";
-        User = config.az-username;
-        Group = "users";
       };
     };
   };

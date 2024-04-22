@@ -10,7 +10,6 @@ let
   system = pkgs.system;
 in
 {
-  age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
   # The rough location
   location = {
     latitude = 46.948;

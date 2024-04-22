@@ -22,6 +22,7 @@ in
       nixos.includeAllModules = true;
     };
 
+    age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
     services = {
       az-docker.enable = true;
       az-pipewire.enable = true;

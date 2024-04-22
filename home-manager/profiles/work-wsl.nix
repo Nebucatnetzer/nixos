@@ -2,8 +2,24 @@
   config,
   inputs,
   pkgs,
+  system,
   ...
 }:
+let
+  hm-rebuild = pkgs.writeShellApplication {
+    name = "hm-rebuild";
+    runtimeInputs = [
+      pkgs.nixos-rebuild
+      inputs.attic.packages.${system}.attic-client
+    ];
+    text = ''
+      home-manager switch
+      if command -v attic &> /dev/null; then
+        attic push prod /run/current-system
+      fi
+    '';
+  };
+in
 {
   imports = [ ./headless.nix ];
 
@@ -25,6 +41,7 @@
       bottom
       gyre-fonts
       highlight
+      hm-rebuild
       keychain
       killall
       mosh
@@ -80,7 +97,6 @@
       shellAliases = {
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';
-        hm-rebuild = "home-manager switch";
       };
     };
   };

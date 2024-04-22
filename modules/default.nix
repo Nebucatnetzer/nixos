@@ -1,6 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports = [
+    inputs.agenix.nixosModules.age
     ./hardware/bluetooth
     ./hardware/dvd
     ./hardware/nvidia

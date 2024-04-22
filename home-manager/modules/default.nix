@@ -1,6 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 {
   imports = [
+    inputs.agenix.homeManagerModules.default
     ./common
     ./programs/alacritty
     ./programs/ansible

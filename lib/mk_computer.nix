@@ -46,11 +46,7 @@ inputs.nixpkgs.lib.nixosSystem {
     # Common configuration
     "${inputs.self}/modules"
 
-    inputs.agenix.nixosModules.age
-    {
-      environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
-      az-username = username;
-    }
+    { az-username = username; }
 
     inputs.home-manager.nixosModules.home-manager
     {
@@ -59,9 +55,7 @@ inputs.nixpkgs.lib.nixosSystem {
       home-manager.extraSpecialArgs = {
         inherit inputs system;
       };
-      age.identityPaths = [ "/home/${username}/.ssh/id_rsa" ];
       home-manager.users.${username}.imports = [
-        inputs.agenix.homeManagerModules.default
         "${inputs.self}/home-manager/profiles/${home-module}.nix"
       ];
     }

@@ -7,8 +7,10 @@
 }:
 let
   nixPath = "/etc/nixPath";
+  system = pkgs.system;
 in
 {
+  age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
   # The rough location
   location = {
     latitude = 46.948;
@@ -83,6 +85,7 @@ in
       sudo = "sudo ";
     };
     systemPackages = [
+      inputs.agenix.packages.${system}.default
       pkgs.bottom
       pkgs.highlight
       pkgs.killall

@@ -53,11 +53,7 @@ inputs.nixpkgs.lib.nixosSystem {
     # Common configuration
     "${inputs.self}/modules"
 
-    inputs.agenix.nixosModules.age
-    {
-      environment.systemPackages = [ inputs.agenix.packages.${system}.default ];
-      az-username = username;
-    }
+    { az-username = username; }
 
     inputs.home-manager.nixosModules.home-manager
     {
@@ -67,7 +63,6 @@ inputs.nixpkgs.lib.nixosSystem {
         inherit inputs system;
       };
       home-manager.users.${username}.imports = [
-        inputs.agenix.homeManagerModules.default
         "${inputs.self}/home-manager/profiles/${home-module}.nix"
       ];
     }

@@ -51,7 +51,6 @@ in
       tree
       unzip
       wget
-      inputs.attic.packages.${pkgs.system}.attic-client
     ];
   };
   nix = {

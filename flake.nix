@@ -99,10 +99,7 @@
         {
           "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
-            modules = [
-              ./home-manager/profiles/work-wsl.nix
-              inputs.agenix.homeManagerModules.age
-            ];
+            modules = [ ./home-manager/profiles/work-wsl.nix ];
             extraSpecialArgs = {
               inherit inputs;
               nixosConfig = {

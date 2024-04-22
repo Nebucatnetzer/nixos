@@ -48,13 +48,7 @@ inputs.nixpkgs.lib.nixosSystem {
 
     { az-username = username; }
 
-    inputs.home-manager.nixosModules.home-manager
     {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = {
-        inherit inputs system;
-      };
       home-manager.users.${username}.imports = [
         "${inputs.self}/home-manager/profiles/${home-module}.nix"
       ];

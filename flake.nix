@@ -101,7 +101,7 @@
             inherit pkgs;
             modules = [ ./home-manager/profiles/work-wsl.nix ];
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs system;
               nixosConfig = {
                 az-username = "zweili";
               };

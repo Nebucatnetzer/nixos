@@ -16,18 +16,16 @@
 
   profiles.az-server.enable = true;
   services = {
-    az-nginx-proxy = {
-      enable = true;
-      domain = "rss-bridge.zweili.org";
-      port = 8082;
-    };
     az-restic-client-server-mysql = {
       enable = true;
       path = config.services.freshrss.dataDir;
       tag = "freshrss";
       time = "23:00";
     };
-    az-rss-bridge.enable = true;
+    az-rss-bridge = {
+      enable = true;
+      domain = "rss-bridge.zweili.org";
+    };
     az-freshrss.enable = true;
   };
 }

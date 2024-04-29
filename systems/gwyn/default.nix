@@ -6,10 +6,7 @@
   ...
 }:
 {
-  imports = [
-    inputs.nixos-hardware.nixosModules.dell-precision-5530
-    inputs.nixos-hardware.nixosModules.common-gpu-intel
-  ];
+  imports = [ inputs.nixos-hardware.nixosModules.dell-precision-5530 ];
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"

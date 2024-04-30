@@ -24,7 +24,6 @@ in
 
     age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
     services = {
-      az-docker.enable = true;
       az-pipewire.enable = true;
       az-qtile.enable = true;
       flatpak.enable = true;

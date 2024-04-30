@@ -16,7 +16,6 @@ in
 
   home = {
     packages = [
-      pkgs.docker-compose
       pkgs.exercism
       pkgs.git
       pkgs.nix-tree

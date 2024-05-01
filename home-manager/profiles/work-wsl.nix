@@ -15,7 +15,7 @@ let
     text = ''
       home-manager switch
       if command -v attic &> /dev/null; then
-        attic push prod /run/current-system
+        attic push prod ${config.home.homeDirectory}/.local/state/home-manager/gcroots/current-home
       fi
     '';
   };

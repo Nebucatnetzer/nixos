@@ -26,9 +26,7 @@ in
         Description = "Watch the nix store and upload new paths to attic";
         After = [ "network.target" ];
       };
-      Install = {
-        WantedBy = [ "multi-user.target" ];
-      };
+      Install.WantedBy = [ "default.target" ];
       Service = {
         Type = "simple";
         ExecStart = "${atticWatcher}";

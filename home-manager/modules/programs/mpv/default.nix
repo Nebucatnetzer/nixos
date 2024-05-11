@@ -36,6 +36,7 @@ in
       };
       config = {
         "keepaspect-window" = "no";
+        "image-display-duration" = 3;
       };
       scripts = [ delete-file ];
     };

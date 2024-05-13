@@ -32,7 +32,7 @@
 
     (require 'mu4e)
 
-    (setq mu4e-completing-read-function (quote ivy-completing-read))
+    ;;setq mu4e-completing-read-function (quote ivy-completing-read))
     (setq mail-user-agent 'mu4e-user-agent)
 
     (setq mu4e-drafts-folder "/personal/Drafts")

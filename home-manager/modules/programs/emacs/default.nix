@@ -48,9 +48,6 @@ in
           epkgs.bind-key
           epkgs.cfrs
           epkgs.citeproc
-          epkgs.company
-          epkgs.company-org-block
-          epkgs.company-web
           epkgs.counsel
           epkgs.counsel-tramp
           epkgs.dap-mode

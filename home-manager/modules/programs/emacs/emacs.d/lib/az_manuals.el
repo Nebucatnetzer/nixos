@@ -7,7 +7,7 @@
          ("C-h v" . helpful-variable)
          ("C-h s" . helpful-symbol)
          ("C-h k" . helpful-key)
-         ("<C-tab>" . backward-button)
+         ("C-<tab>" . backward-button)
          :map helpful-mode-map
          ("M-?" . helpful-at-point)
          :map emacs-lisp-mode-map

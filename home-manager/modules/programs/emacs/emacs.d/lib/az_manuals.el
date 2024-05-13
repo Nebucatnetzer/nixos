@@ -7,10 +7,6 @@
          ("C-h v" . helpful-variable)
          ("C-h s" . helpful-symbol)
          ("C-h k" . helpful-key)
-         ("C-c h f" . helpful-function)
-         ("C-c h v" . helpful-variable)
-         ("C-c h c" . helpful-command)
-         ("C-c h m" . helpful-macro)
          ("<C-tab>" . backward-button)
          :map helpful-mode-map
          ("M-?" . helpful-at-point)

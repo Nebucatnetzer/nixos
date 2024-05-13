@@ -16,7 +16,7 @@ let
     text = ''
       nixos-rebuild -j auto switch --use-remote-sudo
       if command -v attic &> /dev/null; then
-        attic push prod /run/current-system
+        attic push -j 2 prod /run/current-system
       fi
     '';
   };

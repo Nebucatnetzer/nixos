@@ -126,6 +126,7 @@ in
           unstable.emacsPackages.denote
           unstable.emacsPackages.embark
           unstable.emacsPackages.marginalia
+          unstable.emacsPackages.orderless
         ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

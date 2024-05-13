@@ -21,6 +21,7 @@
 ;;(load-file (modules-path "az_corfu.el"))
 ;;(load-file (modules-path "az_embark.el"))
 ;;(load-file (modules-path "az_marginalia.el"))
+;;(load-file (modules-path "az_orderless.el"))
 ;; note taking and writing
 (load-file (modules-path "az_deft_raw.el"))
 (load-file (modules-path "az_deft.el"))

@@ -6,7 +6,7 @@
   (setq projectile-project-search-path '(("~/.nixos" . 1)
                                          "~/git_repos/projects/"
                                          "~/git_repos/work/")
-        projectile-completion-system 'ivy
+        ;;projectile-completion-system 'ivy
         projectile-git-fd-args "-H -0 -E .git -tf --strip-cwd-prefix -c never"
         projectile-switch-project-action #'projectile-dired)
   (global-set-key (kbd "C-c g") 'projectile-find-file)

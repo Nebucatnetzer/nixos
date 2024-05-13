@@ -47,8 +47,6 @@
 (load-file (modules-path "az_yaml.el"))
 
 ;; various third party
-(load-file (modules-path "az_counsel.el"))
-(load-file (modules-path "az_counsel-git-grep-current-mode.el"))
 (load-file (modules-path "az_keyring_update.el"))
 (load-file (modules-path "az_journalctl.el"))
 (load-file (modules-path "az_manuals.el"))

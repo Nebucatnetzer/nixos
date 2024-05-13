@@ -6,7 +6,7 @@
                 Buffers :
   "
   ("n" next-buffer "next")
-  ("b" ivy-switch-buffer "switch")
+  ;;("b" ivy-switch-buffer "switch")
   ("B" ibuffer "ibuffer")
   ("p" previous-buffer "prev")
   ("C-b" buffer-menu "buffer menu")

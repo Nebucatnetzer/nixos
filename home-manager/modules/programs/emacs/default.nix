@@ -48,8 +48,6 @@ in
           epkgs.bind-key
           epkgs.cfrs
           epkgs.citeproc
-          epkgs.counsel
-          epkgs.counsel-tramp
           epkgs.dap-mode
           unstable.emacsPackages.denote
           epkgs.dired-hide-dotfiles
@@ -74,7 +72,6 @@ in
           # epkgs.journalctl-mode
           epkgs.know-your-http-well
           epkgs.languagetool
-          epkgs.lsp-ivy
           epkgs.lsp-mode
           epkgs.lsp-treemacs
           epkgs.lsp-ui

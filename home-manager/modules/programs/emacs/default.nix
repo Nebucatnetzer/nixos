@@ -122,6 +122,7 @@ in
           rufo # formatter for Ruby
           unstable.emacsPackages.cape
           unstable.emacsPackages.consult
+          unstable.emacsPackages.corfu
           unstable.emacsPackages.denote
         ];
     };

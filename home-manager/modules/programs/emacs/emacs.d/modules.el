@@ -17,6 +17,7 @@
 
 ;; completion
 ;;(load-file (modules-path "az_cape.el"))
+;;(load-file (modules-path "az_consult.el"))
 ;; note taking and writing
 (load-file (modules-path "az_deft_raw.el"))
 (load-file (modules-path "az_deft.el"))

@@ -15,6 +15,8 @@
 (load-file (modules-path "az_window_split.el"))
 (load-file (modules-path "az_xclip.el"))
 
+;; completion
+;;(load-file (modules-path "az_cape.el"))
 ;; note taking and writing
 (load-file (modules-path "az_deft_raw.el"))
 (load-file (modules-path "az_deft.el"))

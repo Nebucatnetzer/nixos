@@ -120,6 +120,7 @@ in
           languagetool
           mu # needed for mailing
           rufo # formatter for Ruby
+          unstable.emacsPackages.cape
           unstable.emacsPackages.denote
         ];
     };

@@ -41,6 +41,8 @@ in
       '';
       extraPackages =
         epkgs: with pkgs; [
+          # epkgs.journalctl-mode
+          # epkgs.magit
           epkgs.ag
           epkgs.amx
           epkgs.annotate
@@ -49,7 +51,6 @@ in
           epkgs.cfrs
           epkgs.citeproc
           epkgs.dap-mode
-          unstable.emacsPackages.denote
           epkgs.dired-hide-dotfiles
           epkgs.direnv
           epkgs.discover-my-major
@@ -69,14 +70,12 @@ in
           epkgs.htmlize
           epkgs.hydra
           epkgs.hyperbole
-          # epkgs.journalctl-mode
           epkgs.know-your-http-well
           epkgs.languagetool
           epkgs.lsp-mode
           epkgs.lsp-treemacs
           epkgs.lsp-ui
           epkgs.lv
-          # epkgs.magit
           epkgs.makey
           epkgs.markdown-mode
           epkgs.move-text
@@ -84,6 +83,8 @@ in
           epkgs.nix-mode
           epkgs.olivetti
           epkgs.org-modern
+          epkgs.org-superstar
+          epkgs.ox-pandoc
           epkgs.parsebib
           epkgs.pdf-tools
           epkgs.perspective
@@ -101,8 +102,6 @@ in
           epkgs.smooth-scrolling
           epkgs.solarized-theme
           epkgs.string-inflection
-          epkgs.org-superstar
-          epkgs.ox-pandoc
           epkgs.swiper
           epkgs.system-packages
           epkgs.treemacs
@@ -121,6 +120,7 @@ in
           languagetool
           mu # needed for mailing
           rufo # formatter for Ruby
+          unstable.emacsPackages.denote
         ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

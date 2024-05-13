@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-pdf-tools)
   (use-package pdf-tools
     :mode ("\\.pdf\\'" . pdf-view-mode)

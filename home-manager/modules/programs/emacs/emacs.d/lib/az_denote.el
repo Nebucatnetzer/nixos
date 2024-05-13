@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-notes)
   (use-package denote
     :bind

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; add image from conference phone upload                                 ;;

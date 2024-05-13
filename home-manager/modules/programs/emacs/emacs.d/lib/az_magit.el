@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; enable magit a great git porcelain.
 (use-package magit
   :demand t

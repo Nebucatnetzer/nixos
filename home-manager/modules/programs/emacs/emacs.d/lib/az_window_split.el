@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; a function to toggle the splits
 (defun toggle-window-split ()
   (interactive)

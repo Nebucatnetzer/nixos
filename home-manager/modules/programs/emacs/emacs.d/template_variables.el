@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;(setq disable-fringe t)
 ;;(setq enable-color-theme t)
 ;;(setq enable-email t)

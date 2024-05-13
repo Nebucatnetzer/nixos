@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; enable powershell-mode
 (use-package powershell
   :mode

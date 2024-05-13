@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; add markdown-mode to edit markdown files
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)

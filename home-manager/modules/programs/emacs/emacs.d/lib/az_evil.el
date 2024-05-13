@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; evil-mode allows to use vim keybindings
 (use-package evil
   :init

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-email)
   (use-package mu4e
     :if (is-linux-p)

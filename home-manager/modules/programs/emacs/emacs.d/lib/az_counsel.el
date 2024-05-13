@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package counsel
   :config
   (ivy-mode 1)

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package hydra)
 
 (defhydra hydra-buffer (:color red :columns 3)

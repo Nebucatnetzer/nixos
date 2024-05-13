@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package python-mode
   :config
   (unbind-key "C-c C-t" python-mode-map)

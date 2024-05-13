@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; always follow symlinks
 (setq vc-follow-symlinks t)
 

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; basic settings
 (load-file (modules-path "az_detect_os.el"))
 (load-file (modules-path "az_packages.el"))

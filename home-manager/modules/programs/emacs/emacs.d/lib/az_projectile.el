@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package projectile
   :init
   (projectile-mode +1)

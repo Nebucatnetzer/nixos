@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; deft.el --- quickly browse, filter, and edit plain text notes
 
 ;;; Copyright (C) 2011-2017 Jason R. Blevins <jblevins@xbeta.org>

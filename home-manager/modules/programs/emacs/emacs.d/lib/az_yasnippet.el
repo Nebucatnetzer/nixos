@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; enable yasnippet
 (use-package yasnippet
   :config

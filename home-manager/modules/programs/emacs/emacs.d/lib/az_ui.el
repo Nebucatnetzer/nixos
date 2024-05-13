@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; Amx, an alternative interface for M-x in Emacs
 ;; https://github.com/DarwinAwardWinner/amx
 ;; It shows the keyboard commands assigned to the command

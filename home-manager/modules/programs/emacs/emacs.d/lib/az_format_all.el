@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package format-all
   :hook
   ((prog-mode . format-all-ensure-formatter)

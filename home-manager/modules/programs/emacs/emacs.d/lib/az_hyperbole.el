@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package hyperbole
   :config
   ;; define the local variable az-user-dir to a path and then check if the directory exists

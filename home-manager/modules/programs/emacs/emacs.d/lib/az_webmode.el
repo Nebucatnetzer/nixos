@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; web-mode for general web development
 (use-package web-mode
   :mode

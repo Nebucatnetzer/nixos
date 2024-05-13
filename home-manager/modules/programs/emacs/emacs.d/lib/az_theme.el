@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; Color theme
 ;; disable background in terminal
 (defun on-after-init ()

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;; flycheck --- my config for flycheck
 ;;; Commentary:
 ;;; https://www.reddit.com/r/emacs/comments/931la6/tip_how_to_adopt_flycheck_as_your_new_best_friend/

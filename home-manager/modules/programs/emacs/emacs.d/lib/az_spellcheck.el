@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; ispell settings
 (setenv "DICTIONARY" "en_GB")
 (setq ispell-program-name "hunspell")

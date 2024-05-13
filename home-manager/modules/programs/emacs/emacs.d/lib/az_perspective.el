@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package perspective
   :bind
   (("C-x C-b" . persp-ibuffer)         ; or use a nicer switcher, see below

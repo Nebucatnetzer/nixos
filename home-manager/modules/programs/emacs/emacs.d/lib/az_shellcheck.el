@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package flymake-shellcheck
   :commands flymake-shellcheck-load
   :init

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
   ;; Enable pretty bullets in org mode
   (use-package org-superstar

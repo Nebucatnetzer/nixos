@@ -124,6 +124,7 @@ in
           unstable.emacsPackages.consult
           unstable.emacsPackages.corfu
           unstable.emacsPackages.denote
+          unstable.emacsPackages.embark
         ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;

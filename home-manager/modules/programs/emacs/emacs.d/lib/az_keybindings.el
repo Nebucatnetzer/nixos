@@ -25,3 +25,6 @@
                           (active-minibuffer-window)) (error "Minibuffer is not active")))
 
 (bind-key "M-m" 'switch-to-minibuffer)
+
+;; search for a file in the project
+(global-set-key (kbd "C-c g") 'project-find-file)

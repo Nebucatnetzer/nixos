@@ -13,7 +13,10 @@
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
-
-  (setq consult-preview-key 'any)
-
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key "M-.")
   )

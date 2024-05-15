@@ -2,7 +2,6 @@
   bash,
   cacert,
   curl,
-  firefox,
   gnome,
   gnused,
   perl,
@@ -15,7 +14,6 @@ writeShellApplication {
     bash
     cacert
     curl
-    firefox
     gnused
     gnome.nautilus
     perl
@@ -42,6 +40,5 @@ writeShellApplication {
       --output "$HOME/Downloads/$title.epub"
 
     nautilus "$HOME"/Downloads
-    firefox "https://www.amazon.com/sendtokindle"
   '';
 }

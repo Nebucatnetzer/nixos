@@ -19,8 +19,8 @@ writeShellApplication {
     perl
     recode
   ];
+  excludeShellChecks = [ "SC2001" ];
   text = ''
-    # shellcheck disable=SC2001
     url=$1
     # get the title of the page
     title=$(curl -s "$url" | perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si' | recode html..)

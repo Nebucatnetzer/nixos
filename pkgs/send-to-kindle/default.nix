@@ -9,7 +9,7 @@
   writeShellApplication,
 }:
 writeShellApplication {
-  name = "rebuild";
+  name = "send-to-kindle";
   runtimeInputs = [
     bash
     cacert

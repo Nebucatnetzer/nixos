@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   az-media = pkgs.writeShellScriptBin "az-media" ''
     videos="videos"
@@ -8,6 +8,7 @@ let
         nvidia-offload mpv --shuffle --mute=yes "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=various/$directory/" &
     done
   '';
+  send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
 in
 {
   imports = [ ./management.nix ];
@@ -19,6 +20,7 @@ in
       freetube
       nodejs # needed for ansible-language-server
       plexamp
+      send-to-kindle
       sound-juicer
       unstable.tagger
       az-media

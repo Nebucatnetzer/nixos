@@ -2,6 +2,7 @@
   bash,
   cacert,
   curl,
+  firefox,
   gnome,
   gnused,
   perl,
@@ -14,13 +15,14 @@ writeShellApplication {
     bash
     cacert
     curl
+    firefox
     gnused
     gnome.nautilus
     perl
     recode
   ];
+  excludeShellChecks = [ "SC2001" ];
   text = ''
-    # shellcheck disable=SC2001
     url=$1
     # get the title of the page
     title=$(curl -s "$url" | perl -l -0777 -ne 'print $1 if /<title.*?>\s*(.*?)\s*<\/title/si' | recode html..)
@@ -40,6 +42,6 @@ writeShellApplication {
       --output "$HOME/Downloads/$title.epub"
 
     nautilus "$HOME"/Downloads
-    $DEFAULT_BROWSER "https://www.amazon.com/sendtokindle"
+    firefox "https://www.amazon.com/sendtokindle"
   '';
 }

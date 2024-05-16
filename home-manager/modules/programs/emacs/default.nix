@@ -69,7 +69,6 @@ in
           epkgs.ht
           epkgs.htmlize
           epkgs.hydra
-          epkgs.hyperbole
           epkgs.know-your-http-well
           epkgs.languagetool
           epkgs.lsp-mode
@@ -126,6 +125,7 @@ in
           unstable.emacsPackages.denote
           unstable.emacsPackages.embark
           unstable.emacsPackages.embark-consult
+          unstable.emacsPackages.hyperbole
           unstable.emacsPackages.marginalia
           unstable.emacsPackages.orderless
           unstable.emacsPackages.vertico

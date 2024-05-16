@@ -13,8 +13,8 @@
        If multiple entries exist, prompt with completion for a choice between them.
        Else create a new file."
       (interactive)
-      (let* ((today (format-time-string "%A %e %B %Y"))
-             (string (denote-sluggify today))
+      (let* ((today (format-time-string "%Y-%m-%d"))
+             (string (denote-sluggify-title today))
              (files (denote-directory-files-matching-regexp string)))
         (cond
          ((> (length files) 1)

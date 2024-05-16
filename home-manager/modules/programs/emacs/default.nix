@@ -125,6 +125,7 @@ in
           unstable.emacsPackages.corfu
           unstable.emacsPackages.denote
           unstable.emacsPackages.embark
+          unstable.emacsPackages.embark-consult
           unstable.emacsPackages.marginalia
           unstable.emacsPackages.orderless
           unstable.emacsPackages.vertico

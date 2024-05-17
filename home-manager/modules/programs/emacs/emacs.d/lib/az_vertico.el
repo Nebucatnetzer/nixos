@@ -2,7 +2,7 @@
 ;; https://github.com/minad/vertico
 (use-package vertico
   :init
-  (setq completion-styles '(basic substring))
+  (setq completion-styles '(basic partial-completion substring))
   (vertico-mode))
 
 (use-package savehist

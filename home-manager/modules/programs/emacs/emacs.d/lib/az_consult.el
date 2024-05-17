@@ -21,3 +21,7 @@
    consult--source-recent-file consult--source-project-recent-file
    :preview-key "M-.")
   )
+
+(use-package consult-projectile
+  :bind
+  (("C-x p" . consult-projectile)))

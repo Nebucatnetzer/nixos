@@ -1,4 +1,6 @@
 ;; -*- lexical-binding: t; -*-
+;; used because I can mark arbitrary directories as projects
+;; Haven't found an alternative to the projectile-project-search-path yet
 (use-package projectile
   :init
   (projectile-mode +1)
@@ -8,6 +10,6 @@
                                          "~/git_repos/work/")
         ;;projectile-completion-system 'ivy
         projectile-git-fd-args "-H -0 -E .git -tf --strip-cwd-prefix -c never"
+        projectile-completion-system 'default
         projectile-switch-project-action #'projectile-dired)
-  :bind (:map projectile-mode-map
-              ("C-x p" . projectile-command-map)))
+  )

@@ -51,6 +51,7 @@ in
           epkgs.bind-key
           epkgs.cfrs
           epkgs.citeproc
+          epkgs.consult-projectile
           epkgs.dap-mode
           epkgs.dired-hide-dotfiles
           epkgs.direnv

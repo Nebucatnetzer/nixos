@@ -59,7 +59,6 @@ in
           epkgs.elisp-refs
           epkgs.epl
           epkgs.evil
-          epkgs.evil-collection
           epkgs.evil-surround
           epkgs.f
           epkgs.flycheck
@@ -127,6 +126,7 @@ in
           unstable.emacsPackages.denote
           unstable.emacsPackages.embark
           unstable.emacsPackages.embark-consult
+          unstable.emacsPackages.evil-collection
           unstable.emacsPackages.hyperbole
           unstable.emacsPackages.marginalia
           unstable.emacsPackages.orderless

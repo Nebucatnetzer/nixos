@@ -8,6 +8,12 @@
   :init
   (global-corfu-mode))
 
+(use-package corfu-terminal
+  :init
+  (unless (display-graphic-p)
+    (corfu-terminal-mode +1))
+  )
+
 (use-package emacs
   :init
   ;; Enable indentation+completion using the TAB key.

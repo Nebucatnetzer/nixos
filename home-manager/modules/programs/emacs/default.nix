@@ -122,6 +122,7 @@ in
           unstable.emacsPackages.cape
           unstable.emacsPackages.consult
           unstable.emacsPackages.corfu
+          unstable.emacsPackages.corfu-terminal
           unstable.emacsPackages.denote
           unstable.emacsPackages.embark
           unstable.emacsPackages.embark-consult

@@ -32,7 +32,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = pkgs.unstable.emacs;
+      package = pkgs.emacs29;
       extraConfig = ''
         (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
                                             "-cp" "${pkgs.languagetool}/share/")
@@ -138,6 +138,7 @@ in
     services.emacs = {
       enable = true;
       client.enable = true;
+      package = pkgs.emacs29;
     };
 
     xdg.mimeApps = {

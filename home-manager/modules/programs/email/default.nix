@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -52,7 +53,10 @@ in
         tls.enable = true;
       };
     };
-    programs.mu.enable = true;
+    programs.mu = {
+      enable = true;
+      package = pkgs.unstable.mu;
+    };
     programs.offlineimap.enable = true;
     programs.msmtp.enable = true;
   };

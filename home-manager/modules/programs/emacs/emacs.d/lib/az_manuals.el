@@ -1,7 +1,4 @@
 ;; -*- lexical-binding: t; -*-
-(use-package discover-my-major
-  :bind ("C-h C-m" . discover-my-major))
-
 (use-package helpful
   :bind (("C-h f" . helpful-function)
          ("C-h v" . helpful-variable)

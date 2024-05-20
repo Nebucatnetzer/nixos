@@ -59,7 +59,6 @@ in
           unstable.emacsPackages.denote
           unstable.emacsPackages.dired-hide-dotfiles
           unstable.emacsPackages.direnv
-          unstable.emacsPackages.discover-my-major
           unstable.emacsPackages.elisp-refs
           unstable.emacsPackages.embark
           unstable.emacsPackages.embark-consult

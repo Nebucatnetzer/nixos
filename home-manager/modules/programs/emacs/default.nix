@@ -88,7 +88,6 @@ in
           unstable.emacsPackages.makey
           unstable.emacsPackages.marginalia
           unstable.emacsPackages.markdown-mode
-          unstable.emacsPackages.move-text
           unstable.emacsPackages.mu4e
           unstable.emacsPackages.nix-mode
           unstable.emacsPackages.olivetti

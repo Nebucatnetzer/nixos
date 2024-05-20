@@ -31,7 +31,6 @@
 (load-file (modules-path "az_hyperbole.el"))
 (load-file (modules-path "az_langtool.el"))
 (load-file (modules-path "az_markdown.el"))
-(load-file (modules-path "az_move_text.el"))
 (load-file (modules-path "az_olivetti.el"))
 (load-file (modules-path "az_org.el"))
 (load-file (modules-path "az_org_insert.el"))

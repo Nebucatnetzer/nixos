@@ -2,6 +2,7 @@
 ;; https://github.com/minad/consult
 ;; Example configuration for Consult
 (use-package consult
+  :demand t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-x b" . consult-buffer)

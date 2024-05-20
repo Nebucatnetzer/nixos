@@ -88,7 +88,7 @@
 
     (setq org-footnote-section "Resources")
 
-    (setq org-attach-directory "~/nextcloud/10_documents/99_archive/2023/resources/")
+    (setq org-attach-directory "~/nextcloud/10_documents/03_notes/resources/")
 
     (setq org-todo-keyword-faces
           `(("WAITING"   :foreground "#0087ff" :weight bold)

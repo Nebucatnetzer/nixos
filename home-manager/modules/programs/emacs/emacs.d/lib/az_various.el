@@ -78,3 +78,8 @@
 
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+
+(defun az-search-duckduckgo (query)
+  (interactive "sSearch DuckDuckGo: ")
+  (browse-url (concat "https://duckduckgo.com/?q=" query)))

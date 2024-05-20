@@ -25,4 +25,5 @@
 
 (use-package consult-projectile
   :bind
-  (("C-x p" . consult-projectile)))
+  (("C-x p" . consult-projectile)
+   ("C-c g". consult-projectile)))

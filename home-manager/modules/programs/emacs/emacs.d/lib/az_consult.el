@@ -26,4 +26,17 @@
 (use-package consult-projectile
   :bind
   (("C-x p" . consult-projectile)
+   ("C-c k" . az-consult-git-grep-filetype)
    ("C-c g". consult-projectile)))
+
+(defun az-consult-git-grep-filetype (query)
+  (interactive "s#: ")
+  (let* ((filetype (file-name-extension (buffer-file-name)))
+         (output-buffer-name "*git-grep*")
+         (default-directory (vc-root-dir))
+         (cmd (format "git grep --line-number --full-name %s -- '*.%s'" query filetype)))
+    (message "filetype: %s" filetype)
+    (message "cmd: %s" cmd)
+    (with-output-to-temp-buffer output-buffer-name
+      (shell-command cmd output-buffer-name)))
+  )

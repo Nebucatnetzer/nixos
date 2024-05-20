@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-notes)
   (use-package denote
+    :init
+    (require 'denote-org-extras)
     :bind
     (("C-c n r" . denote-rename-file)
      ("C-c n p" . az-note-from-region)

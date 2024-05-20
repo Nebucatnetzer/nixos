@@ -3,7 +3,6 @@
   :after consult
   :bind
   (("C-x C-b" . persp-ibuffer)         ; or use a nicer switcher, see below
-   ;;("C-x b" . persp-ivy-switch-buffer)
    ("C-x k" . persp-kill-buffer*))
   :custom
   (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here

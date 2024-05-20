@@ -54,14 +54,6 @@
                     (sort file-list
                           #'(lambda (x y) (time-less-p (nth 6 y) (nth 6 x))))))
 
-      ;; use ivy to select start-file
-      ;; (setq start-file (ivy-read
-      ;;                   (concat "Move selected file to " target-dir ":")
-      ;;                   file-list-sorted
-      ;;                   :re-builder #'ivy--regex
-      ;;                   :sort nil
-      ;;                   :initial-input nil))
-
       ;; add full path to start file and end-file
       (setq start-file-full
             (expand-file-name start-file bjm/conference-image-dir))

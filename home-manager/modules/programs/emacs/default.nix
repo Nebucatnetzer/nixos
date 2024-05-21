@@ -46,6 +46,7 @@ in
           unstable.emacsPackages.ag
           unstable.emacsPackages.amx
           unstable.emacsPackages.annotate
+          unstable.emacsPackages.ansible
           unstable.emacsPackages.avy
           unstable.emacsPackages.bind-key
           unstable.emacsPackages.cape

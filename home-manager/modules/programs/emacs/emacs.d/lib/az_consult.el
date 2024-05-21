@@ -27,6 +27,7 @@
   :bind
   (("C-x p" . consult-projectile)
    ("C-c k" . az-consult-git-grep-filetype)
+   ("C-s" . consult-line)
    ("C-c g". consult-projectile)))
 
 (defun az-consult-git-grep-filetype (query)

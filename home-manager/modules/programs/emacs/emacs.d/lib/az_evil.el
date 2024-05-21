@@ -8,6 +8,8 @@
   :config
   ;; Start these modes in emacs mode
   (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
+  (general-def :states 'motion
+    "/" 'consult-line)
   (setq global-evil-search-highlight-persist t)
 
   ;; Add vim keybindings to the bookmark menu

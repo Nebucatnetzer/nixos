@@ -32,6 +32,14 @@ in
     az-rapid-photo-downloader.enable = true;
     az-work-desktop.enable = true;
     az-yt-dlp.enable = true;
+    neovim = {
+      enable = true;
+      plugins = [ pkgs.unstable.vimPlugins.CopilotChat-nvim ];
+      extraLuaConfig = ''
+        require("copilot").setup({})
+        require("CopilotChat").setup({})
+      '';
+    };
   };
 
   services = {

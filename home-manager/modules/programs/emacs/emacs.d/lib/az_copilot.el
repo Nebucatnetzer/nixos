@@ -14,6 +14,7 @@
   (add-hook 'prog-mode-hook 'copilot-mode)
   (add-hook 'yaml-mode-hook 'copilot-mode)
   (setq copilot-idle-delay 1)
+  (setq copilot-indent-offset-warning-disable t)
 
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))

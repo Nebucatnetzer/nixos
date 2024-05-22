@@ -83,6 +83,7 @@ in
   fonts.fontconfig.enable = true;
   programs = {
     az-ansible.enable = true;
+    az-copilot-cli.enable = true;
     az-emacs.enable = true;
     az-fzf.enable = true;
     az-git = {
@@ -97,14 +98,6 @@ in
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';
       };
-    };
-    neovim = {
-      enable = true;
-      plugins = [ pkgs.unstable.vimPlugins.CopilotChat-nvim ];
-      extraLuaConfig = ''
-        require("copilot").setup({})
-        require("CopilotChat").setup({})
-      '';
     };
   };
   services = {

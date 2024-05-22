@@ -6,6 +6,7 @@
     ./programs/alacritty
     ./programs/ansible
     ./programs/calibre
+    ./programs/copilot-cli
     ./programs/czkawka
     ./programs/emacs
     ./programs/email

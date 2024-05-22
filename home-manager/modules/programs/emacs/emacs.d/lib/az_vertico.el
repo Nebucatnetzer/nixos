@@ -1,6 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 ;; https://github.com/minad/vertico
 (use-package vertico
+  :bind (:map vertico-map
+              ("M-[" . vertico-previous-group)
+              ("M-]" . vertico-next-group)
+              )
   :init
   (setq completion-styles '(basic partial-completion substring))
   (vertico-mode))

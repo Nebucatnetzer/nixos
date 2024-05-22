@@ -98,6 +98,14 @@ in
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';
       };
     };
+    neovim = {
+      enable = true;
+      plugins = [ pkgs.unstable.vimPlugins.CopilotChat-nvim ];
+      extraLuaConfig = ''
+        require("copilot").setup({})
+        require("CopilotChat").setup({})
+      '';
+    };
   };
   services = {
     az-attic-client.enable = true;

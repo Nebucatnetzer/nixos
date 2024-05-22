@@ -29,3 +29,9 @@
    ("C-c k" . az-consult-git-grep-filetype)
    ("C-s" . consult-line)
    ("C-c g". consult-projectile)))
+
+(defun az-consult-git-grep-filetype (query)
+  (interactive "s#: ")
+  (let* ((filetype (file-name-extension (buffer-file-name)))
+         (cmd (format "git --no-pager grep --ignore-case --line-number --full-name %s -- '*.%s'" query filetype)))
+    (completing-read "Select a file: " (split-string (shell-command-to-string cmd) "\n" t) nil t)))

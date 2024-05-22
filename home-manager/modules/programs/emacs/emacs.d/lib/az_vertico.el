@@ -6,7 +6,6 @@
               ("M-]" . vertico-next-group)
               )
   :init
-  (setq completion-styles '(basic partial-completion substring))
   (vertico-mode))
 
 (use-package savehist

@@ -21,15 +21,21 @@ let
     overlays = [
       overlay-unstable
       (final: prev: {
-        freshrss = prev.freshrss.overrideAttrs (_: {
-          version = "1.23.1";
-          src = pkgs.fetchFromGitHub {
-            owner = "FreshRSS";
-            repo = "FreshRSS";
-            rev = "c89073d60e491f775a13a9ec57915313eb073964";
-            sha256 = "sha256-DqfkbfvqGkAMQ2oawfb7Ggiv2u6/Qq6UgygLTNov9CA=";
-          };
-        });
+        freshrss = prev.freshrss.overrideAttrs (
+          _:
+          let
+            version = "1.24.0";
+          in
+          {
+            inherit version;
+            src = pkgs.fetchFromGitHub {
+              owner = "FreshRSS";
+              repo = "FreshRSS";
+              rev = version;
+              sha256 = "sha256-QMSSSSyInkWJP9im6RhyVItSgY30Nt2p1pRDdPPoaYI=";
+            };
+          }
+        );
       })
 
       # The following is requried for building images {

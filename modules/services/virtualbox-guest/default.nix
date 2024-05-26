@@ -8,8 +8,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    virtualisation.virtualbox.guest.enable = true;
-    virtualisation.virtualbox.guest.x11 = true;
+    virtualisation.virtualbox.guest = {
+      clipboard = true;
+      draganddrop = true;
+      enable = true;
+    };
     users.users.${config.az-username} = {
       extraGroups = [ "vboxsf" ];
     };

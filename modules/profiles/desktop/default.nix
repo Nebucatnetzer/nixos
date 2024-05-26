@@ -41,18 +41,19 @@ in
       redshift.enable = true;
       udisks2.enable = true;
       # Enable the X11 windowing system.
+      libinput = {
+        enable = true;
+        touchpad = {
+          accelSpeed = "0.3";
+          disableWhileTyping = true;
+          scrollMethod = "twofinger";
+        };
+      };
       xserver = {
         enable = true;
         displayManager.lightdm.enable = true;
         layout = "us";
         xkbOptions = "compose:ralt";
-        libinput = {
-          enable = true;
-          touchpad = {
-            accelSpeed = "0.3";
-            disableWhileTyping = true;
-            scrollMethod = "twofinger";
-          };
         };
       };
     };

@@ -28,8 +28,8 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
+      displayManager.defaultSession = "none+qtile";
       xserver = {
-        displayManager.defaultSession = "none+qtile";
         windowManager.qtile.enable = true;
       };
     };

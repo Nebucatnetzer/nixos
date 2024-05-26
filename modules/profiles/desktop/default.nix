@@ -52,8 +52,9 @@ in
       xserver = {
         enable = true;
         displayManager.lightdm.enable = true;
-        layout = "us";
-        xkbOptions = "compose:ralt";
+        xkb = {
+          layout = "us";
+          options = "compose:ralt";
         };
       };
     };

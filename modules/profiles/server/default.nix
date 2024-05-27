@@ -11,7 +11,7 @@ in
     system.autoUpgrade = {
       enable = true;
       dates = "03:00";
-      flake = "git+https://git.2li.ch/Nebucatnetzer/nixos#${config.networking.hostName}";
+      flake = lib.mkDefault "git+https://git.2li.ch/Nebucatnetzer/nixos#${config.networking.hostName}";
     };
   };
 }

@@ -332,14 +332,14 @@ mouse = [
     Click([mod], "Button2", lazy.window.toggle_floating()),
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
-main = None
-follow_mouse_focus = True
+auto_fullscreen = True
 bring_front_click = False
 cursor_warp = False
-auto_fullscreen = True
+dgroups_app_rules = []  # type: List
+dgroups_key_binder = None
 focus_on_window_activation = "smart"
+follow_mouse_focus = True
+main = None
 
 
 @hook.subscribe.startup_once

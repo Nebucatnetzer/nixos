@@ -19,9 +19,9 @@ terminal = guess_terminal()
 
 
 @lazy.layout.function
-def add_treetab_section(layout):
+def add_treetab_section(layout_arg):
     prompt = qtile.widgets_map["section_prompt"]
-    prompt.start_input("Section name", layout.cmd_add_section)
+    prompt.start_input("Section name", layout_arg.cmd_add_section)
 
 
 keys = [
@@ -103,13 +103,13 @@ group_matches = [
 ]
 
 
-def toscreen(qtile, group_name):
-    if group_name == qtile.current_screen.group.name:
-        qtile.current_screen.set_group(qtile.current_screen.previous_group)
+def toscreen(qtile_arg, group_name):
+    if group_name == qtile_arg.current_screen.group.name:
+        qtile_arg.current_screen.set_group(qtile_arg.current_screen.previous_group)
         return
-    for i, group in enumerate(qtile.groups):
+    for position, group in enumerate(qtile_arg.groups):
         if group_name == group.name:
-            qtile.current_screen.set_group(qtile.groups[i])
+            qtile_arg.current_screen.set_group(qtile_arg.groups[position])
             return
 
 

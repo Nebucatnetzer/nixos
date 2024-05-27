@@ -369,7 +369,7 @@ floating_layout = layout.Floating(
     ]
 )
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
+# Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
 # this string if your java app doesn't work correctly. We may as well just lie

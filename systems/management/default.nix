@@ -30,6 +30,6 @@
     az-restic-management.enable = true;
   };
   system.autoUpgrade = {
-    flake = "git+https://git.2li.ch/Nebucatnetzer/nixos/update-to-2405#${config.networking.hostName}";
+    flake = "git+https://git.2li.ch/Nebucatnetzer/nixos?ref=update-to-2405#${config.networking.hostName}";
   };
 }

@@ -8,7 +8,6 @@ skip=(
     "loki-test"
     "mobile"
     "test-raspi"
-    "staubfinger"
 )
 
 for host in "${hosts[@]}"; do

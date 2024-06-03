@@ -158,10 +158,19 @@ in
     environment.shellAliases = {
       occ = "${pkgs.docker}/bin/docker exec -u www-data nextcloud php occ";
     };
-    systemd.services.${nextcloudService}.after = [
-      "mysql.service"
-      "nginx.service"
-    ];
-    systemd.services.${cronService}.after = [ "mysql.service" ];
+    systemd.services.${nextcloudService} = {
+      after = [
+        "mysql.service"
+        "nginx.service"
+      ];
+      wants = [
+        "mysql.service"
+        "nginx.service"
+      ];
+    };
+    systemd.services.${cronService} = {
+      after = [ "mysql.service" ];
+      wants = [ "mysql.service" ];
+    };
   };
 }

@@ -47,6 +47,7 @@ in
 
     systemd.services."nextcloud-sync" = {
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       serviceConfig = {
         User = config.az-username;
         Type = "oneshot";
@@ -58,6 +59,7 @@ in
     systemd.services."nextcloud-monitor" = {
       requires = [ "network-online.target" ];
       after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
       serviceConfig = {
         User = config.az-username;
       };

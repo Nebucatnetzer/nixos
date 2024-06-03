@@ -1,30 +1,5 @@
+{ config, nixosConfig, ... }:
 {
-  config,
-  inputs,
-  nixosConfig,
-  pkgs,
-  system,
-  ...
-}:
-let
-  rebuild = pkgs.writeShellApplication {
-    name = "rebuild";
-    runtimeInputs = [
-      pkgs.nixos-rebuild
-      inputs.attic.packages.${system}.attic-client
-    ];
-    text = ''
-      nixos-rebuild -j auto switch --use-remote-sudo
-      if command -v attic &> /dev/null; then
-        attic push -j 2 prod /run/current-system
-      fi
-    '';
-  };
-in
-{
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.packages = [ rebuild ];
   programs = {
     dircolors = {
       enable = true;

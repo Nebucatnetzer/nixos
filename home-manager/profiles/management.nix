@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
 let
   unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
     until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
@@ -10,6 +15,17 @@ let
           -o User=root \
           $1
   '';
+  rebuild = pkgs.writeShellApplication {
+    name = "rebuild";
+    runtimeInputs = [
+      pkgs.nixos-rebuild
+      inputs.attic.packages.${system}.attic-client
+    ];
+    text = ''
+      nixos-rebuild -j auto switch --use-remote-sudo
+      attic push -j 2 prod /run/current-system
+    '';
+  };
 in
 {
   imports = [ ./headless.nix ];
@@ -19,6 +35,7 @@ in
       pkgs.exercism
       pkgs.git
       pkgs.nix-tree
+      rebuild
       unlock-luks
     ];
     shellAliases = {

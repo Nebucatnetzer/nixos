@@ -55,6 +55,7 @@
     ./services/rss-bridge
     ./services/syslog
     ./services/telegram-notifications
+    ./services/tiling-wm-base
     ./services/tlp
     ./services/virtualbox-guest
     ./services/zram-swap

@@ -32,6 +32,7 @@ in
       xserver = {
         windowManager.qtile.enable = true;
       };
+      az-tiling-wm-base.enable = true;
     };
     home-manager.users.${config.az-username} = {
       home.file.".config/qtile/config.py".source = ./config.py;

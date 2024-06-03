@@ -25,20 +25,14 @@ in
     age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
     services = {
       az-pipewire.enable = true;
-      az-qtile.enable = true;
       flatpak.enable = true;
       fwupd.enable = true;
-      gnome = {
-        gnome-keyring.enable = true;
-        tracker.enable = true;
-      };
       gvfs.enable = true;
       picom = {
         enable = true;
         vSync = true;
       };
       printing.enable = true;
-      redshift.enable = true;
       udisks2.enable = true;
       # Enable the X11 windowing system.
       libinput = {
@@ -51,7 +45,6 @@ in
       };
       xserver = {
         enable = true;
-        displayManager.lightdm.enable = true;
         xkb = {
           layout = "us";
           options = "compose:ralt";
@@ -77,9 +70,6 @@ in
       ];
     };
 
-    # Enable keyring
-    security.pam.services.lightdm.enableGnomeKeyring = true;
-
     # Enable sound.
     sound.enable = true;
 
@@ -91,19 +81,6 @@ in
       az-scripts.enable = true;
     };
 
-    xdg = {
-      portal = {
-        enable = true;
-        xdgOpenUsePortal = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-        config = {
-          common = {
-            default = [ "gtk" ];
-            "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-          };
-        };
-      };
-    };
     environment = {
       systemPackages = with pkgs; [
         # what I consider to be system packages
@@ -111,15 +88,11 @@ in
         appimage-run
         brightnessctl
         firefox
-        gnome.file-roller
-        gnome.gnome-screenshot
         lm_sensors
-        lxappearance
         networkmanager-openvpn
         p7zip
         pavucontrol
         quickemu
-        rofi
         unrar
       ];
       variables = {

@@ -68,9 +68,10 @@
   services = {
     az-docker.enable = true;
     az-restic-client-desktop.enable = true;
-    az-tlp.enable = true;
     az-x86.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
+    xserver.desktopManager.gnome.enable = true;
+    xserver.displayManager.gdm.enable = true;
   };
   virtualisation.virtualbox.host.enable = true;
 }

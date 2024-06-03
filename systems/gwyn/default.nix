@@ -79,6 +79,7 @@
 
   services = {
     az-logs-share.enable = true;
+    az-qtile.enable = true;
     az-restic-client-desktop.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;

@@ -16,6 +16,9 @@ in
                     queue.type="linkedList" queue.size="10000")
       '';
     };
-    systemd.services.syslog.after = [ "network-online.target" ];
+    systemd.services.syslog = {
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+    };
   };
 }

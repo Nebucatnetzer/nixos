@@ -76,6 +76,15 @@ in
         "prod:46pIZhqoueg1P4IPp8ciArCUgSXWJZAq63CwLTQN/uA="
       ];
     };
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+  };
+  systemd.user.timers.nix-gc = {
+    Timer = {
+      Persistent = true;
+    };
   };
 
   fonts.fontconfig.enable = true;

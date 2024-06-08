@@ -24,7 +24,7 @@ let
         freshrss = prev.freshrss.overrideAttrs (
           _:
           let
-            version = "1.24.0";
+            version = "1.24.1";
           in
           {
             inherit version;
@@ -32,7 +32,7 @@ let
               owner = "FreshRSS";
               repo = "FreshRSS";
               rev = version;
-              sha256 = "sha256-QMSSSSyInkWJP9im6RhyVItSgY30Nt2p1pRDdPPoaYI=";
+              sha256 = "sha256-AAOON1RdbG6JSnCc123jmIlIXHOE1PE49BV4hcASO/s=";
             };
           }
         );

@@ -10,6 +10,7 @@ let
   system = pkgs.system;
 in
 {
+  age.secrets.cacheReadonlyToken.file = "${inputs.self}/scrts/cache_readonly.age";
   # The rough location
   location = {
     latitude = 46.948;
@@ -138,6 +139,7 @@ in
       fallback = true;
       min-free = 1000000000;
       max-free = 10000000000;
+      netrc-file = config.age.secrets.cacheReadonlyToken.path;
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"

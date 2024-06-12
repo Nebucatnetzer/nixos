@@ -128,17 +128,16 @@ in
 
     package = pkgs.nix;
     settings = {
-      warn-dirty = false;
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"
         "flakes"
         "repl-flake"
       ];
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
+      connect-timeout = 5;
+      fallback = true;
+      min-free = 1000000000;
+      max-free = 10000000000;
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
@@ -151,10 +150,11 @@ in
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "prod:46pIZhqoueg1P4IPp8ciArCUgSXWJZAq63CwLTQN/uA="
       ];
-      min-free = 1000000000;
-      max-free = 10000000000;
-      connect-timeout = 5;
-      fallback = true;
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+      warn-dirty = false;
     };
     # enable garbage collection
     gc = {

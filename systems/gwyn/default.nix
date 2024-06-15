@@ -95,4 +95,5 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.podman.enable = true;
 }

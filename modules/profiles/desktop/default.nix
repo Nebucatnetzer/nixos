@@ -47,7 +47,7 @@ in
         enable = true;
         xkb = {
           layout = "us";
-          options = "compose:ralt";
+          options = "compose:caps";
         };
       };
     };

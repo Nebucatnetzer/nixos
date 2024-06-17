@@ -80,6 +80,7 @@ in
       az-nix-direnv.enable = true;
       az-scripts.enable = true;
     };
+    hardware.keyboard.zsa.enable = true;
 
     environment = {
       systemPackages = with pkgs; [
@@ -94,6 +95,7 @@ in
         pavucontrol
         quickemu
         unrar
+        wally-cli
       ];
       variables = {
         WINIT_X11_SCALE_FACTOR = "1";

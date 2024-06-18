@@ -62,6 +62,7 @@ in
       log-lines = 25;
       experimental-features = "nix-command flakes repl-flake";
       fallback = true;
+      netrc-file = "${config.home.homeDirectory}/.config/nix/netrc";
       warn-dirty = false;
       substituters = [
         "https://nix-community.cachix.org"

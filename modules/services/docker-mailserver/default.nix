@@ -33,14 +33,14 @@ in
     age.secrets.dkim2liCh = {
       file = "${inputs.self}/scrts/dkim_2li.ch.age";
       mode = "600";
-      owner = "111";
-      group = "114";
+      owner = "113";
+      group = "115";
     };
     age.secrets.dkimZweiliCh = {
       file = "${inputs.self}/scrts/dkim_zweili.ch.age";
       mode = "600";
-      owner = "111";
-      group = "114";
+      owner = "113";
+      group = "115";
     };
 
     environment.etc = {

@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.services.az-mailserver;
-  version = "13.3.1";
+  version = "14.0.0";
   mailserver-setup =
     (pkgs.writeScriptBin "mailserver-setup" "${builtins.readFile (
       pkgs.fetchurl {

@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.services.az-mailserver;
-  version = "13.3.1";
+  version = "14.0.0";
   mailserver-setup =
     (pkgs.writeScriptBin "mailserver-setup" "${builtins.readFile (
       pkgs.fetchurl {
@@ -20,6 +20,14 @@ let
           ${old.buildCommand}
            patchShebangs $out'';
       });
+  rspam-train = pkgs.writeShellApplication {
+    name = "rspam-train";
+    runtimeInputs = [ pkgs.docker ];
+    text = ''
+      docker exec mailserver bash -c "rspamc learn_ham /var/mail/*/*/.Archive"
+      docker exec mailserver bash -c "rspamc learn_spam /var/mail/*/*/.Junk"
+    '';
+  };
   volumePath = "/mnt/server-data/docker-mailserver";
 in
 {
@@ -33,14 +41,14 @@ in
     age.secrets.dkim2liCh = {
       file = "${inputs.self}/scrts/dkim_2li.ch.age";
       mode = "600";
-      owner = "113";
-      group = "115";
+      owner = "111";
+      group = "114";
     };
     age.secrets.dkimZweiliCh = {
       file = "${inputs.self}/scrts/dkim_zweili.ch.age";
       mode = "600";
-      owner = "113";
-      group = "115";
+      owner = "111";
+      group = "114";
     };
 
     environment.etc = {
@@ -54,7 +62,10 @@ in
       };
     };
 
-    environment.systemPackages = [ mailserver-setup ];
+    environment.systemPackages = [
+      mailserver-setup
+      rspam-train
+    ];
 
     fileSystems."${volumePath}" = {
       device = "10.7.89.108:server_data/docker-mailserver";
@@ -96,10 +107,9 @@ in
           "/run/agenix:/run/agenix:ro"
           "/run/agenix.d:/run/agenix.d:ro"
           "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
-          "/var/lib/redis:/var/lib/redis"
           "${volumePath}/maildata:/var/mail"
-          "${volumePath}/mailstate:/var/mail-state"
           "${volumePath}/maillogs:/var/log/mail"
+          "/var/lib/mailserver/mailstate:/var/mail-state"
           "${volumePath}/config:/tmp/docker-mailserver"
         ];
         extraOptions = [

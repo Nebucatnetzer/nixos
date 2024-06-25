@@ -96,9 +96,7 @@ in
           "/run/agenix:/run/agenix:ro"
           "/run/agenix.d:/run/agenix.d:ro"
           "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
-          "/var/lib/redis:/var/lib/redis"
           "${volumePath}/maildata:/var/mail"
-          "${volumePath}/mailstate:/var/mail-state"
           "${volumePath}/maillogs:/var/log/mail"
           "${volumePath}/config:/tmp/docker-mailserver"
         ];

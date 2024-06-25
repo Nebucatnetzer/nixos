@@ -98,6 +98,7 @@ in
           "/var/lib/acme/mail.zweili.org:/etc/letsencrypt/live/mail.zweili.org:ro"
           "${volumePath}/maildata:/var/mail"
           "${volumePath}/maillogs:/var/log/mail"
+          "/var/lib/mailserver/mailstate:/var/mail-state"
           "${volumePath}/config:/tmp/docker-mailserver"
         ];
         extraOptions = [

@@ -20,6 +20,14 @@ let
           ${old.buildCommand}
            patchShebangs $out'';
       });
+  rspam-train = pkgs.writeShellApplication {
+    name = "rspam-train";
+    runtimeInputs = [ pkgs.docker ];
+    text = ''
+      docker exec mailserver bash -c "rspamc learn_ham /var/mail/*/*/.Archive"
+      docker exec mailserver bash -c "rspamc learn_spam /var/mail/*/*/.Junk"
+    '';
+  };
   volumePath = "/mnt/server-data/docker-mailserver";
 in
 {
@@ -54,7 +62,10 @@ in
       };
     };
 
-    environment.systemPackages = [ mailserver-setup ];
+    environment.systemPackages = [
+      mailserver-setup
+      rspam-train
+    ];
 
     fileSystems."${volumePath}" = {
       device = "10.7.89.108:server_data/docker-mailserver";

@@ -100,7 +100,6 @@ in
     };
   };
   services = {
-    az-attic-client.enable = true;
     ssh-agent.enable = true;
   };
 }

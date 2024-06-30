@@ -24,6 +24,7 @@ in
 
     age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
     services = {
+      az-clipcat.enable = true;
       az-pipewire.enable = true;
       flatpak.enable = true;
       fwupd.enable = true;

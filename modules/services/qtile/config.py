@@ -69,6 +69,7 @@ keys = [
     Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
     Key([mod], "F3", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
     Key([mod], "F5", lazy.spawn("toggle_touchpad.sh")),
+    Key([], "Print", lazy.spawn("gnome-screenshot --clipboard --area")),
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play")),
     Key([], "XF86AudioPause", lazy.spawn("playerctl pause")),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),

@@ -73,5 +73,4 @@
     xserver.desktopManager.gnome.enable = true;
     xserver.displayManager.gdm.enable = true;
   };
-  virtualisation.virtualbox.host.enable = true;
 }

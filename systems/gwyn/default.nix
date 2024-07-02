@@ -93,7 +93,4 @@
       ACTION=="add", ATTR{idVendor}=="0c45", ATTR{idProduct}=="671d", RUN="${pkgs.bash}/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"
     '';
   };
-
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.podman.enable = true;
 }

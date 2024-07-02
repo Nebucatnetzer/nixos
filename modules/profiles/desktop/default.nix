@@ -94,6 +94,7 @@ in
         networkmanager-openvpn
         p7zip
         pavucontrol
+        podman-compose
         quickemu
         unrar
         wally-cli
@@ -106,5 +107,7 @@ in
         QT_SCALE_FACTOR = "1.25";
       };
     };
+    virtualisation.virtualbox.host.enable = true;
+    virtualisation.podman.enable = true;
   };
 }

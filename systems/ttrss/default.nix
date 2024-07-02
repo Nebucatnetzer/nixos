@@ -27,5 +27,6 @@
       domain = "rss-bridge.zweili.org";
     };
     az-freshrss.enable = true;
+    az-firefly.enable = true;
   };
 }

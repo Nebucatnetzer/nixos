@@ -50,6 +50,8 @@ in
   "cache_readonly.age".publicKeys = all;
   "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];
+  "firefly_key.age".publicKeys = defaultKeys ++ [ ttrss ];
+  "mail_password.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];

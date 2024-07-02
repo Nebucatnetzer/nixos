@@ -42,6 +42,7 @@ in
           redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i heimdall.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
+          redirect scheme https code 301 if { hdr(host) -i firefly.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i cache.zweili.org } !{ ssl_fc }
@@ -61,6 +62,7 @@ in
           use_backend proxy if { req_ssl_sni -i heimdall.2li.ch }
           use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
           use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
+          use_backend rss_server if { req_ssl_sni -i firefly.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
           use_backend cache_server if { req_ssl_sni -i cache.zweili.org }

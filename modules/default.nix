@@ -23,6 +23,7 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
+    ./services/actualbudget
     ./services/attic-server
     ./services/common-x86
     ./services/clipcat

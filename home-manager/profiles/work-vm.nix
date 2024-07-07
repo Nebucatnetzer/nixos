@@ -2,10 +2,7 @@
 {
   imports = [ "${inputs.self}/home-manager/modules" ];
   home = {
-    packages = with pkgs; [
-      nodejs # needed for ansible-language-server
-      plexamp
-    ];
+    packages = with pkgs; [ plexamp ];
   };
 
   programs = {

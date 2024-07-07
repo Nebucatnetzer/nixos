@@ -18,7 +18,6 @@ in
       digikam
       exercism
       freetube
-      nodejs # needed for ansible-language-server
       plexamp
       send-to-kindle
       sound-juicer

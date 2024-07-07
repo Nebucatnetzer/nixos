@@ -78,7 +78,6 @@ in
           unstable.emacsPackages.htmlize
           unstable.emacsPackages.hydra
           unstable.emacsPackages.hyperbole
-          unstable.emacsPackages.journalctl-mode
           unstable.emacsPackages.know-your-http-well
           unstable.emacsPackages.languagetool
           unstable.emacsPackages.lsp-mode

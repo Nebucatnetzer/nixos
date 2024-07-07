@@ -56,7 +56,6 @@
 
 ;; various third party
 (load-file (modules-path "az_keyring_update.el"))
-(load-file (modules-path "az_journalctl.el"))
 (load-file (modules-path "az_manuals.el"))
 (load-file (modules-path "az_mu4e.el"))
 (load-file (modules-path "az_treemacs.el"))

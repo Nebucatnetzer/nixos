@@ -20,9 +20,10 @@ in
     activation.report-changes = config.lib.dag.entryAnywhere ''
       ${pkgs.nix}/bin/nix store diff-closures $oldGenPath $newGenPath || true
     '';
-    sessionPath = [ "$HOME/node_modules/.bin" ];
+    sessionPath = [ "$HOME/.local/share/node_modules/bin" ];
     sessionVariables = {
       NIX_PATH = "nixpkgs=${pkgs.path}";
+      NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
       PATH = "$PATH:$HOME/.local/bin";
     };
     packages = with pkgs; [

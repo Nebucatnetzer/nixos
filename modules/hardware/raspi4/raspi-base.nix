@@ -61,6 +61,7 @@ in
       }
     ];
     services.az-zram-swap.enable = true;
+    zramSwap.algorithm = "lz4";
 
     boot = {
       initrd.availableKernelModules = [

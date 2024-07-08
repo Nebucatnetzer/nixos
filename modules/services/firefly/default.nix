@@ -28,6 +28,7 @@ in
       group = config.services.firefly-iii.group;
     };
     services = {
+      az-docker.enable = true;
       nginx = {
         recommendedOptimisation = true;
         recommendedTlsSettings = true;
@@ -55,6 +56,20 @@ in
           MAIL_ENCRYPTION = "tls";
         };
         virtualHost = "firefly.zweili.org";
+      };
+    };
+    networking.firewall.allowedTCPPorts = [ 8080 ];
+    virtualisation.oci-containers = {
+      backend = "docker";
+      containers."firefly-importer" = {
+        image = "fireflyiii/data-importer:version-1.5.2";
+        autoStart = true;
+        environment = {
+          FIREFLY_III_URL = "https://${config.services.firefly-iii.virtualHost}";
+          TZ = "Europe/Zurich";
+        };
+        ports = [ "8080:8080" ];
+        extraOptions = [ "--log-opt=tag='firefly-importer'" ];
       };
     };
   };

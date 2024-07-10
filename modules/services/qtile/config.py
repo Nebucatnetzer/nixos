@@ -81,28 +81,27 @@ keys = [
 ]
 
 group_matches = [
+    None,  # a
+    None,  # s
+    None,  # d
+    None,  # f
+    [
+        Match(wm_class="JDownloader"),
+        Match(wm_class="Plexamp"),
+    ],  # g
+    None,  # h
+    [
+        Match(wm_class="linphone"),
+    ],  # j
+    [
+        Match(wm_class="Steam"),
+    ],  # k
     [
         Match(wm_class="TelegramDesktop"),
         Match(wm_class="Signal"),
         Match(title="WhatsApp"),
         Match(title="Threema"),
-    ],  # 0
-    None,  # 1
-    None,  # 2
-    None,  # 3
-    None,  # 4
-    None,  # 5
-    [
-        Match(wm_class="JDownloader"),
-        Match(wm_class="Plexamp"),
-    ],  # 6
-    None,  # 7
-    [
-        Match(wm_class="linphone"),
-    ],  # 8
-    [
-        Match(wm_class="Steam"),
-    ],  # 9
+    ],  # l
 ]
 
 

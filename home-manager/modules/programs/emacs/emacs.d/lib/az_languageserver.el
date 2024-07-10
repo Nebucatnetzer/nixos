@@ -21,6 +21,9 @@
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\node_modules\\'")
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\var'")
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.devenv\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.direnv\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.gitlab\\'")
+  (add-to-list 'lsp-file-watch-ignored-files "[/\\\\]\\.gitlab-ci\\.yml\\'")
   :commands lsp)
 
 (use-package lsp-nix

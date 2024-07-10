@@ -26,18 +26,20 @@ def add_treetab_section(layout_arg):
 
 keys = [
     # Switch between windows in current stack pane
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod, "mod1"], "j", lazy.layout.down()),
+    Key([mod, "mod1"], "k", lazy.layout.up()),
+    Key([mod, "mod1"], "h", lazy.layout.left()),
+    Key([mod, "mod1"], "l", lazy.layout.right()),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     # Move windows around
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), lazy.layout.move_down()),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), lazy.layout.move_up()),
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
+    Key(
+        [mod, "mod1", "shift"], "j", lazy.layout.shuffle_down(), lazy.layout.move_down()
+    ),
+    Key([mod, "mod1", "shift"], "k", lazy.layout.shuffle_up(), lazy.layout.move_up()),
+    Key([mod, "mod1", "shift"], "h", lazy.layout.shuffle_left()),
+    Key([mod, "mod1", "shift"], "l", lazy.layout.shuffle_right()),
     Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "shift"], "space", add_treetab_section),
+    Key([mod, "shift"], "Tab", add_treetab_section),
     Key(
         [mod, "shift"],
         "Return",
@@ -57,13 +59,13 @@ keys = [
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
-    Key([mod], "d", lazy.spawn("rofi -show drun -show-icons")),
+    Key([mod], "space", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod], "e", lazy.spawn("nautilus")),
     Key([mod], "p", lazy.spawn("xrandr --auto")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
-    Key([mod], "s", lazy.spawn("rofi-search")),
+    Key(["control", "shift"], "s", lazy.spawn("rofi-search")),
     Key([mod], "w", lazy.spawn("firefox")),
-    Key([mod], "Tab", lazy.spawn("rofi -show window")),
+    Key(["mod1"], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
     Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
@@ -114,7 +116,7 @@ def toscreen(qtile_arg, group_name):
             return
 
 
-groups = [Group(name=i, matches=group_matches[int(i)]) for i in "1234567890"]
+groups = [Group(name=c, matches=group_matches[i]) for i, c in enumerate("asdfghjkl")]
 
 for i in groups:
     keys.extend(

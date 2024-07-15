@@ -13,6 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.pathsToLink = [ "share/thumbnailers" ];
     environment = {
       systemPackages = with pkgs; [
         ffmpegthumbnailer

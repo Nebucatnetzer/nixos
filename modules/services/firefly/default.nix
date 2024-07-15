@@ -29,6 +29,7 @@ in
     };
     services = {
       az-docker.enable = true;
+      az-acme-base.enable = true;
       nginx = {
         recommendedOptimisation = true;
         recommendedTlsSettings = true;

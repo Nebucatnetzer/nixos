@@ -38,6 +38,7 @@
           modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
         }).config.system.build.sdImage;
       raspis = {
+        "budget" = { };
         "git" = { };
         "plex" = { };
         "proxy" = { };

@@ -63,8 +63,7 @@ in
           use_backend proxy if { req_ssl_sni -i heimdall.2li.ch }
           use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
           use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
-          use_backend rss_server if { req_ssl_sni -i actualbudget.zweili.org }
-          use_backend rss_server if { req_ssl_sni -i firefly.zweili.org }
+          use_backend budget_server if { req_ssl_sni -i firefly.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
           use_backend cache_server if { req_ssl_sni -i cache.zweili.org }
@@ -80,6 +79,9 @@ in
         backend nextcloud_server
           mode tcp
           server server1 10.7.89.103:443 check
+        backend budget_server
+          mode tcp
+          server server1 10.7.89.113:443 check
         backend rss_server
           mode tcp
           server server1 10.7.89.115:443 check

@@ -42,7 +42,6 @@ in
           redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i heimdall.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
-          redirect scheme https code 301 if { hdr(host) -i actualbudget.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i firefly.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }

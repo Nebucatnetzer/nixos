@@ -96,6 +96,16 @@ create_initrd_keys() {
     ssh-keygen -t ed25519 -N "" -C "" -f $ROOT_DIR/etc/secrets/initrd/ssh_host_ed25519_key
 }
 
+create_ssh_host_keys() {
+    host="budget"
+    mkdir -p $ROOT_DIR/etc/ssh
+    ssh-keygen -t ed25519 -N "" -C "root@$host" -f $ROOT_DIR/etc/ssh/ssh_host_ed25519_key
+    ssh-keygen -N "" -C "root@$host" -t rsa -b 4096 -f $ROOT_DIR/etc/ssh/ssh_host_rsa_key
+    ssh-keygen -N "" -C "root@$host" -t ecdsa -f $ROOT_DIR/etc/ssh/ssh_host_ecdsa_key
+    echo ""
+    cat $ROOT_DIR/etc/ssh/ssh_host_ed25519_key.pub
+}
+
 create_pi() {
     create_gpt
     create_boot_partition
@@ -105,6 +115,7 @@ create_pi() {
     mount_partitions
     create_uefi
     create_initrd_keys
+    create_ssh_host_keys
 }
 
 create_pc() {
@@ -117,6 +128,7 @@ create_pc() {
     create_ext4
     mount_partitions
     create_initrd_keys
+    create_ssh_host_keys
 }
 
 create_pi

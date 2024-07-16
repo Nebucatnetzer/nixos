@@ -8,6 +8,7 @@ let
     andreas-nixos-vm
   ];
 
+  budget = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTGHQfWsJox3ssMGZnrLMlE9XaYBtXtMKSw6eYkEJIT";
   git = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDO40In82pEqQJexG9nlXOsYb4T/sYrb/4EVtGc0bfEb";
   gwyn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNmtdodpXHcwEsX2x89RyxjX5F6eERanzM4OXlNDx50";
   loki-test = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqCmY9F2nWasFtmBpk401lacclXeddDm+OTZ4+tNM94";
@@ -21,6 +22,7 @@ let
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILX9Sm69VGPrek8PRgWa8xJPqzRrixs1g+8hBu2F6265";
   ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfWq/ZWeMNIMqXsI4rnkwR+wc/FVdb2jA70sdLMEnyX";
   systems = [
+    budget
     git
     gwyn
     loki-test
@@ -50,8 +52,8 @@ in
   "cache_readonly.age".publicKeys = all;
   "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];
-  "firefly_key.age".publicKeys = defaultKeys ++ [ ttrss ];
-  "mail_password.age".publicKeys = defaultKeys ++ [ ttrss ];
+  "firefly_key.age".publicKeys = defaultKeys ++ [ budget ];
+  "mail_password.age".publicKeys = defaultKeys ++ [ budget ];
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];

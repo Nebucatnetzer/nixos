@@ -18,6 +18,7 @@
   services = {
     az-firefly.enable = true;
     az-restic-client-server = {
+      enable = true;
       path = config.services."firefly-iii".dataDir;
       tag = "firefly";
       time = "22:30";

@@ -29,7 +29,4 @@
     az-nix-direnv.enable = true;
     az-restic-management.enable = true;
   };
-  system.autoUpgrade = {
-    flake = "git+https://git.2li.ch/Nebucatnetzer/nixos#${config.networking.hostName}";
-  };
 }

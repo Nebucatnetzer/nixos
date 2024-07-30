@@ -1,3 +1,0 @@
-[submodule "home-manager/modules/programs/emacs/emacs.d/lib/copilot"]
-	path = home-manager/modules/programs/emacs/emacs.d/lib/copilot
-	url = https://github.com/zerolfx/copilot.el.git

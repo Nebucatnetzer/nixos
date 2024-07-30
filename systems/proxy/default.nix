@@ -61,6 +61,9 @@
             proxyPass = "http://127.0.0.1:8080";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
+          extraConfig = ''
+            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          '';
         };
         "heimdall.2li.ch" = {
           enableACME = true;
@@ -76,6 +79,9 @@
             proxyPass = "http://127.0.0.1:8081";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
+          extraConfig = ''
+            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          '';
         };
       };
     };

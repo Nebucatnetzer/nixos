@@ -34,6 +34,9 @@ in
             proxyPass = "http://127.0.0.1:${toString cfg.port}";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
+          extraConfig = ''
+            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          '';
         };
       };
     };

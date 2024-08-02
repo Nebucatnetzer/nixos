@@ -32,6 +32,7 @@ in
     az-rapid-photo-downloader.enable = true;
     az-work-desktop.enable = true;
     az-yt-dlp.enable = true;
+    az-xcompose.enable = true;
   };
 
   services = {

@@ -30,5 +30,6 @@
     ./services/dunst
     ./services/espanso
     ./services/grobi
+    ./services/xcompose
   ];
 }

@@ -16,7 +16,7 @@ in
     home.packages = with pkgs; [
       fd
       multimarkdown
-      nil # Nix language server
+      nixd # Nix language server
       nodePackages.prettier # formatting files
       nodePackages.prettier-plugin-toml
       unstable.nixfmt-rfc-style

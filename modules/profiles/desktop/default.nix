@@ -49,7 +49,7 @@ in
         xkb = {
           layout = "us";
           options = "compose:caps";
-          variant = "altgr-intl";
+          variant = "intl";
         };
       };
     };

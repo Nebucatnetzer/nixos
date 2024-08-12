@@ -90,6 +90,7 @@ in
         alacritty
         appimage-run
         brightnessctl
+        clementine
         firefox
         lm_sensors
         networkmanager-openvpn

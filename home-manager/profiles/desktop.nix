@@ -27,6 +27,7 @@ in
   };
 
   programs = {
+    az-beets.enable = true;
     az-calibre.enable = true;
     az-copilot-cli.enable = true;
     az-rapid-photo-downloader.enable = true;

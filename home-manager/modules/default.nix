@@ -5,6 +5,7 @@
     ./common
     ./programs/alacritty
     ./programs/ansible
+    ./programs/beets
     ./programs/calibre
     ./programs/copilot-cli
     ./programs/czkawka

@@ -13,16 +13,16 @@ in
 {
   imports = [ ./management.nix ];
   home = {
-    packages = with pkgs; [
-      chromium # needed for cloud gaming
-      digikam
-      exercism
-      freetube
-      plexamp
-      send-to-kindle
-      sound-juicer
-      unstable.tagger
+    packages = [
+      pkgs.chromium # needed for cloud gaming
+      pkgs.digikam
+      pkgs.exercism
+      pkgs.freetube
+      pkgs.plexamp
+      pkgs.sound-juicer
+      pkgs.unstable.tagger
       az-media
+      send-to-kindle
     ];
   };
 

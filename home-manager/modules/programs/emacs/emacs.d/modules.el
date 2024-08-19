@@ -25,12 +25,11 @@
 (load-file (modules-path "az_vertico.el"))
 
 ;; note taking and writing
-(load-file (modules-path "az_deft_raw.el"))
-(load-file (modules-path "az_deft.el"))
 (load-file (modules-path "az_denote.el"))
 (load-file (modules-path "az_hyperbole.el"))
 (load-file (modules-path "az_langtool.el"))
 (load-file (modules-path "az_markdown.el"))
+(load-file (modules-path "az_notes.el"))
 (load-file (modules-path "az_olivetti.el"))
 (load-file (modules-path "az_org.el"))
 (load-file (modules-path "az_org_insert.el"))

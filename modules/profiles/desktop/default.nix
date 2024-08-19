@@ -49,7 +49,6 @@ in
         xkb = {
           layout = "us";
           options = "compose:caps";
-          variant = "intl";
         };
       };
     };

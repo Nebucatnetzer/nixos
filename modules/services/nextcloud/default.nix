@@ -20,7 +20,7 @@ let
   };
   networkName = "nextcloud";
   # https://github.com/Nebucatnetzer/nextcloud-smb
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:29.0.3@sha256:acfebc87903243395a52522dde26a03fe994cb571cb4cd0d9efe67632076c282";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:29.0.4@sha256:4007e7367f45ccf7de523f8ca4c7909929e7261a54641c2c6f73fd9b7f72434a";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   volumePath = "/mnt/server-data/nextcloud";
 in

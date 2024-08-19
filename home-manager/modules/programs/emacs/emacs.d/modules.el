@@ -41,6 +41,7 @@
 (load-file (modules-path "az_direnv.el"))
 (load-file (modules-path "az_format_all.el"))
 (load-file (modules-path "az_flycheck.el"))
+(load-file (modules-path "az_haskell.el"))
 (load-file (modules-path "az_languageserver.el"))
 (load-file (modules-path "az_magit.el"))
 (load-file (modules-path "az_nix.el"))

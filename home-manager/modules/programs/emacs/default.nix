@@ -71,6 +71,7 @@ in
           epkgs.flymake-shellcheck
           epkgs.format-all
           epkgs.general
+          epkgs.haskell-mode
           epkgs.helpful
           epkgs.highlight-indent-guides
           epkgs.ht
@@ -79,6 +80,7 @@ in
           epkgs.hyperbole
           epkgs.know-your-http-well
           epkgs.languagetool
+          epkgs.lsp-haskell
           epkgs.lsp-mode
           epkgs.lsp-treemacs
           epkgs.lsp-ui

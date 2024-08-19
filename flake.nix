@@ -5,10 +5,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    attic.url = "github:zhaofengli/attic";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";

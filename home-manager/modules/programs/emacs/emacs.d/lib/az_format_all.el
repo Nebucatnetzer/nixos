@@ -43,7 +43,7 @@
           ("GLSL" clang-format)
           ("Go" gofmt)
           ("GraphQL" prettier)
-          ("Haskell" brittany)
+          ("Haskell" ormolu)
           ("HTML" html-tidy)
           ("Java" clang-format)
           ("JavaScript" prettier)

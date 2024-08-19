@@ -40,11 +40,14 @@
         (user-error
          "No region is available")))
     (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
+    (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
     (setq denote-rename-buffer-mode 1
           denote-journal-extras-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
           denote-journal-extras-title-format 'day-date-month-year
           denote-excluded-directories-regexp "99_archive"
           denote-file-type "org"
           denote-directory "~/nextcloud/10_documents/"
+          denote-dired-directories (list denote-directory)
+          denote-dired-directories-include-subdirectories t
           denote-org-front-matter "#+title: %s\n#+date: %s\n#+filetags: %s\n#+identifier: %s\n#+author: Andreas Zweili\n\n"
           denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n")))

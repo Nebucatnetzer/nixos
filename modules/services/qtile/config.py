@@ -185,15 +185,6 @@ def primary_widgets():
             show_short_text=False,
         ),
         widget.Sep(padding=5),
-        widget.Maildir(
-            maildir_path="~/Maildir/personal",
-            sub_folders=[
-                {
-                    "label": "📬",
-                    "path": "INBOX",
-                }
-            ],
-        ),
         widget.Sep(padding=5),
         widget.Systray(background="#00000000"),
         widget.Sep(padding=5),

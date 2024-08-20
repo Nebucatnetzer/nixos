@@ -67,16 +67,14 @@ keys = [
     Key([mod], "w", lazy.spawn("firefox")),
     Key(["mod1"], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
     Key(
-        [mod], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-    ),
-    Key(
-        [mod],
+        [],
         "XF86AudioLowerVolume",
         lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
     ),
     Key(
-        [mod],
+        [],
         "XF86AudioRaiseVolume",
         lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
     ),

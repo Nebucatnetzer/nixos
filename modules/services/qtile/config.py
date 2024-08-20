@@ -67,9 +67,19 @@ keys = [
     Key([mod], "w", lazy.spawn("firefox")),
     Key(["mod1"], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
-    Key([mod], "F1", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([mod], "F2", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([mod], "F3", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    Key(
+        [mod], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+    ),
+    Key(
+        [mod],
+        "XF86AudioLowerVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+    ),
+    Key(
+        [mod],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+    ),
     Key([mod], "F5", lazy.spawn("toggle_touchpad.sh")),
     Key([], "Print", lazy.spawn("gnome-screenshot --clipboard --area")),
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play")),

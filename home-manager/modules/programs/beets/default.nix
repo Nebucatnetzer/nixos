@@ -29,6 +29,7 @@ in
           "export"
           "fetchart"
           "lastgenre"
+          "random"
         ];
       };
     };

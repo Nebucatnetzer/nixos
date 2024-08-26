@@ -1,2 +1,4 @@
+[core]
+    hooksPath = "~/.config/git/hooks/"
 [user]
     email = "zweili@contria.com"

@@ -57,7 +57,12 @@ keys = [
     # Move windows between sections
     Key([mod, "control", "shift"], "j", lazy.layout.section_down()),
     Key([mod, "control", "shift"], "k", lazy.layout.section_up()),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key(
+        [mod],
+        "Return",
+        lazy.spawn("alacritty -e tmux new -A -s 0"),
+        desc="Launch terminal",
+    ),
     Key([mod], "c", lazy.spawn("i3lock -c 000000")),
     Key([mod], "space", lazy.spawn("rofi -show drun -show-icons")),
     Key([mod], "e", lazy.spawn("nautilus")),

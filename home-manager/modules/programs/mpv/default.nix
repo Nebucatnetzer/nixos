@@ -37,6 +37,7 @@ in
       config = {
         "keepaspect-window" = "no";
         "image-display-duration" = 3;
+        "volume" = 50;
       };
       scripts = [ delete-file ];
     };

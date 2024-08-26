@@ -21,9 +21,9 @@ in
           write = false;
         };
         paths = {
-          default = "$albumartist/$year_$album/$track_$title";
+          default = ''$albumartist/''${year}_''${album}/''${track}_''${title}'';
           singleton = "$artist/Non-Album/$title";
-          comp = "Various_Artists/$album/$track_$title";
+          comp = ''Various_Artists/$album/''${track}_''${title}'';
         };
         plugins = [
           "export"

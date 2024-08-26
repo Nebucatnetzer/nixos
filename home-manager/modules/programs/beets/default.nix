@@ -8,6 +8,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    programs.bash.shellAliases = {
+      pra = ''mpv "$(beet random -a -p)" &'';
+    };
+
     programs.beets = {
       enable = true;
       settings = {

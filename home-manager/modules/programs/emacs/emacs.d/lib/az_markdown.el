@@ -23,8 +23,7 @@
             (defun az-markdown-editing ()
               "My settings for message composition."
               (setq whitespace-line-column 500)
-              (turn-off-auto-fill)
-              (flyspell-mode)))
+              (turn-off-auto-fill)))
   (defun insert-file-name-as-wikilink (filename &optional args)
     (interactive "*fInsert file name: \nP")
     (insert (concat "[[" (file-name-sans-extension (file-relative-name

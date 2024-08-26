@@ -181,8 +181,7 @@
                 "My settings for message composition."
                 (setq whitespace-line-column 500)
                 (olivetti-mode)
-                (turn-off-auto-fill)
-                (flyspell-mode)))
+                (turn-off-auto-fill)))
     (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)))
 
 

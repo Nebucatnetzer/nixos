@@ -8,6 +8,7 @@ let
         nvidia-offload mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
     done
   '';
+  dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
 in
 {
@@ -22,6 +23,7 @@ in
       pkgs.sound-juicer
       pkgs.unstable.tagger
       az-media
+      dap-sync
       send-to-kindle
     ];
   };

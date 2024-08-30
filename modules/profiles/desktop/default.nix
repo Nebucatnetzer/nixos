@@ -89,7 +89,6 @@ in
         alacritty
         appimage-run
         brightnessctl
-        clementine
         firefox
         lm_sensors
         networkmanager-openvpn
@@ -97,6 +96,7 @@ in
         pavucontrol
         podman-compose
         quickemu
+        strawberry
         unrar
         wally-cli
       ];

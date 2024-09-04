@@ -1,6 +1,6 @@
 all_files_in_target=$(mktemp)
 playlist="$(realpath "$1")"
-source="/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=media/music/"
+source="/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=media/"
 target="$2"
 synced_files=$(mktemp)
 

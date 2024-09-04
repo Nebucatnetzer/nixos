@@ -7,7 +7,6 @@
     ./programs/ansible
     ./programs/beets
     ./programs/calibre
-    ./programs/copilot-cli
     ./programs/czkawka
     ./programs/emacs
     ./programs/email

@@ -83,7 +83,6 @@ in
   fonts.fontconfig.enable = true;
   programs = {
     az-ansible.enable = true;
-    az-copilot-cli.enable = true;
     az-emacs.enable = true;
     az-fzf.enable = true;
     az-git = {

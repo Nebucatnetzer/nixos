@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package haskell-mode
   :init
   (add-hook 'haskell-mode-hook #'lsp)

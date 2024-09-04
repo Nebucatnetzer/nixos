@@ -60,6 +60,7 @@ in
           epkgs.dired-hide-dotfiles
           epkgs.direnv
           epkgs.elisp-refs
+          unstable.emacsPackages.ellama
           epkgs.embark
           epkgs.embark-consult
           epkgs.epl
@@ -71,6 +72,7 @@ in
           epkgs.flymake-shellcheck
           epkgs.format-all
           epkgs.general
+          unstable.emacsPackages.gptel
           epkgs.haskell-mode
           epkgs.helpful
           epkgs.highlight-indent-guides

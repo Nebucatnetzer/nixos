@@ -24,7 +24,7 @@ create-list-of-album-directories() {
     echo "Create list of album directories"
     trap 'rm -f "$album_directories"' EXIT
     while IFS="" read -r line || [ -n "$line" ]; do
-        echo "$(dirname $line)" >>"$album_directories"
+        dirname "$line" >>"$album_directories"
     done <"$files_to_sync"
 
     sort -o "$album_directories"{,}
@@ -36,9 +36,11 @@ append-cover-art-paths() {
     echo "Append cover art paths"
     cd "$source"
     while IFS="" read -r line || [ -n "$line" ]; do
-        if [ -f "$line"/cover.* ]; then
-            echo $(ls "$line"/cover.*) >>"$files_to_sync"
-        fi
+        for file in "$line"/cover.*; do
+            if [ -f "$file" ]; then
+                ls "$file" >>"$files_to_sync"
+            fi
+        done
     done <"$album_directories"
 
     sort -o "$files_to_sync"{,}
@@ -64,7 +66,7 @@ find-all-files-in-target() {
 remove-surplus-files() {
     # Create diff between synced playlist and all files.
     # Then remove the surplus files on the target.
-    printf "Removing surplus files."
+    printf "Removing surplus files.\n"
     cd "$target"
     comm -23 "$all_files_in_target" "$files_to_sync" |
         while IFS="" read -r line || [ -n "$line" ]; do

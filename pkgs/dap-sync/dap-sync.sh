@@ -1,7 +1,7 @@
 all_files_in_target=$(mktemp)
 playlist="$(realpath "$1")"
 source="/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=media/"
-target="$2"
+target="$2/synced"
 synced_files=$(mktemp)
 
 # stop the whole script on Ctrl-C
@@ -56,6 +56,7 @@ remove-surplus-files() {
     find "$target" -type d -empty -delete
 }
 
+mkdir -p "$target"
 sync-files-to-target
 create-synced-files-list
 find-all-files-in-target

@@ -17,7 +17,7 @@
     (interactive)
     (let ((file-path (buffer-file-name)))
       (if file-path
-          (let ((url (concat "`emacsclient " "\"" file-path "\"`")))
+          (let ((url (concat "```\nemacsclient " "\"" file-path "\"\n```")))
             ;; Copy the URL to the clipboard
             (kill-new url)
             ;; Display the URL in the minibuffer

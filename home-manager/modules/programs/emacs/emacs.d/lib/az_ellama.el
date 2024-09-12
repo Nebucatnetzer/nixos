@@ -50,6 +50,6 @@
 
   (require 'llm-openai)
   (setopt ellama-provider (make-llm-openai
-                           :chat-model "gpt-4o"
-                           :embedding-model "gpt-4o"
+                           :chat-model "gpt-4o-2024-08-06"
+                           :embedding-model "gpt-4o-2024-08-06"
                            :key openai-key)))

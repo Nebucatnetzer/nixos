@@ -6,6 +6,7 @@
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-x b" . consult-buffer)
+         ("C-c f" . consult-flymake)
          ("C-c j" . consult-git-grep))                ;; orig. previous-matching-history-element
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is

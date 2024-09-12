@@ -124,6 +124,7 @@ in
           epkgs.verb
           epkgs.vertico
           epkgs.vterm
+          epkgs.vundo
           epkgs.web-completion-data
           epkgs.web-mode
           epkgs.wgrep

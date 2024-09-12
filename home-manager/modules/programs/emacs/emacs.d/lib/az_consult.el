@@ -16,6 +16,7 @@
   ;; after lazily loading the package.
   :config
   (consult-customize
+   consult-flymake
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
    consult--source-bookmark consult--source-file-register

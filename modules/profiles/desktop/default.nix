@@ -84,21 +84,21 @@ in
     hardware.keyboard.zsa.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [
+      systemPackages = [
         # what I consider to be system packages
-        alacritty
-        appimage-run
-        brightnessctl
-        firefox
-        lm_sensors
-        networkmanager-openvpn
-        p7zip
-        pavucontrol
-        podman-compose
-        quickemu
-        strawberry
-        unrar
-        wally-cli
+        pkgs.alacritty
+        pkgs.appimage-run
+        pkgs.brightnessctl
+        pkgs.firefox
+        pkgs.lm_sensors
+        pkgs.networkmanager-openvpn
+        pkgs.p7zip
+        pkgs.pavucontrol
+        pkgs.podman-compose
+        pkgs.quickemu
+        pkgs.strawberry
+        pkgs.unrar
+        pkgs.wally-cli
       ];
       variables = {
         WINIT_X11_SCALE_FACTOR = "1";

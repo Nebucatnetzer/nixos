@@ -66,12 +66,14 @@ in
           epkgs.epl
           epkgs.evil
           epkgs.evil-collection
+          epkgs.evil-god-state
           epkgs.evil-surround
           epkgs.f
           epkgs.flymake-flycheck
           epkgs.flymake-shellcheck
           epkgs.format-all
           epkgs.general
+          epkgs.god-mode
           unstable.emacsPackages.gptel
           epkgs.haskell-mode
           epkgs.helpful

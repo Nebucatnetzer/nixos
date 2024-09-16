@@ -3,6 +3,7 @@
 (load-file (modules-path "az_detect_os.el"))
 (load-file (modules-path "az_packages.el"))
 ;; keybindings
+(load-file (modules-path "az_avy.el"))
 (load-file (modules-path "az_evil.el"))
 (load-file (modules-path "az_god_mode.el"))
 (load-file (modules-path "az_hydra.el"))

@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.profiles.az-desktop;
+  toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
 in
 {
   options = {
@@ -99,6 +101,7 @@ in
         pkgs.strawberry
         pkgs.unrar
         pkgs.wally-cli
+        toggle-keyboard
       ];
       variables = {
         WINIT_X11_SCALE_FACTOR = "1";

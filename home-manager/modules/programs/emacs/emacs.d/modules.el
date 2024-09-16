@@ -51,6 +51,7 @@
 (load-file (modules-path "az_projectile.el"))
 (load-file (modules-path "az_python.el"))
 (load-file (modules-path "az_shellcheck.el"))
+(load-file (modules-path "az_sh-mode.el"))
 (load-file (modules-path "az_verb.el"))
 (load-file (modules-path "az_webmode.el"))
 (load-file (modules-path "az_yaml.el"))

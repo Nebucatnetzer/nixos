@@ -72,7 +72,7 @@
           ("Rust" rustfmt)
           ("Scala" scalafmt)
           ("SCSS" prettier)
-          ("Shell" shfmt)
+          ("Shell" (shfmt "-i" "4" "-ci"))
           ("Solidity" prettier)
           ("SQL" sqlformat)
           ("Svelte" prettier)

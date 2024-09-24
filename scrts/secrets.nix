@@ -48,7 +48,6 @@ let
   all = users ++ systems;
 in
 {
-  "attic_env.age".publicKeys = defaultKeys;
   "cache_readonly.age".publicKeys = all;
   "dkim_2li.ch.age".publicKeys = defaultKeys ++ [ mail ];
   "dkim_zweili.ch.age".publicKeys = defaultKeys ++ [ mail ];

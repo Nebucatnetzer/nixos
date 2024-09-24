@@ -19,11 +19,9 @@ let
     name = "rebuild";
     runtimeInputs = [
       pkgs.nixos-rebuild
-      inputs.attic.packages.${system}.attic-client
     ];
     text = ''
       nixos-rebuild -j auto switch --use-remote-sudo
-      attic push -j 2 prod /run/current-system
     '';
   };
 in

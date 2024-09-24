@@ -23,7 +23,6 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
-    ./services/attic-server
     ./services/common-x86
     ./services/clipcat
     ./services/data-share

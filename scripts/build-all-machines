@@ -17,7 +17,6 @@ for host in "${hosts[@]}"; do
     fi
     echo $host
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
-    attic push -j 2 prod "$DEVENV_ROOT"/result
     rm -f "$DEVENV_ROOT"/result
     echo
     echo

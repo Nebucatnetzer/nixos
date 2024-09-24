@@ -12,6 +12,7 @@ skip=(
 )
 
 for host in "${hosts[@]}"; do
+    # shellcheck disable=SC2076
     if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
     fi

@@ -18,6 +18,7 @@ for host in "${hosts[@]}"; do
     fi
     echo "$host"
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
+    nix-copy-closure --to andreas@management.2li.local ./result
     rm ./result
     echo
     echo

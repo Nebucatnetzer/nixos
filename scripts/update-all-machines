@@ -20,9 +20,9 @@ reboot=0
 
 while getopts ":r" option; do
     case $option in
-    r)
-        reboot=1
-        ;;
+        r)
+            reboot=1
+            ;;
     esac
 done
 

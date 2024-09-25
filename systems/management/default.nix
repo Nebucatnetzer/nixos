@@ -1,5 +1,10 @@
 { hostname }:
-{ config, inputs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -18,7 +23,7 @@
   # Features
   nix = {
     gc = {
-      automatic = false;
+      automatic = lib.mkForce false;
     };
     settings = {
       min-free = "300G";

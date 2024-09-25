@@ -7,6 +7,7 @@
 }:
 {
   imports = [ inputs.nixos-hardware.nixosModules.dell-precision-5530 ];
+
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
@@ -66,6 +67,20 @@
     az-dvd.enable = true;
     az-nvidia.enable = true;
     opengl.enable = true;
+  };
+
+  nix.settings = {
+    substituters = [
+      "ssh://nix-pull@management.2li.local?priority=50"
+    ];
+  };
+
+  age.secrets.gwynRootSshKey = {
+    file = "${inputs.self}/scrts/gwyn_root_ssh_key.age";
+    path = "/root/.ssh/id_ed25519";
+    mode = "600";
+    owner = "root";
+    group = "root";
   };
 
   profiles.az-desktop.enable = true;

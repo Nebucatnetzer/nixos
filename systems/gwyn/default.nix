@@ -1,7 +1,7 @@
 { hostname }:
 {
+  config,
   inputs,
-  lib,
   pkgs,
   ...
 }:
@@ -71,13 +71,21 @@
 
   nix.settings = {
     substituters = [
-      "ssh://nix-pull@management.2li.local?priority=50"
+      "ssh://nix-ssh@management.2li.local?priority=50"
     ];
+    secret-key-files = config.age.secrets.signingKey.path;
   };
 
   age.secrets.gwynRootSshKey = {
     file = "${inputs.self}/scrts/gwyn_root_ssh_key.age";
     path = "/root/.ssh/id_ed25519";
+    mode = "600";
+    owner = "root";
+    group = "root";
+  };
+
+  age.secrets.signingKey = {
+    file = "${inputs.self}/scrts/signing.key.age";
     mode = "600";
     owner = "root";
     group = "root";

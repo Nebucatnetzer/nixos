@@ -29,8 +29,8 @@ in
       automatic = lib.mkForce false;
     };
     settings = {
-      min-free = lib.mkForce 300 * GiB;
-      max-free = lib.mkForce 512 * GiB;
+      min-free = lib.mkForce (300 * GiB);
+      max-free = lib.mkForce (512 * GiB);
       secret-key-files = config.age.secrets.signingKey.path;
     };
     sshServe = {

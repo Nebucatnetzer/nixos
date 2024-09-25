@@ -5,6 +5,9 @@
   lib,
   ...
 }:
+let
+  GiB = 1024 * 1024 * 1024;
+in
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -26,8 +29,8 @@
       automatic = lib.mkForce false;
     };
     settings = {
-      min-free = lib.mkForce "300G";
-      max-free = lib.mkForce "512G";
+      min-free = lib.mkForce 300 * GiB;
+      max-free = lib.mkForce 512 * GiB;
       secret-key-files = config.age.secrets.signingKey.path;
     };
     sshServe = {

@@ -8,6 +8,7 @@
 let
   nixPath = "/etc/nixPath";
   system = pkgs.system;
+  GiB = 1024 * 1024 * 1024;
 in
 {
   # The rough location
@@ -140,8 +141,8 @@ in
       ];
       connect-timeout = 5;
       fallback = true;
-      min-free = 1000000000;
-      max-free = 10000000000;
+      min-free = 1 * GiB;
+      max-free = 10 * GiB;
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"

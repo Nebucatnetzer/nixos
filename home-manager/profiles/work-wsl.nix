@@ -26,20 +26,20 @@ in
       NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
       PATH = "$PATH:$HOME/.local/bin";
     };
-    packages = with pkgs; [
-      bottom
-      gyre-fonts
-      highlight
+    packages = [
+      pkgs.bottom
+      pkgs.gyre-fonts
+      pkgs.highlight
       hm-rebuild
-      keychain
-      killall
-      mosh
-      ncdu
-      nix-tree
-      nmon
-      tree
-      unzip
-      wget
+      pkgs.keychain
+      pkgs.killall
+      pkgs.mosh
+      pkgs.ncdu
+      pkgs.nix-tree
+      pkgs.nmon
+      pkgs.tree
+      pkgs.unzip
+      pkgs.wget
     ];
   };
   nix = {

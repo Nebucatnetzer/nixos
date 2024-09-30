@@ -12,9 +12,9 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    raspberrypi-eeprom
-    vim
+  environment.systemPackages = [
+    pkgs.raspberrypi-eeprom
+    pkgs.vim
   ];
 
   system.stateVersion = "23.05";

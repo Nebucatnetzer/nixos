@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ evince ];
+    home.packages = [ pkgs.evince ];
     xdg.mimeApps = {
       enable = true;
       associations.added = {

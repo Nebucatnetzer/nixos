@@ -15,12 +15,12 @@ in
   config = lib.mkIf cfg.enable {
     environment.pathsToLink = [ "share/thumbnailers" ];
     environment = {
-      systemPackages = with pkgs; [
-        ffmpegthumbnailer
-        gnome.nautilus
-        libheif.bin
-        libheif.out
-        nufraw
+      systemPackages = [
+        pkgs.ffmpegthumbnailer
+        pkgs.gnome.nautilus
+        pkgs.libheif.bin
+        pkgs.libheif.out
+        pkgs.nufraw
       ];
     };
     programs = {

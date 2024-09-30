@@ -12,5 +12,5 @@ in
     programs.az-work-desktop.enable = lib.mkEnableOption "Applications and config required for work.";
   };
 
-  config = lib.mkIf cfg.enable { home.packages = with pkgs; [ dbeaver-bin ]; };
+  config = lib.mkIf cfg.enable { home.packages = [ pkgs.dbeaver-bin ]; };
 }

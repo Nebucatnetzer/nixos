@@ -13,10 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      hunspell
-      hunspellDicts.en_GB-ise
-      hunspellDicts.de_CH
+    home.packages = [
+      pkgs.hunspell
+      pkgs.hunspellDicts.en_GB-ise
+      pkgs.hunspellDicts.de_CH
     ];
   };
 }

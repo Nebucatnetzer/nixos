@@ -30,7 +30,7 @@ in
       group = "restic";
     };
 
-    environment.systemPackages = with pkgs; [ restic ];
+    environment.systemPackages = [ pkgs.restic ];
 
     fileSystems."${cfg.repository}" = {
       device = "10.7.89.108:restic-server";

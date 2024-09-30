@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ calibre ];
+    home.packages = [ pkgs.calibre ];
 
     xdg.mimeApps = {
       enable = true;

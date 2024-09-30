@@ -2,7 +2,7 @@
 {
   imports = [ "${inputs.self}/home-manager/modules" ];
   home = {
-    packages = with pkgs; [ plexamp ];
+    packages = [ pkgs.plexamp ];
   };
 
   programs = {

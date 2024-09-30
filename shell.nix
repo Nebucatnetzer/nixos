@@ -3,16 +3,16 @@
 }:
 pkgs.mkShell {
   name = "nixosbuildshell";
-  nativeBuildInputs = with pkgs; [
-    git
-    nixFlakes
-    python3
-    python3Packages.black
-    python3Packages.mypy
-    python3Packages.pylint
-    qtile
-    python3Packages.python-lsp-server
-    vim
+  nativeBuildInputs = [
+    pkgs.git
+    pkgs.nixFlakes
+    pkgs.python3
+    pkgs.python3Packages.black
+    pkgs.python3Packages.mypy
+    pkgs.python3Packages.pylint
+    pkgs.qtile
+    pkgs.python3Packages.python-lsp-server
+    pkgs.vim
   ];
 
   shellHook = ''

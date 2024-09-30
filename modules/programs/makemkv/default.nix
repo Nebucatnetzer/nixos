@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${config.az-username} = {
-      home.packages = with pkgs; [ makemkv ];
+      home.packages = [ pkgs.makemkv ];
     };
     boot.kernelModules = [ "sg" ];
   };

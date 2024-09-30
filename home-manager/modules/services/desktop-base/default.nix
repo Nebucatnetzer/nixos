@@ -28,11 +28,11 @@ in
         };
       };
     };
-    home.packages = with pkgs; [
-      meld
-      nitrogen
-      libreoffice-fresh
-      remmina
+    home.packages = [
+      pkgs.meld
+      pkgs.nitrogen
+      pkgs.libreoffice-fresh
+      pkgs.remmina
     ];
     # raw config files
     home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;

@@ -13,12 +13,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      libaacs
-      libbluray
-      libdvdcss
-      libdvdnav
-      libdvdread
+    environment.systemPackages = [
+      pkgs.libaacs
+      pkgs.libbluray
+      pkgs.libdvdcss
+      pkgs.libdvdnav
+      pkgs.libdvdread
     ];
   };
 }

@@ -96,9 +96,9 @@ in
     hardware.enableRedistributableFirmware = true;
     hardware.pulseaudio.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      libraspberrypi
-      raspberrypi-eeprom
+    environment.systemPackages = [
+      pkgs.libraspberrypi
+      pkgs.raspberrypi-eeprom
       test-sd-card
     ];
     environment.shellAliases = {

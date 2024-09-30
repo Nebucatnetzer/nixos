@@ -18,6 +18,6 @@ in
       autoPrune.enable = true;
     };
     users.users.${config.az-username}.extraGroups = [ "docker" ];
-    environment.systemPackages = with pkgs; [ lazydocker ];
+    environment.systemPackages = [ pkgs.lazydocker ];
   };
 }

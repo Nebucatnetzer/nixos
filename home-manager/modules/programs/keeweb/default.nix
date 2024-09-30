@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ keeweb ];
+    home.packages = [ pkgs.keeweb ];
     systemd.user.services.keeweb = {
       Unit = {
         Description = "Start keeweb";

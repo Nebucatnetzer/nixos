@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ czkawka ];
+    home.packages = [ pkgs.czkawka ];
     xdg.desktopEntries = {
       czkawka = {
         name = "Czkawka";

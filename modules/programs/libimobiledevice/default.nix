@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services.usbmuxd.enable = true;
-    environment.systemPackages = with pkgs; [ libimobiledevice ];
+    environment.systemPackages = [ pkgs.libimobiledevice ];
 
     home-manager.users.${config.az-username} = {
       home.shellAliases = {

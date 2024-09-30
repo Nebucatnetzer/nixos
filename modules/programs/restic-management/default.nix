@@ -86,8 +86,8 @@ in
           --password-file ${password_file} \
           forget $1'';
     };
-    environment.systemPackages = with pkgs; [
-      restic
+    environment.systemPackages = [
+      pkgs.restic
       restic-mount
       restic-mount-all
       restic-infomaniak-list

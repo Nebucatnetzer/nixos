@@ -22,7 +22,7 @@ let
     ];
     text = ''
       nixos-rebuild -j auto switch --use-remote-sudo
-      nix-copy-closure --to andreas@management.2li.local /run/current-system
+      upload-to-cache /run/current-system
     '';
   };
 in

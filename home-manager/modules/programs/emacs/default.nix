@@ -19,7 +19,7 @@ in
       nixd # Nix language server
       nodePackages.prettier # formatting files
       nodePackages.prettier-plugin-toml
-      unstable.nixfmt-rfc-style
+      nixfmt-rfc-style
       pandoc
       ripgrep
       shellcheck # shell script linter

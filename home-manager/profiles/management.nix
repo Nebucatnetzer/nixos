@@ -36,7 +36,7 @@ in
       unlock-luks
     ];
     shellAliases = {
-      format-modules = "${pkgs.unstable.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
+      format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
     };
   };
 

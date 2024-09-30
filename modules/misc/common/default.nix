@@ -198,4 +198,19 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11";
+
+  # disable printing {
+  # https://discourse.nixos.org/t/newly-announced-vulnerabilities-in-cups/52771
+  services.printing.browsed.enable = false;
+  ## optional
+  services.avahi.enable = false;
+  services.printing.enable = false;
+  ## These options cause Avahi to be enabled, so either explicitly disable them or you may need to use `mkForce` above.
+  hardware.pulseaudio.zeroconf.publish.enable = false;
+  hardware.pulseaudio.zeroconf.discovery.enable = false;
+  services.gnome.core-shell.enable = false;
+  services.shairport-sync.enable = false;
+  ## This option causes printing to be enabled, so either explicitly disable it or you may need to use `mkForce` above.
+  services.printing.cups-pdf.enable = false;
+  # }
 }

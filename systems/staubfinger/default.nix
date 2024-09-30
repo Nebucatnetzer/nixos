@@ -66,6 +66,7 @@
     az-restic-management.enable = true;
   };
   services = {
+    az-binary-cache-client.enable = true;
     az-docker.enable = true;
     az-restic-client-desktop.enable = true;
     az-x86.enable = true;

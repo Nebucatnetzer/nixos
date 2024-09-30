@@ -78,17 +78,10 @@
       homeConfigurations =
         let
           system = "x86_64-linux";
-          overlay-unstable = final: prev: {
-            unstable = import inputs.nixpkgs-unstable {
-              config.allowUnfree = true;
-              inherit system;
-            };
-          };
           pkgs = import inputs.nixpkgs {
             config = {
               allowUnfree = true;
             };
-            overlays = [ overlay-unstable ];
             inherit system;
           };
         in

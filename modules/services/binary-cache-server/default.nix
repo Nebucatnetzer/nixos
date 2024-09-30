@@ -1,19 +1,11 @@
 {
   config,
-  inputs,
   lib,
-  pkgs,
   ...
 }:
 let
   cfg = config.services.az-binary-cache-server;
   GiB = 1024 * 1024 * 1024;
-  sign-all-packages = pkgs.writeShellScriptBin "sign-all-packages" ''
-    ${pkgs.sudo}/bin/sudo ${pkgs.nix}/bin/nix store sign --extra-experimental-features nix-command --all --key-file ${config.age.secrets.signingKey.path}
-  '';
-  upload-to-cache = pkgs.writeShellScriptBin "upload-to-cache" ''
-    until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
-  '';
 in
 {
   options = {
@@ -21,16 +13,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.signingKey = {
-      file = "${inputs.self}/scrts/signing.key.age";
-      mode = "600";
-      owner = "root";
-      group = "root";
-    };
-    environment.systemPackages = [
-      sign-all-packages
-      upload-to-cache
-    ];
     nix = {
       gc = {
         automatic = lib.mkForce false;
@@ -38,7 +20,6 @@ in
       settings = {
         min-free = lib.mkForce (300 * GiB);
         max-free = lib.mkForce (512 * GiB);
-        secret-key-files = config.age.secrets.signingKey.path;
       };
       sshServe = {
         enable = true;
@@ -51,5 +32,6 @@ in
         ];
       };
     };
+    services.az-binary-cache-common.enable = true;
   };
 }

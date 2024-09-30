@@ -23,6 +23,9 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
+    ./services/binary-cache-client
+    ./services/binary-cache-common
+    ./services/binary-cache-server
     ./services/common-x86
     ./services/clipcat
     ./services/data-share

@@ -10,6 +10,7 @@ let
   '';
   dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
+  tagger = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.tagger;
 in
 {
   imports = [ ./management.nix ];
@@ -21,10 +22,10 @@ in
       pkgs.freetube
       pkgs.plexamp
       pkgs.sound-juicer
-      pkgs.unstable.tagger
       az-media
       dap-sync
       send-to-kindle
+      tagger
     ];
   };
 

@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.services.az-logs-share;
+  lnav = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.lnav;
 in
 {
   options = {
@@ -13,7 +15,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.lnav ];
+    environment.systemPackages = [ lnav ];
     fileSystems."/mnt/server_logs" = {
       device = "10.7.89.108:logs";
       fsType = "nfs";

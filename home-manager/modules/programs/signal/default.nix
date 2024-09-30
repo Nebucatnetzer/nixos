@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.programs.az-signal;
+  signal = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.signal-desktop;
 in
 {
   options = {
@@ -13,11 +15,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [ unstable.signal-desktop ];
+    home.packages = [ signal ];
     xdg.desktopEntries = {
       signal = {
         name = "Signal with tray icon";
-        exec = "${pkgs.unstable.signal-desktop}/bin/signal-desktop --use-tray-icon --no-sandbox %U";
+        exec = "${signal}/bin/signal-desktop --use-tray-icon --no-sandbox %U";
         terminal = false;
         type = "Application";
         icon = "signal-desktop";

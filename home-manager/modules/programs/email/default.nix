@@ -55,7 +55,7 @@ in
     };
     programs.mu = {
       enable = true;
-      package = pkgs.unstable.mu;
+      package = pkgs.mu;
     };
     programs.offlineimap.enable = true;
     programs.msmtp.enable = true;

@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.programs.az-distrobox;
+  distrobox = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.distrobox;
 in
 {
   options = {
@@ -14,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = [
-        pkgs.unstable.distrobox
+        distrobox
         pkgs.xorg.xhost
       ];
       shellInit = ''

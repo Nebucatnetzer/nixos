@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.programs.az-emacs;
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 {
   options = {

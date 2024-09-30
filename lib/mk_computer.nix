@@ -6,12 +6,6 @@
 }:
 let
   system = "x86_64-linux";
-  overlay-unstable = final: prev: {
-    unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  };
 
   pkgs = import inputs.nixpkgs {
     inherit system;
@@ -19,7 +13,6 @@ let
       allowUnfree = true;
     };
     overlays = [
-      overlay-unstable
       #      (final: prev: {
       #        nextcloud-client = prev.nextcloud-client.overrideAttrs (_: rec {
       #          version = "3.6.0";
@@ -39,7 +32,7 @@ inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
     inherit inputs;
   };
-  modules = ([
+  modules = [
     # System configuration for this host
     (import "${inputs.self}/systems/${hostname}" { inherit hostname; })
     # Common configuration
@@ -50,5 +43,5 @@ inputs.nixpkgs.lib.nixosSystem {
         "${inputs.self}/home-manager/profiles/${home-module}.nix"
       ];
     }
-  ]);
+  ];
 }

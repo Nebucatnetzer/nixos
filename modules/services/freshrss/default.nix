@@ -47,6 +47,7 @@ in
           type = "mysql";
         };
         defaultUser = "thedoctor";
+        package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.freshrss;
         passwordFile = config.age.secrets.freshrss_user_pass.path;
         virtualHost = "rss.zweili.org";
       };

@@ -2,8 +2,8 @@
 ;; https://github.com/minad/vertico
 (use-package vertico
   :bind (:map vertico-map
-              ("M-[" . vertico-previous-group)
-              ("M-]" . vertico-next-group)
+              ("C-j" . vertico-previous-group)
+              ("C-k" . vertico-next-group)
               )
   :init
   (vertico-mode))

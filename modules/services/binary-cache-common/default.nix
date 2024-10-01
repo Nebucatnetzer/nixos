@@ -38,6 +38,6 @@ in
     nix.settings = {
       secret-key-files = config.age.secrets.signingKey.path;
     };
-    services.az-binary-cache-common.server = "management.2li.local";
+    services.az-binary-cache-common.server = "10.7.89.150";
   };
 }

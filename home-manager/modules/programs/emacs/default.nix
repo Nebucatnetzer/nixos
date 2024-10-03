@@ -68,7 +68,6 @@ in
           epkgs.epl
           epkgs.evil
           epkgs.evil-collection
-          epkgs.evil-god-state
           epkgs.evil-surround
           epkgs.f
           epkgs.flymake-flycheck

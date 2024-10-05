@@ -81,6 +81,10 @@
 
   services = {
     az-binary-cache-client.enable = true;
+    az-kmonad = {
+      device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+      enable = true;
+    };
     az-logs-share.enable = true;
     az-qtile.enable = true;
     az-restic-client-desktop.enable = true;

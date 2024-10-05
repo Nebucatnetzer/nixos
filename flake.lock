@@ -87,6 +87,30 @@
         "type": "github"
       }
     },
+    "kmonad": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1727508868,
+        "narHash": "sha256-fxvkjUK661MWM9ClLWM+YmOIfL9omqGibdf4gONgMW0=",
+        "ref": "refs/heads/master",
+        "rev": "b3eb93c86abc66c7e7420585c3fe7e410208b2e8",
+        "revCount": 859,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
+      },
+      "original": {
+        "dir": "nix",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kmonad/kmonad?dir=nix"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1727665282,
@@ -138,6 +162,7 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager_2",
+        "kmonad": "kmonad",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"

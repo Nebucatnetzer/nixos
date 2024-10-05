@@ -17,12 +17,10 @@
 
   outputs =
     inputs@{
-      agenix,
       home-manager,
-      nixos-hardware,
       nixpkgs,
-      nixpkgs-unstable,
       self,
+      ...
     }:
     let
       mkComputer = import ./lib/mk_computer.nix;

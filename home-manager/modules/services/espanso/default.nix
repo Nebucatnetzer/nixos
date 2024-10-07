@@ -17,7 +17,7 @@ in
       };
       matches.default.matches = [
         {
-          trigger = "<dd";
+          trigger = "/dd";
           replace = "{{current_date}}";
           vars = [
             {
@@ -30,7 +30,7 @@ in
           ];
         }
         {
-          trigger = "<dt";
+          trigger = "/dt";
           replace = "{{current_date}}";
           vars = [
             {
@@ -43,7 +43,7 @@ in
           ];
         }
         {
-          trigger = "<dn";
+          trigger = "/dn";
           replace = "{{current_date}}";
           vars = [
             {

@@ -41,6 +41,19 @@ in
             }
           ];
         }
+        {
+          trigger = "<dn";
+          replace = "{{current_date}}";
+          vars = [
+            {
+              name = "current_date";
+              type = "date";
+              params = {
+                format = "%Y%m%dT%H%M%S";
+              };
+            }
+          ];
+        }
       ];
     };
   };

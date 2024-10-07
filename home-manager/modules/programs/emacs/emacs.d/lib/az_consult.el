@@ -27,7 +27,7 @@
 
 (use-package consult-projectile
   :bind
-  (("C-x p" . consult-projectile)
+  (("C-x C-p" . consult-projectile)
    ("C-c k" . az-consult-git-grep-filetype)
    ("C-s" . consult-line)
    ("C-c g". consult-projectile)))

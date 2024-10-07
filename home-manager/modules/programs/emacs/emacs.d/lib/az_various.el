@@ -63,6 +63,9 @@
 ;; switch focus to man page
 (setq man-notify-method t)
 
+;; Send deleted files to the trash
+(setq delete-by-moving-to-trash t)
+
 ;; use ripgrep or rg if possible
 (setq xref-search-program (cond ((or (executable-find "ripgrep")
                                      (executable-find "rg")) 'ripgrep)

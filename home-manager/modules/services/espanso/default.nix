@@ -29,7 +29,7 @@ in
           ];
         }
         {
-          trigger = "<ds";
+          trigger = "<dt";
           replace = "{{current_date}}";
           vars = [
             {

@@ -10,6 +10,9 @@
     };
     bash = {
       enable = true;
+      initExtra = ''
+        shopt -s direxpand
+      '';
       shellAliases = {
         nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         htop = "btm";

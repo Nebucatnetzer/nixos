@@ -17,7 +17,6 @@
     ./programs/distrobox
     ./programs/eog
     ./programs/libimobiledevice
-    ./programs/lockscreen
     ./programs/makemkv
     ./programs/nautilus
     ./programs/nix-direnv

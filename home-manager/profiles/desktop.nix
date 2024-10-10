@@ -39,5 +39,6 @@ in
 
   services = {
     az-desktop-base.enable = true;
+    az-xidlehook.enable = true;
   };
 }

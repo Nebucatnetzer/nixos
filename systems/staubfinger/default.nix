@@ -61,7 +61,6 @@
   };
   profiles.az-desktop.enable = true;
   programs = {
-    az-lockscreen.enable = true;
     az-makemkv.enable = true;
     az-restic-management.enable = true;
   };

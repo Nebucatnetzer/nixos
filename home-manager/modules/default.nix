@@ -30,5 +30,6 @@
     ./services/espanso
     ./services/grobi
     ./services/xcompose
+    ./services/xidlehook
   ];
 }

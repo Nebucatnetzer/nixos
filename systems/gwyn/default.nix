@@ -73,7 +73,6 @@
   programs = {
     az-adb.enable = true;
     az-distrobox.enable = true;
-    az-lockscreen.enable = true;
     az-makemkv.enable = true;
     az-restic-management.enable = true;
     az-steam.enable = true;

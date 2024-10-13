@@ -47,6 +47,12 @@ in
       };
       xserver = {
         enable = true;
+        serverFlagsSection = ''
+          Option "BlankTime" "0"
+          Option "StandbyTime" "0"
+          Option "SuspendTime" "0"
+          Option "OffTime" "0"
+        '';
         xkb = {
           layout = "us";
           options = "compose:caps";

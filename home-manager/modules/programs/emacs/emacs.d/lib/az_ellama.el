@@ -41,7 +41,8 @@
   :init
   ;; setup key bindings
   (setq llm-warn-on-nonfree nil)
-  (setopt ellama-keymap-prefix "C-c e")
+  ;; (setopt ellama-keymap-prefix "C-c e")
+  (global-set-key (kbd "C-c e") 'ellama-transient-main-menu)
   ;; language you want ellama to translate to
   (setopt ellama-language "German")
 
@@ -52,4 +53,99 @@
   (setopt ellama-provider (make-llm-openai
                            :chat-model "gpt-4o-2024-08-06"
                            :embedding-model "gpt-4o-2024-08-06"
-                           :key openai-key)))
+                           :key openai-key))
+  (require 'transient)
+  (transient-define-prefix ellama-transient-code-menu ()
+    "Code Commands."
+    [["Code Commands"
+      ("c" "Complete" ellama-code-complete)
+      ("a" "Add" ellama-code-add)
+      ("e" "Edit" ellama-code-edit)
+      ("i" "Improve" ellama-code-improve)
+      ("r" "Review" ellama-code-review)
+      ("m" "Generate Commit Message" ellama-generate-commit-message)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-summarize-menu ()
+    "Summarize Commands."
+    [["Summarize Commands"
+      ("s" "Summarize" ellama-summarize)
+      ("w" "Summarize Webpage" ellama-summarize-webpage)
+      ("c" "Summarize Killring" ellama-summarize-killring)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-session-menu ()
+    "Session Commands."
+    [["Session Commands"
+      ("l" "Load Session" ellama-load-session)
+      ("r" "Rename Session" ellama-session-rename)
+      ("d" "Remove Session" ellama-session-remove)
+      ("a" "Activate Session" ellama-session-switch)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-improve-menu ()
+    "Improve Commands."
+    [["Improve Commands"
+      ("w" "Improve Wording" ellama-improve-wording)
+      ("g" "Improve Grammar" ellama-improve-grammar)
+      ("c" "Improve Conciseness" ellama-improve-conciseness)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-make-menu ()
+    "Make Commands."
+    [["Make Commands"
+      ("l" "Make List" ellama-make-list)
+      ("t" "Make Table" ellama-make-table)
+      ("f" "Make Format" ellama-make-format)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-ask-menu ()
+    "Ask Commands."
+    [["Ask Commands"
+      ("i" "Chat" ellama-chat)
+      ("l" "Ask Line" ellama-ask-line)
+      ("s" "Ask Selection" ellama-ask-selection)
+      ("a" "Ask About" ellama-ask-about)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-translate-menu ()
+    "Translate Commands."
+    [["Translate Commands"
+      ("t" "Translate Text" ellama-translate)
+      ("b" "Translate Buffer" ellama-translate-buffer)
+      ("e" "Enable Translation" ellama-chat-translation-enable)
+      ("d" "Disable Translation" ellama-chat-translation-disable)
+      ("c" "Text Complete" ellama-complete)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-context-menu ()
+    "Context Commands."
+    [["Context Commands"
+      ("b" "Add Buffer" ellama-context-add-buffer)
+      ("f" "Add File" ellama-context-add-file)
+      ("s" "Add Selection" ellama-context-add-selection)
+      ("i" "Add Info Node" ellama-context-add-info-node)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-provider-menu ()
+    "Provider Commands."
+    [["Provider Commands"
+      ("s" "Select Provider" ellama-provider-select)]
+     ["Quit" ("q" "Quit" transient-quit-one)]])
+
+  (transient-define-prefix ellama-transient-main-menu ()
+    "Main Menu."
+    [["Chat"
+      ("a" "Ask" ellama-transient-ask-menu)
+      ("c" "Code" ellama-transient-code-menu)]]
+    [["Text"
+      ("s" "Summarize" ellama-transient-summarize-menu)
+      ("i" "Improve" ellama-transient-improve-menu)
+      ("t" "Translate" ellama-transient-translate-menu)
+      ("m" "Make" ellama-transient-make-menu)]]
+    [["System"
+      ("S" "Session" ellama-transient-session-menu)
+      ("x" "Context" ellama-transient-context-menu)
+      ("p" "Provider" ellama-transient-provider-menu)]]
+    [["Quit" ("q" "Quit" transient-quit-one)]])
+  )

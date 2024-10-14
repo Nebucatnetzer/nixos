@@ -348,6 +348,12 @@ follow_mouse_focus = True
 main = None
 
 
+@hook.subscribe.suspend
+def lock_on_sleep():
+    # Run screen locker
+    qtile.spawn("i3lock -c 000000")
+
+
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")

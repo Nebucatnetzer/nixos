@@ -5,7 +5,7 @@
 
 (put 'dired-find-alternate-file 'disabled nil)
 
-(setq-default dired-listing-switches "-ahlv --group-directories-first")
+(setq-default dired-listing-switches "-ahl --group-directories-first")
 
 ;; keymap for dired
 (global-set-key (kbd "C-x d") 'dired-jump)

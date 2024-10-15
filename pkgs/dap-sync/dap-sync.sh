@@ -13,7 +13,7 @@ sync_files_to_target() {
     echo "Sync files"
     cd "$source" || exit
     rsync \
-        --archive \
+        --recursive \
         --relative \
         --info=NAME1 \
         --files-from="$files_to_sync" \

@@ -15,7 +15,7 @@ in
     services.az-restic-client-desktop.enable = lib.mkEnableOption "Enable restic backups";
   };
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications.enable = true;
+    services.az-ntfy-client.enable = true;
     age.secrets.infomaniakEnv = {
       file = "${inputs.self}/scrts/infomaniak_env.age";
       mode = "600";

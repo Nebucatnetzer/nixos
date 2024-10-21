@@ -47,6 +47,7 @@
     ./services/nginx-acme-base
     ./services/nginx-fpm
     ./services/nginx-proxy
+    ./services/ntfy-client
     ./services/pipewire
     ./services/plex
     ./services/postgresql
@@ -59,7 +60,6 @@
     ./services/restic-server
     ./services/rss-bridge
     ./services/syslog
-    ./services/telegram-notifications
     ./services/tiling-wm-base
     ./services/tlp
     ./services/virtualbox-guest

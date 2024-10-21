@@ -62,6 +62,7 @@ in
           use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
           use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
           use_backend budget_server if { req_ssl_sni -i firefly.zweili.org }
+          use_backend ntfy_server if { req_ssl_sni -i ntfy.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
           use_backend proxy if { req_ssl_sni -i www.2li.ch }
@@ -88,6 +89,9 @@ in
         backend proxy
           mode tcp
           server server1 127.0.0.1:4433 check
+        backend ntfy_server
+          mode tcp
+          server server1 ${config.services.ntfy-sh.settings.listen-http} check
       '';
     };
   };

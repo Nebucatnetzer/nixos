@@ -85,5 +85,11 @@
         };
       };
     };
+    ntfy-sh = {
+      settings = {
+        attachment-cache-dir = "";
+        base-url = "https://ntfy.zweili.org";
+      };
+    };
   };
 }

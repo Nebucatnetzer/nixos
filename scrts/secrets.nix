@@ -60,9 +60,9 @@ in
   "infomaniak_env.age".publicKeys = all;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
   "nextcloud_cli.age".publicKeys = defaultKeys;
+  "ntfy-topic.age".publicKeys = all;
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;
   "signing.key.age".publicKeys = defaultKeys;
-  "telegram_notify_env.age".publicKeys = all;
 }

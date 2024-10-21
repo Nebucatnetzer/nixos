@@ -21,7 +21,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications.enable = true;
+    services.az-ntfy-client.enable = true;
 
     age.secrets.resticKey = {
       file = "${inputs.self}/scrts/restic.key.age";

@@ -29,7 +29,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications = {
+    services.az-ntfy-client = {
       enable = true;
     };
 

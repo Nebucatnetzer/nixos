@@ -26,7 +26,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.nextcloud-client ];
-    services.az-telegram-notifications.enable = true;
+    services.az-ntfy-client.enable = true;
 
     age.secrets.nextcloudCliSecrets = {
       file = "${inputs.self}/scrts/nextcloud_cli.age";

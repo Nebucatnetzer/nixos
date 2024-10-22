@@ -21,14 +21,4 @@
             (kill-buffer buffer)))
         (buffer-list)))
 
-(use-package dired-hide-dotfiles
-  :init
-  (defun az-dired-mode-hook ()
-    "My `dired' mode hook."
-    ;; To hide dot-files by default
-    (dired-hide-dotfiles-mode))
-  ;; To toggle hiding
-  (add-hook 'dired-mode-hook #'az-dired-mode-hook)
-  (evil-define-key 'normal dired-mode-map "." 'dired-hide-dotfiles-mode))
-
 (setq dired-auto-revert-buffer t)

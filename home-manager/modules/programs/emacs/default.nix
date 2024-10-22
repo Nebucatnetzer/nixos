@@ -59,7 +59,6 @@ in
           epkgs.corfu-terminal
           epkgs.dap-mode
           unstable.emacsPackages.denote
-          epkgs.dired-hide-dotfiles
           epkgs.direnv
           epkgs.elisp-refs
           unstable.emacsPackages.ellama

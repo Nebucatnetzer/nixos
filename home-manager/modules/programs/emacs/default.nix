@@ -59,11 +59,11 @@ in
           epkgs.corfu-terminal
           epkgs.dap-mode
           unstable.emacsPackages.denote
-          epkgs.direnv
           epkgs.elisp-refs
           unstable.emacsPackages.ellama
           epkgs.embark
           epkgs.embark-consult
+          epkgs.envrc
           epkgs.epl
           epkgs.evil
           epkgs.evil-collection

@@ -15,20 +15,20 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      fd
-      multimarkdown
-      nixd # Nix language server
-      nodePackages.prettier # formatting files
-      nodePackages.prettier-plugin-toml
-      nixfmt-rfc-style
-      pandoc
-      ripgrep
-      shellcheck # shell script linter
-      shfmt # formatting bash scripts
-      silver-searcher
-      source-code-pro
-      xclip # X11 clipboard from terminal
+    home.packages = [
+      pkgs.fd
+      pkgs.multimarkdown
+      pkgs.nixd # Nix language server
+      pkgs.nodePackages.prettier # formatting files
+      pkgs.nodePackages.prettier-plugin-toml
+      pkgs.nixfmt-rfc-style
+      pkgs.pandoc
+      pkgs.ripgrep
+      pkgs.shellcheck # shell script linter
+      pkgs.shfmt # formatting bash scripts
+      pkgs.silver-searcher
+      pkgs.source-code-pro
+      pkgs.xclip # X11 clipboard from terminal
     ];
 
     programs.emacs = {
@@ -41,101 +41,100 @@ in
               languagetool-console-command "${pkgs.languagetool}/share/languagetool-commandline.jar"
               languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
       '';
-      extraPackages =
-        epkgs: with pkgs; [
-          languagetool
-          epkgs.ag
-          epkgs.amx
-          epkgs.annotate
-          epkgs.ansible
-          epkgs.avy
-          epkgs.bind-key
-          epkgs.cape
-          epkgs.cfrs
-          epkgs.citeproc
-          epkgs.consult
-          epkgs.consult-projectile
-          epkgs.corfu
-          epkgs.corfu-terminal
-          epkgs.dap-mode
-          unstable.emacsPackages.denote
-          epkgs.elisp-refs
-          unstable.emacsPackages.ellama
-          epkgs.embark
-          epkgs.embark-consult
-          epkgs.envrc
-          epkgs.epl
-          epkgs.evil
-          epkgs.evil-collection
-          epkgs.evil-surround
-          epkgs.f
-          epkgs.flymake-flycheck
-          epkgs.flymake-shellcheck
-          epkgs.format-all
-          epkgs.general
-          epkgs.god-mode
-          unstable.emacsPackages.gptel
-          epkgs.haskell-mode
-          epkgs.helpful
-          epkgs.highlight-indent-guides
-          epkgs.ht
-          epkgs.htmlize
-          epkgs.hydra
-          epkgs.hyperbole
-          epkgs.know-your-http-well
-          epkgs.languagetool
-          epkgs.lsp-haskell
-          epkgs.lsp-mode
-          epkgs.lsp-treemacs
-          epkgs.lsp-ui
-          epkgs.lv
-          epkgs.magit
-          epkgs.makey
-          epkgs.marginalia
-          epkgs.markdown-mode
-          epkgs.mu4e
-          epkgs.nix-mode
-          epkgs.olivetti
-          epkgs.orderless
-          epkgs.org-modern
-          epkgs.org-superstar
-          epkgs.ox-pandoc
-          epkgs.parsebib
-          epkgs.pdf-tools
-          epkgs.perspective
-          epkgs.pfuture
-          epkgs.pkg-info
-          epkgs.posframe
-          epkgs.powershell
-          epkgs.projectile
-          epkgs.projectile-ripgrep
-          epkgs.python-mode
-          epkgs.python-pytest
-          epkgs.queue
-          epkgs.rainbow-delimiters
-          epkgs.ripgrep
-          epkgs.smooth-scrolling
-          epkgs.solarized-theme
-          epkgs.string-inflection
-          epkgs.swiper
-          epkgs.system-packages
-          epkgs.treemacs
-          epkgs.treemacs-evil
-          epkgs.use-package
-          epkgs.use-package-ensure-system-package
-          epkgs.verb
-          epkgs.vertico
-          epkgs.vterm
-          epkgs.vundo
-          epkgs.web-completion-data
-          epkgs.web-mode
-          epkgs.wgrep
-          epkgs.which-key
-          epkgs.xclip
-          epkgs.yaml-mode
-          epkgs.yasnippet-snippets
-          mu # needed for mailing
-        ];
+      extraPackages = epkgs: [
+        pkgs.languagetool
+        epkgs.ag
+        epkgs.amx
+        epkgs.annotate
+        epkgs.ansible
+        epkgs.avy
+        epkgs.bind-key
+        epkgs.cape
+        epkgs.cfrs
+        epkgs.citeproc
+        epkgs.consult
+        epkgs.consult-projectile
+        epkgs.corfu
+        epkgs.corfu-terminal
+        epkgs.dap-mode
+        unstable.emacsPackages.denote
+        epkgs.elisp-refs
+        unstable.emacsPackages.ellama
+        epkgs.embark
+        epkgs.embark-consult
+        epkgs.envrc
+        epkgs.epl
+        epkgs.evil
+        epkgs.evil-collection
+        epkgs.evil-surround
+        epkgs.f
+        epkgs.flymake-flycheck
+        epkgs.flymake-shellcheck
+        epkgs.format-all
+        epkgs.general
+        epkgs.god-mode
+        unstable.emacsPackages.gptel
+        epkgs.haskell-mode
+        epkgs.helpful
+        epkgs.highlight-indent-guides
+        epkgs.ht
+        epkgs.htmlize
+        epkgs.hydra
+        epkgs.hyperbole
+        epkgs.know-your-http-well
+        epkgs.languagetool
+        epkgs.lsp-haskell
+        epkgs.lsp-mode
+        epkgs.lsp-treemacs
+        epkgs.lsp-ui
+        epkgs.lv
+        epkgs.magit
+        epkgs.makey
+        epkgs.marginalia
+        epkgs.markdown-mode
+        epkgs.mu4e
+        epkgs.nix-mode
+        epkgs.olivetti
+        epkgs.orderless
+        epkgs.org-modern
+        epkgs.org-superstar
+        epkgs.ox-pandoc
+        epkgs.parsebib
+        epkgs.pdf-tools
+        epkgs.perspective
+        epkgs.pfuture
+        epkgs.pkg-info
+        epkgs.posframe
+        epkgs.powershell
+        epkgs.projectile
+        epkgs.projectile-ripgrep
+        epkgs.python-mode
+        epkgs.python-pytest
+        epkgs.queue
+        epkgs.rainbow-delimiters
+        epkgs.ripgrep
+        epkgs.smooth-scrolling
+        epkgs.solarized-theme
+        epkgs.string-inflection
+        epkgs.swiper
+        epkgs.system-packages
+        epkgs.treemacs
+        epkgs.treemacs-evil
+        epkgs.use-package
+        epkgs.use-package-ensure-system-package
+        epkgs.verb
+        epkgs.vertico
+        epkgs.vterm
+        epkgs.vundo
+        epkgs.web-completion-data
+        epkgs.web-mode
+        epkgs.wgrep
+        epkgs.which-key
+        epkgs.xclip
+        epkgs.yaml-mode
+        epkgs.yasnippet-snippets
+        pkgs.mu # needed for mailing
+      ];
     };
     home.file.".emacs.d/init.el".source = ./emacs.d/init.el;
     home.file.".emacs.d/snippets".source = ./emacs.d/snippets;

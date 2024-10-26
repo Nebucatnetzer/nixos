@@ -100,6 +100,8 @@
   (global-evil-surround-mode 1))
 
 (use-package evil-collection
-  :after (evil magit)
+  :after (evil magit dired)
   :config
-  (evil-collection-init))
+  (setq evil-collection-mode-list (remove 'dired evil-collection-mode-list))
+  (evil-collection-init)
+  )

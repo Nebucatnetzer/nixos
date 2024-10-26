@@ -22,3 +22,13 @@
         (buffer-list)))
 
 (setq dired-auto-revert-buffer t)
+
+(use-package emacs
+  :init
+  (with-eval-after-load 'locate
+    (define-key locate-mode-map (kbd "SPC") nil))
+  (with-eval-after-load 'dired
+    (define-key dired-mode-map (kbd "SPC") nil))
+  ;;(with-eval-after-load 'evil
+  ;; (define-key evil-normal-state-map (kbd "SPC") nil)
+  ););)

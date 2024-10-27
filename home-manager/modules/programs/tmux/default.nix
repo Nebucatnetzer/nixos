@@ -15,6 +15,10 @@ in
         set -ga terminal-overrides ",*256col*:Tc"
         set-option -g history-limit 300000
 
+        # Start the windows at 1 instead of 0
+        set -g base-index 1
+        setw -g pane-base-index 1
+
         # enable vim like key bindings
         set-window-option -g mode-keys vi
         unbind [

@@ -20,7 +20,7 @@ in
     };
 
     documentation = {
-      man.generateCaches = true;
+      man.generateCaches = false;
       nixos.includeAllModules = true;
     };
 

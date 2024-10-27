@@ -28,7 +28,5 @@
   (with-eval-after-load 'locate
     (define-key locate-mode-map (kbd "SPC") nil))
   (with-eval-after-load 'dired
-    (define-key dired-mode-map (kbd "SPC") nil))
-  ;;(with-eval-after-load 'evil
-  ;; (define-key evil-normal-state-map (kbd "SPC") nil)
-  ););)
+    (define-key dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+  )

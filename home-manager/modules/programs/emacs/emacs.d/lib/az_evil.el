@@ -55,6 +55,7 @@
       (kill-buffer old)))
 
   ;; evil keybindings for dired
+  (evil-set-initial-state 'dired-mode 'emacs)
   (with-eval-after-load 'dired
     (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory)
     (evil-define-key 'normal dired-mode-map "l" 'dired-find-alternate-file)

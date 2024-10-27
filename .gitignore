@@ -91,3 +91,4 @@ result
 /.direnv/
 /secrets
 flycheck_*
+/*.qcow2

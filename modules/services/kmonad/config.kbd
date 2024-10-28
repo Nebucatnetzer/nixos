@@ -20,15 +20,15 @@
   ;; implicit-around around
 )
 (defalias
-  HA (tap-hold-next-release 175 a lmet)
-  MS (tap-hold-next-release 175 s lalt)
-  CF (tap-hold-next-release 175 f lctl)
-  SD (tap-hold-next-release 175 d lsft)
+  HA (tap-hold-next-release 175 a lmet :timeout-button a)
+  MS (tap-hold-next-release 175 s lalt :timeout-button s)
+  CF (tap-hold-next-release 175 f lctl :timeout-button f)
+  SD (tap-hold-next-release 175 d lsft :timeout-button d)
 
-  SK (tap-hold-next-release 175 k rsft)
-  CJ (tap-hold-next-release 175 j rctl)
-  ML (tap-hold-next-release 175 l lalt)
-  H; (tap-hold-next-release 175 ; rmet)
+  SK (tap-hold-next-release 175 k rsft :timeout-button k)
+  CJ (tap-hold-next-release 175 j rctl :timeout-button j)
+  ML (tap-hold-next-release 175 l lalt :timeout-button l)
+  H; (tap-hold-next-release 175 ; rmet :timeout-button ;)
 )
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12

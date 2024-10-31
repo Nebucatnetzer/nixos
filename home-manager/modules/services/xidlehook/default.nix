@@ -29,11 +29,6 @@ in
           command = "${pkgs.brightnessctl}/bin/brightnessctl --quiet set 50%; ${pkgs.i3lock}/bin/i3lock -c 000000; ${pkgs.xorg.xset}/bin/xset dpms force off";
           canceller = "";
         }
-        {
-          delay = 900;
-          command = "${pkgs.brightnessctl}/bin/brightnessctl --quiet set 50%; ${pkgs.i3lock}/bin/i3lock -c 000000; sleep 1; ${pkgs.systemd}/bin/systemctl suspend";
-          canceller = "";
-        }
       ];
     };
   };

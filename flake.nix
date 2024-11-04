@@ -53,6 +53,7 @@
         "staubfinger" = {
           home-module = "desktop";
         };
+        "test-raspi" = { };
         "ttrss" = { };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (

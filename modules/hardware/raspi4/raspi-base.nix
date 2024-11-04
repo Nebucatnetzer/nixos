@@ -38,22 +38,6 @@ in
       "rw"
     ];
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-label/root";
-      fsType = "f2fs";
-      options = [
-        "atgc,gc_merge"
-        "compress_algorithm=lz4"
-        "compress_extension=*"
-        "compress_chksum"
-        "discard"
-        "lazytime"
-      ];
-    };
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
     swapDevices = [
       {
         device = "/var/lib/swapfile";

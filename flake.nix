@@ -76,27 +76,17 @@
     {
       images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) raspis;
       nixosConfigurations = raspiConfigs // pcConfigs;
-      homeConfigurations =
-        let
-          system = "x86_64-linux";
-          pkgs = import inputs.nixpkgs {
-            config = {
-              allowUnfree = true;
-            };
-            inherit system;
-          };
-        in
-        {
-          "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ ./home-manager/profiles/work-wsl.nix ];
-            extraSpecialArgs = {
-              inherit inputs system;
-              nixosConfig = {
-                az-username = "zweili";
-              };
+      homeConfigurations = {
+        "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+          modules = [ ./home-manager/profiles/work-wsl.nix ];
+          extraSpecialArgs = {
+            inherit inputs;
+            nixosConfig = {
+              az-username = "zweili";
             };
           };
         };
+      };
     };
 }

@@ -73,6 +73,10 @@ in
     };
   };
 
+  nixpkgs = {
+    config.allowUnfree = true;
+  };
+
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;

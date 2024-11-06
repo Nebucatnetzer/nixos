@@ -29,4 +29,6 @@
     (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+  (with-eval-after-load 'dired
+    (define-key dired-mode-map (kbd "<home>") 'dired-up-directory))
   )

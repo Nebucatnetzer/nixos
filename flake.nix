@@ -28,7 +28,6 @@
     }:
     let
       mkComputer = import ./lib/mk_computer.nix;
-      mkRaspi = import ./lib/mk_raspi.nix;
       mksdImage =
         host:
         (self.nixosConfigurations.${host}.extendModules {
@@ -52,7 +51,7 @@
         {
           home-module ? "headless",
         }:
-        (mkRaspi { inherit inputs hostname home-module; })
+        (mkComputer { inherit inputs hostname home-module; })
       ) raspis;
 
       pcs = {

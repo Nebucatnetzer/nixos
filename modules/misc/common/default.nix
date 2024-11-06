@@ -172,6 +172,7 @@ in
       dates = [ "17:00" ];
     };
   };
+  nixpkgs.config.allowUnfree = true;
 
   security.sudo = {
     wheelNeedsPassword = false;

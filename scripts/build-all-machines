@@ -4,11 +4,8 @@ set -e
 hosts=($(echo $(nix eval "$DEVENV_ROOT"#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
-    "gwyn"
     "loki-test"
     "mobile"
-    "test-raspi"
-    "staubfinger"
 )
 
 for host in "${hosts[@]}"; do

@@ -109,5 +109,6 @@ in
         sudo umount /mnt/firmware
       '';
     };
+    nixpkgs.hostPlatform = "aarch64-linux";
   };
 }

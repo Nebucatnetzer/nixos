@@ -209,7 +209,6 @@ in
   ## These options cause Avahi to be enabled, so either explicitly disable them or you may need to use `mkForce` above.
   hardware.pulseaudio.zeroconf.publish.enable = false;
   hardware.pulseaudio.zeroconf.discovery.enable = false;
-  services.gnome.core-shell.enable = false;
   services.shairport-sync.enable = false;
   ## This option causes printing to be enabled, so either explicitly disable it or you may need to use `mkForce` above.
   services.printing.cups-pdf.enable = false;

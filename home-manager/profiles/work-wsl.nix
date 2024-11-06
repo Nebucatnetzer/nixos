@@ -11,21 +11,12 @@ in
 {
   imports = [ ./headless.nix ];
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
+  fonts.fontconfig.enable = true;
 
   home = {
     activation.report-changes = config.lib.dag.entryAnywhere ''
       ${pkgs.nix}/bin/nix store diff-closures $oldGenPath $newGenPath || true
     '';
-    sessionPath = [ "$HOME/.local/share/node_modules/bin" ];
-    sessionVariables = {
-      NIX_PATH = "nixpkgs=${pkgs.path}";
-      NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
-      PATH = "$PATH:$HOME/.local/bin";
-    };
     packages = [
       pkgs.bottom
       pkgs.gyre-fonts
@@ -41,7 +32,14 @@ in
       pkgs.unzip
       pkgs.wget
     ];
+    sessionPath = [ "$HOME/.local/share/node_modules/bin" ];
+    sessionVariables = {
+      NIX_PATH = "nixpkgs=${pkgs.path}";
+      NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
+      PATH = "$PATH:$HOME/.local/bin";
+    };
   };
+
   nix = {
     package = pkgs.nix;
     settings = {
@@ -74,13 +72,7 @@ in
       options = "--delete-older-than 30d";
     };
   };
-  systemd.user.timers.nix-gc = {
-    Timer = {
-      Persistent = true;
-    };
-  };
 
-  fonts.fontconfig.enable = true;
   programs = {
     az-ansible.enable = true;
     az-emacs.enable = true;
@@ -98,8 +90,19 @@ in
         work-vm = ''ssh andreas@localhost -p 2222 -t "$@" "tmux new -A -s 0"'';
       };
     };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
+
   services = {
     ssh-agent.enable = true;
+  };
+
+  systemd.user.timers.nix-gc = {
+    Timer = {
+      Persistent = true;
+    };
   };
 }

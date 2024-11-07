@@ -9,8 +9,15 @@ let
     done
   '';
   dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };
+  freetube = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.freetube;
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
   tagger = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.tagger;
+  unstable-pkgs = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config = {
+      allowUnfree = true;
+    };
+  };
 in
 {
   imports = [ ./management.nix ];
@@ -19,13 +26,14 @@ in
       pkgs.chromium # needed for cloud gaming
       pkgs.digikam
       pkgs.exercism
-      pkgs.freetube
       pkgs.plexamp
       pkgs.sound-juicer
       az-media
       dap-sync
+      freetube
       send-to-kindle
       tagger
+      unstable-pkgs.vscode
     ];
   };
 

@@ -33,9 +33,15 @@
         (self.nixosConfigurations.${host}.extendModules {
           modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
         }).config.system.build.sdImage;
-      raspis = {
+      hosts = {
         "budget" = { };
+        "desktop-vm" = {
+          home-module = "work-vm";
+        };
         "git" = { };
+        "gwyn" = {
+          home-module = "desktop";
+        };
         "plex" = { };
         "proxy" = { };
         "mail" = { };
@@ -44,38 +50,22 @@
         };
         "nextcloud" = { };
         "restic-server" = { };
-        "ttrss" = { };
-      };
-      raspiConfigs = nixpkgs.lib.attrsets.mapAttrs (
-        hostname:
-        {
-          home-module ? "headless",
-        }:
-        (mkComputer { inherit inputs hostname home-module; })
-      ) raspis;
-
-      pcs = {
-        "gwyn" = {
-          home-module = "desktop";
-        };
         "staubfinger" = {
           home-module = "desktop";
         };
-        "desktop-vm" = {
-          home-module = "work-vm";
-        };
+        "ttrss" = { };
       };
-      pcConfigs = nixpkgs.lib.attrsets.mapAttrs (
+      hostConfigs = nixpkgs.lib.attrsets.mapAttrs (
         hostname:
         {
           home-module ? "headless",
         }:
         (mkComputer { inherit inputs hostname home-module; })
-      ) pcs;
+      ) hosts;
     in
     {
-      images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) raspis;
-      nixosConfigurations = raspiConfigs // pcConfigs;
+      images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) hosts;
+      nixosConfigurations = hostConfigs;
       homeConfigurations = {
         "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";

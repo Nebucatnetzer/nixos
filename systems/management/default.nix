@@ -28,6 +28,7 @@
       tag = "management";
       time = "23:30";
     };
+    az-ssh-luks.enable = true;
   };
   # Enable dictionaries
   programs = {

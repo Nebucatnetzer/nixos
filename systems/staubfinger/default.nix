@@ -68,6 +68,7 @@
     az-binary-cache-client.enable = true;
     az-docker.enable = true;
     az-restic-client-desktop.enable = true;
+    az-ssh-luks.enable = true;
     az-x86.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     xserver.desktopManager.gnome.enable = true;

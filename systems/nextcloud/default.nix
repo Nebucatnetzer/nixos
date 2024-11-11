@@ -20,5 +20,6 @@
       path = "/mnt/server-data";
       time = "02:00";
     };
+    az-ssh-luks.enable = true;
   };
 }

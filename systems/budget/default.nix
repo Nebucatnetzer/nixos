@@ -23,5 +23,6 @@
       tag = "firefly";
       time = "22:30";
     };
+    az-ssh-luks.enable = true;
   };
 }

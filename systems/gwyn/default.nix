@@ -83,6 +83,7 @@
     az-logs-share.enable = true;
     az-qtile.enable = true;
     az-restic-client-desktop.enable = true;
+    az-ssh-luks.enable = true;
     az-tlp.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;

@@ -16,6 +16,7 @@
 
   profiles.az-server.enable = true;
   services = {
+    az-freshrss.enable = true;
     az-restic-client-server-mysql = {
       enable = true;
       path = config.services.freshrss.dataDir;
@@ -26,6 +27,6 @@
       enable = true;
       domain = "rss-bridge.zweili.org";
     };
-    az-freshrss.enable = true;
+    az-ssh-luks.enable = true;
   };
 }

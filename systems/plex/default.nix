@@ -19,5 +19,6 @@
       tag = "plex";
       time = "01:30";
     };
+    az-ssh-luks.enable = true;
   };
 }

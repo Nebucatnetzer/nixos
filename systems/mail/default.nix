@@ -22,5 +22,6 @@
       tag = "mail";
       time = "01:00";
     };
+    az-ssh-luks.enable = true;
   };
 }

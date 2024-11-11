@@ -85,5 +85,6 @@
         };
       };
     };
+    az-ssh-luks.enable = true;
   };
 }

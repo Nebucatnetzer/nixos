@@ -11,5 +11,6 @@
   profiles.az-server.enable = true;
   services = {
     az-restic-server.enable = true;
+    az-ssh-luks.enable = true;
   };
 }

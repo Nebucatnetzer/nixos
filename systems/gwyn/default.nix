@@ -69,7 +69,6 @@
     opengl.enable = true;
   };
 
-  nixpkgs.config.cudaSupport = true;
   profiles.az-desktop.enable = true;
   programs = {
     az-adb.enable = true;

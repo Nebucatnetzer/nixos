@@ -33,6 +33,15 @@
   :custom
   (lsp-nix-nil-formatter ["nixfmt"]))
 
+(use-package lsp-java
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :config
+  (setq lsp-java-format-enabled t
+        lsp-java-import-gradle-enabled t)
+  :hook (java-mode . lsp-deferred))
+
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
 

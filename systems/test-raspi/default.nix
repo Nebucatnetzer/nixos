@@ -1,5 +1,12 @@
 { hostname }:
 { inputs, pkgs, ... }:
+let
+  uefiFirmware = pkgs.fetchzip {
+    url = "https://github.com/pftf/RPi4/releases/download/v1.38/RPi4_UEFI_Firmware_v1.38.zip";
+    sha256 = "sha256-9tOr80jcmguFy2bSz+H3TfmG8BkKyBTFoUZkMy8x+0g=";
+    stripRoot = false;
+  };
+in
 {
   imports = [
     inputs.disko.nixosModules.disko
@@ -21,6 +28,9 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                postMountHook = ''
+                  cp -r ${uefiFirmware} /boot
+                '';
                 mountOptions = [ "umask=0077" ];
               };
             };

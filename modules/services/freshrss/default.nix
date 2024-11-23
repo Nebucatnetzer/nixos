@@ -53,7 +53,7 @@ in
       };
       mysql = {
         enable = true;
-        package = pkgs.mariadb_110;
+        package = pkgs.mariadb_114;
         ensureUsers = [
           {
             name = "freshrss";

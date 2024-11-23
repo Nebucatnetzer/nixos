@@ -24,7 +24,7 @@ in
           atomic = true;
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
-            "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
           ];
         }
         {
@@ -38,7 +38,7 @@ in
           primary = true;
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
-            "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
             "${pkgs.networkmanager}/bin/nmcli radio wifi off"
           ];
         }
@@ -50,7 +50,7 @@ in
           atomic = true;
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
-            "${pkgs.qtile}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
             "${pkgs.networkmanager}/bin/nmcli radio wifi on"
           ];
         }

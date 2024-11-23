@@ -28,7 +28,7 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
-      displayManager.defaultSession = "none+qtile";
+      displayManager.defaultSession = "qtile";
       xserver = {
         windowManager.qtile.enable = true;
       };

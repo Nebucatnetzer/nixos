@@ -10,7 +10,7 @@ pkgs.mkShell {
     pkgs.python3Packages.black
     pkgs.python3Packages.mypy
     pkgs.python3Packages.pylint
-    pkgs.qtile
+    pkgs.qtile-unwrapped
     pkgs.python3Packages.python-lsp-server
     pkgs.vim
   ];

@@ -78,9 +78,6 @@ in
       ];
     };
 
-    # Enable sound.
-    sound.enable = true;
-
     programs = {
       az-eog.enable = true; # Gnome Image Viewer
       az-idevices.enable = true;

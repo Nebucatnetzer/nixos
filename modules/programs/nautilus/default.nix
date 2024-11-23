@@ -17,7 +17,7 @@ in
     environment = {
       systemPackages = [
         pkgs.ffmpegthumbnailer
-        pkgs.gnome.nautilus
+        pkgs.nautilus
         pkgs.libheif.bin
         pkgs.libheif.out
         pkgs.nufraw

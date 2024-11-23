@@ -15,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     services.xrdp = {
       enable = true;
-      defaultWindowManager = "${pkgs.qtile}/bin/qtile start";
+      defaultWindowManager = "${pkgs.qtile-unwrapped}/bin/qtile start";
     };
     networking.firewall.allowedTCPPorts = [ 3389 ];
   };

@@ -198,7 +198,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 
   # disable printing {
   # https://discourse.nixos.org/t/newly-announced-vulnerabilities-in-cups/52771

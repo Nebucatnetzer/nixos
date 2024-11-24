@@ -137,7 +137,6 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-        "repl-flake"
       ];
       connect-timeout = 5;
       fallback = true;

@@ -3,7 +3,6 @@
   imports = [
     inputs.agenix.nixosModules.age
     inputs.home-manager.nixosModules.home-manager
-    inputs.kmonad.nixosModules.default
     ./hardware/bluetooth
     ./hardware/dvd
     ./hardware/nvidia
@@ -37,7 +36,6 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
-    ./services/kmonad
     ./services/log-to-ram
     ./services/logs-share
     ./services/mariadb-for-containers

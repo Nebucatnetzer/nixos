@@ -19,7 +19,8 @@ in
       };
     };
     services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
-    hardware.opengl.extraPackages = [ pkgs.vaapiVdpau ];
+    hardware.graphics.extraPackages = [ pkgs.vaapiVdpau ];
+    hardware.graphics.enable = true;
     hardware.nvidia.open = false;
     hardware.nvidia.prime = {
       # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA

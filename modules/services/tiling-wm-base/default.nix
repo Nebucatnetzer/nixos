@@ -14,8 +14,8 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = [
-        pkgs.gnome.file-roller
-        pkgs.gnome.gnome-screenshot
+        pkgs.file-roller
+        pkgs.gnome-screenshot
         pkgs.lxappearance
         pkgs.rofi
       ];
@@ -25,7 +25,7 @@ in
     services = {
       gnome = {
         gnome-keyring.enable = true;
-        tracker.enable = true;
+        tinysparql.enable = true;
       };
       redshift.enable = true;
       xserver = {

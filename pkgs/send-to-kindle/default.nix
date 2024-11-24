@@ -2,8 +2,8 @@
   bash,
   cacert,
   curl,
-  gnome,
   gnused,
+  nautilus,
   perl,
   recode,
   writeShellApplication,
@@ -15,7 +15,7 @@ writeShellApplication {
     cacert
     curl
     gnused
-    gnome.nautilus
+    nautilus
     perl
     recode
   ];

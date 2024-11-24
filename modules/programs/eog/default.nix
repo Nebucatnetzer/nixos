@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [ pkgs.gnome.eog ];
+    environment.systemPackages = [ pkgs.eog ];
     home-manager.users.${config.az-username} = {
       xdg.mimeApps = {
         enable = true;

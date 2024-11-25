@@ -73,7 +73,6 @@ in
         epkgs.format-all
         epkgs.general
         epkgs.god-mode
-        unstable.emacsPackages.gptel
         epkgs.haskell-mode
         epkgs.helpful
         epkgs.highlight-indent-guides

@@ -44,7 +44,6 @@
 (load-file (modules-path "az_format_all.el"))
 (load-file (modules-path "az_ellama.el"))
 (load-file (modules-path "az_flycheck.el"))
-(load-file (modules-path "az_gptel.el"))
 (load-file (modules-path "az_haskell.el"))
 (load-file (modules-path "az_languageserver.el"))
 (load-file (modules-path "az_magit.el"))

@@ -49,7 +49,7 @@ in
       ];
       connect-timeout = 5;
       log-lines = 25;
-      experimental-features = "nix-command flakes repl-flake";
+      experimental-features = "nix-command flakes";
       fallback = true;
       netrc-file = "${config.home.homeDirectory}/.config/nix/netrc";
       warn-dirty = false;

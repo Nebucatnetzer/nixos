@@ -21,7 +21,7 @@
         less = "less -FiRX";
         ls = "ls --color=auto";
         ll = "ls -lhF";
-        btm = "btm --color default-light";
+        btm = "btm --theme nord-light";
       };
     };
     home-manager.enable = true;

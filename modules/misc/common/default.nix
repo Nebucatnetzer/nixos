@@ -81,7 +81,7 @@ in
       VISUAL = "vim";
     };
     shellAliases = {
-      btm = "btm --color default-light";
+      btm = "btm --theme nord-light";
       sudo = "sudo ";
     };
     systemPackages = [

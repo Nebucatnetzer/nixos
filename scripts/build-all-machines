@@ -4,10 +4,13 @@ set -e
 hosts=($(echo $(nix eval "$DEVENV_ROOT"#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
+    "gwyn"
     "loki-test"
     "mobile"
+    "staubfinger"
 )
-
+timestamp=$(date -u +"%Y%m%d")
+mkdir -p builds
 for host in "${hosts[@]}"; do
     # shellcheck disable=SC2076
     if [[ " ${skip[*]} " =~ " ${host} " ]]; then
@@ -15,8 +18,11 @@ for host in "${hosts[@]}"; do
     fi
     echo "$host"
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
-    upload-to-cache ./result
-    rm ./result
+    if [ ! "$(hostname)" = "management" ]; then
+        upload-to-cache ./result
+    fi
+    rm -f builds/"$timestamp-$host"
+    mv result builds/"$timestamp-$host"
     echo
     echo
 done

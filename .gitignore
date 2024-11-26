@@ -92,3 +92,4 @@ result
 /secrets
 flycheck_*
 /*.qcow2
+/builds

@@ -22,8 +22,8 @@ for host in "${hosts[@]}"; do
     architecture=$(nix eval "$DEVENV_ROOT"#nixosConfigurations."$host".pkgs.system)
     if [ "$(hostname)" = "management" ]; then
         if [ "$architecture" = '"x86_64-linux"' ]; then
-	    echo "Skipping: $host"
-	    echo ""
+            echo "Skipping: $host"
+            echo ""
             continue
         fi
     fi

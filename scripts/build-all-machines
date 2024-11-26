@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
+builds_directory="$HOME"/builds
 hosts=($(echo $(nix eval "$DEVENV_ROOT"#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
@@ -10,8 +11,9 @@ skip=(
     "staubfinger"
 )
 timestamp=$(date -u +"%Y%m%d")
-mkdir -p builds
+mkdir -p "$builds_directory"
 for host in "${hosts[@]}"; do
+    build_path="$builds_directory/$timestamp-$host"
     # shellcheck disable=SC2076
     if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
@@ -20,9 +22,10 @@ for host in "${hosts[@]}"; do
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
     if [ ! "$(hostname)" = "management" ]; then
         upload-to-cache ./result
+        rsync --links result "$USER"@mangement.2li.local:$build_path"
     fi
-    rm -f builds/"$timestamp-$host"
-    mv result builds/"$timestamp-$host"
+    rm -f "$build_path"
+    mv result "$build_path"
     echo
     echo
 done

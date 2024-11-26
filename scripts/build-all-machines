@@ -9,6 +9,7 @@ skip=(
     "mobile"
 )
 timestamp=$(date -u +"%Y%m%d")
+
 mkdir -p "$builds_directory"
 for host in "${hosts[@]}"; do
     build_path="$builds_directory/$timestamp-$host"
@@ -27,12 +28,15 @@ for host in "${hosts[@]}"; do
 
     echo "$host"
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
+
+    # upload the result to the binary cache
     if [ ! "$(hostname)" = "management" ]; then
         upload-to-cache ./result
-        rsync --links result "$USER"@mangement.2li.local:$build_path"
+        rsync --links result "$USER"@mangement.2li.local:"$build_path"
+    else
+        rm -f "$build_path"
+        mv result "$build_path"
     fi
-    rm -f "$build_path"
-    mv result "$build_path"
     echo
     echo
 done

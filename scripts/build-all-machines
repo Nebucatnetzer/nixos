@@ -29,15 +29,12 @@ for host in "${hosts[@]}"; do
     fi
 
     echo "$host"
-    nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
+    nix build "$DEVENV_ROOT#nixosConfigurations.${host}.config.system.build.toplevel" --out-link "$build_path"
 
     # upload the result to the binary cache
     if [ ! "$(hostname)" = "management" ]; then
-        upload-to-cache ./result
+        upload-to-cache "$build_path"
         rsync --links result "$USER"@mangement.2li.local:"$build_path"
-    else
-        rm -f "$build_path"
-        mv result "$build_path"
     fi
     echo
     echo

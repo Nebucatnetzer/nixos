@@ -5,10 +5,8 @@ builds_directory="$HOME"/builds
 hosts=($(echo $(nix eval "$DEVENV_ROOT"#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)') | xargs))
 skip=(
     "desktop-vm"
-    "gwyn"
     "loki-test"
     "mobile"
-    "staubfinger"
 )
 timestamp=$(date -u +"%Y%m%d")
 mkdir -p "$builds_directory"
@@ -18,6 +16,15 @@ for host in "${hosts[@]}"; do
     if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
     fi
+
+    # skip architectures we can't build
+    architecture=$(nix eval "$DEVENV_ROOT"#nixosConfigurations."$host".pkgs.system)
+    if [ "$(hostname)" = "management" ]; then
+        if [ "$architecture" = "x86_64-linux" ]; then
+            continue
+        fi
+    fi
+
     echo "$host"
     nixos-rebuild build --flake "$DEVENV_ROOT#${host}"
     if [ ! "$(hostname)" = "management" ]; then

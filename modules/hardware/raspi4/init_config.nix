@@ -17,7 +17,7 @@
     pkgs.vim
   ];
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
   services.openssh.enable = true;
   networking.hostName = "nixos";
 
@@ -33,6 +33,7 @@
       ];
     };
   };
+  nixpkgs.hostPlatform = "aarch64-linux";
 
   users = {
     mutableUsers = false;

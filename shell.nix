@@ -5,7 +5,6 @@ pkgs.mkShell {
   name = "nixosbuildshell";
   nativeBuildInputs = [
     pkgs.git
-    pkgs.nixFlakes
     pkgs.python3
     pkgs.python3Packages.black
     pkgs.python3Packages.mypy
@@ -17,7 +16,7 @@ pkgs.mkShell {
 
   shellHook = ''
     PATH=${pkgs.writeShellScriptBin "nix" ''
-      ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
+      ${pkgs.nix}/bin/nix --experimental-features "nix-command flakes" "$@"
     ''}/bin:$PATH
     export DEVENV_ROOT=$(pwd)
   '';

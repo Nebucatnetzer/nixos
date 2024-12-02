@@ -22,7 +22,6 @@
   networking.hostName = "nixos";
 
   nix = {
-    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
       warn-dirty = false

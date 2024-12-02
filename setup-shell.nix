@@ -3,11 +3,11 @@
 }:
 pkgs.mkShell {
   name = "nixosbuildshell";
-  nativeBuildInputs = [ pkgs.nixFlakes ];
+  nativeBuildInputs = [ ];
 
   shellHook = ''
     PATH=${pkgs.writeShellScriptBin "nix" ''
-      ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
+      ${pkgs.nix}/bin/nix --experimental-features "nix-command flakes" "$@"
     ''}/bin:$PATH
   '';
 }

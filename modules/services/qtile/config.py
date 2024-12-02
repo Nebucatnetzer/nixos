@@ -187,7 +187,6 @@ def primary_widgets():
         widget.Sep(padding=5),
         widget.DF(fmt="🗄️ {}", visible_on_warn=False),
         widget.Sep(padding=5),
-        widget.Volume(emoji=True),
         widget.Sep(padding=5),
     ]
     widgets_end = [

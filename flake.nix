@@ -38,13 +38,13 @@
         "gwyn" = {
           home-module = "desktop";
         };
-        "plex" = { };
-        "proxy" = { };
         "mail" = { };
         "management" = {
           home-module = "management";
         };
         "nextcloud" = { };
+        "plex" = { };
+        "proxy" = { };
         "restic-server" = { };
         "staubfinger" = {
           home-module = "desktop";

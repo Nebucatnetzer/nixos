@@ -139,6 +139,7 @@ in
         "flakes"
       ];
       connect-timeout = 5;
+      download-buffer-size = 134217728; # 128 MB
       fallback = true;
       min-free = 1 * GiB;
       max-free = 10 * GiB;

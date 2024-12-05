@@ -27,18 +27,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [
-      # Fixes: https://github.com/NixOS/nixpkgs/pull/360361
-      (self: super: {
-        python3Packages = super.python3Packages.override {
-          overrides = pfinal: pprev: {
-            dbus-next = pprev.dbus-next.overridePythonAttrs (old: {
-              doCheck = false;
-            });
-          };
-        };
-      })
-    ];
     services = {
       displayManager.defaultSession = "qtile";
       xserver = {

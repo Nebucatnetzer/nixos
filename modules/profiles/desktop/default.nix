@@ -84,6 +84,10 @@ in
       az-nautilus.enable = true;
       az-nix-direnv.enable = true;
       az-scripts.enable = true;
+      localsend = {
+        enable = true;
+        openFirewall = true;
+      };
     };
     hardware.keyboard.zsa.enable = true;
 

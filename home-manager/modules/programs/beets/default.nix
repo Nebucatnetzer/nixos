@@ -17,7 +17,7 @@ in
       enable = true;
       settings = {
         asciify_paths = true;
-        directory = "/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=media/music";
+        directory = "/mnt/media/music";
         import = {
           autotag = false;
           copy = true;

@@ -2,7 +2,7 @@
 album_directories=$(mktemp)
 all_files_in_target=$(mktemp)
 playlist="$(realpath "$1")"
-source="/run/user/1000/gvfs/smb-share:server=10.7.89.108,share=media/"
+source="/mnt/media/"
 target="$2/synced"
 files_to_sync=$(mktemp)
 

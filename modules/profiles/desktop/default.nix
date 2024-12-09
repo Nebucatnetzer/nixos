@@ -78,6 +78,17 @@ in
       ];
     };
 
+    fileSystems."/mnt/media" = {
+      device = "10.7.89.108:media";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "noauto"
+        "x-systemd.idle-timeout=300"
+        "noatime"
+        "nfsvers=4.0"
+      ];
+    };
     programs = {
       az-eog.enable = true; # Gnome Image Viewer
       az-idevices.enable = true;

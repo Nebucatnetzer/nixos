@@ -10,9 +10,6 @@
 ;; keymap for dired
 (global-set-key (kbd "C-x d") 'dired-jump)
 
-;; It's currently not working but would be handy to have.
-;;(bind-keys :map dired-mode-map ("q" . az-kill-dired-buffers))
-
 ;;a function to kill all dired buffers
 (defun az-kill-dired-buffers ()
   (interactive)

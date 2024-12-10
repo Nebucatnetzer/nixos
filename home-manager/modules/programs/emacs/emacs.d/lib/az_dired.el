@@ -24,8 +24,8 @@
   :init
   (with-eval-after-load 'locate
     (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
-  (with-eval-after-load 'dired
-    (define-key dired-mode-map (kbd "<home>") 'dired-up-directory)
-    (define-key dired-mode-map (kbd "q") 'az-kill-dired-buffers)
-    (define-key dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+
+  (with-eval-after-load 'evil-collection-dired
+    (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
+    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
   )

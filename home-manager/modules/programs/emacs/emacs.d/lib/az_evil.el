@@ -55,18 +55,8 @@
       (kill-buffer old)))
 
   ;; evil keybindings for dired
-  (evil-set-initial-state 'dired-mode 'emacs)
   (with-eval-after-load 'dired
-    (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory)
-    (evil-define-key 'normal dired-mode-map "l" 'dired-find-alternate-file)
-    (evil-define-key 'normal dired-mode-map "o" 'dired-sort-toggle-or-edit)
-    (evil-define-key 'normal dired-mode-map "v" 'dired-toggle-marks)
-    (evil-define-key 'normal dired-mode-map "m" 'dired-mark)
-    (evil-define-key 'normal dired-mode-map "u" 'dired-unmark)
-    (evil-define-key 'normal dired-mode-map "U" 'dired-unmark-all-marks)
-    (evil-define-key 'normal dired-mode-map "c" 'dired-create-directory)
-    (evil-define-key 'normal dired-mode-map "n" 'evil-search-next)
-    (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous))
+    (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory))
 
   ;; evil keybindings for window movement
   (global-set-key (kbd "M-h") 'windmove-left)
@@ -101,8 +91,7 @@
   (global-evil-surround-mode 1))
 
 (use-package evil-collection
-  :after (evil magit dired)
+  :after (evil magit)
   :config
-  (setq evil-collection-mode-list (remove 'dired evil-collection-mode-list))
   (evil-collection-init)
   )

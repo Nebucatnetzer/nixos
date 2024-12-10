@@ -1,8 +1,10 @@
 {
+  inputs,
   pkgs,
   ...
 }:
 let
+  denote-rename = pkgs.callPackage "${inputs.self}/pkgs/denote-rename" { };
   unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
     until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
         sleep 1
@@ -32,6 +34,7 @@ in
       pkgs.exercism
       pkgs.git
       pkgs.nix-tree
+      denote-rename
       rebuild
       unlock-luks
     ];

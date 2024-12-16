@@ -217,6 +217,11 @@
     ;; Set the agenda separator to a space character.
     (setq org-agenda-block-separator " ")
 
+    (setq org-archive-location
+          (concat "~/nextcloud/10_documents/99_archive/"
+                  (format-time-string "%Y" (current-time)) "/projects/"
+                  (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))
+
     ;; a function to call the custom agenda view.
     (defun az/custom-agenda (&optional arg)
       (interactive "P")

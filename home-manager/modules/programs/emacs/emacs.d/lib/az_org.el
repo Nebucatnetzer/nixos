@@ -280,9 +280,14 @@
           (message "[org agenda] refreshed!"))))
 
     (load-library "find-lisp")
-    (setq org-agenda-files
-          (append (find-lisp-find-files "~/nextcloud/10_documents/01_inbox/" "\.org$")
-                  (find-lisp-find-files "~/nextcloud/10_documents/02_projects/" "\.org$")))
+    (defun az-update-org-agenda-files ()
+      "Update the list of org-agenda-files dynamically."
+      (setq org-agenda-files
+            (append (find-lisp-find-files "~/nextcloud/10_documents/01_inbox/" "\\.org$")
+                    (find-lisp-find-files "~/nextcloud/10_documents/02_projects/" "\\.org$"))))
+
+    ;; Add a hook to update agenda files whenever org-agenda is invoked
+    (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)
 
     (defun org-update-cookies-after-save()
       (interactive)

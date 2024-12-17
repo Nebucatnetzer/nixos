@@ -10,13 +10,13 @@
 ;; keymap for dired
 (global-set-key (kbd "C-x d") 'dired-jump)
 
-;;a function to kill all dired buffers
 (defun az-kill-dired-buffers ()
+  "Kill all buffers in Dired mode."
   (interactive)
-  (mapc (lambda (buffer)
-          (when (eq 'dired-mode (buffer-local-value 'major-mode buffer))
-            (kill-buffer buffer)))
-        (buffer-list)))
+  (dolist (buffer (buffer-list))
+    (when (with-current-buffer buffer
+            (eq major-mode 'dired-mode))
+      (kill-buffer buffer))))
 
 (setq dired-auto-revert-buffer t)
 

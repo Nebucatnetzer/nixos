@@ -31,6 +31,10 @@ for host in "${hosts[@]}"; do
     if [[ " ${skip[*]} " =~ " ${host} " ]]; then
         continue
     fi
+    if [[ "$(hostname)" == "management" ]]; then
+        # Skip the rest of this loop iteration
+        continue
+    fi
     fqdn="$host.2li.local"
     if [ $reboot -eq 0 ]; then
         echo $fqdn

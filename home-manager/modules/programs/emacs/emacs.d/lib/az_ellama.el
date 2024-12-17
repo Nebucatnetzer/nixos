@@ -51,8 +51,8 @@
 
   (require 'llm-openai)
   (setopt ellama-provider (make-llm-openai
-                           :chat-model "gpt-4o-2024-08-06"
-                           :embedding-model "gpt-4o-2024-08-06"
+                           :chat-model "chatgpt-4o-latest"
+                           :embedding-model "chatgpt-4o-latest"
                            :key openai-key))
   (require 'transient)
   (transient-define-prefix ellama-transient-code-menu ()

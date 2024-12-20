@@ -16,6 +16,7 @@
         lsp-pylsp-plugins-pycodestyle-enabled nil
         lsp-pyls-plugins-pycodestyle-enabled nil
         lsp-pylsp-plugins-flake8-enabled nil
+        lsp-pylsp-plugins-mypy-enabled t
         lsp-pylsp-plugins-pylint-enabled t)
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\node_modules\\'")

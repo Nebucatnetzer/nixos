@@ -103,6 +103,7 @@ in
         epkgs.pdf-tools
         epkgs.perspective
         epkgs.pfuture
+        epkgs.php-mode
         epkgs.pkg-info
         epkgs.posframe
         epkgs.powershell

@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 (use-package python-mode
   :config
-  (unbind-key "C-c C-t" python-mode-map)
+  (unbind-key "C-c C-t" python-ts-mode-map)
   (setq python-shell-interpreter "python3")
-  :hook (python-mode . lsp-deferred))
+  :hook (python-ts-mode . eglot-ensure))
 
 
 (use-package python-pytest

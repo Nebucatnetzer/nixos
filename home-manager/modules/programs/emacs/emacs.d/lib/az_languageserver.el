@@ -1,50 +1,28 @@
 ;; -*- lexical-binding: t; -*-
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
+(use-package eglot-mode
+  :ensure nil
   :config
-  (lsp-treemacs-sync-mode 1)
-  (setq gc-cons-threshold 100000000
-        read-process-output-max (* 1024 1024)
-        lsp-idle-delay 0.500
-        lsp-keep-workspace-alive nil
-        lsp-auto-register-remote-clients nil
-        lsp-pylsp-plugins-pycodestyle-enabled nil
-        lsp-pyls-plugins-pycodestyle-enabled nil
-        lsp-pylsp-plugins-flake8-enabled nil
-        lsp-pylsp-plugins-mypy-enabled t
-        lsp-pylsp-plugins-pylint-enabled t)
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\node_modules\\'")
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\var'")
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.devenv\\'")
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.direnv\\'")
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.gitlab\\'")
-  (add-to-list 'lsp-file-watch-ignored-files "[/\\\\]\\.gitlab-ci\\.yml\\'")
-  :commands lsp)
+  (setq
+   eglot-autoshutdown t
+   eldoc-echo-area-use-multiline-p nil
+   gc-cons-threshold 100000000
+   read-process-output-max (* 1024 1024))
+  :bind
+  (:map eglot-mode-map
+        ("C-c C-l r" . eglot-rename))
+  :commands (eglot eglot-code-actions eglot-rename))
 
-(use-package lsp-nix
-  :ensure lsp-mode
-  :after (lsp-mode)
-  :demand t
-  :custom
-  (lsp-nix-nil-formatter ["nixfmt"]))
+;; https://github.com/jdtsmith/eglot-booster
+(use-package eglot-booster
+  :vc (:fetcher github :repo "jdtsmith/eglot-booster")
+  :after eglot
+  :config
+  (eglot-booster-mode))
 
 (use-package lsp-java
-  :ensure lsp-mode
-  :after (lsp-mode)
+  :after (eglot-mode)
   :demand t
-  :config
-  (setq lsp-java-format-enabled t
-        lsp-java-import-gradle-enabled t)
-  :hook (java-mode . lsp-deferred))
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
+  :hook (java-ts-mode . eglot-ensure))
 
 ;; optionally if you want to use debugger
 (use-package dap-mode)

@@ -16,6 +16,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [
+      pkgs.emacs-lsp-booster
       pkgs.fd
       pkgs.multimarkdown
       pkgs.nixd # Nix language server
@@ -33,7 +34,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs29;
+      package = pkgs.emacs30;
       extraConfig = ''
         (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
                                             "-cp" "${pkgs.languagetool}/share/")
@@ -84,9 +85,6 @@ in
         epkgs.languagetool
         epkgs.lsp-haskell
         epkgs.lsp-java
-        epkgs.lsp-mode
-        epkgs.lsp-treemacs
-        epkgs.lsp-ui
         epkgs.lv
         epkgs.magit
         epkgs.makey

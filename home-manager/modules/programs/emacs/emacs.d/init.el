@@ -5,9 +5,18 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-;; My details
-(setq user-full-name "Andreas Zweili")
-(setq user-mail-address "andreas@zweili.ch")
+;; MELPA
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+
+;; use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
+(setq use-package-always-ensure t)
+(use-package use-package-ensure-system-package)
 
 ;; keep customize settings in their own file
 (setq custom-file "~/.emacs.d/custom.el")

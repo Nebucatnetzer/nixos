@@ -5,6 +5,7 @@
   (setq evil-undo-system 'undo-redo
         evil-want-integration t ;; required by evil-collection
         evil-want-keybinding nil) ;; required by evil-collection
+
   :config
   ;; Start these modes in emacs mode
   (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
@@ -56,7 +57,9 @@
 
   ;; evil keybindings for dired
   (with-eval-after-load 'dired
-    (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory))
+    (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory)
+    (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
+    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
 
   ;; evil keybindings for window movement
   (global-set-key (kbd "M-h") 'windmove-left)

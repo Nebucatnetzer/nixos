@@ -93,6 +93,7 @@ in
         epkgs.markdown-mode
         epkgs.mu4e
         epkgs.nix-mode
+        epkgs.nix-ts-mode
         epkgs.olivetti
         epkgs.orderless
         epkgs.org-modern

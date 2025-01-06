@@ -69,6 +69,7 @@ in
         epkgs.evil-collection
         epkgs.evil-surround
         epkgs.f
+        epkgs.flymake-collection
         epkgs.flymake-flycheck
         epkgs.flymake-shellcheck
         epkgs.format-all

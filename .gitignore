@@ -25,9 +25,6 @@ variables.el
 .org-id-locations
 *_archive
 
-# flymake-mode
-*_flymake.*
-
 # eshell files
 /eshell/history
 /eshell/lastdir

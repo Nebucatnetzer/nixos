@@ -16,8 +16,12 @@
   :commands (eglot eglot-code-actions eglot-rename))
 
 ;; https://github.com/jdtsmith/eglot-booster
+(unless (package-installed-p 'eglot-booster)
+  (package-vc-install '(eglot-booster
+                        :url "https://github.com/jdtsmith/eglot-booster"
+                        )))
 (use-package eglot-booster
-  :vc (:fetcher github :repo "jdtsmith/eglot-booster")
+  :ensure nil
   :after eglot
   :config
   (eglot-booster-mode))

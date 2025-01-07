@@ -19,6 +19,7 @@ in
     '';
     packages = [
       pkgs.bottom
+      pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.gyre-fonts
       pkgs.highlight
       hm-rebuild
@@ -26,6 +27,8 @@ in
       pkgs.killall
       pkgs.mosh
       pkgs.ncdu
+      pkgs.nix-prefetch-github
+      pkgs.nix-prefetch-scripts
       pkgs.nix-tree
       pkgs.nmon
       pkgs.tree

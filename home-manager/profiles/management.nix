@@ -34,7 +34,8 @@ in
       pkgs.exercism
       pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.git
-      pkgs.nix-prefetch-scripts # Prefetch scripts
+      pkgs.nix-prefetch-github
+      pkgs.nix-prefetch-scripts
       pkgs.nix-tree
       denote-rename
       rebuild

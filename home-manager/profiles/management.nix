@@ -32,6 +32,7 @@ in
   home = {
     packages = [
       pkgs.exercism
+      pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.git
       pkgs.nix-tree
       denote-rename

@@ -1,9 +1,4 @@
 ;; -*- lexical-binding: t; -*-
 (use-package ansible
-  :mode
-  (("\\.yml\\'" . ansible-mode)
-   ("\\.yaml\\'" . ansible-mode))
-  :init
-  (define-derived-mode ansible-mode yaml-mode "Ansible"
-    "Major mode which is YAML-mode + ansible minor mode."
-    (ansible)))
+  :after yaml-ts-mode
+  :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))

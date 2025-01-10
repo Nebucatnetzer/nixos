@@ -31,6 +31,9 @@
         }).config.system.build.sdImage;
       hosts = {
         "budget" = { };
+        "capricorn" = {
+          home-module = "desktop";
+        };
         "desktop-vm" = {
           home-module = "work-vm";
         };

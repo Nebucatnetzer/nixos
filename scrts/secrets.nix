@@ -41,6 +41,7 @@ let
     andreas
     andreas-management
     andreas-nixos-vm
+    capricorn
     gwyn
     management
     nixos-vm

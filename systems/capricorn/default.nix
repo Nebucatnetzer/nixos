@@ -38,6 +38,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.supportedFilesystems = [
     "apfs"
+    "btrfs"
     "exfat"
     "ext4"
     "nfs"
@@ -48,8 +49,39 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    options = [
+      "subvol=root"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+  fileSystems."/home" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    options = [
+      "subvol=home"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+  fileSystems."/nix" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    options = [
+      "subvol=swap"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+  fileSystems."/swap" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    options = [
+      "subvol=swap"
+      "noatime"
+    ];
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";

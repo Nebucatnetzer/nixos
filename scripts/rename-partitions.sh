@@ -14,9 +14,9 @@ rename_boot_partition() {
     fatlabel /dev/disk/by-label/BOOTTOFRMT BOOT
 }
 
-rename_ext4() {
-    echo "Rename ext4 partition."
-    e2label /dev/MainGroup/roottoformat root
+rename_btrfs() {
+    echo "Rename btrfs partition."
+    btrfs filesystem label /dev/nvme0n1 mainBtrfs
 }
 
 rename_f2fs() {
@@ -24,20 +24,12 @@ rename_f2fs() {
     f2fslabel /dev/disk/by-label/ROOTTOFRMT root
 }
 
-rename_swap() {
-    echo "Rename swap partition."
-    swaplabel -L swap /dev/GroupToFormat/swaptoformat
-}
-
-rename_lvm() {
-    echo "Rename LVM"
-    lvrename GroupToFormat roottoformat root
-    vgrename GroupToFormat MainGroup
-}
-
 unmount_partitions() {
     echo "Unmounting partitions."
     umount /mnt/nixos/boot
+    umount /mnt/nixos/home
+    umount /mnt/nixos/nix
+    umount /mnt/nixos/swap
     umount /mnt/nixos
     sleep 3
 }
@@ -47,9 +39,7 @@ close_luks() {
 }
 
 rename_pc() {
-    rename_ext4
-    rename_lvm
-    rename_swap
+    rename_btrfs
 }
 
 rename_raspi() {
@@ -59,6 +49,6 @@ rename_raspi() {
 unmount_partitions
 sleep 5
 rename_boot_partition
-rename_raspi
-# rename_pc
+# rename_raspi
+rename_pc
 close_luks

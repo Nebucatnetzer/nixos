@@ -9,7 +9,7 @@ if [ -z "$SUDO_USER" ]; then
     exit 1
 fi
 
-DISK=/dev/sdb
+DISK=/dev/nvme0n1
 
 BOOT_PARTITION="$DISK"1
 ROOT_PARTITION="$DISK"2
@@ -17,7 +17,6 @@ ROOT_DIR=/mnt/nixos
 BOOT_DIR=/mnt/nixos/boot
 LUKS_NAME=crypttoformat
 LUKS_PATH=/dev/mapper/$LUKS_NAME
-VGROUP=grouptoformat
 
 create_gpt() {
     echo "Create partition table."
@@ -43,22 +42,22 @@ create_luks_partition() {
     cryptsetup open $ROOT_PARTITION $LUKS_NAME
 }
 
-create_lvm() {
-    echo "Create LVM partition."
-    pvcreate $LUKS_PATH
-    vgcreate $VGROUP $LUKS_PATH
-}
-
 create_swap() {
     echo "Create swap partition."
     lvcreate -L 8G $VGROUP -n SWAPTOFRMT
     mkswap -L SWAPTOFRMT /dev/$VGROUP/SWAPTOFRMT
 }
 
-create_ext4() {
-    echo "Create ext4"
-    lvcreate -l 100%FREE $VGROUP -n ROOTTOFRMT
-    mkfs.ext4 -L ROOTTOFRMT "/dev/$VGROUP/ROOTTOFRMT"
+create_btrfs() {
+    echo "Create btrfs"
+    mkfs.btrfs -L mainBtrfsToFormat "$LUKS_PATH" # Creating btrfs partition
+    mkdir -p "$ROOT_DIR"/{home,nix,swap}
+    mount -t btrfs "$LUKS_PATH" "$ROOT_DIR"
+    btrfs subvolume create "$ROOT_DIR"/root # The subvolume for /
+    btrfs subvolume create "$ROOT_DIR"/home
+    btrfs subvolume create "$ROOT_DIR"/nix
+    btrfs subvolume create "$ROOT_DIR"/swap
+    umount /mnt
 }
 # }
 
@@ -70,17 +69,24 @@ create_f2fs() {
 mount_partitions() {
     echo "Mount partitions."
     sleep 5
-    mkdir -p $ROOT_DIR
-    mount /dev/disk/by-label/ROOTTOFRMT $ROOT_DIR
-    mkdir -p $BOOT_DIR
-    mount /dev/disk/by-label/BOOTTOFRMT $BOOT_DIR
+    mount -o subvol=root,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"
+    mount -o subvol=home,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/home
+    mount -o subvol=nix,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/nix
+    mount -o subvol=swap,noatime "$LUKS_PATH" "$ROOT_DIR"/swap
+    btrfs filesystem mkswapfile --size 64g --uuid clear /swap/swapfile
+
+    mkdir -p "$BOOT_DIR"
+    mount /dev/disk/by-label/BOOTTOFRMT "$BOOT_DIR"
 }
 
 umount_partitions() {
     echo "Unmount partitions."
     sleep 5
-    umount $BOOT_DIR
-    umount $ROOT_DIR
+    umount "$BOOT_DIR"
+    umount "$ROOT_DIR"/home
+    umount "$ROOT_DIR"/nix
+    umount "$ROOT_DIR"/swap
+    umount "$ROOT_DIR"
     cryptsetup close $LUKS_NAME
 }
 
@@ -123,12 +129,10 @@ create_pc() {
     create_boot_partition
     create_main_partition
     create_luks_partition
-    create_lvm
-    create_swap
-    create_ext4
+    create_btrfs
     mount_partitions
     create_initrd_keys
     create_ssh_host_keys
 }
 
-create_pi
+create_pc

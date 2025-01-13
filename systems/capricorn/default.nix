@@ -90,7 +90,7 @@
 
   networking.hostName = hostname;
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   hardware = {
     az-bluetooth.enable = true;

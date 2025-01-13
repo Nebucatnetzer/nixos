@@ -74,7 +74,7 @@ mount_partitions() {
     mount -o subvol=home,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/home
     mount -o subvol=nix,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/nix
     mount -o subvol=swap,noatime "$LUKS_PATH" "$ROOT_DIR"/swap
-    btrfs filesystem mkswapfile --size 64g --uuid clear /swap/swapfile
+    btrfs filesystem mkswapfile --size 64g --uuid clear "$ROOT_DIR"/swap/swapfile
 
     mkdir -p "$BOOT_DIR"
     mount /dev/disk/by-label/BOOTTOFRMT "$BOOT_DIR"

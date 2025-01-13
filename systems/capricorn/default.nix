@@ -71,7 +71,7 @@
     fsType = "btrfs";
     label = "mainBtrfs";
     options = [
-      "subvol=swap"
+      "subvol=nix"
       "compress=zstd"
       "noatime"
     ];

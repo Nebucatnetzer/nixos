@@ -103,6 +103,10 @@
         pkgs.intel-vaapi-driver # For older processors. LIBVA_DRIVER_NAME=i965
       ];
     };
+    ipu6 = {
+      enable = true;
+      platform = "ipu6epmtl";
+    };
   };
 
   profiles.az-desktop.enable = true;

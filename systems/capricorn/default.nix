@@ -29,7 +29,7 @@
     "ip=dhcp" # required for ssh at initrd
   ];
 
-  boot.initrd.luks.devices."cryptlvm" = {
+  boot.initrd.luks.devices."mainLuks" = {
     allowDiscards = true;
     device = "/dev/nvme0n1p2";
   };

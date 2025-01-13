@@ -20,7 +20,10 @@
     "xhci_pci"
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [
+    "dm-snapshot"
+    "xe" # graphics driver
+  ];
   boot.kernelModules = [
     "kvm-intel"
     "sg"
@@ -28,6 +31,8 @@
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "ip=dhcp" # required for ssh at initrd
+    "i915.force_probe=!7d45"
+    "xe.force_probe=7d45"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {
@@ -100,7 +105,7 @@
       enable = true;
       extraPackages = [
         pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
-        pkgs.intel-vaapi-driver # For older processors. LIBVA_DRIVER_NAME=i965
+        pkgs.vpl-gpu-rt
       ];
     };
     ipu6 = {

@@ -19,7 +19,7 @@
     "usb_storage"
     "xhci_pci"
   ];
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [
     "kvm-intel"

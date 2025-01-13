@@ -40,13 +40,13 @@
   boot.supportedFilesystems = [
     "apfs"
     "btrfs"
+    "cifs"
     "exfat"
     "ext4"
+    "f2fs"
     "nfs"
     "nfs4"
     "ntfs"
-    "cifs"
-    "f2fs"
   ];
 
   fileSystems."/" = {

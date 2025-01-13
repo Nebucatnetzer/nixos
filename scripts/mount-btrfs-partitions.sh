@@ -31,15 +31,4 @@ mount_partitions() {
     mount /dev/disk/by-label/BOOT "$BOOT_DIR"
 }
 
-umount_partitions() {
-    echo "Unmount partitions."
-    sleep 5
-    umount "$BOOT_DIR"
-    umount "$ROOT_DIR"/home
-    umount "$ROOT_DIR"/nix
-    umount "$ROOT_DIR"/swap
-    umount "$ROOT_DIR"
-    cryptsetup close $LUKS_NAME
-}
-
 mount_partitions

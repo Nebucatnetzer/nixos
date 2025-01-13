@@ -5,7 +5,7 @@ let
     directory="''${1:-videos}"
     for i in $(seq 1 4);
     do
-        nvidia-offload mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
+        mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
     done
   '';
   dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };

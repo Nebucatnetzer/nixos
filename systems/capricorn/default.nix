@@ -129,5 +129,6 @@
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";
+    thermald.enable = true;
   };
 }

@@ -35,6 +35,9 @@ in
         r = "cycle_values video-rotate 90 180 270 0";
       };
       config = {
+        hwdec = "auto-safe";
+        vo = "gpu";
+        profile = "gpu-h";
         "keepaspect-window" = "no";
         "image-display-duration" = 3;
         "volume" = 50;

@@ -96,7 +96,13 @@
   hardware = {
     az-bluetooth.enable = true;
     az-dvd.enable = true;
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = [
+        pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
+        pkgs.intel-vaapi-driver # For older processors. LIBVA_DRIVER_NAME=i965
+      ];
+    };
   };
 
   profiles.az-desktop.enable = true;

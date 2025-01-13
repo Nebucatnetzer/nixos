@@ -14,6 +14,7 @@
     "rtsx_pci_sdmmc"
     "sd_mod"
     "sr_mod"
+    "thunderbolt"
     "usbhid"
     "usb_storage"
     "xhci_pci"

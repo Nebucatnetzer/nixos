@@ -104,7 +104,7 @@ create_initrd_keys() {
 }
 
 create_ssh_host_keys() {
-    host="budget"
+    read -p 'How is this device called? ' host
     mkdir -p $ROOT_DIR/etc/ssh
     ssh-keygen -t ed25519 -N "" -C "root@$host" -f $ROOT_DIR/etc/ssh/ssh_host_ed25519_key
     ssh-keygen -N "" -C "root@$host" -t rsa -b 4096 -f $ROOT_DIR/etc/ssh/ssh_host_rsa_key

@@ -5,6 +5,14 @@
   pkgs,
   ...
 }:
+let
+  commonBtrfsOptions = [
+    "compress=zstd"
+    "defaults"
+    "noatime"
+    "ssd"
+  ];
+in
 {
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -57,36 +65,34 @@
   fileSystems."/" = {
     fsType = "btrfs";
     label = "mainBtrfs";
+    neededForBoot = true;
     options = [
       "subvol=root"
-      "compress=zstd"
-      "noatime"
-    ];
+    ] ++ commonBtrfsOptions;
   };
   fileSystems."/home" = {
     fsType = "btrfs";
     label = "mainBtrfs";
+    neededForBoot = true;
     options = [
       "subvol=home"
-      "compress=zstd"
-      "noatime"
-    ];
+    ] ++ commonBtrfsOptions;
   };
   fileSystems."/nix" = {
     fsType = "btrfs";
     label = "mainBtrfs";
+    neededForBoot = true;
     options = [
       "subvol=nix"
-      "compress=zstd"
-      "noatime"
-    ];
+    ] ++ commonBtrfsOptions;
   };
   fileSystems."/swap" = {
     fsType = "btrfs";
     label = "mainBtrfs";
     options = [
-      "subvol=swap"
       "noatime"
+      "ssd"
+      "subvol=swap"
     ];
   };
   fileSystems."/boot" = {

@@ -11,8 +11,8 @@ fi
 
 DISK=/dev/nvme0n1
 
-BOOT_PARTITION="$DISK"1
-ROOT_PARTITION="$DISK"2
+BOOT_PARTITION="$DISK"p1
+ROOT_PARTITION="$DISK"p2
 ROOT_DIR=/mnt/nixos
 BOOT_DIR=/mnt/nixos/boot
 LUKS_NAME=crypttoformat
@@ -57,7 +57,7 @@ create_btrfs() {
     btrfs subvolume create "$ROOT_DIR"/home
     btrfs subvolume create "$ROOT_DIR"/nix
     btrfs subvolume create "$ROOT_DIR"/swap
-    umount /mnt
+    umount "$ROOT_DIR"
 }
 # }
 

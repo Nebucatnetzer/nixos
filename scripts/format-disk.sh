@@ -69,8 +69,8 @@ create_f2fs() {
 mount_partitions() {
     echo "Mount partitions."
     sleep 5
-    mkdir -p "$ROOT_DIR"/{home,nix,swap}
     mount -o subvol=root,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"
+    mkdir -p "$ROOT_DIR"/{home,nix,swap}
     mount -o subvol=home,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/home
     mount -o subvol=nix,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"/nix
     mount -o subvol=swap,noatime "$LUKS_PATH" "$ROOT_DIR"/swap

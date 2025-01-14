@@ -41,6 +41,7 @@ in
     "ip=dhcp" # required for ssh at initrd
     "i915.force_probe=!7d45"
     "xe.force_probe=7d45"
+    "split_lock_detect=off"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {
@@ -110,7 +111,6 @@ in
     graphics = {
       enable = true;
       extraPackages = [
-        pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
         pkgs.vpl-gpu-rt
       ];
     };

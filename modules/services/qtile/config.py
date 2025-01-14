@@ -187,7 +187,6 @@ def primary_widgets():
         widget.Sep(padding=5),
         widget.DF(fmt="🗄️ {}", visible_on_warn=False),
         widget.Sep(padding=5),
-        widget.Sep(padding=5),
     ]
     widgets_end = [
         widget.Battery(
@@ -196,7 +195,6 @@ def primary_widgets():
             full_char="🔋",
             show_short_text=False,
         ),
-        widget.Sep(padding=5),
         widget.Sep(padding=5),
         widget.Systray(background="#00000000"),
         widget.Sep(padding=5),
@@ -224,8 +222,6 @@ def secondary_widgets():
         widget.TaskList(
             border="268bd2", font="sans", highlight_method="border", icon_size=20
         ),
-        widget.Sep(padding=5),
-        widget.Volume(emoji=True),
         widget.Sep(padding=5),
         widget.Clock(format="%Y-%m-%d %a %H:%M"),
     ]

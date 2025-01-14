@@ -6,6 +6,9 @@
 }:
 let
   cfg = config.services.az-grobi;
+  dp = "DP-1-2";
+  hdmi = "HDMI-1";
+  notebookScreen = "eDP-1";
 in
 {
   options = {
@@ -13,6 +16,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [ pkgs.grobi ];
+    systemd.user.services.grobi = {
+      Service = {
+        WorkingDirectory = config.home.homeDirectory;
+      };
+    };
     services.grobi = {
       enable = true;
       rules = [
@@ -30,11 +39,11 @@ in
         {
           name = "docked";
           outputs_connected = [
-            "eDP-1"
-            "DP-1-2"
+            notebookScreen
+            dp
           ];
           atomic = true;
-          configure_single = "DP-1-2";
+          configure_single = dp;
           primary = true;
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
@@ -43,9 +52,27 @@ in
           ];
         }
         {
+          name = "hdmi";
+          outputs_connected = [
+            hdmi
+            notebookScreen
+          ];
+          atomic = true;
+          configure_row = [
+            (hdmi + "@3840x2160")
+            notebookScreen
+          ];
+          primary = hdmi;
+          execute_after = [
+            "${pkgs.nitrogen}/bin/nitrogen --restore"
+            "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.networkmanager}/bin/nmcli radio wifi off"
+          ];
+        }
+        {
           name = "undocked";
-          outputs_disconnected = [ "DP-1-2" ];
-          configure_single = "eDP-1";
+          outputs_disconnected = [ dp ];
+          configure_single = notebookScreen;
           primary = true;
           atomic = true;
           execute_after = [
@@ -56,7 +83,7 @@ in
         }
         {
           name = "fallback";
-          configure_single = "eDP-1";
+          configure_single = notebookScreen;
         }
       ];
     };

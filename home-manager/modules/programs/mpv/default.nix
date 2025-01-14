@@ -37,10 +37,10 @@ in
       config = {
         hwdec = "auto-safe";
         vo = "gpu";
-        profile = "gpu-h";
-        "keepaspect-window" = "no";
-        "image-display-duration" = 3;
-        "volume" = 50;
+        profile = "gpu-hq";
+        keepaspect-window = "no";
+        image-display-duration = 3;
+        volume = 50;
       };
       scripts = [ delete-file ];
     };

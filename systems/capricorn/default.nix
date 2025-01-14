@@ -110,7 +110,6 @@ in
     graphics = {
       enable = true;
       extraPackages = [
-        pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
         pkgs.vpl-gpu-rt
       ];
     };

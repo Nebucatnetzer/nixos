@@ -16,8 +16,6 @@
 
   (use-package org
     :bind (:map org-mode-map
-                ;; comes from the package verb ./az_verb.el
-                ("C-c C-r" . verb-command-map)
                 ("C-c C-," . org-insert-structure-template))
     :config
     ;; enable org-mode keys
@@ -26,6 +24,8 @@
     (global-set-key "\C-cc" 'org-capture)
     (global-set-key "\C-cb" 'org-iswitchb)
 
+    ;; comes from the package verb ./az_verb.el
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
 
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))

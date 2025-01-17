@@ -48,16 +48,9 @@
     (kbd "C-u")     'evil-scroll-up
     (kbd "C-w C-w") 'other-window)
 
-  (defun az-dired-up-directory ()
-    "Take dired up one directory, but behave like dired-find-alternate-file"
-    (interactive)
-    (let ((old (current-buffer)))
-      (dired-up-directory)
-      (kill-buffer old)))
-
   ;; evil keybindings for dired
   (with-eval-after-load 'dired
-    (evil-define-key 'normal dired-mode-map "h" 'az-dired-up-directory)
+    (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
     (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
     (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
 

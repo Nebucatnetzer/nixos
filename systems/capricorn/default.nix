@@ -14,6 +14,7 @@ let
   ];
 in
 {
+  system.nixos.label = "i915_gpu-rt_media_driver";
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
@@ -39,8 +40,6 @@ in
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "ip=dhcp" # required for ssh at initrd
-    "i915.force_probe=!7d45"
-    "xe.force_probe=7d45"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {

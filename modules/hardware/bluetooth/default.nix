@@ -22,6 +22,9 @@ in
     systemd.user.services.blueman-applet = {
       partOf = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        Restart = "always";
+      };
     };
   };
 }

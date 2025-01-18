@@ -37,7 +37,17 @@ in
     # raw config files
     home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;
 
-    gtk.theme.name = "Arc-Darker";
+    gtk = {
+      cursorTheme = {
+        package = pkgs.vanilla-dmz;
+        name = "Vanilla-DMZ";
+      };
+      font = {
+        name = "DejaVu Sans";
+        package = pkgs.dejavu_fonts;
+        size = 12;
+      };
+    };
 
     xdg = {
       mimeApps = {

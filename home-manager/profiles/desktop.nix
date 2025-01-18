@@ -21,6 +21,7 @@ in
 {
   imports = [ ./management.nix ];
   home = {
+    file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
     packages = [
       pkgs.chromium # needed for cloud gaming
       pkgs.digikam

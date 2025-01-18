@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 (use-package hyperbole
-  :config
+  :init
   (customize-set-variable 'hywiki-directory "~/.emacs.d/hywiki")
+  :config
   (hyperbole-mode 1))

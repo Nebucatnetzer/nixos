@@ -17,11 +17,6 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.grobi ];
-    systemd.user.services.grobi = {
-      Service = {
-        WorkingDirectory = config.home.homeDirectory;
-      };
-    };
     services.grobi = {
       enable = true;
       rules = [

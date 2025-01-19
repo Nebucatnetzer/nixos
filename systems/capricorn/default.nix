@@ -32,7 +32,6 @@ in
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [
     "dm-snapshot"
-    "xe" # graphics driver
   ];
   boot.kernelModules = [
     "kvm-intel"

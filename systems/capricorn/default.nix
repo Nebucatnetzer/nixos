@@ -14,6 +14,7 @@ let
   ];
 in
 {
+  # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   system.nixos.label = "i915_gpu-rt_media_driver";
   boot.initrd.availableKernelModules = [
     "aesni_intel"

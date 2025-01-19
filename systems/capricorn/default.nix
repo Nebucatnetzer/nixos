@@ -90,7 +90,10 @@ in
     fsType = "btrfs";
     label = "mainBtrfs";
     options = [
+      "compress=no"
       "noatime"
+      "nodatacow"
+      "nodatasum"
       "ssd"
       "subvol=swap"
     ];

@@ -15,16 +15,6 @@ let
           -o User=root \
           $1
   '';
-  rebuild = pkgs.writeShellApplication {
-    name = "rebuild";
-    runtimeInputs = [
-      pkgs.nixos-rebuild
-    ];
-    text = ''
-      nixos-rebuild -j auto switch --use-remote-sudo
-      upload-to-cache /run/current-system
-    '';
-  };
 in
 {
   imports = [ ./headless.nix ];
@@ -38,7 +28,6 @@ in
       pkgs.nix-prefetch-scripts
       pkgs.nix-tree
       denote-rename
-      rebuild
       unlock-luks
     ];
     shellAliases = {

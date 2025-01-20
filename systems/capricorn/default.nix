@@ -31,6 +31,8 @@ in
   boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.initrd.kernelModules = [
     "dm-snapshot"
+    "thunderbolt"
+    "i915"
   ];
   boot.kernelModules = [
     "kvm-intel"

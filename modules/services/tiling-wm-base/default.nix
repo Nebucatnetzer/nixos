@@ -12,6 +12,9 @@ in
     services.az-tiling-wm-base.enable = lib.mkEnableOption "Enable basic utilities for Window Managers";
   };
   config = lib.mkIf cfg.enable {
+    home-manager.users.${config.az-username} = {
+      services.az-xidlehook.enable = true;
+    };
     environment = {
       systemPackages = [
         pkgs.file-roller
@@ -19,6 +22,15 @@ in
         pkgs.lxappearance
         pkgs.rofi
       ];
+    };
+    programs = {
+      xss-lock = {
+        enable = true;
+        lockerCommand = ''
+          ${pkgs.i3lock}/bin/i3lock -c 000000
+          ${pkgs.xorg.xset}/bin/xset dpms force off
+        '';
+      };
     };
     services = {
       displayManager.ly = {

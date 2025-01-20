@@ -43,7 +43,6 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
-            "${pkgs.networkmanager}/bin/nmcli radio wifi off"
           ];
         }
         {
@@ -61,7 +60,6 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
-            "${pkgs.networkmanager}/bin/nmcli radio wifi off"
           ];
         }
         {
@@ -73,7 +71,6 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
-            "${pkgs.networkmanager}/bin/nmcli radio wifi on"
           ];
         }
         {

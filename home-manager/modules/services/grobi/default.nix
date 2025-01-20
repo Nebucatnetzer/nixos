@@ -43,6 +43,7 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.systemd}/bin/systemctl restart --user blueman-applet.service"
           ];
         }
         {
@@ -60,6 +61,7 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.systemd}/bin/systemctl restart --user blueman-applet.service"
           ];
         }
         {
@@ -71,6 +73,7 @@ in
           execute_after = [
             "${pkgs.nitrogen}/bin/nitrogen --restore"
             "${pkgs.qtile-unwrapped}/bin/qtile cmd-obj -o cmd -f restart"
+            "${pkgs.systemd}/bin/systemctl restart --user blueman-applet.service"
           ];
         }
         {

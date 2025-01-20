@@ -130,6 +130,7 @@ in
   programs = {
     az-adb.enable = true;
     az-distrobox.enable = true;
+    az-droidcam.enable = true;
     az-makemkv.enable = true;
     az-restic-management.enable = true;
     az-steam.enable = true;

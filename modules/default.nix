@@ -14,6 +14,7 @@
     ./profiles/server
     ./programs/adb
     ./programs/distrobox
+    ./programs/droidcam
     ./programs/eog
     ./programs/libimobiledevice
     ./programs/makemkv

@@ -9,6 +9,7 @@ let
   az-lock-screen = pkgs.writeShellScriptBin "az-lock-screen" ''
     ${pkgs.i3lock}/bin/i3lock -c 000000
     ${pkgs.xorg.xset}/bin/xset dpms force off
+    ${pkgs.util-linux}/bin/rfkill block all
   '';
 in
 {

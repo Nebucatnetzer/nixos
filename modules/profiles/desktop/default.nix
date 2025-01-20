@@ -69,10 +69,12 @@ in
 
     fonts = {
       fontconfig.defaultFonts = {
+        sansSerif = [ "DejaVu Sans" ];
         serif = [ "TeX Gyre Pagella" ];
         monospace = [ "Source Code Pro" ];
       };
       packages = [
+        pkgs.dejavu_fonts
         pkgs.gyre-fonts
         pkgs.source-code-pro
       ];
@@ -114,10 +116,13 @@ in
       };
     };
     hardware.keyboard.zsa.enable = true;
-
+    qt.style = "adwaita";
     environment = {
       systemPackages = [
         # what I consider to be system packages
+        pkgs.adwaita-icon-theme
+        pkgs.adwaita-qt
+        pkgs.adwaita-qt6
         pkgs.alacritty
         pkgs.appimage-run
         pkgs.brightnessctl
@@ -129,6 +134,7 @@ in
         pkgs.quickemu
         pkgs.strawberry
         pkgs.unrar
+        pkgs.vanilla-dmz
         pkgs.wally-cli
         toggle-keyboard
       ];

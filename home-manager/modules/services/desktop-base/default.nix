@@ -47,6 +47,10 @@ in
         package = pkgs.dejavu_fonts;
         size = 12;
       };
+      theme = {
+        name = "Adwaita";
+        package = pkgs.gnome.gnome-themes-extra;
+      };
     };
 
     xdg = {

@@ -28,7 +28,7 @@ in
     "usb_storage"
     "xhci_pci"
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.initrd.kernelModules = [
     "dm-snapshot"
   ];

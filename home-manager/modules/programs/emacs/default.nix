@@ -15,6 +15,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables = {
+      LSP_USE_PLISTS = "true";
+    };
     home.packages = [
       pkgs.emacs-lsp-booster
       pkgs.fd

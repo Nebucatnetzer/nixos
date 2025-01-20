@@ -30,6 +30,15 @@ in
   config = lib.mkIf cfg.enable {
     programs.mpv = {
       enable = true;
+      package = (
+        pkgs.mpv-unwrapped.wrapper {
+          mpv = pkgs.mpv-unwrapped.override {
+            ffmpeg = pkgs.ffmpeg-full;
+          };
+          scripts = [ delete-file ];
+          youtubeSupport = true;
+        }
+      );
       bindings = {
         s = "playlist-shuffle";
         r = "cycle_values video-rotate 90 180 270 0";
@@ -42,7 +51,6 @@ in
         image-display-duration = 3;
         volume = 50;
       };
-      scripts = [ delete-file ];
     };
 
     xdg.mimeApps = {

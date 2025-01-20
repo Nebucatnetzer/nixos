@@ -20,17 +20,19 @@ in
         pkgs.rofi
       ];
     };
-    # Enable keyring
-    security.pam.services.lightdm.enableGnomeKeyring = true;
     services = {
+      displayManager.ly = {
+        enable = true;
+        settings = {
+          save = true; # Save current desktop & user
+          load = true; # Load saved desktop & user
+        };
+      };
       gnome = {
         gnome-keyring.enable = true;
         tinysparql.enable = true;
       };
       redshift.enable = true;
-      xserver = {
-        displayManager.lightdm.enable = true;
-      };
     };
     xdg = {
       portal = {

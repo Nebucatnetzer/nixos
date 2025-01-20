@@ -143,7 +143,7 @@ in
     az-zram-swap.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
-    logind.lidSwitchExternalPower = "ignore";
+    logind.lidSwitch = "ignore";
     thermald.enable = true;
   };
 }

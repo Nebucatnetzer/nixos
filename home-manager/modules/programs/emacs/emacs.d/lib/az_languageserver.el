@@ -1,35 +1,50 @@
 ;; -*- lexical-binding: t; -*-
-(use-package eglot-mode
-  :ensure nil
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
   :config
-  (setq
-   eglot-autoshutdown t
-   eldoc-echo-area-use-multiline-p nil
-   gc-cons-threshold 100000000
-   read-process-output-max (* 1024 1024))
-  (add-to-list 'eglot-server-programs `(ansible-mode . '("ansible-language-server" "--stdio")))
-  :bind
-  (:map eglot-mode-map
-        ("C-c C-l r" . eglot-rename))
-  :hook
-  ((ansible-mode . eglot-ensure))
-  :commands (eglot eglot-code-actions eglot-rename))
+  (lsp-treemacs-sync-mode 1)
+  (setq gc-cons-threshold 100000000
+        read-process-output-max (* 1024 1024)
+        lsp-idle-delay 0.500
+        lsp-keep-workspace-alive nil
+        lsp-auto-register-remote-clients nil
+        lsp-pylsp-plugins-pycodestyle-enabled nil
+        lsp-pyls-plugins-pycodestyle-enabled nil
+        lsp-pylsp-plugins-flake8-enabled nil
+        lsp-pylsp-plugins-mypy-enabled t
+        lsp-pylsp-plugins-pylint-enabled t)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\node_modules\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\var'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.devenv\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.direnv\\'")
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\.gitlab\\'")
+  (add-to-list 'lsp-file-watch-ignored-files "[/\\\\]\\.gitlab-ci\\.yml\\'")
+  :commands lsp)
 
-;; https://github.com/jdtsmith/eglot-booster
-(unless (package-installed-p 'eglot-booster)
-  (package-vc-install '(eglot-booster
-                        :url "https://github.com/jdtsmith/eglot-booster"
-                        )))
-(use-package eglot-booster
-  :ensure nil
-  :after eglot
-  :config
-  (eglot-booster-mode))
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nixfmt"]))
 
 (use-package lsp-java
-  :after (eglot-mode)
+  :ensure lsp-mode
+  :after (lsp-mode)
   :demand t
-  :hook (java-ts-mode . eglot-ensure))
+  :config
+  (setq lsp-java-format-enabled t
+        lsp-java-import-gradle-enabled t)
+  :hook (java-ts-mode . lsp-deferred))
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
 
 ;; optionally if you want to use debugger
 (use-package dap-mode)

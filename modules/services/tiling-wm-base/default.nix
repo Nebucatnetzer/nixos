@@ -6,6 +6,10 @@
 }:
 let
   cfg = config.services.az-tiling-wm-base;
+  az-lock-screen = pkgs.writeShellScriptBin "az-lock-screen" ''
+    ${pkgs.i3lock}/bin/i3lock -c 000000
+    ${pkgs.xorg.xset}/bin/xset dpms force off
+  '';
 in
 {
   options = {
@@ -26,10 +30,7 @@ in
     programs = {
       xss-lock = {
         enable = true;
-        lockerCommand = ''
-          ${pkgs.i3lock}/bin/i3lock -c 000000
-          ${pkgs.xorg.xset}/bin/xset dpms force off
-        '';
+        lockerCommand = "${az-lock-screen}/bin/az-lock-screen";
       };
     };
     services = {

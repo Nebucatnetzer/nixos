@@ -13,7 +13,9 @@ in
       settings = {
         DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi";
         DEVICES_TO_ENABLE_ON_STARTUP = "bluetooth";
+        DEVICES_TO_ENABLE_ON_DOCK = "bluetooth";
         DEVICES_TO_ENABLE_ON_UNDOCK = "wifi";
+        DEVICES_TO_DISABLE_ON_UNDOCK = "bluetooth";
       };
     };
   };

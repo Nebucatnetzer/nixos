@@ -3,7 +3,7 @@
   :config
   (unbind-key "C-c C-t" python-ts-mode-map)
   (setq python-shell-interpreter "python3")
-  :hook (python-ts-mode . lsp-deferred))
+  :hook (python-ts-mode . eglot-ensure))
 
 
 (use-package python-pytest

@@ -89,9 +89,6 @@ in
         epkgs.languagetool
         epkgs.lsp-haskell
         epkgs.lsp-java
-        epkgs.lsp-mode
-        epkgs.lsp-treemacs
-        epkgs.lsp-ui
         epkgs.lv
         epkgs.magit
         epkgs.makey

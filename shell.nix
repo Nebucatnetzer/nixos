@@ -4,6 +4,7 @@
 pkgs.mkShell {
   name = "nixosbuildshell";
   nativeBuildInputs = [
+    pkgs.deadnix
     pkgs.git
     pkgs.python3
     pkgs.python3Packages.black

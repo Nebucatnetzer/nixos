@@ -1,4 +1,7 @@
 ;; -*- lexical-binding: t; -*-
+(use-package flymake-collection
+  :hook (after-init . flymake-collection-hook-setup))
+
 (use-package eglot-mode
   :ensure nil
   :config

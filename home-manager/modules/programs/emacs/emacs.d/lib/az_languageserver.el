@@ -10,7 +10,7 @@
   (add-to-list 'eglot-server-programs `(ansible-mode . '("ansible-language-server" "--stdio")))
   :bind
   (:map eglot-mode-map
-        ("C-c C-l r" . eglot-rename))
+        ("C-c C-r" . eglot-rename))
   :hook
   ((ansible-mode . eglot-ensure))
   :commands (eglot eglot-code-actions eglot-rename))

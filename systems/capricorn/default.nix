@@ -125,6 +125,10 @@ in
   };
 
   profiles.az-desktop.enable = true;
+
+  environment.systemPackages = [
+    pkgs.compsize # required to display additional information about btrfs compression
+  ];
   programs = {
     az-adb.enable = true;
     az-distrobox.enable = true;

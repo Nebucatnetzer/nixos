@@ -1,5 +1,5 @@
 { hostname }:
-{ config, inputs, ... }:
+{ config, ... }:
 {
   boot.initrd.availableKernelModules = [
     "ata_piix"

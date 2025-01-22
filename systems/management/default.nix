@@ -1,8 +1,5 @@
 { hostname }:
 {
-  config,
-  inputs,
-  lib,
   ...
 }:
 {

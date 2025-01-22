@@ -1,5 +1,5 @@
 { hostname }:
-{ inputs, pkgs, ... }:
+{ ... }:
 let
   domain = "git.2li.ch";
 in

@@ -1,8 +1,5 @@
 { hostname }:
 {
-  inputs,
-  lib,
-  pkgs,
   ...
 }:
 {

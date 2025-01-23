@@ -45,10 +45,11 @@ in
       };
       config = {
         hwdec = "auto-safe";
-        vo = "gpu";
-        profile = "gpu-hq";
-        keepaspect-window = "no";
         image-display-duration = 3;
+        keep-open = "yes";
+        keepaspect-window = "no";
+        profile = "gpu-hq";
+        vo = "gpu";
         volume = 50;
       };
     };

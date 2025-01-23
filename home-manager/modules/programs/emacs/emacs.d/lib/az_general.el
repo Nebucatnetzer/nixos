@@ -89,6 +89,18 @@
   (persp-switch "notes")
   (dired denote-directory))
 
+;; Taken from here: https://www.emacswiki.org/emacs/Replace-in-buffer
+(defun az-replace-in-buffer ()
+  "Search and replace given string in current buffer."
+  (interactive)
+  (save-excursion
+    (if (equal mark-active nil) (mark-word))
+    (setq curr-word (buffer-substring-no-properties (mark) (point)))
+    (setq old-string (read-string "Replace: " curr-word))
+    (setq new-string (read-string "With: " old-string))
+    (query-replace old-string new-string nil (point-min) (point-max))))
+
+
 (defun az-split-window-below-and-move-cursor ()
   (interactive)
   (split-window-below)

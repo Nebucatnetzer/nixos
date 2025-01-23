@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: Shebang
 # key: _bang
+# group: az
 # --
 #!/usr/bin/env python3

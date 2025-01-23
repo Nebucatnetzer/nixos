@@ -1,4 +1,10 @@
 ;; -*- lexical-binding: t; -*-
+(use-package flymake-ansible-lint
+  :ensure t
+  :commands flymake-ansible-lint-setup
+  :hook ((ansible-mode . flymake-ansible-lint-setup)
+         (ansible-mode . flymake-mode)))
+
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
 
@@ -14,8 +20,8 @@
   :bind
   (:map eglot-mode-map
         ("C-c C-r" . eglot-rename))
-  :hook
-  ((ansible-mode . eglot-ensure))
+  ;;:hook
+  ;;((ansible-mode . eglot-ensure))
   :commands (eglot eglot-code-actions eglot-rename))
 
 ;; https://github.com/jdtsmith/eglot-booster

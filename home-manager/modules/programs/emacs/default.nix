@@ -72,6 +72,7 @@ in
         epkgs.evil-collection
         epkgs.evil-surround
         epkgs.f
+        epkgs.flymake-ansible-lint
         epkgs.flymake-collection
         epkgs.flymake-flycheck
         epkgs.flymake-shellcheck

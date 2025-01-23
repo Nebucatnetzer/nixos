@@ -38,6 +38,8 @@
 ;; "p s"    ellama-provider-select         Provider select
 
 (use-package ellama
+  :config
+  (customize-set-variable 'ellama-auto-scroll t)
   :init
   ;; setup key bindings
   (setq llm-warn-on-nonfree nil)

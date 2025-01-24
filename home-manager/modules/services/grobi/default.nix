@@ -17,6 +17,14 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.grobi ];
+    systemd.user.services.grobi = {
+      Service = {
+        ExecStart = lib.mkForce "${pkgs.grobi}/bin/grobi watch --verbose --active-poll";
+      };
+      Unit = {
+        After = [ "graphical-session.target" ];
+      };
+    };
     services.grobi = {
       enable = true;
       rules = [

@@ -21,7 +21,12 @@ in
 
     home-manager.users.${config.az-username} = {
       services.blueman-applet.enable = true;
-      systemd.user.services.blueman-applet.Service.Restart = "on-failure";
+      systemd.user.services.blueman-applet = {
+        Unit.After = [
+          "graphical-session.target"
+        ];
+        Service.Restart = "on-failure";
+      };
     };
   };
 }

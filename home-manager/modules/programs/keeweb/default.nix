@@ -17,7 +17,7 @@ in
     systemd.user.services.keeweb = {
       Unit = {
         Description = "Start keeweb";
-        After = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session.target" ];
         PartOf = [ "graphical-session.target" ];
       };
       Service = {

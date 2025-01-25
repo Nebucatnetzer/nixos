@@ -118,10 +118,10 @@ in
         pkgs.vpl-gpu-rt
       ];
     };
-    ipu6 = {
-      enable = true;
-      platform = "ipu6epmtl";
-    };
+    # ipu6 = {
+    #   enable = true;
+    #   platform = "ipu6epmtl";
+    # };
   };
 
   profiles.az-desktop.enable = true;

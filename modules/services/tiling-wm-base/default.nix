@@ -11,15 +11,6 @@ let
     ${pkgs.i3lock}/bin/i3lock -c 000000
     # Turn off the display
     ${pkgs.xorg.xset}/bin/xset dpms force off
-
-    # If we are battery kill the radios
-    ac_powerstatus_file=/sys/class/power_supply/AC/online
-    if [ -e "$ac_powerstatus_file" ]; then
-      ac_powerstatus=$(<$ac_powerstatus_file)
-      if [ $ac_powerstatus != 1 ]; then
-        ${pkgs.util-linux}/bin/rfkill block all
-      fi
-    fi
   '';
 in
 {

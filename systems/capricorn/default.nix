@@ -161,7 +161,6 @@ in
     };
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
-    logind.lidSwitch = "lock";
     thermald.enable = true;
   };
 }

@@ -1,10 +1,26 @@
 {
+  nixosConfig,
   inputs,
   pkgs,
   ...
 }:
 let
   denote-rename = pkgs.callPackage "${inputs.self}/pkgs/denote-rename" { };
+  rebuild = pkgs.writeShellApplication {
+    name = "rebuild";
+    runtimeInputs = [
+      pkgs.nixos-rebuild
+    ];
+    text = ''
+      if ${pkgs.netcat}/bin/nc -vzw 2 ${nixosConfig.services.az-binary-cache-common.server} 22; then
+        nixos-rebuild -j auto switch --use-remote-sudo
+        upload-to-cache /run/current-system
+      else
+        echo "Build without private cache"
+        sudo nixos-rebuild switch --option substituters "https://cache.nixos.org https://cache.nixos.org https://devenv.cachix.org"
+      fi
+    '';
+  };
   unlock-luks = pkgs.writeShellScriptBin "unlock-luks" ''
     until ${pkgs.netcat}/bin/nc -vzw 2 $1 22; do
         sleep 1
@@ -28,6 +44,7 @@ in
       pkgs.nix-prefetch-scripts
       pkgs.nix-tree
       denote-rename
+      rebuild
       unlock-luks
     ];
     shellAliases = {

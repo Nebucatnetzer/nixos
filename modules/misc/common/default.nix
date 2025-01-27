@@ -9,22 +9,6 @@ let
   nixPath = "/etc/nixPath";
   system = pkgs.system;
   GiB = 1024 * 1024 * 1024;
-  rebuild = pkgs.writeShellApplication {
-    name = "rebuild";
-    runtimeInputs = [
-      pkgs.nixos-rebuild
-    ];
-    #  &&
-    text = ''
-      if ${pkgs.netcat}/bin/nc -vzw 2 ${config.services.az-binary-cache-common.server} 22; then
-        nixos-rebuild -j auto switch --use-remote-sudo
-        upload-to-cache /run/current-system
-      else
-        echo "Build without private cache"
-        sudo nixos-rebuild switch --option substituters "https://cache.nixos.org https://cache.nixos.org https://devenv.cachix.org"
-      fi
-    '';
-  };
 in
 {
   # The rough location
@@ -114,7 +98,6 @@ in
       pkgs.unzip
       pkgs.vim
       pkgs.wget
-      rebuild
     ];
   };
   # Disable the root user

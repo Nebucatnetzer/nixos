@@ -45,7 +45,7 @@
           ("GraphQL" prettier)
           ("Haskell" ormolu)
           ("HTML" html-tidy)
-          ("Java" (google-java-format "-r"))
+          ("Java" (google-java-format))
           ("JavaScript" prettier)
           ("JSON" prettier)
           ("JSON5" prettier)

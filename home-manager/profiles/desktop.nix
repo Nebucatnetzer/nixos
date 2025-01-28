@@ -33,6 +33,7 @@ in
       dap-sync
       freetube
       send-to-kindle
+      pkgs.lmstudio
       unstable-pkgs.vscode
     ];
   };

@@ -16,7 +16,8 @@
 
   (use-package org
     :bind (:map org-mode-map
-                ("C-c C-," . org-insert-structure-template))
+                ("C-c C-," . org-insert-structure-template)
+                ("C-c C-$" . org-archive-subtree))
     :config
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)

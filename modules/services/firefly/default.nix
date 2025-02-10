@@ -66,7 +66,7 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers."firefly-importer" = {
-        image = "fireflyiii/data-importer:version-1.5.2";
+        image = "fireflyiii/data-importer:1.6.0@sha256:6dae0dd6f415d4cbc1a858533fced215aee50fcf69c39645f2b80ef1616db612";
         autoStart = true;
         environment = {
           FIREFLY_III_URL = "https://${config.services.firefly-iii.virtualHost}";

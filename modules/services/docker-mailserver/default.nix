@@ -89,7 +89,7 @@ in
       backend = "docker";
       containers."mailserver" = {
         # https://hub.docker.com/r/mailserver/docker-mailserver/tags
-        image = "docker.io/mailserver/docker-mailserver:${version}";
+        image = "docker.io/mailserver/docker-mailserver:${version}@sha256:01b82c6c1c64d5b73ba161c0107e5d7d038ebdce85eb9ed084f043e9c2a7943b";
         autoStart = true;
         environmentFiles = [ ./mailserver.env ];
         ports = [

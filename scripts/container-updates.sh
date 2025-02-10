@@ -15,7 +15,7 @@ images=("docker.io/linuxserver/grav" "lscr.io/linuxserver/plex" "lscr.io/linuxse
 
 for image in "${images[@]}"; do
     digest=$(skopeo inspect "docker://$image":latest | jq -r '.Digest')
-    tags_string=$(skopeo inspect "docker://$image" | jq -r .RepoTags[] | grep -v "arm" | grep -v "amd" | grep -v "bionic" | grep -v "^dev" | grep -v "rootless" | grep -v "js" | grep -v "nightly" | grep -v "latest" | grep -v "edge" | grep -v "version-61a5a1a8" | grep -v "version-3a9bdd2c" | sed 's/version-v/version-/i' | sort -ruV)
+    tags_string=$(skopeo inspect "docker://$image" | jq -r .RepoTags[] | grep -v "2021" | grep -v "61a5a1" | sed 's/version-v/version-/i' | sed 's/version-//i' | grep -Eo '^[0-9]{1,}.[0-9]{1,}.[0-9]{1,}' | sort -ruV)
     set -o noglob
     IFS=$'\n' tags=($tags_string)
     set +o noglob

@@ -6,12 +6,14 @@ pkgs.mkShell {
   nativeBuildInputs = [
     pkgs.deadnix
     pkgs.git
+    pkgs.jq # required for container updates
     pkgs.python3
     pkgs.python3Packages.black
     pkgs.python3Packages.mypy
     pkgs.python3Packages.pylint
     pkgs.qtile-unwrapped
     pkgs.python3Packages.python-lsp-server
+    pkgs.skopeo # required for container updates
     pkgs.vim
   ];
 

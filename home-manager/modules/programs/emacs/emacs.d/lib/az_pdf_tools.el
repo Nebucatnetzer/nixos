@@ -7,6 +7,7 @@
     (setq-default pdf-view-display-size 'fit-page)
     ;; turn off cua so copy works
     (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+    (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
     ;; keyboard shortcuts
     (define-key pdf-view-mode-map (kbd "C-w C-w") 'other-window)
     (define-key pdf-view-mode-map (kbd "j") 'pdf-view-next-page-command)

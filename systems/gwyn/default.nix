@@ -63,16 +63,13 @@
 
   hardware = {
     az-bluetooth.enable = true;
-    az-dvd.enable = true;
     az-nvidia.enable = true;
     graphics.enable = true;
   };
 
   profiles.az-desktop.enable = true;
   programs = {
-    az-adb.enable = true;
     az-distrobox.enable = true;
-    az-makemkv.enable = true;
     az-restic-management.enable = true;
   };
 

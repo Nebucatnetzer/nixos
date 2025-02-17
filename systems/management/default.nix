@@ -1,7 +1,5 @@
 { hostname }:
-{
-  ...
-}:
+{ ... }:
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -15,20 +13,11 @@
   profiles.az-server.enable = true;
   services = {
     az-binary-cache-server.enable = true;
-    az-data-share.enable = true;
-    az-docker.enable = true;
-    az-logs-share.enable = true;
-    az-nextcloud-cli-client.enable = true;
     az-restic-client-server = {
       enable = true;
       path = "/home/andreas";
       tag = "management";
       time = "23:30";
     };
-  };
-  # Enable dictionaries
-  programs = {
-    az-nix-direnv.enable = true;
-    az-restic-management.enable = true;
   };
 }

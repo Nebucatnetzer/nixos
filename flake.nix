@@ -39,12 +39,10 @@
         };
         "git" = { };
         "gwyn" = {
-          home-module = "desktop";
-        };
-        "mail" = { };
-        "management" = {
           home-module = "management";
         };
+        "mail" = { };
+        "management" = { };
         "nextcloud" = { };
         "plex" = { };
         "proxy" = { };

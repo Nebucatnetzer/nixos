@@ -42,10 +42,6 @@ in
     az-calibre.enable = true;
     az-rapid-photo-downloader.enable = true;
     az-work-desktop.enable = true;
-    az-yt-dlp.enable = true;
   };
 
-  services = {
-    az-desktop-base.enable = true;
-  };
 }

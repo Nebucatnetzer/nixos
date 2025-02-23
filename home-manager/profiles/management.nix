@@ -62,6 +62,11 @@ in
     az-ssh.enable = true;
     az-starship.enable = true;
     az-tmux.enable = true;
+    az-yt-dlp.enable = true;
   };
-  services.ssh-agent.enable = true;
+
+  services = {
+    az-desktop-base.enable = true;
+    ssh-agent.enable = true;
+  };
 }

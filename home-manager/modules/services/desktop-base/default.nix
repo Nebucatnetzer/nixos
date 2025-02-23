@@ -18,22 +18,7 @@ in
       az-czkawka.enable = true;
       az-evince.enable = true;
       az-keeweb.enable = true;
-      az-mpv.enable = true;
-      az-signal.enable = true;
-      az-telegram.enable = true;
-      bash = {
-        shellAliases = {
-          management-server = "mosh ${config.home.username}@10.7.89.150 -- tmux new -A -s 0";
-          work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
-        };
-      };
     };
-    home.packages = [
-      pkgs.meld
-      pkgs.nitrogen
-      pkgs.libreoffice-fresh
-      pkgs.remmina
-    ];
     # raw config files
     home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;
 

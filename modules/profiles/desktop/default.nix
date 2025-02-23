@@ -1,13 +1,11 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.profiles.az-desktop;
-  toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
 in
 {
   options = {
@@ -97,12 +95,7 @@ in
           "extensions.pocket.enabled" = false;
         };
       };
-      localsend = {
-        enable = true;
-        openFirewall = true;
-      };
     };
-    hardware.keyboard.zsa.enable = true;
     qt.style = "adwaita";
     environment = {
       systemPackages = [
@@ -119,11 +112,8 @@ in
         pkgs.pavucontrol
         pkgs.podman-compose
         pkgs.quickemu
-        pkgs.strawberry
         pkgs.unrar
         pkgs.vanilla-dmz
-        pkgs.wally-cli
-        toggle-keyboard
       ];
       variables = {
         WINIT_X11_SCALE_FACTOR = "1";
@@ -133,7 +123,6 @@ in
         QT_SCALE_FACTOR = "1.25";
       };
     };
-    virtualisation.virtualbox.host.enable = true;
     virtualisation.podman.enable = true;
   };
 }

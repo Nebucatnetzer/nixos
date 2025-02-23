@@ -1,5 +1,6 @@
 { hostname }:
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -10,6 +11,7 @@ let
     "noatime"
     "ssd"
   ];
+  toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
 in
 {
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
@@ -118,6 +120,7 @@ in
         pkgs.vpl-gpu-rt
       ];
     };
+    keyboard.zsa.enable = true;
     # ipu6 = {
     #   enable = true;
     #   platform = "ipu6epmtl";
@@ -127,6 +130,9 @@ in
   profiles.az-desktop.enable = true;
 
   environment.systemPackages = [
+    pkgs.strawberry # music player
+    pkgs.wally-cli # tool to flash a ZSA keyboard
+    toggle-keyboard
     pkgs.compsize # required to display additional information about btrfs compression
   ];
   programs = {
@@ -136,6 +142,10 @@ in
     az-makemkv.enable = true;
     az-restic-management.enable = true;
     az-steam.enable = true;
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   services = {

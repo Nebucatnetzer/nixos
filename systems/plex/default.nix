@@ -11,7 +11,10 @@
 
   profiles.az-server.enable = true;
   services = {
-    az-media-share.enable = true;
+    az-media-share = {
+      enable = true;
+      hard = true;
+    };
     az-plex.enable = true;
     az-restic-client-server = {
       enable = true;

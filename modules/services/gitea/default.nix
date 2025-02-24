@@ -29,6 +29,11 @@ in
         "rw"
       ];
     };
+
+    services.snmpd.configText = ''
+      # monitor gitea
+      proc gitea
+    '';
     services = {
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;

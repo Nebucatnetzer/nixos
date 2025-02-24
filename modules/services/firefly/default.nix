@@ -27,6 +27,11 @@ in
       owner = config.services.firefly-iii.user;
       group = config.services.firefly-iii.group;
     };
+
+    services.snmpd.configText = ''
+      # monitor php
+      proc .php-fpm-wrappe
+    '';
     services = {
       az-docker.enable = true;
       az-acme-base.enable = true;

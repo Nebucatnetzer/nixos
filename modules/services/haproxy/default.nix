@@ -16,6 +16,11 @@ in
         1936
       ];
     };
+
+    services.snmpd.configText = ''
+      # monitor haproxy
+      proc haproxy
+    '';
     services.haproxy = {
       enable = true;
       config = ''

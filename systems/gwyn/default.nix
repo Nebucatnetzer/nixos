@@ -57,7 +57,22 @@
     fsType = "vfat";
   };
 
-  networking.hostName = hostname;
+  networking = {
+    useDHCP = false;
+    hostName = hostname;
+    hosts = {
+      "127.0.0.1" = [ "${hostname}.2li.local" ];
+      ip = [ "${hostname}.2li.local" ];
+    };
+    defaultGateway = "10.7.89.1";
+    nameservers = [ "10.7.89.1" ];
+    interfaces.enp58s0u1.ipv4.addresses = [
+      {
+        address = "10.7.89.153";
+        prefixLength = 24;
+      }
+    ];
+  };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 

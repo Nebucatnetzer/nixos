@@ -37,6 +37,7 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
+    ./services/librenms
     ./services/log-to-ram
     ./services/logs-share
     ./services/mariadb-for-containers

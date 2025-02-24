@@ -57,6 +57,7 @@
     ./services/restic-client-server-postgres
     ./services/restic-server
     ./services/rss-bridge
+    ./services/snmpd
     ./services/syslog
     ./services/telegram-notifications
     ./services/tiling-wm-base

@@ -6,6 +6,14 @@
 }:
 let
   cfg = config.services.az-librenms;
+  libreNMSSyslogWrapper = pkgs.writeShellScriptBin "librenms-syslog" ''
+    cd ${pkgs.libresnm}
+    sudo=exec
+    if [[ "$USER" != ${config.services.librenms.user} ]]; then
+      sudo='exec /run/wrappers/bin/sudo -u ${config.services.librenms.user}'
+    fi
+    $sudo ${pkgs.librenms.phpPackage}/bin/php ${pkgs.libresnm}/syslog.php "$@"
+  '';
 in
 {
   options = {
@@ -71,7 +79,7 @@ in
           };
 
           destination d_librenms {
-            program("${pkgs.librenms}/syslog.php" template ("''$HOST||''$FACILITY||''$PRIORITY||''$LEVEL||''$TAG||''$R_YEAR-''$R_MONTH-''$R_DAY ''$R_HOUR:''$R_MIN:''$R_SEC||''$MSG||''$PROGRAM\n") template-escape(yes));
+            program("${libreNMSSyslogWrapper}" template ("''$HOST||''$FACILITY||''$PRIORITY||''$LEVEL||''$TAG||''$R_YEAR-''$R_MONTH-''$R_DAY ''$R_HOUR:''$R_MIN:''$R_SEC||''$MSG||''$PROGRAM\n") template-escape(yes));
           };
 
           log {

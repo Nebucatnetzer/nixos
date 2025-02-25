@@ -22,6 +22,11 @@ in
           createLocally = true;
           socket = "/run/mysqld/mysqld.sock";
         };
+        extraConfig = ''
+          $config['ignore_mount_string'][] = "run";
+          $config['ignore_mount_string'][] = "server-data";
+          $config['ignore_mount_string'][] = "shm";
+        '';
       };
     };
   };

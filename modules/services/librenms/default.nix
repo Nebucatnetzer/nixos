@@ -13,7 +13,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 80 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      514
+    ];
+    networking.firewall.allowedUDPPorts = [
+      514
+    ];
     services = {
       az-snmpd.enable = true;
       librenms = {

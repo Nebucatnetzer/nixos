@@ -24,8 +24,12 @@ in
         };
         settings = {
           enable_syslog = true;
+          ignore_mount = [
+            "/sys"
+          ];
           ignore_mount_string = [
             "mnt"
+            "msg.lock" # qnap
             "new_root" # qnap
             "NFSv=4" # qnap
             "store" # raspi

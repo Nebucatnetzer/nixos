@@ -79,7 +79,7 @@ in
           };
 
           destination d_librenms {
-            program("${libreNMSSyslogWrapper}" template ("''$HOST||''$FACILITY||''$PRIORITY||''$LEVEL||''$TAG||''$R_YEAR-''$R_MONTH-''$R_DAY ''$R_HOUR:''$R_MIN:''$R_SEC||''$MSG||''$PROGRAM\n") template-escape(yes));
+            program("${libreNMSSyslogWrapper}/bin/librenms-syslog" template ("''$HOST||''$FACILITY||''$PRIORITY||''$LEVEL||''$TAG||''$R_YEAR-''$R_MONTH-''$R_DAY ''$R_HOUR:''$R_MIN:''$R_SEC||''$MSG||''$PROGRAM\n") template-escape(yes));
           };
 
           log {

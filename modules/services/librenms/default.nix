@@ -60,7 +60,7 @@ in
 
           log {
             source(s_net);
-            source(s_src);
+            source(s_all);
             destination(d_librenms);
           };
         '';

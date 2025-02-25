@@ -28,6 +28,9 @@ in
           $config['ignore_mount_string'][] = "server-data";
           $config['ignore_mount_string'][] = "shm";
         '';
+        settings = {
+          enable_syslog = true;
+        };
       };
     };
   };

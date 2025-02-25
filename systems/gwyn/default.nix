@@ -90,6 +90,7 @@
 
   services = {
     az-binary-cache-client.enable = true;
+    az-data-share.enable = true;
     az-librenms.enable = true;
     az-logs-share.enable = true;
     az-qtile.enable = true;

@@ -68,6 +68,7 @@ in
             "UMA"
             "MALLOC"
           ];
+          syslog_purge = 30;
         };
       };
       syslog-ng = {

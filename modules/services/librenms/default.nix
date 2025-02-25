@@ -7,12 +7,12 @@
 let
   cfg = config.services.az-librenms;
   libreNMSSyslogWrapper = pkgs.writeShellScriptBin "librenms-syslog" ''
-    cd ${pkgs.libresnm}
+    cd ${pkgs.librenms}
     sudo=exec
     if [[ "$USER" != ${config.services.librenms.user} ]]; then
       sudo='exec /run/wrappers/bin/sudo -u ${config.services.librenms.user}'
     fi
-    $sudo ${pkgs.librenms.phpPackage}/bin/php ${pkgs.libresnm}/syslog.php "$@"
+    $sudo ${pkgs.librenms.phpPackage}/bin/php ${pkgs.librenms}/syslog.php "$@"
   '';
 in
 {

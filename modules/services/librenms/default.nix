@@ -32,6 +32,14 @@ in
           enable_syslog = true;
           ignore_mount = [
             "/sys"
+            # defaults: https://github.com/librenms/librenms/blob/2cb8d9f042c9658531d85047c62f958cb9519ac7/misc/config_definitions.json#L4189
+            "/compat/linux/proc"
+            "/compat/linux/sys"
+            "/dev"
+            "/kern"
+            "/mnt/cdrom"
+            "/proc"
+            "/sys/fs/cgroup"
           ];
           ignore_mount_string = [
             "mnt"
@@ -43,6 +51,14 @@ in
             "samba_third_party" # qnap
             "server-data" # servers
             "shm" # linux tmpfs
+            # defaults: https://github.com/librenms/librenms/blob/2cb8d9f042c9658531d85047c62f958cb9519ac7/misc/config_definitions.json#L4238
+            "packages"
+            "devfs"
+            "procfs"
+            "linprocfs"
+            "linsysfs"
+            "UMA"
+            "MALLOC"
           ];
         };
       };

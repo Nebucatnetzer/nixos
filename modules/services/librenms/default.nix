@@ -25,10 +25,14 @@ in
         settings = {
           enable_syslog = true;
           ignore_mount_string = [
-            "store"
-            "run"
-            "server-data"
-            "shm"
+            "mnt"
+            "new_root" # qnap
+            "NFSv=4" # qnap
+            "store" # raspi
+            "run" # linux
+            "samba_third_party" # qnap
+            "server-data" # servers
+            "shm" # linux tmpfs
           ];
         };
       };

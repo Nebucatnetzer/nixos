@@ -11,7 +11,7 @@ set -e
 # ../modules/services/heimdall/default.nix
 # ../modules/services/nextcloud/default.nix
 # ../modules/services/plex/default.nix
-images=("docker.io/linuxserver/grav" "lscr.io/linuxserver/plex" "lscr.io/linuxserver/heimdall" "docker.io/fireflyiii/data-importer" "docker.io/mailserver/docker-mailserver" "docker.io/gitea/gitea" "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb" "docker.io/nginx")
+images=("docker.io/linuxserver/grav" "lscr.io/linuxserver/plex" "lscr.io/linuxserver/heimdall" "docker.io/fireflyiii/data-importer" "docker.io/mailserver/docker-mailserver" "docker.io/gitea/gitea" "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb" "docker.io/nginx" "docker.io/redis:alpine")
 
 for image in "${images[@]}"; do
     digest=$(skopeo inspect "docker://$image":latest | jq -r '.Digest')

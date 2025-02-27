@@ -18,6 +18,9 @@
     :bind (:map org-mode-map
                 ("C-c C-," . org-insert-structure-template)
                 ("C-c C-$" . org-archive-subtree))
+    :hook
+    (org-mode-hook . (lambda () (org-map-entries #'org-fold-hide-subtree
+                                                 "/+DONE" 'file 'archive 'comment)))
     :config
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)
@@ -30,6 +33,9 @@
 
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))
+
+    ;; Allow headings with visibility folded to get folded when opening a file
+    (setq org-startup-folded 'nofold)
 
     ;; enable the correct intdentation for source code blocks
     (setq org-edit-src-content-indentation 0)

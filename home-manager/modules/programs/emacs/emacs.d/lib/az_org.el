@@ -20,7 +20,9 @@
                 ("C-c C-$" . org-archive-subtree))
     :hook
     (org-mode-hook . (lambda () (org-map-entries #'org-fold-hide-subtree
-                                                 "/+DONE" 'file 'archive 'comment)))
+                                                 "/+DONE" 'file 'archive 'comment)
+                       (org-map-entries #'org-fold-hide-subtree
+                                        "/+CANCELLED" 'file 'archive 'comment)))
     :config
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)

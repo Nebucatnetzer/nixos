@@ -82,6 +82,20 @@ in
       az-nautilus.enable = true;
       az-nix-direnv.enable = true;
       az-scripts.enable = true;
+      firefox = {
+        enable = true;
+        package = pkgs.librewolf;
+        languagePacks = [
+          "en-GB"
+          "de"
+        ];
+        preferences = {
+          "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
+          "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
+          "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
+          "extensions.pocket.enabled" = false;
+        };
+      };
     };
     qt.style = "adwaita";
     environment = {
@@ -93,7 +107,6 @@ in
         pkgs.alacritty
         pkgs.appimage-run
         pkgs.brightnessctl
-        pkgs.librewolf
         pkgs.lm_sensors
         pkgs.networkmanager-openvpn
         pkgs.p7zip

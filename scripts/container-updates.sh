@@ -39,6 +39,7 @@ for image in "${images[@]}"; do
     for tag in "${tags[@]:0:3}"; do
         echo "$tag"
     done
+    rg $image ./modules
     printf "\n"
     printf "\n"
 done

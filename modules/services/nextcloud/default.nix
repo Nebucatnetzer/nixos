@@ -99,7 +99,7 @@ in
         ];
       };
       containers."nginx" = {
-        image = "nginx:1.27.4";
+        image = "docker.io/nginx:1.27.4";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [
@@ -130,7 +130,7 @@ in
         ];
       };
       containers."redis" = {
-        image = "redis:alpine";
+        image = "docker.io/redis:alpine";
         autoStart = true;
         volumes = [ "/etc/localtime:/etc/localtime:ro" ];
         extraOptions = [

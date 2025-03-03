@@ -1,4 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash --pure
+#! nix-shell -p bash jq skopeo gnused ripgrep
+#! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/refs/heads/nixos-24.11.tar.gz
+
 set -e
 
 # Get the digest hash for the "latest" image of each image in the list.

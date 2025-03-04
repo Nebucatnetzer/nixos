@@ -150,7 +150,6 @@ in
 
   services = {
     az-binary-cache-client.enable = true;
-    az-logs-share.enable = true;
     az-media-share.enable = true;
     az-qtile.enable = true;
     az-restic-client-desktop.enable = true;

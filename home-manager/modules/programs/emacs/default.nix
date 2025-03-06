@@ -37,7 +37,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs30;
+      package = pkgs.emacs;
       extraConfig = ''
         (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
                                             "-cp" "${pkgs.languagetool}/share/")

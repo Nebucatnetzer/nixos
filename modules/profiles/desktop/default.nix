@@ -84,7 +84,6 @@ in
       az-scripts.enable = true;
       firefox = {
         enable = true;
-        package = pkgs.librewolf;
         languagePacks = [
           "en-GB"
           "de"
@@ -120,7 +119,7 @@ in
         WINIT_X11_SCALE_FACTOR = "1";
       };
       sessionVariables = {
-        DEFAULT_BROWSER = "${pkgs.librewolf}/bin/librewolf";
+        DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
         QT_SCALE_FACTOR = "1.25";
       };
     };

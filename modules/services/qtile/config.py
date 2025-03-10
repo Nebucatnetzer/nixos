@@ -69,7 +69,7 @@ keys = [
     Key([mod], "p", lazy.spawn("xrandr --auto")),
     Key([mod], "r", lazy.spawn("rofi -matching-negate-char \\0 -show run")),
     Key(["control", "shift"], "s", lazy.spawn("rofi-search")),
-    Key([mod], "w", lazy.spawn("librewolf")),
+    Key([mod], "w", lazy.spawn("firefox")),
     Key(["mod1"], "Tab", lazy.spawn("rofi -show window")),
     # Toggle between different layouts as defined below
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),

@@ -35,7 +35,7 @@ in
           padding = 6;
           horizontal_padding = 6;
           separator_color = "frame";
-          browser = "librewolf - new-tab";
+          browser = "firefox - new-tab";
           icon_position = "off";
           max_icon_size = 80;
           frame_width = 3;

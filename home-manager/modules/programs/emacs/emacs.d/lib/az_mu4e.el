@@ -40,7 +40,7 @@
     (setq mu4e-refile-folder "/personal/Archive")
 
     (setq browse-url-browser-function 'browse-url-generic
-          browse-url-generic-program "librewolf")
+          browse-url-generic-program "firefox")
 
     (require 'mu4e-contrib)
     (setq mu4e-html2text-command 'mu4e-shr2text)

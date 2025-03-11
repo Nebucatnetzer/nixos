@@ -94,6 +94,7 @@ in
           "browser.ml.chat.enabled" = false; # Disable ChatGPT
           "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
           "extensions.pocket.enabled" = false;
+          "services.sync.engine.passwords" = false; # Don't ask for passwords
         };
       };
     };

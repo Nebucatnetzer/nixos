@@ -91,6 +91,7 @@ in
         preferences = {
           "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
           "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
+          "browser.ml.chat.enabled" = false; # Disable ChatGPT
           "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
           "extensions.pocket.enabled" = false;
         };

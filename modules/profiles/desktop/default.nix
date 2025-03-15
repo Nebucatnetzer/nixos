@@ -31,6 +31,7 @@ in
         enable = true;
         vSync = true;
       };
+      touchegg.enable = true;
       udisks2.enable = true;
       # Enable the X11 windowing system.
       libinput = {

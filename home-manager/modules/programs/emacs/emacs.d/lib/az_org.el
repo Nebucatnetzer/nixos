@@ -66,7 +66,7 @@
     (setq org-capture-templates
           (quote
            (("t" "Adds a Next entry" entry
-             (file+headline "~/nextcloud/10_documents/01_inbox/inbox.org" "Capture")
+             (file+headline "~/nextcloud/10_documents/01_inbox/00_inbox.org" "Capture")
              (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_personal_todo.txt")
              :empty-lines 1)
             ("n" "Add note" plain (file az-org-capture-read-file-name)

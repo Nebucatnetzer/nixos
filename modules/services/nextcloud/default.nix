@@ -130,7 +130,7 @@ in
         ];
       };
       containers."redis" = {
-        image = "docker.io/redis:alpine";
+        image = "docker.io/redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952";
         autoStart = true;
         volumes = [ "/etc/localtime:/etc/localtime:ro" ];
         extraOptions = [

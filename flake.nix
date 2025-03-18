@@ -65,7 +65,7 @@
       images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) hosts;
       nixosConfigurations = hostConfigs;
       homeConfigurations = {
-        "zweili@co-ws-con4" = home-manager.lib.homeManagerConfiguration {
+        "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
           modules = [ ./home-manager/profiles/work-wsl.nix ];
           extraSpecialArgs = {

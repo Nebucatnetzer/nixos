@@ -151,9 +151,7 @@ in
   services = {
     az-binary-cache-client.enable = true;
     az-media-share.enable = true;
-    az-qtile.enable = true;
     az-restic-client-desktop.enable = true;
-    az-tlp.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;
     beesd = {
@@ -169,8 +167,17 @@ in
         };
       };
     };
+
+    # required for KDE
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.enable = true;
+    # required for KDE
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     thermald.enable = true;
   };
+  # required for KDE
+  programs.xwayland.enable = true;
+  # required for KDE
 }

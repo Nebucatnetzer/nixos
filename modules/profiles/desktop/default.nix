@@ -21,17 +21,13 @@ in
     };
 
     age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
+    users.users."${config.az-username}".extraGroups = [
+      "input" # required for espanso
+    ];
     services = {
-      az-clipcat.enable = true;
       az-pipewire.enable = true;
       flatpak.enable = true;
       fwupd.enable = true;
-      gvfs.enable = true;
-      picom = {
-        enable = true;
-        vSync = true;
-      };
-      touchegg.enable = true;
       udisks2.enable = true;
       # Enable the X11 windowing system.
       libinput = {
@@ -65,11 +61,6 @@ in
     # }
 
     fonts = {
-      fontconfig.defaultFonts = {
-        sansSerif = [ "DejaVu Sans" ];
-        serif = [ "TeX Gyre Pagella" ];
-        monospace = [ "Source Code Pro" ];
-      };
       packages = [
         pkgs.dejavu_fonts
         pkgs.gyre-fonts
@@ -78,9 +69,7 @@ in
     };
 
     programs = {
-      az-eog.enable = true; # Gnome Image Viewer
       az-idevices.enable = true;
-      az-nautilus.enable = true;
       az-nix-direnv.enable = true;
       az-scripts.enable = true;
       firefox = {
@@ -108,14 +97,10 @@ in
         };
       };
     };
-    qt.style = "adwaita";
     environment = {
       systemPackages = [
         # what I consider to be system packages
         pkgs.adwaita-icon-theme
-        pkgs.adwaita-qt
-        pkgs.adwaita-qt6
-        pkgs.alacritty
         pkgs.appimage-run
         pkgs.brightnessctl
         pkgs.lm_sensors
@@ -125,14 +110,9 @@ in
         pkgs.podman-compose
         pkgs.quickemu
         pkgs.unrar
-        pkgs.vanilla-dmz
       ];
-      variables = {
-        WINIT_X11_SCALE_FACTOR = "1";
-      };
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
-        QT_SCALE_FACTOR = "1.25";
       };
     };
     virtualisation.podman.enable = true;

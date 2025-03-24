@@ -14,13 +14,10 @@ in
 
   config = lib.mkIf cfg.enable {
     programs = {
-      az-alacritty.enable = true;
       az-czkawka.enable = true;
-      az-evince.enable = true;
       az-keeweb.enable = true;
     };
     # raw config files
-    home.file.".config/qtile/autostart.d/xdg-portal-add-path.sh".source = ./xdg-portal-add-path.sh;
 
     gtk = {
       cursorTheme = {
@@ -87,28 +84,11 @@ in
       configFile."mimeapps.list".force = true;
     };
 
-    xsession = {
-      numlock.enable = true;
-    };
-
     services = {
-      az-dunst.enable = true;
       az-espanso.enable = true;
-      az-grobi.enable = true;
-      network-manager-applet.enable = true;
       nextcloud-client = {
         enable = true;
         startInBackground = true;
-      };
-    };
-    systemd.user.services.network-manager-applet = {
-      Service = {
-        Restart = "always";
-      };
-    };
-    systemd.user.services.nextcloud-client = {
-      Unit = {
-        After = pkgs.lib.mkForce "graphical-session.target";
       };
     };
   };

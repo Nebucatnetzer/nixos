@@ -174,6 +174,7 @@ in
     displayManager.sddm.enable = true;
     espanso.package = pkgs.espanso-wayland;
     # required for KDE
+    fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     thermald.enable = true;

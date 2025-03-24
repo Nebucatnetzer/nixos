@@ -1,5 +1,9 @@
 # nixos
 
+This repository lives on https://git.2li.ch/.
+Due to agressive LLM crawlers I had to make it private there.
+If you want to collaborate you can contact me through email or Mastodon.
+
 This repository contains my configuration for my Nixos systems.
 I don't provide any garantuees that it will work on other systems.
 In addition some of the scripts required for installation will destroy your data when used.

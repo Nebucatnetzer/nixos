@@ -84,10 +84,6 @@ in
       configFile."mimeapps.list".force = true;
     };
 
-    xsession = {
-      numlock.enable = true;
-    };
-
     services = {
       az-espanso.enable = true;
       nextcloud-client = {

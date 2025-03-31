@@ -133,10 +133,10 @@ in
   profiles.az-desktop.enable = true;
 
   environment.systemPackages = [
+    pkgs.compsize # required to display additional information about btrfs compression
     pkgs.strawberry # music player
     pkgs.wally-cli # tool to flash a ZSA keyboard
     toggle-keyboard
-    pkgs.compsize # required to display additional information about btrfs compression
   ];
   programs = {
     az-adb.enable = true;

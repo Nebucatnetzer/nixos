@@ -79,7 +79,6 @@
 
   hardware = {
     az-bluetooth.enable = true;
-    az-nvidia.enable = true;
     graphics.enable = true;
   };
 

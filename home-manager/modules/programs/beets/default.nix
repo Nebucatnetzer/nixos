@@ -1,13 +1,10 @@
 {
   config,
-  inputs,
   lib,
-  pkgs,
   ...
 }:
 let
   cfg = config.programs.az-beets;
-  release = inputs.nixpkgs-release.legacyPackages.${pkgs.system};
 in
 {
   options = {
@@ -22,7 +19,6 @@ in
 
     programs.beets = {
       enable = true;
-      package = release.beets;
       settings = {
         asciify_paths = true;
         directory = "/mnt/media/synced";

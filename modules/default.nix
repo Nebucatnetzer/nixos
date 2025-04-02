@@ -37,6 +37,7 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
+    ./services/kde
     ./services/librenms
     ./services/log-to-ram
     ./services/mariadb-for-containers

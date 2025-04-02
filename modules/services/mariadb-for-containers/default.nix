@@ -13,6 +13,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    services.snmpd.configText = ''
+      # monitor mysqld
+      proc mysqld
+    '';
     services.mysql = {
       enable = true;
       package = pkgs.mariadb_114;

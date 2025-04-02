@@ -37,6 +37,10 @@ in
       defaults.email = "admin+acme@zweili.ch";
     };
 
+    services.snmpd.configText = ''
+      # monitor php
+      proc .php-fpm-wrappe
+    '';
     services = {
       freshrss = {
         enable = true;

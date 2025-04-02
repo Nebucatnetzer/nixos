@@ -15,9 +15,11 @@ inputs.nixpkgs.lib.nixosSystem {
     "${inputs.self}/modules"
     {
       az-username = username;
+      home-manager.backupFileExtension = "hmbpk";
       home-manager.users.${username}.imports = [
         "${inputs.self}/home-manager/profiles/${home-module}.nix"
       ];
+
     }
   ];
 }

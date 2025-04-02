@@ -27,6 +27,11 @@ in
       owner = config.services.firefly-iii.user;
       group = config.services.firefly-iii.group;
     };
+
+    services.snmpd.configText = ''
+      # monitor php
+      proc .php-fpm-wrappe
+    '';
     services = {
       az-docker.enable = true;
       az-acme-base.enable = true;
@@ -66,7 +71,7 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers."firefly-importer" = {
-        image = "fireflyiii/data-importer:1.5.7@sha256:e63b5b6c24bef446185fe46bdc740a2b07219accdb65e8ec17234aa32708a34b";
+        image = "docker.io/fireflyiii/data-importer:1.6.1@sha256:40e10f996a7bf72285dd6475c49424a02255fb02437904fe2ee6c44bc07e1bfc";
         autoStart = true;
         environment = {
           FIREFLY_III_URL = "https://${config.services.firefly-iii.virtualHost}";

@@ -29,6 +29,11 @@ in
         "rw"
       ];
     };
+
+    services.snmpd.configText = ''
+      # monitor gitea
+      proc gitea
+    '';
     services = {
       az-docker.enable = true;
       az-mariadb-for-containers.enable = true;
@@ -53,7 +58,7 @@ in
       containers."gitea" = {
         # https://blog.gitea.io/
         # https://hub.docker.com/r/gitea/gitea/tags
-        image = "gitea/gitea:1.23.3@sha256:ef398a4ff5b7d61d63babe1b48c87f576209229367a4031c9a05f1bee2f367b3";
+        image = "docker.io/gitea/gitea:1.23.6@sha256:01bb6f98fb9e256554d59c85b9f1cb39f3da68202910ea0909d61c6b449c207d";
         autoStart = true;
         environment = {
           PUID = "1000";

@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.az-espanso;
 in
@@ -10,6 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     services.espanso = {
       enable = true;
+      package = pkgs.espanso-wayland;
       configs.default = {
         undo_backspace = false;
         search_shortcut = "off";

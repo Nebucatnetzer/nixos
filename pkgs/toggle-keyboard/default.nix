@@ -1,19 +1,13 @@
 {
-  bash,
-  coreutils,
-  gawk,
-  gnugrep,
+  evtest,
+  procps, # provides pgrep and pkill
   writeShellApplication,
-  xorg,
 }:
 writeShellApplication {
   name = "toggle-keyboard";
   runtimeInputs = [
-    bash
-    coreutils
-    gawk
-    gnugrep
-    xorg.xinput
+    evtest
+    procps
   ];
   text = builtins.readFile ./toggle-keyboard.sh;
 }

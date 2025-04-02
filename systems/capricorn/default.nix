@@ -28,8 +28,9 @@ in
     "usb_storage"
     "xhci_pci"
   ];
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
   boot.initrd.kernelModules = [
+    "xe" # graphics driver
     "dm-snapshot"
     "thunderbolt"
     "i915"
@@ -41,6 +42,8 @@ in
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "ip=dhcp" # required for ssh at initrd
+    "i915.force_probe=!7d45"
+    "xe.force_probe=7d45"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {
@@ -130,10 +133,10 @@ in
   profiles.az-desktop.enable = true;
 
   environment.systemPackages = [
+    pkgs.compsize # required to display additional information about btrfs compression
     pkgs.strawberry # music player
     pkgs.wally-cli # tool to flash a ZSA keyboard
     toggle-keyboard
-    pkgs.compsize # required to display additional information about btrfs compression
   ];
   programs = {
     az-adb.enable = true;
@@ -150,11 +153,9 @@ in
 
   services = {
     az-binary-cache-client.enable = true;
-    az-logs-share.enable = true;
+    az-kde.enable = true;
     az-media-share.enable = true;
-    az-qtile.enable = true;
     az-restic-client-desktop.enable = true;
-    az-tlp.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;
     beesd = {
@@ -170,6 +171,8 @@ in
         };
       };
     };
+
+    fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     thermald.enable = true;

@@ -15,18 +15,5 @@ in
     };
     # Xbox Controller support
     hardware.xpadneo.enable = true;
-
-    # Blueman applet
-    services.blueman.enable = true;
-
-    home-manager.users.${config.az-username} = {
-      services.blueman-applet.enable = true;
-      systemd.user.services.blueman-applet = {
-        Unit.After = [
-          "graphical-session.target"
-        ];
-        Service.Restart = "on-failure";
-      };
-    };
   };
 }

@@ -20,7 +20,7 @@ let
   };
   networkName = "nextcloud";
   # https://github.com/Nebucatnetzer/nextcloud-smb
-  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:30.0.6@sha256:4a74d5363415c69a74568007114696f9ed08d5a87072835375ca8d8e022b160e";
+  nextcloudImage = "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb:31.0.1@sha256:5e7b6795808282c843873eff96ce285eb04664fbc393f217159e5983f146bac2";
   nextcloudService = "${config.virtualisation.oci-containers.backend}-nextcloud";
   volumePath = "/mnt/server-data/nextcloud";
 in
@@ -99,7 +99,7 @@ in
         ];
       };
       containers."nginx" = {
-        image = "nginx:1.25.3";
+        image = "docker.io/nginx:1.27.4@sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [
@@ -130,7 +130,7 @@ in
         ];
       };
       containers."redis" = {
-        image = "redis:alpine";
+        image = "docker.io/redis:7.4.2-alpine@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952";
         autoStart = true;
         volumes = [ "/etc/localtime:/etc/localtime:ro" ];
         extraOptions = [

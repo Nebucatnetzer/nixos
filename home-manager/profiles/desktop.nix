@@ -48,6 +48,7 @@ in
   };
 
   programs = {
+    az-alacritty.enable = true;
     az-beets.enable = true;
     az-calibre.enable = true;
     az-mpv.enable = true;

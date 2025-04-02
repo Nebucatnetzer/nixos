@@ -20,6 +20,7 @@
     "xhci_pci"
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [
     "kvm-intel"
@@ -78,7 +79,6 @@
 
   hardware = {
     az-bluetooth.enable = true;
-    az-nvidia.enable = true;
     graphics.enable = true;
   };
 
@@ -90,16 +90,16 @@
 
   services = {
     az-binary-cache-client.enable = true;
+    az-data-share.enable = true;
+    az-kde.enable = true;
     az-librenms.enable = true;
-    az-logs-share.enable = true;
-    az-qtile.enable = true;
     az-restic-client-desktop.enable = true;
-    az-tlp.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";
+    thermald.enable = true;
 
     # Disable the integrated webcam
     udev.extraRules = ''

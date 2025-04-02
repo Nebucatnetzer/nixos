@@ -1,4 +1,8 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.programs.az-beets;
 in
@@ -17,7 +21,7 @@ in
       enable = true;
       settings = {
         asciify_paths = true;
-        directory = "/mnt/media/music";
+        directory = "/mnt/media/synced";
         import = {
           autotag = false;
           copy = true;

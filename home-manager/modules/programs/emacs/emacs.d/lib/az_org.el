@@ -18,6 +18,11 @@
     :bind (:map org-mode-map
                 ("C-c C-," . org-insert-structure-template)
                 ("C-c C-$" . org-archive-subtree))
+    :hook
+    (org-mode-hook . (lambda () (org-map-entries #'org-fold-hide-subtree
+                                                 "/+DONE" 'file 'archive 'comment)
+                       (org-map-entries #'org-fold-hide-subtree
+                                        "/+CANCELLED" 'file 'archive 'comment)))
     :config
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)
@@ -30,6 +35,9 @@
 
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))
+
+    ;; Allow headings with visibility folded to get folded when opening a file
+    (setq org-startup-folded 'nofold)
 
     ;; enable the correct intdentation for source code blocks
     (setq org-edit-src-content-indentation 0)
@@ -58,7 +66,7 @@
     (setq org-capture-templates
           (quote
            (("t" "Adds a Next entry" entry
-             (file+headline "~/nextcloud/10_documents/01_inbox/inbox.org" "Capture")
+             (file+headline "~/nextcloud/10_documents/01_inbox/00_inbox.org" "Capture")
              (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_personal_todo.txt")
              :empty-lines 1)
             ("n" "Add note" plain (file az-org-capture-read-file-name)

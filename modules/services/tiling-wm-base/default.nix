@@ -36,6 +36,7 @@ in
       };
     };
     services = {
+      az-clipcat.enable = true;
       displayManager.ly = {
         enable = true;
         settings = {

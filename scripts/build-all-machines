@@ -20,22 +20,28 @@ for host in "${hosts[@]}"; do
 
     # skip architectures we can't build
     architecture=$(nix eval "$DEVENV_ROOT"#nixosConfigurations."$host".pkgs.system)
-    if [ "$(hostname)" = "management" ]; then
-        if [ "$architecture" = '"x86_64-linux"' ]; then
-            echo "Skipping: $host"
-            echo ""
-            continue
-        fi
+    if [ "$(hostname)" = "management" ] && [ "$architecture" = '"aarch64-linux"' ]; then
+        echo "Building $host on management"
+        store_path=$(nix build "$DEVENV_ROOT#nixosConfigurations.${host}.config.system.build.toplevel")
+    elif [ ! "$(hostname)" = "management" ] && [ "$architecture" = '"aarch64-linux"' ]; then
+        echo "Building $host remotely on management"
+        store_path=$(nix build "$DEVENV_ROOT#nixosConfigurations.${host}.config.system.build.toplevel" \
+            --eval-store auto \
+            --store ssh-ng://management.2li.local \
+            --no-link \
+            --print-out-paths)
+    elif [ ! "$(hostname)" = "management" ] && [ "$architecture" = '"x86_64-linux"' ]; then
+        echo "Building $host locally"
+        store_path=$(nix build "$DEVENV_ROOT#nixosConfigurations.${host}.config.system.build.toplevel" --no-link --print-out-paths)
+        upload-to-cache "$store_path"
+        echo
+    else
+        echo "Skipping: $host"
+        echo ""
+        continue
     fi
-
-    echo "$host"
-    nix build "$DEVENV_ROOT#nixosConfigurations.${host}.config.system.build.toplevel" --out-link "$build_path"
-
-    # upload the result to the binary cache
-    if [ ! "$(hostname)" = "management" ]; then
-        upload-to-cache "$build_path"
-        rsync --links result "$USER"@mangement.2li.local:"$build_path"
-    fi
+    echo "Create symlink for $store_path at $build_path"
+    ssh -t "$USER"@management.2li.local "ln -sfn $store_path $build_path"
     echo
     echo
 done

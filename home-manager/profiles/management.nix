@@ -53,6 +53,7 @@ in
   };
 
   programs = {
+    az-alacritty.enable = true;
     az-emacs.enable = true;
     az-email.enable = true;
     az-fzf.enable = true;

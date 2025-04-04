@@ -22,8 +22,10 @@ in
         ])
         (lib.mkIf (!cfg.hard) [
           "noauto"
+          "_netdev"
           "x-systemd.idle-timeout=300"
           "x-systemd.automount"
+          "x-systemd.mount-timeout=5"
         ])
       ];
     };

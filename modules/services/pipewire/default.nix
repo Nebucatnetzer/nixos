@@ -29,8 +29,5 @@ in
       '';
       target = "pipewire.conf.d/auto-switch-audio.conf";
     };
-    home-manager.users.${config.az-username} = {
-      services.easyeffects.enable = true;
-    };
   };
 }

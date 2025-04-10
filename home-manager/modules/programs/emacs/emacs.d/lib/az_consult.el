@@ -7,7 +7,7 @@
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-x b" . consult-buffer)
          ("C-c f" . consult-flymake)
-         ("C-c j" . consult-git-grep))                ;; orig. previous-matching-history-element
+         ("C-c j" . consult-ripgrep))                ;; orig. previous-matching-history-element
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.

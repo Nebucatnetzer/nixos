@@ -46,9 +46,6 @@
     (setq org-log-done 'time)
     (setq org-log-into-drawer t)
 
-    ;; enable org-indent
-    (setq org-startup-indented t)
-
     ;; capture templates
     (defun az-org-capture-read-file-name ()
       (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/10_documents/01_inbox/")) ".org"))

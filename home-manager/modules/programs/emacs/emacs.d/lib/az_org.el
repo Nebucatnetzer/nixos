@@ -1,18 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
   ;; Enable pretty bullets in org mode
-  (use-package org-superstar
-    :config
-    (add-hook 'org-mode-hook (lambda ()
-                               (org-superstar-mode 1))))
-
   (use-package ox-pandoc
     :after org)
-
-  (use-package org-modern
-    :after org
-    :config
-    (global-org-modern-mode))
 
   (use-package org
     :bind (:map org-mode-map

@@ -100,8 +100,6 @@ in
         epkgs.nix-ts-mode
         epkgs.olivetti
         epkgs.orderless
-        epkgs.org-modern
-        epkgs.org-superstar
         epkgs.ox-pandoc
         epkgs.parsebib
         epkgs.pdf-tools

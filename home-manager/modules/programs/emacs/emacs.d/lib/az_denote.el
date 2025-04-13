@@ -27,7 +27,7 @@
           denote-journal-extras-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
           denote-journal-extras-title-format 'day-date-month-year
           denote-file-type "org"
-          denote-directory "~/nextcloud/10_documents/"
+          denote-directory "~/nextcloud/"
           denote-dired-directories (list denote-directory)
           denote-dired-directories-include-subdirectories t
           denote-org-front-matter "#+title: %s\n#+date: %s\n#+filetags: %s\n#+identifier: %s\n#+author: Andreas Zweili\n\n"

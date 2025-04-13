@@ -7,14 +7,14 @@
 }:
 let
   cfg = config.services.az-nextcloud-cli-client;
-  pathToMonitor = "/home/${config.az-username}/nextcloud/10_documents/";
+  pathToMonitor = "/home/${config.az-username}/nextcloud/";
   monitor-notes = pkgs.writeShellScriptBin "monitor-notes" ''
     ${pkgs.nextcloud-client}/bin/nextcloudcmd \
       --silent \
       --user andreas \
       --password $(cat ${config.age.secrets.nextcloudCliSecrets.path}) \
       --non-interactive \
-      --path /10_documents \
+      --path / \
       ${pathToMonitor} \
       https://nextcloud.2li.ch
   '';

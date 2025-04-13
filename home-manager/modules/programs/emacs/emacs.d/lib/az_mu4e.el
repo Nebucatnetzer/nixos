@@ -59,7 +59,7 @@
           mu4e-compose-format-flowed t
           mu4e-index-update-in-background t
           mu4e-compose-dont-reply-to-self t
-          mu4e-attachment-dir "~/nextcloud/10_documents/01_inbox"
+          mu4e-attachment-dir "~/nextcloud/01_inbox"
           ;; don't show threading by default:
           mu4e-headers-show-threads nil
           ;; hide annoying "mu4e Retrieving mail..." msg in mini buffer:

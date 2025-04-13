@@ -48,16 +48,16 @@
 
     ;; capture templates
     (defun az-org-capture-read-file-name ()
-      (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/10_documents/01_inbox/")) ".org"))
+      (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/01_inbox/")) ".org"))
 
     (setq org-capture-templates
           (quote
            (("t" "Adds a Next entry" entry
-             (file+headline "~/nextcloud/10_documents/01_inbox/00_inbox.org" "Capture")
-             (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_personal_todo.txt")
+             (file+headline "~/nextcloud/01_inbox/00_inbox.org" "Capture")
+             (file "~/nextcloud/99_archive/0000/settings/templates/temp_personal_todo.txt")
              :empty-lines 1)
             ("n" "Add note" plain (file az-org-capture-read-file-name)
-             (file "~/nextcloud/10_documents/99_archive/0000/settings/templates/temp_note.txt"))
+             (file "~/nextcloud/99_archive/0000/settings/templates/temp_note.txt"))
             )))
 
     ;; org-refile options
@@ -214,7 +214,7 @@
     (setq org-agenda-block-separator " ")
 
     (setq org-archive-location
-          (concat "~/nextcloud/10_documents/99_archive/"
+          (concat "~/nextcloud/99_archive/"
                   (format-time-string "%Y" (current-time)) "/projects/"
                   (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))
 
@@ -279,8 +279,8 @@
     (defun az-update-org-agenda-files ()
       "Update the list of org-agenda-files dynamically."
       (setq org-agenda-files
-            (append (find-lisp-find-files "~/nextcloud/10_documents/01_inbox/" "\\.org$")
-                    (find-lisp-find-files "~/nextcloud/10_documents/02_projects/" "\\.org$"))))
+            (append (find-lisp-find-files "~/nextcloud/01_inbox/" "\\.org$")
+                    (find-lisp-find-files "~/nextcloud/02_projects/" "\\.org$"))))
 
     ;; Add a hook to update agenda files whenever org-agenda is invoked
     (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)

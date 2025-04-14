@@ -19,8 +19,8 @@
         find-garbage = "ls -l /nix/var/nix/gcroots/auto/ | sort | grep '/home/'";
         vm = "vim";
         less = "less -FiRX";
-        ls = "ls --color=auto";
-        ll = "ls -lhF";
+        ls = "LANG=C.UTF-8 ls --color=auto";
+        ll = "LANG=C.UTF-8 ls -lhF --group-directories-first";
         btm = "btm --theme nord-light";
       };
     };

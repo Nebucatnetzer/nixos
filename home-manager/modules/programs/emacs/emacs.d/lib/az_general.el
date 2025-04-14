@@ -397,5 +397,5 @@
     (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
   :config
   (put 'dired-find-alternate-file 'disabled nil)
-  (setq-default dired-listing-switches "-ahl --group-directories-first")
+  (setq-default dired-listing-switches "-Ahl --group-directories-first")
   (customize-set-variable 'dired-auto-revert-buffer t))

@@ -34,6 +34,7 @@ in
       pkgs.tree
       pkgs.unzip
       pkgs.wget
+      pkgs.xdg-utils
     ];
     sessionPath = [ "$HOME/.local/share/node_modules/bin" ];
     sessionVariables = {

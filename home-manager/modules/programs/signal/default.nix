@@ -19,7 +19,7 @@ in
     xdg.desktopEntries = {
       signal = {
         name = "Signal with tray icon";
-        exec = "${signal}/bin/signal-desktop --use-tray-icon --no-sandbox %U";
+        exec = "${signal}/bin/signal-desktop-bin --use-tray-icon --no-sandbox %U";
         terminal = false;
         type = "Application";
         icon = "signal-desktop";

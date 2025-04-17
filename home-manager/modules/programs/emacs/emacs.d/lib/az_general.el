@@ -268,6 +268,9 @@
                                                      ((executable-find "ugrep") 'ugrep) (t
                                                                                          'grep)))
 
+  (setopt browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program (getenv "DEFAULT_BROWSER"))
+
   (setq-default
    fill-column 79
    ;; Spaces instead of TABs

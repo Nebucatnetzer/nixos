@@ -40,6 +40,7 @@ in
       NIX_PATH = "nixpkgs=${pkgs.path}";
       NPM_CONFIG_PREFIX = "$HOME/.local/share/node_modules";
       PATH = "$PATH:$HOME/.local/bin";
+      DEFAULT_BROWSER = "/mnt/c/Program Files/Mozilla Firefox/firefox.exe";
     };
   };
 

@@ -317,7 +317,44 @@
         (message convert-command)
         (shell-command-on-region (point-min) (point-max)
                                  convert-command)))
-    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo))
 
-  ;; Calender should start on Monday
-  (setq calendar-week-start-day 1))
+    ;; Calender should start on Monday
+    (setq calendar-week-start-day 1)
+
+    (when (boundp 'enable-clocking)
+      (defun start-heading-clock (id file)
+        "Start clock programmatically for heading with ID in FILE."
+        (require 'org-id)
+        (if-let (marker (org-id-find-id-in-file id file t))
+            (save-current-buffer
+              (save-excursion
+                (set-buffer (marker-buffer marker))
+                (goto-char (marker-position marker))
+                (org-clock-in)))
+          (warn "Clock not started (Could not find ID '%s' in file '%s')" id file)))
+
+      (defun start-main-clock ()
+        "This functions always clocks in to the * Clock heading"
+        (interactive)
+        (start-heading-clock "a3a22710-30ac-4f8a-89a4-bdb327762b1a" "~/nextcloud/work/work.org"))
+
+      (global-set-key (kbd "<f6>") 'start-main-clock)
+
+      (org-clock-persistence-insinuate)
+
+      (setq org-clock-out-remove-zero-time-clocks t)
+      (setq org-clock-out-when-done t)
+
+      (setq org-clock-persist t)
+      ;; Do not prompt to resume an active clock
+      (setq org-clock-persist-query-resume nil)
+
+      (global-set-key (kbd "<f7>") 'org-clock-in)
+      (global-set-key (kbd "<f8>") 'org-clock-out)
+      (global-set-key (kbd "C-x C-d") 'org-clock-mark-default-task)
+
+      (setq org-duration-format (quote (("h") (special . 2))))
+
+      (setq org-agenda-clockreport-parameter-plist
+            (quote (:link t :maxlevel 4 :tcolumns 3))))
+    ))

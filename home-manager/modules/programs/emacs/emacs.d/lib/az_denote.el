@@ -30,5 +30,5 @@
           denote-directory "~/nextcloud/"
           denote-dired-directories (list denote-directory)
           denote-dired-directories-include-subdirectories t
-          denote-org-front-matter "#+title: %s\n#+date: %s\n#+filetags: %s\n#+identifier: %s\n#+author: Andreas Zweili\n\n"
+          denote-org-front-matter "#+title: %s\n:preamble:\n#+date: %s\n#+filetags: %s\n#+identifier: %s\n#+author: Andreas Zweili\n#+setupfile: ~/nextcloud/99_archive/0000/settings/html_theme/setup/theme-readtheorg-local.setup\n#+latex_header: \input{~/nextcloud/99_archive/0000/settings/latex/style.tex}\n:end:\n\n"
           denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n")))

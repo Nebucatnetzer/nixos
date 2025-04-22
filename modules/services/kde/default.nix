@@ -13,11 +13,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    environment.plasma6.excludePackages = with pkgs.kdePackages; [
-      elisa
-      kate
-      konsole
-    ];
+    environment = {
+      plasma6.excludePackages = with pkgs.kdePackages; [
+        elisa
+        kate
+        konsole
+      ];
+      systemPackages = [
+        pkgs.kdePackages.audiocd-kio
+      ];
+    };
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm.wayland.enable = true;

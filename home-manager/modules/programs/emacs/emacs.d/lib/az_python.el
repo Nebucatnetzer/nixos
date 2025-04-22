@@ -10,3 +10,7 @@
   :config
   :bind
   (:map python-mode-map ("C-c C-t" . python-pytest-function-dwim)))
+
+(use-package flymake-ruff
+  :ensure t
+  :hook (eglot-managed-mode . flymake-ruff-load))

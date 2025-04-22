@@ -75,6 +75,7 @@ in
         epkgs.flymake-ansible-lint
         epkgs.flymake-collection
         epkgs.flymake-flycheck
+        epkgs.flymake-ruff
         epkgs.flymake-shellcheck
         epkgs.format-all
         epkgs.general

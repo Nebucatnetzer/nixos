@@ -37,7 +37,6 @@ in
       pkgs.nitrogen
       pkgs.plexamp
       pkgs.remmina
-      pkgs.sound-juicer
       pkgs.tagger
       az-media
       dap-sync

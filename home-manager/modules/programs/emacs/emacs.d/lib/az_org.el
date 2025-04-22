@@ -336,7 +336,7 @@
       (defun start-main-clock ()
         "This functions always clocks in to the * Clock heading"
         (interactive)
-        (start-heading-clock "a3a22710-30ac-4f8a-89a4-bdb327762b1a" "~/nextcloud/work/work.org"))
+        (start-heading-clock "f4294c36-0b69-4a9e-a5d9-54c924011bf0" "~/nextcloud/02_projects/work.org"))
 
       (global-set-key (kbd "<f6>") 'start-main-clock)
 

@@ -21,7 +21,7 @@ in
       enable = true;
       settings = {
         asciify_paths = true;
-        directory = "/mnt/media/synced";
+        directory = "/mnt/media/synced/music";
         import = {
           autotag = false;
           copy = true;

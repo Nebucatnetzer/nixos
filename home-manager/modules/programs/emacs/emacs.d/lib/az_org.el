@@ -213,6 +213,10 @@
     ;; Set the agenda separator to a space character.
     (setq org-agenda-block-separator " ")
 
+
+    ;; Hide tags in the agenda
+    (setopt org-agenda-remove-tags t)
+
     (setq org-archive-location
           (concat "~/nextcloud/99_archive/"
                   (format-time-string "%Y" (current-time)) "/projects/"

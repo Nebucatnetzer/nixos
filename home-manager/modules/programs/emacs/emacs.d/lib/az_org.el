@@ -267,7 +267,6 @@
     ;; start the agenda on the current day and show the next 13 days
     (setq org-agenda-span 14
           org-agenda-start-on-weekday nil)
-    (setq org-agenda-tags-column -80)
     (setq org-agenda-show-future-repeats (quote next))
     (setq org-agenda-sorting-strategy
           (quote

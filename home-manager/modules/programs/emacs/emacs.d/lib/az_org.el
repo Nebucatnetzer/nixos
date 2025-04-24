@@ -243,11 +243,11 @@
                     (stuck ""
                            ((org-agenda-overriding-header "Stuck Projects")
                             (org-agenda-sorting-strategy
-                             '(category-up))))
+                             '(priority-down category-up))))
                     (tags-todo "TODO=\"PROJECT\" "
                                ((org-agenda-overriding-header "Projects")
                                 (org-agenda-sorting-strategy
-                                 '(category-up))))
+                                 '(priority-down category-up))))
                     nil))
                   ;; Show all headings with the corresponding TODO state
                   ("N" occur-tree "NEXT")
@@ -264,7 +264,7 @@
     (setq org-agenda-show-future-repeats (quote next))
     (setq org-agenda-sorting-strategy
           (quote
-           ((agenda todo-state-up priority-down category-up))))
+           ((agenda priority-down todo-state-up category-up))))
 
     ;; dimm open tasks
     (setq org-agenda-dim-blocked-tasks t)

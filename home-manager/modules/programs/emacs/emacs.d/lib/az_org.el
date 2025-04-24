@@ -257,6 +257,13 @@
     ;; don't show the warnings for deadlines if the item is scheduled
     (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
 
+
+    (setopt org-agenda-prefix-format
+            '((agenda . " %i %-25:c%?-12t% s")
+              (todo . " %i %-25:c")
+              (tags . " %i %-25:c")
+              (search . " %i %-25:c")))
+
     ;; start the agenda on the current day and show the next 13 days
     (setq org-agenda-span 14
           org-agenda-start-on-weekday nil)

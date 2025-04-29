@@ -214,8 +214,8 @@
     (setq org-agenda-block-separator " ")
 
 
-    ;; Hide tags in the agenda
-    (setopt org-agenda-remove-tags t)
+    ;; Disable tag inheritance
+    (setopt org-use-tag-inheritance nil)
 
     (setq org-archive-location
           (concat "~/nextcloud/99_archive/"

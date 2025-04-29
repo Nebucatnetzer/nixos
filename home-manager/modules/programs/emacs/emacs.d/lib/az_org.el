@@ -331,6 +331,12 @@
     ;; Calender should start on Monday
     (setq calendar-week-start-day 1)
 
+    ;; Enable additional org modules
+    ;; org-checklist to un-toggle checklists when a repeating task gets set to done
+    (setopt org-modules
+            '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc ol-mhe
+                      ol-rmail ol-w3m org-checklist))
+
     (when (boundp 'enable-clocking)
       (defun start-heading-clock (id file)
         "Start clock programmatically for heading with ID in FILE."

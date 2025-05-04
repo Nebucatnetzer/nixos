@@ -12,7 +12,7 @@ in
       enable = true;
       settings = {
         env.TERM = "xterm-256color";
-        window.opacity = 0.8;
+        window.opacity = 0.9;
         colors = {
           primary = {
             background = "#fdf6e3";

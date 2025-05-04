@@ -12,6 +12,23 @@ let
     "ssd"
   ];
   toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
+  foxFlss = inputs.fox-flss.packages.${pkgs.system}.default;
+  foxFlssWrapper = pkgs.writeShellApplication {
+    name = "enable-wwan";
+    runtimeInputs = [
+      pkgs.networkmanager
+    ];
+    text = ''
+      if [ "$EUID" -ne 0 ]; then
+        echo "Please run as root"
+        exit
+      fi
+      mkdir -p /var/log/FoxFlss/Log/
+      ${foxFlss}/usr/bin/FoxFlss "$@"
+      nmcli radio wwan on
+      nmcli connection up yallo
+    '';
+  };
 in
 {
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
@@ -136,6 +153,7 @@ in
     pkgs.compsize # required to display additional information about btrfs compression
     pkgs.strawberry # music player
     pkgs.wally-cli # tool to flash a ZSA keyboard
+    foxFlssWrapper
     toggle-keyboard
   ];
   programs = {

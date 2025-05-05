@@ -101,6 +101,7 @@ in
         epkgs.nix-ts-mode
         epkgs.olivetti
         epkgs.orderless
+        epkgs.org-contrib
         epkgs.ox-pandoc
         epkgs.parsebib
         epkgs.pdf-tools

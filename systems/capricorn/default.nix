@@ -45,7 +45,7 @@ in
     "usb_storage"
     "xhci_pci"
   ];
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.kernelPackages = pkgs.linuxPackages_6_14;
   boot.initrd.kernelModules = [
     "xe" # graphics driver
     "dm-snapshot"

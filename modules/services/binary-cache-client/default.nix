@@ -25,6 +25,11 @@ in
         "ssh://nix-ssh@${config.services.az-binary-cache-common.server}?priority=50"
       ];
     };
+
+    programs.ssh.extraConfig = ''
+      Host cache.zweili.org
+        Port 2222
+    '';
     services.az-binary-cache-common.enable = true;
   };
 }

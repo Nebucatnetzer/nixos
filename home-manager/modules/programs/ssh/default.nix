@@ -31,6 +31,10 @@ in
         Host 10.49.0.100
           User zweili
           IdentityFile ~/.ssh/zweili.key
+
+        Host cache.zweili.org
+          IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
+          Port 2222
       '';
     };
   };

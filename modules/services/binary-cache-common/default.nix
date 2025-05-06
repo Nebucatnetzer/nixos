@@ -11,7 +11,7 @@ let
     ${pkgs.sudo}/bin/sudo ${pkgs.nix}/bin/nix store sign --extra-experimental-features nix-command --all --key-file ${config.age.secrets.signingKey.path}
   '';
   uploadToCache = pkgs.writeShellScriptBin "upload-to-cache" ''
-    ${pkgs.netcat}/bin/nc -vzw 2 ${config.services.az-binary-cache-common.server} 22 &&
+    ${pkgs.netcat}/bin/nc -vzw 2 ${config.services.az-binary-cache-common.server} 2222 &&
       ${pkgs.nix}/bin/nix-copy-closure --to andreas@${config.services.az-binary-cache-common.server} $1
   '';
 in
@@ -38,6 +38,6 @@ in
     nix.settings = {
       secret-key-files = config.age.secrets.signingKey.path;
     };
-    services.az-binary-cache-common.server = "10.7.89.150";
+    services.az-binary-cache-common.server = "cache.zweili.org";
   };
 }

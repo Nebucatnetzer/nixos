@@ -65,6 +65,7 @@ in
         pkgs.dejavu_fonts
         pkgs.gyre-fonts
         pkgs.source-code-pro
+        pkgs.source-sans-pro
       ];
     };
 

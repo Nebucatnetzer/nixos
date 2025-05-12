@@ -114,9 +114,10 @@
     ;; disable the tags in the export
     (setq org-export-with-tags nil)
 
+    ;; place captions below images
     (setq org-latex-caption-above nil)
 
-    (setq org-export-with-sub-superscripts nil)
+    (setq org-export-with-sub-superscripts nil) ;; why is this needed?
 
     (setq org-export-with-smart-quotes t)
 

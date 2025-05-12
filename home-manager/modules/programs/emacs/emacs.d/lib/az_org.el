@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
-  ;; Enable pretty bullets in org mode
   (use-package ox-pandoc
     :after org)
 

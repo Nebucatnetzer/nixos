@@ -22,6 +22,11 @@
     ;; comes from the package verb ./az_verb.el
     (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
 
+    (setopt org-startup-indented t
+            org-indent-mode-turns-on-hiding-stars nil
+            )
+
+
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))
 

@@ -317,6 +317,9 @@
     ;; dimm open tasks
     (setq org-agenda-dim-blocked-tasks t)
 
+    ;; Put the tags in a more visible spot
+    (setopt org-agenda-tags-column -120)
+
     ;; automatically refresh the agenda after adding a task
     (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
 

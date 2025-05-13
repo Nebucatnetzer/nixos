@@ -13,6 +13,8 @@
                        (org-map-entries #'org-fold-hide-subtree
                                         "/+CANCELLED" 'file 'archive 'comment)))
     :config
+    (require 'org-indent)
+
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)
     (global-set-key "\C-cl" 'org-store-link)

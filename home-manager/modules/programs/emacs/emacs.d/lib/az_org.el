@@ -30,11 +30,10 @@
 
     ;; Fonts and text size
     (when (member "Source Code Pro" (font-family-list))
-      (set-face-attribute 'default nil :font "Source Code Pro" :height 140)
       (set-face-attribute 'fixed-pitch nil :family "Source Code Pro"))
 
-    (when (member "Source Sans Pro" (font-family-list))
-      (set-face-attribute 'variable-pitch nil :family "Source Sans Pro" :height 150))
+    (set-face-attribute 'variable-pitch nil :foreground nil :font "Tex Gyre Pagella" :height 160)
+
     ;; Resize Org headings
     (dolist (face '((org-level-1 . 1.35)
                     (org-level-2 . 1.3)
@@ -44,23 +43,24 @@
                     (org-level-6 . 1.1)
                     (org-level-7 . 1.1)
                     (org-level-8 . 1.1)))
-      (set-face-attribute (car face) nil :font "Source Sans Pro" :weight 'bold :height (cdr face)))
+      (set-face-attribute (car face) nil :font "Source Code Pro" :weight 'bold :height (cdr face)))
 
     ;; Make the document title a bit bigger
-    (set-face-attribute 'org-document-title nil :font "Source Sans Pro" :weight
-                        'bold :height 1.8)
+    (set-face-attribute 'org-document-title nil :font "Source Code Pro" :weight 'bold :height 1.7)
 
     (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+    (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
 
-    (set-face-attribute 'org-block nil            :foreground nil :inherit
-                        'fixed-pitch :height 0.85)
-    (set-face-attribute 'org-code nil             :inherit '(shadow fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.85)
-    (set-face-attribute 'org-special-keyword nil  :inherit '(font-lock-comment-face
-                                                             fixed-pitch))
-    (set-face-attribute 'org-meta-line nil        :inherit '(font-lock-comment-face fixed-pitch))
     (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+    (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
+    (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+    (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+    (set-face-attribute 'org-drawer nil           :inherit 'fixed-pitch :height 0.8)
+    (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.8)
+    (set-face-attribute 'org-meta-line nil        :inherit 'fixed-pitch :height 0.8)
+    (set-face-attribute 'org-special-keyword nil  :inherit 'fixed-pitch :height 0.8)
+    (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.8)
     (add-hook 'org-mode-hook 'variable-pitch-mode)
     (plist-put org-format-latex-options :scale 2)
 

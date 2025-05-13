@@ -63,6 +63,7 @@
     (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.8)
     (add-hook 'org-mode-hook 'variable-pitch-mode)
     (plist-put org-format-latex-options :scale 2)
+    (setopt org-tags-column 0)
 
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))

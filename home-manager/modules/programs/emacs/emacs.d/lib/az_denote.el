@@ -8,6 +8,7 @@
     (("C-c n r" . denote-rename-file)
      ("C-c n p" . az-note-from-region)
      ("C-c n t" . denote-journal-extras-new-or-existing-entry)
+     ("C-c n l" . denote-link)
      ("C-c n n" . denote-subdirectory))
     :config
     (defun az-note-from-region (beg end)

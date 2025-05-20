@@ -53,6 +53,7 @@
     (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
 
     (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+    (set-face-attribute 'org-table nil         :inherit 'fixed-pitch)
     (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
     (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
     (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")

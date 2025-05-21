@@ -61,7 +61,7 @@ in
         epkgs.corfu
         epkgs.corfu-terminal
         epkgs.dap-mode
-        unstable.emacsPackages.denote
+        epkgs.denote
         epkgs.elisp-refs
         unstable.emacsPackages.ellama
         epkgs.embark

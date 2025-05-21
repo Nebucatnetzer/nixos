@@ -28,42 +28,54 @@
             org-indent-mode-turns-on-hiding-stars nil
             )
 
-    ;; Fonts and text size
-    (when (member "Source Code Pro" (font-family-list))
-      (set-face-attribute 'fixed-pitch nil :family "Source Code Pro"))
+    (defun az/apply-font-settings (frame)
+      "Apply font settings when a new FRAME is created."
+      (with-selected-frame frame
+        ;; Set default font (optional)
+        ;; (set-face-attribute 'default nil :family "JetBrains Mono" :height 100)
 
-    (set-face-attribute 'variable-pitch nil :foreground nil :font "Tex Gyre Pagella" :height 160)
+        ;; Example: Use a serif font for specific face(s)
+        (set-face-attribute 'variable-pitch nil :foreground nil :font "Tex Gyre Pagella" :height 160)
+        (set-face-attribute 'fixed-pitch nil :family "Source Code Pro")
+
+        (dolist (face '((org-level-1 . 1.35)
+                        (org-level-2 . 1.3)
+                        (org-level-3 . 1.2)
+                        (org-level-4 . 1.1)
+                        (org-level-5 . 1.1)
+                        (org-level-6 . 1.1)
+                        (org-level-7 . 1.1)
+                        (org-level-8 . 1.1)))
+          (set-face-attribute (car face) nil :font "Source Code Pro" :weight 'bold :height (cdr face)))
+
+        ;; Make the document title a bit bigger
+        (set-face-attribute 'org-document-title nil :font "Source Code Pro" :weight 'bold :height 1.7)
+
+        (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+        (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch)
+        (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
+
+        (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+        (set-face-attribute 'org-table nil         :inherit 'fixed-pitch)
+        (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
+        (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+        (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+        (set-face-attribute 'org-drawer nil           :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.8)
+        (set-face-attribute 'org-meta-line nil        :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-special-keyword nil  :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.8)
+        (add-hook 'org-mode-hook 'variable-pitch-mode)
+        (plist-put org-format-latex-options :scale 2)))
+
+    ;; Apply when a new frame is created
+    (add-hook 'after-make-frame-functions #'az/apply-font-settings)
+
+    ;; Also apply immediately if not in daemon mode, or if a frame already exists
+    (when (display-graphic-p)
+      (az/apply-font-settings (selected-frame)))
 
     ;; Resize Org headings
-    (dolist (face '((org-level-1 . 1.35)
-                    (org-level-2 . 1.3)
-                    (org-level-3 . 1.2)
-                    (org-level-4 . 1.1)
-                    (org-level-5 . 1.1)
-                    (org-level-6 . 1.1)
-                    (org-level-7 . 1.1)
-                    (org-level-8 . 1.1)))
-      (set-face-attribute (car face) nil :font "Source Code Pro" :weight 'bold :height (cdr face)))
-
-    ;; Make the document title a bit bigger
-    (set-face-attribute 'org-document-title nil :font "Source Code Pro" :weight 'bold :height 1.7)
-
-    (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-    (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
-
-    (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
-    (set-face-attribute 'org-table nil         :inherit 'fixed-pitch)
-    (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
-    (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
-    (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
-    (set-face-attribute 'org-drawer nil           :inherit 'fixed-pitch :height 0.8)
-    (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.8)
-    (set-face-attribute 'org-meta-line nil        :inherit 'fixed-pitch :height 0.8)
-    (set-face-attribute 'org-special-keyword nil  :inherit 'fixed-pitch :height 0.8)
-    (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.8)
-    (add-hook 'org-mode-hook 'variable-pitch-mode)
-    (plist-put org-format-latex-options :scale 2)
     (setopt org-tags-column 0)
 
     ;; disable line split with M-RET

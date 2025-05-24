@@ -94,7 +94,7 @@ in
     boot.extraModulePackages = [ ];
 
     hardware.enableRedistributableFirmware = true;
-    hardware.pulseaudio.enable = true;
+    services.pulseaudio.enable = true;
 
     environment.systemPackages = [
       pkgs.libraspberrypi

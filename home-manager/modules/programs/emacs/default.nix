@@ -24,7 +24,6 @@ in
       pkgs.multimarkdown
       pkgs.nixd # Nix language server
       pkgs.nodePackages.prettier # formatting files
-      pkgs.nodePackages.prettier-plugin-toml
       pkgs.nixfmt-rfc-style
       pkgs.pandoc
       pkgs.ripgrep

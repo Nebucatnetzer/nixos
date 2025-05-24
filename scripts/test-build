@@ -15,7 +15,7 @@ for host in "${hosts[@]}"; do
         continue
     fi
     echo $host
-    nixos-rebuild dry-build --flake $DEVENV_ROOT#${host}
+    nixos-rebuild-ng dry-build --flake $DEVENV_ROOT#${host}
     echo
     echo
 done

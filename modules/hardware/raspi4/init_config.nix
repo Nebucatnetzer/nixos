@@ -57,11 +57,11 @@
         users = [ "nixos" ];
         commands = [
           {
-            command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild -j auto switch";
+            command = "${pkgs.nixos-rebuild-ng}/bin/nixos-rebuild-ng -j auto switch";
             options = [ "NOPASSWD" ];
           }
           {
-            command = "/run/current-system/sw/bin/nixos-rebuild";
+            command = "/run/current-system/sw/bin/nixos-rebuild-ng";
             options = [ "NOPASSWD" ];
           }
           {

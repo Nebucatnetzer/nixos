@@ -11,14 +11,14 @@ reboot=0
 
 while getopts ":r" option; do
     case $option in
-        r)
-            reboot=1
-            host=$2
-            fqdn="$host.2li.local"
-            echo "$fqdn with reboot"
-            nixos-rebuild boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
-            ssh -i $rsa_key $fqdn 'sudo reboot'
-            ;;
+    r)
+        reboot=1
+        host=$2
+        fqdn="$host.2li.local"
+        echo "$fqdn with reboot"
+        nixos-rebuild-ng boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+        ssh -i $rsa_key $fqdn 'sudo reboot'
+        ;;
     esac
 done
 
@@ -26,7 +26,7 @@ if [ $reboot -eq 0 ]; then
     host=$1
     fqdn="$host.2li.local"
     echo "$fqdn"
-    nixos-rebuild switch -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+    nixos-rebuild-ng switch -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
 fi
 echo
 echo

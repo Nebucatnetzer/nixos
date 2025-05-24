@@ -106,6 +106,7 @@ in
         pkgs.brightnessctl
         pkgs.lm_sensors
         pkgs.networkmanager-openvpn
+        pkgs.nixos-rebuild-ng
         pkgs.p7zip
         pkgs.pavucontrol
         pkgs.podman-compose

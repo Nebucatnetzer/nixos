@@ -13,7 +13,7 @@ let
     ];
     text = ''
       if ${pkgs.netcat}/bin/nc -vzw 2 ${nixosConfig.services.az-binary-cache-common.server} 2222; then
-        nixos-rebuild-ng -j auto switch --use-remote-sudo
+        nixos-rebuild-ng -j auto switch --sudo
         upload-to-cache /run/current-system
       else
         echo "Build without private cache"

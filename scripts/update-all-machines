@@ -16,7 +16,7 @@ skip=(
 )
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
-export NIX_SSHOPTS="-t -i $rsa_key"
+export NIX_SSHOPTS="-i $rsa_key"
 reboot=0
 
 while getopts ":r" option; do
@@ -35,14 +35,14 @@ for host in "${hosts[@]}"; do
     fqdn="$host.2li.local"
     if [ $reboot -eq 0 ]; then
         echo $fqdn
-        nixos-rebuild-ng switch -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+        nixos-rebuild-ng switch -j auto --sudo --target-host $fqdn --flake ".#$host"
     else
         if [[ "$(hostname)" == "$host" ]]; then
             echo "Skip management"
             continue
         fi
         echo "$fqdn with reboot"
-        nixos-rebuild-ng boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+        nixos-rebuild-ng boot -j auto --sudo --target-host $fqdn --flake ".#$host"
         ssh -i $rsa_key $fqdn 'sudo reboot'
     fi
     echo

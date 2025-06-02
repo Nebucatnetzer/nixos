@@ -5,7 +5,7 @@ set -e
 cd /home/andreas/.nixos
 
 rsa_key="~/.nixos/secrets/ssh_keys/ansible/ansible.key"
-export NIX_SSHOPTS="-t -i $rsa_key"
+export NIX_SSHOPTS="-i $rsa_key"
 
 reboot=0
 
@@ -16,7 +16,7 @@ while getopts ":r" option; do
         host=$2
         fqdn="$host.2li.local"
         echo "$fqdn with reboot"
-        nixos-rebuild-ng boot -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+        nixos-rebuild-ng boot -j auto --sudo --target-host $fqdn --flake ".#$host"
         ssh -i $rsa_key $fqdn 'sudo reboot'
         ;;
     esac
@@ -26,7 +26,7 @@ if [ $reboot -eq 0 ]; then
     host=$1
     fqdn="$host.2li.local"
     echo "$fqdn"
-    nixos-rebuild-ng switch -j auto --use-remote-sudo --target-host $fqdn --flake ".#$host"
+    nixos-rebuild-ng switch -j auto --sudo --target-host $fqdn --flake ".#$host"
 fi
 echo
 echo

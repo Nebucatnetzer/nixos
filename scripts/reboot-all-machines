@@ -13,7 +13,7 @@ skip=(
 )
 
 rsa_key="$HOME/.nixos/secrets/ssh_keys/ansible/ansible.key"
-export NIX_SSHOPTS="-t -i $rsa_key"
+export NIX_SSHOPTS="-i $rsa_key"
 
 for host in "${hosts[@]}"; do
     # Check if the host is in the skip list

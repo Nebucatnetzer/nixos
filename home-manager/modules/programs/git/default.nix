@@ -137,7 +137,6 @@ in
       ];
     };
     # raw files
-    home.file.".config/git/hooks".source = ./hooks;
     home.file.".config/git/workconfig".source = ./workconfig;
     home.shellAliases = {
       git-clean = ''

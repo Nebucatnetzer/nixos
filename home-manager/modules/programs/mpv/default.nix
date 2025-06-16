@@ -48,8 +48,6 @@ in
         image-display-duration = 3;
         keep-open = "yes";
         keepaspect-window = "no";
-        profile = "gpu-hq";
-        vo = "gpu";
         volume = 50;
       };
     };

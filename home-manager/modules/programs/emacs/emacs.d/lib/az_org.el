@@ -110,6 +110,8 @@
            (("t" "Adds a Next entry" entry
              (file+headline "~/nextcloud/01_inbox/00_inbox.org" "Capture")
              (file "~/nextcloud/99_archive/0000/settings/templates/temp_personal_todo.txt")
+             :clock-in t
+             :clock-resume t
              :empty-lines 1)
             ("n" "Add note" plain (file az-org-capture-read-file-name)
              (file "~/nextcloud/99_archive/0000/settings/templates/temp_note.txt"))

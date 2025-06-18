@@ -64,6 +64,8 @@
     {
       images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) hosts;
       nixosConfigurations = hostConfigs;
+      packages."x86_64-linux".pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      packages."aarch64-linux".pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";

@@ -30,6 +30,16 @@ in
     services = {
       az-acme-base.enable = true;
       az-snmpd.enable = true;
+      services.phpfpm.pools.librenms.phpOptions = {
+        "date.timezone" = config.time.timeZone;
+        "opcache.enable" = lib.literalExpression 1;
+        "opcache.memory_consumption" = lib.literalExpression 256;
+        log_errors = "on";
+        memory_limit = "${toString config.services.librenms.settings.php_memory_limit}M";
+        post_max_size = "100M";
+        upload_max_filesize = "100M";
+        zend_extension = lib.literalExpression "opcache";
+      };
       librenms = {
         enable = true;
         database = {
@@ -43,7 +53,6 @@ in
           # To set the LibreNMS virtualHost as the default virtualHost;
           default = true;
         };
-
         settings = {
           enable_syslog = true;
           ignore_mount = [

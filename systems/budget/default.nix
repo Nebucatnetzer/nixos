@@ -15,6 +15,12 @@
   profiles.az-server.enable = true;
   services = {
     az-firefly.enable = true;
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "${config.services.firefly-iii.virtualHost}"; }
+      ];
+    };
     az-restic-client-server = {
       enable = true;
       path = config.services."firefly-iii".dataDir;

@@ -15,6 +15,12 @@
     az-grav.enable = true;
     az-haproxy.enable = true;
     az-heimdall.enable = true;
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "www.2li.ch"; }
+      ];
+    };
     az-restic-client-server = {
       enable = true;
       path = "/mnt/server-data";

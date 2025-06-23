@@ -1,7 +1,7 @@
 { hostname }:
 {
+  config,
   inputs,
-  lib,
   pkgs,
   ...
 }:
@@ -94,6 +94,12 @@
     az-data-share.enable = true;
     az-kde.enable = true;
     az-librenms.enable = true;
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "${config.services.librenms.hostname}"; }
+      ];
+    };
     az-restic-client-desktop.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;

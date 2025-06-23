@@ -1,5 +1,5 @@
 { hostname }:
-{ ... }:
+{ config, ... }:
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -11,6 +11,12 @@
 
   profiles.az-server.enable = true;
   services = {
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "${config.services.az-nextcloud.domain}"; }
+      ];
+    };
     az-nextcloud = {
       enable = true;
       domain = "nextcloud.2li.ch";

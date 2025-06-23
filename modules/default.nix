@@ -39,6 +39,8 @@
     ./services/heimdall
     ./services/kde
     ./services/librenms
+    ./services/librenms-agent
+    ./services/librenms-certificate
     ./services/log-to-ram
     ./services/mariadb-for-containers
     ./services/media-share

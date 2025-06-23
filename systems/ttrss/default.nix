@@ -14,6 +14,13 @@
 
   profiles.az-server.enable = true;
   services = {
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "${config.services.freshrss.virtualHost}"; }
+        { fqdn = "${config.services.az-rss-bridge.domain}"; }
+      ];
+    };
     az-restic-client-server-mysql = {
       enable = true;
       path = config.services.freshrss.dataDir;

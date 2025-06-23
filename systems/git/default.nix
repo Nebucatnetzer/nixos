@@ -18,6 +18,12 @@ in
       enable = true;
       domain = domain;
     };
+    az-librenms-certificate = {
+      enable = true;
+      domains = [
+        { fqdn = "${domain}"; }
+      ];
+    };
     az-nginx-proxy = {
       enable = true;
       domain = domain;

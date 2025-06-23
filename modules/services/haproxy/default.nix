@@ -49,6 +49,7 @@ in
           redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i firefly.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
+          redirect scheme https code 301 if { hdr(host) -i librenms.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i www.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr_dom(host) -i 2li.ch } !{ ssl_fc }
@@ -69,6 +70,7 @@ in
           use_backend budget_server if { req_ssl_sni -i firefly.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
+          use_backend librenms if { req_ssl_sni -i librenms.zweili.org }
           use_backend proxy if { req_ssl_sni -i www.2li.ch }
           use_backend proxy if { req_ssl_sni -i 2li.ch }
 
@@ -90,6 +92,9 @@ in
         backend mail_server
           mode tcp
           server server1 10.7.89.123:443 check
+        backend librenms
+          mode tcp
+          server server1 10.7.89.153:443 check
         backend proxy
           mode tcp
           server server1 127.0.0.1:4433 check

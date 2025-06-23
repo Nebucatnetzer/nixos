@@ -22,13 +22,13 @@ in
 
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [
-      80
       514
     ];
     networking.firewall.allowedUDPPorts = [
       514
     ];
     services = {
+      az-acme-base.enable = true;
       az-snmpd.enable = true;
       librenms = {
         enable = true;
@@ -36,6 +36,14 @@ in
           createLocally = true;
           socket = "/run/mysqld/mysqld.sock";
         };
+        hostname = "librenms.zweili.org";
+        nginx = {
+          forceSSL = true;
+          enableACME = true;
+          # To set the LibreNMS virtualHost as the default virtualHost;
+          default = true;
+        };
+
         settings = {
           enable_syslog = true;
           ignore_mount = [

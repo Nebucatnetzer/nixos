@@ -36,6 +36,7 @@ in
       pkgs.meld
       pkgs.nitrogen
       pkgs.plexamp
+      pkgs.plex-desktop
       pkgs.remmina
       pkgs.tagger
       az-media

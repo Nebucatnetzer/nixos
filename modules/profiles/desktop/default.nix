@@ -118,5 +118,15 @@ in
       };
     };
     virtualisation.podman.enable = true;
+
+    xdg = {
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk # required for plex
+        ];
+      };
+    };
   };
 }

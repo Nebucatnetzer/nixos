@@ -17,7 +17,6 @@ in
       plasma6.excludePackages = with pkgs.kdePackages; [
         elisa
         kate
-        konsole
       ];
       systemPackages = [
         pkgs.kdePackages.audiocd-kio

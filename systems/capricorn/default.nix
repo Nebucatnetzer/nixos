@@ -170,6 +170,7 @@ in
 
   services = {
     az-binary-cache-client.enable = true;
+    az-kanata.enable = true;
     az-kde.enable = true;
     az-media-share.enable = true;
     az-restic-client-desktop.enable = true;

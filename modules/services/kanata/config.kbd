@@ -1,0 +1,56 @@
+(defvirtualkeys
+  to-base (layer-switch base)
+)
+
+(defvar
+  tot 220  ;; tot=time out tap
+)
+
+(deftemplate homerowmod (timeouttap timeouthold keytap keyhold)
+	(tap-hold $timeouttap $timeouthold
+		(multi $keytap  @.tp)
+		$keyhold
+	)
+)
+
+;; homerowmodfiltered is a way to force problematic bigrams to become letters not mods
+(deftemplate homerowmodfiltered (timeouttap timeouthold keytap keyhold typinglist)
+  (tap-hold-release-keys $timeouttap $timeouthold
+    (multi $keytap  @.tp)
+    $keyhold
+    $typinglist ;; Activates $keytap early if a key within $typinglist is pressed before hold activates.
+  )
+)
+
+(defalias
+  ;; call @.tp whenever you want to enter fast typing-layer
+  .tp (switch
+        ;;(lsft rsft) XX break ;; optional skip typing-layer activation for upper case keys might solves some FJ problems
+        ()  (multi
+              (layer-switch typing)
+              (on-idle 55 tap-vkey to-base) ;; timeouts from 30 to 100 are wide spread
+            ) break
+      )
+  .spc-typing   (multi (layer-switch base) spc) ;; expilcitly leave typing-layer when hitting `space` - this allows experimenting with higher idle timeouts
+)
+
+(defsrc )
+
+(deflayermap (base)
+ ;; define home row mods (they act as typing-layer triggers, too )
+ f (t! homerowmod $tot 160 f lctl)
+ d (t! homerowmod $tot 300 d lsft)
+ s (t! homerowmodfiltered $tot 400 s lalt (a)) ;; example fix of the 'as' role
+ a (t! homerowmod $tot 450 a lmet)
+ j (t! homerowmod $tot 160 j rctl)
+ k (t! homerowmod $tot 300 k rsft)
+ l (t! homerowmod $tot 400 l ralt)
+ ; (t! homerowmod $tot 450 ; rmet)
+ ;; define each letter as typing-layer trigger
+ q (multi q @.tp) w (multi w @.tp) e (multi e @.tp) r (multi r @.tp) t (multi t @.tp) y (multi y @.tp) u (multi u @.tp) i (multi i @.tp) o (multi o @.tp) p (multi p @.tp) g (multi g @.tp) h (multi h @.tp) z (multi z @.tp) x (multi x @.tp) c (multi c @.tp) v (multi v @.tp) b (multi b @.tp) n (multi n @.tp) m (multi m @.tp)
+)
+
+(deflayermap (typing)
+ a a b b c c d d e e f f g g h h i i j j k k l l m m n n o o p p q q r r s s t t u u v v w w x x y y z z
+ caps XX ;; key deactivations of caps,... are optional
+)

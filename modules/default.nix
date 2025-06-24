@@ -37,6 +37,7 @@
     ./services/grav
     ./services/haproxy
     ./services/heimdall
+    ./services/kanata
     ./services/kde
     ./services/librenms
     ./services/librenms-agent

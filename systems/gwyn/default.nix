@@ -101,6 +101,7 @@
       ];
     };
     az-restic-client-desktop.enable = true;
+    az-syslog.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards

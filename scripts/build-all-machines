@@ -42,6 +42,7 @@ for host in "${hosts[@]}"; do
     fi
     echo "Create symlink for $store_path at $build_path"
     ssh -t "$USER"@management.2li.local "ln -sfn $store_path $build_path"
+    ssh -t "$USER"@management.2li.local "nix-store --add-root $build_path --realise $build_path"
     echo
     echo
 done

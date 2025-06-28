@@ -54,7 +54,7 @@ in
       script = ''
         ${pkgs.restic}/bin/restic backup \
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-          --tag ${cfg.tag} ${cfg.path}
+          --tag ${cfg.tag} ${cfg.path} /nix/var/nix
 
         ${pkgs.sudo}/bin/sudo -u postgres ${pkgs.postgresql_15}/bin/pg_dumpall | \
         ${pkgs.restic}/bin/restic backup \

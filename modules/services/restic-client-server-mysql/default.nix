@@ -56,7 +56,7 @@ in
       script = ''
         ${pkgs.restic}/bin/restic backup \
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-          --tag ${cfg.tag} ${cfg.path}
+          --tag ${cfg.tag} ${cfg.path} /nix/var/nix
 
         ${pkgs.mariadb_114}/bin/mariadb-backup --backup --user=root --stream=xbstream | \
         ${pkgs.restic}/bin/restic backup \

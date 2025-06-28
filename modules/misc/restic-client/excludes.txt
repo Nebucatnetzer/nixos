@@ -17,6 +17,10 @@
 /home/*/git_repos/work
 /home/*/programmes/tor-browser_en-US
 /home/*/snap
+/nix/var/nix/db/big-lock
+/nix/var/nix/db/reserved
+/nix/var/nix/userpool
+/nix/var/nix/temproots
 /proc
 /sys
 /tmp

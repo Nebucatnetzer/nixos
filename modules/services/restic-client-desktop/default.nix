@@ -53,7 +53,7 @@ in
         ${pkgs.restic}/bin/restic \
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
           --tag home-dir \
-          backup /home/${config.az-username}
+          backup /home/${config.az-username} /nix/var/nix
 
         ${pkgs.restic}/bin/restic \
         forget \

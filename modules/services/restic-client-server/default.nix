@@ -53,7 +53,7 @@ in
       script = ''
         ${pkgs.restic}/bin/restic backup \
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-          --tag ${cfg.tag} ${cfg.path}
+          --tag ${cfg.tag} ${cfg.path} /nix/var/nix
 
         ${pkgs.restic}/bin/restic forget \
           --tag ${cfg.tag} \

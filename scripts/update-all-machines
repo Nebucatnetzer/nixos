@@ -41,7 +41,17 @@ for host in "${hosts[@]}"; do
             echo "Skip management"
             continue
         fi
-        echo "$fqdn with reboot"
+        if [ "$(hostname)" = "management" ]; then
+            echo "Skip skip cache"
+            continue
+        fi
+        nixos-rebuild-ng boot -j auto --sudo --target-host $fqdn --flake ".#$host"
+        ssh -i $rsa_key $fqdn 'sudo reboot'
+    fi
+    if [ $reboot -eq 1 ]; then
+        # rebuild and restart the management server at the end
+        host="management"
+        fqdn="$host.2li.local"
         nixos-rebuild-ng boot -j auto --sudo --target-host $fqdn --flake ".#$host"
         ssh -i $rsa_key $fqdn 'sudo reboot'
     fi

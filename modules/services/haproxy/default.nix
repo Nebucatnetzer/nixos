@@ -72,9 +72,6 @@ in
           use_backend proxy if { req_ssl_sni -i www.2li.ch }
           use_backend proxy if { req_ssl_sni -i 2li.ch }
 
-        backend grav_server
-          mode tcp
-          server server1 10.7.89.102:443 check
         backend git_server
           mode tcp
           server server1 10.7.89.109:443 check

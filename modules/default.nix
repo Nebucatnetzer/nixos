@@ -34,7 +34,6 @@
     ./services/firefly
     ./services/freshrss
     ./services/gitea
-    ./services/grav
     ./services/haproxy
     ./services/heimdall
     ./services/kanata

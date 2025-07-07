@@ -12,7 +12,6 @@
   profiles.az-server.enable = true;
   services = {
     az-acme-base.enable = true;
-    az-grav.enable = true;
     az-haproxy.enable = true;
     az-heimdall.enable = true;
     az-librenms-certificate = {
@@ -63,10 +62,6 @@
               ssl = true;
             }
           ];
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:8080";
-            proxyWebsockets = true; # needed if you need to use WebSocket
-          };
           extraConfig = ''
             if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
           '';

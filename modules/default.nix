@@ -35,7 +35,6 @@
     ./services/freshrss
     ./services/gitea
     ./services/haproxy
-    ./services/heimdall
     ./services/kanata
     ./services/kde
     ./services/librenms

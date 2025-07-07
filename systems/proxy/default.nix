@@ -61,6 +61,7 @@
               ssl = true;
             }
           ];
+          root = "/var/lib/posts";
           extraConfig = ''
             if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
           '';

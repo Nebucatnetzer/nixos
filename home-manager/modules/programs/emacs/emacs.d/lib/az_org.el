@@ -31,6 +31,7 @@
     (defun az/apply-font-settings (frame)
       "Apply font settings when a new FRAME is created."
       (with-selected-frame frame
+        (set-face-attribute 'fixed-pitch nil :family "Source Code Pro")
         (dolist (face '((org-level-1 . 1.35)
                         (org-level-2 . 1.3)
                         (org-level-3 . 1.2)
@@ -44,6 +45,12 @@
         ;; Make the document title a bit bigger
         (set-face-attribute 'org-document-title nil :weight 'bold :height 1.7)
 
+        (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
+        (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch)
+        (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
+
+        (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
+        (set-face-attribute 'org-table nil         :inherit 'fixed-pitch)
         (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
         (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
         (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")

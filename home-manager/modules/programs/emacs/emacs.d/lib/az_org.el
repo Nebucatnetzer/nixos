@@ -45,20 +45,18 @@
         ;; Make the document title a bit bigger
         (set-face-attribute 'org-document-title nil :weight 'bold :height 1.7)
 
-        (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))
-        (set-face-attribute 'org-block nil            :foreground nil :inherit 'fixed-pitch)
-        (set-face-attribute 'org-code nil             :inherit 'fixed-pitch)
-
-        (set-face-attribute 'org-checkbox nil         :inherit 'fixed-pitch)
-        (set-face-attribute 'org-table nil         :inherit 'fixed-pitch)
-        (set-face-attribute 'org-date nil             :inherit '(shadow fixed-pitch) :height 0.8)
-        (set-face-attribute 'org-document-info nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
-        (set-face-attribute 'org-document-info-keyword nil        :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
-        (set-face-attribute 'org-drawer nil           :inherit 'fixed-pitch :height 0.8)
-        (set-face-attribute 'org-indent nil           :inherit '(org-hide fixed-pitch) :height 0.8)
-        (set-face-attribute 'org-meta-line nil        :inherit 'fixed-pitch :height 0.8)
-        (set-face-attribute 'org-special-keyword nil  :inherit 'fixed-pitch :height 0.8)
-        (set-face-attribute 'org-verbatim nil         :inherit '(shadow fixed-pitch) :height 0.8)
+        (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+        (set-face-attribute 'org-checkbox nil              :inherit 'fixed-pitch)
+        (set-face-attribute 'org-code nil                  :inherit 'fixed-pitch)
+        (set-face-attribute 'org-date nil                  :inherit '(shadow fixed-pitch) :height 0.8)
+        (set-face-attribute 'org-document-info nil         :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+        (set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
+        (set-face-attribute 'org-drawer nil                :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-indent nil                :inherit '(org-hide fixed-pitch))
+        (set-face-attribute 'org-meta-line nil             :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-special-keyword nil       :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-table nil                 :inherit 'fixed-pitch)
+        (set-face-attribute 'org-verbatim nil              :inherit 'fixed-pitch)
         (plist-put org-format-latex-options :scale 2)))
 
     ;; Apply when a new frame is created

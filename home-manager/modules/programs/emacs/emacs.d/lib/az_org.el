@@ -56,7 +56,7 @@
         (set-face-attribute 'org-meta-line nil             :inherit 'fixed-pitch :height 0.8)
         (set-face-attribute 'org-special-keyword nil       :inherit 'fixed-pitch :height 0.8)
         (set-face-attribute 'org-table nil                 :inherit 'fixed-pitch)
-        (set-face-attribute 'org-verbatim nil              :inherit 'fixed-pitch)
+        (set-face-attribute 'org-verbatim nil              :inherit '(shadow fixed-pitch))
         (plist-put org-format-latex-options :scale 2)))
 
     ;; Apply when a new frame is created

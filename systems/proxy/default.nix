@@ -1,5 +1,8 @@
 { hostname }:
 { ... }:
+let
+  blogPosts = "/var/lib/posts";
+in
 {
   hardware = {
     az-raspi4-ethernet = {
@@ -21,7 +24,7 @@
     };
     az-restic-client-server = {
       enable = true;
-      path = "/mnt/server-data";
+      path = blogPosts;
       tag = "proxy";
       time = "00:00";
     };
@@ -61,7 +64,7 @@
               ssl = true;
             }
           ];
-          root = "/var/lib/posts";
+          root = blogPosts;
           extraConfig = ''
             if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
           '';

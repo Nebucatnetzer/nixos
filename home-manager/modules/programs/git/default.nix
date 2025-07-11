@@ -34,20 +34,40 @@ in
         }
       ];
       extraConfig = {
+        branch.sort = "-committerdate";
         core = {
           autocrlf = "input";
+          fsmonitor = true; # not clear if I keep it
+          untrackedCache = true; # not clear if I keep it
         };
-        safe = {
-          directory = "*";
+        diff = {
+          algorithm = "histogram";
+          colorMoved = true;
+          mnemonicPrefix = true;
+          renames = true;
         };
-        pull = {
-          rebase = false;
+        feature.experimental = true;
+        fetch = {
+          all = true;
+          prune = true; # not clear if I keep it
+          pruneTags = true; # not clear if I keep it
         };
-        push = {
-          autoSetupRemote = true;
+        grep.patternType = "perl";
+        help.autocorrect = "prompt";
+        merge.conflictStyle = "zdiff3";
+        pull.ff = "only"; # not clear if I keep it
+        push.autoSetupRemote = true;
+        rebase = {
+          autosquash = true;
+          autostash = true;
+          updateRefs = true;
         };
-        merge.conflictStyle = "diff3";
-        rerere.enabled = true;
+        rerere = {
+          autoupdate = true;
+          enabled = true;
+        };
+        safe.directory = "*";
+        tag.sort = "version:refname";
       };
       ignores = [
         # ---> VisualStudioCode

@@ -1,7 +1,7 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-pkgs.mkShell {
+pkgs.mkShellNoCC {
   name = "nixosbuildshell";
   packages = [
     (pkgs.buildEnv {

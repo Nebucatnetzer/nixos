@@ -3,16 +3,21 @@
 }:
 pkgs.mkShell {
   name = "nixosbuildshell";
-  nativeBuildInputs = [
-    pkgs.deadnix
-    pkgs.git
-    pkgs.python3
-    pkgs.python3Packages.black
-    pkgs.python3Packages.mypy
-    pkgs.python3Packages.pylint
-    pkgs.qtile-unwrapped
-    pkgs.python3Packages.python-lsp-server
-    pkgs.vim
+  packages = [
+    (pkgs.buildEnv {
+      name = "zweili-nixos-devShell";
+      paths = [
+        pkgs.deadnix
+        pkgs.git
+        pkgs.python3
+        pkgs.black
+        pkgs.mypy
+        pkgs.pylint
+        pkgs.python3Packages.python-lsp-server
+        pkgs.vim
+      ];
+      pathsToLink = [ "/bin" ];
+    })
   ];
 
   shellHook = ''

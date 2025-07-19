@@ -37,6 +37,10 @@ in
 
   hardware = {
     enableRedistributableFirmware = true;
+    block.scheduler = {
+      "mmcblk[0-9]*" = "bfq";
+      "nvme[0-9]*" = "kyber";
+    };
   };
 
   # required in order to have apropos and whatis working

@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.agenix.nixosModules.age
+    inputs.chaotic.nixosModules.default # IMPORTANT
     inputs.home-manager.nixosModules.home-manager
     ./hardware/bluetooth
     ./hardware/dvd

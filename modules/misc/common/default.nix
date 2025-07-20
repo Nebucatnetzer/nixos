@@ -42,8 +42,6 @@ in
       "nvme[0-9]*" = "kyber";
     };
   };
-  # Enable scheduler extensions
-  services.scx.enable = true;
 
   # required in order to have apropos and whatis working
   programs.mosh.enable = true;

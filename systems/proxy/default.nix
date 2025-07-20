@@ -16,10 +16,12 @@ in
   services = {
     az-acme-base.enable = true;
     az-haproxy.enable = true;
+    az-search.enable = true;
     az-librenms-certificate = {
       enable = true;
       domains = [
         { fqdn = "www.2li.ch"; }
+        { fqdn = "search.zweili.org"; }
       ];
     };
     az-restic-client-server = {
@@ -65,9 +67,29 @@ in
             }
           ];
           root = blogPosts;
+        };
+        "search.zweili.org" = {
+          enableACME = true;
+          forceSSL = true;
+          listen = [
+            {
+              port = 4433;
+              addr = "127.0.0.1";
+              ssl = true;
+            }
+          ];
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8080";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
           extraConfig = ''
             if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+
+            location /static/ {
+                alias /var/lib/zweili_search/static/;
+            }
           '';
+
         };
       };
     };

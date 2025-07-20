@@ -45,6 +45,7 @@ in
           mode http
           redirect scheme https code 301 if { hdr(host) -i mail.zweili.org ! {ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
+          redirect scheme https code 301 if { hdr(host) -i search.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i nextcloud.2li.ch } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i firefly.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
@@ -63,6 +64,7 @@ in
 
           # Figure out which backend (= VM) to use
           use_backend git_server if { req_ssl_sni -i git.2li.ch }
+          use_backend proxy if { req_ssl_sni -i search.zweili.org }
           use_backend mail_server if { req_ssl_sni -i mail.zweili.org }
           use_backend nextcloud_server if { req_ssl_sni -i nextcloud.2li.ch }
           use_backend budget_server if { req_ssl_sni -i firefly.zweili.org }

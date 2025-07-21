@@ -64,7 +64,7 @@
           ("PHP" prettier)
           ("Protocol Buffer" clang-format)
           ("PureScript" purty)
-          ("Python" black)
+          ("Python" ruff)
           ("R" styler)
           ("Reason" bsrefmt)
           ("ReScript" rescript)

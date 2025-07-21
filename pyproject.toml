@@ -28,6 +28,10 @@ line-ending = "auto"
 [tool.ruff.lint]
 fixable = ["ALL"]
 select = [ "ALL" ]
+ignore = [
+"S603", # I mostly don't have any input for the scripts in this project.
+"S607", # We get the paths from the environment
+]
 
 [tool.ruff.lint.isort]
 force-single-line = true

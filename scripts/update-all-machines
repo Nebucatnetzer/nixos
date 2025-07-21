@@ -27,7 +27,7 @@ def run_rebuild(host: str, fqdn: str, reboot: bool, rsa_key: str) -> None:
     if reboot:
         if (
             subprocess.run(
-                ["hostname"], capture_output=True, text=True, check=False
+                ["hostname"], capture_output=True, text=True, check=False,
             ).stdout.strip()
             == host
         ):

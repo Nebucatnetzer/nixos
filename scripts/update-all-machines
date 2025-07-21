@@ -6,12 +6,15 @@ import argparse
 import os
 import shlex
 import subprocess
-from typing import List
+from pathlib import Path
 
 
-def get_nixos_hosts() -> List[str]:
+def get_nixos_hosts() -> list[str]:
     """Retrieve list of nixosConfigurations hosts from nix flakes."""
-    cmd = "nix eval .#nixosConfigurations --apply 'pkgs: builtins.concatStringsSep \" \" (builtins.attrNames pkgs)'"
+    cmd = (
+        "nix eval .#nixosConfigurations "
+        "--apply 'pkgs: builtins.concatStringsSep \" \" (builtins.attrNames pkgs)'"
+    )
     result = subprocess.run(
         shlex.split(cmd),
         stdout=subprocess.PIPE,
@@ -22,59 +25,65 @@ def get_nixos_hosts() -> List[str]:
     return result.stdout.strip().strip('"').split()
 
 
-def run_rebuild(host: str, fqdn: str, reboot: bool, rsa_key: str) -> None:
-    """Perform nixos-rebuild-ng for the given host."""
-    if reboot:
-        if (
-            subprocess.run(
-                ["hostname"], capture_output=True, text=True, check=False,
-            ).stdout.strip()
-            == host
-        ):
-            print("Skip management")
-            return
-        if host == "management":
-            print("Skip cache\n")
-            return
+def run_rebuild_boot(host: str, fqdn: str) -> None:
+    """Perform nixos-rebuild-ng boot for the given host."""
+    target_host = subprocess.run(
+        ["hostname"],
+        capture_output=True,
+        text=True,
+        check=False,
+    ).stdout.strip()
+    if target_host == host:
+        print("Skip management")
+        return
+    if host == "management":
+        print("Skip cache\n")
+        return
 
-        cmd = [
-            "nixos-rebuild-ng",
-            "boot",
-            "-j",
-            "auto",
-            "--sudo",
-            "--target-host",
-            fqdn,
-            "--flake",
-            f".#{host}",
-        ]
-        print(f"build {host}")
-        subprocess.run(cmd, check=True)
+    cmd = [
+        "nixos-rebuild-ng",
+        "boot",
+        "-j",
+        "auto",
+        "--sudo",
+        "--target-host",
+        fqdn,
+        "--flake",
+        f".#{host}",
+    ]
+    print(f"build {host}")
+    subprocess.run(cmd, check=True)
 
-        subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
-    else:
-        print(fqdn)
-        cmd = [
-            "nixos-rebuild-ng",
-            "switch",
-            "-j",
-            "auto",
-            "--sudo",
-            "--target-host",
-            fqdn,
-            "--flake",
-            f".#{host}",
-        ]
-        subprocess.run(cmd, check=True)
-        print("\n")
+
+def run_rebuild_switch(host: str, fqdn: str) -> None:
+    """Perform nixos-rebuild-ng switch for the given host."""
+    print(fqdn)
+    cmd = [
+        "nixos-rebuild-ng",
+        "switch",
+        "-j",
+        "auto",
+        "--sudo",
+        "--target-host",
+        fqdn,
+        "--flake",
+        f".#{host}",
+    ]
+    subprocess.run(cmd, check=True)
+    print("\n")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="NixOS rebuild orchestrator")
-    parser.add_argument("-r", action="store_true", help="Reboot after build")
+    parser.add_argument(
+        "-r",
+        "--reboot",
+        action="store_true",
+        help="Reboot after build",
+    )
     args = parser.parse_args()
 
-    skip_hosts: List[str] = [
+    skip_hosts: list[str] = [
         "desktop-vm",
         "capricorn",
         "gwyn",
@@ -84,18 +93,22 @@ def main() -> None:
         "test-raspi",
     ]
 
-    rsa_key: str = os.path.expanduser("~/.nixos/secrets/ssh_keys/ansible/ansible.key")
+    rsa_key: str = Path("~/.nixos/secrets/ssh_keys/ansible/ansible.key").expanduser()
     os.environ["NIX_SSHOPTS"] = f"-i {rsa_key}"
 
-    hosts: List[str] = get_nixos_hosts()
+    hosts: list[str] = get_nixos_hosts()
 
     for host in hosts:
         if host in skip_hosts:
             continue
         fqdn: str = f"{host}.2li.local"
-        run_rebuild(host, fqdn, args.r, rsa_key)
+        if args.reboot:
+            run_rebuild_boot(host, fqdn)
+            subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
+        else:
+            run_rebuild_switch(host, fqdn)
 
-    if args.r:
+    if args.reboot:
         # rebuild and restart the management server at the end
         host = "management"
         fqdn = f"{host}.2li.local"

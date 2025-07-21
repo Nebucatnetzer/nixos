@@ -31,6 +31,7 @@ select = [ "ALL" ]
 ignore = [
 "S603", # I mostly don't have any input for the scripts in this project.
 "S607", # We get the paths from the environment
+"T201", # Print is easy to use and for fine for CLI scripts
 ]
 
 [tool.ruff.lint.isort]

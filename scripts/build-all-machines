@@ -7,10 +7,9 @@ import os
 import socket
 import subprocess
 from pathlib import Path
-from typing import List
 
 
-def get_hosts(devenv_root: str) -> List[str]:
+def get_hosts(devenv_root: str) -> list[str]:
     expr = f"{devenv_root}#nixosConfigurations"
     apply_expr = 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'
     cmd = ["nix", "eval", expr, "--apply", apply_expr]
@@ -66,9 +65,9 @@ def build_locally(devenv_root: str, host: str) -> str:
 def create_symlink_and_realize(user: str, store_path: str, build_path: str) -> None:
     print(f"Create symlink for {store_path} at {build_path}")
     ssh_prefix = ["ssh", "-t", f"{user}@management.2li.local"]
-    subprocess.run(ssh_prefix + [f"ln -sfn {store_path} {build_path}"], check=True)
+    subprocess.run([*ssh_prefix, f"ln -sfn {store_path} {build_path}"], check=True)
     subprocess.run(
-        ssh_prefix + [f"nix-store --add-root {build_path} --realise {build_path}"],
+        [*ssh_prefix, f"nix-store --add-root {build_path} --realise {build_path}"],
         check=True,
     )
     print("\n")
@@ -80,11 +79,11 @@ def main() -> None:
     builds_directory: Path = Path.home() / "builds"
     builds_directory.mkdir(parents=True, exist_ok=True)
 
-    timestamp: str = datetime.datetime.now().strftime("%Y%m%d")
+    timestamp: str = datetime.datetime.now(tz="Europe/Zurich").strftime("%Y%m%d")
     hostname: str = socket.gethostname()
 
-    skip: List[str] = ["desktop-vm", "loki-test", "mobile"]
-    hosts: List[str] = get_hosts(devenv_root)
+    skip: list[str] = ["desktop-vm", "loki-test", "mobile"]
+    hosts: list[str] = get_hosts(devenv_root)
 
     for host in hosts:
         if host in skip:

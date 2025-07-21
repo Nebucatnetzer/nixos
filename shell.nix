@@ -9,11 +9,12 @@ pkgs.mkShellNoCC {
       paths = [
         pkgs.deadnix
         pkgs.git
-        pkgs.python3
-        pkgs.black
-        pkgs.mypy
-        pkgs.pylint
-        pkgs.python3Packages.python-lsp-server
+        (pkgs.python3.withPackages (p: [
+          p.python-lsp-server
+          p.python-lsp-ruff
+          p.mypy
+          p.ruff
+        ]))
         pkgs.vim
       ];
       pathsToLink = [ "/bin" ];

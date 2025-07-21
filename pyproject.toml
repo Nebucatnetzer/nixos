@@ -4,6 +4,13 @@ strict = true
 [tool.ruff]
 line-length = 88
 indent-width = 4
+exclude = [
+  "scripts/*.sh",
+  "scripts/test-build",
+]
+include = [
+  "scripts/*",
+]
 
 [tool.ruff.format]
 # Like Black, use double quotes for strings.

@@ -1,20 +1,23 @@
 {
-  bash,
-  coreutils,
-  gawk,
-  gnugrep,
   rsync,
+  writers,
   writeShellApplication,
 }:
+let
+  dap-sync-python = writers.writePython3Bin "dap-sync-python" {
+    flakeIgnore = [
+      "E501"
+      "E203"
+    ];
+  } (builtins.readFile ./dap_sync.py);
+in
 writeShellApplication {
   name = "dap-sync";
   runtimeInputs = [
-    bash
-    coreutils
-    gawk
-    gnugrep
     rsync
+    dap-sync-python
   ];
-  excludeShellChecks = [ "SC2295" ];
-  text = builtins.readFile ./dap-sync.sh;
+  text = ''
+    dap-sync-python "$@"
+  '';
 }

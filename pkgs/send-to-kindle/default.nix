@@ -3,7 +3,7 @@
   cacert,
   curl,
   gnused,
-  nautilus,
+  kdePackages,
   perl,
   recode,
   writeShellApplication,
@@ -15,7 +15,7 @@ writeShellApplication {
     cacert
     curl
     gnused
-    nautilus
+    kdePackages.dolphin
     perl
     recode
   ];
@@ -39,6 +39,6 @@ writeShellApplication {
       --location https://pushtokindle.fivefilters.org/send2-html.php \
       --output "$HOME/Downloads/$title.epub"
 
-    nautilus "$HOME"/Downloads
+    dolphin "$HOME"/Downloads
   '';
 }

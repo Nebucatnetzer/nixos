@@ -30,6 +30,7 @@ line-ending = "auto"
 fixable = ["ALL"]
 select = [ "ALL" ]
 ignore = [
+"INP001", # The scripts in this project rarely belong to a namespace.
 "S603", # I mostly don't have any input for the scripts in this project.
 "S607", # We get the paths from the environment
 "T201", # Print is easy to use and for fine for CLI scripts

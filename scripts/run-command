@@ -4,10 +4,10 @@
 
 import os
 import subprocess
-from typing import List
+from pathlib import Path
 
 
-def get_hostnames() -> List[str]:
+def get_hostnames() -> list[str]:
     cmd = [
         "nix",
         "eval",
@@ -23,8 +23,8 @@ def get_hostnames() -> List[str]:
 def main(command: str) -> None:
     os.chdir("/home/andreas/.nixos")
 
-    hosts: List[str] = get_hostnames()
-    skip: List[str] = [
+    hosts: list[str] = get_hostnames()
+    skip: list[str] = [
         "desktop-vm",
         "gwyn",
         "loki-test",
@@ -33,14 +33,14 @@ def main(command: str) -> None:
         "test-raspi",
     ]
 
-    rsa_key: str = os.path.expanduser("~/.nixos/secrets/ssh_keys/ansible/ansible.key")
+    rsa_key: str = Path("~/.nixos/secrets/ssh_keys/ansible/ansible.key").expanduser()
 
     for host in hosts:
         if host in skip:
             continue
         fqdn: str = f"{host}.2li.local"
         print(fqdn)
-        ssh_cmd: List[str] = ["ssh", "-i", rsa_key, fqdn, command]
+        ssh_cmd: list[str] = ["ssh", "-i", rsa_key, fqdn, command]
         subprocess.run(ssh_cmd, check=False)
         print()
         print()
@@ -49,7 +49,8 @@ def main(command: str) -> None:
 if __name__ == "__main__":
     import sys
 
-    if len(sys.argv) < 2:
+    minimum_number_of_args = 2
+    if len(sys.argv) < minimum_number_of_args:
         print("Usage: run-command '<command>'")
         sys.exit(1)
     user_command: str = sys.argv[1]

@@ -66,6 +66,7 @@ def main() -> None:
         "docker.io/mailserver/docker-mailserver",
         "docker.io/gitea/gitea",
         "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb",
+        "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
         "docker.io/nginx",
     ]
 

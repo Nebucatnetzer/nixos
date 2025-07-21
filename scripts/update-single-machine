@@ -5,8 +5,6 @@
 import argparse
 import os
 import subprocess
-import sys
-from typing import Optional
 
 
 def main() -> None:
@@ -14,7 +12,7 @@ def main() -> None:
     os.environ["NIX_SSHOPTS"] = f"-i {rsa_key}"
 
     parser: argparse.ArgumentParser = argparse.ArgumentParser(
-        description="Remote NixOS deployment tool"
+        description="Remote NixOS deployment tool",
     )
     parser.add_argument("host", help="Target hostname")
     parser.add_argument(

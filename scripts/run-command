@@ -41,7 +41,7 @@ def main(command: str) -> None:
         fqdn: str = f"{host}.2li.local"
         print(fqdn)
         ssh_cmd: List[str] = ["ssh", "-i", rsa_key, fqdn, command]
-        subprocess.run(ssh_cmd)
+        subprocess.run(ssh_cmd, check=False)
         print()
         print()
 

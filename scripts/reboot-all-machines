@@ -27,7 +27,7 @@ def reboot_hosts(hosts: List[str], skip_list: List[str], rsa_key: str) -> None:
         fqdn: str = f"{host}.2li.local"
         print(fqdn)
         ssh_cmd: List[str] = ["ssh", "-i", rsa_key, fqdn, "sudo reboot"]
-        subprocess.run(ssh_cmd)
+        subprocess.run(ssh_cmd, check=False)
         print()
         print()
 

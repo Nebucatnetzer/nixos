@@ -19,8 +19,5 @@ in
       cpu.intel.updateMicrocode = true;
     };
     nixpkgs.hostPlatform = "x86_64-linux";
-
-    # Enable scheduler extensions
-    services.scx.enable = true;
   };
 }

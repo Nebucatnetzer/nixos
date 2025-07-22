@@ -79,7 +79,7 @@ def main() -> None:
     builds_directory: Path = Path.home() / "builds"
     builds_directory.mkdir(parents=True, exist_ok=True)
 
-    timestamp: str = datetime.datetime.now(tz="Europe/Zurich").strftime("%Y%m%d")
+    timestamp: str = datetime.datetime.now(tz=datetime.UTC).strftime("%Y%m%d")
     hostname: str = socket.gethostname()
 
     skip: list[str] = ["desktop-vm", "loki-test", "mobile"]

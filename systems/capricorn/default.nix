@@ -175,6 +175,7 @@ in
     az-media-share.enable = true;
     az-restic-client-desktop.enable = true;
     az-x86.enable = true;
+    az-zram-swap.enable = true;
     beesd = {
       filesystems = {
         root = {

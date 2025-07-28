@@ -176,20 +176,6 @@ in
     az-restic-client-desktop.enable = true;
     az-x86.enable = true;
     az-zram-swap.enable = true;
-    beesd = {
-      filesystems = {
-        root = {
-          extraOptions = [
-            "--loadavg-target"
-            "2.0"
-            "--thread-factor"
-            "0.5"
-          ];
-          spec = "LABEL=mainBtrfs";
-        };
-      };
-    };
-
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control

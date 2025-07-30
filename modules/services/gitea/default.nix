@@ -58,7 +58,7 @@ in
       containers."gitea" = {
         # https://blog.gitea.io/
         # https://hub.docker.com/r/gitea/gitea/tags
-        image = "docker.io/gitea/gitea:1.24.2@sha256:8e2e3f40c5ff3fee920c6d0faac0db9cca2183d80ff23965d1022434d37e7910";
+        image = "docker.io/gitea/gitea:1.24.3@sha256:ce9ab318a2dab6a4411dd5533496bb9eb2092c9384c7ab30344662617952fef9";
         autoStart = true;
         environment = {
           PUID = "1000";

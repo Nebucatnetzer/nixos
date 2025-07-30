@@ -5,6 +5,7 @@
 import argparse
 import os
 import shlex
+import socket
 import subprocess
 from pathlib import Path
 
@@ -78,6 +79,7 @@ def main() -> None:
         "mobile",
         "staubfinger",
         "test-raspi",
+        socket.gethostname(),
     ]
 
     rsa_key: str = Path("~/.nixos/secrets/ssh_keys/ansible/ansible.key").expanduser()

@@ -74,7 +74,6 @@ def main() -> None:
     skip_hosts: list[str] = [
         "desktop-vm",
         "capricorn",
-        "gwyn",
         "loki-test",
         "mobile",
         "staubfinger",

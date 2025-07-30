@@ -26,20 +26,6 @@ def get_nixos_hosts() -> list[str]:
 
 
 def run_rebuild_boot(host: str, fqdn: str) -> None:
-    """Perform nixos-rebuild-ng boot for the given host."""
-    target_host = subprocess.run(
-        ["hostname"],
-        capture_output=True,
-        text=True,
-        check=False,
-    ).stdout.strip()
-    if target_host == host:
-        print("Skip management")
-        return
-    if host == "management":
-        print("Skip cache\n")
-        return
-
     cmd = [
         "nixos-rebuild-ng",
         "boot",
@@ -51,13 +37,13 @@ def run_rebuild_boot(host: str, fqdn: str) -> None:
         "--flake",
         f".#{host}",
     ]
-    print(f"build {host}")
+    print(f"Build boot: {fqdn}")
     subprocess.run(cmd, check=True)
+    print("\n")
 
 
 def run_rebuild_switch(host: str, fqdn: str) -> None:
     """Perform nixos-rebuild-ng switch for the given host."""
-    print(fqdn)
     cmd = [
         "nixos-rebuild-ng",
         "switch",
@@ -69,6 +55,7 @@ def run_rebuild_switch(host: str, fqdn: str) -> None:
         "--flake",
         f".#{host}",
     ]
+    print(f"Switch: {fqdn}")
     subprocess.run(cmd, check=True)
     print("\n")
 
@@ -98,34 +85,25 @@ def main() -> None:
 
     hosts: list[str] = get_nixos_hosts()
 
+    # First we build all the servers then we reboot them later all at once.
+    # This is done so that the servers are still available during building as
+    # we need the cache and the proxy.
     for host in hosts:
         if host in skip_hosts:
             continue
         fqdn: str = f"{host}.2li.local"
         if args.reboot:
             run_rebuild_boot(host, fqdn)
-            subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
         else:
             run_rebuild_switch(host, fqdn)
 
     if args.reboot:
-        # rebuild and restart the management server at the end
-        host = "management"
-        fqdn = f"{host}.2li.local"
-        print(f"build {host}")
-        cmd = [
-            "nixos-rebuild-ng",
-            "boot",
-            "-j",
-            "auto",
-            "--sudo",
-            "--target-host",
-            fqdn,
-            "--flake",
-            f".#{host}",
-        ]
-        subprocess.run(cmd, check=True)
-        subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
+        for host in hosts:
+            if host in skip_hosts:
+                continue
+            fqdn: str = f"{host}.2li.local"
+            print(f"Reboot: {fqdn}")
+            subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
 
 
 if __name__ == "__main__":

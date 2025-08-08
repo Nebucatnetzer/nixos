@@ -34,18 +34,24 @@ in
       pkgs.xclip # X11 clipboard from terminal
     ];
 
+    systemd.user.services.languagetool = {
+      Unit = {
+        Description = "Start languagetool";
+        After = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgs.languagetool}/bin/languagetool-http-server";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
     programs.emacs = {
       enable = true;
       package = pkgs.emacs;
-      extraConfig = ''
-        (setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"
-                                            "-cp" "${pkgs.languagetool}/share/")
-              languagetool-java-bin "${pkgs.jdk17_headless}/bin/java"
-              languagetool-console-command "${pkgs.languagetool}/share/languagetool-commandline.jar"
-              languagetool-server-command "${pkgs.languagetool}/share/languagetool-server.jar")
-      '';
       extraPackages = epkgs: [
-        pkgs.languagetool
         epkgs.ag
         epkgs.amx
         epkgs.annotate
@@ -75,6 +81,7 @@ in
         epkgs.flymake-collection
         epkgs.flymake-flycheck
         epkgs.flymake-ruff
+        epkgs.flymake-languagetool
         epkgs.flymake-shellcheck
         epkgs.format-all
         epkgs.general
@@ -87,7 +94,6 @@ in
         epkgs.hydra
         epkgs.hyperbole
         epkgs.know-your-http-well
-        epkgs.languagetool
         epkgs.lsp-haskell
         epkgs.lv
         epkgs.magit

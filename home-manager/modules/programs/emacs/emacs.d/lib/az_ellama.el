@@ -16,8 +16,8 @@
 
   (require 'llm-openai)
   (setopt ellama-provider (make-llm-openai
-                           :chat-model "gpt-5"
-                           :embedding-model "gpt-5"
+                           :chat-model "gpt-4.1"
+                           :embedding-model "gpt-4.1"
                            :key openai-key))
   :config
   ;; show ellama context in header line in all buffers

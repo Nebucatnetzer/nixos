@@ -89,7 +89,6 @@ in
         epkgs.know-your-http-well
         epkgs.languagetool
         epkgs.lsp-haskell
-        epkgs.lsp-java
         epkgs.lv
         epkgs.magit
         epkgs.makey

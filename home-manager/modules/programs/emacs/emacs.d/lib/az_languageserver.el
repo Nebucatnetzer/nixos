@@ -32,10 +32,5 @@
   :config
   (eglot-booster-mode))
 
-(use-package lsp-java
-  :after (eglot-mode)
-  :demand t
-  :hook (java-ts-mode . eglot-ensure))
-
 ;; optionally if you want to use debugger
 (use-package dap-mode)

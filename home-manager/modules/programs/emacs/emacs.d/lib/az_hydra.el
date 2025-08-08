@@ -96,13 +96,9 @@
 
 (defhydra hydra-spellchecking (:color blue :columns 3)
   "
-    Spell Checking
-    "
-  ("g" languagetool-check "Check grammar")
-  ("q" languagetool-check-done "Finish grammar check")
-  ("l" languagetool-switch-default-language "Switch grammar language")
-  ("m" languagetool-show-message-at-point "unkown")
-  ("b" languagetool-correct-buffer "Correct grammar in buffer")
+  Spell Checking
+  "
+  ("l" az-lang-tool "start flymake-languagetool")
   ("s" ispell "Correct Spelling")
   ("d" ispell-change-dictionary "Change dictionary"))
 

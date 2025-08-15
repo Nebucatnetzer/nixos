@@ -61,11 +61,14 @@ in
         epkgs.cfrs
         epkgs.citeproc
         epkgs.consult
+        unstable.emacsPackages.consult-denote
         epkgs.consult-projectile
         epkgs.corfu
         epkgs.corfu-terminal
         epkgs.dap-mode
-        epkgs.denote
+        unstable.emacsPackages.denote
+        unstable.emacsPackages.denote-journal
+        unstable.emacsPackages.denote-org
         epkgs.elisp-refs
         unstable.emacsPackages.ellama
         epkgs.embark

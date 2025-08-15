@@ -53,7 +53,6 @@ in
       package = pkgs.emacs;
       extraPackages = epkgs: [
         epkgs.ag
-        epkgs.amx
         epkgs.annotate
         epkgs.ansible
         epkgs.avy

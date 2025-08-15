@@ -48,11 +48,6 @@
     (kbd "C-u")     'evil-scroll-up
     (kbd "C-w C-w") 'other-window)
 
-  ;; evil keybindings for dired
-  (with-eval-after-load 'dired
-    (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
-    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
 
   ;; evil keybindings for window movement
   (global-set-key (kbd "M-h") 'windmove-left)
@@ -90,4 +85,11 @@
   :after (evil magit)
   :config
   (evil-collection-init)
+
+  ;; evil keybindings for dired
+  (with-eval-after-load 'dired
+    (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
+    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
+    )
   )

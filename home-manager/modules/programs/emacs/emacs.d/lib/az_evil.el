@@ -48,13 +48,6 @@
     (kbd "C-u")     'evil-scroll-up
     (kbd "C-w C-w") 'other-window)
 
-
-  ;; evil keybindings for window movement
-  (global-set-key (kbd "M-h") 'windmove-left)
-  (global-set-key (kbd "M-l") 'windmove-right)
-  (global-set-key (kbd "M-k") 'windmove-up)
-  (global-set-key (kbd "M-j") 'windmove-down)
-
   (evil-mode 1))
 
 ;;; esc quits
@@ -92,4 +85,11 @@
     (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
     (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
     )
+
+  ;; evil keybindings for window movement
+  (global-set-key (kbd "M-h") 'windmove-left)
+  (global-set-key (kbd "M-l") 'windmove-right)
+  (global-set-key (kbd "M-k") 'windmove-up)
+  (global-set-key (kbd "M-j") 'windmove-down)
+
   )

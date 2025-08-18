@@ -54,16 +54,19 @@ in
       };
       onFailure = [ "unit-status-telegram@%n.service" ];
       script = ''
+        echo "Start data backup."
         ${pkgs.restic}/bin/restic backup \
           --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
           --tag ${cfg.tag} ${cfg.path} /nix/var/nix
 
+        echo "Start DB backup."
         ${pkgs.mariadb_114}/bin/mariadb-backup --backup --user=root --stream=xbstream | \
         ${pkgs.restic}/bin/restic backup \
           --tag mariadb \
           --stdin \
           --stdin-filename mariadb.xb
 
+        echo "Forget data backup points."
         ${pkgs.restic}/bin/restic forget \
           --tag ${cfg.tag} \
           --host ${config.networking.hostName} \
@@ -72,6 +75,7 @@ in
           --keep-monthly 12 \
           --keep-yearly 2
 
+        echo "Forget DB backup points."
         ${pkgs.restic}/bin/restic forget \
           --tag mariadb \
           --host ${config.networking.hostName} \
@@ -79,6 +83,8 @@ in
           --keep-weekly 5 \
           --keep-monthly 12 \
           --keep-yearly 2
+
+        echo "Backups are finished."
       '';
     };
   };

@@ -39,13 +39,13 @@
 (deflayermap (base)
  ;; define home row mods (they act as typing-layer triggers, too )
  f (t! homerowmod $tot 160 f lctl)
- d (t! homerowmod $tot 300 d lsft)
- s (t! homerowmodfiltered $tot 400 s lalt (a)) ;; example fix of the 'as' role
- a (t! homerowmod $tot 450 a lmet)
+ d (t! homerowmod $tot 160 d lsft)
+ s (t! homerowmodfiltered $tot 160 s lalt (a)) ;; example fix of the 'as' role
+ a (t! homerowmod $tot 160 a lmet)
  j (t! homerowmod $tot 160 j rctl)
- k (t! homerowmod $tot 300 k rsft)
- l (t! homerowmod $tot 400 l ralt)
- ; (t! homerowmod $tot 450 ; rmet)
+ k (t! homerowmod $tot 160 k rsft)
+ l (t! homerowmod $tot 160 l ralt)
+ ; (t! homerowmod $tot 160 ; rmet)
  ;; define each letter as typing-layer trigger
  q (multi q @.tp) w (multi w @.tp) e (multi e @.tp) r (multi r @.tp) t (multi t @.tp) y (multi y @.tp) u (multi u @.tp) i (multi i @.tp) o (multi o @.tp) p (multi p @.tp) g (multi g @.tp) h (multi h @.tp) z (multi z @.tp) x (multi x @.tp) c (multi c @.tp) v (multi v @.tp) b (multi b @.tp) n (multi n @.tp) m (multi m @.tp)
 )

@@ -12,7 +12,7 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers."zweili-search" = {
-        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:06a9d3c67a7c95044b06c5fe9aebc83bf95bc9695724750c1e6fe55454d39828";
+        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:a30477f24a95c51b433721255cf21317692f378d3e2f5789d023d38c6f22ed67";
         autoStart = true;
         environment = {
           ZWEILI_SEARCH_DOMAIN = "search.zweili.org";

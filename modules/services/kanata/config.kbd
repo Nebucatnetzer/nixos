@@ -7,10 +7,10 @@
 )
 
 (deftemplate homerowmod (timeouttap timeouthold keytap keyhold)
-	(tap-hold $timeouttap $timeouthold
-		(multi $keytap  @.tp)
-		$keyhold
-	)
+    (tap-hold $timeouttap $timeouthold
+        (multi $keytap  @.tp)
+        $keyhold
+    )
 )
 
 ;; homerowmodfiltered is a way to force problematic bigrams to become letters not mods

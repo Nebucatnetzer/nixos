@@ -99,7 +99,7 @@ in
         ];
       };
       containers."nginx" = {
-        image = "docker.io/nginx:1.29.0@sha256:93230cd54060f497430c7a120e2347894846a81b6a5dd2110f7362c5423b4abc";
+        image = "docker.io/nginx:1.29.1@sha256:33e0bbc7ca9ecf108140af6288c7c9d1ecc77548cbfd3952fd8466a75edefe57";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [

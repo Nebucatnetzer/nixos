@@ -317,7 +317,7 @@
               (search . " %i %-25:c")))
 
     ;; start the agenda on the current day and show the next 13 days
-    (setq org-agenda-span 14
+    (setq org-agenda-span 8
           org-agenda-start-on-weekday nil)
     (setq org-agenda-show-future-repeats (quote next))
     (setq org-agenda-sorting-strategy

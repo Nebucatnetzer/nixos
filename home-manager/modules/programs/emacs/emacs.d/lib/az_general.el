@@ -167,106 +167,106 @@
   :config
   ;; Supress "ad-handle-definition: `tramp-read-passwd' got redefined" message at
   ;; start.
-  (customize-set-variable 'ad-redefinition-action 'accept)
+  (setopt ad-redefinition-action 'accept)
 
-  (customize-set-variable 'auto-revert-use-notify nil)
+  (setopt auto-revert-use-notify nil)
   ;; Save temp files in the OS temp directory. Otherwise they clutter up the
   ;; current working directory
-  (customize-set-variable 'auto-save-file-name-transforms
-                          `((".*" ,temporary-file-directory t)))
+  (setopt auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))
   ;; Save bookmarks right away
-  (customize-set-variable 'bookmark-save-flag t)
+  (setopt bookmark-save-flag t)
   ;; Save temp files in the OS temp directory. Otherwise they clutter up the
   ;; current working directory
-  (customize-set-variable 'backup-directory-alist
-                          `((".*" . ,temporary-file-directory)))
+  (setopt backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
 
-  (customize-set-variable 'column-number-mode 1)
+  (setopt column-number-mode t)
   ;; Prompt when quitting Emacs
-  (customize-set-variable 'confirm-kill-emacs 'yes-or-no-p)
+  (setopt confirm-kill-emacs 'yes-or-no-p)
   ;; just create buffers don't ask
-  (customize-set-variable 'confirm-nonexistent-file-or-buffer nil)
+  (setopt confirm-nonexistent-file-or-buffer nil)
   ;; Send deleted files to the trash
-  (customize-set-variable 'delete-by-moving-to-trash t)
+  (setopt delete-by-moving-to-trash t)
 
-  (customize-set-variable 'display-line-numbers-type t)
-  (customize-set-variable 'ediff-split-window-function 'split-window-horizontally)
-  (customize-set-variable 'ediff-window-setup-function 'ediff-setup-windows-plain)
+  (setopt display-line-numbers-type t)
+  (setopt ediff-split-window-function 'split-window-horizontally)
+  (setopt ediff-window-setup-function 'ediff-setup-windows-plain)
   ;; Refresh buffers if the file changes on disk
-  (customize-set-variable 'global-auto-revert-non-file-buffers t)
+  (setopt global-auto-revert-non-file-buffers t)
 
-  (customize-set-variable 'history-delete-duplicates t)
+  (setopt history-delete-duplicates t)
   ;; just create buffers don't ask
-  (customize-set-variable 'ido-create-new-buffer 'always)
+  (setopt ido-create-new-buffer 'always)
   ;; Add groups to the buffer overview
-  (customize-set-variable 'ibuffer-saved-filter-groups
-                          (quote (("default"
-                                   ("Notes" ;; all org-related buffers
-                                    (mode . markdown-mode)
-                                    (mode . org-mode))
-                                   ("Programming" ;; prog stuff not already in MyProjectX
-                                    (or
-                                     (mode . python-ts-mode)
-                                     (mode . web-mode)
-                                     (mode . php-ts-mode)
-                                     (mode . csharp-ts-mode)
-                                     (mode . javascript-mode)
-                                     (mode . sql-mode)
-                                     (mode . powershell-mode)
-                                     (mode . nix-mode)
-                                     (mode . yaml-ts-mode)
-                                     (mode . ansible-mode)
-                                     (mode . emacs-lisp-mode)))
-                                   ;; etc
-                                   ("Dired"
-                                    (mode . dired-mode))))))
+  (setopt ibuffer-saved-filter-groups
+          (quote (("default"
+                   ("Notes" ;; all org-related buffers
+                    (mode . markdown-mode)
+                    (mode . org-mode))
+                   ("Programming" ;; prog stuff not already in MyProjectX
+                    (or
+                     (mode . python-ts-mode)
+                     (mode . web-mode)
+                     (mode . php-ts-mode)
+                     (mode . csharp-ts-mode)
+                     (mode . javascript-mode)
+                     (mode . sql-mode)
+                     (mode . powershell-mode)
+                     (mode . nix-mode)
+                     (mode . yaml-ts-mode)
+                     (mode . ansible-mode)
+                     (mode . emacs-lisp-mode)))
+                   ;; etc
+                   ("Dired"
+                    (mode . dired-mode))))))
 
-  (customize-set-variable 'inhibit-compacting-font-caches t)
+  (setopt inhibit-compacting-font-caches t)
   ;; Disable splash screen
-  (customize-set-variable 'inhibit-splash-screen t)
+  (setopt inhibit-splash-screen t)
   ;; ispell settings
-  (customize-set-variable 'ispell-program-name "hunspell")
-  (customize-set-variable 'ispell-local-dictionary "en_GB")
-  (customize-set-variable 'ispell-local-dictionary-alist
-                          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
-                            ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))
+  (setopt ispell-program-name "hunspell")
+  (setopt ispell-local-dictionary "en_GB")
+  (setopt ispell-local-dictionary-alist
+          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
+            ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))
 
-  (customize-set-variable 'major-mode-remap-alist
-                          '(
-                            (bash-mode . bash-ts-mode)
-                            (csharp-mode . csharp-ts-mode)
-                            (css-mode . css-ts-mode)
-                            (go-mode . go-ts-mode)
-                            (java-mode . java-ts-mode)
-                            (js2-mode . js-ts-mode)
-                            (json-mode . json-ts-mode)
-                            (php-mode . php-ts-mode)
-                            (python-mode . python-ts-mode)
-                            (typescript-mode . typescript-ts-mode)
-                            (yaml-mode . yaml-ts-mode)
-                            ))
+  (setopt major-mode-remap-alist
+          '(
+            (bash-mode . bash-ts-mode)
+            (csharp-mode . csharp-ts-mode)
+            (css-mode . css-ts-mode)
+            (go-mode . go-ts-mode)
+            (java-mode . java-ts-mode)
+            (js2-mode . js-ts-mode)
+            (json-mode . json-ts-mode)
+            (php-mode . php-ts-mode)
+            (python-mode . python-ts-mode)
+            (typescript-mode . typescript-ts-mode)
+            (yaml-mode . yaml-ts-mode)
+            ))
 
   ;; switch focus to man page
-  (customize-set-variable 'man-notify-method t)
+  (setopt man-notify-method t)
   ;; disbale the bell
-  (customize-set-variable 'ring-bell-function 'ignore)
+  (setopt ring-bell-function 'ignore)
   ;; insert only one space after a period
-  (customize-set-variable 'sentence-end-double-space nil)
-  (customize-set-variable 'sh-basic-offset 4)
+  (setopt sentence-end-double-space nil)
+  (setopt sh-basic-offset 4)
   ;; disable tooltips
-  (customize-set-variable 'tooltip-use-echo-area t)
+  (setopt tooltip-use-echo-area t)
 
-  (customize-set-variable 'use-short-answers t)
+  (setopt use-short-answers t)
   ;; My details
-  (customize-set-variable 'user-full-name "Andreas Zweili")
-  (customize-set-variable 'user-mail-address "andreas@zweili.ch")
+  (setopt user-full-name "Andreas Zweili")
+  (setopt user-mail-address "andreas@zweili.ch")
   ;; always follow symlinks
-  (customize-set-variable 'vc-follow-symlinks t)
+  (setopt vc-follow-symlinks t)
   ;; use ripgrep or rg if possible
-  (customize-set-variable 'xref-search-program (cond ((or (executable-find "ripgrep")
-                                                          (executable-find "rg")) 'ripgrep)
-                                                     ((executable-find "ugrep") 'ugrep) (t
-                                                                                         'grep)))
+  (setopt xref-search-program (cond ((or (executable-find "ripgrep")
+                                         (executable-find "rg")) 'ripgrep)
+                                    ((executable-find "ugrep") 'ugrep) (t
+                                                                        'grep)))
 
   (setopt browse-url-browser-function 'browse-url-generic
           browse-url-generic-program (getenv "DEFAULT_BROWSER"))
@@ -401,4 +401,4 @@
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setq-default dired-listing-switches "-Ahl --group-directories-first")
-  (customize-set-variable 'dired-auto-revert-buffer t))
+  (setopt dired-auto-revert-buffer t))

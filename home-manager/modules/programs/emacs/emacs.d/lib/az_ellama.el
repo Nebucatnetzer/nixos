@@ -4,7 +4,7 @@
 (use-package ellama
   :bind ("C-c e" . ellama)
   :init
-  (customize-set-variable 'ellama-auto-scroll t)
+  (setopt ellama-auto-scroll t)
   ;; setup key bindings
   (setq llm-warn-on-nonfree nil)
 

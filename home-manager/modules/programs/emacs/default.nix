@@ -41,7 +41,7 @@ in
         PartOf = [ "graphical-session.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.languagetool}/bin/languagetool-http-server";
+        ExecStart = "${pkgs.jre}/bin/java -cp ${pkgs.languagetool}/share/languagetool-server.jar -Xmx512m org.languagetool.server.HTTPServer";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];

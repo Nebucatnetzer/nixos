@@ -12,6 +12,8 @@ pkgs.mkShellNoCC {
         (pkgs.python3.withPackages (p: [
           p.python-lsp-server
           p.python-lsp-ruff
+          p.black
+          p.isort
           p.mypy
           p.ruff
         ]))

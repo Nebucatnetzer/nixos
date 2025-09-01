@@ -14,6 +14,7 @@
 
   profiles.az-server.enable = true;
   services = {
+    az-actualbudget.enable = true;
     az-firefly.enable = true;
     az-librenms-certificate = {
       enable = true;

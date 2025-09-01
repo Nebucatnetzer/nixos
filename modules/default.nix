@@ -23,11 +23,12 @@
     ./programs/restic-management
     ./programs/scripts
     ./programs/steam
+    ./services/actualbudget
     ./services/binary-cache-client
     ./services/binary-cache-common
     ./services/binary-cache-server
-    ./services/common-x86
     ./services/clipcat
+    ./services/common-x86
     ./services/data-share
     ./services/docker
     ./services/docker-mailserver

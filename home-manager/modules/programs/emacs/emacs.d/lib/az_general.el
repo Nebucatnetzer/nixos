@@ -301,6 +301,13 @@
         (with-demoted-errors "init.el error: %s"
           (load autoload-file nil t)))))
 
+  ;; Create a new window when there isn't one.
+  ;; Taken from: https://karthinks.com/software/emacs-window-management-almanac/#double-duty
+  (advice-add 'other-window :before
+              (defun other-window-split-if-single (&rest _)
+                "Split the frame if there is a single window."
+                (when (one-window-p) (split-window-sensibly))))
+
   (az-on-frame-open (selected-frame))
   ;; pair parentheses
   (electric-pair-mode 1)

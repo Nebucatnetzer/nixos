@@ -42,10 +42,11 @@
 
 (use-package avy
   :config
-  (setq avy-keys '(?a ?s ?d ?f ?g ?j ?l ?o
-                      ?v ?b ?n ?, ?/ ?u ?p ?e
-                      ?c ?q
-                      ))
+  (setopt avy-keys '(?a ?s ?d ?f ?g ?j ?l ?o
+                        ?v ?b ?n ?, ?/ ?u ?p ?e
+                        ?c ?q
+                        )
+          avy-all-windows 'all-frames)
   (setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
   (setf (alist-get ?  avy-dispatch-alist) 'avy-action-mark-to-char)
 

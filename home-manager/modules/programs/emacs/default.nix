@@ -52,6 +52,7 @@ in
       enable = true;
       package = pkgs.emacs;
       extraPackages = epkgs: [
+        epkgs.ace-window
         epkgs.ag
         epkgs.annotate
         epkgs.ansible

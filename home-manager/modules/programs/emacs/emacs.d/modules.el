@@ -2,7 +2,8 @@
 ;; basic settings
 (load-file (modules-path "az_general.el"))
 
-;; keybindings
+;; keybindings and navigation
+(load-file (modules-path "az_ace_window.el"))
 (load-file (modules-path "az_avy.el"))
 (load-file (modules-path "az_evil.el"))
 (load-file (modules-path "az_god_mode.el"))

@@ -61,13 +61,13 @@ def find_image_references(image: str, search_path: str = "./modules") -> str:
 
 def main() -> None:
     images: list[str] = [
-        "lscr.io/linuxserver/plex",
         "docker.io/fireflyiii/data-importer",
-        "docker.io/mailserver/docker-mailserver",
         "docker.io/gitea/gitea",
-        "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb",
-        "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
+        "docker.io/mailserver/docker-mailserver",
         "docker.io/nginx",
+        "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
+        "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb",
+        "lscr.io/linuxserver/plex",
     ]
 
     for image in images:

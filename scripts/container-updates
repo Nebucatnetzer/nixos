@@ -65,6 +65,7 @@ def main() -> None:
         "docker.io/gitea/gitea",
         "docker.io/mailserver/docker-mailserver",
         "docker.io/nginx",
+        "ghcr.io/actualbudget/actual-server",
         "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
         "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb",
         "lscr.io/linuxserver/plex",

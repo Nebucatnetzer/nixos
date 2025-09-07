@@ -92,9 +92,9 @@ in
           "${volumePath}:/var/www/html"
         ];
         dependsOn = [ "redis" ];
+        networks = [ networkName ];
         extraOptions = [
           "--add-host=host.docker.internal:host-gateway"
-          "--net=${networkName}"
           "--log-opt=tag='nextcloud'"
         ];
       };
@@ -107,8 +107,8 @@ in
           "/etc/localtime:/etc/localtime:ro"
           "${volumePath}:/var/www/html"
         ];
+        networks = [ networkName ];
         extraOptions = [
-          "--net=${networkName}"
           "--log-opt=tag='nextcloud-nginx'"
         ];
       };
@@ -123,9 +123,9 @@ in
           "/etc/localtime:/etc/localtime:ro"
           "${volumePath}:/var/www/html"
         ];
+        networks = [ networkName ];
         extraOptions = [
           "--add-host=host.docker.internal:host-gateway"
-          "--net=nextcloud"
           "--log-opt=tag='nextcloud-cron'"
         ];
       };
@@ -133,15 +133,12 @@ in
         image = "docker.io/redis:8.0.2-alpine";
         autoStart = true;
         volumes = [ "/etc/localtime:/etc/localtime:ro" ];
+        networks = [ networkName ];
         extraOptions = [
-          "--net=${networkName}"
           "--log-opt=tag='redis'"
         ];
       };
     };
-    system.activationScripts.makeDockerNetwork = ''
-      ${pkgs.docker}/bin/docker network ls | ${pkgs.gnugrep}/bin/grep ${networkName} || ${pkgs.docker}/bin/docker network create ${networkName}
-    '';
 
     systemd.services.nextcloud-previews = {
       serviceConfig = {

@@ -13,7 +13,10 @@ def get_hosts(devenv_root: str) -> list[str]:
     expr = f"{devenv_root}#nixosConfigurations"
     apply_expr = 'pkgs: builtins.concatStringsSep " " (builtins.attrNames pkgs)'
     cmd = ["nix", "eval", expr, "--apply", apply_expr]
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError:
+        print(result.stderr)
     hosts_str = result.stdout.strip().strip('"')
     return hosts_str.split()
 
@@ -21,7 +24,10 @@ def get_hosts(devenv_root: str) -> list[str]:
 def get_architecture(devenv_root: str, host: str) -> str:
     expr = f"{devenv_root}#nixosConfigurations.{host}.pkgs.system"
     cmd = ["nix", "eval", expr]
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    except subprocess.CalledProcessError:
+        print(result.stderr)
     return result.stdout.strip().strip('"')
 
 
@@ -29,7 +35,7 @@ def build_on_management(devenv_root: str, host: str) -> str:
     print(f"Building {host} on management")
     expr = f"{devenv_root}#nixosConfigurations.{host}.config.system.build.toplevel"
     cmd = ["nix", "build", expr]
-    subprocess.run(cmd, check=True)
+    subprocess.run(cmd, check=True, timeout=1800)
     return ""  # nix doesn't print paths unless specified, path handled outside
 
 
@@ -47,7 +53,10 @@ def build_remotely_on_management(devenv_root: str, host: str) -> str:
         "--no-link",
         "--print-out-paths",
     ]
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=1800)
+    except subprocess.CalledProcessError:
+        print(result.stderr)
     return result.stdout.strip()
 
 
@@ -55,7 +64,10 @@ def build_locally(devenv_root: str, host: str) -> str:
     print(f"Building {host} locally")
     expr = f"{devenv_root}#nixosConfigurations.{host}.config.system.build.toplevel"
     cmd = ["nix", "build", expr, "--no-link", "--print-out-paths"]
-    result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    try:
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=1800)
+    except subprocess.CalledProcessError:
+        print(result.stderr)
     store_path = result.stdout.strip()
     subprocess.run(["upload-to-cache", store_path], check=True)
     print()

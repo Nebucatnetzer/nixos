@@ -6,7 +6,6 @@
   ...
 }:
 let
-  nixPath = "/etc/nixPath";
   system = pkgs.system;
   GiB = 1024 * 1024 * 1024;
 in
@@ -126,10 +125,9 @@ in
 "
     ];
   };
-  systemd.tmpfiles.rules = [ "L+ ${nixPath} - - - - ${pkgs.path}" ];
   nix = {
+    channel.enable = false;
     daemonCPUSchedPolicy = "idle";
-    nixPath = [ "nixpkgs=${nixPath}" ];
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       nix-config.flake = inputs.self;

@@ -32,7 +32,7 @@
     (defun az/apply-font-settings (frame)
       "Apply font settings when a new FRAME is created."
       (with-selected-frame frame
-        (set-face-attribute 'fixed-pitch nil :family "Source Code Pro")
+        (set-face-attribute 'fixed-pitch nil :family "0xProto")
         (dolist (face '((org-level-1 . 1.35)
                         (org-level-2 . 1.3)
                         (org-level-3 . 1.2)

@@ -341,7 +341,7 @@
     (set-fringe-mode '(0 . 0)))
   (when (boundp 'enable-font)
     (set-face-attribute 'default nil
-                        :family "Source Code Pro"
+                        :family "0xProto"
                         :height 140
                         :weight 'normal
                         :width 'normal))

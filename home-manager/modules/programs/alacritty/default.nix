@@ -45,19 +45,19 @@ in
         };
         font = {
           normal = {
-            family = "Source Code Pro";
+            family = "0xProto";
             style = "Regular";
           };
           bold = {
-            family = "Source Code Pro";
+            family = "0xProto";
             style = "Bold";
           };
           italic = {
-            family = "Source Code Pro";
+            family = "0xProto";
             style = "Italic";
           };
           bold_italic = {
-            family = "Source Code Pro";
+            family = "0xProto";
             style = "Bold Italic";
           };
           size = 14;

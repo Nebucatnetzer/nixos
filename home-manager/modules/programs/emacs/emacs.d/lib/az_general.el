@@ -376,8 +376,6 @@
         ("C-x C-3" . az-split-window-right-and-move-cursor)
         ("C-x C-4" . az-toggle-window-split)
         ("C-x C-0" . kill-buffer-and-window)
-        ;; Enable hippie expand on M-Space. It helps with path completion and more
-        ("\M- " . hippie-expand)
         ;; kill THIS buffer
         ("C-x C-k" . kill-current-buffer)
         ("C-S-c" . az-copy-all)

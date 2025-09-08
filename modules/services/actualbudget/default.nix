@@ -42,7 +42,7 @@ in
       backend = "docker";
       containers."actualbudget" = {
         # https://hub.docker.com/r/mailserver/docker-mailserver/tags
-        image = "ghcr.io/actualbudget/actual-server:25.8.0@sha256:3d7fb08d3b405426e8625013a5ed95f5015e6c04d0f044e2e3fe7d7b7a41951b";
+        image = "ghcr.io/actualbudget/actual-server:25.9.0@sha256:a96e38821a56843a5473204cbd3773ffee816c49c23e0a9187fb80498bd3e154";
         autoStart = true;
         ports = [ "5006:5006" ];
         volumes = [

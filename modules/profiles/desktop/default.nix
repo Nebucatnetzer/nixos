@@ -62,6 +62,7 @@ in
 
     fonts = {
       packages = [
+        pkgs._0xpropo
         pkgs._0xproto
         pkgs.dejavu_fonts
         pkgs.gyre-fonts

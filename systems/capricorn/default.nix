@@ -87,7 +87,8 @@ in
     neededForBoot = true;
     options = [
       "subvol=root"
-    ] ++ commonBtrfsOptions;
+    ]
+    ++ commonBtrfsOptions;
   };
   fileSystems."/home" = {
     fsType = "btrfs";
@@ -95,7 +96,8 @@ in
     neededForBoot = true;
     options = [
       "subvol=home"
-    ] ++ commonBtrfsOptions;
+    ]
+    ++ commonBtrfsOptions;
   };
   fileSystems."/nix" = {
     fsType = "btrfs";
@@ -103,7 +105,8 @@ in
     neededForBoot = true;
     options = [
       "subvol=nix"
-    ] ++ commonBtrfsOptions;
+    ]
+    ++ commonBtrfsOptions;
   };
   fileSystems."/swap" = {
     fsType = "btrfs";

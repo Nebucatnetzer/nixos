@@ -31,7 +31,7 @@ in
         networks = [ networkName ];
       };
       containers."zweili-search-nginx" = {
-        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-nginx:latest@sha256:8fed2959b195b224a928b514e5fd55994f2e10639b296efc49022b7184146cc6";
+        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-nginx:latest@sha256:d43b68089aa9ddd2c9c2e6be186920dcdbde3ab1bc3b4e50108cd8481d3baf1e";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [

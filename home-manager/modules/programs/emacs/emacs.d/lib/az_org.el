@@ -287,7 +287,6 @@
     ;; agenda view.
     (setq org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
 
-
     (setq org-agenda-custom-commands
           (quote (("A" "Custom Agenda"
                    ((agenda "" nil)

@@ -68,7 +68,8 @@
       (az/apply-font-settings (selected-frame)))
 
     ;; Resize Org headings
-    (setopt org-tags-column 0)
+    (setopt org-tags-column 0
+            org-use-tag-inheritance t)
 
     ;; disable line split with M-RET
     (setq org-M-RET-may-split-line (quote ((default))))
@@ -264,10 +265,6 @@
 
     ;; Set the agenda separator to a space character.
     (setq org-agenda-block-separator " ")
-
-
-    ;; Disable tag inheritance
-    (setopt org-use-tag-inheritance nil)
 
     (setq org-archive-location
           (concat "~/nextcloud/99_archive/"

@@ -286,6 +286,8 @@
     ;; Custom agenda command to list the stuck projects in the normal
     ;; agenda view.
     (setq org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
+
+
     (setq org-agenda-custom-commands
           (quote (("A" "Custom Agenda"
                    ((agenda "" nil)
@@ -302,6 +304,42 @@
                   ("N" occur-tree "NEXT")
                   ("O" occur-tree "TODO")
                   ("W" occur-tree "WAITING"))))
+
+    (defun my/org-agenda-skip-if-project-tagged-or-dated ()
+      "Skip entry if it is a PROJECT, has a 'skip-agenda' tag, or has any date.
+This function is intended for use with `org-agenda-skip-function'."
+      (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+            (todo-state (org-get-todo-state))
+            (tags (org-get-tags-at)))
+        (if (or
+             ;; Condition 1: The task has any kind of date (scheduled, deadline, or timestamp).
+             (org-get-scheduled-time (point))
+             (org-get-deadline-time (point))
+             (org-entry-get (point) "TIMESTAMP")
+
+             ;; Condition 2: The task's TODO keyword is "PROJECT".
+             (and todo-state (string= todo-state "PROJECT"))
+
+             ;; Condition 3: The task is tagged with "skip-agenda".
+             (member "skipagenda" tags))
+            ;; If any condition is met, return the position of the next headline to skip this entry.
+            next-headline
+          ;; Otherwise, return nil to include the entry in the agenda.
+          nil)))
+
+    (add-to-list 'org-agenda-custom-commands
+                 '("n" "Tasks to Plan (sorted, by category)"
+                   ;; The 'alltodo' command finds all items with a TODO keyword.
+                   ((alltodo ""
+                             (
+                              ;; We apply our custom skip function to filter the results.
+                              (org-agenda-skip-function
+                               '(my/org-agenda-skip-if-project-tagged-or-dated))
+                              ;; Group by category and then sort by priority (descending).
+                              (org-agenda-sorting-strategy
+                               '(category-keep priority-down))
+                              ))))
+                 'append)
 
     ;; don't show the warnings for deadlines if the item is scheduled
     (setq org-agenda-skip-deadline-prewarning-if-scheduled t)

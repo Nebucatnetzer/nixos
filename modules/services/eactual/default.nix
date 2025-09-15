@@ -6,13 +6,13 @@
   ...
 }:
 let
-  cfg = config.services.az-actualbudget;
-  dataDirectory = "/var/lib/actualbudget";
-  domain = "actual.zweili.org";
+  cfg = config.services.az-eactualbudget;
+  dataDirectory = "/var/lib/eactual";
+  domain = "eactual.zweili.org";
 in
 {
   options = {
-    services.az-actualbudget.enable = lib.mkEnableOption "Enable Actualbudget";
+    services.az-eactualbudget.enable = lib.mkEnableOption "Enable Actualbudget";
   };
   config = lib.mkIf cfg.enable {
 
@@ -24,11 +24,12 @@ in
       ];
     };
 
+    # Webserver setup
+
     services = {
       az-docker.enable = true;
       az-acme-base.enable = true;
     };
-    # Webserver setup
     networking.firewall.allowedTCPPorts = [ 443 ];
     services.nginx = {
       enable = true;
@@ -39,38 +40,38 @@ in
         enableACME = true;
         forceSSL = true;
         locations."/" = {
-          proxyPass = "http://127.0.0.1:5006";
+          proxyPass = "http://127.0.0.1:5007";
           proxyWebsockets = true; # needed if you need to use WebSocket
         };
       };
     };
     virtualisation.oci-containers = {
       backend = "docker";
-      containers."actualbudget" = {
+      containers."eactualbudget" = {
         # https://hub.docker.com/r/mailserver/docker-mailserver/tags
         image = "ghcr.io/actualbudget/actual-server:25.9.0@sha256:a96e38821a56843a5473204cbd3773ffee816c49c23e0a9187fb80498bd3e154";
         autoStart = true;
-        ports = [ "5006:5006" ];
+        ports = [ "5007:5006" ];
         volumes = [
           "/etc/localtime:/etc/localtime:ro"
           "${dataDirectory}:/data"
         ];
-        extraOptions = [ "--log-opt=tag='actualbudget'" ];
+        extraOptions = [ "--log-opt=tag='eactualbudget'" ];
       };
     };
 
     # Backups
     services.az-telegram-notifications.enable = true;
     age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
-    systemd.timers."restic-backups-actual" = {
+    systemd.timers."restic-backups-eactual" = {
       wantedBy = [ "timers.target" ];
-      partOf = [ "restic-backups-actual.service" ];
+      partOf = [ "restic-backups-eactual.service" ];
       timerConfig = {
-        OnCalendar = "22:40";
+        OnCalendar = "22:45";
       };
     };
 
-    systemd.services."restic-backups-actual" = {
+    systemd.services."restic-backups-eactual" = {
       serviceConfig = {
         User = "root";
         Type = "oneshot";

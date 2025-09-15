@@ -32,6 +32,7 @@
     ./services/data-share
     ./services/docker
     ./services/docker-mailserver
+    ./services/eactual
     ./services/firefly
     ./services/freshrss
     ./services/gitea

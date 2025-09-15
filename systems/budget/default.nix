@@ -15,18 +15,6 @@
   profiles.az-server.enable = true;
   services = {
     az-actualbudget.enable = true;
-    az-firefly.enable = true;
-    az-librenms-certificate = {
-      enable = true;
-      domains = [
-        { fqdn = "${config.services.firefly-iii.virtualHost}"; }
-      ];
-    };
-    az-restic-client-server = {
-      enable = true;
-      path = config.services."firefly-iii".dataDir;
-      tag = "firefly";
-      time = "22:30";
-    };
+    az-eactualbudget.enable = true;
   };
 }

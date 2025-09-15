@@ -23,6 +23,7 @@ in
     age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
     users.users."${config.az-username}".extraGroups = [
       "input" # required for espanso
+      config.services.samba.usershares.group
     ];
     services = {
       az-pipewire.enable = true;
@@ -37,6 +38,11 @@ in
           disableWhileTyping = true;
           scrollMethod = "twofinger";
         };
+      };
+      samba = {
+        enable = true;
+        openFirewall = true;
+        usershares.enable = true;
       };
       xserver = {
         enable = true;

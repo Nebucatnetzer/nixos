@@ -156,7 +156,7 @@
   :config
   (general-def
     :states '(normal visual insert emacs)
-    :prefix "S-SPC"
+    :prefix "C-SPC"
     "a" '(hydra-apropos/body t :which-key "Apropos Commands")
     "f" '(hydra-flycheck/body t :which-key "Flycheck")
     "i" '(hydra-yasnippet/body t :which-key "Yasnippets")

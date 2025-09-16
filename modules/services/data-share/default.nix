@@ -16,6 +16,7 @@ in
         "x-systemd.idle-timeout=300"
         "noatime"
         "nfsvers=4.0"
+        "noresvport" # don't bind to privileged port
       ];
     };
   };

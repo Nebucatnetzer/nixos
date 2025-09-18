@@ -61,7 +61,6 @@
     ./services/snmpd
     ./services/syslog
     ./services/telegram-notifications
-    ./services/tlp
     ./services/virtualbox-guest
     ./services/zram-swap
   ];

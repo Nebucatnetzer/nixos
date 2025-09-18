@@ -25,7 +25,6 @@
     ./programs/work-desktop
     ./programs/yt-dlp
     ./services/desktop-base
-    ./services/dunst
     ./services/espanso
     ./services/xcompose
   ];

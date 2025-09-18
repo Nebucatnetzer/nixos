@@ -14,7 +14,6 @@ let
     done
   '';
   dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };
-  freetube = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.freetube;
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
   unstable-pkgs = import inputs.nixpkgs-unstable {
     system = pkgs.system;
@@ -41,7 +40,6 @@ in
       pkgs.tagger
       az-media
       dap-sync
-      freetube
       send-to-kindle
       unstable-pkgs.vscode
     ];

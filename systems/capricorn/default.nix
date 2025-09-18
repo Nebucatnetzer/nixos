@@ -153,7 +153,6 @@ in
 
   environment.systemPackages = [
     pkgs.compsize # required to display additional information about btrfs compression
-    pkgs.strawberry # music player
     pkgs.wally-cli # tool to flash a ZSA keyboard
     foxFlssWrapper
     toggle-keyboard

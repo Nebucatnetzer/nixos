@@ -28,6 +28,5 @@
     ./services/dunst
     ./services/espanso
     ./services/xcompose
-    ./services/xidlehook
   ];
 }

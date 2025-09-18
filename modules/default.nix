@@ -52,7 +52,6 @@
     ./services/pipewire
     ./services/plex
     ./services/postgresql
-    ./services/rdp
     ./services/restic-client-desktop
     ./services/restic-client-server
     ./services/restic-client-server-mysql

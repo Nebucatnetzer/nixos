@@ -26,7 +26,6 @@
     ./services/binary-cache-client
     ./services/binary-cache-common
     ./services/binary-cache-server
-    ./services/clipcat
     ./services/common-x86
     ./services/data-share
     ./services/docker

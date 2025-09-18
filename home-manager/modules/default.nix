@@ -26,6 +26,5 @@
     ./programs/yt-dlp
     ./services/desktop-base
     ./services/espanso
-    ./services/xcompose
   ];
 }

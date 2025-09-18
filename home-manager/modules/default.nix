@@ -3,7 +3,6 @@
   imports = [
     inputs.agenix.homeManagerModules.default
     ./common
-    ./programs/alacritty
     ./programs/ansible
     ./programs/beets
     ./programs/calibre

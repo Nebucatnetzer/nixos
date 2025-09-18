@@ -18,7 +18,6 @@
     ./programs/eog
     ./programs/libimobiledevice
     ./programs/makemkv
-    ./programs/nautilus
     ./programs/nix-direnv
     ./programs/restic-management
     ./programs/scripts

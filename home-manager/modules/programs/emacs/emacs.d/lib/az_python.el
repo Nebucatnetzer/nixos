@@ -2,7 +2,9 @@
 (use-package python-mode
   :config
   (setq python-shell-interpreter "python3")
-  :hook (python-ts-mode . eglot-ensure))
+  (setq flymake-pylint-executable "pylint")
+  :hook ((python-ts-mode . eglot-ensure)
+         (eglot-managed-mode . pylint-setup-flymake-backend)))
 
 
 (use-package python-pytest

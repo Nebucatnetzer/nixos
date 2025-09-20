@@ -13,11 +13,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs = {
-      az-czkawka.enable = true;
-    };
-    # raw config files
-
     gtk = {
       cursorTheme = {
         package = pkgs.vanilla-dmz;

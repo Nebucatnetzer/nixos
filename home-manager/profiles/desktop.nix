@@ -29,6 +29,7 @@ in
 
     packages = [
       pkgs.chromium # needed for cloud gaming and flashing zsa
+      pkgs.czkawka
       pkgs.digikam
       pkgs.exercism
       pkgs.keeweb

@@ -31,6 +31,7 @@ in
       pkgs.chromium # needed for cloud gaming and flashing zsa
       pkgs.digikam
       pkgs.exercism
+      pkgs.keeweb
       pkgs.libreoffice-fresh
       pkgs.meld
       pkgs.nitrogen

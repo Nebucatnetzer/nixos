@@ -13,7 +13,6 @@
     ./programs/fzf
     ./programs/git
     ./programs/hunspell
-    ./programs/keeweb
     ./programs/mpv
     ./programs/open-port
     ./programs/rapid-photo-downloader

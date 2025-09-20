@@ -15,7 +15,6 @@ in
   config = lib.mkIf cfg.enable {
     programs = {
       az-czkawka.enable = true;
-      az-keeweb.enable = true;
     };
     # raw config files
 

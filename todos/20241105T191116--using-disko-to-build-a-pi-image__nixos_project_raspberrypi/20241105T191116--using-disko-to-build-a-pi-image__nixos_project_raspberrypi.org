@@ -1,0 +1,53 @@
+#+title: Using Disko to build a Pi image
+#+date: [2024-11-05 Tue 19:11]
+#+filetags: :nixos:project:raspberrypi:
+#+identifier: 20241105T191116
+#+author: Andreas Zweili
+#+category:
+
+* PROJECT Using Disko to build a Pi image
+** Target
+
+I want to build images on my notebook and be able to flash them onto and SD card.
+The image must have the following features:
+- [ ] Support UEFI
+- [ ] Use the f2fs filesystem
+- [ ] Be fully encrypted
+
+** NEXT Search through other repos using disko and Raspberry Pis
+
+https://github.com/search?q=lang%3ANix+AND+NOT+repo%3ANixOS%2Fnixpkgs+disko+raspberry&type=code
+
+** NEXT Disko nochmals testen da die Features nun funktionieren sollten
+
+https://github.com/nix-community/disko/pull/970
+
+* Journal
+
+**2024-11-18**
+
+I managed to replace the system variable with the option ~nixpkgs.hostPlatform~ which makes it significantly easier to have a multi-arch flake.
+
+**2024-11-05**
+
+So far I'm having some problems building the whole thing.
+
+#+begin_src example
+++ ln -sfn /nix/store/2qq0pfbyvpz0m1wsvd1997sc3phxmfav-etc/etc/udev/rules.d /etc/udev/rules.d
+++ mkdir -p /dev/.mdadm
+++ /nix/store/1y0jzfayrzd2y8yw24j0lcxcnrfblnf3-systemd-minimal-255.9/lib/systemd/systemd-udevd --daemon
+Starting systemd-udevd version 255.9
+++ partprobe
+++ udevadm trigger --action=add
+++ udevadm settle
+Failed to wait for daemon to reply: Connection timed out
+[  692.610205] reboot: Power down
+#+end_src
+
+* Resources
+
+- https://aires.fyi/blog/nixos-filesystems-without-disko/
+- https://github.com/rcambrj/nix-pi-loader
+- https://github.com/nix-community/raspberry-pi-nix/discussions/88
+- https://github.com/nix-community/raspberry-pi-nix
+- https://github.com/NixOS/nixos-hardware

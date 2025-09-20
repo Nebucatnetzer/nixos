@@ -1,0 +1,91 @@
+#+title: LibreNMS
+#+date: [2025-02-25 Tue 22:13]
+#+filetags: :project:
+#+identifier: 20250225T221327
+#+author: Andreas Zweili
+#+category: 20250225-librenms
+
+* PROJECT LibreNMS
+
+** NEXT Implement all the LibreNMS default configs
+
+https://github.com/librenms/librenms/blob/d231d628c537747e73a5decb1f6ee585ceffc647/resources/definitions/config_definitions.json#L4372
+
+** NEXT Add temperature for all devices
+
+** NEXT Add application monitoring
+
+https://docs.librenms.org/Extensions/Applications/MySQL/
+
+- MySQL
+- PHP
+- Postgres
+- restic-server
+- haproxy
+
+** NEXT Add disk I/O to all devices
+
+** NEXT Setup syslog for gwyn
+
+** NEXT Setup syslog for the firewall
+** WAITING Add documentation to nixpkgs
+:LOGBOOK:
+- State "WAITING"    from "DONE"       [2025-06-10 Tue 07:55]
+- State "WAITING"    from "NEXT"       [2025-05-25 Sun 15:11]
+:END:
+
+- [X] DB Init was necessary
+- [X] mention the settings variable
+- [X] extend the tests to test syslog traffic
+
+** NEXT Add librenms-agent to Nixpkgs
+:PROPERTIES:
+:URL:      https://github.com/NixOS/nixpkgs/pull/421228
+:END:
+
+- [ ] Implement the requested changes: https://github.com/NixOS/nixpkgs/pull/421228#pullrequestreview-3003429941
+
+** NEXT Setup Ntfy for notifications
+
+- [[https://community.librenms.org/t/ntfy-transport/27036/4][NTFY Transport - Feature Requests - LibreNMS Community]]
+
+Currently I'm using Telegram for notifications.
+This is suboptimal for two reasosns:
+1. They are a shitty company
+2. Whenever I have to look at the notifications, I have to look at the Telegram messages as well which is quite distracting.
+
+** DONE PING WAN IP
+CLOSED: [2025-06-24 Tue 20:39]
+
+** CANCELLED Mobile App einrichten
+CLOSED: [2025-06-24 Tue 20:39]
+
+Die App funktioniert offenbar nur im gleichen Netzwerk.
+
+** DONE Zertifikate überwachen
+CLOSED: [2025-06-24 Tue 20:18]
+
+** DONE Upstream the syslog-ng configuration
+CLOSED: [2025-05-25 Sun 15:11]
+
+Inlcuding the wrapper
+
+** CANCELLED [[https://beszel.dev/guide/hub-installation#binary][Hub Installation | Beszel]]
+CLOSED: [2025-02-23 Sun 14:49]
+
+Beszel doesn't support SNMP at the moment. Since it is a good standard I think I should use it instead of relying on some third party system.
+
+* Notes
+
+*2025-04-28*
+
+I denke ich werde am Zero Hydra Failure event etwas daran weitermachen.
+Es ist zwar nicht strickt ZHF aber denke wenn ich die Doku verbessere wird dies schon auch gelten.
+
+** Project overview
+
+I've looked at multiple different projects but LibreNMS seem to be the one that fits the most to what I need.
+- Netdata :: Looks like any other open source project but a SaaS company which gives you parts of it and hides the rest behind a paywal and might take away the rest of the functionality as well.
+  Requires an agent.
+- Grafana+Prometheus :: Goes into a similar direction but has a better track record because it is an older project. However it seems to be quite resource heavy for the host.
+- LibreNMS :: Supports SNMP, has auto discovery, is fully open source and has been for a long while. Doesn't use too many resources on the host.

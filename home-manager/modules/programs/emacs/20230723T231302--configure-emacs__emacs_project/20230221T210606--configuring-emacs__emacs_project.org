@@ -1,0 +1,280 @@
+#+title: Configure Emacs
+#+date: [2023-02-21 Tue 21:06]
+#+filetags: :emacs:project:
+#+identifier: 20230221T210606
+#+author: Andreas Zweili
+#+category: 20230221-emacs
+#+startup: content
+
+* PROJECT Configure Emacs
+** Bugs
+*** NEXT Indentation is a bit broken
+
+Currently I'm always indenting with four spaces. However certain languges like Java and Bash use two so the formatter then jumps in and changes the indentation to two spaces.
+Would be good if it would use the correct indentation from the start.
+
+*** NEXT Fix the window behavior
+
+It often happens that on a wide monitor Emacs splits the windows horizontal where vertical would make more sense.
+
+*** NEXT Fix denote journal to open the same entry on the same day.
+
+Denote Journal doesn't open the same journal entry on the same day
+
+*** NEXT God mode should work everywhere
+
+Currently it is very annoying that god mode only works in certain buffers but not in others.
+
+- [X] dired
+- [X] magit
+- [X] agenda
+
+*** NEXT [#C] Fix the theme in headless mode
+** Enhancements
+*** NEXT [#A] Org mode dynamic clocking
+
+Ich möchte gerne eine Clock starten, wenn ich einen Task erfasse.
+Dies würde es einfacher machen Task Zeiten zu erfassen die durch den Tag auftauchen.
+
+*** NEXT Replace setq with setopt
+
+- [[https://emacsredux.com/blog/2025/04/06/goodbye-setq-hello-setopt/][Goodbye setq, hello setopt!]]
+
+*** NEXT Extend ~org-insert-link~
+:PROPERTIES:
+:LOCATION: https://xenodium.com/emacs-dwim-do-what-i-mean
+:END:
+
+#+begin_src emacs-lisp
+(defun ar/org-insert-link-dwim ()
+  "Like `org-insert-link' but with personal dwim preferences."
+  (interactive)
+  (let* ((point-in-link (org-in-regexp org-link-any-re 1))
+         (clipboard-url (when (string-match-p "^http" (current-kill 0))
+                          (current-kill 0)))
+         (region-content (when (region-active-p)
+                           (buffer-substring-no-properties (region-beginning)
+                                                           (region-end)))))
+    (cond ((and region-content clipboard-url (not point-in-link))
+           (delete-region (region-beginning) (region-end))
+           (insert (org-make-link-string clipboard-url region-content)))
+          ((and clipboard-url (not point-in-link))
+           (insert (org-make-link-string
+                    clipboard-url
+                    (read-string "title: "
+                                 (with-current-buffer (url-retrieve-synchronously clipboard-url)
+                                   (dom-text (car
+                                              (dom-by-tag (libxml-parse-html-region
+                                                           (point-min)
+                                                           (point-max))
+                                                          'title))))))))
+          (t
+           (call-interactively 'org-insert-link)))))
+#+end_src
+
+*** NEXT add haskell-ts-mode
+
+https://codeberg.org/pranshu/haskell-ts-mode
+
+*** NEXT Do I have the package archive configured the same way?
+
+[[file:Pasted image 20220921101439.png]]
+
+[[./Pasted image 20220921152455.png]]
+
+*** NEXT Check if I can adapt this to my keybindings
+
+[[./Pasted image 20220921153508.png]]
+
+[[./Pasted image 20220921155205.png]]
+
+*** NEXT Integrate this into my notes
+
+~check-parens~ hilft mit klammern die nicht passen
+
+~C-w C-s~, ~C-w C-v~ and ~C-w C-c~ for window management
+
+*** NEXT Work through the markdown files
+
+- file:inbox/
+
+*** NEXT Projects are files that are tagged with project
+
+At the moment projects are tasks which have the keyword PROJECT.
+I should change this so that it is easier to manage my files.
+In addition I have to change the algorithm that looks for stuck projects.
+
+*** NEXT Org mode quick capture wieder aktivieren
+- Note taken on [2024-12-11 Wed 19:05] \\
+  Ich brauche das quick capture feature wieder.
+  Damit ich URLs und sonstiges schnell ablegen kann.
+
+*** NEXT Add copilot
+
+I would like to readd copilot.
+However this time it should work more on demand and not the whole time.
+And if possible for free.
+
+**** [[https://github.com/ahyatt/llm/pull/113][Add GitHub Models support by gs-101 · Pull Request #113 · ahyatt/llm · GitHub]]
+[2025-02-21 Fri 12:31]
+
+*** NEXT Check if I should define some configs as outOfStore
+
+https://gvolpe.com/blog/home-manager-dotfiles-management/
+
+*** TODO Improve completion and performance
+**** DONE Enable treesitter in Emacs
+CLOSED: [2025-01-10 Fri 10:53]
+
+I would like to a better version for interacting with code than with language servers. [fn:3]
+
+**** NEXT Enable completion from other buffers
+
+Emacs should be able to complete words from other buffers I have open.
+This would help a lot with completions while programming.
+
+https://www.reddit.com/r/emacs/comments/1c4p0hy/corfu_cape_how_to_complete_words_in_buffer_and/
+
+**** Do I need all the completion functions?
+- Note taken on [2025-01-11 Sat 19:58] \\
+  Dabbrev feels a bit annoying.
+  In addition I maybe should switch the order as it is first comes first serves.
+
+*** TODO Extend the agenda
+
+**** DONE [#A] New files should get added automatically
+CLOSED: [2024-12-16 Mon 22:19]
+
+At the moment when I add a new file to the inbox or project directory, it doesn't show up in the agenda, until I restart Emacs.
+
+**** NEXT Save agenda list automatically
+
+It would be nice if Emacs looked for org files in the projects directory and let me manually add other files from my notes directory, without me having to add them after every reboot.
+Each file should be a unique file however.
+
+**** NEXT It would be nice if the agenda only showed my active projects
+
+Currently it showes the dates as well but I'm not planing to use Org mode with any scheduled tasks.
+
+**** NEXT Show the file title in the agenda
+
+At the moment it shows either the file name or the category if it is present.
+However I would prefer if it would show the title.
+Maybe this config has what I'm looking for: https://github.com/skissue/dotfiles/blob/main/home/emacs/config.org#org-agenda
+
+[[file:~/.emacs.d/ellama-sessions/.ellama How can I configure Emacs ... (Open AI).org.session.el][ChatGPT solution]]
+
+**** NEXT [#C] A custom search that shows all tasks grouped by project and sorted by priority
+
+*** NEXT Save agenda buffers after refiling
+
+*** NEXT Denote should add an empty category
+
+If the category isn't set, then Emacs displays the whole filename in the agenda which is really annoying with denote as the filenames are very long.
+In addition it is redundant as the agenda shows the title defined in the file as well.
+
+Either I find a way to disable the category or I extend the denote template so that it adds an empty category to each new file.
+
+*** NEXT [#C] Marginalia show absolute date                         :emacs:
+*** NEXT Move emacs config to .config
+
+Currently it lives in `.emacs.d` which polutes my $HOME directory. Would be better if it lives in `.config/`
+
+*** TODO Implement a replacement for deft
+
+The more I move my notes back into Emacs the more I miss a tool to easily find and open a note.
+However I might not need something like deft.
+I could just write a function that on pressing F5 opens something like consult and starts searching through my files.
+
+**** NEXT Add the option to exclude words when searching
+
+E.g. `#project -#work` or `#project AND NOT #work`
+
+**** NEXT try xeft
+
+https://github.com/casouri/xeft)
+
+**** NEXT Notdeft
+
+https://github.com/hasu/notdeft)
+
+
+*** NEXT Emacs: write a custom mode line
+
+https://protesilaos.com/codelog/2023-07-29-emacs-custom-modeline-tutorial/
+
+*** NEXT Disable auto wrap
+
+I would like to have it so that one sentence is one line and Emacs wraps it for me.
+
+*** NEXT Have a look at the window config
+
+https://github.com/nex3/perspective-el?tab=readme-ov-file#some-musings-on-emacs-window-layouts
+
+** Features
+
+*** NEXT [#A] Check spelling with flymake
+
+I find interacting with consult and flymake much nicer to use then all the flychecked based tools.
+Therefore I would to have spellchecking work with flymake as well.
+
+https://github.com/leotaku/flycheck-aspell
+
+Maybe this could work as an alternative?
+https://github.com/minad/jinx
+
+*** NEXT [[https://github.com/licht1stein/context-transient.el][Context specific transient menus for Emacs]]
+
+Could be something that I could use like hydra.
+
+*** NEXT Use nix-shell in org-mode blocks
+
+This way I could have reproducable org blocks that bring all their depedencies and don't polute the system.
+Might be useful to build something similar to Jupyter notebooks without the overhead.
+
+- https://discourse.nixos.org/t/nix-shells-in-emacs-org-mode-source-blocks/12673
+- https://github.com/search?q=path%3A*.org%20nix-shell&type=code
+- https://strm.sh/posts/org-mode-blogging/
+- https://github.com/AntonHakansson/org-nix-shell/tree/f359d9e1053fadee86dd668f4789ae2e700d8e8a
+- https://github.com/emacs-jupyter/jupyter/issues/333
+
+*** NEXT Collection of useful dired additions
+
+https://github.com/Fuco1/dired-hacks
+
+*** [[https://github.com/alphapapa/org-ql][alphapapa/org-ql: A searching tool for Org-mode]]
+[2025-06-14 Sat 12:58]
+
+A searching tool for Org-mode, including custom query languages, commands, saved searches and agenda-like views, etc.
+
+This could actually be helpful for finding stuff in my notes better or to help with project management.
+
+* Journal
+*2024-12-25*
+
+I've enable org mode again.
+I would like to to live a more minimal life and I think Emacs and org mode can help here to let me focus more on the things that matter.
+Todoist is great for tasks that have a deadline but a lot of my personal projects don't have a deadline and it is more important to have all the information in one place.
+In addition I would like to use a format that is stable and org mode works great here.
+Sure it doesn't look as pretty as Markdown when I watch it on my phone but it still works.
+Thanks to Beorg capturing on mobile works as well.
+I capture through out the week and on Monday I go through my inboxes and sort the items into my projects and notes.
+
+*2023-02-16*
+
+I decided to stop using org-mode for the moment. For tasks management I
+prefer to using Todoist because it works better on mobile. For note
+taking Markdown makes more sense because it's better supported on other
+plattforms. Especially on mobile this is important.
+
+*2022-08-15*
+
+The Ultimate Guide To Indentation in Emacs (Tabs and Spaces) [fn:2]
+
+* Footnotes
+
+- Prelude Emacs is a collections of configs to begin with. [fn:1]
+
+[fn:1] https://github.com/bbatsov/prelude/tree/master/modules
+[fn:2] https://dougie.io/emacs/indentation/
+[fn:3] https://www.adventuresinwhy.com/post/eglot/

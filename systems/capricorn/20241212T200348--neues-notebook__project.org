@@ -1,0 +1,138 @@
+#+title: Neues Notebook
+#+date: [2024-12-12 Thu 20:03]
+#+filetags: :project:
+#+identifier: 20241212T200348
+#+author: Andreas Zweili
+#+category: 20241212-notebook
+
+* PROJECT Neues Notebook
+** NEXT Enable kanata
+
+It's a software that lets you remap keyboard keys.
+With this I can enable home-row mods on my notebook keyboard which would be really helpful on the go as it is a bit of a hassle to use the Voyager for short sessions.
+
+https://github.com/jtroo/kanata/tree/main
+
+- [X] Map home row keys to the win, alt, shift and ctrl
+  https://github.com/jtroo/kanata/blob/main/docs/simulated_output/sim.kbd
+- [ ] Hold Space, enable arrow keys on HKJL
+
+** NEXT Fix hibernation
+
+Not really a high priority.
+
+[[https://github.com/lovesegfault/nix-config/blob/ff964c6f11010942e56bd73a6c4766dffdd3e031/hardware/thinkpad-z13.nix#L123][nix-config/hardware/thinkpad-z13.nix at ff964c6f11010942e56bd73a6c4766dffdd3e031 · lovesegfault/nix-config]]
+
+[[https://www.kernel.org/doc/html/v5.4/power/basic-pm-debugging.html][Debugging hibernation and suspend — The Linux Kernel documentation]]
+
+** WAITING Fix webcam
+:LOGBOOK:
+- State "WAITING"    from "NEXT"       [2025-02-15 Sat 14:53]
+:END:
+
+Seems to be a firmware bug.
+- https://github.com/NixOS/nixpkgs/issues/225743
+
+- Other issue tracking this issue and probably more relevant than the NixOS issue.
+
+** Features to add
+
+The following tasks enable certain hardware features that I currently don't have on any of my hardware.
+Namely face unlock and the finger print reader.
+
+*** WAITING [#C] [[https://github.com/boltgolt/howdy][boltgolt/howdy: 🛡️ Windows Hello™ style facial authentication for Linux]]
+:LOGBOOK:
+- State "WAITING"    from "TODO"       [2025-03-31 Mon 17:11]
+:END:
+
+2025-03-31
+KDE currently doesn't have support for face unlocking.
+
+Since the webcam doesn't work I don't really have to bother with this for the moment.
+
+https://github.com/search?q=lang%3ANix+AND+NOT+repo%3ANixOS%2Fnixpkgs+howdy&type=code
+
+*** DONE [#C] [[https://wiki.archlinux.org/title/Fprint][fprint - ArchWiki]]
+CLOSED: [2025-03-31 Mon 17:08]
+
+2025-03-31
+I was able to try it on KDE but that doesn't allow you to login without the finger print and unlocking the device only works so, so.
+Besides that at home my notebook is quite far away so it isn't that useful for me.
+
+Fingerprint currently doesn't work with my display manager[fn:3]. But once It has support I can look at it again.
+
+** DONE Buy a SIM card for the notebook
+CLOSED: [2025-02-11 Tue 17:38] SCHEDULED: <2025-01-31 Fri>
+
+Looks like one currently can't buy additional SIM cards with Yallo.
+
+** DONE Check power consumption
+CLOSED: [2025-01-17 Fri 13:20]
+
+Looks good, about 7 watts on average and in idle it goes down to 2W.
+
+** DONE Enable deduplication on btrfs
+CLOSED: [2025-01-21 Tue 22:34]
+
+** DONE Learn btrfs commands
+CLOSED: [2025-01-20 Mon 18:34]
+
+** DONE Fix suspend
+CLOSED: [2025-01-26 Sun 10:22]
+
+Turns that it was caused by the currently bad webcam driver.
+At least it started working once I disabled it.
+Suspend and hibernation are both fully working now.
+
+Newer CPU now only support the s2idle mode, which apparently uses a bit more power under Linux because it's not fully shutdown.
+It is intended to wake up the system and do updates.
+Stupid but that is what it is.
+However for the moment I'm not able to get either suspend nor hibernation to work.
+The system always wakes up with a black screen and doesn't react at all.
+
+https://sawyershepherd.org/post/hibernating-to-an-encrypted-swapfile-on-btrfs-with-nixos/
+https://web.archive.org/web/20230502010825/https://01.org/blogs/rzhang/2015/best-practice-debug-linux-suspend/hibernate-issues
+
+** DONE Fix intel graphics and freezes
+CLOSED: [2025-01-26 Sun 10:26]
+
+- [X] Plain kernel without additional stuff :: works but poor performance and boot is messed up
+- [X] Xe driver without additonal stuff :: freezes but boot and login screen looks good.
+- [X] Xe driver with all additional media packages :: freezes but I think it takes longer
+- [X] Xe driver with media packages and all kernel parmeters listed in the arch wiki :: freezes even without watching a video
+- [X] Xe driver with media packages and one of the three kernel parameters applied after another ::
+
+I tried the PR in nixos-hardware for Meteor Lake as well and it showed the exact same behaviour.
+
+I tested the Xe driver again with the current list of packages and got instant crashes.
+
+Linux 6.13 wurde released, ich koennte es damit nochmals versuchen.[fn:2]
+
+Turns out that it was the Xe driver. However I'm not 100% sure as I didn't have all the packages installed when I tested it.
+
+The ~intel-vaapi-driver~ isn't needed for media support.
+
+The ~libvdpau-va-gl~ package is required for vdpau support. I'm not actually sure what it does but ~vdpauinfo~ doesn't show anything without it.
+
+The kernel parameters from the Arch wiki[fn:1] didn't seem to help either.
+At least I got a system freeze while watching a video in firefox.
+And I got one where the system freezed just while using it without watching a video.
+Hardware decoding is present in firefox.
+There might be a problem with the kernel parameters in that I used the ones for ~i915~ instead of chaning to ~xe.~.
+
+The system works definitely the best when XE is enabled and all the media drivers are present.
+Probably the applications are a bit slow to adapt to the newer drivers.
+
+With i915 enabled I'm not getting any hardware acceleration but the system doesn't seems to be freezing either.
+
+~"split_lock_detect=off"~ did nothing for the freezes.
+
+** DONE [#A] Copy the VPN config
+CLOSED: [2025-01-17 Fri 18:12] SCHEDULED: <2025-01-17 Fri>
+
+* Footnotes
+
+[fn:3] https://github.com/fairyglade/ly/pull/654
+[fn:2] https://kernelnewbies.org/Linux_6.13
+
+[fn:1] https://wiki.archlinux.org/title/Intel_graphics#Crash/freeze_on_low_power_Intel_CPUs

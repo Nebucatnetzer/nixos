@@ -1,0 +1,20 @@
+#+title: Using ISCSI with NixOS and Raspberry Pis
+#+date: [2024-11-18 Mon 18:22]
+#+filetags: :iscsi:nixos:raspberrypi:
+#+identifier: 20241118T182210
+#+author: Andreas Zweili
+#+category:
+
+* PROJECT Using ISCSI with NixOS and Raspberry Pis
+** NEXT Read resources
+** NEXT Search for new resources
+
+- [ ] YouTube
+- [ ] GitHub
+- [ ] Blogs
+
+* Resources
+** Unread
+
+- https://github.com/cleverca22/nixos-configs/blob/master/iscsi-boot.nix
+- https://github.com/garyexplains/examples/blob/master/how-to-connect-a-Raspberry-Pi-NAS-over-iSCSI.md

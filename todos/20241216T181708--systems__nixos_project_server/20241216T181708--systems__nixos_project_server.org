@@ -1,0 +1,476 @@
+#+title: Systems Tasks
+#+date: [2024-12-16 Mon 18:17]
+#+filetags: :project:
+#+identifier: 20241216T181708
+#+author: Andreas Zweili
+#+category: systems
+
+* PROJECT Systems Tasks
+
+** NEXT split this project
+
+There are too many things going on in here.
+
+** NEXT Update servers task ausarbeiten
+
+** NEXT Go through tasks
+:PROPERTIES:
+:CUSTOM_ID: h:d9858335-0124-4b5e-885e-48c0428720a7
+:END:
+- [adi1090x/rofi: A huge collection of Rofi based custom Applets, Launchers & Powermenus.](https://github.com/adi1090x/rofi)
+- [slotThe/vc-use-package: Primitive package-vc integration for use-package](https://github.com/slotThe/vc-use-package)
+- [funkenblatt/rainbow-indent: Rainbow indentation for emacs](https://github.com/funkenblatt/rainbow-indent)
+- [minad/org-modern: :unicorn: Modern Org Style](https://github.com/minad/org-modern)
+- [bluskript/nix-inspect: Interactive tui for inspecting nix configs](https://github.com/bluskript/nix-inspect)
+
+*** [HopToDesk - Free Remote Desktop Software for Windows, Mac, Linux, Android, iOS](https://www.hoptodesk.com/)
+
+*** [aldoborrero/use-nix-action: Install nix and have direnv ready in your Github runners!](https://github.com/aldoborrero/use-nix-action)
+
+*** [SSH Hardening with ssh-audit :: Terminal Thoughts](https://thoughts.greyh.at/posts/ssh-audit/)
+
+*** [akib/emacs-eat: Emulate A Terminal, in a region, in a buffer and in Eshell - emacs-eat - Codeberg.org](https://codeberg.org/akib/emacs-eat)
+
+*** [kickingvegas/casual-dired: Casual Dired - An opinionated porcelain for Emacs file manager Dired.](https://github.com/kickingvegas/casual-dired)
+
+*** [Emacs: dired-preview version 0.2.0 | Protesilaos Stavrou](https://protesilaos.com/codelog/2024-05-07-emacs-dired-preview-0-2-0/)
+
+*** https://www.reddit.com/r/firefox/comments/17bhudb/constant_buffering_freezing_on_youtube_with/
+
+*** [nix/common/battery.nix at main · mkellyxp/nix](https://github.com/mkellyxp/nix/blob/main/common/battery.nix)
+
+*** [numtide/blueprint: Nix without the glue code](https://github.com/numtide/blueprint)
+
+*** [Hardening NixOS](https://blog.chobble.com/blog/24-11-28-hardening-nixos/)
+
+*** [minad/jinx: 🪄 Enchanted Spell Checker](https://github.com/minad/jinx)
+
+*** [GitHub - federicotdn/flymake-shellcheck: A ShellCheck-powered backend for Flymake](https://github.com/federicotdn/flymake-shellcheck)
+
+*** [~emersion/kanshi - Dynamic display configuration - sourcehut git](https://git.sr.ht/~emersion/kanshi)
+
+*** [NixOS/nixops: NixOps is a tool for deploying to NixOS machines in a network or cloud.](https://github.com/NixOS/nixops)
+
+*** [jetpack-io/nixtest: A tiny unit testing framework written in pure Nix](https://github.com/jetpack-io/nixtest)
+
+*** [Analyse your HTTP response headers](https://securityheaders.com/)
+
+*** Migrate to podman
+
+I think it should be possible now to use podman instead of docker
+
+*** Remove projectile
+
+I think then only thing I still need projectile for is to mark any directory as a project.
+This should be achievable with project.el as well.
+[Add Any Directory to project.el's List of Projects](https://christiantietze.de/posts/2022/03/mark-local-project.el-directories/)
+
+*** Migrate from config to custom
+
+[use-package User Manual](https://www.gnu.org/software/emacs/manual/html_mono/use-package.html#User-options)
+
+*** Replace heimdall
+
+Heimdall is getting old and slow I think I should replace it with homepage:
+
+[Redirecting](https://gethomepage.dev)
+
+It integrates with other services over their API and it allows me to store the configuration in a text file.
+
+So when I have a new service or device I can add it to the configuration and reflect in the commits.
+
+*** Use function to reference version instead of rec
+
+- update the wiki as well
+
+*** Fwd: Mastering Emacs 29 edition now available
+
+*** Restore System State after reboot
+
+It is a major pain in the ass to resume my systems after a restart. I should fix that.
+
+**** Restore tmux
+
+**** Restore Emacs
+
+**** Restore open applications
+
+*** Make direnv better in Emacs
+
+[GitHub - purcell/envrc: Emacs support for direnv which operates buffer-locally](https://github.com/purcell/envrc)
+
+*** Write Shortcuts for the Budget Server
+
+*** Plex weiter aufräumen
+
+Ich habe zuviel Musik drauf die ich nicht kenne.
+Gerne würde ich auch manchmal via dem Smartphone Musik hören.
+Dafür möchte ich aber das gleiche Konzept wie auf dem MP3 Player verfolgen.
+Zudem macht es vielleicht Sinn den MP3 Player nur mit den Bathys und den Kabelkopfhörer zu nutzen.
+Dadurch währen die Airpods dann iPhone exklusiv.
+
+*** How do I provide the host key to systems?
+
+*** Store the data on ISCSI LUNs
+
+**** [examples/how-to-connect-a-Raspberry-Pi-NAS-over-iSCSI.md at master · garyexplains/examples](https://github.com/garyexplains/examples/blob/master/how-to-connect-a-Raspberry-Pi-NAS-over-iSCSI.md)
+
+**** [nixos-configs/iscsi-boot.nix at master · cleverca22/nixos-configs](https://github.com/cleverca22/nixos-configs/blob/master/iscsi-boot.nix)
+
+*** Upgrade systemState Version
+
+*** Test lower home row mods
+
+*** Fix Sudo without password
+
+[Which commands are required for remote switch?](https://discourse.nixos.org/t/which-commands-are-required-for-remote-switch/17936/8?u=nebucatnetzer)
+
+*** The default sound server for most graphical sessions has been switched from PulseAudio to PipeWire.
+
+Users that want to keep using PulseAudio will want to set services.pipewire.enable = false; and hardware.pulseaudio.enable = true;. There is currently no plan to fully deprecate and remove PulseAudio, however, PipeWire should generally be preferred for new installs
+
+*** A new option systemd.enableStrictShellChecks has been added
+
+*** Annotate-mode looks useful especially for rewriting code and I don't want to overwrite the actual file
+
+*** Check that the SSH configuration is secure
+
+*** Enable IPv6
+
+*** Try to implement disko
+
+*** Systeme bootsrappen
+
+*** DONE Migrate to wayland
+CLOSED: [2025-05-13 Tue 23:07]
+
+[Running Qtile as a Wayland Compositor — Qtile 0.1.dev50+g4ecf1bd.d20230501 documentation](http://docs.qtile.org/en/latest/manual/wayland.html)
+
+**** [dnkl/fuzzel: Application launcher for wlroots based Wayland compositors, similar to rofi's](https://codeberg.org/dnkl/fuzzel) `drun` mode. - fuzzel - Codeberg.org
+
+**** [i3 Migration Guide · swaywm/sway Wiki · GitHub](https://github.com/swaywm/sway/wiki/i3-Migration-Guide)
+
+**** [Hyprland - A wayland compositor that doesn't sacrifice on its looks!](https://hyprland.org/)
+
+*** CANCELLED Implement fake screens from qtile
+CLOSED: [2025-05-13 Tue 23:09]
+
+I would like to have this, in order to split my 4k monitor into 4 virtual screens. Or at least 3. This way I can confine applications which create a pop up into their own space without them messing up my 4/4 layout.
+
+- [Add ScreenSplit layout by elParaguayo · Pull Request #3793 · qtile/qtile](https://github.com/qtile/qtile/pull/3793)
+
+*** CANCELLED Migrate Repos from Github to Codeberg
+CLOSED: [2025-05-13 Tue 23:09]
+
+I honestly don't care as long as I have my personal backups and I can waste their money.
+
+*** Enable a way to reset my Pis
+
+[Raspberry Pi 3 model B "dtoverlay=gpio-shutdown"](https://raspberrypi.stackexchange.com/questions/77905/raspberry-pi-3-model-b-dtoverlay-gpio-shutdown/77918#77918)
+
+**** [usb relay at DuckDuckGo](https://duckduckgo.com/?t=ffab&q=usb+relay&ia=web)
+
+*** Setup a Server to which I can send text and retrieve it in a secure way at a later point
+
+My current idea is to use snappass as a basis but add an API which receives the text and returns the URL.
+
+**** Currently it doesn't return a link only the key
+
+*** CANCELLED [netdata/netdata: Monitor your servers, containers, and applications, in high-resolution and in real-time!](https://github.com/netdata/netdata)
+CLOSED: [2025-05-13 Tue 23:10]
+
+Implemented LibreNMS instead.
+Fuck venture capital firms.
+
+**** [Solene'% : Using Netdata on NixOS and connecting to Netdata cloud](https://dataswamp.org/~solene/2022-09-16-netdata-cloud-nixos.html)
+
+*** [NixOS Search - Options - tor](https://search.nixos.org/options?channel=23.11&show=services.tor.relay.enable&from=0&size=50&sort=relevance&type=packages&query=tor)
+
+*** [Crash Course On Using Textual - Fedora Magazine](https://fedoramagazine.org/crash-course-on-using-textual/)
+
+*** [Mozilla Monitor](https://monitor.mozilla.org/)
+
+*** Fwd: [NixOS Discourse] [Announcements] Nixpkgs-xr: Nightly packages for XR/AR/VR tools and apps
+
+*** [NixOS Search](https://search.nixos.org/options?channel=23.11&from=0&size=50&sort=relevance&type=packages&query=netdata)
+
+*** Enable two-factor on all my systems
+
+*** Encrypt SSH keys
+
+*** Check for more systems
+
+*** [Building a CLI Tool | Scraping & Processing Data with BeautifulSoup, Requests & Pydantic - YouTube](https://www.youtube.com/watch?v=dYWnS8eRf4M)
+
+*** [dotool - Simulate Keyboard and Mouse Input Anywhere [X11, Wayland, TTYs] - Linux CLI - YouTube](https://www.youtube.com/watch?v=cik2zaDaIdo)
+
+*** [let-def/texpresso: TeXpresso: live rendering and error reporting for LaTeX](https://github.com/let-def/texpresso?tab=readme-ov-file)
+
+*** [nfdn: Announcing Casual - An opinionated porcelain for Emacs Calc](http://yummymelon.com/devnull/announcing-casual-an-opinionated-porcelain-for-emacs-calc.html)
+
+*** [List of Terminal Tools (A-Z) - Terminal Trove](https://terminaltrove.com/list/)
+
+*** [latex-lsp/texlab: An implementation of the Language Server Protocol for LaTeX](https://github.com/latex-lsp/texlab?tab=readme-ov-file)
+
+*** Build a router with my Raspberry Pi Compute Module
+
+Since I can now boot UEFI aarch64 I can put the UEFI onto the internal storage and NixOS on the SD card.
+
+*** [licht1stein/obsidian.el: Obsidian Notes for Emacs](https://github.com/licht1stein/obsidian.el)
+
+*** [garnix | the nix CI](https://garnix.io/)
+
+*** Checkout Caddy
+
+[NixOS Search](https://search.nixos.org/options?channel=unstable&show=services.caddy.enable&from=0&size=50&sort=relevance&type=packages&query=caddy)
+
+*** [nicolas-goudry/earth-view: Set background wallpaper to a random image from Google Earth View.](https://github.com/nicolas-goudry/earth-view)
+
+*** [kagi.el](https://codeberg.org/bram85/kagi.el)
+
+*** [GitHub - gmodena/nix-flatpak: Install flatpaks declaratively](https://github.com/gmodena/nix-flatpak)
+
+*** [Harish Narayanan (@harish@hachyderm.io)](https://hachyderm.io/@harish/112650648766911531)
+
+Python Setup Emacs
+
+*** [Emacs Configuration Generator](https://emacs.amodernist.com/)
+
+*** [karthink/gptel: A simple LLM client for Emacs](https://github.com/karthink/gptel)
+
+*** [xenodium/chatgpt-shell: ChatGPT and DALL-E Emacs shells + Org babel 🦄 + a shell maker for other providers](https://github.com/xenodium/chatgpt-shell)
+
+*** [viperML/nh: Yet another nix cli helper](https://github.com/viperML/nh)
+
+Hat die Möglichkeit den Nix Output Monitor je nach Umgebung zu aktivieren.
+
+*** [Local AI chatbot – services-flake](https://community.flake.parts/services-flake/llm)
+
+*** [GitHub - antithesishq/madness: Madness enables you to easily run the same binary on NixOS and non-NixOS systems](https://github.com/antithesishq/madness)
+
+*** Connect the Quest to my PC
+
+[Meta Quest HDMI Link on Meta Quest | Quest VR Games](https://link.theverge.com/click/36438179.417/aHR0cHM6Ly93d3cubWV0YS5jb20vZXhwZXJpZW5jZXMvNzQ1MjEwNjQyNDgyNDM1Ny8_aW50ZXJuX3NvdXJjZT1ibG9nJmludGVybl9jb250ZW50PW1ldGEtcXVlc3QtaGRtaS1saW5rLWxhdW5jaCZ1ZWlkPWUzMTJkNDk0N2M2MTI4MTYwYWIxYzQzMzgzZWQ0ZmMyI3Jldmlld3M/6573263ce3cae33f6505acdeBa5e91ce9)
+
+*** I could run this on the management server
+
+*** [apognu/tuigreet: Graphical console greeter for greetd](https://github.com/apognu/tuigreet)
+
+Always wanted something like this.
+
+*** [viperML/wrapper-manager: Post-modern configuration management](https://github.com/viperML/wrapper-manager?tab=readme-ov-file)
+
+*** [Cron Job Monitoring - Healthchecks.io](https://healthchecks.io/)
+
+Könnte ich nutzen um die Backups zu überwachen
+
+*** [meow-edit/meow: Yet another modal editing on Emacs / 猫态编辑](https://github.com/meow-edit/meow)
+
+Could be a replacement for evil mode
+
+*** [Home - gocryptfs](https://nuetzlich.net/gocryptfs/)
+
+Kann genutzt werden um Dateien zu verschlüsseln
+
+*** [sysadminsmedia/homebox: A continuation of HomeBox the inventory and organization system built for the Home User](https://github.com/sysadminsmedia/homebox?tab=readme-ov-file)
+
+*** [[https://github.com/nix-community/nix-init]]
+
+nix-init is a tool to start setting up a package. It might be helpful if I want
+to start a new package.
+
+*** [[https://nixos.wiki/wiki/Specialisation]]
+
+Can I maybe have a specialisation with gnome instead of qtile so that I could use it for presentations?
+I probably should disable the autostart applications as well or write them in a generic way.
+There might actually not be that many since I start a lot of applications through a bash script IIRC.
+
+*** Add termscp to my config
+
+https://github.com/veeso/termscp
+
+** Software to package
+
+*** NEXT 3 shell scripts
+
+Kill weasel words, avoid the passive, eliminate duplicates
+https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/
+
+*** NEXT systemd-tui
+
+It's a rust package and should be fairly easy to package.
+
+https://github.com/rgwood/systemctl-tui
+
+** Bugs
+
+*** NEXT [#A] Nginx log to journal
+
+Currently it logs to /var/log/nginx which fills up the disk and is a bit pointless because all other logs are in journal. I would like to have everything in one place.
+
+*** NEXT Nextcloud issues fixen
+
+- [ ] Server has no maintenance window start time configured. This means resource
+  intensive daily background jobs will also be executed during your main usage
+  time. We recommend to set it to a time of low usage, so users are less
+  impacted by the load caused from these heavy tasks. For more details see the
+  documentation. Some headers are not set correctly on your instance
+
+- [ ] The ~X-Robots-Tag~ HTTP header is not set to ~noindex,nofollow~. This is a
+  potential security or privacy risk, as it is recommended to adjust this
+  setting accordingly. For more details see the documentation.
+
+*** NEXT Add a push mirror to each of my repos
+
+The main repo should always live on my servers but it would be nice to have a backup on GitHub.
+It is imperative that they are on GitHub because the AI fuckers are destroying my servers.
+
+*** NEXT Customise the Gitea start page to redirect people to my GitHub page
+
+- https://docs.gitea.com/administration/customizing-gitea
+
+*** NEXT [#A] Firefly-iii Data Importer, a data importer for Firefly-III.
+
+Available as services.firefly-iii-data-importer.
+I need to use the service because the container gets updated faster than my NixOS installtion of firefly and then there is a missmatch between the importer and the actual service.
+
+*** DONE SwissBackup läuft voll
+CLOSED: [2025-06-16 Mon 21:18] SCHEDULED: <2025-05-26 Mon>
+
+** Enhancements
+
+*** NEXT [#A] setup gitea-mirror
+
+I currently use GitHub as my main git forge due to those LLM fuckers.
+To make my life easier I should setup gitea-mirror.
+This way I could just setup repos like I want on GitHub and gitea-mirror mirrors them to my Gitea server for backup.
+
+https://github.com/arunavo4/gitea-mirror
+
+*** NEXT [[https://mastodon.gamedev.place/@AngryAnt/113904347509317158][Emil "AngryAnt" Johansen (@AngryAnt@mastodon.gamedev.place)]]
+
+Enable autorun for commands that I have not installed on my system.
+
+*** NEXT Rename management.2li.local to cache.2li.local
+
+*** NEXT Let gwyn store more nix paths
+
+*** NEXT Rename gwyn.2li.local to management.2li.local
+
+*** NEXT Enable remote builders
+
+It would be nice if I could build aarch64 stuff on the Raspberry Pi without having to do anything on my notebooks.
+
+The other way as well, this way I could build on the Pi and store the symlinks in an easier way.
+
+*** NEXT Add JDownloader to the config
+
+https://sourcegraph.com/github.com/mkg20001/nix/-/blob/pkgs/jdownloader/default.nix)
+
+*** NEXT Reorganize my config
+
+Can I maybe integrate something like this project: https://github.com/hgl/nixverse
+
+*** NEXT [#A] Setup ntfy.sh
+
+https://ntfy.sh/
+Would be good as a replacement for Telegram
+Less reliance on shady companies.
+
+*** NEXT [#B] Set up a better binary cache
+
+https://github.com/nix-community/harmonia
+
+It would be nice to have a binary cache that isn't part of the main nix store of the system.
+Because if it is part of the main store garbage collection gets hard because we might accidently remove packages from the cache that we wanted to keep.
+
+attic was a very nice project but it doesn't work well. There might be a fix if you store the files on an S3 storage but I'm not sure this is feasable for me. First tests with my NAS didn't work well because it required a certificate.
+
+[[file:fileserver_S3Storage.key]]
+
+**** Binary Cache for Nixpkgs
+
+- https://github.com/kalbasit/ncps
+
+*** NEXT [#C] Make tty solarized
+
+When I’m in tty I can’t use btm because that uses a solarized theme and my tty is still the stock black.
+
+*** NEXT Build a custom Raspi UEFI
+
+The idea is to have a custom Raspi UEFI with the correct settings applied for me:
+
+- Enable +3GB RAM
+- Disable PXE Boot
+- Correct boot order (USB before SD card)
+
+[GitHub - pftf/RPi4: Raspberry Pi 4 UEFI Firmware Images](https://github.com/pftf/RPi4)
+
+[edk2-platforms/Platform/RaspberryPi/RPi4 at master · tianocore/edk2-platforms](https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi4)
+
+[GitHub - tianocore/edk2-platforms: EDK II sample platform branches and tags](https://github.com/tianocore/edk2-platforms/tree/master)
+
+[firmware/boot/overlays at master · raspberrypi/firmware](https://github.com/raspberrypi/firmware/tree/master/boot/overlays)
+
+*** TODO Check if I use self somewhere
+- Note taken on [2025-03-01 Sat 18:15] \\
+  Self forces a derivation to be rebuilt when the repo changes.
+  https://discourse.nixos.org/t/worth-using-a-derivation-for-automatic-installphase-updates/61008/3?u=nebucatnetzer
+
+*** NEXT Learn how to rebuild NixOS without internet
+
+https://discourse.nixos.org/t/rebuild-nixos-offline/3679
+
+*** NEXT Implement port conflict detection
+
+https://lorenzbischof.ch/posts/detect-port-conflicts-in-nixos-services/
+
+*** NEXT Implement BTRFS autoScrub
+
+https://search.nixos.org/options?channel=25.05&show=services.btrfs.autoScrub.enable&query=btrfs+autoScrub
+
+*** TODO Port share with OpenVPN
+[2025-06-18 Wed 17:06]
+
+The idea is to forward all non VPN traffic to the proxy.
+
+** Features
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+*** NEXT Test Firefly alternative
+SCHEDULED: <2025-11-03 Mon>
+
+Firefly sort of works but it is a bit clunkier than YNAB and I often have a feeling that I'm not fully in control of my finances.
+With YNAB I definitly had less of a problem with this.
+They author of Firefly says that YNAB encourages living paycheck to paycheck.
+I don't think this is true as I had at least two months worth of money saved up.
+
+https://github.com/AshishKapoor/fintrack
+
+**** [[https://actualbudget.org/][Actual | Actual Budget Documentation]]
+[2025-06-14 Sat 17:12]
+
+Ich muss dass vielleicht nochmals testen.
+Firefly fühlt sich etwas nach zu viel Aufwand an und ich habe nicht das Gefühl, dass ich damit mein Geld super unter Kontrolle habe.
+Eher im Gegenteil, ich habe viel mehr Geld ausgegeben als vorher mit YNAB.
+
+*** NEXT Have a look at Opensnitch
+
+https://search.nixos.org/options?channel=25.05&query=opensnitch
+
+** NixOS Community work
+- https://github.com/NixOS/nixpkgs/labels/3.skill%3A%20good-first-bug
+- https://github.com/NixOS/nixpkgs/issues?q=is%3Aopen+is%3Aissue+label%3A%220.kind%3A+packaging+request%22+sort%3Acreated-asc
+- https://github.com/NixOS/nixpkgs/issues/41321
+  package JDownloader
+- https://github.com/NixOS/nixpkgs/labels/8.has%3A%20module%20%28new%29
+- https://github.com/NixOS/nixpkgs/labels/8.has%3A%20package%20%28new%29
+- https://github.com/Mic92/nixpkgs-review
+** DONE Actualbudget für Eleonore aufsetzen
+CLOSED: [2025-09-16 Tue 21:17] SCHEDULED: <2025-09-15 Mon>
+- State "DONE"       from "NEXT"       [2025-09-16 Tue 21:17]
+:LOGBOOK:
+CLOCK: [2025-09-14 Sun 13:48]--[2025-09-14 Sun 13:48] =>  0:00
+:END:

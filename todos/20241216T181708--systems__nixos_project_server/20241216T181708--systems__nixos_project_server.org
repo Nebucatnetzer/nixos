@@ -308,38 +308,13 @@ https://github.com/rgwood/systemctl-tui
 
 Currently it logs to /var/log/nginx which fills up the disk and is a bit pointless because all other logs are in journal. I would like to have everything in one place.
 
-*** NEXT Nextcloud issues fixen
-
-- [ ] Server has no maintenance window start time configured. This means resource
-  intensive daily background jobs will also be executed during your main usage
-  time. We recommend to set it to a time of low usage, so users are less
-  impacted by the load caused from these heavy tasks. For more details see the
-  documentation. Some headers are not set correctly on your instance
-
-- [ ] The ~X-Robots-Tag~ HTTP header is not set to ~noindex,nofollow~. This is a
-  potential security or privacy risk, as it is recommended to adjust this
-  setting accordingly. For more details see the documentation.
-
-*** NEXT Add a push mirror to each of my repos
-
-The main repo should always live on my servers but it would be nice to have a backup on GitHub.
-It is imperative that they are on GitHub because the AI fuckers are destroying my servers.
-
 *** NEXT Customise the Gitea start page to redirect people to my GitHub page
 
 - https://docs.gitea.com/administration/customizing-gitea
 
-*** NEXT [#A] Firefly-iii Data Importer, a data importer for Firefly-III.
-
-Available as services.firefly-iii-data-importer.
-I need to use the service because the container gets updated faster than my NixOS installtion of firefly and then there is a missmatch between the importer and the actual service.
-
-*** DONE SwissBackup läuft voll
-CLOSED: [2025-06-16 Mon 21:18] SCHEDULED: <2025-05-26 Mon>
-
 ** Enhancements
 
-*** NEXT [#A] setup gitea-mirror
+*** NEXT setup gitea-mirror
 
 I currently use GitHub as my main git forge due to those LLM fuckers.
 To make my life easier I should setup gitea-mirror.
@@ -352,11 +327,8 @@ https://github.com/arunavo4/gitea-mirror
 Enable autorun for commands that I have not installed on my system.
 
 *** NEXT Rename management.2li.local to cache.2li.local
-
 *** NEXT Let gwyn store more nix paths
-
 *** NEXT Rename gwyn.2li.local to management.2li.local
-
 *** NEXT Enable remote builders
 
 It would be nice if I could build aarch64 stuff on the Raspberry Pi without having to do anything on my notebooks.
@@ -371,13 +343,13 @@ https://sourcegraph.com/github.com/mkg20001/nix/-/blob/pkgs/jdownloader/default.
 
 Can I maybe integrate something like this project: https://github.com/hgl/nixverse
 
-*** NEXT [#A] Setup ntfy.sh
+*** NEXT Setup ntfy.sh
 
 https://ntfy.sh/
 Would be good as a replacement for Telegram
 Less reliance on shady companies.
 
-*** NEXT [#B] Set up a better binary cache
+*** NEXT Set up a better binary cache
 
 https://github.com/nix-community/harmonia
 
@@ -392,7 +364,7 @@ attic was a very nice project but it doesn't work well. There might be a fix if 
 
 - https://github.com/kalbasit/ncps
 
-*** NEXT [#C] Make tty solarized
+*** NEXT Make tty solarized
 
 When I’m in tty I can’t use btm because that uses a solarized theme and my tty is still the stock black.
 
@@ -412,7 +384,11 @@ The idea is to have a custom Raspi UEFI with the correct settings applied for me
 
 [firmware/boot/overlays at master · raspberrypi/firmware](https://github.com/raspberrypi/firmware/tree/master/boot/overlays)
 
-*** TODO Check if I use self somewhere
+*** NEXT Migrate Plex to x86 server
+
+Some features I would like to have don't work on a Raspi.
+
+*** NEXT Check if I use self somewhere
 - Note taken on [2025-03-01 Sat 18:15] \\
   Self forces a derivation to be rebuilt when the repo changes.
   https://discourse.nixos.org/t/worth-using-a-derivation-for-automatic-installphase-updates/61008/3?u=nebucatnetzer
@@ -429,7 +405,7 @@ https://lorenzbischof.ch/posts/detect-port-conflicts-in-nixos-services/
 
 https://search.nixos.org/options?channel=25.05&show=services.btrfs.autoScrub.enable&query=btrfs+autoScrub
 
-*** TODO Port share with OpenVPN
+*** NEXT Port share with OpenVPN
 [2025-06-18 Wed 17:06]
 
 The idea is to forward all non VPN traffic to the proxy.
@@ -438,23 +414,6 @@ The idea is to forward all non VPN traffic to the proxy.
 :PROPERTIES:
 :VISIBILITY: folded
 :END:
-
-*** NEXT Test Firefly alternative
-SCHEDULED: <2025-11-03 Mon>
-
-Firefly sort of works but it is a bit clunkier than YNAB and I often have a feeling that I'm not fully in control of my finances.
-With YNAB I definitly had less of a problem with this.
-They author of Firefly says that YNAB encourages living paycheck to paycheck.
-I don't think this is true as I had at least two months worth of money saved up.
-
-https://github.com/AshishKapoor/fintrack
-
-**** [[https://actualbudget.org/][Actual | Actual Budget Documentation]]
-[2025-06-14 Sat 17:12]
-
-Ich muss dass vielleicht nochmals testen.
-Firefly fühlt sich etwas nach zu viel Aufwand an und ich habe nicht das Gefühl, dass ich damit mein Geld super unter Kontrolle habe.
-Eher im Gegenteil, ich habe viel mehr Geld ausgegeben als vorher mit YNAB.
 
 *** NEXT Have a look at Opensnitch
 
@@ -468,9 +427,3 @@ https://search.nixos.org/options?channel=25.05&query=opensnitch
 - https://github.com/NixOS/nixpkgs/labels/8.has%3A%20module%20%28new%29
 - https://github.com/NixOS/nixpkgs/labels/8.has%3A%20package%20%28new%29
 - https://github.com/Mic92/nixpkgs-review
-** DONE Actualbudget für Eleonore aufsetzen
-CLOSED: [2025-09-16 Tue 21:17] SCHEDULED: <2025-09-15 Mon>
-- State "DONE"       from "NEXT"       [2025-09-16 Tue 21:17]
-:LOGBOOK:
-CLOCK: [2025-09-14 Sun 13:48]--[2025-09-14 Sun 13:48] =>  0:00
-:END:

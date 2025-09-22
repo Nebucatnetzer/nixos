@@ -29,7 +29,6 @@
     ./services/common-x86
     ./services/data-share
     ./services/docker
-    ./services/docker-mailserver
     ./services/eactual
     ./services/firefly
     ./services/freshrss

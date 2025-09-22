@@ -63,7 +63,6 @@ def main() -> None:
     images: list[str] = [
         "docker.io/fireflyiii/data-importer",
         "docker.io/gitea/gitea",
-        "docker.io/mailserver/docker-mailserver",
         "docker.io/nginx",
         "ghcr.io/actualbudget/actual-server",
         "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",

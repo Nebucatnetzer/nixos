@@ -43,7 +43,6 @@
           home-module = "management";
         };
         "management" = { };
-        "nextcloud" = { };
         "plex" = { };
         "proxy" = { };
         "restic-server" = { };

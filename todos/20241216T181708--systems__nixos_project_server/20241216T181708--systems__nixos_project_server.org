@@ -410,6 +410,10 @@ https://search.nixos.org/options?channel=25.05&show=services.btrfs.autoScrub.ena
 
 The idea is to forward all non VPN traffic to the proxy.
 
+*** NEXT Migrate everything to zweili.org
+
+I would like to stop using the 2li.ch domain.
+
 ** Features
 :PROPERTIES:
 :VISIBILITY: folded

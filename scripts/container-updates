@@ -61,7 +61,6 @@ def find_image_references(image: str, search_path: str = "./modules") -> str:
 
 def main() -> None:
     images: list[str] = [
-        "docker.io/fireflyiii/data-importer",
         "docker.io/gitea/gitea",
         "docker.io/nginx",
         "ghcr.io/actualbudget/actual-server",

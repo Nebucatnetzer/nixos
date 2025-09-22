@@ -49,8 +49,7 @@ let
 in
 {
   "cache_readonly.age".publicKeys = all;
-  "firefly_key.age".publicKeys = defaultKeys ++ [ budget ];
-  "mail_password.age".publicKeys = defaultKeys ++ [ budget ];
+  "mail_password.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];

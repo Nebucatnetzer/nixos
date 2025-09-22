@@ -30,7 +30,6 @@
     ./services/data-share
     ./services/docker
     ./services/eactual
-    ./services/firefly
     ./services/freshrss
     ./services/gitea
     ./services/haproxy

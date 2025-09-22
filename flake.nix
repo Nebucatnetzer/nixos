@@ -42,7 +42,6 @@
         "gwyn" = {
           home-module = "management";
         };
-        "mail" = { };
         "management" = { };
         "nextcloud" = { };
         "plex" = { };

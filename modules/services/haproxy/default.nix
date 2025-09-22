@@ -51,8 +51,8 @@ in
           redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i librenms.zweili.org } !{ ssl_fc }
           redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }
-          redirect scheme https code 301 if { hdr(host) -i www.2li.ch } !{ ssl_fc }
-          redirect scheme https code 301 if { hdr_dom(host) -i 2li.ch } !{ ssl_fc }
+          redirect scheme https code 301 if { hdr(host) -i www.zweili.ch } !{ ssl_fc }
+          redirect scheme https code 301 if { hdr_dom(host) -i zweili.ch } !{ ssl_fc }
 
         frontend https
           # Listen on port 443
@@ -71,8 +71,8 @@ in
           use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
           use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
           use_backend librenms if { req_ssl_sni -i librenms.zweili.org }
-          use_backend proxy if { req_ssl_sni -i www.2li.ch }
-          use_backend proxy if { req_ssl_sni -i 2li.ch }
+          use_backend proxy if { req_ssl_sni -i www.zweili.ch }
+          use_backend proxy if { req_ssl_sni -i zweili.ch }
 
         backend git_server
           mode tcp

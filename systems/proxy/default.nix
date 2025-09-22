@@ -20,7 +20,7 @@ in
     az-librenms-certificate = {
       enable = true;
       domains = [
-        { fqdn = "www.2li.ch"; }
+        { fqdn = "www.zweili.ch"; }
         { fqdn = "search.zweili.org"; }
       ];
     };
@@ -55,8 +55,8 @@ in
       '';
       recommendedProxySettings = true;
       virtualHosts = {
-        "2li.ch" = {
-          serverAliases = [ "www.2li.ch" ];
+        "zweili.ch" = {
+          serverAliases = [ "www.zweili.ch" ];
           enableACME = true;
           forceSSL = true;
           listen = [

@@ -47,7 +47,7 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers."actualbudget" = {
-        # https://hub.docker.com/r/mailserver/docker-mailserver/tags
+        # https://github.com/actualbudget/actual/releases
         image = "ghcr.io/actualbudget/actual-server:25.9.0@sha256:a96e38821a56843a5473204cbd3773ffee816c49c23e0a9187fb80498bd3e154";
         autoStart = true;
         ports = [ "5006:5006" ];

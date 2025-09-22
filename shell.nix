@@ -16,6 +16,7 @@ pkgs.mkShellNoCC {
           p.isort
           p.mypy
           p.ruff
+          p.pylint
         ]))
         pkgs.vim
       ];

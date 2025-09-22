@@ -14,7 +14,7 @@ let
     MYSQL_HOST = "172.17.0.1";
     NEXTCLOUD_TRUSTED_DOMAINS = "${cfg.domain} ${config.networking.hostName}.2li.local 10.7.89.103";
     REDIS_HOST = "redis";
-    SMTP_HOST = "mail.zweili.org";
+    SMTP_HOST = "mail.infomaniak.com";
     SMTP_SECURE = "ssl";
     SMTP_PORT = "465";
   };

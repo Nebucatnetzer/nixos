@@ -43,12 +43,12 @@ in
         };
       };
       imap = {
-        host = "mail.zweili.org";
+        host = "mail.infomaniak.com";
         port = 993;
         tls.enable = true;
       };
       smtp = {
-        host = "mail.zweili.org";
+        host = "mail.infomaniak.com";
         port = 465;
         tls.enable = true;
       };

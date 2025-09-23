@@ -8,7 +8,6 @@
   :type 'string)
 
 (defun pylint-flymake (report-fn &rest _args)
-  (message "I've run")
 
   (unless (projectile-current-project-buffer-p)
     (error "Only buffers under Projectile-project is supported for pylint"))

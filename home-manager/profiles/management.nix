@@ -6,6 +6,7 @@
 }:
 let
   denote-rename = pkgs.callPackage "${inputs.self}/pkgs/denote-rename" { };
+  update-file-dates = pkgs.callPackage "${inputs.self}/pkgs/update-file-dates" { };
   rebuild = pkgs.writeShellApplication {
     name = "rebuild";
     runtimeInputs = [
@@ -46,6 +47,7 @@ in
       denote-rename
       rebuild
       unlock-luks
+      update-file-dates
     ];
     shellAliases = {
       format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";

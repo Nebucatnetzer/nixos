@@ -1,14 +1,16 @@
+# This code is fully AI generated.
 """A script to set a file's date from its name or a CLI flag."""
 
 from __future__ import annotations
 
+import argparse
 import os
 import re
 import sys
+from datetime import UTC
 from datetime import date
 from datetime import datetime
 from datetime import time
-from datetime import timezone
 from pathlib import Path
 
 # Min year for yyyymmdd format to be considered valid
@@ -16,173 +18,145 @@ MIN_VALID_YEAR = 1940
 
 
 def find_date_in_filename(filename: str) -> date | None:
-    """Search for a date in yyyy-mm-dd or yyyymmdd format in a filename."""
-    # First, search for the more specific 'yyyy-mm-dd' format
-    if match := re.search(r"(\d{4}-\d{2}-\d{2})", filename):
-        try:
-            # The intermediate datetime is naive, but we only need the date part.
-            return datetime.strptime(match.group(1), "%Y-%m-%d").date()  # noqa: DTZ007
-        except ValueError:
-            pass
+    """Search for a date in various formats in a filename."""
+    patterns = [
+        (r"(\d{4}-\d{2}-\d{2})", "%Y-%m-%d"),  # yyyy-mm-dd
+        (r"(\d{2}-\d{2}-\d{2})", "%y-%m-%d"),  # yy-mm-dd
+        (r"(\d{8})", "%Y%m%d"),  # yyyymmdd
+    ]
 
-    # If not found, search for the 'yyyymmdd' format
-    if match := re.search(r"(\d{8})", filename):
-        try:
-            year = int(match.group(1)[:4])
-            current_year = datetime.now(timezone.UTC).year
-            if MIN_VALID_YEAR <= year <= current_year + 1:
-                return (
-                    datetime.strptime(match.group(1), "%Y%m%d")
-                    .replace(tzinfo=timezone.UTC)
-                    .date()
-                )
-        except ValueError:
-            pass
+    for pattern, date_format in patterns:
+        if match := re.search(pattern, filename):
+            try:
+                # Special check for yyyymmdd to avoid matching random numbers
+                if date_format == "%Y%m%d":
+                    year = int(match.group(1)[:4])
+                    current_year = datetime.now(UTC).year
+                    if not (MIN_VALID_YEAR <= year <= current_year + 1):
+                        continue  # Skip if year is out of a reasonable range
 
+                # The intermediate datetime is naive, but we only need the date part.
+                return datetime.strptime(  # noqa: DTZ007
+                    match.group(1),
+                    date_format,
+                ).date()
+            except ValueError:
+                continue  # Try the next pattern if this one fails to parse
     return None
 
 
-def update_file_mtime(
+def get_file_mtime_date(file_path: Path) -> date | None:
+    """Get the modification time of a file as a date object."""
+    try:
+        mtime_ts = file_path.stat().st_mtime
+        return datetime.fromtimestamp(mtime_ts, tz=UTC).date()
+    except FileNotFoundError:
+        print(f"[ERROR] File not found at '{file_path}'")
+        return None
+
+
+def handle_file_update(
     file_path: Path,
-    date_obj: date,
+    new_date: date,
     source: str,
     *,
     is_dry_run: bool,
 ) -> None:
-    """Update the file's modification time (mtime), preserving access time.
-
-    Args:
-        file_path: The path to the file.
-        date_obj: The date object to set the timestamp to.
-        source: A string indicating where the date was found.
-        is_dry_run: If True, print the action without executing it.
-
-    """
-    dt_obj = datetime.combine(date_obj, time.min)
-    new_mtime = dt_obj.timestamp()
-
+    """Perform the file modification time update."""
     if is_dry_run:
         print(
             f"DRY RUN: Would change mtime for '{file_path.name}' to "
-            f"{date_obj.isoformat()} (from {source}).",
+            f"{new_date.isoformat()} (from {source})."
         )
         return
 
     try:
-        current_atime = file_path.stat().st_atime
+        dt_obj = datetime.combine(new_date, time.min)
+        new_mtime = dt_obj.timestamp()
+        current_atime = file_path.stat().st_atime  # Preserve access time
         os.utime(file_path, (current_atime, new_mtime))
         print(
-            f"Updated mtime for '{file_path.name}' to {date_obj.isoformat()} "
-            f"(from {source}).",
+            "[OK] Applied change: mtime for "
+            f"'{file_path.name}' is now {new_date.isoformat()} "
+            f"(from {source})."
         )
     except OSError as e:
-        print(f"Error updating mtime for '{file_path}': {e}")
+        print(f"[ERROR] Error applying changes to '{file_path}': {e}")
 
 
-def print_no_date_found(file_path: Path) -> None:
-    """Print that no date was found in the filename and no fallback was given."""
-    print(
-        (
-            f"! No date in filename for '{file_path.name}',"
-            " and no --date fallback provided.",
+def parse_arguments() -> argparse.Namespace:
+    """Parse command-line arguments using argparse."""
+    parser = argparse.ArgumentParser(
+        description=(
+            "Find a date in a filename and update the file's modification time."
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument(
+        "file_path",
+        type=Path,
+        help="The path to the file to process.",
+    )
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="Apply the changes. Without this flag, the script runs in dry-run mode.",
+    )
+    parser.add_argument(
+        "--date",
+        type=str,
+        default=None,
+        help=(
+            "A fallback date in yyyy-mm-dd format"
+            " to use if no date is found in the filename."
         ),
     )
-
-
-def parse_arguments(
-    args: list[str],
-) -> tuple[Path, bool, date | None]:
-    """Parse command-line arguments.
-
-    Args:
-        args: A list of command-line arguments (excluding script name).
-
-    Returns:
-        A tuple containing the file path, dry run flag, and an optional fallback date.
-
-    Raises:
-        ValueError: If arguments are invalid.
-
-    """
-    is_dry_run = False
-    fallback_date_str: str | None = None
-    file_paths: list[str] = []
-
-    i = 0
-    while i < len(args):
-        arg = args[i]
-        if arg == "--dry-run":
-            is_dry_run = True
-            i += 1
-        elif arg == "--date":
-            if i + 1 < len(args):
-                fallback_date_str = args[i + 1]
-                i += 2  # Consume both the flag and its value
-            else:
-                message = "--date flag requires a date argument"
-                raise ValueError(message)
-        else:
-            file_paths.append(arg)
-            i += 1
-
-    if len(file_paths) != 1:
-        message = "Exactly one file path must be provided"
-        raise ValueError(message)
-
-    file_path = Path(file_paths[0])
-    fallback_date = None
-    if fallback_date_str:
-        try:
-            fallback_date = (
-                datetime.strptime(
-                    fallback_date_str,
-                    "%Y-%m-%d",
-                )
-                .replace(tzinfo=timezone.UTC)
-                .date()
-            )
-        except ValueError:
-            message = "Invalid date format for --date. Please use yyyy-mm-dd."
-            raise ValueError(message) from None
-
-    return file_path, is_dry_run, fallback_date
+    return parser.parse_args()
 
 
 def main() -> None:
-    """Parse args and coordinate finding and setting the date."""
-    try:
-        file_path, is_dry_run, fallback_date = parse_arguments(sys.argv[1:])
-    except ValueError as e:
-        script_name = Path(sys.argv[0]).name
-        print(f"Error: {e}", file=sys.stderr)
+    """Coordinate the process of finding and setting the date."""
+    args = parse_arguments()
+    is_dry_run = not args.apply
+    file_path = args.file_path
+
+    # Determine the date to use, from filename or fallback
+    date_found = find_date_in_filename(file_path.name)
+    source = "filename"
+    if not date_found and args.date:
+        try:
+            date_found = datetime.strptime(args.date, "%Y-%m-%d").date()  # noqa: DTZ007
+            source = "CLI --date"
+        except ValueError:
+            print(
+                "[ERROR] Invalid date format for --date. Please use yyyy-mm-dd.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+    # If no date could be determined, exit
+    if not date_found:
         print(
-            f"\nUsage: {script_name} [--dry-run] [--date yyyy-mm-dd] <file_path>",
-            file=sys.stderr,
+            f"[INFO] No date in filename for '{file_path.name}',"
+            " and no --date fallback provided."
         )
-        sys.exit(1)
+        return
 
-    date_found = None
-    source = ""
+    # Check if the file's mtime should be updated
+    current_mtime = get_file_mtime_date(file_path)
+    if current_mtime is None:
+        return  # Error already printed by the helper function
 
-    # 1. Try to find date in the filename
-    if date_from_name := find_date_in_filename(file_path.name):
-        date_found = date_from_name
-        source = "filename"
-    # 2. If not found, use the fallback date if provided
-    elif fallback_date:
-        date_found = fallback_date
-        source = "CLI --date"
-
-    # 3. Update file or print message based on result
-    if date_found:
-        update_file_mtime(
-            file_path,
-            date_found,
-            source,
-            is_dry_run=is_dry_run,
+    if date_found >= current_mtime:
+        print(
+            f"[SKIP] Skipping '{file_path.name}':"
+            f" Found date ({date_found}) is not older "
+            f"than current mtime ({current_mtime})."
         )
-    else:
-        print_no_date_found(file_path)
+        return
+
+    # If all checks pass, perform the update
+    handle_file_update(file_path, date_found, source, is_dry_run=is_dry_run)
 
 
 if __name__ == "__main__":

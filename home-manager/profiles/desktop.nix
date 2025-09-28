@@ -32,7 +32,7 @@ in
       pkgs.czkawka
       pkgs.digikam
       pkgs.exercism
-      pkgs.keeweb
+      pkgs.keepassxc
       pkgs.libreoffice-fresh
       pkgs.meld
       pkgs.nitrogen

@@ -96,10 +96,9 @@ def rename_file_with_creation_timestamp_and_tags(
     # to our format.
     if not existing_timestamp:
         creation_time = file_path.stat().st_ctime
-        existing_timestamp = datetime.datetime.fromtimestamp(
-            creation_time,
-            tz=datetime.UTC,
-        ).strftime("%Y%m%dT%H%M%S")
+        existing_timestamp = datetime.datetime.fromtimestamp(creation_time).strftime(
+            "%Y%m%dT%H%M%S"
+        )
 
     formatted_title = format_title(raw_title=parsed_title)
 

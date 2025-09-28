@@ -8,7 +8,6 @@ argument allows specifying a custom date and time in ISO format.
 import argparse
 import sys
 from datetime import datetime
-from datetime import UTC
 from pathlib import Path
 
 
@@ -40,7 +39,7 @@ def _get_datetime_from_input(filepath: Path, date_str: str | None) -> datetime:
 
     # Get modification time as a timestamp and convert it to a datetime object
     mtime_timestamp = filepath.stat().st_mtime
-    return datetime.fromtimestamp(mtime_timestamp, tz=UTC)
+    return datetime.fromtimestamp(mtime_timestamp)
 
 
 def rename_file(filepath: Path, date_str: str | None = None) -> None:

@@ -7,7 +7,6 @@ import argparse
 import os
 import re
 import sys
-from datetime import UTC
 from datetime import date
 from datetime import datetime
 from datetime import time
@@ -31,7 +30,7 @@ def find_date_in_filename(filename: str) -> date | None:
                 # Special check for yyyymmdd to avoid matching random numbers
                 if date_format == "%Y%m%d":
                     year = int(match.group(1)[:4])
-                    current_year = datetime.now(UTC).year
+                    current_year = datetime.now().year
                     if not (MIN_VALID_YEAR <= year <= current_year + 1):
                         continue  # Skip if year is out of a reasonable range
 
@@ -49,7 +48,7 @@ def get_file_mtime_date(file_path: Path) -> date | None:
     """Get the modification time of a file as a date object."""
     try:
         mtime_ts = file_path.stat().st_mtime
-        return datetime.fromtimestamp(mtime_ts, tz=UTC).date()
+        return datetime.fromtimestamp(mtime_ts).date()
     except FileNotFoundError:
         print(f"[ERROR] File not found at '{file_path}'")
         return None

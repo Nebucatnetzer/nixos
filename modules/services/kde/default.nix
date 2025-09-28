@@ -20,6 +20,7 @@ in
       ];
       systemPackages = [
         pkgs.kdePackages.audiocd-kio
+        pkgs.krename
       ];
     };
     services = {

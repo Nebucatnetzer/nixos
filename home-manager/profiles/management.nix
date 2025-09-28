@@ -5,6 +5,7 @@
   ...
 }:
 let
+  date-to-filename = pkgs.callPackage "${inputs.self}/pkgs/date-to-filename" { };
   denote-rename = pkgs.callPackage "${inputs.self}/pkgs/denote-rename" { };
   update-file-dates = pkgs.callPackage "${inputs.self}/pkgs/update-file-dates" { };
   rebuild = pkgs.writeShellApplication {
@@ -44,6 +45,7 @@ in
       pkgs.nix-prefetch-github
       pkgs.nix-prefetch-scripts
       pkgs.nix-tree
+      date-to-filename
       denote-rename
       rebuild
       unlock-luks

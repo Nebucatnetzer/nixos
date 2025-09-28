@@ -13,7 +13,6 @@ let
         mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
     done
   '';
-  dap-sync = pkgs.callPackage "${inputs.self}/pkgs/dap-sync" { };
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
   unstable-pkgs = import inputs.nixpkgs-unstable {
     system = pkgs.system;
@@ -41,7 +40,6 @@ in
       pkgs.remmina
       pkgs.tagger
       az-media
-      dap-sync
       send-to-kindle
       unstable-pkgs.vscode
     ];

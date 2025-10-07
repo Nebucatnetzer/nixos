@@ -1,5 +1,5 @@
 # This code is fully AI generated.
-"""A script to set a file's date from its name or a CLI flag."""
+"""A script to set a file's date and time from its name or a CLI flag."""
 
 from __future__ import annotations
 
@@ -44,11 +44,30 @@ def find_date_in_filename(filename: str) -> date | None:
     return None
 
 
-def get_file_mtime_date(file_path: Path) -> date | None:
-    """Get the modification time of a file as a date object."""
+def find_time_in_filename(filename: str) -> time | None:
+    """Search for a time in various formats in a filename."""
+    # Patterns look for common separators like 'T', '_', or '-'
+    patterns = [
+        (r"[\sT_-](\d{2}-\d{2}-\d{2})", "%H-%M-%S"),  # HH-MM-SS
+        (r"[\sT_-](\d{6})", "%H%M%S"),  # HHMMSS
+    ]
+
+    for pattern, time_format in patterns:
+        if match := re.search(pattern, filename):
+            try:
+                return datetime.strptime(
+                    match.group(1), time_format
+                ).time()  # noqa: DTZ007
+            except ValueError:
+                continue
+    return None
+
+
+def get_file_mtime(file_path: Path) -> datetime | None:
+    """Get the modification time of a file as a datetime object."""
     try:
         mtime_ts = file_path.stat().st_mtime
-        return datetime.fromtimestamp(mtime_ts).date()
+        return datetime.fromtimestamp(mtime_ts)
     except FileNotFoundError:
         print(f"[ERROR] File not found at '{file_path}'")
         return None
@@ -56,7 +75,7 @@ def get_file_mtime_date(file_path: Path) -> date | None:
 
 def handle_file_update(
     file_path: Path,
-    new_date: date,
+    new_datetime: datetime,
     source: str,
     *,
     is_dry_run: bool,
@@ -65,18 +84,17 @@ def handle_file_update(
     if is_dry_run:
         print(
             f"DRY RUN: Would change mtime for '{file_path.name}' to "
-            f"{new_date.isoformat()} (from {source})."
+            f"{new_datetime.isoformat()} (from {source})."
         )
         return
 
     try:
-        dt_obj = datetime.combine(new_date, time.min)
-        new_mtime = dt_obj.timestamp()
+        new_mtime = new_datetime.timestamp()
         current_atime = file_path.stat().st_atime  # Preserve access time
         os.utime(file_path, (current_atime, new_mtime))
         print(
             "[OK] Applied change: mtime for "
-            f"'{file_path.name}' is now {new_date.isoformat()} "
+            f"'{file_path.name}' is now {new_datetime.isoformat()} "
             f"(from {source})."
         )
     except OSError as e:
@@ -87,7 +105,7 @@ def parse_arguments() -> argparse.Namespace:
     """Parse command-line arguments using argparse."""
     parser = argparse.ArgumentParser(
         description=(
-            "Find a date in a filename and update the file's modification time."
+            "Find a date/time in a filename and update the file's modification time."
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
@@ -106,26 +124,36 @@ def parse_arguments() -> argparse.Namespace:
         type=str,
         default=None,
         help=(
-            "A fallback date in yyyy-mm-dd format"
-            " to use if no date is found in the filename."
+            "A fallback date in yyyy-mm-dd format to use if no date is found"
+            " in the filename."
+        ),
+    )
+    parser.add_argument(
+        "--time",
+        type=str,
+        default=None,
+        help=(
+            "A fallback time in HH:MM:SS format to use. "
+            "If no time is found in the filename, this is used. "
+            "If this is not provided, midnight (00:00:00) is used."
         ),
     )
     return parser.parse_args()
 
 
 def main() -> None:
-    """Coordinate the process of finding and setting the date."""
+    """Coordinate the process of finding and setting the date and time."""
     args = parse_arguments()
     is_dry_run = not args.apply
     file_path = args.file_path
 
-    # Determine the date to use, from filename or fallback
-    date_found = find_date_in_filename(file_path.name)
-    source = "filename"
-    if not date_found and args.date:
+    # Determine the date part
+    date_part = find_date_in_filename(file_path.name)
+    date_source = "filename"
+    if not date_part and args.date:
         try:
-            date_found = datetime.strptime(args.date, "%Y-%m-%d").date()  # noqa: DTZ007
-            source = "CLI --date"
+            date_part = datetime.strptime(args.date, "%Y-%m-%d").date()  # noqa: DTZ007
+            date_source = "CLI --date"
         except ValueError:
             print(
                 "[ERROR] Invalid date format for --date. Please use yyyy-mm-dd.",
@@ -133,29 +161,49 @@ def main() -> None:
             )
             sys.exit(1)
 
-    # If no date could be determined, exit
-    if not date_found:
+    if not date_part:
         print(
             f"[INFO] No date in filename for '{file_path.name}',"
             " and no --date fallback provided."
         )
         return
 
+    # Determine the time part
+    time_part = find_time_in_filename(file_path.name)
+    time_source = "filename"
+    if not time_part and args.time:
+        try:
+            time_part = datetime.strptime(args.time, "%H:%M:%S").time()  # noqa: DTZ007
+            time_source = "CLI --time"
+        except ValueError:
+            print(
+                "[ERROR] Invalid time format for --time. Please use HH:MM:SS.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+    elif not time_part:
+        time_part = time.min  # Default to midnight
+        time_source = "default (midnight)"
+
+    # Combine date and time
+    datetime_found = datetime.combine(date_part, time_part)
+    source = f"date from {date_source}, time from {time_source}"
+
     # Check if the file's mtime should be updated
-    current_mtime = get_file_mtime_date(file_path)
+    current_mtime = get_file_mtime(file_path)
     if current_mtime is None:
         return  # Error already printed by the helper function
 
-    if date_found >= current_mtime:
+    if datetime_found >= current_mtime:
         print(
             f"[SKIP] Skipping '{file_path.name}':"
-            f" Found date ({date_found}) is not older "
+            f" Found datetime ({datetime_found}) is not older "
             f"than current mtime ({current_mtime})."
         )
         return
 
     # If all checks pass, perform the update
-    handle_file_update(file_path, date_found, source, is_dry_run=is_dry_run)
+    handle_file_update(file_path, datetime_found, source, is_dry_run=is_dry_run)
 
 
 if __name__ == "__main__":

@@ -55,6 +55,7 @@ in
   boot.kernelModules = [
     "kvm-intel"
     "sg"
+    "squashfs"
   ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
@@ -79,6 +80,7 @@ in
     "nfs"
     "nfs4"
     "ntfs"
+    "squashfs"
   ];
 
   fileSystems."/" = {

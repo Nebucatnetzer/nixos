@@ -13,6 +13,7 @@ pkgs.mkShellNoCC {
           p.python-lsp-server
           p.python-lsp-ruff
           p.black
+          p.docformatter
           p.isort
           p.mypy
           p.ruff

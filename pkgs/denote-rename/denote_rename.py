@@ -23,7 +23,6 @@ def parse_existing_filename(
         tuple[Optional[str], str, Optional[list[str]]]: A tuple with
         extracted timestamp, title, and tags, where timestamp and tags are optional.
         The extension gets dropped.
-
     """
     match = re.match(r"(\d{8}T\d{6})--([^_]+?)(?:__([^\.]+?))?(?:\.(.+))?$", filename)
 
@@ -39,8 +38,8 @@ def parse_existing_filename(
 def format_title(raw_title: str) -> str:
     """Convert {raw_title}.
 
-    To lowercase, replace spaces with '-' and all special characters with an
-    empty string.
+    To lowercase, replace spaces with '-' and all special characters
+    with an empty string.
     """
     cleaned_title = re.sub(
         r"[\[\]\{\}!@#\$%\^&\*\(\)\+\'\"?,\.\|;:~`‘’“”/=]+",  # noqa: RUF001
@@ -54,8 +53,8 @@ def format_title(raw_title: str) -> str:
 def format_tags(raw_tags: list[str]) -> list[str]:
     """Convert all given raw_tags.
 
-    To lowercase, replace spaces with '-' and all special
-    characters with an empty string.
+    To lowercase, replace spaces with '-' and all special characters
+    with an empty string.
     """
     formatted_tags = []
     for tag in raw_tags:
@@ -82,7 +81,6 @@ def rename_file_with_creation_timestamp_and_tags(
     Args:
         file_path (Path): The path to the file to be renamed.
         tags (Optional[list[str]]): An optional list of tags to append to the file name.
-
     """
     # Get the filename without extension
     original_filename = file_path.stem

@@ -1,8 +1,9 @@
 """A command-line script to rename a file to a timestamp format.
 
-This script renames a target file to the 'yyyymmddThhmmss.extension' format.
-By default, it uses the file's last modification time. An optional '--date'
-argument allows specifying a custom date and time in ISO format.
+This script renames a target file to the 'yyyymmddThhmmss.extension'
+format. By default, it uses the file's last modification time. An
+optional '--date' argument allows specifying a custom date and time in
+ISO format.
 """
 
 import argparse
@@ -24,7 +25,6 @@ def _get_datetime_from_input(filepath: Path, date_str: str | None) -> datetime:
 
     Raises:
         ValueError: If the provided date string has an invalid format.
-
     """
     if date_str:
         try:
@@ -55,7 +55,6 @@ def rename_file(filepath: Path, date_str: str | None = None) -> None:
         ValueError: If the provided date string is in an invalid format.
         FileExistsError: If a file with the new name already exists.
         PermissionError: If the script lacks permissions to rename the file.
-
     """
     dt_obj = _get_datetime_from_input(filepath, date_str)
 

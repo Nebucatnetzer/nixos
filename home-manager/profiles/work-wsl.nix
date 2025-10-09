@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   hm-rebuild = pkgs.writeShellApplication {
     name = "hm-rebuild";
@@ -6,6 +11,12 @@ let
     text = ''
       home-manager switch
     '';
+  };
+  unstable-pkgs = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config = {
+      allowUnfree = true;
+    };
   };
 in
 {
@@ -19,6 +30,7 @@ in
     '';
     packages = [
       pkgs.bottom
+      unstable-pkgs.claude-code
       pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.gyre-fonts
       pkgs.highlight

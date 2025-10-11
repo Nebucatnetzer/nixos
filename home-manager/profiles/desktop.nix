@@ -42,7 +42,6 @@ in
       az-media
       send-to-kindle
       unstable-pkgs.claude-code
-      unstable-pkgs.vscode
     ];
   };
 

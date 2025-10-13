@@ -116,6 +116,11 @@ in
             proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
+          locations."/stats" = {
+            basicAuthFile = searxngHtpasswd;
+            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
         };
       };
     };

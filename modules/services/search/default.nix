@@ -90,8 +90,8 @@ in
               categories = "general";
               search_type = "web";
               shortcut = "yd";
-              disabled = false;
-              inactive = true;
+              disabled = true;
+              inactive = false;
             }
             {
               name = "yandex images";
@@ -99,8 +99,8 @@ in
               categories = "images";
               search_type = "images";
               shortcut = "ydi";
-              disabled = false;
-              inactive = true;
+              disabled = true;
+              inactive = false;
             }
           ];
           search = {

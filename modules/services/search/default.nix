@@ -80,8 +80,29 @@ in
             };
           };
         };
+        # https://github.com/searxng/searxng/blob/master/searx/settings.yml
         settings = {
           use_default_settings = true;
+          engines = [
+            {
+              name = "yandex";
+              engine = "yandex";
+              categories = "general";
+              search_type = "web";
+              shortcut = "yd";
+              disabled = false;
+              inactive = true;
+            }
+            {
+              name = "yandex images";
+              engine = "yandex";
+              categories = "images";
+              search_type = "images";
+              shortcut = "ydi";
+              disabled = false;
+              inactive = true;
+            }
+          ];
           search = {
             autocomplete = "google";
             default_lang = "en";
@@ -102,35 +123,17 @@ in
           ui = {
             hotkeys = "vim";
             query_in_title = true;
+            results_on_new_tab = false;
             url_formatting = "full";
           };
 
           # Plugin configs
-          plugins = {
-            "searx.plugins.calculator.SXNGPlugin" = {
-              active = true;
-            };
-            "searx.plugins.hash_plugin.SXNGPlugin" = {
-              active = true;
-            };
-            "searx.plugins.self_info.SXNGPlugin" = {
-              active = true;
-            };
-            "searx.plugins.tracker_url_remover.SXNGPlugin" = {
-              active = true;
-            };
-            "searx.plugins.unit_converter.SXNGPlugin" = {
-              active = true;
-            };
-            "searx.plugins.hostnames.SXNGPlugin" = {
-              active = true;
-            };
-          };
-
           hostnames = {
             high_priority = [
               ''(.*\.)?wiki.nixos.org''
               ''(.*\.)?nix.dev''
+              ''(.*\.)?reddit.com''
+              ''(.*\.)?wikipedia.org$''
             ];
             remove = [
               ''search.nixos.org''

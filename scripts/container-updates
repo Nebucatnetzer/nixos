@@ -65,7 +65,6 @@ def main() -> None:
         "docker.io/nginx",
         "ghcr.io/actualbudget/actual-server",
         "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
-        "ghcr.io/nebucatnetzer/nextcloud-smb/nextcloud-smb",
         "lscr.io/linuxserver/plex",
     ]
 

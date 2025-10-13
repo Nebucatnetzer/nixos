@@ -83,9 +83,9 @@ in
         settings = {
           use_default_settings = true;
           search = {
-            autocomplete = "duckduckgo";
-            favicon_resolver = "duckduckgo";
+            autocomplete = "google";
             default_lang = "en";
+            favicon_resolver = "duckduckgo";
             languages = [
               "de-CH"
               "en"
@@ -95,35 +95,47 @@ in
             base_url = "https://searxng.zweili.org";
             bind_address = "0.0.0.0";
             image_proxy = true;
+            method = "GET";
             port = 8081;
             public_instance = false;
+          };
+          ui = {
+            hotkeys = "vim";
+            query_in_title = true;
+            url_formatting = "full";
+          };
 
-            # Plugin configs
-            plugins = {
-              "searx.plugins.calculator.SXNGPlugin" = {
-                active = true;
-              };
-              "searx.plugins.hash_plugin.SXNGPlugin" = {
-                active = true;
-              };
-              "searx.plugins.self_info.SXNGPlugin" = {
-                active = true;
-              };
-              "searx.plugins.tracker_url_remover.SXNGPlugin" = {
-                active = true;
-              };
-              "searx.plugins.unit_converter.SXNGPlugin" = {
-                active = true;
-              };
-              "searx.plugins.hostnames.SXNGPlugin" = {
-                active = true;
-              };
+          # Plugin configs
+          plugins = {
+            "searx.plugins.calculator.SXNGPlugin" = {
+              active = true;
             };
+            "searx.plugins.hash_plugin.SXNGPlugin" = {
+              active = true;
+            };
+            "searx.plugins.self_info.SXNGPlugin" = {
+              active = true;
+            };
+            "searx.plugins.tracker_url_remover.SXNGPlugin" = {
+              active = true;
+            };
+            "searx.plugins.unit_converter.SXNGPlugin" = {
+              active = true;
+            };
+            "searx.plugins.hostnames.SXNGPlugin" = {
+              active = true;
+            };
+          };
 
-            hostnames = {
-              high_priority = [ "wiki.nixos.org" ];
-              remove = [ "nixos.wiki" ];
-            };
+          hostnames = {
+            high_priority = [
+              ''(.*\.)?wiki.nixos.org''
+              ''(.*\.)?nix.dev''
+            ];
+            remove = [
+              ''search.nixos.org''
+              ''(.*\.)?nixos.wiki''
+            ];
           };
         };
       };

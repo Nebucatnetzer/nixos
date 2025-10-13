@@ -38,7 +38,7 @@ in
       containers."plex" = {
         autoStart = true;
         # https://fleet.linuxserver.io/image?name=linuxserver/plex
-        image = "lscr.io/linuxserver/plex:1.42.1@sha256:28f18c27b6822328df994154dbf7c0f511032d9f91bbd10881030b706afd8593";
+        image = "lscr.io/linuxserver/plex:1.42.2@sha256:06f1ee577e910c8cd2dbd9a9bcca82750d1678f994f6d754e55bc3d5f0d699cb";
         environment = {
           TZ = " Europe/Zurich ";
           PUID = "1000";

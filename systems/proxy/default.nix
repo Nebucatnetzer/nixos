@@ -1,9 +1,16 @@
 { hostname }:
-{ ... }:
+{ config, inputs, ... }:
 let
   blogPosts = "/var/lib/posts";
+  searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
 in
 {
+  age.secrets.searxngHtpasswd = {
+    file = "${inputs.self}/scrts/searxng_htpasswd.age";
+    mode = "640";
+    owner = "root";
+    group = config.services.nginx.group;
+  };
   hardware = {
     az-raspi4-ethernet = {
       enable = true;
@@ -22,6 +29,7 @@ in
       domains = [
         { fqdn = "www.zweili.ch"; }
         { fqdn = "search.zweili.org"; }
+        { fqdn = "searxng.zweili.org"; }
       ];
     };
     az-restic-client-server = {
@@ -85,7 +93,29 @@ in
           extraConfig = ''
             if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
           '';
-
+        };
+        "searxng.zweili.org" = {
+          enableACME = true;
+          forceSSL = true;
+          listen = [
+            {
+              port = 4433;
+              addr = "127.0.0.1";
+              ssl = true;
+            }
+          ];
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
+          extraConfig = ''
+            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          '';
+          locations."/search" = {
+            basicAuthFile = searxngHtpasswd;
+            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
+            proxyWebsockets = true; # needed if you need to use WebSocket
+          };
         };
       };
     };

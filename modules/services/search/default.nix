@@ -27,7 +27,7 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers."zweili-search-app" = {
-        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:41315364feb66c96ac5e06ece628bbce1e5675e7c1fa7192dc435f203f96769a";
+        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:d50f3e3d1ca5400e706306257d2268da528a0ecb2e075e1ad07034b042da83c5";
         autoStart = true;
         environmentFiles = [ config.age.secrets.zweiliSearchEnv.path ];
         environment = {
@@ -41,7 +41,7 @@ in
         networks = [ networkName ];
       };
       containers."zweili-search-nginx" = {
-        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-nginx:latest@sha256:7991f933fd4ff5b94ccdee2abedfd0c45a2e2bdb8a0445fcf77e22f8e223fe0e";
+        image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-nginx:latest@sha256:87f0b7698ed6cd5cf3770f22a6cc7da85364c7daac54b7db39b977711f3831e8";
         autoStart = true;
         ports = [ "8080:80" ];
         volumes = [

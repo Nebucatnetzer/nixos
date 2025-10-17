@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -107,6 +108,7 @@ in
     az-hunspell.enable = true;
     az-starship.enable = true;
     az-tmux.enable = true;
+    emacs.package = lib.mkForce pkgs.emacs-pgtk;
     direnv = {
       enable = true;
       nix-direnv.enable = true;

@@ -9,6 +9,7 @@ let
   cfg = config.services.az-search;
   networkName = "zweili-search";
   searxngEnv = config.age.secrets.searxngEnv.path;
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 {
   options = {
@@ -80,6 +81,7 @@ in
             };
           };
         };
+        package = unstable.searxng;
         # https://github.com/searxng/searxng/blob/master/searx/settings.yml
         settings = {
           use_default_settings = true;

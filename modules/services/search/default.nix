@@ -137,6 +137,9 @@ in
               ''(.*\.)?reddit.com''
               ''(.*\.)?wikipedia.org$''
             ];
+            low_priority = [
+              ''(.*\.)?medium.com''
+            ];
             remove = [
               ''search.nixos.org''
               ''(.*\.)?nixos.wiki''

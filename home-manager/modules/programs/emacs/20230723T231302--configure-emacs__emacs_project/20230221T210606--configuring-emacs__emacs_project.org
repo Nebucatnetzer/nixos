@@ -249,6 +249,11 @@ A searching tool for Org-mode, including custom query languages, commands, saved
 
 This could actually be helpful for finding stuff in my notes better or to help with project management.
 
+*** NEXT [[https://magit.vc/manual/forge.html][Forge User and Developer Manual]]
+[2025-09-24 Wed 10:03]
+
+Add Forge support so that I can manage issues and MRs directly from within Emacs.
+
 * Journal
 *2024-12-25*
 

@@ -413,6 +413,15 @@ The idea is to forward all non VPN traffic to the proxy.
 *** NEXT Migrate everything to zweili.org
 
 I would like to stop using the 2li.ch domain.
+- [ ] git.2li.ch is the only thing left
+
+*** NEXT Migrate DNS servers to Infomaniak
+
+I'm not fully comfortable with NameCheap and would like to migrate my DNS servers to Infomaniak.
+
+**** [[https://www.infomaniak.com/en/support/faq/2376/use-dyndns-via-infomaniak-api][🚀 Use DynDNS via Infomaniak API - Infomaniak]]
+[2025-09-22 Mon 08:33]
+
 
 ** Features
 :PROPERTIES:

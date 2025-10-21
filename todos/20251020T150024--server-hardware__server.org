@@ -1,0 +1,13 @@
+#+title: Server Hardware
+:preamble:
+#+date: [2025-10-20 Mon 15:00]
+#+filetags: :server:
+#+identifier: 20251020T150024
+#+author: Andreas Zweili
+#+setupfile: ~/nextcloud/99_archive/0000/settings/html_theme/setup/theme-readtheorg-local.setup
+#+latex_header: input{~/nextcloud/99_archive/0000/settings/latex/style.tex}
+:end:
+
+* Possible Hardware
+** [[https://aoostar.com/products/aoostar-wtr-pro-4-bay-90t-storage-amd-ryzen-7-5825u-nas-mini-pc-support-2-5-3-5-hdd-%E5%A4%8D%E5%88%B6][AOOSTAR WTR PRO AMD Ryzen 7 5825u 4 Bay Nas Mini PC – AOOSTAR Mini PC]]
+[2025-09-27 Sat 10:33]

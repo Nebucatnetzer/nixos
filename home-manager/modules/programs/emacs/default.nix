@@ -73,7 +73,6 @@ in
         unstable.emacsPackages.denote-journal
         unstable.emacsPackages.denote-org
         epkgs.elisp-refs
-        unstable.emacsPackages.ellama
         epkgs.embark
         epkgs.embark-consult
         epkgs.envrc

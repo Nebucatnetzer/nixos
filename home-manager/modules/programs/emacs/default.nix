@@ -19,8 +19,6 @@ in
       LSP_USE_PLISTS = "true";
     };
     home.packages = [
-      pkgs._0xpropo
-      pkgs._0xproto
       pkgs.emacs-lsp-booster
       pkgs.fd
       pkgs.multimarkdown

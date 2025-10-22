@@ -13,12 +13,6 @@ let
       home-manager switch
     '';
   };
-  unstable-pkgs = import inputs.nixpkgs-unstable {
-    system = pkgs.system;
-    config = {
-      allowUnfree = true;
-    };
-  };
 in
 {
   imports = [ ./headless.nix ];
@@ -31,7 +25,6 @@ in
     '';
     packages = [
       pkgs.bottom
-      unstable-pkgs.claude-code
       pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.gyre-fonts
       pkgs.highlight

@@ -14,12 +14,6 @@ let
     done
   '';
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
-  unstable-pkgs = import inputs.nixpkgs-unstable {
-    system = pkgs.system;
-    config = {
-      allowUnfree = true;
-    };
-  };
 in
 {
   imports = [ ./management.nix ];
@@ -41,7 +35,6 @@ in
       pkgs.tagger
       az-media
       send-to-kindle
-      unstable-pkgs.claude-code
     ];
   };
 

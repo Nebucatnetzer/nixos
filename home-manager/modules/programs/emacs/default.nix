@@ -50,7 +50,7 @@ in
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs;
+      package = pkgs.emacs-pgtk;
       extraPackages = epkgs: [
         epkgs.ace-window
         epkgs.ag

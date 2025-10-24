@@ -94,7 +94,6 @@ in
 
         # Org-mode"
         ".org-id-locations"
-        "*_archive"
 
         # flymake-mode"
         "*_flymake.*"
@@ -118,9 +117,6 @@ in
 
         # Flycheck"
         "flycheck_*.el"
-
-        # server auth directory"
-        "/server/"
 
         # projectiles files"
         ".projectile"

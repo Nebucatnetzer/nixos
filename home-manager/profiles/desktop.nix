@@ -28,7 +28,6 @@ in
       pkgs.keepassxc
       pkgs.libreoffice-fresh
       pkgs.meld
-      pkgs.nitrogen
       pkgs.plexamp
       pkgs.plex-desktop
       pkgs.remmina

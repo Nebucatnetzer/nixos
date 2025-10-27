@@ -15,12 +15,12 @@ let
 in
 melpaBuild {
   inherit pname;
-  version = "2.2.0";
+  version = "2.3.0";
   src = fetchFromGitHub {
     owner = "tanrax";
     repo = "${pname}.el";
-    rev = "51dfaeb4c512d5b0bc14322554fdd4a62555b5fa";
-    hash = "sha256-IfKnf0H3+HjbuaGdwUBWV/4oiUcL7z79cPLTzSDKZvk=";
+    rev = "463f91bda64bede60ed0278239f6243615a097bc";
+    hash = "sha256-/fXXFRJ5HtSDji6QmwSjJadz/k2rnBO6d4Fno+xmPVA=";
   };
 
   files = ''(:defaults "ui/*.el" "ui/**/*.el")'';

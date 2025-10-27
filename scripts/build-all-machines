@@ -6,6 +6,7 @@ import datetime
 import os
 import socket
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -15,8 +16,9 @@ def get_hosts(devenv_root: str) -> list[str]:
     cmd = ["nix", "eval", expr, "--apply", apply_expr]
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError:
-        print(result.stderr)
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+        sys.exit(error.returncode)
     hosts_str = result.stdout.strip().strip('"')
     return hosts_str.split()
 
@@ -26,8 +28,9 @@ def get_architecture(devenv_root: str, host: str) -> str:
     cmd = ["nix", "eval", expr]
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-    except subprocess.CalledProcessError:
-        print(result.stderr)
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+        sys.exit(error.returncode)
     return result.stdout.strip().strip('"')
 
 
@@ -54,9 +57,12 @@ def build_remotely_on_management(devenv_root: str, host: str) -> str:
         "--print-out-paths",
     ]
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=1800)
-    except subprocess.CalledProcessError:
-        print(result.stderr)
+        result = subprocess.run(
+            cmd, check=True, capture_output=True, text=True, timeout=1800
+        )
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+        sys.exit(error.returncode)
     return result.stdout.strip()
 
 
@@ -65,9 +71,12 @@ def build_locally(devenv_root: str, host: str) -> str:
     expr = f"{devenv_root}#nixosConfigurations.{host}.config.system.build.toplevel"
     cmd = ["nix", "build", expr, "--no-link", "--print-out-paths"]
     try:
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=1800)
-    except subprocess.CalledProcessError:
-        print(result.stderr)
+        result = subprocess.run(
+            cmd, check=True, capture_output=True, text=True, timeout=1800
+        )
+    except subprocess.CalledProcessError as error:
+        print(error.stderr)
+        sys.exit(error.returncode)
     store_path = result.stdout.strip()
     subprocess.run(["upload-to-cache", store_path], check=True)
     print()

@@ -30,6 +30,11 @@ Currently it is very annoying that god mode only works in certain buffers but no
 - [X] agenda
 
 *** NEXT [#C] Fix the theme in headless mode
+*** NEXT autocompletion doesn't work when updating org mode linkes
+
+When I have an org mode link to a file and I would like to point it to a different target I don't get any autocompletion when I press {C-c C-l}. It just displays the string and you have to type everything, hoping that you got the filename right.
+When you edit the link directly it works but then sort of breaks the link.
+
 ** Enhancements
 *** NEXT [#A] Org mode dynamic clocking
 

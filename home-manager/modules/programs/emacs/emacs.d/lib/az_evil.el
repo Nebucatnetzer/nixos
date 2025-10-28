@@ -19,8 +19,7 @@
     (kbd "n")       'evil-search-next
     (kbd "N")       'evil-search-previous
     (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
+    (kbd "C-u")     'evil-scroll-up)
 
   ;; Add vim keybindings to the ibuffer
   (evil-add-hjkl-bindings ibuffer-mode-map 'emacs
@@ -28,8 +27,7 @@
     (kbd "n")       'evil-search-next
     (kbd "N")       'evil-search-previous
     (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
+    (kbd "C-u")     'evil-scroll-up)
 
   ;; Add vim keybindings to the package mode
   (evil-add-hjkl-bindings package-menu-mode-map 'emacs
@@ -37,16 +35,14 @@
     (kbd "n")       'evil-search-next
     (kbd "N")       'evil-search-previous
     (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
+    (kbd "C-u")     'evil-scroll-up)
 
   (evil-add-hjkl-bindings helpful-mode-map 'emacs
     ;; (kbd "/")       'evil-search-forward
     (kbd "n")       'evil-search-next
     (kbd "N")       'evil-search-previous
     (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up
-    (kbd "C-w C-w") 'other-window)
+    (kbd "C-u")     'evil-scroll-up)
 
   (evil-mode 1))
 
@@ -85,11 +81,4 @@
     (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
     (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
     )
-
-  ;; evil keybindings for window movement
-  (global-set-key (kbd "M-h") 'windmove-left)
-  (global-set-key (kbd "M-l") 'windmove-right)
-  (global-set-key (kbd "M-k") 'windmove-up)
-  (global-set-key (kbd "M-j") 'windmove-down)
-
   )

@@ -16,13 +16,11 @@
       (kbd "n")       'evil-search-next
       (kbd "N")       'evil-search-previous
       (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up
-      (kbd "C-w C-w") 'other-window)
+      (kbd "C-u")     'evil-scroll-up)
 
     (evil-add-hjkl-bindings mu4e-view-mode-map 'emacs
       (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up
-      (kbd "C-w C-w") 'other-window)
+      (kbd "C-u")     'evil-scroll-up)
 
     (require 'smtpmail)
 

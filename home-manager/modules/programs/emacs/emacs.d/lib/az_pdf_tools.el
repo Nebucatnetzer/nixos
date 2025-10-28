@@ -9,7 +9,6 @@
     (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
     (add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
     ;; keyboard shortcuts
-    (define-key pdf-view-mode-map (kbd "C-w C-w") 'other-window)
     (define-key pdf-view-mode-map (kbd "j") 'pdf-view-next-page-command)
     (define-key pdf-view-mode-map (kbd "k") 'pdf-view-previous-page-command)
     (define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)

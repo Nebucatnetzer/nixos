@@ -220,8 +220,7 @@
       (kbd "C-u")     'evil-scroll-up
       (kbd "c")       'org-capture
       (kbd "$" )       'evil-end-of-line
-      (kbd "SPC") 'god-execute-with-current-bindings
-      (kbd "C-w C-w") 'other-window)
+      (kbd "SPC") 'god-execute-with-current-bindings)
 
     (setq org-attach-id-dir "resources/")
 

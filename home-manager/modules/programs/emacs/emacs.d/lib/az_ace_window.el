@@ -57,7 +57,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
      nil "[ace-window]")
     (message "Use `ace-window' to display next command buffer..."))
 
-  (keymap-global-set "M-O"  'ace-window-prefix)
+  ;;(keymap-global-set "M-O"  'ace-window-prefix)
 
   (defun ace-window-one-command ()
     (interactive)

@@ -89,7 +89,10 @@ in
           "en-GB"
           "de"
         ];
-        nativeMessagingHosts.packages = [ unstable.firefoxpwa ];
+        nativeMessagingHosts.packages = [
+          pkgs.kdePackages.plasma-browser-integration
+          unstable.firefoxpwa
+        ];
         preferences = {
           "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
           "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
@@ -106,6 +109,7 @@ in
           "services.sync.engine.passwords" = false; # Don't ask for passwords
           "browser.tabs.warnOnClose" = true;
           "browser.startup.couldRestoreSession.count" = 2; # Restore tabs on start
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
         };
       };
     };
@@ -137,6 +141,7 @@ in
         xdgOpenUsePortal = true;
         extraPortals = [
           pkgs.xdg-desktop-portal-gtk # required for plex
+          pkgs.kdePackages.xdg-desktop-portal-kde
         ];
       };
     };

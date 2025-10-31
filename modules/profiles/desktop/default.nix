@@ -1,11 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
   cfg = config.profiles.az-desktop;
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 {
   options = {
@@ -87,6 +89,7 @@ in
           "en-GB"
           "de"
         ];
+        nativeMessagingHosts.packages = [ unstable.firefoxpwa ];
         preferences = {
           "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
           "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
@@ -120,6 +123,7 @@ in
         pkgs.podman-compose
         pkgs.quickemu
         pkgs.unrar
+        unstable.firefoxpwa # required for firefx PWA support
       ];
       sessionVariables = {
         DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";

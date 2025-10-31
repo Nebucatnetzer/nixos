@@ -12,6 +12,8 @@
           ;; Example: (setq org-social-live-preview-url "https://org-social-preview.andros.dev/?post=")
           org-social-live-preview-url "https://org-social-preview.andros.dev/?post="
 
+          org-social-default-lang "en"
+
           ;; Use only relay followers instead of local follow list
           org-social-only-relay-followers-p nil)
 

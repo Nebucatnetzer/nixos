@@ -2,7 +2,7 @@
 ;; https://github.com/oantolin/embark
 (use-package embark
   :bind
-  (("C-." . embark-act)         ;; pick some comfortable binding
+  (("M-." . embark-act)         ;; pick some comfortable binding
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init

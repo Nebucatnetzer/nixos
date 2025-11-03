@@ -1,5 +1,20 @@
 ;; -*- lexical-binding: t; -*-
-;; add markdown-mode to edit markdown files
+(defun az-lang-tool ()
+  "Load flymake-languagetool and start flymake."
+  (interactive)
+  (require 'flymake-languagetool)
+  (flymake-languagetool-maybe-load)
+  (flymake-mode 1))
+
+(when (boundp 'enable-langtool)
+  (use-package flymake-languagetool
+    :hook ((latex-mode      . flymake-languagetool-load)
+           (org-mode        . flymake-languagetool-load)
+           (markdown-mode   . flymake-languagetool-load))
+    :init
+    (setq flymake-languagetool-server-jar "/etc/profiles/per-user/andreas/share/languagetool-server.jar" ;; not an actual path
+          flymake-languagetool-language "en-GB")))
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
@@ -30,3 +45,8 @@
                                                     filename)) "]]")))
 
   (define-key markdown-mode-map (kbd "C-c i") 'insert-file-name-as-wikilink))
+
+(use-package olivetti
+  :hook (markdown-mode . olivetti-mode)
+  :init
+  (setq olivetti-body-width 120))

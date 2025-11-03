@@ -25,6 +25,20 @@
             (eq major-mode 'dired-mode))
       (kill-buffer buffer))))
 
+;; taken from: https://emacsredux.com/blog/2025/06/01/let-s-make-keyboard-quit-smarter/
+(defun az-keyboard-quit ()
+  "Smater version of the built-in `keyboard-quit'.
+
+The generic `keyboard-quit' does not do the expected thing when
+the minibuffer is open.  Whereas we want it to close the
+minibuffer, even without explicitly focusing it."
+  (interactive)
+  (if (active-minibuffer-window)
+      (if (minibufferp)
+          (minibuffer-keyboard-quit)
+        (abort-recursive-edit))
+    (keyboard-quit)))
+
 (defun az-kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
@@ -270,6 +284,8 @@
 
   (setopt browse-url-browser-function 'browse-url-generic
           browse-url-generic-program (getenv "DEFAULT_BROWSER"))
+
+  (global-set-key [remap keyboard-quit] #'az-keyboard-quit)
 
   (setq-default
    fill-column 79

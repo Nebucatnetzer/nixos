@@ -22,6 +22,10 @@
       (kbd "C-d")     'evil-scroll-down
       (kbd "C-u")     'evil-scroll-up)
 
+    (with-eval-after-load 'mu4e
+      (evil-define-key 'normal mu4e-view-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
+      )
+
     (require 'smtpmail)
 
     ;; use msmtp

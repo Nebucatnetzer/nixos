@@ -60,6 +60,12 @@
   };
 
   networking = {
+    firewall.allowedTCPPorts = [
+      3389
+    ];
+    firewall.allowedUDPPorts = [
+      3389
+    ];
     useDHCP = false;
     hostName = hostname;
     hosts = {

@@ -6,6 +6,17 @@
   (flymake-languagetool-maybe-load)
   (flymake-mode 1))
 
+(use-package emacs
+  :config
+  ;; ispell settings
+  (setenv "DICTIONARY" "en_GB")
+  ;; ispell settings
+  (setopt ispell-program-name "hunspell"
+          ispell-local-dictionary "en_GB"
+          ispell-local-dictionary-alist
+          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
+            ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8))))
+
 (when (boundp 'enable-langtool)
   (use-package flymake-languagetool
     :hook ((latex-mode      . flymake-languagetool-load)
@@ -21,8 +32,8 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-  (setopt markdown-command "multimarkdown")
-  (setopt markdown-enable-wiki-links t
+  (setopt markdown-command "multimarkdown"
+          markdown-enable-wiki-links t
           markdown-wiki-link-alias-first t
           markdown-hide-urls t
           markdown-fontify-code-blocks-natively t

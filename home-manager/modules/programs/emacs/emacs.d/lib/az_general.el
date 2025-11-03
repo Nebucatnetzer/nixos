@@ -238,12 +238,6 @@ minibuffer, even without explicitly focusing it."
   (setopt inhibit-compacting-font-caches t)
   ;; Disable splash screen
   (setopt inhibit-splash-screen t)
-  ;; ispell settings
-  (setopt ispell-program-name "hunspell")
-  (setopt ispell-local-dictionary "en_GB")
-  (setopt ispell-local-dictionary-alist
-          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
-            ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8)))
 
   (setopt major-mode-remap-alist
           '(
@@ -339,8 +333,6 @@ minibuffer, even without explicitly focusing it."
   (menu-bar-mode -99)
   ;; file encodings
   (prefer-coding-system 'utf-8-unix)
-  ;; ispell settings
-  (setenv "DICTIONARY" "en_GB")
   ;; Matches parentheses and such in every mode
   (show-paren-mode 1)
 

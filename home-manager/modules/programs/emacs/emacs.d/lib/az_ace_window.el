@@ -3,8 +3,6 @@
 
 (use-package ace-window
   :init
-  ;; Redefine the list as I don't have transpose-frame installed atm.
-
   ;; inspired by: https://github.com/SalOrak/dotfiles/blob/32a48e11964e8c501c9e9bf0f63b50a6034c04cb/files/emacs/plugins/ace-window.el#L12
   (defun az/aw-consult-switch-buffer (window)
     "Switch the buffer of the selected window using `ace-window' ala `consult-projectile'"
@@ -18,7 +16,7 @@
       (?c aw-copy-window "Copy Window")
       (?j aw-switch-buffer-in-window "Select Buffer")
       (?n aw-flip-window)
-      (?u sk/aw-consult-switch-buffer "Switch Buffer Other Window")
+      (?u az/aw-consult-switch-buffer "Switch Buffer Other Window")
       (?e aw-execute-command-other-window "Execute Command Other Window")
       (?F aw-split-window-fair "Split Fair Window")
       (?v aw-split-window-vert "Split Vert Window")

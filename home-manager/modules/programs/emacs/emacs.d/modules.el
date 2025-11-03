@@ -8,6 +8,7 @@
 (load-file (modules-path "az_evil.el"))
 (load-file (modules-path "az_god_mode.el"))
 (load-file (modules-path "az_hydra.el"))
+(load-file (modules-path "az_hyperbole.el"))
 
 ;; looks
 (load-file (modules-path "az_ui.el"))
@@ -23,7 +24,6 @@
 
 ;; note taking and writing
 (load-file (modules-path "az_denote.el"))
-(load-file (modules-path "az_hyperbole.el"))
 (load-file (modules-path "az_org.el"))
 (load-file (modules-path "az_org_insert.el"))
 (load-file (modules-path "az_pdf_tools.el"))

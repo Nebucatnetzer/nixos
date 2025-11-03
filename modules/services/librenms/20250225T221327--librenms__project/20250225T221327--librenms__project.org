@@ -6,7 +6,6 @@
 #+category: 20250225-librenms
 
 * PROJECT LibreNMS
-
 ** NEXT Implement all the LibreNMS default configs
 
 https://github.com/librenms/librenms/blob/d231d628c537747e73a5decb1f6ee585ceffc647/resources/definitions/config_definitions.json#L4372

@@ -1,0 +1,5 @@
+* Gwyn
+** TODO Enable remote desktop on
+[2025-10-31 Fri 09:53]
+
+It would be nice to be able to run some tools on a different system.

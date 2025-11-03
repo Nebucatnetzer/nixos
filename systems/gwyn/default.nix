@@ -5,6 +5,9 @@
   pkgs,
   ...
 }:
+let
+  lib = pkgs.lib;
+in
 {
   imports = [ inputs.nixos-hardware.nixosModules.dell-precision-5530 ];
 
@@ -119,5 +122,8 @@
     udev.extraRules = ''
       ACTION=="add", ATTR{idVendor}=="0c45", ATTR{idProduct}=="671d", RUN="${pkgs.bash}/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"
     '';
+  };
+  home-manager.users.${config.az-username} = {
+    services.espanso.enable = lib.mkForce false;
   };
 }

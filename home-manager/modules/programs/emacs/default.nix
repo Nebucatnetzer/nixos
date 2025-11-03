@@ -54,7 +54,6 @@ in
       extraPackages = epkgs: [
         epkgs.ace-window
         epkgs.ag
-        epkgs.annotate
         epkgs.ansible
         epkgs.avy
         epkgs.bind-key

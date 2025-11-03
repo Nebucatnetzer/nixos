@@ -1,0 +1,214 @@
+;; -*- lexical-binding: t; -*-
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
+
+(use-package format-all
+  :hook
+  ((prog-mode . format-all-ensure-formatter)
+   (ansible-mode . format-all-ensure-formatter)
+   (yaml-mode . format-all-ensure-formatter)
+   (markdown-mode . format-all-ensure-formatter)
+   (markdown-mode . format-all-mode)
+   (prog-mode . format-all-mode))
+  :preface
+  (defun az-format-code ()
+    "format buffer."
+    (interactive)
+    (format-all-buffer))
+  :config
+  (global-set-key (kbd "C-c C-f") #'az-format-code)
+  (setq format-all-show-errors 'errors)
+  (setq format-all-default-formatters
+        '(("Assembly" asmfmt)
+          ("ATS" atsfmt)
+          ("Bazel" buildifier)
+          ("BibTeX" emacs-bibtex)
+          ("C" clang-format)
+          ("C#" clang-format)
+          ("C++" clang-format)
+          ("Cabal Config" cabal-fmt)
+          ("Clojure" zprint)
+          ("CMake" cmake-format)
+          ("Crystal" crystal)
+          ("CSS" prettier)
+          ("Cuda" clang-format)
+          ("D" dfmt)
+          ("Dart" dart-format)
+          ("Dhall" dhall)
+          ("Dockerfile" dockfmt)
+          ("Elixir" mix-format)
+          ("Elm" elm-format)
+          ("Emacs Lisp" emacs-lisp)
+          ("Erlang" efmt)
+          ("F#" fantomas)
+          ("Fish" fish-indent)
+          ("Fortran Free Form" fprettify)
+          ("GLSL" clang-format)
+          ("Go" gofmt)
+          ("GraphQL" prettier)
+          ("Haskell" ormolu)
+          ("HTML" html-tidy)
+          ("Java" (google-java-format))
+          ("JavaScript" prettier)
+          ("JSON" prettier)
+          ("JSON5" prettier)
+          ("Jsonnet" jsonnetfmt)
+          ("JSX" prettier)
+          ("Kotlin" ktlint)
+          ("LaTeX" latexindent)
+          ("Less" prettier)
+          ("Literate Haskell" brittany)
+          ("Lua" lua-fmt)
+          ("Markdown" prettier)
+          ("Nix" nixfmt)
+          ("Objective-C" clang-format)
+          ("OCaml" ocp-indent)
+          ("Perl" perltidy)
+          ("PHP" prettier)
+          ("Protocol Buffer" clang-format)
+          ("PureScript" purty)
+          ("Python" black)
+          ("R" styler)
+          ("Reason" bsrefmt)
+          ("ReScript" rescript)
+          ("Ruby" rufo)
+          ("Rust" rustfmt)
+          ("Scala" scalafmt)
+          ("SCSS" prettier)
+          ("Shell" (shfmt "-i" "4"))
+          ("Solidity" prettier)
+          ("SQL" sqlformat)
+          ("Svelte" prettier)
+          ("Swift" swiftformat)
+          ("Terraform" terraform-fmt)
+          ("TOML" prettier)
+          ("TSX" prettier)
+          ("TypeScript" prettier)
+          ("V" v-fmt)
+          ("Verilog" istyle-verilog)
+          ("Vue" prettier)
+          ("XML" html-tidy)
+          ("YAML" prettier)
+          ("Zig" zig)
+          ("_Angular" prettier)
+          ("_Flow" prettier)
+          ("_Gleam" gleam)
+          ("_Ledger" ledger-mode)
+          ("_Nginx" nginxfmt)
+          ("_Snakemake" snakefmt))))
+
+(use-package haskell-mode
+  :hook
+  (haskell-mode . eglot-ensure)
+  (haskell-literate-mode . eglot-ensure))
+
+(use-package flymake-ansible-lint
+  :ensure t
+  :commands flymake-ansible-lint-setup
+  :hook ((ansible-mode . flymake-ansible-lint-setup)
+         (ansible-mode . flymake-mode)))
+
+(use-package flymake-collection
+  :hook (after-init . flymake-collection-hook-setup))
+
+(use-package eglot-mode
+  :ensure nil
+  :config
+  (setq
+   eglot-autoshutdown t
+   eldoc-echo-area-use-multiline-p nil
+   gc-cons-threshold 100000000
+   read-process-output-max (* 1024 1024))
+  :bind
+  (:map eglot-mode-map
+        ("C-c C-r" . eglot-rename))
+  :commands (eglot eglot-code-actions eglot-rename))
+
+;; https://github.com/jdtsmith/eglot-booster
+(unless (package-installed-p 'eglot-booster)
+  (package-vc-install '(eglot-booster
+                        :url "https://github.com/jdtsmith/eglot-booster"
+                        )))
+(use-package eglot-booster
+  :ensure nil
+  :after eglot
+  :config
+  (eglot-booster-mode))
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
+
+(use-package magit
+  :demand t
+  :commands magit-status
+  :bind
+  ("<f10>" . magit-status)
+  :hook (git-commit-setup . flyspell-mode)
+  :config
+  (setq magit-diff-refine-hunk (quote all)
+        magit-save-repository-buffers 'dontask))
+
+(use-package nix-mode
+  :hook (nix-mode . eglot-ensure))
+
+(use-package nix-ts-mode
+  :mode "\\.nix\\'"
+  :hook (nix-ts-mode . eglot-ensure))
+
+(use-package powershell
+  :mode
+  (("\\.ps1\\'" . powershell-mode)
+   ("\\.psm1\\'" . powershell-mode)))
+
+;; used because I can mark arbitrary directories as projects
+;; Haven't found an alternative to the projectile-project-search-path yet
+(use-package projectile
+  :init
+  (projectile-mode +1)
+  :config
+  (setq projectile-project-search-path '(("~/.nixos" . 1)
+                                         "~/git_repos/projects/"
+                                         "~/git_repos/work/")
+        projectile-completion-system 'default
+        projectile-git-fd-args "-H -0 -E .git -tf --strip-cwd-prefix -c never"
+        projectile-ignored-project-function 'file-remote-p
+        projectile-switch-project-action #'projectile-dired)
+  )
+
+(use-package python-mode
+  :config
+  (setq python-shell-interpreter "python3")
+  (setq flymake-pylint-executable "pylint")
+  :hook ((python-ts-mode . eglot-ensure)
+         (eglot-managed-mode . pylint-setup-flymake-backend)))
+
+(use-package python-pytest
+  :config
+  (define-key python-ts-mode-map (kbd "C-c t" ) #'python-pytest-dispatch)
+  )
+
+(use-package flymake-ruff
+  :ensure t
+  :hook (eglot-managed-mode . flymake-ruff-load))
+
+;; https://github.com/federicotdn/verb
+;; A very nice restclient working with org-mode
+(use-package verb)
+
+(use-package web-mode
+  :mode
+  (("\\.phtml\\'" . web-mode)
+   ("\\.tpl\\'" . web-mode)
+   ("\\.[agj]sp\\'" . web-mode)
+   ("\\.as[cp]x\\'" . web-mode)
+   ("\\.erb\\'" . web-mode)
+   ("\\.mustache\\'" . web-mode)
+   ("\\.djhtml\\'" . web-mode)
+   ("\\.html?\\'" . web-mode))
+  :config
+  (add-to-list 'auto-mode-alist '("\\.php$" . my/php-setup))
+  (add-to-list 'auto-mode-alist '("\\.phpi$" . my/php-setup)))
+
+(use-package ansible
+  :after yaml-ts-mode
+  :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))

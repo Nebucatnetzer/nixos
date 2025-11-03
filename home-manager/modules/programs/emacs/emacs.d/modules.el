@@ -34,20 +34,8 @@
 (load-file (modules-path "az_pdf_tools.el"))
 
 ;; programming
-(load-file (modules-path "az_annotate.el"))
-(load-file (modules-path "az_envrc.el"))
-(load-file (modules-path "az_format_all.el"))
 (load-file (modules-path "az_flymake_pylint.el"))
-(load-file (modules-path "az_haskell.el"))
-(load-file (modules-path "az_languageserver.el"))
-(load-file (modules-path "az_magit.el"))
-(load-file (modules-path "az_nix.el"))
-(load-file (modules-path "az_powershell.el"))
-(load-file (modules-path "az_projectile.el"))
-(load-file (modules-path "az_python.el"))
-(load-file (modules-path "az_verb.el"))
-(load-file (modules-path "az_webmode.el"))
-(load-file (modules-path "az_yaml.el"))
+(load-file (modules-path "az_programming.el"))
 
 ;; various third party
 (load-file (modules-path "az_keyring_update.el"))

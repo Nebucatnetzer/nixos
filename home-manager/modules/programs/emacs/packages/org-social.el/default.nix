@@ -13,6 +13,7 @@ let
     request
   ];
 in
+# https://github.com/tanrax/org-social.el
 melpaBuild {
   inherit pname;
   version = "2.4.0";

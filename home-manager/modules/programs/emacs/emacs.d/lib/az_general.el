@@ -336,7 +336,6 @@ minibuffer, even without explicitly focusing it."
   ;; Matches parentheses and such in every mode
   (show-paren-mode 1)
 
-  (toggle-frame-maximized)
   (tool-bar-mode -1)
   (tooltip-mode -1)
   ;; enable mouse support in the terminal

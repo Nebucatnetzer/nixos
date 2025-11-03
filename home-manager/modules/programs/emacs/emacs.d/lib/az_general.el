@@ -407,3 +407,9 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (setq-default dired-listing-switches "-Ahl --group-directories-first")
   (setopt dired-auto-revert-buffer t))
+
+(use-package gnu-elpa-keyring-update)
+
+(use-package xclip
+  :config
+  (xclip-mode 1))

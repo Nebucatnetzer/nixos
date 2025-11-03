@@ -12,7 +12,6 @@
 ;; looks
 (load-file (modules-path "az_theme.el"))
 (load-file (modules-path "az_ui.el"))
-(load-file (modules-path "az_xclip.el"))
 
 ;; completion
 (load-file (modules-path "az_cape.el"))
@@ -38,7 +37,6 @@
 (load-file (modules-path "az_programming.el"))
 
 ;; various third party
-(load-file (modules-path "az_keyring_update.el"))
 (load-file (modules-path "az_manuals.el"))
 (load-file (modules-path "az_mu4e.el"))
 (load-file (modules-path "az_org_social_el.el"))

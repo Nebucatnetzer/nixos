@@ -10,7 +10,6 @@
 (load-file (modules-path "az_hydra.el"))
 
 ;; looks
-(load-file (modules-path "az_theme.el"))
 (load-file (modules-path "az_ui.el"))
 
 ;; completion

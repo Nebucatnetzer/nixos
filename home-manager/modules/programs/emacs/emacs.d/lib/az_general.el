@@ -95,9 +95,9 @@
   (interactive)
   (save-excursion
     (if (equal mark-active nil) (mark-word))
-    (setq curr-word (buffer-substring-no-properties (mark) (point)))
-    (setq old-string (read-string "Replace: " curr-word))
-    (setq new-string (read-string "With: " old-string))
+    (setopt curr-word (buffer-substring-no-properties (mark) (point))
+            old-string (read-string "Replace: " curr-word)
+            new-string (read-string "With: " old-string))
     (query-replace old-string new-string nil (point-min) (point-max))))
 
 

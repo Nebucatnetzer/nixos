@@ -69,51 +69,51 @@
 
     ;; Resize Org headings
     (setopt org-tags-column 0
-            org-use-tag-inheritance t)
+            org-use-tag-inheritance t
 
-    ;; disable line split with M-RET
-    (setq org-M-RET-may-split-line (quote ((default))))
+            ;; disable line split with M-RET
+            org-M-RET-may-split-line (quote ((default)))
 
-    ;; Allow headings with visibility folded to get folded when opening a file
-    (setq org-startup-folded 'nofold)
+            ;; Allow headings with visibility folded to get folded when opening a file
+            org-startup-folded 'nofold
 
-    ;; enable the correct intdentation for source code blocks
-    (setq org-edit-src-content-indentation 0)
-    (setq org-src-tab-acts-natively t)
-    (setq org-src-preserve-indentation t)
+            ;; enable the correct intdentation for source code blocks
+            org-edit-src-content-indentation 0
+            org-src-tab-acts-natively t
+            org-src-preserve-indentation t
 
-    ;; enable todo and checkbox depencies
-    (setq org-enforce-todo-dependencies t)
-    (setq org-enforce-todo-checkbox-dependencies t)
+            ;; enable todo and checkbox depencies
+            org-enforce-todo-dependencies t
+            org-enforce-todo-checkbox-dependencies t
 
-    ;; quick access for todo states
-    (setq org-todo-keywords
-          '((sequence "TODO(t)" "NEXT(n)" "WAITING(w!)" "PROJECT(p)" "|" "DONE(d)")
-            (sequence "|" "CANCELLED(c)")))
+            ;; quick access for todo states
+            org-todo-keywords
+            '((sequence "TODO(t)" "NEXT(n)" "WAITING(w!)" "PROJECT(p)" "|" "DONE(d)")
+              (sequence "|" "CANCELLED(c)"))
 
-    (setq org-log-done 'time)
-    (setq org-log-into-drawer t)
+            org-log-done 'time
+            org-log-into-drawer t)
 
     ;; capture templates
     (defun az-org-capture-read-file-name ()
       (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/01_inbox/")) ".org"))
 
-    (setq org-capture-templates
-          (quote
-           (("t" "Adds a Next entry" entry
-             (file+headline "~/nextcloud/01_inbox/00_inbox.org" "Capture")
-             (file "~/nextcloud/99_archive/0000/settings/templates/temp_personal_todo.txt")
-             :clock-in t
-             :clock-resume t
-             :empty-lines 1)
-            ("n" "Add note" plain (file az-org-capture-read-file-name)
-             (file "~/nextcloud/99_archive/0000/settings/templates/temp_note.txt"))
-            )))
+    (setopt org-capture-templates
+            (quote
+             (("t" "Adds a Next entry" entry
+               (file+headline "~/nextcloud/01_inbox/00_inbox.org" "Capture")
+               (file "~/nextcloud/99_archive/0000/settings/templates/temp_personal_todo.txt")
+               :clock-in t
+               :clock-resume t
+               :empty-lines 1)
+              ("n" "Add note" plain (file az-org-capture-read-file-name)
+               (file "~/nextcloud/99_archive/0000/settings/templates/temp_note.txt"))
+              ))
 
-    ;; org-refile options
-    (setq org-refile-allow-creating-parent-nodes (quote confirm))
-    (setq org-refile-use-outline-path 'file
-          org-outline-path-complete-in-steps nil)
+            ;; org-refile options
+            org-refile-allow-creating-parent-nodes (quote confirm)
+            org-refile-use-outline-path 'file
+            org-outline-path-complete-in-steps nil)
 
     (defun az-org-files-list ()
       (delq nil
@@ -121,21 +121,21 @@
                       (buffer-file-name buffer))
                     (org-buffer-list 'files t))))
 
-    (setq org-refile-targets '((az-org-files-list :maxlevel . 6)))
+    (setopt org-refile-targets '((az-org-files-list :maxlevel . 6))
 
-    (setq org-src-fontify-natively t)
+            org-src-fontify-natively t
 
-    (setq org-highlight-latex-and-related '(latex))
+            org-highlight-latex-and-related '(latex)
 
-    (setq org-image-actual-width (quote (500)))
-    (setq org-startup-with-inline-images t)
+            org-image-actual-width (quote (500))
+            org-startup-with-inline-images t
 
-    (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
-          org-clone-delete-id t)
+            org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id
+            org-clone-delete-id t
 
-    (setq org-blank-before-new-entry
-          (quote ((heading . t)
-                  (plain-list-item . auto))))
+            org-blank-before-new-entry
+            (quote ((heading . t)
+                    (plain-list-item . auto))))
 
     (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
     (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium)
@@ -151,34 +151,34 @@
     (set-face-attribute 'org-upcoming-deadline nil :foreground "#d70000" :weight 'normal)
     (set-face-attribute 'org-warning nil :foreground "#d70000" :weight 'normal)
 
-    (setq org-startup-shrink-all-tables t)
-
     ;; org-export formats
-    (setq org-export-backends (quote (beamer html latex md odt reveal)))
+    (setq  org-export-backends (quote (beamer html latex md odt reveal)))
 
-    (setq org-html-html5-fancy t
-          org-html-doctype "html5")
+    (setopt org-startup-shrink-all-tables t
 
-    ;; disable the Todo keywords in the export
-    (setq org-export-with-todo-keywords nil)
+            org-html-html5-fancy t
+            org-html-doctype "html5"
 
-    ;; disable the tags in the export
-    (setq org-export-with-tags nil)
+            ;; disable the Todo keywords in the export
+            org-export-with-todo-keywords nil
 
-    ;; place captions below images
-    (setq org-latex-caption-above nil)
+            ;; disable the tags in the export
+            org-export-with-tags nil
 
-    (setq org-export-with-sub-superscripts nil) ;; why is this needed?
+            ;; place captions below images
+            org-latex-caption-above nil
 
-    (setq org-export-with-smart-quotes t)
+            org-export-with-sub-superscripts nil ;; why is this needed?
 
-    (setq org-export-headline-levels 5)
+            org-export-with-smart-quotes t
 
-    ;; options for beamer exports
-    (setq org-beamer-frame-level 2)
-    (setq org-beamer-outline-frame-options "")
-    (setq org-beamer-outline-frame-title "Inhalt")
-    (setq org-beamer-theme "metropolis")
+            org-export-headline-levels 5
+
+            ;; options for beamer exports
+            org-beamer-frame-level 2
+            org-beamer-outline-frame-options ""
+            org-beamer-outline-frame-title "Inhalt"
+            org-beamer-theme "metropolis")
 
 
     ;; enable org-mode keys
@@ -222,53 +222,52 @@
       (kbd "$" )       'evil-end-of-line
       (kbd "SPC") 'god-execute-with-current-bindings)
 
-    (setq org-attach-id-dir "resources/")
+    (setopt org-attach-id-dir "resources/"
 
-    (setq org-todo-keyword-faces
-          `(("WAITING"   :foreground "#0087ff" :weight bold)
-            ("TODO" :foreground "#d75f00" :weight bold)
-            ("PROJECT"      :foreground "#626262" :weight bold)
-            ("NEXT"      :foreground "#d70000" :weight bold)))
+            ;; Set the agenda separator to a space character.
+            org-agenda-block-separator " "
+
+            org-archive-location
+            (concat "~/nextcloud/99_archive/"
+                    (format-time-string "%Y" (current-time)) "/projects/"
+                    (format-time-string "%Y-%m" (current-time)) "-%s::datetree/")
+
+            org-todo-keyword-faces
+            `(("WAITING"   :foreground "#0087ff" :weight bold)
+              ("TODO" :foreground "#d75f00" :weight bold)
+              ("PROJECT"      :foreground "#626262" :weight bold)
+              ("NEXT"      :foreground "#d70000" :weight bold)))
 
     ;; options for latex exports
-    (setq org-latex-classes
-          (quote
-           (("beamer" "\\documentclass{beamer}"
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-            ("article" "\\documentclass{article}"
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-             ("\\paragraph{%s}" . "\\paragraph*{%s}")
-             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-            ("report" "\\documentclass[11pt]{report}"
-             ("\\part{%s}" . "\\part*{%s}")
-             ("\\chapter{%s}" . "\\chapter*{%s}")
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
-            ("book" "\\documentclass[11pt]{book}"
-             ("\\part{%s}" . "\\part*{%s}")
-             ("\\chapter{%s}" . "\\chapter*{%s}")
-             ("\\section{%s}" . "\\section*{%s}")
-             ("\\subsection{%s}" . "\\subsection*{%s}")
-             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))))
-    (setq org-latex-default-packages-alist nil)
-    (setq org-latex-listings 'listings)
-    (setq org-latex-title-command "\\maketitle\\newpage")
-    (setq org-latex-toc-command "\\tableofcontents
-  \\newpage
-  ")
+    (setopt org-latex-classes
+            (quote
+             (("beamer" "\\documentclass{beamer}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+              ("article" "\\documentclass{article}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+              ("report" "\\documentclass[11pt]{report}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
+              ("book" "\\documentclass[11pt]{book}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+            org-latex-default-packages-alist nil
+            org-latex-listings 'listings
+            org-latex-title-command "\\maketitle\\newpage"
+            org-latex-toc-command "\\tableofcontents\\newpage")
 
-    ;; Set the agenda separator to a space character.
-    (setq org-agenda-block-separator " ")
-
-    (setq org-archive-location
-          (concat "~/nextcloud/99_archive/"
-                  (format-time-string "%Y" (current-time)) "/projects/"
-                  (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))
 
     ;; a function to call the custom agenda view.
     (defun az/custom-agenda (&optional arg)
@@ -278,30 +277,29 @@
     (global-set-key [f9] 'az/custom-agenda)
 
     ;; hide done tasks in the agenda
-    (setq org-agenda-skip-deadline-if-done t)
-    (setq org-agenda-skip-scheduled-if-done t)
-    (setq org-agenda-skip-timestamp-if-done t)
+    (setopt org-agenda-skip-deadline-if-done t
+            org-agenda-skip-scheduled-if-done t
+            org-agenda-skip-timestamp-if-done t
 
-    ;; Custom agenda command to list the stuck projects in the normal
-    ;; agenda view.
-    (setq org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
+            ;; Custom agenda command to list the stuck projects in the normal
+            ;; agenda view.
+            org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
 
-    (setq org-agenda-custom-commands
-          (quote (("A" "Custom Agenda"
-                   ((agenda "" nil)
-                    (stuck ""
-                           ((org-agenda-overriding-header "Stuck Projects")
-                            (org-agenda-sorting-strategy
-                             '(priority-down category-up))))
-                    (tags-todo "TODO=\"PROJECT\" "
-                               ((org-agenda-overriding-header "Projects")
-                                (org-agenda-sorting-strategy
-                                 '(priority-down category-up))))
-                    nil))
-                  ;; Show all headings with the corresponding TODO state
-                  ("N" occur-tree "NEXT")
-                  ("O" occur-tree "TODO")
-                  ("W" occur-tree "WAITING"))))
+    (setq org-agenda-custom-commands (quote (("A" "Custom Agenda"
+                                              ((agenda "" nil)
+                                               (stuck ""
+                                                      ((org-agenda-overriding-header "Stuck Projects")
+                                                       (org-agenda-sorting-strategy
+                                                        '(priority-down category-up))))
+                                               (tags-todo "TODO=\"PROJECT\" "
+                                                          ((org-agenda-overriding-header "Projects")
+                                                           (org-agenda-sorting-strategy
+                                                            '(priority-down category-up))))
+                                               nil))
+                                             ;; Show all headings with the corresponding TODO state
+                                             ("N" occur-tree "NEXT")
+                                             ("O" occur-tree "TODO")
+                                             ("W" occur-tree "WAITING"))))
 
     (defun my/org-agenda-skip-if-project-tagged-or-dated ()
       "Skip entry if it is a PROJECT, has a 'skip-agenda' tag, or has any date.
@@ -339,29 +337,27 @@ This function is intended for use with `org-agenda-skip-function'."
                               ))))
                  'append)
 
+    (setq org-agenda-sorting-strategy (quote
+                                       ((agenda priority-down todo-state-up category-up))))
+
     ;; don't show the warnings for deadlines if the item is scheduled
-    (setq org-agenda-skip-deadline-prewarning-if-scheduled t)
+    (setopt org-agenda-skip-deadline-prewarning-if-scheduled t
 
+            org-agenda-prefix-format '((agenda . " %i %-25:c%?-12t% s")
+                                       (todo . " %i %-25:c")
+                                       (tags . " %i %-25:c")
+                                       (search . " %i %-25:c"))
 
-    (setopt org-agenda-prefix-format
-            '((agenda . " %i %-25:c%?-12t% s")
-              (todo . " %i %-25:c")
-              (tags . " %i %-25:c")
-              (search . " %i %-25:c")))
+            ;; start the agenda on the current day and show the next 13 days
+            org-agenda-span 8
+            org-agenda-start-on-weekday nil
+            org-agenda-show-future-repeats (quote next)
 
-    ;; start the agenda on the current day and show the next 13 days
-    (setq org-agenda-span 8
-          org-agenda-start-on-weekday nil)
-    (setq org-agenda-show-future-repeats (quote next))
-    (setq org-agenda-sorting-strategy
-          (quote
-           ((agenda priority-down todo-state-up category-up))))
+            ;; dimm open tasks
+            org-agenda-dim-blocked-tasks t
 
-    ;; dimm open tasks
-    (setq org-agenda-dim-blocked-tasks t)
-
-    ;; Put the tags in a more visible spot
-    (setopt org-agenda-tags-column -120)
+            ;; Put the tags in a more visible spot
+            org-agenda-tags-column -120)
 
     ;; automatically refresh the agenda after adding a task
     (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
@@ -417,11 +413,11 @@ This function is intended for use with `org-agenda-skip-function'."
                                  convert-command)))
 
     ;; Calender should start on Monday
-    (setq calendar-week-start-day 1)
+    (setopt calendar-week-start-day 1
 
-    ;; Enable additional org modules
-    ;; org-checklist to un-toggle checklists when a repeating task gets set to done
-    (setopt org-modules
+            ;; Enable additional org modules
+            ;; org-checklist to un-toggle checklists when a repeating task gets set to done
+            org-modules
             '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc ol-mhe
                       ol-rmail ol-w3m org-checklist))
 
@@ -446,25 +442,25 @@ This function is intended for use with `org-agenda-skip-function'."
 
       (org-clock-persistence-insinuate)
 
-      (setq org-clock-out-remove-zero-time-clocks t)
-      (setq org-clock-out-when-done t)
+      (setopt org-clock-out-remove-zero-time-clocks t
+              org-clock-out-when-done t
 
-      (setq org-clock-persist t)
-      ;; Do not prompt to resume an active clock
-      (setq org-clock-persist-query-resume nil)
+              org-clock-persist t
+              ;; Do not prompt to resume an active clock
+              org-clock-persist-query-resume nil)
 
       (global-set-key (kbd "<f7>") 'org-clock-in)
       (global-set-key (kbd "<f8>") 'org-clock-out)
       (global-set-key (kbd "C-x C-d") 'org-clock-mark-default-task)
 
-      (setq org-duration-format (quote (("h") (special . 2))))
+      (setopt org-duration-format (quote (("h") (special . 2)))
 
-      (setq org-agenda-clockreport-parameter-plist
-            (quote (:link t :maxlevel 4 :tcolumns 3))))
+              org-agenda-clockreport-parameter-plist
+              (quote (:link t :maxlevel 4 :tcolumns 3))
 
-    (setopt org-clocktable-defaults '(:maxlevel 2 :lang "en" :scope file :block nil :wstart 1 :mstart 1 :tstart nil
-                                                :tend nil :step nil :stepskip0 nil :fileskip0 t :tags nil :match nil
-                                                :emphasize nil :link nil :narrow 40! :indent t :filetitle nil
-                                                :hidefiles t :formula nil :timestamp nil :level nil :tcolumns nil
-                                                :formatter nil))
-    ))
+              org-clocktable-defaults '(:maxlevel 2 :lang "en" :scope file :block nil :wstart 1 :mstart 1 :tstart nil
+                                                  :tend nil :step nil :stepskip0 nil :fileskip0 t :tags nil :match nil
+                                                  :emphasize nil :link nil :narrow 40! :indent t :filetitle nil
+                                                  :hidefiles t :formula nil :timestamp nil :level nil :tcolumns nil
+                                                  :formatter nil))
+      )))

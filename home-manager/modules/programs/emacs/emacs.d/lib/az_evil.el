@@ -2,16 +2,16 @@
 ;; evil-mode allows to use vim keybindings
 (use-package evil
   :init
-  (setq evil-undo-system 'undo-redo
-        evil-want-integration t ;; required by evil-collection
-        evil-want-keybinding nil) ;; required by evil-collection
+  (setopt evil-undo-system 'undo-redo
+          evil-want-integration t ;; required by evil-collection
+          evil-want-keybinding nil) ;; required by evil-collection
 
   :config
   ;; Start these modes in emacs mode
   (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
   (general-def :states 'motion
     "/" 'consult-line)
-  (setq global-evil-search-highlight-persist t)
+  (setopt global-evil-search-highlight-persist t)
 
   ;; Add vim keybindings to the bookmark menu
   (evil-add-hjkl-bindings bookmark-bmenu-mode-map 'emacs
@@ -53,7 +53,7 @@
     then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
+      (setopt deactivate-mark  t)
     (when (get-buffer "*Completions*")
       (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))

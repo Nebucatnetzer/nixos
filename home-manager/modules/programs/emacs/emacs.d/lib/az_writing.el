@@ -12,8 +12,8 @@
            (org-mode        . flymake-languagetool-load)
            (markdown-mode   . flymake-languagetool-load))
     :init
-    (setq flymake-languagetool-server-jar "/etc/profiles/per-user/andreas/share/languagetool-server.jar" ;; not an actual path
-          flymake-languagetool-language "en-GB")))
+    (setopt flymake-languagetool-server-jar "/etc/profiles/per-user/andreas/share/languagetool-server.jar" ;; not an actual path
+            flymake-languagetool-language "en-GB")))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
@@ -21,15 +21,15 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init
-  (setq markdown-command "multimarkdown")
-  (setq markdown-enable-wiki-links t
-        markdown-wiki-link-alias-first t
-        markdown-hide-urls t
-        markdown-fontify-code-blocks-natively t
-        markdown-wiki-link-search-type '(project)
-        markdown-unordered-list-item-prefix "    - "
-        markdown-italic-underscore t
-        markdown-link-space-sub-char " ")
+  (setopt markdown-command "multimarkdown")
+  (setopt markdown-enable-wiki-links t
+          markdown-wiki-link-alias-first t
+          markdown-hide-urls t
+          markdown-fontify-code-blocks-natively t
+          markdown-wiki-link-search-type '(project)
+          markdown-unordered-list-item-prefix "    - "
+          markdown-italic-underscore t
+          markdown-link-space-sub-char " ")
   (add-hook 'markdown-mode-hook '(lambda ()
                                    (set (make-local-variable
                                          'yas-indent-line) 'fixed)))
@@ -37,7 +37,7 @@
   (add-hook 'markdown-mode-hook
             (defun az-markdown-editing ()
               "My settings for message composition."
-              (setq whitespace-line-column 500)
+              (setopt whitespace-line-column 500)
               (turn-off-auto-fill)))
   (defun insert-file-name-as-wikilink (filename &optional args)
     (interactive "*fInsert file name: \nP")
@@ -49,4 +49,4 @@
 (use-package olivetti
   :hook (markdown-mode . olivetti-mode)
   :init
-  (setq olivetti-body-width 120))
+  (setopt olivetti-body-width 120))

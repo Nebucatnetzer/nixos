@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 (use-package highlight-indent-guides
   :config
-  (setq highlight-indent-guides-method 'character
-        hightlight-indentation-mode nil
-        highlight-indent-guides-auto-enabled nil)
+  (setopt highlight-indent-guides-method 'character
+          hightlight-indentation-mode nil
+          highlight-indent-guides-auto-enabled nil)
   (set-face-background 'highlight-indent-guides-odd-face "darkgray")
   (set-face-background 'highlight-indent-guides-even-face "gray")
   (set-face-foreground 'highlight-indent-guides-character-face "gray")
@@ -18,23 +18,23 @@
 ;; smooth scrolling
 (use-package smooth-scrolling
   :config
-  (setq scroll-margin 1
-        scroll-conservatively 9999
-        scroll-step 1))
+  (setopt scroll-margin 1
+          scroll-conservatively 9999
+          scroll-step 1))
 
 (when (boundp 'enable-color-theme)
   ;; load solarized color theme
   (use-package solarized-theme
     :config
-    (setq solarized-use-variable-pitch nil)
-    (setq solarized-scale-org-headlines nil)
-    (setq solarized-high-contrast-mode-line t)
+    (setopt solarized-use-variable-pitch nil
+            solarized-scale-org-headlines nil
+            solarized-high-contrast-mode-line t)
     (set-face-inverse-video 'region nil)
     (load-theme 'solarized-light t)))
 
 ;; highlight bad whitespace
 (use-package whitespace
   :config
-  (setq whitespace-style '(face lines-tail tabs trailing))
+  (setopt whitespace-style '(face lines-tail tabs trailing))
   (set-face-attribute 'whitespace-line nil :foreground "#af005f")
   (global-whitespace-mode t))

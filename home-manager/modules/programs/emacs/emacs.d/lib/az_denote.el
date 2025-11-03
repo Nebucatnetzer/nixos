@@ -34,5 +34,5 @@
   :bind
   ("C-c n t" . denote-journal-new-or-existing-entry)
   :config
-  (setq denote-journal-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
-        denote-journal-title-format 'day-date-month-year))
+  (setopt denote-journal-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
+          denote-journal-title-format 'day-date-month-year))

@@ -17,4 +17,4 @@
 
 (when (boundp 'enable-pdf-tools)
   ;; improve the resolution of doc-view
-  (setq doc-view-resolution 200))
+  (setopt doc-view-resolution 200))

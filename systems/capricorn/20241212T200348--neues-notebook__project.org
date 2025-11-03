@@ -6,6 +6,20 @@
 #+category: 20241212-notebook
 
 * PROJECT Neues Notebook
+** NEXT Fix webcam
+:LOGBOOK:
+- State "WAITING"    from "NEXT"       [2025-02-15 Sat 14:53]
+:END:
+
+Seems to be a firmware bug.
+- https://github.com/NixOS/nixpkgs/issues/225743
+
+- Other issue tracking this issue and probably more relevant than the NixOS issue.
+
+**[2025-11-03]**
+
+There have been some updates in the thread I should try out.
+
 ** NEXT Enable kanata
 
 It's a software that lets you remap keyboard keys.
@@ -25,17 +39,10 @@ Not really a high priority.
 
 [[https://www.kernel.org/doc/html/v5.4/power/basic-pm-debugging.html][Debugging hibernation and suspend — The Linux Kernel documentation]]
 
-** WAITING Fix webcam
-:LOGBOOK:
-- State "WAITING"    from "NEXT"       [2025-02-15 Sat 14:53]
-:END:
-
-Seems to be a firmware bug.
-- https://github.com/NixOS/nixpkgs/issues/225743
-
-- Other issue tracking this issue and probably more relevant than the NixOS issue.
-
 ** Features to add
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 
 The following tasks enable certain hardware features that I currently don't have on any of my hardware.
 Namely face unlock and the finger print reader.
@@ -61,23 +68,27 @@ Besides that at home my notebook is quite far away so it isn't that useful for m
 
 Fingerprint currently doesn't work with my display manager[fn:3]. But once It has support I can look at it again.
 
-** DONE Buy a SIM card for the notebook
+** Finished
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+*** DONE Buy a SIM card for the notebook
 CLOSED: [2025-02-11 Tue 17:38] SCHEDULED: <2025-01-31 Fri>
 
 Looks like one currently can't buy additional SIM cards with Yallo.
 
-** DONE Check power consumption
+*** DONE Check power consumption
 CLOSED: [2025-01-17 Fri 13:20]
 
 Looks good, about 7 watts on average and in idle it goes down to 2W.
 
-** DONE Enable deduplication on btrfs
+*** DONE Enable deduplication on btrfs
 CLOSED: [2025-01-21 Tue 22:34]
 
-** DONE Learn btrfs commands
+*** DONE Learn btrfs commands
 CLOSED: [2025-01-20 Mon 18:34]
 
-** DONE Fix suspend
+*** DONE Fix suspend
 CLOSED: [2025-01-26 Sun 10:22]
 
 Turns that it was caused by the currently bad webcam driver.
@@ -93,7 +104,7 @@ The system always wakes up with a black screen and doesn't react at all.
 https://sawyershepherd.org/post/hibernating-to-an-encrypted-swapfile-on-btrfs-with-nixos/
 https://web.archive.org/web/20230502010825/https://01.org/blogs/rzhang/2015/best-practice-debug-linux-suspend/hibernate-issues
 
-** DONE Fix intel graphics and freezes
+*** DONE Fix intel graphics and freezes
 CLOSED: [2025-01-26 Sun 10:26]
 
 - [X] Plain kernel without additional stuff :: works but poor performance and boot is messed up
@@ -127,7 +138,7 @@ With i915 enabled I'm not getting any hardware acceleration but the system doesn
 
 ~"split_lock_detect=off"~ did nothing for the freezes.
 
-** DONE [#A] Copy the VPN config
+*** DONE [#A] Copy the VPN config
 CLOSED: [2025-01-17 Fri 18:12] SCHEDULED: <2025-01-17 Fri>
 
 * Footnotes

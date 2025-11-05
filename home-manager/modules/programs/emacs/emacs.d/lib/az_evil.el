@@ -3,6 +3,7 @@
 (use-package evil
   :init
   (setopt evil-undo-system 'undo-redo
+          evil-want-C-i-jump nil ;; otherwhie TAB doesn't work in org mode
           evil-want-integration t ;; required by evil-collection
           evil-want-keybinding nil) ;; required by evil-collection
 

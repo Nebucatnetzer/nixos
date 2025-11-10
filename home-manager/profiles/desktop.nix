@@ -21,9 +21,12 @@ in
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
     packages = [
+      # photographie packages
+      pkgs.art
+      pkgs.digikam
+
       pkgs.chromium # needed for cloud gaming and flashing zsa
       pkgs.czkawka
-      pkgs.digikam
       pkgs.exercism
       pkgs.keepassxc
       pkgs.libreoffice-fresh

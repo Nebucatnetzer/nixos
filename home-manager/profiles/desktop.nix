@@ -25,6 +25,11 @@ in
       pkgs.art
       pkgs.digikam
 
+      # wine
+      pkgs.bottles
+      pkgs.wine-wayland
+      pkgs.wineWowPackages.waylandFull
+
       pkgs.chromium # needed for cloud gaming and flashing zsa
       pkgs.czkawka
       pkgs.exercism

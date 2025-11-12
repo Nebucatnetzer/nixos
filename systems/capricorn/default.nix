@@ -6,7 +6,7 @@
 }:
 let
   commonBtrfsOptions = [
-    "compress=zstd"
+    "compress=lzo"
     "defaults"
     "noatime"
     "ssd"

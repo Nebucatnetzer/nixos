@@ -108,6 +108,7 @@ in
           "browser.tabs.warnOnClose" = true;
           "browser.urlbar.showSearchSuggestionsFirst" = false; # Show history results before internet search
           "extensions.pocket.enabled" = false;
+          "media.webrtc.camera.allow-pipewire" = true;
           "services.sync.engine.passwords" = false; # Don't ask for passwords
           "widget.use-xdg-desktop-portal.file-picker" = 1;
         };

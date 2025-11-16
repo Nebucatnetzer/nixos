@@ -95,20 +95,20 @@ in
         ];
         preferences = {
           "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
+          "browser.contentblocking.category" = "strict"; # Strong content blocking
           "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
           "browser.ml.chat.enabled" = false; # Disable ChatGPT
-          "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
-          "browser.shell.checkDefaultBrowser" = false; # Don't check if Firefox is the default, we know it is.
-          "browser.urlbar.showSearchSuggestionsFirst" = false; # Show history results before internet search
-          "extensions.pocket.enabled" = false;
           "browser.newtabpage.activity-stream.feeds.topsites" = true; # I like to see my top sites
+          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false; # Hide advertising
           "browser.newtabpage.activity-stream.topSitesRows" = 4;
-          "browser.contentblocking.category" = "strict"; # Strong content blocking
-          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
-          "services.sync.engine.passwords" = false; # Don't ask for passwords
-          "browser.tabs.warnOnClose" = true;
+          "browser.onboarding.enabled" = false; # "New to Firefox? Let's get started!" tour
+          "browser.shell.checkDefaultBrowser" = false; # Don't check if Firefox is the default, we know it is.
           "browser.startup.couldRestoreSession.count" = 2; # Restore tabs on start
+          "browser.tabs.warnOnClose" = true;
+          "browser.urlbar.showSearchSuggestionsFirst" = false; # Show history results before internet search
+          "extensions.pocket.enabled" = false;
+          "services.sync.engine.passwords" = false; # Don't ask for passwords
           "widget.use-xdg-desktop-portal.file-picker" = 1;
         };
       };

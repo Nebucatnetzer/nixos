@@ -34,7 +34,7 @@ in
       pkgs.czkawka
       pkgs.exercism
       pkgs.keepassxc
-      pkgs.libreoffice-fresh
+      pkgs.libreoffice-qt-fresh
       pkgs.meld
       pkgs.plexamp
       pkgs.plex-desktop

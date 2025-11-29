@@ -29,7 +29,6 @@ in
         pkgs.kdePackages.kdepim-addons # display calendar events in the taskbar calendar
         pkgs.kdePackages.kdepim-runtime # backend for PIM
         pkgs.kdePackages.korganizer # required to connect to caldav
-        pkgs.kdePackages.merkuro # calendar
 
         pkgs.kdePackages.kauth
         pkgs.kdePackages.kwallet-pam # for kwallet automatic login

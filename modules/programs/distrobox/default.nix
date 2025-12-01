@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.programs.az-distrobox;
-  distrobox = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.distrobox;
+  distrobox = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.distrobox;
 in
 {
   options = {

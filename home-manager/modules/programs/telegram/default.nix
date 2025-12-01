@@ -7,7 +7,8 @@
 }:
 let
   cfg = config.programs.az-telegram;
-  telegram = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.telegram-desktop;
+  telegram =
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop;
 in
 {
   options = {

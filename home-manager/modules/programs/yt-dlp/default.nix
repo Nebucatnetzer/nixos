@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.programs.az-yt-dlp;
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options = {

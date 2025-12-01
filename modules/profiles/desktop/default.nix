@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.profiles.az-desktop;
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options = {

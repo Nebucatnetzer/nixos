@@ -14,7 +14,7 @@ let
     "ssd"
   ];
   toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
-  foxFlss = inputs.fox-flss.packages.${pkgs.system}.default;
+  foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
     name = "enable-wwan";
     runtimeInputs = [

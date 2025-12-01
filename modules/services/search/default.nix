@@ -9,7 +9,7 @@ let
   cfg = config.services.az-search;
   networkName = "zweili-search";
   searxngEnv = config.age.secrets.searxngEnv.path;
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   options = {

@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.programs.az-signal;
-  signal = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.signal-desktop;
+  signal = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.signal-desktop;
 in
 {
   options = {

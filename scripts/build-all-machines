@@ -24,7 +24,7 @@ def get_hosts(devenv_root: str) -> list[str]:
 
 
 def get_architecture(devenv_root: str, host: str) -> str:
-    expr = f"{devenv_root}#nixosConfigurations.{host}.pkgs.system"
+    expr = f"{devenv_root}#nixosConfigurations.{host}.pkgs.stdenv.hostPlatform.system"
     cmd = ["nix", "eval", expr]
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)

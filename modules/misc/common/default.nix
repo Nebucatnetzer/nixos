@@ -6,7 +6,7 @@
   ...
 }:
 let
-  system = pkgs.system;
+  system = pkgs.stdenv.hostPlatform.system;
   GiB = 1024 * 1024 * 1024;
 in
 {

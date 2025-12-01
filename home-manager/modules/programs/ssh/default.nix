@@ -10,6 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.ssh = {
       enable = true;
+      enableDefaultConfig = false;
       extraConfig = ''
         Host nixos.2li.local
           StrictHostKeyChecking no
@@ -36,6 +37,18 @@ in
           IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
           Port 2222
       '';
+      matchBlocks."*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
     };
   };
 }

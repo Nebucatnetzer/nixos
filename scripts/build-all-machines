@@ -72,7 +72,7 @@ def build_locally(devenv_root: str, host: str) -> str:
     cmd = ["nix", "build", expr, "--no-link", "--print-out-paths"]
     try:
         result = subprocess.run(
-            cmd, check=True, capture_output=True, text=True, timeout=1800
+            cmd, check=True, capture_output=True, text=True, timeout=3600
         )
     except subprocess.CalledProcessError as error:
         print(error.stderr)

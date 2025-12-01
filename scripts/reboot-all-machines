@@ -40,7 +40,6 @@ def main() -> None:
         "gwyn",
         "loki-test",
         "mobile",
-        "staubfinger",
         "test-raspi",
     ]
 

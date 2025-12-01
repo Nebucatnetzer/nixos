@@ -46,9 +46,6 @@
         "plex" = { };
         "proxy" = { };
         "restic-server" = { };
-        "staubfinger" = {
-          home-module = "desktop";
-        };
         "ttrss" = { };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (

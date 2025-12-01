@@ -29,7 +29,6 @@ def main(command: str) -> None:
         "gwyn",
         "loki-test",
         "mobile",
-        "staubfinger",
         "test-raspi",
     ]
 

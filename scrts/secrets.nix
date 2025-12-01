@@ -18,7 +18,6 @@ let
   nixos-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcmWE9b7GQKOOq61gYLdFA5uZ+hhpBYePmmdRDGwIVu";
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINOhI/rT7BMrXmDgFC2VnrWyFwnMiZPED0z1QFwVgA4B";
-  staubfinger = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINHaGKfqdWGUC5vg+EFHK19rR+fz29p0rV/9/lbT0lyq";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILX9Sm69VGPrek8PRgWa8xJPqzRrixs1g+8hBu2F6265";
   ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfWq/ZWeMNIMqXsI4rnkwR+wc/FVdb2jA70sdLMEnyX";
   systems = [
@@ -32,7 +31,6 @@ let
     plex
     proxy
     restic-server
-    staubfinger
     ttrss
   ];
   defaultKeys = [
@@ -43,7 +41,6 @@ let
     gwyn
     management
     nixos-vm
-    staubfinger
   ];
   all = users ++ systems;
 in

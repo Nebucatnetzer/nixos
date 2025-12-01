@@ -15,25 +15,26 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+        syntax-theme = "GitHub";
+      };
+    };
     programs.git = {
       enable = true;
-      userName = "Andreas Zweili";
-      userEmail = cfg.userEmail;
-      delta = {
-        enable = true;
-        options = {
-          navigate = true;
-          line-numbers = true;
-          syntax-theme = "GitHub";
-        };
-      };
       includes = [
         {
           path = "~/.config/git/workconfig";
           condition = "gitdir:~/git_repos/work/";
         }
       ];
-      extraConfig = {
+      settings = {
+        user.name = "Andreas Zweili";
+        user.email = cfg.userEmail;
         branch.sort = "-committerdate";
         core = {
           autocrlf = "input";

@@ -127,6 +127,20 @@ And if possible for free.
 
 https://gvolpe.com/blog/home-manager-dotfiles-management/
 
+*** NEXT Switch to perspective with shortcut (notes, email)
+
+I have a few keybindings like F4 and F5 which open a certain directory or mu4e.
+However they always behave the same even when the perspective is already setup.
+It might be useful if those commands would check if the perspective is already open and then just switch to it.
+
+#+begin_example
+if not perspective("notes"):
+  create_perspective("notes")
+  open_directory("notes")
+
+switch_to_perspective("notes")
+#+end_example
+
 *** TODO Improve completion and performance
 **** DONE Enable treesitter in Emacs
 CLOSED: [2025-01-10 Fri 10:53]

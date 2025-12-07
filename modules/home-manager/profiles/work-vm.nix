@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ "${inputs.self}/home-manager/modules" ];
+  imports = [ "${inputs.self}/home-manager" ];
   home = {
     packages = [ pkgs.plexamp ];
   };

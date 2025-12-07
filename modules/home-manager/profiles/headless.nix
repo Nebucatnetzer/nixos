@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  imports = [ "${inputs.self}/home-manager/modules" ];
+  imports = [ "${inputs.self}/modules/home-manager" ];
   systemd.user.startServices = "sd-switch";
   nix = {
     gc = {

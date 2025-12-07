@@ -3,62 +3,8 @@
   imports = [
     inputs.agenix.nixosModules.age
     inputs.home-manager.nixosModules.home-manager
-    ./hardware/bluetooth
-    ./hardware/dvd
-    ./hardware/nvidia
-    ./hardware/raspi4
     ./misc/common
     ./misc/initrd-ssh
     ./misc/username
-    ./profiles/desktop
-    ./profiles/server
-    ./programs/adb
-    ./programs/distrobox
-    ./programs/droidcam
-    ./programs/eog
-    ./programs/libimobiledevice
-    ./programs/makemkv
-    ./programs/nix-direnv
-    ./programs/restic-management
-    ./programs/scripts
-    ./programs/steam
-    ./services/actualbudget
-    ./services/binary-cache-client
-    ./services/binary-cache-common
-    ./services/binary-cache-server
-    ./services/common-x86
-    ./services/data-share
-    ./services/docker
-    ./services/eactual
-    ./services/freshrss
-    ./services/gitea
-    ./services/haproxy
-    ./services/search
-    ./services/kanata
-    ./services/kde
-    ./services/librenms
-    ./services/librenms-agent
-    ./services/librenms-certificate
-    ./services/log-to-ram
-    ./services/mariadb-for-containers
-    ./services/media-share
-    ./services/nextcloud-cli-client
-    ./services/nginx-acme-base
-    ./services/nginx-fpm
-    ./services/nginx-proxy
-    ./services/pipewire
-    ./services/plex
-    ./services/postgresql
-    ./services/restic-client-desktop
-    ./services/restic-client-server
-    ./services/restic-client-server-mysql
-    ./services/restic-client-server-postgres
-    ./services/restic-server
-    ./services/rss-bridge
-    ./services/snmpd
-    ./services/syslog
-    ./services/telegram-notifications
-    ./services/virtualbox-guest
-    ./services/zram-swap
   ];
 }

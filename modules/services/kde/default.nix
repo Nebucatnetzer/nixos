@@ -1,99 +1,89 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
-let
-  cfg = config.services.az-kde;
-in
 {
-  options = {
-    services.az-kde.enable = lib.mkEnableOption "Enable KDE";
-  };
+  nixpkgs.overlays = lib.singleton (
+    _: prev: {
+      kdePackages = prev.kdePackages // {
+        plasma-workspace =
+          let
 
-  config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = lib.singleton (
-      final: prev: {
-        kdePackages = prev.kdePackages // {
-          plasma-workspace =
-            let
+            # the package we want to override
+            basePkg = prev.kdePackages.plasma-workspace;
 
-              # the package we want to override
-              basePkg = prev.kdePackages.plasma-workspace;
-
-              # a helper package that merges all the XDG_DATA_DIRS into a single directory
-              xdgdataPkg = pkgs.stdenv.mkDerivation {
-                name = "${basePkg.name}-xdgdata";
-                buildInputs = [ basePkg ];
-                dontUnpack = true;
-                dontFixup = true;
-                dontWrapQtApps = true;
-                installPhase = ''
-                  mkdir -p $out/share
-                  ( IFS=:
-                    for DIR in $XDG_DATA_DIRS; do
-                      if [[ -d "$DIR" ]]; then
-                        cp -r $DIR/. $out/share/
-                        chmod -R u+w $out/share
-                      fi
-                    done
-                  )
-                '';
-              };
-
-              # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
-              # script and instead inject the path of the above helper package
-              derivedPkg = basePkg.overrideAttrs {
-                preFixup = ''
-                  for index in "''${!qtWrapperArgs[@]}"; do
-                    if [[ ''${qtWrapperArgs[$((index+0))]} == "--prefix" ]] && [[ ''${qtWrapperArgs[$((index+1))]} == "XDG_DATA_DIRS" ]]; then
-                      unset -v "qtWrapperArgs[$((index+0))]"
-                      unset -v "qtWrapperArgs[$((index+1))]"
-                      unset -v "qtWrapperArgs[$((index+2))]"
-                      unset -v "qtWrapperArgs[$((index+3))]"
+            # a helper package that merges all the XDG_DATA_DIRS into a single directory
+            xdgdataPkg = pkgs.stdenv.mkDerivation {
+              name = "${basePkg.name}-xdgdata";
+              buildInputs = [ basePkg ];
+              dontUnpack = true;
+              dontFixup = true;
+              dontWrapQtApps = true;
+              installPhase = ''
+                mkdir -p $out/share
+                ( IFS=:
+                  for DIR in $XDG_DATA_DIRS; do
+                    if [[ -d "$DIR" ]]; then
+                      cp -r $DIR/. $out/share/
+                      chmod -R u+w $out/share
                     fi
                   done
-                  qtWrapperArgs=("''${qtWrapperArgs[@]}")
-                  qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xdgdataPkg}/share")
-                  qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "$out/share")
-                '';
-              };
+                )
+              '';
+            };
 
-            in
-            derivedPkg;
-        };
-      }
-    );
-    environment = {
-      plasma6.excludePackages = with pkgs.kdePackages; [
-        elisa
-        kate
-      ];
-      systemPackages = [
-        pkgs.kdePackages.audiocd-kio
+            # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
+            # script and instead inject the path of the above helper package
+            derivedPkg = basePkg.overrideAttrs {
+              preFixup = ''
+                for index in "''${!qtWrapperArgs[@]}"; do
+                  if [[ ''${qtWrapperArgs[$((index+0))]} == "--prefix" ]] && [[ ''${qtWrapperArgs[$((index+1))]} == "XDG_DATA_DIRS" ]]; then
+                    unset -v "qtWrapperArgs[$((index+0))]"
+                    unset -v "qtWrapperArgs[$((index+1))]"
+                    unset -v "qtWrapperArgs[$((index+2))]"
+                    unset -v "qtWrapperArgs[$((index+3))]"
+                  fi
+                done
+                qtWrapperArgs=("''${qtWrapperArgs[@]}")
+                qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xdgdataPkg}/share")
+                qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "$out/share")
+              '';
+            };
 
-        # caldav/cardav
-        pkgs.kdePackages.akonadi # backend for PIM
-        pkgs.kdePackages.akonadi-calendar
-        pkgs.kdePackages.akonadi-calendar-tools
-        pkgs.kdePackages.kaddressbook
-        pkgs.kdePackages.kdepim-addons # display calendar events in the taskbar calendar
-        pkgs.kdePackages.kdepim-runtime # backend for PIM
-        pkgs.kdePackages.korganizer # required to connect to caldav
+          in
+          derivedPkg;
+      };
+    }
+  );
+  environment = {
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      elisa
+      kate
+    ];
+    systemPackages = [
+      pkgs.kdePackages.audiocd-kio
 
-        pkgs.kdePackages.kauth
-        pkgs.kdePackages.kwallet-pam # for kwallet automatic login
-        pkgs.kdePackages.kde-gtk-config
-        pkgs.krename
-      ];
-    };
-    services = {
-      desktopManager.plasma6.enable = true;
-      displayManager.sddm.wayland.enable = true;
-      displayManager.sddm.enable = true;
-    };
-    programs.xwayland.enable = true;
-    programs.partition-manager.enable = true;
+      # caldav/cardav
+      pkgs.kdePackages.akonadi # backend for PIM
+      pkgs.kdePackages.akonadi-calendar
+      pkgs.kdePackages.akonadi-calendar-tools
+      pkgs.kdePackages.kaddressbook
+      pkgs.kdePackages.kdepim-addons # display calendar events in the taskbar calendar
+      pkgs.kdePackages.kdepim-runtime # backend for PIM
+      pkgs.kdePackages.korganizer # required to connect to caldav
+
+      pkgs.kdePackages.kauth
+      pkgs.kdePackages.kwallet-pam # for kwallet automatic login
+      pkgs.kdePackages.kde-gtk-config
+      pkgs.krename
+    ];
   };
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.enable = true;
+  };
+  programs.xwayland.enable = true;
+  programs.partition-manager.enable = true;
 }

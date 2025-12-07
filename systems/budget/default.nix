@@ -1,8 +1,5 @@
 { hostname }:
-{
-  config,
-  ...
-}:
+{ ... }:
 {
   hardware = {
     az-raspi4-ethernet = {

@@ -1,5 +1,4 @@
 {
-  nixosConfig,
   inputs,
   pkgs,
   ...
@@ -8,13 +7,14 @@ let
   date-to-filename = pkgs.callPackage "${inputs.self}/pkgs/date-to-filename" { };
   denote-rename = pkgs.callPackage "${inputs.self}/pkgs/denote-rename" { };
   update-file-dates = pkgs.callPackage "${inputs.self}/pkgs/update-file-dates" { };
+  git = import "${inputs.self}/modules/home-manager/programs/git" { };
   rebuild = pkgs.writeShellApplication {
     name = "rebuild";
     runtimeInputs = [
       pkgs.nixos-rebuild-ng
     ];
     text = ''
-      if ${pkgs.netcat}/bin/nc -vzw 2 ${nixosConfig.services.az-binary-cache-common.server} 2222; then
+      if ${pkgs.netcat}/bin/nc -vzw 2 cache.zweili.org 2222; then
         nixos-rebuild-ng -j auto switch --sudo
         upload-to-cache /run/current-system
       else
@@ -35,7 +35,20 @@ let
   '';
 in
 {
-  imports = [ ./headless.nix ];
+  imports = [
+    "${inputs.self}/modules/home-manager/programs/emacs"
+    "${inputs.self}/modules/home-manager/programs/email"
+    "${inputs.self}/modules/home-manager/programs/fzf"
+    "${inputs.self}/modules/home-manager/programs/hunspell"
+    "${inputs.self}/modules/home-manager/programs/open-port"
+    "${inputs.self}/modules/home-manager/programs/ssh"
+    "${inputs.self}/modules/home-manager/programs/starship"
+    "${inputs.self}/modules/home-manager/programs/tmux"
+    "${inputs.self}/modules/home-manager/programs/yt-dlp"
+    "${inputs.self}/modules/home-manager/services/desktop-base"
+    git
+    ./headless.nix
+  ];
 
   home = {
     packages = [
@@ -55,22 +68,7 @@ in
       format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
     };
   };
-
-  programs = {
-    az-emacs.enable = true;
-    az-email.enable = true;
-    az-fzf.enable = true;
-    az-git.enable = true;
-    az-hunspell.enable = true;
-    az-open-port.enable = true;
-    az-ssh.enable = true;
-    az-starship.enable = true;
-    az-tmux.enable = true;
-    az-yt-dlp.enable = true;
-  };
-
   services = {
-    az-desktop-base.enable = true;
     ssh-agent.enable = true;
   };
 }

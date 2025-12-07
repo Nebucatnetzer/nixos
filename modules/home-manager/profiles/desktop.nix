@@ -16,7 +16,16 @@ let
   send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
 in
 {
-  imports = [ ./management.nix ];
+  imports = [
+    "${inputs.self}/modules/home-manager/programs/beets"
+    "${inputs.self}/modules/home-manager/programs/calibre"
+    "${inputs.self}/modules/home-manager/programs/mpv"
+    "${inputs.self}/modules/home-manager/programs/rapid-photo-downloader"
+    "${inputs.self}/modules/home-manager/programs/signal"
+    "${inputs.self}/modules/home-manager/programs/telegram"
+    "${inputs.self}/modules/home-manager/programs/work-desktop"
+    ./management.nix
+  ];
   home = {
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
@@ -46,13 +55,6 @@ in
   };
 
   programs = {
-    az-beets.enable = true;
-    az-calibre.enable = true;
-    az-mpv.enable = true;
-    az-rapid-photo-downloader.enable = true;
-    az-signal.enable = true;
-    az-telegram.enable = true;
-    az-work-desktop.enable = true;
     bash = {
       shellAliases = {
         management-server = "mosh ${config.home.username}@10.7.89.153 -- tmux new -A -s 0";

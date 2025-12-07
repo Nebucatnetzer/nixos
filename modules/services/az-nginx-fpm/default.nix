@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -33,8 +34,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    imports = [
+      "${inputs.self}/modules/services/nginx-acme-base"
+    ];
     services = {
-      az-acme-base.enable = true;
       nginx = {
         appendHttpConfig = ''
           index index.php;

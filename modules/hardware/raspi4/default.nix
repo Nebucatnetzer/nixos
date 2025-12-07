@@ -1,8 +1,4 @@
-{ ... }:
 {
-  imports = [
-    ./raspi-base.nix
-    ./raspi-ethernet.nix
-    ./raspi-usb.nix
-  ];
+  ethernet = import ./raspi-ethernet.nix;
+  usb = import ./raspi-usb.nix;
 }

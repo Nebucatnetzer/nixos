@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 let
   cfg = config.services.az-nginx-proxy;
 in
@@ -18,9 +23,11 @@ in
     };
   };
 
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+  ];
   config = lib.mkIf cfg.enable {
     services = {
-      az-acme-base.enable = true;
       nginx = {
         appendHttpConfig = ''
           # Disable embedding as a frame

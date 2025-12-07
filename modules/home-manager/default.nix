@@ -3,26 +3,5 @@
   imports = [
     inputs.agenix.homeManagerModules.default
     ./common
-    ./programs/ansible
-    ./programs/beets
-    ./programs/calibre
-    ./programs/emacs
-    ./programs/email
-    ./programs/evince
-    ./programs/fzf
-    ./programs/git
-    ./programs/hunspell
-    ./programs/mpv
-    ./programs/open-port
-    ./programs/rapid-photo-downloader
-    ./programs/signal
-    ./programs/ssh
-    ./programs/starship
-    ./programs/telegram
-    ./programs/tmux
-    ./programs/work-desktop
-    ./programs/yt-dlp
-    ./services/desktop-base
-    ./services/espanso
   ];
 }

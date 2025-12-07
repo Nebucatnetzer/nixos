@@ -111,6 +111,9 @@
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
 
+(use-package flymake
+  :hook (sh-mode . flymake-mode))
+
 (use-package eglot-mode
   :ensure nil
   :config

@@ -1,9 +1,9 @@
 { domain }:
-{ ... }:
+{ inputs, ... }:
 {
-  services.az-acme-base = {
-    enable = true;
-  };
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+  ];
   services.nginx.virtualHosts."${domain}" = {
     enableACME = true;
     forceSSL = true;

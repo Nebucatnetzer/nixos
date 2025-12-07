@@ -9,6 +9,9 @@ let
   cfg = config.services.az-nginx-fpm;
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+  ];
   options = {
     services.az-nginx-fpm = {
       enable = lib.mkEnableOption "Enable Nginx with config for FPM in a container.";
@@ -32,11 +35,7 @@ in
       };
     };
   };
-
   config = lib.mkIf cfg.enable {
-    imports = [
-      "${inputs.self}/modules/services/nginx-acme-base"
-    ];
     services = {
       nginx = {
         appendHttpConfig = ''

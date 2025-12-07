@@ -2,36 +2,36 @@
 { config, inputs, ... }:
 let
   blogPosts = "/var/lib/posts";
+  domains = [
+    { fqdn = "www.zweili.ch"; }
+    { fqdn = "search.zweili.org"; }
+    { fqdn = "searxng.zweili.org"; }
+  ];
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
+    inherit domains;
+  };
+  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
+    inherit hostname;
+    ip = "10.7.89.99";
+  };
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
 in
 {
+  imports = [
+    "${inputs.self}/modules/profiles/server"
+    "${inputs.self}/modules/services/haproxy"
+    "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/search"
+    librenmsCertificateModule
+    raspiEthernet
+  ];
   age.secrets.searxngHtpasswd = {
     file = "${inputs.self}/scrts/searxng_htpasswd.age";
     mode = "640";
     owner = "root";
     group = config.services.nginx.group;
   };
-  hardware = {
-    az-raspi4-ethernet = {
-      enable = true;
-      hostname = hostname;
-      ip = "10.7.89.99";
-    };
-  };
-
-  profiles.az-server.enable = true;
   services = {
-    az-acme-base.enable = true;
-    az-haproxy.enable = true;
-    az-search.enable = true;
-    az-librenms-certificate = {
-      enable = true;
-      domains = [
-        { fqdn = "www.zweili.ch"; }
-        { fqdn = "search.zweili.org"; }
-        { fqdn = "searxng.zweili.org"; }
-      ];
-    };
     az-restic-client-server = {
       enable = true;
       path = blogPosts;

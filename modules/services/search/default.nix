@@ -10,6 +10,9 @@ let
   unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/docker"
+  ];
   age.secrets.searxngEnv = {
     file = "${inputs.self}/scrts/searxng_env.age";
     mode = "640";
@@ -17,7 +20,6 @@ in
     group = config.systemd.services.searx.serviceConfig.Group;
   };
   age.secrets.zweiliSearchEnv.file = "${inputs.self}/scrts/zweili_search_env.age";
-  services.az-docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
     containers."zweili-search-app" = {

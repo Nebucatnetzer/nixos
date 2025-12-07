@@ -7,6 +7,9 @@ let
   volumePath = "/mnt/media";
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/docker"
+  ];
   age.secrets.plexClaim.file = "${inputs.self}/scrts/plex_claim.age";
 
   networking = {
@@ -23,8 +26,6 @@ in
       32469 # Plex DLNA Server
     ];
   };
-
-  services.az-docker.enable = true;
 
   virtualisation.oci-containers = {
     backend = "docker";

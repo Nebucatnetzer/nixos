@@ -7,9 +7,30 @@
 }:
 let
   lib = pkgs.lib;
+  domains = [
+    { fqdn = "${config.services.librenms.hostname}"; }
+  ];
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
+    inherit domains;
+  };
 in
 {
-  imports = [ inputs.nixos-hardware.nixosModules.dell-precision-5530 ];
+  imports = [
+    inputs.nixos-hardware.nixosModules.dell-precision-5530
+    "${inputs.self}/modules/hardware/bluetooth"
+    "${inputs.self}/modules/hardware/common-x86"
+    "${inputs.self}/modules/profiles/desktop"
+    "${inputs.self}/modules/programs/distrobox"
+    "${inputs.self}/modules/programs/restic-management"
+    "${inputs.self}/modules/services/binary-cache-client"
+    "${inputs.self}/modules/services/data-share"
+    "${inputs.self}/modules/services/kde"
+    "${inputs.self}/modules/services/librenms"
+    "${inputs.self}/modules/services/restic-client-desktop"
+    "${inputs.self}/modules/services/syslog"
+    "${inputs.self}/modules/services/zram-swap"
+    librenmsCertificateModule
+  ];
 
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -87,32 +108,9 @@ in
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
-  hardware = {
-    az-bluetooth.enable = true;
-    graphics.enable = true;
-  };
-
-  profiles.az-desktop.enable = true;
-  programs = {
-    az-distrobox.enable = true;
-    az-restic-management.enable = true;
-  };
+  hardware.graphics.enable = true;
 
   services = {
-    az-binary-cache-client.enable = true;
-    az-data-share.enable = true;
-    az-kde.enable = true;
-    az-librenms.enable = true;
-    az-librenms-certificate = {
-      enable = true;
-      domains = [
-        { fqdn = "${config.services.librenms.hostname}"; }
-      ];
-    };
-    az-restic-client-desktop.enable = true;
-    az-syslog.enable = true;
-    az-x86.enable = true;
-    az-zram-swap.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.lidSwitchExternalPower = "ignore";

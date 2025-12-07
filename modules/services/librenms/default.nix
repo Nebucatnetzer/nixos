@@ -1,5 +1,7 @@
 {
   config,
+  lib,
+  inputs,
   pkgs,
   ...
 }:
@@ -14,6 +16,10 @@ let
   '';
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/snmpd"
+  ];
   networking.firewall.allowedTCPPorts = [
     514
   ];
@@ -21,8 +27,6 @@ in
     514
   ];
   services = {
-    az-acme-base.enable = true;
-    az-snmpd.enable = true;
     phpfpm.pools.librenms.phpOptions = ''
       "date.timezone" = ${config.time.timeZone}
       "opcache.enable" = 1

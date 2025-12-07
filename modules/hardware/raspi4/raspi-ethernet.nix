@@ -1,10 +1,13 @@
 { ip, hostname }:
-{ ... }:
+{ inputs, ... }:
 {
+  imports = [
+    "${inputs.self}/modules/hardware/raspi4/raspi-base.nix"
+    "${inputs.self}/modules/services/log-to-ram"
+  ];
   boot.kernelParams = [
     "ip=${ip}::10.7.89.1:255.255.255.0:${hostname}:eth0" # required for ssh at initrd
   ];
-  hardware.az-raspi4-base.enable = true;
   networking = {
     useDHCP = false;
     hostName = hostname;
@@ -20,9 +23,5 @@
         prefixLength = 24;
       }
     ];
-  };
-
-  services = {
-    az-log2ram.enable = true;
   };
 }

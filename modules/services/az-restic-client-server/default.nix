@@ -9,6 +9,9 @@ let
   cfg = config.services.az-restic-client-server;
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/telegram-notifications"
+  ];
   options = {
     services.az-restic-client-server = {
       enable = lib.mkEnableOption "Enable restic backups on server systems.";
@@ -28,8 +31,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications.enable = true;
-
     age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
 
     systemd.timers."restic-backups" = {

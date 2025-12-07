@@ -52,7 +52,6 @@ in
     "${inputs.self}/modules/services/zram-swap"
     mediaShare
   ];
-
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   boot.initrd.availableKernelModules = [
     "aesni_intel"

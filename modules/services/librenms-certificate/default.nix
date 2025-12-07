@@ -1,5 +1,5 @@
 { domains }:
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   certificateSource = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/librenms/librenms-agent/def5f830b3672526c4353a92a1804485f645733c/snmp/certificate.py";
@@ -16,12 +16,14 @@ let
   } (builtins.readFile certificateSource);
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/snmpd"
+  ];
   environment.etc."snmp/certificate.json".text = ''
     {
       "domains": ${builtins.toJSON domains}
     }
   '';
-  services.az-snmpd.enable = true;
   services.snmpd.configText = ''
     extend certificate ${certificatePy}/bin/certificate
   '';

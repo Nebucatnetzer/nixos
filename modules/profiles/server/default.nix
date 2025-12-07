@@ -1,7 +1,7 @@
-{ ... }:
+{ inputs, ... }:
 {
-  services = {
-    az-snmpd.enable = true;
-    az-syslog.enable = true;
-  };
+  imports = [
+    "${inputs.self}/modules/services/snmpd"
+    "${inputs.self}/modules/services/syslog"
+  ];
 }

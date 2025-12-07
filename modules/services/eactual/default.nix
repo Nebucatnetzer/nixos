@@ -7,22 +7,20 @@
 let
   dataDirectory = "/var/lib/eactual";
   domain = "eactual.zweili.org";
+  domains = [
+    { fqdn = "${domain}"; }
+  ];
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
+    inherit domains;
+  };
 in
 {
-  # Monitor certificates
-  services.az-librenms-certificate = {
-    enable = true;
-    domains = [
-      { fqdn = "${domain}"; }
-    ];
-  };
-
-  # Webserver setup
-
-  services = {
-    az-docker.enable = true;
-    az-acme-base.enable = true;
-  };
+  imports = [
+    "${inputs.self}/modules/services/docker"
+    "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/telegram-notifications"
+    librenmsCertificateModule
+  ];
   networking.firewall.allowedTCPPorts = [ 443 ];
   services.nginx = {
     enable = true;
@@ -54,7 +52,6 @@ in
   };
 
   # Backups
-  services.az-telegram-notifications.enable = true;
   age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
   systemd.timers."restic-backups-eactual" = {
     wantedBy = [ "timers.target" ];

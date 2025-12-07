@@ -9,6 +9,9 @@ let
   cfg = config.services.az-restic-server;
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/telegram-notifications"
+  ];
   options = {
     services.az-restic-server = {
       enable = lib.mkEnableOption "Enable a restic server.";
@@ -21,8 +24,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.az-telegram-notifications.enable = true;
-
     age.secrets.resticKey = {
       file = "${inputs.self}/scrts/restic.key.age";
       mode = "440";

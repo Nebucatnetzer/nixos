@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
@@ -17,6 +18,9 @@ let
   };
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/zram-swap"
+  ];
   boot.supportedFilesystems = lib.mkForce [
     "f2fs"
     "ntfs"
@@ -53,7 +57,6 @@ in
       size = 4 * 1024;
     }
   ];
-  services.az-zram-swap.enable = true;
   zramSwap.algorithm = "lz4";
 
   boot = {

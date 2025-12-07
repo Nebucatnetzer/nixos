@@ -6,5 +6,12 @@
     ./misc/common
     ./misc/initrd-ssh
     ./misc/username
+    ./services/az-librenms-agent
+    ./services/az-nginx-fpm
+    ./services/az-nginx-proxy
+    ./services/az-restic-client-server
+    ./services/az-restic-client-server-mysql
+    ./services/az-restic-client-server-postgres
+    ./services/az-restic-server
   ];
 }

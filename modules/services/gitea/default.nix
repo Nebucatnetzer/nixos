@@ -8,6 +8,10 @@ let
   volumePath = "/mnt/server-data/gitea";
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/docker"
+    "${inputs.self}/modules/services/mariadb-for-containers"
+  ];
   age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
   fileSystems."${volumePath}" = {
@@ -25,8 +29,6 @@ in
     proc gitea
   '';
   services = {
-    az-docker.enable = true;
-    az-mariadb-for-containers.enable = true;
     mysql.settings = {
       mysql = {
         default-character-set = "utf8mb4";

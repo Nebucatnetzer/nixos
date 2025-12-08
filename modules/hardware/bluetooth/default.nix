@@ -14,6 +14,6 @@ in
       powerOnBoot = true;
     };
     # Xbox Controller support
-    hardware.xpadneo.enable = true;
+    # hardware.xpadneo.enable = true;
   };
 }

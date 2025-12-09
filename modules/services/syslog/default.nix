@@ -1,24 +1,15 @@
-{ config, lib, ... }:
-let
-  cfg = config.services.az-syslog;
-in
+{ ... }:
 {
-  options = {
-    services.az-syslog.enable = lib.mkEnableOption "Enable syslog";
+  services.rsyslogd = {
+    enable = true;
+    defaultConfig = ''
+      *.*  action(type="omfwd" target="10.7.89.153" port="514" protocol="udp"
+                  action.resumeRetryCount="100"
+                  queue.type="linkedList" queue.size="10000")
+    '';
   };
-
-  config = lib.mkIf cfg.enable {
-    services.rsyslogd = {
-      enable = true;
-      defaultConfig = ''
-        *.*  action(type="omfwd" target="10.7.89.153" port="514" protocol="udp"
-                    action.resumeRetryCount="100"
-                    queue.type="linkedList" queue.size="10000")
-      '';
-    };
-    systemd.services.syslog = {
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-    };
+  systemd.services.syslog = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
   };
 }

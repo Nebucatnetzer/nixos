@@ -1,15 +1,7 @@
-{ config, lib, ... }:
-let
-  cfg = config.profiles.az-server;
-in
+{ inputs, ... }:
 {
-  options = {
-    profiles.az-server.enable = lib.mkEnableOption "Enable server profile";
-  };
-  config = lib.mkIf cfg.enable {
-    services = {
-      az-snmpd.enable = true;
-      az-syslog.enable = true;
-    };
-  };
+  imports = [
+    "${inputs.self}/modules/services/snmpd"
+    "${inputs.self}/modules/services/syslog"
+  ];
 }

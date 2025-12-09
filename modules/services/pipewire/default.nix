@@ -1,33 +1,24 @@
-{ config, lib, ... }:
-let
-  cfg = config.services.az-pipewire;
-in
+{ lib, ... }:
 {
-  options = {
-    services.az-pipewire.enable = lib.mkEnableOption "Enable pipewire";
+  services.pulseaudio.enable = lib.mkForce false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
-
-  config = lib.mkIf cfg.enable {
-    services.pulseaudio.enable = lib.mkForce false;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    environment.etc.pipwire-config = {
-      enable = true;
-      text = ''
-        {
-          "context.exec": [
-            {
-              "args": "load-module module-switch-on-connect",
-              "path": "pactl"
-            }
-          ]
-        }
-      '';
-      target = "pipewire.conf.d/auto-switch-audio.conf";
-    };
+  environment.etc.pipwire-config = {
+    enable = true;
+    text = ''
+      {
+        "context.exec": [
+          {
+            "args": "load-module module-switch-on-connect",
+            "path": "pactl"
+          }
+        ]
+      }
+    '';
+    target = "pipewire.conf.d/auto-switch-audio.conf";
   };
 }

@@ -31,8 +31,27 @@ let
       nmcli connection up yallo
     '';
   };
+  mediaShare = import "${inputs.self}/modules/services/media-share" { };
 in
 {
+  imports = [
+    "${inputs.self}/modules/hardware/bluetooth"
+    "${inputs.self}/modules/hardware/common-x86"
+    "${inputs.self}/modules/hardware/dvd"
+    "${inputs.self}/modules/profiles/desktop"
+    "${inputs.self}/modules/programs/adb"
+    "${inputs.self}/modules/programs/distrobox"
+    "${inputs.self}/modules/programs/droidcam"
+    "${inputs.self}/modules/programs/makemkv"
+    "${inputs.self}/modules/programs/restic-management"
+    "${inputs.self}/modules/programs/steam"
+    "${inputs.self}/modules/services/binary-cache-client"
+    "${inputs.self}/modules/services/kanata"
+    "${inputs.self}/modules/services/kde"
+    "${inputs.self}/modules/services/restic-client-desktop"
+    "${inputs.self}/modules/services/zram-swap"
+    mediaShare
+  ];
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -134,8 +153,6 @@ in
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   hardware = {
-    az-bluetooth.enable = true;
-    az-dvd.enable = true;
     graphics = {
       enable = true;
       extraPackages = [
@@ -153,8 +170,6 @@ in
     # };
   };
 
-  profiles.az-desktop.enable = true;
-
   environment.systemPackages = [
     pkgs.compsize # required to display additional information about btrfs compression
     pkgs.wally-cli # tool to flash a ZSA keyboard
@@ -162,12 +177,6 @@ in
     toggle-keyboard
   ];
   programs = {
-    az-adb.enable = true;
-    az-distrobox.enable = true;
-    az-droidcam.enable = true;
-    az-makemkv.enable = true;
-    az-restic-management.enable = true;
-    az-steam.enable = true;
     localsend = {
       enable = true;
       openFirewall = true;
@@ -175,13 +184,6 @@ in
   };
 
   services = {
-    az-binary-cache-client.enable = true;
-    az-kanata.enable = true;
-    az-kde.enable = true;
-    az-media-share.enable = true;
-    az-restic-client-desktop.enable = true;
-    az-x86.enable = true;
-    az-zram-swap.enable = true;
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control

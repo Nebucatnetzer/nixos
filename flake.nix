@@ -64,7 +64,7 @@
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./home-manager/profiles/work-wsl.nix ];
+          modules = [ ./modules/home-manager/profiles/work-wsl.nix ];
           extraSpecialArgs = {
             inherit inputs;
             nixosConfig = {

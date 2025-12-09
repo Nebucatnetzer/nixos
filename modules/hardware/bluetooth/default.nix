@@ -1,19 +1,10 @@
-{ config, lib, ... }:
-let
-  cfg = config.hardware.az-bluetooth;
-in
+{ ... }:
 {
-  options = {
-    hardware.az-bluetooth.enable = lib.mkEnableOption "Enable Bluetooth";
+  # Blueooth support in general
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
-
-  config = lib.mkIf cfg.enable {
-    # Blueooth support in general
-    hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-    # Xbox Controller support
-    # hardware.xpadneo.enable = true;
-  };
+  # Xbox Controller support
+  # hardware.xpadneo.enable = true;
 }

@@ -1,24 +1,15 @@
-{ config, lib, ... }:
-let
-  cfg = config.services.az-log2ram;
-in
+{ ... }:
 {
-  options = {
-    services.az-log2ram.enable = lib.mkEnableOption "Enable log to RAM";
+  fileSystems."/var/log" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [
+      "defaults"
+      "size=300M"
+    ];
   };
-
-  config = lib.mkIf cfg.enable {
-    fileSystems."/var/log" = {
-      device = "none";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        "size=300M"
-      ];
-    };
-    services.journald.extraConfig = ''
-      SystemMaxUse=300M
-      Storage=volatile
-    '';
-  };
+  services.journald.extraConfig = ''
+    SystemMaxUse=300M
+    Storage=volatile
+  '';
 }

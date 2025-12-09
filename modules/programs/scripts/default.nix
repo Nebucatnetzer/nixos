@@ -1,11 +1,8 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.programs.az-scripts;
   compress-pdf = pkgs.writeShellScriptBin "compress-pdf" ''
     ${pkgs.ghostscript}/bin/gs -sDEVICE=pdfwrite \
         -dCompatibilityLevel=1.5 \
@@ -33,18 +30,12 @@ let
     done'';
 in
 {
-  options = {
-    programs.az-scripts.enable = lib.mkEnableOption "Enable scripts";
-  };
-
-  config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
-      compress-pdf
-      files-to-lowercase
-      heif-to-jpeg
-      remove-special-characters
-      replace-listings
-      thumbnails
-    ];
-  };
+  environment.systemPackages = [
+    compress-pdf
+    files-to-lowercase
+    heif-to-jpeg
+    remove-special-characters
+    replace-listings
+    thumbnails
+  ];
 }

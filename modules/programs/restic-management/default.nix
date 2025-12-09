@@ -1,12 +1,10 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.programs.az-restic-management;
   password_file = config.age.secrets.resticKey.path;
   repository = "rest:http://10.7.89.30:8000";
 
@@ -50,48 +48,43 @@ let
     ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
 in
 {
-  options = {
-    programs.az-restic-management.enable = lib.mkEnableOption "Enable restic management commands.";
+  age.secrets.infomaniakEnv = {
+    file = "${inputs.self}/scrts/infomaniak_env.age";
+    mode = "600";
+    owner = config.az-username;
+    group = "users";
   };
-  config = lib.mkIf cfg.enable {
-    age.secrets.infomaniakEnv = {
-      file = "${inputs.self}/scrts/infomaniak_env.age";
-      mode = "600";
-      owner = config.az-username;
-      group = "users";
-    };
-    age.secrets.resticKey = {
-      file = "${inputs.self}/scrts/restic.key.age";
-      mode = "600";
-      owner = config.az-username;
-      group = "users";
-    };
-    environment.shellAliases = {
-      restic-list = ''
-        ${pkgs.restic}/bin/restic \
-          --repo ${repository} \
-          --password-file ${password_file} \
-          snapshots --host ${config.networking.hostName}'';
-      restic-list-all = ''
-        ${pkgs.restic}/bin/restic \
-          --repo ${repository} \
-          --password-file ${password_file} snapshots'';
-      restic-unlock = ''
-        ${pkgs.restic}/bin/restic \
-          --repo ${repository} \
-          --password-file ${password_file} \
-          unlock'';
-      restic-forget = ''
-        ${pkgs.restic}/bin/restic --repo ${repository} \
-          --password-file ${password_file} \
-          forget $1'';
-    };
-    environment.systemPackages = [
-      pkgs.restic
-      restic-mount
-      restic-mount-all
-      restic-infomaniak-list
-      restic-infomaniak-mount
-    ];
+  age.secrets.resticKey = {
+    file = "${inputs.self}/scrts/restic.key.age";
+    mode = "600";
+    owner = config.az-username;
+    group = "users";
   };
+  environment.shellAliases = {
+    restic-list = ''
+      ${pkgs.restic}/bin/restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        snapshots --host ${config.networking.hostName}'';
+    restic-list-all = ''
+      ${pkgs.restic}/bin/restic \
+        --repo ${repository} \
+        --password-file ${password_file} snapshots'';
+    restic-unlock = ''
+      ${pkgs.restic}/bin/restic \
+        --repo ${repository} \
+        --password-file ${password_file} \
+        unlock'';
+    restic-forget = ''
+      ${pkgs.restic}/bin/restic --repo ${repository} \
+        --password-file ${password_file} \
+        forget $1'';
+  };
+  environment.systemPackages = [
+    pkgs.restic
+    restic-mount
+    restic-mount-all
+    restic-infomaniak-list
+    restic-infomaniak-mount
+  ];
 }

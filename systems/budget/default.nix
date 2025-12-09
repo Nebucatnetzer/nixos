@@ -1,20 +1,16 @@
 { hostname }:
-{
-  config,
-  ...
-}:
-{
-  hardware = {
-    az-raspi4-ethernet = {
-      enable = true;
-      hostname = hostname;
-      ip = "10.7.89.113";
-    };
+{ inputs, ... }:
+let
+  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
+    inherit hostname;
+    ip = "10.7.89.113";
   };
-
-  profiles.az-server.enable = true;
-  services = {
-    az-actualbudget.enable = true;
-    az-eactualbudget.enable = true;
-  };
+in
+{
+  imports = [
+    raspiEthernet
+    "${inputs.self}/modules/profiles/server"
+    "${inputs.self}/modules/services/actualbudget"
+    "${inputs.self}/modules/services/eactual"
+  ];
 }

@@ -1,10 +1,14 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 let
+  gitModule = import "${inputs.self}/modules/home-manager/programs/git" {
+    userEmail = "zweili@contria.com";
+  };
   hm-rebuild = pkgs.writeShellApplication {
     name = "hm-rebuild";
     runtimeInputs = [ ];
@@ -14,7 +18,16 @@ let
   };
 in
 {
-  imports = [ ./headless.nix ];
+  imports = [
+    "${inputs.self}/modules/home-manager/programs/ansible"
+    "${inputs.self}/modules/home-manager/programs/emacs"
+    "${inputs.self}/modules/home-manager/programs/fzf"
+    "${inputs.self}/modules/home-manager/programs/hunspell"
+    "${inputs.self}/modules/home-manager/programs/starship"
+    "${inputs.self}/modules/home-manager/programs/tmux"
+    gitModule
+    ./headless.nix
+  ];
 
   fonts.fontconfig.enable = true;
 
@@ -90,16 +103,6 @@ in
   };
 
   programs = {
-    az-ansible.enable = true;
-    az-emacs.enable = true;
-    az-fzf.enable = true;
-    az-git = {
-      enable = true;
-      userEmail = "zweili@contria.com";
-    };
-    az-hunspell.enable = true;
-    az-starship.enable = true;
-    az-tmux.enable = true;
     emacs.package = lib.mkForce pkgs.emacs-pgtk;
     direnv = {
       enable = true;

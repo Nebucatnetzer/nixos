@@ -66,7 +66,31 @@ in
     "usb_storage"
     "xhci_pci"
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPatches = [
+    {
+      name = "dma-mapping-fix-dma_bit_mask";
+      patch = pkgs.fetchpatch {
+        url = "https://github.com/torvalds/linux/commit/31b931bebd11a0f00967114f62c8c38952f483e5.patch";
+        hash = "sha256-SRVozzu1wc79wG3T0kEVuL3vcWMjN5QDN+llqwjxGlg=";
+      };
+    }
+  ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      libcamera = prev.libcamera.overrideAttrs (oa: rec {
+        version = "0.6.0";
+        src = pkgs.fetchgit {
+          url = "https://git.libcamera.org/libcamera/libcamera.git";
+          rev = "v${version}";
+          hash = "sha256-zGcbzL1Q2hUaj/s9NjBlp7hVjmSFb0GF8CnCoDS82Tw=";
+        };
+        buildInputs = oa.buildInputs ++ [
+          final.libunwind
+        ];
+      });
+    })
+  ];
   boot.initrd.kernelModules = [
     "xe" # graphics driver
     "dm-snapshot"
@@ -164,10 +188,10 @@ in
       ];
     };
     keyboard.zsa.enable = true;
-    # ipu6 = {
-    #   enable = true;
-    #   platform = "ipu6epmtl";
-    # };
+    ipu6 = {
+      enable = true;
+      platform = "ipu6epmtl";
+    };
   };
 
   environment.systemPackages = [

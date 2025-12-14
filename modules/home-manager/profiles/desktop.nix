@@ -17,7 +17,7 @@ let
 in
 {
   imports = [
-    "${inputs.self}/modules/home-manager/programs/beets"
+    # "${inputs.self}/modules/home-manager/programs/beets"
     "${inputs.self}/modules/home-manager/programs/calibre"
     "${inputs.self}/modules/home-manager/programs/mpv"
     "${inputs.self}/modules/home-manager/programs/rapid-photo-downloader"
@@ -35,9 +35,9 @@ in
       pkgs.digikam
 
       # wine
-      pkgs.bottles
-      pkgs.wine-wayland
-      pkgs.wineWowPackages.waylandFull
+      # pkgs.bottles
+      # pkgs.wine-wayland
+      # pkgs.wineWowPackages.waylandFull
 
       pkgs.chromium # needed for cloud gaming and flashing zsa
       pkgs.czkawka

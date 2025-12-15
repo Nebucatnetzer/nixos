@@ -140,6 +140,15 @@
 ;; optionally if you want to use debugger
 (use-package dap-mode)
 
+(use-package hurl-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.hurl\\'" . hurl-mode)))
+
+(use-package jq-mode
+  :config
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((jq . t))))
+
 (use-package magit
   :demand t
   :commands magit-status

@@ -9,6 +9,7 @@ in
   home.packages = [
     pkgs.emacs-lsp-booster
     pkgs.fd
+    pkgs.hurl # required for hurl-mode
     pkgs.multimarkdown
     pkgs.nixd # Nix language server
     pkgs.nodePackages.prettier # formatting files
@@ -80,8 +81,12 @@ in
       epkgs.highlight-indent-guides
       epkgs.ht
       epkgs.htmlize
+      (pkgs.callPackage ./packages/hurl-mode {
+        melpaBuild = epkgs.melpaBuild;
+      })
       epkgs.hydra
       epkgs.hyperbole
+      epkgs.jq-mode
       epkgs.know-your-http-well
       epkgs.lsp-haskell
       epkgs.lv
@@ -125,7 +130,6 @@ in
       epkgs.treemacs
       epkgs.treemacs-evil
       epkgs.treesit-grammars.with-all-grammars
-      epkgs.verb
       epkgs.vertico
       epkgs.vterm
       epkgs.vundo

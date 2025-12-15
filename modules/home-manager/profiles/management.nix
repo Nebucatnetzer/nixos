@@ -58,6 +58,7 @@ in
       pkgs.nix-prefetch-github
       pkgs.nix-prefetch-scripts
       pkgs.nix-tree
+      pkgs.nps
       date-to-filename
       denote-rename
       rebuild

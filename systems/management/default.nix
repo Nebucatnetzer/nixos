@@ -1,5 +1,5 @@
 { hostname }:
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 let
   raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
     inherit hostname;

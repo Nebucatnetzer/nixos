@@ -59,6 +59,7 @@ in
       pkgs.nix-prefetch-scripts
       pkgs.nix-tree
       pkgs.nps
+      pkgs.termscp
       date-to-filename
       denote-rename
       rebuild

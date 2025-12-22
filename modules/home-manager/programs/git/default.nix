@@ -139,6 +139,8 @@
 
       # ignore pycache"
       "__pycache__/"
+
+      "/az_private"
     ];
   };
   # raw files

@@ -1,0 +1,13 @@
+#+title: Git
+* NEXT Customise the Gitea start page to redirect people to my GitHub page
+
+- https://docs.gitea.com/administration/customizing-gitea
+
+* NEXT [#A] setup gitea-mirror
+
+I currently use GitHub as my main git forge due to those LLM fuckers.
+To make my life easier I should setup gitea-mirror.
+This way I could just setup repos like I want on GitHub and gitea-mirror mirrors them to my Gitea server for backup.
+
+https://github.com/arunavo4/gitea-mirror
+

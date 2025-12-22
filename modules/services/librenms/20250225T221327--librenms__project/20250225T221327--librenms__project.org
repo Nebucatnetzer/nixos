@@ -53,27 +53,6 @@ This is suboptimal for two reasosns:
 1. They are a shitty company
 2. Whenever I have to look at the notifications, I have to look at the Telegram messages as well which is quite distracting.
 
-** DONE PING WAN IP
-CLOSED: [2025-06-24 Tue 20:39]
-
-** CANCELLED Mobile App einrichten
-CLOSED: [2025-06-24 Tue 20:39]
-
-Die App funktioniert offenbar nur im gleichen Netzwerk.
-
-** DONE Zertifikate überwachen
-CLOSED: [2025-06-24 Tue 20:18]
-
-** DONE Upstream the syslog-ng configuration
-CLOSED: [2025-05-25 Sun 15:11]
-
-Inlcuding the wrapper
-
-** CANCELLED [[https://beszel.dev/guide/hub-installation#binary][Hub Installation | Beszel]]
-CLOSED: [2025-02-23 Sun 14:49]
-
-Beszel doesn't support SNMP at the moment. Since it is a good standard I think I should use it instead of relying on some third party system.
-
 * Notes
 
 *2025-04-28*

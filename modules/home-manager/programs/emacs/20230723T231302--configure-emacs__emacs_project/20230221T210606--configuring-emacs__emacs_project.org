@@ -41,10 +41,6 @@ When you edit the link directly it works but then sort of breaks the link.
 Ich möchte gerne eine Clock starten, wenn ich einen Task erfasse.
 Dies würde es einfacher machen Task Zeiten zu erfassen die durch den Tag auftauchen.
 
-*** NEXT Replace setq with setopt
-
-- [[https://emacsredux.com/blog/2025/04/06/goodbye-setq-hello-setopt/][Goodbye setq, hello setopt!]]
-
 *** NEXT Extend ~org-insert-link~
 :PROPERTIES:
 :LOCATION: https://xenodium.com/emacs-dwim-do-what-i-mean
@@ -142,11 +138,6 @@ switch_to_perspective("notes")
 #+end_example
 
 *** TODO Improve completion and performance
-**** DONE Enable treesitter in Emacs
-CLOSED: [2025-01-10 Fri 10:53]
-
-I would like to a better version for interacting with code than with language servers. [fn:3]
-
 **** NEXT Enable completion from other buffers
 
 Emacs should be able to complete words from other buffers I have open.
@@ -160,11 +151,6 @@ https://www.reddit.com/r/emacs/comments/1c4p0hy/corfu_cape_how_to_complete_words
   In addition I maybe should switch the order as it is first comes first serves.
 
 *** TODO Extend the agenda
-
-**** DONE [#A] New files should get added automatically
-CLOSED: [2024-12-16 Mon 22:19]
-
-At the moment when I add a new file to the inbox or project directory, it doesn't show up in the agenda, until I restart Emacs.
 
 **** NEXT Save agenda list automatically
 
@@ -230,6 +216,16 @@ I would like to have it so that one sentence is one line and Emacs wraps it for 
 
 https://github.com/nex3/perspective-el?tab=readme-ov-file#some-musings-on-emacs-window-layouts
 
+*** NEXT Remove projectile
+
+I think then only thing I still need projectile for is to mark any directory as a project.
+This should be achievable with project.el as well.
+https://christiantietze.de/posts/2022/03/mark-local-project.el-directories/
+
+*** NEXT Migrate from config to custom
+
+https://www.gnu.org/software/emacs/manual/html_mono/use-package.html#User-options
+
 ** Features
 
 *** NEXT [#A] Check spelling with flymake
@@ -238,6 +234,7 @@ I find interacting with consult and flymake much nicer to use then all the flych
 Therefore I would to have spellchecking work with flymake as well.
 
 https://github.com/leotaku/flycheck-aspell
+https://github.com/federicotdn/flymake-shellcheck
 
 Maybe this could work as an alternative?
 https://github.com/minad/jinx

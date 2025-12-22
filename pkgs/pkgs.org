@@ -1,0 +1,18 @@
+#+title: PKGS
+* Software to package
+
+** NEXT 3 shell scripts
+
+Kill weasel words, avoid the passive, eliminate duplicates
+https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/
+
+** NEXT systemd-tui
+
+It's a rust package and should be fairly easy to package.
+
+https://github.com/rgwood/systemctl-tui
+
+** NEXT Add JDownloader to the config
+
+https://sourcegraph.com/github.com/mkg20001/nix/-/blob/pkgs/jdownloader/default.nix)
+

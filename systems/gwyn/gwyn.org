@@ -1,9 +1,11 @@
-* Gwyn
-** TODO Enable remote desktop on
-[2025-10-31 Fri 09:53]
+#+title: Gwyn
+* NEXT [#A] Enable remote LUKS unlocking
+* NEXT Remove desktop profile
 
-It would be nice to be able to run some tools on a different system.
+I should make this system a full fledged server and only use the management profile.
 
-[2025-11-03 Mon]
-For some reason the KDE RDP server is now crashing on gwyn.
-I will try again maybe after the release of NixOS 25.11 as I don't care enough to fix this now.
+* NEXT Rename gwyn.2li.local to management.2li.local
+* NEXT Let gwyn store more nix paths
+
+E.g. by setting the cache limit to a fixed size and never run the garbage collector automatically.
+

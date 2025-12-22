@@ -19,14 +19,11 @@ in
     inputs.nixos-hardware.nixosModules.dell-precision-5530
     "${inputs.self}/modules/hardware/bluetooth"
     "${inputs.self}/modules/hardware/common-x86"
-    "${inputs.self}/modules/profiles/desktop"
-    "${inputs.self}/modules/programs/distrobox"
+    "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/services/binary-cache-client"
     "${inputs.self}/modules/services/data-share"
-    "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/librenms"
-    "${inputs.self}/modules/services/restic-client-desktop"
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/zram-swap"
     librenmsCertificateModule
@@ -120,8 +117,5 @@ in
     udev.extraRules = ''
       ACTION=="add", ATTR{idVendor}=="0c45", ATTR{idProduct}=="671d", RUN="${pkgs.bash}/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"
     '';
-  };
-  home-manager.users.${config.az-username} = {
-    services.espanso.enable = lib.mkForce false;
   };
 }

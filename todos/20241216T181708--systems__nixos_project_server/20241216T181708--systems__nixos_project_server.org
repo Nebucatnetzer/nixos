@@ -5,10 +5,17 @@
 #+author: Andreas Zweili
 #+category: systems
 
-* Systems Tasks
+* Projects
+
+- [[file:~/.nixos/todos/20230723T231302--configure-emacs__emacs_project/20230221T210606--configuring-emacs__emacs_project.org][Emacs]]
+- [[file:~/.nixos/todos/20241118T182210--using-iscsi-with-nixos-and-raspberry-pis__iscsi_nixos_raspberrypi/20241118T182210--using-iscsi-with-nixos-and-raspberry-pis__iscsi_nixos_raspberrypi.org][ISCSI with Raspi]]
+- [[file:~/.nixos/todos/20250225T221327--librenms__project/20250225T221327--librenms__project.org][LibreNMS]]
+- [[file:~/.nixos/todos/20241105T191116--using-disko-to-build-a-pi-image__nixos_project_raspberrypi/20241105T191116--using-disko-to-build-a-pi-image__nixos_project_raspberrypi.org][Raspi Images]]
+
+* General Tasks
 ** NEXT "Update servers" task ausarbeiten
 
-** Bugs
+** Bugs :bug:
 *** NEXT [#A] Nginx log to journal
 
 Currently it logs to /var/log/nginx which fills up the disk and is a bit pointless because all other logs are in journal. I would like to have everything in one place.
@@ -23,59 +30,216 @@ I should flatten the hirarchy much more and only add one profile per system.
 Currently they are a bit of a mess I should use one system for everything.
 Can I use restic on the NAS?
 
-** Enhancements
-*** NEXT [[https://mastodon.gamedev.place/@AngryAnt/113904347509317158][Emil "AngryAnt" Johansen (@AngryAnt@mastodon.gamedev.place)]]
-
-Enable autorun for commands that I have not installed on my system.
-
-*** NEXT Enable remote builders
-
-It would be nice if I could build aarch64 stuff on the Raspberry Pi without having to do anything on my notebooks.
-
-The other way as well, this way I could build on the Pi and store the symlinks in an easier way.
-
-*** NEXT Setup ntfy.sh
+** Enhancements :enhancement:
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+*** NEXT [#A] Setup ntfy.sh
 
 https://ntfy.sh/
 Would be good as a replacement for Telegram
 Less reliance on shady companies.
 
-*** NEXT Make tty solarized
-
-When I’m in tty I can’t use btm because that uses a solarized theme and my tty is still the stock black.
-
-*** NEXT Check if I use self somewhere
-- Note taken on [2025-03-01 Sat 18:15] \\
-  Self forces a derivation to be rebuilt when the repo changes.
-  https://discourse.nixos.org/t/worth-using-a-derivation-for-automatic-installphase-updates/61008/3?u=nebucatnetzer
-
-*** NEXT Learn how to rebuild NixOS without internet
-
-https://discourse.nixos.org/t/rebuild-nixos-offline/3679
-
-*** NEXT Implement port conflict detection
-
-https://lorenzbischof.ch/posts/detect-port-conflicts-in-nixos-services/
-
-*** NEXT Port share with OpenVPN
-[2025-06-18 Wed 17:06]
-
-The idea is to forward all non VPN traffic to the proxy.
-
-*** NEXT Migrate everything to zweili.org
-
-I would like to stop using the 2li.ch domain.
-- [ ] git.2li.ch is the only thing left
-
-*** NEXT Migrate DNS servers to Infomaniak
+*** NEXT [#A] Migrate DNS servers to Infomaniak
 
 I'm not fully comfortable with NameCheap and would like to migrate my DNS servers to Infomaniak.
 
 **** [[https://www.infomaniak.com/en/support/faq/2376/use-dyndns-via-infomaniak-api][🚀 Use DynDNS via Infomaniak API - Infomaniak]]
 [2025-09-22 Mon 08:33]
 
+*** NEXT Migrate everything to zweili.org
 
-** NixOS Community work
+I would like to stop using the 2li.ch domain.
+- [ ] git.2li.ch is the only thing left
+
+*** NEXT [#C] Enable remote builders
+
+It would be nice if I could build aarch64 stuff on the Raspberry Pi without having to do anything on my notebooks.
+
+The other way as well, this way I could build on the Pi and store the symlinks in an easier way.
+
+*** NEXT [#C] Make tty solarized
+
+When I’m in tty I can’t use btm because that uses a solarized theme and my tty is still the stock black.
+
+*** NEXT [#C] Check if I use self somewhere
+- Note taken on [2025-03-01 Sat 18:15] \\
+  Self forces a derivation to be rebuilt when the repo changes.
+  https://discourse.nixos.org/t/worth-using-a-derivation-for-automatic-installphase-updates/61008/3?u=nebucatnetzer
+
+*** NEXT [#C] Learn how to rebuild NixOS without internet
+
+https://discourse.nixos.org/t/rebuild-nixos-offline/3679
+
+*** NEXT [#C] Implement port conflict detection
+
+https://lorenzbischof.ch/posts/detect-port-conflicts-in-nixos-services/
+
+*** NEXT [#C] Port share with OpenVPN
+[2025-06-18 Wed 17:06]
+
+The idea is to forward all non VPN traffic to the proxy.
+
+* Budget
+** NEXT Create dedicated server
+
+Currently ActualBudget lives on the the proxy, I should move it onto its own server.
+
+* Capricorn
+** NEXT Implement BTRFS autoScrub :bug:
+[[https://www.kernel.org/doc/html/v5.4/power/basic-pm-debugging.html][Debugging hibernation and suspend — The Linux Kernel documentation]]
+
+
+[[https://search.nixos.org/options?channel=unstable&show=services.btrfs.autoScrub.enable&query=btrfs+autoScrub]]
+
+
+** WAITING Fix webcam :bug:
+:LOGBOOK:
+- State "WAITING"    from "NEXT"       [2025-12-23 Tue 11:21]
+- State "WAITING"    from "NEXT"       [2025-02-15 Sat 14:53]
+:END:
+
+Seems to be a firmware bug.
+- https://github.com/NixOS/nixpkgs/issues/225743
+
+- Other issue tracking this issue and probably more relevant than the NixOS issue.
+
+**[2025-11-03]**
+
+There have been some updates in the thread I should try out.
+
+** NEXT Enable kanata :enhancement:
+
+It's a software that lets you remap keyboard keys.
+With this I can enable home-row mods on my notebook keyboard which would be really helpful on the go as it is a bit of a hassle to use the Voyager for short sessions.
+
+https://github.com/jtroo/kanata/tree/main
+
+- [X] Map home row keys to the win, alt, shift and ctrl
+  https://github.com/jtroo/kanata/blob/main/docs/simulated_output/sim.kbd
+- [ ] Hold Space, enable arrow keys on HKJL
+
+** NEXT Fix hibernation :bug:
+
+Not really a high priority.
+
+[[https://github.com/lovesegfault/nix-config/blob/ff964c6f11010942e56bd73a6c4766dffdd3e031/hardware/thinkpad-z13.nix#L123][nix-config/hardware/thinkpad-z13.nix at ff964c6f11010942e56bd73a6c4766dffdd3e031 · lovesegfault/nix-config]]
+
+** Features to add
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
+The following tasks enable certain hardware features that I currently don't have on any of my hardware.
+Namely face unlock and the finger print reader.
+
+*** WAITING [#C] [[https://github.com/boltgolt/howdy][boltgolt/howdy: 🛡️ Windows Hello™ style facial authentication for Linux]]
+:LOGBOOK:
+- State "WAITING"    from "TODO"       [2025-03-31 Mon 17:11]
+:END:
+
+2025-03-31
+KDE currently doesn't have support for face unlocking.
+
+Since the webcam doesn't work I don't really have to bother with this for the moment.
+
+https://github.com/search?q=lang%3ANix+AND+NOT+repo%3ANixOS%2Fnixpkgs+howdy&type=code
+
+* Git
+** NEXT Customise the Gitea start page to redirect people to my GitHub page :enhancement:
+:LOGBOOK:
+- State "WAITING"    from "NEXT"       [2025-12-23 Tue 10:56]
+:END:
+
+- https://docs.gitea.com/administration/customizing-gitea
+
+** NEXT [#A] setup gitea-mirror :enhancement:
+
+I currently use GitHub as my main git forge due to those LLM fuckers.
+To make my life easier I should setup gitea-mirror.
+This way I could just setup repos like I want on GitHub and gitea-mirror mirrors them to my Gitea server for backup.
+
+https://github.com/arunavo4/gitea-mirror
+
+* Gwyn
+** NEXT [#A] Enable remote LUKS unlocking :bug:
+** NEXT Remove desktop profile :enhancement:
+
+I should make this system a full fledged server and only use the management profile.
+
+** NEXT Rename gwyn.2li.local to management.2li.local :enhancement:
+** NEXT Let gwyn store more nix paths :enhancement:
+
+E.g. by setting the cache limit to a fixed size and never run the garbage collector automatically.
+
+* Management
+** NEXT Rename management.2li.local to cache.2li.local :enhancement:
+** NEXT Set up a better binary cache :enhancement:
+
+https://github.com/nix-community/harmonia
+
+It would be nice to have a binary cache that isn't part of the main nix store of the system.
+Because if it is part of the main store garbage collection gets hard because we might accidently remove packages from the cache that we wanted to keep.
+
+attic was a very nice project but it doesn't work well. There might be a fix if you store the files on an S3 storage but I'm not sure this is feasable for me. First tests with my NAS didn't work well because it required a certificate.
+
+[[file:fileserver_S3Storage.key]]
+
+*** Binary Cache for Nixpkgs
+
+- https://github.com/kalbasit/ncps
+
+* Restic server
+** NEXT Move repository to external SSD :bug:
+
+This way the data is not stored on the NAS anymore and maybe has faster access times.
+
+* TTRSS
+** NEXT Rename this system :enhancement:
+
+Possible name:
+- freshrss
+- rss-server
+- rss
+
+* Raspberry Pi 4
+** NEXT Build a custom Raspi UEFI
+:LOGBOOK:
+- State "WAITING"    from "NEXT"       [2025-12-23 Tue 11:10]
+:END:
+
+The idea is to have a custom Raspi UEFI with the correct settings applied for me:
+
+- Enable +3GB RAM
+- Disable PXE Boot
+- Correct boot order (USB before SD card)
+
+- https://github.com/pftf/RPi4
+- https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi4
+- https://github.com/tianocore/edk2-platforms/tree/master
+- https://github.com/raspberrypi/firmware/tree/master/boot/overlays
+
+* Software to package
+** NEXT 3 shell scripts
+
+Kill weasel words, avoid the passive, eliminate duplicates
+https://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/
+
+** NEXT systemd-tui
+
+It's a rust package and should be fairly easy to package.
+
+https://github.com/rgwood/systemctl-tui
+
+** NEXT Add JDownloader to the config
+
+https://sourcegraph.com/github.com/mkg20001/nix/-/blob/pkgs/jdownloader/default.nix)
+
+* NixOS Community work
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
+
 - https://github.com/NixOS/nixpkgs/labels/3.skill%3A%20good-first-bug
 - https://github.com/NixOS/nixpkgs/issues?q=is%3Aopen+is%3Aissue+label%3A%220.kind%3A+packaging+request%22+sort%3Acreated-asc
 - https://github.com/NixOS/nixpkgs/issues/41321
@@ -83,3 +247,9 @@ I'm not fully comfortable with NameCheap and would like to migrate my DNS server
 - https://github.com/NixOS/nixpkgs/labels/8.has%3A%20module%20%28new%29
 - https://github.com/NixOS/nixpkgs/labels/8.has%3A%20package%20%28new%29
 - https://github.com/Mic92/nixpkgs-review
+
+* Footnotes
+
+[fn:3] https://github.com/fairyglade/ly/pull/654
+[fn:2] https://kernelnewbies.org/Linux_6.13
+[fn:1] https://wiki.archlinux.org/title/Intel_graphics#Crash/freeze_on_low_power_Intel_CPUs

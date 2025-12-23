@@ -1,5 +1,0 @@
-#+title: Plex
-* NEXT Migrate Plex to x86 server
-
-Some features I would like to have don't work on a Raspi.
-

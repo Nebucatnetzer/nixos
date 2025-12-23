@@ -7,7 +7,7 @@
 #+startup: content
 
 * PROJECT Configure Emacs
-** Bugs
+** Bugs :bug:
 *** NEXT Indentation is a bit broken
 
 Currently I'm always indenting with four spaces. However certain languges like Java and Bash use two so the formatter then jumps in and changes the indentation to two spaces.
@@ -35,7 +35,10 @@ Currently it is very annoying that god mode only works in certain buffers but no
 When I have an org mode link to a file and I would like to point it to a different target I don't get any autocompletion when I press {C-c C-l}. It just displays the string and you have to type everything, hoping that you got the filename right.
 When you edit the link directly it works but then sort of breaks the link.
 
-** Enhancements
+** Enhancements :enhancement:
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 *** NEXT [#A] Org mode dynamic clocking
 
 Ich möchte gerne eine Clock starten, wenn ich einen Task erfasse.
@@ -94,10 +97,6 @@ https://codeberg.org/pranshu/haskell-ts-mode
 ~check-parens~ hilft mit klammern die nicht passen
 
 ~C-w C-s~, ~C-w C-v~ and ~C-w C-c~ for window management
-
-*** NEXT Work through the markdown files
-
-- file:inbox/
 
 *** NEXT Projects are files that are tagged with project
 
@@ -227,6 +226,9 @@ https://christiantietze.de/posts/2022/03/mark-local-project.el-directories/
 https://www.gnu.org/software/emacs/manual/html_mono/use-package.html#User-options
 
 ** Features
+:PROPERTIES:
+:VISIBILITY: folded
+:END:
 
 *** NEXT [#A] Check spelling with flymake
 

@@ -53,13 +53,6 @@ This is suboptimal for two reasosns:
 1. They are a shitty company
 2. Whenever I have to look at the notifications, I have to look at the Telegram messages as well which is quite distracting.
 
-* Notes
-
-*2025-04-28*
-
-I denke ich werde am Zero Hydra Failure event etwas daran weitermachen.
-Es ist zwar nicht strickt ZHF aber denke wenn ich die Doku verbessere wird dies schon auch gelten.
-
 ** Project overview
 
 I've looked at multiple different projects but LibreNMS seem to be the one that fits the most to what I need.

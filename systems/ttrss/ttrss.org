@@ -1,9 +1,0 @@
-#+title: TTRSS
-
-* NEXT Rename this system
-
-Possible name:
-- freshrss
-- rss-server
-- rss
-

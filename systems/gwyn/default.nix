@@ -32,9 +32,12 @@ in
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
+    "cdc_ether"
     "cryptd"
     "nvme"
     "rtsx_pci_sdmmc"
+    "r8152"
+    "r8153_ecm"
     "sd_mod"
     "sr_mod"
     "usbhid"
@@ -42,13 +45,20 @@ in
     "xhci_pci"
   ];
 
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
+  boot.initrd.kernelModules = [
+    "cdc_ether"
+    "dm-snapshot"
+    "r8152"
+    "r8153_ecm"
+    "xhci_pci"
+  ];
   boot.kernelModules = [
     "kvm-intel"
     "sg"
   ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
+    "rootdelay=10"
     "ip=dhcp" # required for ssh at initrd
   ];
 
@@ -79,6 +89,7 @@ in
     fsType = "vfat";
   };
 
+  # USB address of the ethernet dongle: 0bda:8153
   networking = {
     firewall.allowedTCPPorts = [
       3389
@@ -109,6 +120,7 @@ in
   services = {
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
+    # todo: has been renamed to `services.logind.settings.Login.HandleLidSwitchExternalPower`.
     logind.lidSwitchExternalPower = "ignore";
     thermald.enable = true;
 

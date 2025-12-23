@@ -197,6 +197,13 @@ in
         };
       };
     };
+    btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [
+        "/"
+      ];
+      interval = "monthly";
+    };
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control

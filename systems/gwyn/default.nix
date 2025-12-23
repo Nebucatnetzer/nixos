@@ -42,7 +42,6 @@ in
     "xhci_pci"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [
     "kvm-intel"

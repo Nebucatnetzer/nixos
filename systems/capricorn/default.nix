@@ -5,14 +5,8 @@
   ...
 }:
 let
-  commonBtrfsOptions = [
-    "compress=lzo"
-    "defaults"
-    "discard=async" # be explicit about defaults
-    "noatime"
-    "space_cache=v2" # be explicit about defaults
-    "ssd"
-  ];
+  btrfsModule = import "${inputs.self}/modules/hardware/btrfs" { btrfsLabel = "mainBtrfs"; };
+  commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
@@ -50,6 +44,7 @@ in
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/restic-client-desktop"
     "${inputs.self}/modules/services/zram-swap"
+    btrfsModule
     mediaShare
   ];
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
@@ -171,7 +166,6 @@ in
   };
 
   environment.systemPackages = [
-    pkgs.compsize # required to display additional information about btrfs compression
     pkgs.wally-cli # tool to flash a ZSA keyboard
     foxFlssWrapper
     toggle-keyboard
@@ -184,26 +178,6 @@ in
   };
 
   services = {
-    beesd = {
-      filesystems = {
-        root = {
-          extraOptions = [
-            "--loadavg-target"
-            "2.0"
-            "--thread-factor"
-            "0.5"
-          ];
-          spec = "LABEL=mainBtrfs";
-        };
-      };
-    };
-    btrfs.autoScrub = {
-      enable = true;
-      fileSystems = [
-        "/"
-      ];
-      interval = "monthly";
-    };
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control

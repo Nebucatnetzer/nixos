@@ -86,7 +86,8 @@ The idea is to forward all non VPN traffic to the proxy.
 Currently ActualBudget lives on the the proxy, I should move it onto its own server.
 
 * Capricorn
-** NEXT Implement BTRFS autoScrub :bug:
+** DONE Implement BTRFS autoScrub :bug:
+CLOSED: [2025-12-23 Tue 13:46]
 [[https://www.kernel.org/doc/html/v5.4/power/basic-pm-debugging.html][Debugging hibernation and suspend — The Linux Kernel documentation]]
 
 

@@ -22,6 +22,7 @@ in
     "${inputs.self}/modules/services/zram-swap"
   ];
   boot.supportedFilesystems = lib.mkForce [
+    "btrfs"
     "cifs"
     "ext4"
     "f2fs"

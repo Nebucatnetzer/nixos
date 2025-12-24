@@ -13,8 +13,6 @@
 - [[file:~/.nixos/todos/20241105T191116--using-disko-to-build-a-pi-image__nixos_project_raspberrypi/20241105T191116--using-disko-to-build-a-pi-image__nixos_project_raspberrypi.org][Raspi Images]]
 
 * General Tasks
-** NEXT "Update servers" task ausarbeiten
-
 ** Bugs :bug:
 *** NEXT [#A] Nginx log to journal
 
@@ -46,6 +44,15 @@ I'm not fully comfortable with NameCheap and would like to migrate my DNS server
 
 **** [[https://www.infomaniak.com/en/support/faq/2376/use-dyndns-via-infomaniak-api][🚀 Use DynDNS via Infomaniak API - Infomaniak]]
 [2025-09-22 Mon 08:33]
+
+*** NEXT "Update servers" task ausarbeiten
+*** NEXT Move packages to self/pkgs where feasable
+
+I have a bunch of scripts scattered over this repository.
+It would make more sense to collect them all together in the pkgs directory.
+- ../../modules/programs/scripts/
+- ~test-sd-card~
+- ../../scripts/
 
 *** NEXT Migrate everything to zweili.org
 

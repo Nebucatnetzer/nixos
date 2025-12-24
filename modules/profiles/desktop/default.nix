@@ -9,9 +9,8 @@ let
 in
 {
   imports = [
+    "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/programs/libimobiledevice"
-    "${inputs.self}/modules/programs/nix-direnv"
-    "${inputs.self}/modules/programs/scripts"
     "${inputs.self}/modules/services/pipewire"
   ];
   networking.networkmanager = {
@@ -28,12 +27,6 @@ in
     ];
   };
 
-  documentation = {
-    man.generateCaches = false;
-    nixos.includeAllModules = true;
-  };
-
-  age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
   users.users."${config.az-username}".extraGroups = [
     "input" # required for espanso
     config.services.samba.usershares.group
@@ -70,13 +63,6 @@ in
       };
     };
   };
-
-  # taken from here: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/hardware/video/hidpi.nix
-  # {
-  # Needed when typing in passwords for full disk encryption
-  console.earlySetup = true;
-  boot.loader.systemd-boot.consoleMode = "1";
-  # }
 
   fonts = {
     packages = [
@@ -127,21 +113,14 @@ in
       pkgs.adwaita-icon-theme
       pkgs.appimage-run
       pkgs.brightnessctl
-      pkgs.lm_sensors
       pkgs.networkmanager-openvpn
-      pkgs.nixos-rebuild-ng
-      pkgs.p7zip
       pkgs.pavucontrol
-      pkgs.podman-compose
-      pkgs.quickemu
-      pkgs.unrar
       unstable.firefoxpwa # required for firefx PWA support
     ];
     sessionVariables = {
       DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
     };
   };
-  virtualisation.podman.enable = true;
 
   xdg = {
     portal = {

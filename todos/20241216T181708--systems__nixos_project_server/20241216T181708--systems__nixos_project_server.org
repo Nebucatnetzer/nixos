@@ -28,6 +28,10 @@ I should flatten the hirarchy much more and only add one profile per system.
 Currently they are a bit of a mess I should use one system for everything.
 Can I use restic on the NAS?
 
+*** NEXT Enable smartd on all devices
+
+https://search.nixos.org/options?channel=25.11&query=smartd
+
 ** Enhancements :enhancement:
 :PROPERTIES:
 :VISIBILITY: folded
@@ -93,14 +97,6 @@ The idea is to forward all non VPN traffic to the proxy.
 Currently ActualBudget lives on the the proxy, I should move it onto its own server.
 
 * Capricorn
-** DONE Implement BTRFS autoScrub :bug:
-CLOSED: [2025-12-23 Tue 13:46]
-[[https://www.kernel.org/doc/html/v5.4/power/basic-pm-debugging.html][Debugging hibernation and suspend — The Linux Kernel documentation]]
-
-
-[[https://search.nixos.org/options?channel=unstable&show=services.btrfs.autoScrub.enable&query=btrfs+autoScrub]]
-
-
 ** WAITING Fix webcam :bug:
 :LOGBOOK:
 - State "WAITING"    from "NEXT"       [2025-12-23 Tue 11:21]
@@ -198,10 +194,6 @@ attic was a very nice project but it doesn't work well. There might be a fix if 
 - https://github.com/kalbasit/ncps
 
 * Restic server
-** NEXT Move repository to external SSD :bug:
-
-This way the data is not stored on the NAS anymore and maybe has faster access times.
-
 * TTRSS
 ** NEXT Rename this system :enhancement:
 

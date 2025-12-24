@@ -22,13 +22,13 @@ in
     "${inputs.self}/modules/services/zram-swap"
   ];
   boot.supportedFilesystems = lib.mkForce [
-    "f2fs"
-    "ntfs"
     "cifs"
     "ext4"
-    "vfat"
+    "f2fs"
     "nfs"
     "nfs4"
+    "ntfs"
+    "vfat"
   ];
   boot.kernelParams = [
     "rootflags=atgc"

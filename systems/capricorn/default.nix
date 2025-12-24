@@ -7,7 +7,6 @@
 let
   btrfsModule = import "${inputs.self}/modules/hardware/btrfs" { btrfsLabel = "mainBtrfs"; };
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
-  toggle-keyboard = pkgs.callPackage "${inputs.self}/pkgs/toggle-keyboard" { };
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
     name = "enable-wwan";
@@ -168,7 +167,6 @@ in
   environment.systemPackages = [
     pkgs.wally-cli # tool to flash a ZSA keyboard
     foxFlssWrapper
-    toggle-keyboard
   ];
   programs = {
     localsend = {

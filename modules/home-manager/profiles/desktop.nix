@@ -5,15 +5,7 @@
   ...
 }:
 let
-  az-media = pkgs.writeShellScriptBin "az-media" ''
-    videos="videos"
-    directory="''${1:-videos}"
-    for i in $(seq 1 4);
-    do
-        mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
-    done
-  '';
-  send-to-kindle = pkgs.callPackage "${inputs.self}/pkgs/send-to-kindle" { };
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs; };
 in
 {
   imports = [
@@ -30,6 +22,10 @@ in
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
     packages = [
+      azPkgs.az-media
+      azPkgs.send-to-kindle
+      azPkgs.toggle-keyboard
+
       # photographie packages
       pkgs.art
       pkgs.digikam
@@ -49,8 +45,6 @@ in
       pkgs.plex-desktop
       pkgs.remmina
       pkgs.tagger
-      az-media
-      send-to-kindle
     ];
   };
 

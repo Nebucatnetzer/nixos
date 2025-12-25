@@ -21,16 +21,7 @@ in
   imports = [
     "${inputs.self}/modules/services/zram-swap"
   ];
-  boot.supportedFilesystems = lib.mkForce [
-    "btrfs"
-    "cifs"
-    "ext4"
-    "f2fs"
-    "nfs"
-    "nfs4"
-    "ntfs"
-    "vfat"
-  ];
+  boot.supportedFilesystems.zfs = lib.mkForce false;
   boot.kernelParams = [
     "rootflags=atgc"
     "rw"

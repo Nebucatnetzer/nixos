@@ -194,6 +194,15 @@ attic was a very nice project but it doesn't work well. There might be a fix if 
 - https://github.com/kalbasit/ncps
 
 * Restic server
+** NEXT read data while doing ~restic check~ :enhancement:
+
+It is important to test backups for restore as well.
+Restic can do this automatically with the ~check~ command and the flag ~--read-data~[fn:4].
+However reading all the data would be a bit overkill for my setup.
+Restic has the flag ~--read-data-subset~ which can be used as follows to read a rando amount of data ~--read-data-subset=10G~.
+However on a Raspberry with an SD card it is still a problem to write 10 GB of data every week.
+Therefore I could create an additional btrfs volume on the SSD and put the temporary files[fn:5] there, reducing the wear on the SD card.
+
 * TTRSS
 ** NEXT Rename this system :enhancement:
 
@@ -250,6 +259,8 @@ https://sourcegraph.com/github.com/mkg20001/nix/-/blob/pkgs/jdownloader/default.
 
 * Footnotes
 
+[fn:5] https://restic.readthedocs.io/en/stable/manual_rest.html#temporary-files
+[fn:4] https://restic.readthedocs.io/en/stable/045_working_with_repos.html#checking-integrity-and-consistency
 [fn:3] https://github.com/fairyglade/ly/pull/654
 [fn:2] https://kernelnewbies.org/Linux_6.13
 [fn:1] https://wiki.archlinux.org/title/Intel_graphics#Crash/freeze_on_low_power_Intel_CPUs

@@ -1,5 +1,7 @@
 { ... }:
 {
+  # Required to build aarch64 packages
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   # Enable boot splash screen
   boot.plymouth.enable = true;
   # Use the systemd-boot EFI boot loader.

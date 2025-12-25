@@ -67,8 +67,6 @@ in
     device = "/dev/nvme0n1p2";
   };
 
-  # Required to build aarch64 packages
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.supportedFilesystems = [
     "apfs"
     "exfat"

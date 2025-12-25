@@ -10,8 +10,6 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  # Required to build aarch64 packages
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";

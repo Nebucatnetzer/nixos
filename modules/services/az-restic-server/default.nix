@@ -7,6 +7,15 @@
 }:
 let
   cfg = config.services.az-restic-server;
+  infomaniakEnv = config.age.secrets.infomaniakEnv.path;
+  infomaniakAuthUrl = "https://swiss-backup04.infomaniak.com/identity/v3";
+  offsite-repo-sync = pkgs.callPackage ./offsite_repo_sync.nix {
+    envFile = infomaniakEnv;
+    localResticRepo = config.services.az-restic-server.repository;
+    swiftAuthUrl = infomaniakAuthUrl;
+    swiftRegion = "RegionOne";
+  };
+
 in
 {
   imports = [
@@ -31,7 +40,10 @@ in
       group = "restic";
     };
 
-    environment.systemPackages = [ pkgs.restic ];
+    environment.systemPackages = [
+      pkgs.restic
+      offsite-repo-sync
+    ];
 
     services.restic.server = {
       enable = true;

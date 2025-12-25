@@ -25,7 +25,7 @@ let
 
   infomaniak-env = config.age.secrets.infomaniakEnv.path;
   infomaniak-repo = "swift:default:/";
-  infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";
+  infomaniak-auth-url = "https://swiss-backup04.infomaniak.com/identity/v3";
 
   offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
     envFile = infomaniak-env;

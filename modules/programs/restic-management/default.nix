@@ -27,6 +27,13 @@ let
   infomaniak-repo = "swift:default:/";
   infomaniak-auth-url = "https://swiss-backup02.infomaniak.com/identity/v3";
 
+  offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
+    envFile = infomaniak-env;
+    resticPassword = password_file;
+    resticRepo = infomaniak-repo;
+    swiftAuthUrl = infomaniak-auth-url;
+  };
+
   restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''
     export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
     export RESTIC_REPOSITORY="${infomaniak-repo}"
@@ -82,6 +89,7 @@ in
   };
   environment.systemPackages = [
     pkgs.restic
+    offsite-repo-check
     restic-mount
     restic-mount-all
     restic-infomaniak-list

@@ -198,9 +198,12 @@ attic was a very nice project but it doesn't work well. There might be a fix if 
 
 After I locally pruned and checked the data I should sync it automatically the offsite location.
 
+** NEXT Enable notifications for sync script :enhancement:
 ** NEXT Check offsite data after syncing :enhancement:
 
 After I synced the data to the offsite location I should check with restic that everything is still intact.
+
+** NEXT Enable notifications for check script :enhancement:
 
 ** NEXT read data while doing ~restic check~ :enhancement:
 
@@ -220,7 +223,7 @@ Possible name:
 - rss
 
 * Raspberry Pi 4
-** NEXT Build a custom Raspi UEFI
+** NEXT Build a custom Raspi UEFI :enhancement:
 :LOGBOOK:
 - State "WAITING"    from "NEXT"       [2025-12-23 Tue 11:10]
 :END:

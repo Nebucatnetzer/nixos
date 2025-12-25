@@ -27,8 +27,9 @@ writeShellApplication {
     ${rclone}/bin/rclone \
       --no-gzip-encoding \
       --config ${./rclone.conf} \
+      -v \
       sync \
       ${localResticRepo} \
-      offsite:
+      offsite:default/
   '';
 }

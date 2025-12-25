@@ -23,21 +23,21 @@ let
       --password-file ${password_file} \
       mount /tmp/restic'';
 
-  infomaniak-env = config.age.secrets.infomaniakEnv.path;
-  infomaniak-repo = "swift:default:/";
-  infomaniak-auth-url = "https://swiss-backup04.infomaniak.com/identity/v3";
+  infomaniakEnv = config.age.secrets.infomaniakEnv.path;
+  infomaniakRepo = "swift:default:/";
+  infomaniakAuthUrl = "https://swiss-backup04.infomaniak.com/identity/v3";
 
   offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
-    envFile = infomaniak-env;
+    envFile = infomaniakEnv;
     resticPassword = password_file;
-    resticRepo = infomaniak-repo;
-    swiftAuthUrl = infomaniak-auth-url;
+    resticRepo = infomaniakRepo;
+    swiftAuthUrl = infomaniakAuthUrl;
   };
 
   restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''
-    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
-    export RESTIC_REPOSITORY="${infomaniak-repo}"
-    export OS_AUTH_URL="${infomaniak-auth-url}"
+    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniakEnv} | ${pkgs.findutils}/bin/xargs)
+    export RESTIC_REPOSITORY="${infomaniakRepo}"
+    export OS_AUTH_URL="${infomaniakAuthUrl}"
     export OS_USER_DOMAIN_NAME=default
 
     mkdir -p /tmp/restic &&
@@ -45,9 +45,9 @@ let
     ${pkgs.restic}/bin/restic --password-file ${password_file} snapshots'';
 
   restic-infomaniak-mount = pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
-    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniak-env} | ${pkgs.findutils}/bin/xargs)
-    export RESTIC_REPOSITORY="${infomaniak-repo}"
-    export OS_AUTH_URL="${infomaniak-auth-url}"
+    export $(${pkgs.gnugrep}/bin/grep -v '^#' ${infomaniakEnv} | ${pkgs.findutils}/bin/xargs)
+    export RESTIC_REPOSITORY="${infomaniakRepo}"
+    export OS_AUTH_URL="${infomaniakAuthUrl}"
     export OS_USER_DOMAIN_NAME=default
 
     mkdir -p /tmp/restic &&

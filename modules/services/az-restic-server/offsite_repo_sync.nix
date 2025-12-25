@@ -24,6 +24,11 @@ writeShellApplication {
 
     mkdir -p /tmp/restic &&
 
-    ${rclone}/bin/rclone --config ${./rclone.conf} sync ${localResticRepo} offsite:
+    ${rclone}/bin/rclone \
+      --no-gzip-encoding \
+      --config ${./rclone.conf} \
+      sync \
+      ${localResticRepo} \
+      offsite:
   '';
 }

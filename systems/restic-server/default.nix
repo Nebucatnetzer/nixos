@@ -11,6 +11,7 @@ in
 {
   imports = [
     "${inputs.self}/modules/profiles/server"
+    "${inputs.self}/modules/programs/restic-management"
     (btrfsModule { btrfsLabel = "resticSSD"; })
     raspiEthernet
   ];

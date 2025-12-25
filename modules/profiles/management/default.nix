@@ -6,7 +6,9 @@
 }:
 {
   imports = [
+    "${inputs.self}/modules/misc/restic-key"
     "${inputs.self}/modules/programs/nix-direnv"
+    "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/programs/scripts"
   ];
 

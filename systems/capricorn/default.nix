@@ -36,7 +36,6 @@ in
     "${inputs.self}/modules/programs/distrobox"
     "${inputs.self}/modules/programs/droidcam"
     "${inputs.self}/modules/programs/makemkv"
-    "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/programs/steam"
     "${inputs.self}/modules/services/binary-cache-client"
     "${inputs.self}/modules/services/kanata"

@@ -194,6 +194,14 @@ attic was a very nice project but it doesn't work well. There might be a fix if 
 - https://github.com/kalbasit/ncps
 
 * Restic server
+** NEXT Sync data after pruning the backups :bug:
+
+After I locally pruned and checked the data I should sync it automatically the offsite location.
+
+** NEXT Check offsite data after syncing :enhancement:
+
+After I synced the data to the offsite location I should check with restic that everything is still intact.
+
 ** NEXT read data while doing ~restic check~ :enhancement:
 
 It is important to test backups for restore as well.

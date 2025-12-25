@@ -5,6 +5,7 @@
   ...
 }:
 let
+  btrfsModule = import "${inputs.self}/modules/hardware/btrfs" { btrfsLabel = "mainBtrfs"; };
   test-sd-card = pkgs.writeShellApplication {
     name = "test-sd-card";
     runtimeInputs = [
@@ -21,6 +22,8 @@ in
   imports = [
     "${inputs.self}/modules/services/log-to-ram"
     "${inputs.self}/modules/services/zram-swap"
+    btrfsModule
+    ./disko.nix
   ];
   boot.supportedFilesystems.zfs = lib.mkForce false;
   boot.kernelParams = [
@@ -28,28 +31,6 @@ in
     "rw"
   ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/root";
-    fsType = "f2fs";
-    options = [
-      "atgc,gc_merge"
-      "compress_algorithm=lz4"
-      "compress_extension=*"
-      "compress_chksum"
-      "discard"
-      "lazytime"
-    ];
-  };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 4 * 1024;
-    }
-  ];
   zramSwap.algorithm = "lz4";
 
   boot = {
@@ -63,10 +44,6 @@ in
       "reset-raspberrypi" # required for vl805 firmware to load
     ];
 
-    initrd.luks.devices."cryptsd" = {
-      device = "/dev/disk/by-label/cryptroot";
-      allowDiscards = true; # required for TRIM
-    };
     loader = {
       systemd-boot.enable = true;
     };
@@ -90,13 +67,5 @@ in
     pkgs.raspberrypi-eeprom
     test-sd-card
   ];
-  environment.shellAliases = {
-    raspi-firmware-update = ''
-      sudo mkdir -p /mnt/firmware && \
-      sudo mount /dev/disk/by-label/FIRMWARE /mnt/firmware && \
-      BOOTFS=/mnt/firmware FIRMWARE_RELEASE_STATUS=stable sudo -E rpi-eeprom-update -d -a && \
-      sudo umount /mnt/firmware
-    '';
-  };
   nixpkgs.hostPlatform = "aarch64-linux";
 }

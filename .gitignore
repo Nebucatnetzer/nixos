@@ -91,3 +91,4 @@ flycheck_*
 /*.qcow2
 /builds
 *.key
+/*.raw

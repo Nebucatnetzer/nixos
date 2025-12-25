@@ -1,7 +1,7 @@
 { hostname }:
 { inputs, ... }:
 let
-  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
+  raspiUsb = import "${inputs.self}/modules/hardware/raspi4/raspi-usb.nix" {
     inherit hostname;
     ip = "10.7.89.40";
   };
@@ -9,10 +9,10 @@ in
 {
   imports = [
     "${inputs.self}/modules/profiles/server"
-    raspiEthernet
+    "${inputs.self}/modules/programs/nix-direnv"
+    "${inputs.self}/modules/services/docker"
+    raspiUsb
   ];
-  services.az-docker.enable = true;
-  programs = {
-    az-nix-direnv.enable = true;
-  };
+
+  nixpkgs.hostPlatform = "aarch64-linux";
 }

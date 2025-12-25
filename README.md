@@ -10,8 +10,107 @@ In addition some of the scripts required for installation will destroy your data
 
 ## Installation
 
-1. For Raspis it's the easiest if you prepare the SD card/disk on another system. For a PC you can just boot the installation ISO directly.
-2. For both devices you can format the disk/card with the following script `sudo ./scripts/format-disk.sh`. Make sure to edit it beforehand, to point it to the correct disk.
+### Raspberry Pi with disko
+
+#### 1. Build the image
+
+```bash
+nix run .#azPkgs.buildRaspiImage
+```
+
+#### 2. Flash the image to the SD card.
+
+```bash
+sudo dd if=IMAGE.raw of=/dev/sdcard bs=4M
+```
+
+#### 3. Insert the SD card and boot the system.
+
+For some reason it takes quite a long while to boot with UEFI.
+
+#### 4. Expand the partitions.
+
+**Looking around the system first**
+
+Because the image will only be 15GB in size we have to extend the filesystem to use the whole SD card or drive.
+
+`lsblk` shows you that the partitions only use 15 GB in total.
+
+```
+[nix-shell:~]$ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+mmcblk1     179:0    0 59.5G  0 disk
+├─mmcblk1p1 179:1    0    1G  0 part  /boot
+└─mmcblk1p2 179:2    0   14G  0 part
+  └─crypted 253:0    0   14G  0 crypt /swap
+                                      /home
+                                      /nix/store
+                                      /nix
+```
+
+And `df -h /` shows that we are nearly out of space.
+
+```
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/crypted   14G   11G  2.5G  82% /
+```
+
+**Getting to work**
+
+Start `parted` and print the partitions.
+
+```bash
+nix-shell -p parted
+sudo parted /dev/mmcblk1
+(parted)p
+```
+
+`parted` will first prompt you to fix the GPT so that it uses the whole device.
+
+```
+Warning: Not all of the space available to /dev/mmcblk1 appears to be used, you can fix the GPT to use all of the space (an extra 93278208 blocks) or continue with the current setting?
+Fix/Ignore? f
+```
+
+Then you can resize the parition where BTRFS lives.
+
+```bash
+(parted) resizepart 2 100%
+(parted) quit
+```
+
+At this point I had to reboot the system to continue, after the reboot you can extend BTRFS and are then finished.
+
+```bash
+sudo btrfs filesystem resize max /
+```
+
+`lsblk` and `df` should show you now the new parition size.
+
+```
+[nix-shell:~]$ lsblk
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+mmcblk1     179:0    0 59.5G  0 disk
+├─mmcblk1p1 179:1    0    1G  0 part  /boot
+└─mmcblk1p2 179:2    0 58.5G  0 part
+  └─crypted 253:0    0 58.5G  0 crypt /swap
+                                      /home
+                                      /nix/store
+                                      /nix
+                                      /
+```
+
+```
+[nix-shell:~]$ df -h /
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/crypted   59G   11G   47G  19% /
+```
+
+### x86_64-linux without disko
+
+1. Boot the installation ISO.
+2. Format the disk with the following script `sudo ./scripts/format-disk.sh`. Make sure to edit it beforehand, to point it to the correct disk.
 3. Next install the system with `sudo nixos-install --no-root-passwd --root /mnt/nixos --impure --flake .#SYSTEMNAME --no-channel-copy`
 4. Rename the partitions with the script `sudo ./scripts/rename-partitions.sh`. With this script as well. Check that you're pointing to the correct disk.
 
@@ -19,12 +118,7 @@ When everything is finished you can reboot the system and remove the USB stick. 
 
 ### Additional script
 
-- If you only want to prepare an SD card with an UEFI partition for a Raspberry Pi 4 you can use the script `sudo ./scripts/create-uefi.sh`
-
-## Update remote systems
-
-Simply run the script `scripts/remote_switch.sh` and it will iterate over
-all defined systems. With the option `-r` the systems will reboot as well.
+- If you only want to prepare an SD card with an UEFI partition for a Raspberry Pi 4 you can use the script `sudo ./scripts/create-uefi.sh`. This is currently outdated and not needed for SD cards formatted with disko. But it might be needed for systems that don't have the UEFI parition on the same device.
 
 ## Non-Nixos System
 

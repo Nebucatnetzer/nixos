@@ -5,6 +5,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
         "plex" = { };
         "proxy" = { };
         "restic-server" = { };
+        "test-raspi" = { };
         "ttrss" = { };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (

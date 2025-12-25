@@ -35,6 +35,7 @@
         mnemonicPrefix = true;
         renames = true;
       };
+      extensions.refstorage = "files";
       feature.experimental = true;
       fetch = {
         all = true;

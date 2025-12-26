@@ -71,7 +71,7 @@ in
       RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
       RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
     };
-    onFailure = [ "unit-status-telegram@%n.service" ];
+    onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''
       ${pkgs.restic}/bin/restic backup \
         --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \

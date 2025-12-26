@@ -70,7 +70,7 @@ in
         Type = "oneshot";
         User = "restic";
       };
-      onFailure = [ "unit-status-telegram@%n.service" ];
+      onFailure = [ "unit-status-telegram@%N.service" ];
       script = ''
         ${pkgs.restic}/bin/restic \
         --repo ${cfg.repository} \
@@ -85,7 +85,7 @@ in
         User = "restic";
       };
       after = [ "restic-prune.service" ];
-      onFailure = [ "unit-status-telegram@%n.service" ];
+      onFailure = [ "unit-status-telegram@%N.service" ];
       script = "${offsite-repo-sync}/bin/restic-offsite-sync";
     };
 
@@ -95,7 +95,7 @@ in
         User = "restic";
       };
       after = [ "restic-offsite-sync.service" ];
-      onFailure = [ "unit-status-telegram@%n.service" ];
+      onFailure = [ "unit-status-telegram@%N.service" ];
       script = "${offsite-repo-check}/bin/restic-offsite-check";
     };
 
@@ -110,7 +110,7 @@ in
         Type = "oneshot";
         User = "restic";
       };
-      onFailure = [ "unit-status-telegram@%n.service" ];
+      onFailure = [ "unit-status-telegram@%N.service" ];
       script = ''
         ${pkgs.restic}/bin/restic \
         --repo ${cfg.repository} \

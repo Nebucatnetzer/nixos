@@ -45,7 +45,7 @@ in
       User = config.az-username;
       Type = "oneshot";
     };
-    onFailure = [ "unit-status-telegram@%n.service" ];
+    onFailure = [ "unit-status-telegram@%N.service" ];
     script = "${monitor-notes}/bin/monitor-notes";
   };
 
@@ -56,7 +56,7 @@ in
     serviceConfig = {
       User = config.az-username;
     };
-    onFailure = [ "unit-status-telegram@%n.service" ];
+    onFailure = [ "unit-status-telegram@%N.service" ];
     wantedBy = [ "multi-user.target" ];
     script = ''
       ${pkgs.inotify-tools}/bin/inotifywait -m -r -e create,modify,delete,move --excludei '/\.' "${pathToMonitor}" |

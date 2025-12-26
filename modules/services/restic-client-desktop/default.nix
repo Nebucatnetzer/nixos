@@ -44,7 +44,7 @@ in
       RESTIC_PASSWORD_FILE = password_file;
       RESTIC_REPOSITORY = repository;
     };
-    onFailure = [ "unit-status-telegram@%n.service" ];
+    onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''
       ${pkgs.restic}/bin/restic \
         --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \

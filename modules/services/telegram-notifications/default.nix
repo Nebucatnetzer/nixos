@@ -38,7 +38,7 @@ in
     };
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${unit-status-telegram} %I";
+      ExecStart = "${unit-status-telegram} %i";
     };
   };
 }

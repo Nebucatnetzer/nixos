@@ -7,6 +7,14 @@
 }:
 let
   cfg = config.services.az-restic-server;
+  offsiteRepo = "swift:default:/";
+  passwordFile = config.age.secrets.resticKey.path;
+  offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
+    envFile = swiftStorage.envFile;
+    resticPassword = passwordFile;
+    resticRepo = offsiteRepo;
+    swiftAuthUrl = swiftStorage.swiftAuthUrl;
+  };
   offsite-repo-sync = pkgs.callPackage ./offsite_repo_sync.nix {
     envFile = swiftStorage.envFile;
     localResticRepo = config.services.az-restic-server.repository;
@@ -38,6 +46,12 @@ in
       owner = "restic";
       group = "restic";
     };
+    age.secrets.infomaniakEnv = {
+      file = "${inputs.self}/scrts/infomaniak_env.age";
+      mode = "440";
+      owner = "restic";
+      group = "restic";
+    };
 
     environment.systemPackages = [
       pkgs.restic
@@ -63,6 +77,26 @@ in
         --password-file ${config.age.secrets.resticKey.path} \
         prune \
       '';
+    };
+
+    systemd.services."restic-offsite-sync" = {
+      serviceConfig = {
+        Type = "oneshot";
+        User = "restic";
+      };
+      after = [ "restic-prune.service" ];
+      onFailure = [ "unit-status-telegram@%n.service" ];
+      script = "${offsite-repo-sync}/bin/restic-offsite-sync";
+    };
+
+    systemd.services."restic-offsite-check" = {
+      serviceConfig = {
+        Type = "oneshot";
+        User = "restic";
+      };
+      after = [ "restic-offsite-sync.service" ];
+      onFailure = [ "unit-status-telegram@%n.service" ];
+      script = "${offsite-repo-check}/bin/restic-offsite-check";
     };
 
     systemd.timers.restic-prune = {

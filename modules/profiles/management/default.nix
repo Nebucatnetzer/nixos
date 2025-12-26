@@ -6,7 +6,6 @@
 }:
 {
   imports = [
-    "${inputs.self}/modules/misc/restic-key"
     "${inputs.self}/modules/programs/nix-direnv"
     "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/programs/scripts"
@@ -18,6 +17,19 @@
   };
 
   age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
+
+  age.secrets.infomaniakEnv = {
+    file = "${inputs.self}/scrts/infomaniak_env.age";
+    mode = "600";
+    owner = config.az-username;
+    group = "users";
+  };
+  age.secrets.resticKey = {
+    file = "${inputs.self}/scrts/restic.key.age";
+    mode = "600";
+    owner = config.az-username;
+    group = "users";
+  };
 
   # taken from here: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/hardware/video/hidpi.nix
   # {

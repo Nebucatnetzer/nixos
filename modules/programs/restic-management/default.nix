@@ -26,13 +26,6 @@ let
   infomaniakRepo = "swift:default:/";
   swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;
 
-  offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
-    envFile = swiftStorage.envFile;
-    resticPassword = password_file;
-    resticRepo = infomaniakRepo;
-    swiftAuthUrl = swiftStorage.swiftAuthUrl;
-  };
-
   restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''
     while IFS='=' read -r key value; do
         # Skip lines starting with # or empty lines
@@ -64,12 +57,6 @@ let
     ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
 in
 {
-  age.secrets.infomaniakEnv = {
-    file = "${inputs.self}/scrts/infomaniak_env.age";
-    mode = "600";
-    owner = config.az-username;
-    group = "users";
-  };
   environment.shellAliases = {
     restic-list = ''
       ${pkgs.restic}/bin/restic \
@@ -92,7 +79,6 @@ in
   };
   environment.systemPackages = [
     pkgs.restic
-    offsite-repo-check
     restic-mount
     restic-mount-all
     restic-infomaniak-list

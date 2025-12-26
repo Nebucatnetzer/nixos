@@ -23,17 +23,16 @@ let
       --password-file ${password_file} \
       mount /tmp/restic'';
 
-  infomaniakRepo = "swift:default:/";
+  offsiteRepo = "swift:default:/";
   swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;
-
-  restic-infomaniak-list = pkgs.writeShellScriptBin "restic-infomaniak-list" ''
+  restic-offsite-list = pkgs.writeShellScriptBin "restic-offsite-list" ''
     while IFS='=' read -r key value; do
         # Skip lines starting with # or empty lines
         if [[ ! $key =~ ^# && -n $key ]]; then
             export "$key=$value"
         fi
     done <${swiftStorage.envFile}
-    export RESTIC_REPOSITORY="${infomaniakRepo}"
+    export RESTIC_REPOSITORY="${offsiteRepo}"
     export OS_AUTH_URL="${swiftStorage.swiftAuthUrl}"
     export OS_USER_DOMAIN_NAME=default
 
@@ -41,14 +40,14 @@ let
 
     ${pkgs.restic}/bin/restic --password-file ${password_file} snapshots'';
 
-  restic-infomaniak-mount = pkgs.writeShellScriptBin "restic-infomaniak-mount" ''
+  restic-offsite-mount = pkgs.writeShellScriptBin "restic-offsite-mount" ''
     while IFS='=' read -r key value; do
         # Skip lines starting with # or empty lines
         if [[ ! $key =~ ^# && -n $key ]]; then
             export "$key=$value"
         fi
     done <${swiftStorage.envFile}
-    export RESTIC_REPOSITORY="${infomaniakRepo}"
+    export RESTIC_REPOSITORY="${offsiteRepo}"
     export OS_AUTH_URL="${swiftStorage.swiftAuthUrl}"
     export OS_USER_DOMAIN_NAME=default
 
@@ -81,7 +80,7 @@ in
     pkgs.restic
     restic-mount
     restic-mount-all
-    restic-infomaniak-list
-    restic-infomaniak-mount
+    restic-offsite-list
+    restic-offsite-mount
   ];
 }

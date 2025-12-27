@@ -21,7 +21,10 @@ pkgs.mkShellNoCC {
         ]))
         pkgs.vim
       ];
-      pathsToLink = [ "/bin" ];
+      pathsToLink = [
+        "/bin"
+        "/share"
+      ];
     })
   ];
 

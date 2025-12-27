@@ -6,7 +6,6 @@
   ...
 }:
 let
-  lib = pkgs.lib;
   domains = [
     { fqdn = "${config.services.librenms.hostname}"; }
   ];

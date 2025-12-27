@@ -26,9 +26,6 @@ pkgs.mkShellNoCC {
   ];
 
   shellHook = ''
-    PATH=${pkgs.writeShellScriptBin "nix" ''
-      ${pkgs.nix}/bin/nix --experimental-features "nix-command flakes" "$@"
-    ''}/bin:$PATH
     export DEVENV_ROOT=$(pwd)
   '';
 }

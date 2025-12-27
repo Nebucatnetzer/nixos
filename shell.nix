@@ -1,15 +1,20 @@
 {
-  pkgs ? import <nixpkgs> { },
+  buildEnv,
+  deadnix,
+  git,
+  python3,
+  mkShellNoCC,
+  vim,
 }:
-pkgs.mkShellNoCC {
+mkShellNoCC {
   name = "nixosbuildshell";
   packages = [
-    (pkgs.buildEnv {
+    (buildEnv {
       name = "zweili-nixos-devShell";
       paths = [
-        pkgs.deadnix
-        pkgs.git
-        (pkgs.python3.withPackages (p: [
+        deadnix
+        git
+        (python3.withPackages (p: [
           p.python-lsp-server
           p.python-lsp-ruff
           p.black
@@ -19,7 +24,7 @@ pkgs.mkShellNoCC {
           p.ruff
           p.pylint
         ]))
-        pkgs.vim
+        vim
       ];
       pathsToLink = [
         "/bin"

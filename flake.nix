@@ -55,11 +55,15 @@
         }:
         (mkComputer { inherit inputs hostname home-module; })
       ) hosts;
+      pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
     in
     {
       images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) hosts;
       nixosConfigurations = hostConfigs;
-      packages."x86_64-linux".pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { };
+      packages."x86_64-linux" = {
+        inherit pkgs;
+      };
       packages."aarch64-linux".pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {

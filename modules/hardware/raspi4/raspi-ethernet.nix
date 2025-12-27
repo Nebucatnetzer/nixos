@@ -3,7 +3,6 @@
 {
   imports = [
     "${inputs.self}/modules/hardware/raspi4/raspi-base.nix"
-    "${inputs.self}/modules/services/log-to-ram"
   ];
   boot.kernelParams = [
     "ip=${ip}::10.7.89.1:255.255.255.0:${hostname}:eth0" # required for ssh at initrd

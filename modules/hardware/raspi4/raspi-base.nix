@@ -19,6 +19,7 @@ let
 in
 {
   imports = [
+    "${inputs.self}/modules/services/log-to-ram"
     "${inputs.self}/modules/services/zram-swap"
   ];
   boot.supportedFilesystems.zfs = lib.mkForce false;

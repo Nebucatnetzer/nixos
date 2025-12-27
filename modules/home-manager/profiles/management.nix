@@ -18,7 +18,6 @@ in
     "${inputs.self}/modules/home-manager/programs/starship"
     "${inputs.self}/modules/home-manager/programs/tmux"
     "${inputs.self}/modules/home-manager/programs/yt-dlp"
-    "${inputs.self}/modules/home-manager/services/desktop-base"
     git
     ./headless.nix
   ];

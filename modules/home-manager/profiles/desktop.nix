@@ -16,6 +16,7 @@ in
     "${inputs.self}/modules/home-manager/programs/signal"
     "${inputs.self}/modules/home-manager/programs/telegram"
     "${inputs.self}/modules/home-manager/programs/work-desktop"
+    "${inputs.self}/modules/home-manager/services/desktop-base"
     ./management.nix
   ];
   home = {

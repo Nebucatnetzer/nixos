@@ -29,22 +29,3 @@ all defined systems. With the option `-r` the systems will reboot as well.
 ## Non-Nixos System
 
 1. `scripts/install-home-manager.sh`
-
-## Development
-
-### Options template
-
-```nix
-{ config, lib, pkgs, ... }:
-let
-  cfg = config.programs.NAME;
-in
-{
-  options = {
-    programs.NAME.enable = lib.mkEnableOption "DESCRIPTION";
-  };
-
-  config = lib.mkIf cfg.enable {
-  };
-}
-```

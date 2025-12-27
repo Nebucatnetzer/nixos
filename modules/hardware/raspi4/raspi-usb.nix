@@ -1,14 +1,15 @@
 { hostname, ip }:
-{ ... }:
+{ inputs, ... }:
 {
-  hardware.az-raspi4-base.enable = true;
+  imports = [
+    "${inputs.self}/modules/hardware/raspi4/raspi-base.nix"
+  ];
 
   boot.kernelParams = [
     "ip=10.7.89.159::10.7.89.1:255.255.255.0:mobile:enabcm6e4ei0" # required for ssh at initrd
   ];
   boot = {
     kernelModules = [ "libcomposite" ];
-    loader.raspberryPi.firmwareConfig = "dtoverlay=dwc2";
   };
   networking = {
     hostName = hostname;

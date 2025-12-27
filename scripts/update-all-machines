@@ -90,7 +90,10 @@ def main() -> None:
     # we need the cache and the proxy.
     for host in hosts:
         if host in skip_hosts:
+            print(f"Skipping {host}")
             continue
+
+        print(f"Building {host}")
         fqdn: str = f"{host}.2li.local"
         if args.reboot:
             run_rebuild_boot(host, fqdn)

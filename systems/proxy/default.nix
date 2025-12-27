@@ -14,6 +14,7 @@ let
     inherit hostname;
     ip = "10.7.89.99";
   };
+  resticClientServer = import "${inputs.self}/modules/services/restic-client-server";
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
 in
 {
@@ -24,6 +25,11 @@ in
     "${inputs.self}/modules/services/search"
     librenmsCertificateModule
     raspiEthernet
+    (resticClientServer {
+      path = blogPosts;
+      tag = "proxy";
+      time = "00:00";
+    })
   ];
   age.secrets.searxngHtpasswd = {
     file = "${inputs.self}/scrts/searxng_htpasswd.age";
@@ -32,12 +38,6 @@ in
     group = config.services.nginx.group;
   };
   services = {
-    az-restic-client-server = {
-      enable = true;
-      path = blogPosts;
-      tag = "proxy";
-      time = "00:00";
-    };
     nginx = {
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.

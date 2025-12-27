@@ -6,6 +6,7 @@ let
     inherit hostname;
     ip = "10.7.89.112";
   };
+  resticClientServer = import "${inputs.self}/modules/services/restic-client-server";
 in
 {
   imports = [
@@ -13,11 +14,10 @@ in
     "${inputs.self}/modules/services/plex"
     mediaShare
     raspiEthernet
+    (resticClientServer {
+      path = "/var/lib/plex";
+      tag = "plex";
+      time = "01:30";
+    })
   ];
-  services.az-restic-client-server = {
-    enable = true;
-    path = "/var/lib/plex";
-    tag = "plex";
-    time = "01:30";
-  };
 }

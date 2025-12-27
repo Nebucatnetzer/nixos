@@ -7,6 +7,7 @@ let
     inherit hostname;
     ip = "10.7.89.30";
   };
+  resticServer = import "${inputs.self}/modules/services/restic-server" { };
 in
 {
   imports = [
@@ -14,6 +15,7 @@ in
     "${inputs.self}/modules/programs/restic-management"
     (btrfsModule { btrfsLabel = "resticSSD"; })
     raspiEthernet
+    resticServer
   ];
 
   fileSystems."/var/lib/restic-server" = {
@@ -25,6 +27,4 @@ in
     ]
     ++ commonBtrfsOptions;
   };
-
-  services.az-restic-server.enable = true;
 }

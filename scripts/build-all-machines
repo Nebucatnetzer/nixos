@@ -108,7 +108,10 @@ def main() -> None:
 
     for host in hosts:
         if host in skip:
+            print(f"Skipping {host}")
             continue
+
+        print(f"Building {host}")
 
         build_path: Path = builds_directory / f"{timestamp}-{host}"
         architecture: str = get_architecture(devenv_root, host)

@@ -13,6 +13,7 @@ let
     inherit hostname;
     ip = "10.7.89.115";
   };
+  resticClientServerMysql = import "${inputs.self}/modules/services/restic-client-server-mysql";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge" {
     domain = rssBridgeDomain;
   };
@@ -23,12 +24,11 @@ in
     "${inputs.self}/modules/services/freshrss"
     librenmsCertificateModule
     raspiEthernet
+    (resticClientServerMysql {
+      path = config.services.freshrss.dataDir;
+      tag = "freshrss";
+      time = "23:00";
+    })
     rssBridgeModule
   ];
-  services.az-restic-client-server-mysql = {
-    enable = true;
-    path = config.services.freshrss.dataDir;
-    tag = "freshrss";
-    time = "23:00";
-  };
 }

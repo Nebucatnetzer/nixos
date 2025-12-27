@@ -14,21 +14,18 @@ let
     inherit hostname;
     ip = "10.7.89.109";
   };
+  resticClientServerMysql = import "${inputs.self}/modules/services/restic-client-server-mysql";
 in
 {
   imports = [
     "${inputs.self}/modules/profiles/server"
-    "${inputs.self}/modules/services/az-restic-client-server-mysql"
     gitea
     librenmsCertificateModule
     (nginxProxy { inherit domain; })
     raspiEthernet
-  ];
-  services = {
-    az-restic-client-server-mysql = {
-      enable = true;
+    (resticClientServerMysql {
       path = "/mnt/server-data";
       time = "00:30";
-    };
-  };
+    })
+  ];
 }

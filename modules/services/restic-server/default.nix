@@ -44,7 +44,6 @@ in
 
   environment.systemPackages = [
     pkgs.restic
-    offsite-repo-sync
   ];
 
   services.restic.server = {

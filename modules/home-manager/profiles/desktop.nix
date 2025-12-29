@@ -24,6 +24,7 @@ in
 
     packages = [
       azPkgs.az-media
+      azPkgs.raspiVideoOutput
       azPkgs.send-to-kindle
       azPkgs.toggle-keyboard
 

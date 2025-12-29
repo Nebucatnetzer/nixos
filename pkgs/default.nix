@@ -13,6 +13,7 @@
   send-to-kindle = pkgs.callPackage ./send-to-kindle { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
+  raspiVideoOutput = pkgs.callPackage ./raspi-video-output { };
   rebuild = pkgs.callPackage ./rebuild { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
 }

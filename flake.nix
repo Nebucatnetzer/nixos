@@ -35,9 +35,6 @@
         "capricorn" = {
           home-module = "desktop";
         };
-        "desktop-vm" = {
-          home-module = "work-vm";
-        };
         "git" = { };
         "gwyn" = {
           home-module = "management";

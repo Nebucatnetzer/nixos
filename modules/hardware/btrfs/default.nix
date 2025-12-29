@@ -20,7 +20,7 @@
             "--thread-factor"
             "0.5"
           ];
-          spec = "LABEL=${btrfsLabel}";
+          spec = "/";
         };
       };
     };

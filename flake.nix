@@ -60,6 +60,7 @@
       devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { };
       packages."x86_64-linux" = {
         inherit pkgs;
+        azPkgs = import ./pkgs { inherit pkgs; };
       };
       packages."aarch64-linux".pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
       homeConfigurations = {

@@ -115,6 +115,7 @@ in
       pkgs.brightnessctl
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
+      pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
       unstable.firefoxpwa # required for firefx PWA support
     ];
     sessionVariables = {

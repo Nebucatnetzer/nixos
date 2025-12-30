@@ -12,10 +12,8 @@ let
   capricorn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRobGMQkRNxHCjRsNGDgCivywhVylkyN71V1ikWiPhX root@capricorn";
   git = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDO40In82pEqQJexG9nlXOsYb4T/sYrb/4EVtGc0bfEb";
   gwyn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNmtdodpXHcwEsX2x89RyxjX5F6eERanzM4OXlNDx50";
-  loki-test = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKqCmY9F2nWasFtmBpk401lacclXeddDm+OTZ4+tNM94";
   management = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICr5M2m7cic6fCaVNEesCn8Ii/VDB0EtyxYWs79aE4BD";
   nextcloud = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHASRPSKyADQUBe6lQEo8EHixPwktbHQjAPX24GIoWwg";
-  nixos-vm = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOcmWE9b7GQKOOq61gYLdFA5uZ+hhpBYePmmdRDGwIVu";
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJImsnXnmjAOXCzNHuYdPL/usGLokxmGS60JNIfPA0aX";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILX9Sm69VGPrek8PRgWa8xJPqzRrixs1g+8hBu2F6265";
@@ -24,10 +22,8 @@ let
     budget
     git
     gwyn
-    loki-test
     management
     nextcloud
-    nixos-vm
     plex
     proxy
     restic-server
@@ -40,7 +36,6 @@ let
     capricorn
     gwyn
     management
-    nixos-vm
   ];
   all = users ++ systems;
 in

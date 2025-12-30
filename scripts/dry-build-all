@@ -89,11 +89,7 @@ def main() -> None:
 
     hostname: str = socket.gethostname()
 
-    skip: list[str] = [
-        "desktop-vm",
-        "loki-test",
-        "mobile",
-    ]
+    skip: list[str] = []
     hosts: list[str] = get_hosts(devenv_root)
 
     for host in hosts:

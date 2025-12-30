@@ -25,10 +25,7 @@ def main(command: str) -> None:
 
     hosts: list[str] = get_hostnames()
     skip: list[str] = [
-        "desktop-vm",
         "gwyn",
-        "loki-test",
-        "mobile",
         "test-raspi",
     ]
 

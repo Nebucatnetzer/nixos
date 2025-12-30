@@ -103,7 +103,7 @@ def main() -> None:
     timestamp: str = datetime.datetime.now(tz=datetime.UTC).strftime("%Y%m%d")
     hostname: str = socket.gethostname()
 
-    skip: list[str] = ["desktop-vm", "loki-test", "mobile"]
+    skip: list[str] = []
     hosts: list[str] = get_hosts(devenv_root)
 
     for host in hosts:

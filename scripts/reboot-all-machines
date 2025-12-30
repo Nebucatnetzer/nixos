@@ -36,10 +36,7 @@ def main() -> None:
     os.chdir("/home/andreas/.nixos")
 
     skip: list[str] = [
-        "desktop-vm",
         "gwyn",
-        "loki-test",
-        "mobile",
         "test-raspi",
     ]
 

@@ -1,7 +1,7 @@
 { hostname }:
 { inputs, ... }:
 let
-  raspiUsb = import "${inputs.self}/modules/hardware/raspi4/raspi-usb.nix" {
+  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
     inherit hostname;
     ip = "10.7.89.40";
   };
@@ -11,7 +11,7 @@ in
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/nix-direnv"
     "${inputs.self}/modules/services/docker"
-    raspiUsb
+    raspiEthernet
   ];
 
   nixpkgs.hostPlatform = "aarch64-linux";

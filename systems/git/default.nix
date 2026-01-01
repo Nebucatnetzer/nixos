@@ -5,26 +5,23 @@ let
   domains = [
     { fqdn = "${domain}"; }
   ];
-  gitea = import "${inputs.self}/modules/services/gitea" { inherit domain; };
-  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
-    inherit domains;
-  };
+  gitea = import "${inputs.self}/modules/services/gitea";
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   nginxProxy = import "${inputs.self}/modules/services/nginx-proxy";
   raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
-  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
-    inherit hostname;
-    ip = "10.7.89.109";
-  };
   resticClientServerMysql = import "${inputs.self}/modules/services/restic-client-server-mysql";
 in
 {
   imports = [
     "${inputs.self}/modules/profiles/server"
-    raspi4Configs.diskLayouts.singleSdCard
-    gitea
-    librenmsCertificateModule
+    (gitea { inherit domain; })
+    (librenmsCertificateModule { inherit domains; })
     (nginxProxy { inherit domain; })
-    raspiEthernet
+    raspi4Configs.diskLayouts.singleSdCard
+    (raspi4Configs.ethernet {
+      inherit hostname;
+      ip = "10.7.89.109";
+    })
     (resticClientServerMysql {
       path = "/mnt/server-data";
       time = "00:30";

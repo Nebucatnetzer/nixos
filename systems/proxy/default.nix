@@ -7,14 +7,8 @@ let
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
-  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
-    inherit domains;
-  };
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
-  raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
-    inherit hostname;
-    ip = "10.7.89.99";
-  };
   resticClientServer = import "${inputs.self}/modules/services/restic-client-server";
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
 in
@@ -24,15 +18,19 @@ in
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/search"
+    (librenmsCertificateModule { inherit domains; })
     raspi4Configs.diskLayouts.singleSdCard
-    librenmsCertificateModule
-    raspiEthernet
+    (raspi4Configs.ethernet {
+      inherit hostname;
+      ip = "10.7.89.99";
+    })
     (resticClientServer {
       path = blogPosts;
       tag = "proxy";
       time = "00:00";
     })
   ];
+
   age.secrets.searxngHtpasswd = {
     file = "${inputs.self}/scrts/searxng_htpasswd.age";
     mode = "640";

@@ -10,6 +10,7 @@ let
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
     inherit domains;
   };
+  raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
   raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
     inherit hostname;
     ip = "10.7.89.99";
@@ -23,6 +24,7 @@ in
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/search"
+    raspi4Configs.diskLayouts.singleSdCard
     librenmsCertificateModule
     raspiEthernet
     (resticClientServer {

@@ -9,6 +9,7 @@ let
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
     inherit domains;
   };
+  raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
   raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
     inherit hostname;
     ip = "10.7.89.115";
@@ -23,6 +24,7 @@ in
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/services/freshrss"
     librenmsCertificateModule
+    raspi4Configs.diskLayouts.singleSdCard
     raspiEthernet
     (resticClientServerMysql {
       path = config.services.freshrss.dataDir;

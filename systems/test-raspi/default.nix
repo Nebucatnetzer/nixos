@@ -1,6 +1,7 @@
 { hostname }:
 { inputs, ... }:
 let
+  raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
   raspiEthernet = import "${inputs.self}/modules/hardware/raspi4/raspi-ethernet.nix" {
     inherit hostname;
     ip = "10.7.89.40";
@@ -11,6 +12,7 @@ in
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/nix-direnv"
     "${inputs.self}/modules/services/docker"
+    raspi4Configs.diskLayouts.singleSdCard
     raspiEthernet
   ];
 

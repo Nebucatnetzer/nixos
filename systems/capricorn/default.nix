@@ -25,6 +25,7 @@ let
     '';
   };
   mediaShare = import "${inputs.self}/modules/services/media-share" { };
+  resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
 in
 {
   imports = [
@@ -43,6 +44,7 @@ in
     "${inputs.self}/modules/services/zram-swap"
     btrfsModule
     mediaShare
+    (resticClientModule { })
   ];
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   boot.initrd.availableKernelModules = [

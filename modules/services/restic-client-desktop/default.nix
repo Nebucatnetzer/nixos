@@ -1,4 +1,7 @@
 {
+  resticSchedule ? "hourly",
+}:
+{
   config,
   inputs,
   pkgs,
@@ -29,7 +32,7 @@ in
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-backups-${config.az-username}.service" ];
     timerConfig = {
-      OnCalendar = "hourly";
+      OnCalendar = resticSchedule;
       RandomizedDelaySec = "15min";
     };
   };

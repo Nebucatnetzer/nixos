@@ -7,7 +7,6 @@
 {
   imports = [
     "${inputs.self}/modules/programs/nix-direnv"
-    "${inputs.self}/modules/services/restic-client-desktop"
     "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/programs/scripts"
   ];

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  btrfsModule = import "${inputs.self}/modules/hardware/btrfs" { btrfsLabel = "mainBtrfs"; };
+  btrfsModule = import "${inputs.self}/modules/hardware/btrfs";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
@@ -24,7 +24,7 @@ let
       nmcli connection up yallo
     '';
   };
-  mediaShare = import "${inputs.self}/modules/services/media-share" { };
+  mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
 in
 {
@@ -42,8 +42,8 @@ in
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"
-    btrfsModule
-    mediaShare
+    (btrfsModule { btrfsLabel = "mainBtrfs"; })
+    (mediaShare { })
     (resticClientModule { })
   ];
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.

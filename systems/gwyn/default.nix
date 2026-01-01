@@ -9,9 +9,7 @@ let
   domains = [
     { fqdn = "${config.services.librenms.hostname}"; }
   ];
-  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate" {
-    inherit domains;
-  };
+  librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
 in
 {
@@ -27,7 +25,7 @@ in
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/zram-swap"
-    librenmsCertificateModule
+    (librenmsCertificateModule { inherit domains; })
     (resticClientModule { resticSchedule = "*-*-* 06..21:30:00"; })
   ];
 

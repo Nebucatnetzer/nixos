@@ -1,5 +1,6 @@
 {
-  btrfsLabel ? "mainBtrfs",
+  filesystemName ? "root",
+  beesSpec ? "/",
 }:
 { pkgs, ... }:
 {
@@ -13,21 +14,21 @@
   services = {
     beesd = {
       filesystems = {
-        root = {
+        "${filesystemName}" = {
           extraOptions = [
             "--loadavg-target"
             "2.0"
             "--thread-factor"
             "0.5"
           ];
-          spec = "/";
+          spec = beesSpec;
         };
       };
     };
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [
-        "/"
+        beesSpec
       ];
       interval = "monthly";
     };

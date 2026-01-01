@@ -42,7 +42,7 @@ in
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"
-    (btrfsModule { btrfsLabel = "mainBtrfs"; })
+    (btrfsModule { })
     (mediaShare { })
     (resticClientModule { })
   ];

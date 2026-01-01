@@ -13,7 +13,10 @@ in
   imports = [
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/restic-management"
-    (btrfsModule { btrfsLabel = "resticSSD"; })
+    (btrfsModule {
+      filesystemName = "restic-ssd";
+      beesSpec = "/var/lib/restic-server";
+    })
     raspiEthernet
     resticServer
   ];

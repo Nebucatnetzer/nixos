@@ -1,7 +1,7 @@
 { hostname }:
 { inputs, ... }:
 let
-  btrfsModule = import "${inputs.self}/modules/hardware/btrfs";
+  btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   raspi4Configs = import "${inputs.self}/modules/hardware/raspi4";
   resticServer = import "${inputs.self}/modules/services/restic-server";
@@ -10,7 +10,7 @@ in
   imports = [
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/restic-management"
-    (btrfsModule {
+    (btrfsAuxModule {
       filesystemName = "restic-ssd";
       beesSpec = "/var/lib/restic-server";
     })

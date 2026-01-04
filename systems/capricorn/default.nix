@@ -5,7 +5,7 @@
   ...
 }:
 let
-  btrfsModule = import "${inputs.self}/modules/hardware/btrfs";
+  btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
@@ -42,7 +42,7 @@ in
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"
-    (btrfsModule { })
+    (btrfsAuxModule { })
     (mediaShare { })
     (resticClientModule { })
   ];

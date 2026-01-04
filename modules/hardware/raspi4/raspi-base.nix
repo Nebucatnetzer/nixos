@@ -5,7 +5,6 @@
   ...
 }:
 let
-  btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   test-sd-card = pkgs.writeShellApplication {
     name = "test-sd-card";
     runtimeInputs = [
@@ -22,7 +21,6 @@ in
   imports = [
     "${inputs.self}/modules/services/log-to-ram"
     "${inputs.self}/modules/services/zram-swap"
-    (btrfsAuxModule { })
   ];
   boot.supportedFilesystems.zfs = lib.mkForce false;
   boot.kernelParams = [

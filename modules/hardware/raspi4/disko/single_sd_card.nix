@@ -6,9 +6,13 @@
 }:
 let
   azPkgs = import "${inputs.self}/pkgs" { inherit pkgs; };
+  btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
 in
 {
+  imports = [
+    (btrfsAuxModule { })
+  ];
   disko = {
     imageBuilder = {
       enableBinfmt = true;

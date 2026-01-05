@@ -8,7 +8,7 @@ let
     andreas-nixos-vm
   ];
 
-  budget = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTGHQfWsJox3ssMGZnrLMlE9XaYBtXtMKSw6eYkEJIT";
+  budget = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMQi+/CpU4lMi2E1106NuK9+DX2fNWtAxioLb9/3a2U/";
   capricorn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRobGMQkRNxHCjRsNGDgCivywhVylkyN71V1ikWiPhX root@capricorn";
   git = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDO40In82pEqQJexG9nlXOsYb4T/sYrb/4EVtGc0bfEb";
   gwyn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNmtdodpXHcwEsX2x89RyxjX5F6eERanzM4OXlNDx50";

@@ -10,10 +10,7 @@ in
   imports = [
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/restic-management"
-    (btrfsAuxModule {
-      filesystemName = "restic-ssd";
-      beesSpec = "/var/lib/restic-server";
-    })
+    (btrfsAuxModule { mountPath = "/var/lib/restic-server"; })
     raspi4Configs.diskLayouts.singleSdCard
     (raspi4Configs.ethernet {
       inherit hostname;

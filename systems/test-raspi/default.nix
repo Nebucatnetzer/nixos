@@ -10,10 +10,7 @@ in
     "${inputs.self}/modules/profiles/server"
     "${inputs.self}/modules/programs/nix-direnv"
     "${inputs.self}/modules/services/docker"
-    (btrfsAuxModule {
-      filesystemName = "external-USB";
-      beesSpec = "/mnt/test-usb";
-    })
+    (btrfsAuxModule { mountPath = "/mnt/test-usb"; })
     raspi4Configs.diskLayouts.singleSdCard
     (raspi4Configs.ethernet {
       inherit hostname;

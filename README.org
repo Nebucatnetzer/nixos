@@ -1,0 +1,151 @@
+#+title: NixOS Configuration
+
+This repository lives on https://git.2li.ch/. Due to agressive LLM
+crawlers I had to make it private there. If you want to collaborate you
+can contact me through email or Mastodon.
+
+This repository contains my configuration for my Nixos systems. I don't
+provide any garantuees that it will work on other systems. In addition
+some of the scripts required for installation will destroy your data
+when used.
+
+* Installation
+** Raspberry Pi with disko
+*** 1. Build the image
+
+#+begin_src sh
+nix run .#azPkgs.buildRaspiImage
+#+end_src
+
+*** 2. Flash the image to the SD card.
+
+#+begin_src sh
+sudo dd if=IMAGE.raw of=/dev/sdcard bs=4M
+#+end_src
+
+*** 3. Insert the SD card and boot the system.
+
+For some reason it takes quite a long while to boot with UEFI.
+
+*** 4. Expand the partitions.
+
+*Looking around the system first*
+
+Because the image will only be 15GB in size we have to extend the
+filesystem to use the whole SD card or drive.
+
+=lsblk= shows you that the partitions only use 15 GB in total.
+
+#+begin_src sh
+lsblk
+#+end_src sh
+
+#+begin_example
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+mmcblk1     179:0    0 59.5G  0 disk
+├─mmcblk1p1 179:1    0    1G  0 part  /boot
+└─mmcblk1p2 179:2    0   14G  0 part
+  └─crypted 253:0    0   14G  0 crypt /swap
+                                      /home
+                                      /nix/store
+                                      /nix
+#+end_example
+
+And =df -h /= shows that we are nearly out of space.
+
+#+begin_example
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/crypted   14G   11G  2.5G  82% /
+#+end_example
+
+*Getting to work*
+
+Start =parted= and print the partitions.
+
+#+begin_src sh
+nix-shell -p parted
+sudo parted /dev/mmcblk1
+#+end_src
+
+#+begin_example
+(parted) p
+#+end_example
+
+=parted= will first prompt you to fix the GPT so that it uses the whole
+device.
+
+#+begin_example
+Warning: Not all of the space available to /dev/mmcblk1 appears to be used, you can fix the GPT to use all of the space (an extra 93278208 blocks) or continue with the current setting?
+Fix/Ignore? f
+#+end_example
+
+Then you can resize the parition where BTRFS lives.
+
+#+begin_src sh
+(parted) resizepart 2 100%
+(parted) quit
+#+end_src
+
+At this point I had to reboot the system to continue, after the reboot
+you can extend BTRFS and are then finished.
+
+#+begin_src sh
+sudo btrfs filesystem resize max /
+#+end_src
+
+=lsblk= and =df= should show you now the new parition size.
+
+#+begin_src sh
+lsblk
+#+end_src
+
+#+begin_example
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+NAME        MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINTS
+mmcblk1     179:0    0 59.5G  0 disk
+├─mmcblk1p1 179:1    0    1G  0 part  /boot
+└─mmcblk1p2 179:2    0 58.5G  0 part
+  └─crypted 253:0    0 58.5G  0 crypt /swap
+                                      /home
+                                      /nix/store
+                                      /nix
+                                      /
+#+end_example
+
+#+begin_src sh
+df -h /
+#+end_src
+
+#+begin_example
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/crypted   59G   11G   47G  19% /
+#+end_example
+
+** x86_64-linux without disko
+
+1. Boot the installation ISO.
+2. Format the disk with the following script
+   =sudo ./scripts/format-disk.sh=. Make sure to edit it beforehand, to
+   point it to the correct disk.
+3. Next install the system with
+   =sudo nixos-install --no-root-passwd --root /mnt/nixos --impure --flake .#SYSTEMNAME --no-channel-copy=
+4. Rename the partitions with the script
+   =sudo ./scripts/rename-partitions.sh=. With this script as well.
+   Check that you're pointing to the correct disk.
+
+When everything is finished you can reboot the system and remove the USB
+stick. You have now a fully encrypted NixOS system.
+
+** Additional script
+
+- If you only want to prepare an SD card with an UEFI partition for a
+  Raspberry Pi 4 you can use the script =sudo ./scripts/create-uefi.sh=.
+  This is currently outdated and not needed for SD cards formatted with
+  disko. But it might be needed for systems that don't have the UEFI
+  parition on the same device.
+
+** Non-Nixos System
+
+#+begin_src bash
+./scripts/install-home-manager.sh
+#+end_src

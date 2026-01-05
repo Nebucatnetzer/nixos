@@ -17,7 +17,8 @@ let
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDAp4qkxNLabAuwRSKjD1e7nNZ0QuB+BO2VxcYpdfr/X";
   proxy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJImsnXnmjAOXCzNHuYdPL/usGLokxmGS60JNIfPA0aX";
   restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIk2L0h0eV7wZDaltoSJUtkRX7KCErCfGtpEYCBH4nyP";
-  ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOfWq/ZWeMNIMqXsI4rnkwR+wc/FVdb2jA70sdLMEnyX";
+  ttrss = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAyv7bwarmm7mpXeghkT766JR658XLwpYSGw4GbVB6tn";
+
   systems = [
     budget
     git

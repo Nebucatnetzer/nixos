@@ -9,6 +9,7 @@
     done
   '';
   buildRaspiImage = pkgs.callPackage ./build-raspi-image { };
+  dapSync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   send-to-kindle = pkgs.callPackage ./send-to-kindle { };

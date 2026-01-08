@@ -71,6 +71,10 @@
       pkgs.kdePackages.kaddressbook
       pkgs.kdePackages.kdepim-addons # display calendar events in the taskbar calendar
       pkgs.kdePackages.kdepim-runtime # backend for PIM
+      pkgs.kdePackages.akonadiconsole # required for mail
+      pkgs.kdePackages.akonadi-search # required for mail
+      pkgs.kdePackages.kmail # required for mail
+      pkgs.kdePackages.kmail-account-wizard # required for mail
       pkgs.kdePackages.korganizer # required to connect to caldav
 
       pkgs.kdePackages.kauth

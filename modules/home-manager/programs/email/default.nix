@@ -24,9 +24,6 @@
     offlineimap = {
       enable = true;
       extraConfig = {
-        account = {
-          autorefresh = 15;
-        };
         local = {
           sync_deletes = true;
         };

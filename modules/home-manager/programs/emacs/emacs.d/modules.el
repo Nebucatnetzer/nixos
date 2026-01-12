@@ -33,7 +33,6 @@
 ;; various third party
 (load-file (modules-path "az_manuals.el"))
 (load-file (modules-path "az_mu4e.el"))
-(load-file (modules-path "az_org_social_el.el"))
 (load-file (modules-path "az_perspective.el"))
 (load-file (modules-path "az_treemacs.el"))
 (load-file (modules-path "az_vterm.el"))

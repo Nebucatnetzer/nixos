@@ -100,12 +100,6 @@ in
       epkgs.olivetti
       epkgs.orderless
       epkgs.org-contrib
-      (pkgs.callPackage ./packages/org-social.el {
-        emojify = epkgs.emojify;
-        org = epkgs.org;
-        melpaBuild = epkgs.melpaBuild;
-        request = epkgs.request;
-      })
       epkgs.ox-pandoc
       epkgs.parsebib
       epkgs.pdf-tools

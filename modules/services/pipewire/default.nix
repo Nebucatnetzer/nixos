@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
   services.pulseaudio.enable = lib.mkForce false;
   services.pipewire = {
@@ -20,5 +20,9 @@
       }
     '';
     target = "pipewire.conf.d/auto-switch-audio.conf";
+  };
+
+  home-manager.users.${config.az-username} = {
+    services.easyeffects.enable = true;
   };
 }

@@ -182,6 +182,7 @@
                                            "~/git_repos/work/")
           projectile-completion-system 'default
           projectile-git-fd-args "-H -0 -E .git -tf --strip-cwd-prefix -c never"
+          projectile-sort-order 'recently-active
           projectile-ignored-project-function 'file-remote-p
           projectile-switch-project-action #'projectile-dired)
   )

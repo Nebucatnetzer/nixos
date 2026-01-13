@@ -26,6 +26,7 @@ in
       azPkgs.az-media
       azPkgs.dapSync
       azPkgs.raspiVideoOutput
+      azPkgs.jdownloader
       azPkgs.send-to-kindle
       azPkgs.toggle-keyboard
 

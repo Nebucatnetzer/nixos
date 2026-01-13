@@ -12,6 +12,7 @@
   dapSync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
+  jdownloader = pkgs.callPackage ./jdownloader { };
   send-to-kindle = pkgs.callPackage ./send-to-kindle { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };

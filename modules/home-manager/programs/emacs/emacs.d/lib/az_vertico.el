@@ -5,6 +5,12 @@
               ("C-j" . vertico-previous-group)
               ("C-k" . vertico-next-group)
               )
+  :config
+  ;; https://github.com/minad/consult/discussions/892#discussioncomment-14755154
+  (with-eval-after-load 'vertico-multiform
+    (add-to-list 'vertico-multiform-categories
+                 '(buffer (vertico-sort-function . nil))))
+  (add-hook 'vertico-mode-hook #'vertico-multiform-mode)
   :init
   (vertico-mode))
 

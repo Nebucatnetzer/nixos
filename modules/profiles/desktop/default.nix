@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   imports = [
     "${inputs.self}/modules/profiles/management"
@@ -84,7 +81,6 @@ in
       ];
       nativeMessagingHosts.packages = [
         pkgs.kdePackages.plasma-browser-integration
-        unstable.firefoxpwa
       ];
       preferences = {
         "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
@@ -119,7 +115,6 @@ in
       pkgs.soundconverter
       pkgs.strawberry
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
-      unstable.firefoxpwa # required for firefx PWA support
     ];
     sessionVariables = {
       DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";

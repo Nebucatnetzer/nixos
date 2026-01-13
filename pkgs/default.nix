@@ -8,17 +8,17 @@
         mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
     done
   '';
-  buildRaspiImage = pkgs.callPackage ./build-raspi-image { };
-  dapSync = pkgs.callPackage ./dap-sync { };
+  build-raspi-image = pkgs.callPackage ./build-raspi-image { };
+  dap-sync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   jdownloader = pkgs.callPackage ./jdownloader { };
-  send-to-kindle = pkgs.callPackage ./send-to-kindle { };
-  toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
-  update-file-dates = pkgs.callPackage ./update-file-dates { };
-  raspi4Uefi = pkgs.callPackage ./raspi4-uefi { };
-  raspiVideoOutput = pkgs.callPackage ./raspi-video-output { };
+  raspi-video-output = pkgs.callPackage ./raspi-video-output { };
+  raspi4-uefi = pkgs.callPackage ./raspi4-uefi { };
   rebuild = pkgs.callPackage ./rebuild { };
-  testDiskoImage = pkgs.callPackage ./test-disko-image { };
+  send-to-kindle = pkgs.callPackage ./send-to-kindle { };
+  test-disko-image = pkgs.callPackage ./test-disko-image { };
+  toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
+  update-file-dates = pkgs.callPackage ./update-file-dates { };
 }

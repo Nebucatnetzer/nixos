@@ -40,7 +40,7 @@ in
                 mountOptions = [ "umask=0077" ];
                 postMountHook = builtins.toString (
                   pkgs.writeScript "postMountHook.sh" ''
-                    cp --verbose -r ${azPkgs.raspi4Uefi}/* /mnt/boot/
+                    cp --verbose -r ${azPkgs.raspi4-uefi}/* /mnt/boot/
                     mkdir -p /mnt/etc/secrets/initrd
                     cp /tmp/ssh_host_ed25519_key /mnt/etc/secrets/initrd/ssh_host_ed25519_key
                   ''

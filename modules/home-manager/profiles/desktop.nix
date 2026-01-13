@@ -24,9 +24,9 @@ in
 
     packages = [
       azPkgs.az-media
-      azPkgs.dapSync
-      azPkgs.raspiVideoOutput
+      azPkgs.dap-sync
       azPkgs.jdownloader
+      azPkgs.raspi-video-output
       azPkgs.send-to-kindle
       azPkgs.toggle-keyboard
 

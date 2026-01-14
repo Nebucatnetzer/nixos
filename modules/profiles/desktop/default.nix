@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [
     "${inputs.self}/modules/profiles/management"
@@ -109,6 +112,7 @@
       pkgs.adwaita-icon-theme
       pkgs.appimage-run
       pkgs.brightnessctl
+      unstable.kdePackages.tokodon
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep

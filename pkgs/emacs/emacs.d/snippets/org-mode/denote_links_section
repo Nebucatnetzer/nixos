@@ -1,0 +1,7 @@
+# -*- mode: org-mode -*-
+# name: denote-links
+# key: _lblock
+# --
+
+$0#+BEGIN: denote-links :regexp "_$1" :sort-by-component nil :reverse-sort nil :id-only nil
+#+END:

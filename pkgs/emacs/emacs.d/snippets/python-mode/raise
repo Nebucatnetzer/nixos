@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Raise Exception
+# key: _raise
+# group: az
+# --
+raise Exception($0)

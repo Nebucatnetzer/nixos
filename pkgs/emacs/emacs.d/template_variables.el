@@ -1,0 +1,11 @@
+;; -*- lexical-binding: t; -*-
+;;(setq disable-fringe t)
+;;(setq enable-color-theme t)
+;;(setq enable-email t)
+;;(setq enable-emojis t)
+;;(setq enable-font t)
+;;(setq enable-lantool t)
+;;(setq enable-notes t)
+;;(setq enable-org t)
+;;(setq enable-pdf-tools t)
+;;(setq enable-scroll-bar t)

@@ -5,7 +5,7 @@
   ...
 }:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs; };
+  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
 in
 {
   imports = [

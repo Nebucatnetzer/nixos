@@ -4,7 +4,7 @@
   ...
 }:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs; };
+  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
   git = import "${inputs.self}/modules/home-manager/programs/git" { };
 in
 {

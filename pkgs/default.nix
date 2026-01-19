@@ -1,4 +1,7 @@
-{ pkgs }:
+{ inputs, pkgs }:
+let
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   az-media = pkgs.writeShellScriptBin "az-media" ''
     videos="videos"
@@ -12,6 +15,12 @@
   dap-sync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
+  emacs = pkgs.callPackage ./emacs {
+    consult-denote = unstable.emacs.pkgs.consult-denote;
+    denote = unstable.emacs.pkgs.denote;
+    denote-journal = unstable.emacs.pkgs.denote-journal;
+    denote-org = unstable.emacs.pkgs.denote-org;
+  };
   jdownloader = pkgs.callPackage ./jdownloader { };
   raspi-video-output = pkgs.callPackage ./raspi-video-output { };
   raspi4-uefi = pkgs.callPackage ./raspi4-uefi { };

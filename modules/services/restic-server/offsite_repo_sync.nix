@@ -29,6 +29,7 @@ writeShellApplication {
       --config ${./rclone.conf} \
       -v \
       sync \
+      --delete-before \
       ${localResticRepo} \
       offsite:default/
   '';

@@ -1,9 +1,6 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [ "${inputs.self}/home-manager" ];
-  home = {
-    packages = [ pkgs.plexamp ];
-  };
 
   programs = {
     az-git = {

@@ -45,7 +45,6 @@ in
       pkgs.keepassxc
       pkgs.libreoffice-qt-fresh
       pkgs.meld
-      pkgs.plexamp
       pkgs.plex-desktop
       pkgs.remmina
       pkgs.tagger

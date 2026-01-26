@@ -49,19 +49,21 @@ in
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''
-      ${pkgs.restic}/bin/restic \
-        --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-        --tag home-dir \
-        backup /home/${config.az-username} /nix/var/nix
+      if ${pkgs.netcat}/bin/nc -vzw 2 10.7.89.30 8000; then
+        ${pkgs.restic}/bin/restic \
+          --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
+          --tag home-dir \
+          backup /home/${config.az-username} /nix/var/nix
 
-      ${pkgs.restic}/bin/restic \
-      forget \
-        --host ${config.networking.hostName} \
-        --keep-hourly 25 \
-        --keep-daily 7 \
-        --keep-weekly 5 \
-        --keep-monthly 12 \
-        --keep-yearly 2 \
+        ${pkgs.restic}/bin/restic \
+        forget \
+          --host ${config.networking.hostName} \
+          --keep-hourly 25 \
+          --keep-daily 7 \
+          --keep-weekly 5 \
+          --keep-monthly 12 \
+          --keep-yearly 2
+      fi
     '';
   };
 }

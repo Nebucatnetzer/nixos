@@ -15,6 +15,7 @@ in
   dap-sync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
+  download-articles = pkgs.callPackage ./download-articles { };
   emacs = pkgs.callPackage ./emacs {
     consult-denote = unstable.emacs.pkgs.consult-denote;
     denote = unstable.emacs.pkgs.denote;
@@ -25,7 +26,6 @@ in
   raspi-video-output = pkgs.callPackage ./raspi-video-output { };
   raspi4-uefi = pkgs.callPackage ./raspi4-uefi { };
   rebuild = pkgs.callPackage ./rebuild { };
-  send-to-kindle = pkgs.callPackage ./send-to-kindle { };
   test-disko-image = pkgs.callPackage ./test-disko-image { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };

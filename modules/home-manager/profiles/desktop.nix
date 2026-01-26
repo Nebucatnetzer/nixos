@@ -25,9 +25,9 @@ in
     packages = [
       azPkgs.az-media
       azPkgs.dap-sync
+      azPkgs.download-articles
       azPkgs.jdownloader
       azPkgs.raspi-video-output
-      azPkgs.send-to-kindle
       azPkgs.toggle-keyboard
 
       # photographie packages

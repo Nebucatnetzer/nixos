@@ -15,14 +15,15 @@
     "format buffer."
     (interactive)
     (format-all-buffer))
+  :config
+  (global-set-key (kbd "C-c C-f") #'az-format-code)
+
   (define-format-all-formatter docformatter
     (:executable "docformatter")
     (:install)
     (:languages "Python")
     (:features)
     (:format (format-all--buffer-easy executable "-")))
-  :config
-  (global-set-key (kbd "C-c C-f") #'az-format-code)
   (setopt format-all-show-errors 'errors
           format-all-formatters
           '(("Assembly" asmfmt)

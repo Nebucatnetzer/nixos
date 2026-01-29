@@ -6,6 +6,7 @@
 }:
 let
   azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [
@@ -33,6 +34,7 @@ in
       # photographie packages
       pkgs.art
       pkgs.digikam
+      unstable.darktable
 
       # wine
       pkgs.bottles

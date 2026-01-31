@@ -11,6 +11,7 @@ in
   imports = [
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/programs/libimobiledevice"
+    "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/pipewire"
   ];
   networking.networkmanager = {
@@ -134,5 +135,31 @@ in
         pkgs.kdePackages.xdg-desktop-portal-kde
       ];
     };
+  };
+
+  services.nginx = {
+    recommendedProxySettings = true;
+    virtualHosts."karakeep.zweili.org" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8989";
+        proxyWebsockets = true; # needed if you need to use WebSocket
+      };
+    };
+  };
+  services.karakeep = {
+    browser.enable = true;
+    enable = true;
+    extraEnvironment = {
+      CRAWLER_ENABLE_ADBLOCKER = "true";
+      CRAWLER_VIDEO_DOWNLOAD = "true";
+      CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE = "-1";
+      DISABLE_NEW_RELEASE_CHECK = "true";
+      DISABLE_SIGNUPS = "true";
+      OCR_LANGS = "eng,deu";
+      PORT = "8989";
+    };
+    meilisearch.enable = true;
   };
 }

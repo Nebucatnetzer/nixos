@@ -148,18 +148,4 @@ in
       };
     };
   };
-  services.karakeep = {
-    browser.enable = true;
-    enable = true;
-    extraEnvironment = {
-      CRAWLER_ENABLE_ADBLOCKER = "true";
-      CRAWLER_VIDEO_DOWNLOAD = "true";
-      CRAWLER_VIDEO_DOWNLOAD_MAX_SIZE = "-1";
-      DISABLE_NEW_RELEASE_CHECK = "true";
-      DISABLE_SIGNUPS = "true";
-      OCR_LANGS = "eng,deu";
-      PORT = "8989";
-    };
-    meilisearch.enable = true;
-  };
 }

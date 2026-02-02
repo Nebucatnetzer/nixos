@@ -37,6 +37,7 @@ in
       image-display-duration = 3;
       keep-open = "yes";
       keepaspect-window = "no";
+      save-position-on-quit = "yes";
       volume = 50;
     };
   };

@@ -113,7 +113,6 @@ in
       pkgs.adwaita-icon-theme
       pkgs.appimage-run
       pkgs.brightnessctl
-      unstable.kdePackages.tokodon
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep

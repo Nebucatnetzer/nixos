@@ -1,6 +1,7 @@
 { inputs, pkgs }:
 let
   unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  yt-dlp = unstable.yt-dlp;
 in
 {
   az-media = pkgs.writeShellScriptBin "az-media" ''
@@ -16,6 +17,7 @@ in
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };
+  download-video = pkgs.callPackage ./download-video { inherit yt-dlp; };
   emacs = pkgs.callPackage ./emacs {
     consult-denote = unstable.emacs.pkgs.consult-denote;
     denote = unstable.emacs.pkgs.denote;

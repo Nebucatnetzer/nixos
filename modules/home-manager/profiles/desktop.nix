@@ -27,6 +27,7 @@ in
       azPkgs.az-media
       azPkgs.dap-sync
       azPkgs.download-articles
+      azPkgs.download-video
       azPkgs.jdownloader
       azPkgs.raspi-video-output
       azPkgs.toggle-keyboard

@@ -8,7 +8,7 @@
     enable = true;
     settings = {
       asciify_paths = true;
-      directory = "/mnt/media/audio/music";
+      directory = "/mnt/media/audio/music/music";
       import = {
         autotag = false;
         copy = true;

@@ -18,6 +18,7 @@ in
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };
   download-video = pkgs.callPackage ./download-video { inherit yt-dlp; };
+  download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp; };
   emacs = pkgs.callPackage ./emacs {
     consult-denote = unstable.emacs.pkgs.consult-denote;
     denote = unstable.emacs.pkgs.denote;

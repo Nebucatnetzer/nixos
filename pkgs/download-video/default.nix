@@ -11,7 +11,7 @@ writeShellApplication {
     yt-dlp \
       --cookies-from-browser firefox \
       --no-playlist \
-      --preset-alias=mkv \
+      --remux-video=mkv \
       --paths=~/Downloads/youtube/ \
       "$@"
   '';

@@ -11,7 +11,7 @@ writeShellApplication {
     yt-dlp \
       --cookies-from-browser firefox \
       --yes-playlist \
-      --preset-alias=mkv \
+      --remux-video=mkv \
       --paths=~/Downloads/youtube/playlists/ \
       --output="%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
       "$@"

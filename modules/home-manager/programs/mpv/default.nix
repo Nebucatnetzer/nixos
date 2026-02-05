@@ -1,33 +1,11 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
-  delete-file = (
-    pkgs.stdenvNoCC.mkDerivation rec {
-      name = "mpv-delete-file";
-      src = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/zenyd/mpv-scripts/19ea069abcb794d1bf8fac2f59b50d71ab992130/delete_file.lua";
-        sha256 = "sha256-1FX23t+O1aFZnbuvl+9zDT8OcKEziWNGj5cAMSvRIas=";
-      };
-      dontBuild = true;
-      dontUnpack = true;
-      installPhase = ''
-        install -Dm644 ${src} $out/share/mpv/scripts/delete_file.lua
-      '';
-      passthru.scriptName = "delete_file.lua";
-    }
-  );
+  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
 in
 {
   programs.mpv = {
     enable = true;
-    package = (
-      pkgs.mpv-unwrapped.wrapper {
-        mpv = pkgs.mpv-unwrapped.override {
-          ffmpeg = pkgs.ffmpeg-full;
-        };
-        scripts = [ delete-file ];
-        youtubeSupport = true;
-      }
-    );
+    package = azPkgs.custom-mpv;
     bindings = {
       s = "playlist-shuffle";
       r = "cycle_values video-rotate 90 180 270 0";

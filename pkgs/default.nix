@@ -3,7 +3,7 @@ let
   unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   yt-dlp = unstable.yt-dlp;
 in
-{
+rec {
   az-media = pkgs.writeShellScriptBin "az-media" ''
     videos="videos"
     directory="''${1:-videos}"
@@ -13,6 +13,7 @@ in
     done
   '';
   build-raspi-image = pkgs.callPackage ./build-raspi-image { };
+  custom-mpv = pkgs.callPackage ./mpv { };
   dap-sync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
@@ -33,6 +34,6 @@ in
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
-  watch-playlist = pkgs.callPackage ./watch-playlist { };
-  watch-video = pkgs.callPackage ./watch-video { };
+  watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; };
+  watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; };
 }

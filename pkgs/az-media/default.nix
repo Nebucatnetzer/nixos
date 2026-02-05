@@ -4,6 +4,6 @@ writeShellScriptBin "az-media" ''
   directory="''${1:-videos}"
   for i in $(seq 1 4);
   do
-      ${mpv}/bin/mpv --shuffle --mute=yes --no-resume-playback "/run/media/andreas/various/$directory/" &
+      ${mpv}/bin/mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
   done
 ''

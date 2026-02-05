@@ -32,6 +32,8 @@ in
       azPkgs.jdownloader
       azPkgs.raspi-video-output
       azPkgs.toggle-keyboard
+      azPkgs.watch-playlist
+      azPkgs.watch-video
 
       # photographie packages
       pkgs.art

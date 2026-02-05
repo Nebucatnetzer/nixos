@@ -33,4 +33,6 @@ in
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
+  watch-playlist = pkgs.callPackage ./watch-playlist { };
+  watch-video = pkgs.callPackage ./watch-video { };
 }

@@ -23,42 +23,20 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."zweili-search-app" = {
-      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:908c6c5ee8ed060fa7f800e1ec50812c36dd96e98e795cd22a284d30b7721d87";
+      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:ad4127310d3161175749e55c46c30d9cc5ff204384fa964609af99656e74d9a2";
       autoStart = true;
       environmentFiles = [ config.age.secrets.zweiliSearchEnv.path ];
       environment = {
         ZWEILI_SEARCH_DOMAIN = "search.zweili.org";
       };
+      ports = [ "8080:8000" ];
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
         "/var/lib/zweili_search:/var/lib/zweili_search"
       ];
       extraOptions = [ "--log-opt=tag='zweili-search-app'" ];
-      networks = [ networkName ];
-    };
-    containers."zweili-search-nginx" = {
-      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-nginx:latest@sha256:b22175ff669b6aacb42865593f63ab8fd9fa276a9cd34740d5b89d1991a66765";
-      autoStart = true;
-      ports = [ "8080:80" ];
-      volumes = [
-        "/etc/localtime:/etc/localtime:ro"
-      ];
-      extraOptions = [ "--log-opt=tag='zweili-search-nginx'" ];
-      networks = [ networkName ];
     };
   };
-  systemd.services."docker-network-${networkName}" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "docker network rm -f ${networkName}";
-    };
-    script = ''
-      docker network inspect ${networkName} || docker network create ${networkName}
-    '';
-  };
-
   services = {
     searx = {
       enable = true;
@@ -136,7 +114,7 @@ in
             ''(.*\.)?medium.com''
           ];
           remove = [
-            ''search.nixos.org''
+            "search.nixos.org"
             ''(.*\.)?nixos.wiki''
           ];
         };

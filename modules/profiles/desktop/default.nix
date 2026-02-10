@@ -117,7 +117,6 @@ in
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep
-      pkgs.soundconverter
       pkgs.strawberry
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
     ];

@@ -38,7 +38,6 @@ in
       # photographie packages
       pkgs.art
       pkgs.digikam
-      unstable.darktable
 
       # wine
       pkgs.bottles

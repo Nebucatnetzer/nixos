@@ -36,7 +36,7 @@ in
       azPkgs.watch-video
 
       # photographie packages
-      pkgs.art
+      unstable.art
       pkgs.digikam
 
       # wine

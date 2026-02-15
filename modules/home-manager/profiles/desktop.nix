@@ -38,6 +38,7 @@ in
       # photographie packages
       unstable.art
       pkgs.digikam
+      pkgs.hugin
 
       # wine
       pkgs.bottles

@@ -23,7 +23,8 @@
            (org-mode        . flymake-languagetool-load)
            (markdown-mode   . flymake-languagetool-load))
     :init
-    (setopt flymake-languagetool-server-jar "/etc/profiles/per-user/andreas/share/languagetool-server.jar" ;; not an actual path
+    (setopt flymake-languagetool-server-jar nil ;; not an actual path
+            flymake-languagetool-url "http:localhost:8081"
             flymake-languagetool-language "en-GB")))
 
 (use-package markdown-mode

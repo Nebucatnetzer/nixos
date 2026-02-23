@@ -12,7 +12,7 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --no-playlist \
       --remux-video=mkv \
-      --paths=~/Downloads/youtube/ \
+      --paths=~/Downloads/youtube/independent_videos/ \
       "$@"
   '';
 }

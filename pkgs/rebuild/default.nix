@@ -14,7 +14,7 @@ writeShellApplication {
       upload-to-cache /run/current-system
     else
       echo "Build without private cache"
-      sudo nixos-rebuild-ng switch --option substituters "https://cache.nixos.org https://cache.nixos.org https://devenv.cachix.org"
+      sudo nixos-rebuild-ng switch --option substituters "https://cache.nixos.org https://nix-community.cachix.org"
     fi
   '';
 }

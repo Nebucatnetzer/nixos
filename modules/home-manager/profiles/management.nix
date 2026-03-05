@@ -37,6 +37,7 @@ in
       pkgs.nix-tree
       pkgs.nps
       pkgs.termscp
+      pkgs.trippy # network diagnostics
     ];
     shellAliases = {
       format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";

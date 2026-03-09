@@ -16,6 +16,9 @@ in
       keep-open = "yes";
       keepaspect-window = "no";
       volume = 50;
+      cache = "yes";
+      demuxer-max-bytes = "512MiB";
+      demuxer-readahead-secs = 20;
     };
   };
 

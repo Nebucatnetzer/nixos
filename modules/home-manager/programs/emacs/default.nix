@@ -50,6 +50,7 @@ in
       epkgs.cfrs
       epkgs.citeproc
       epkgs.consult
+      epkgs.copilot
       unstable.emacs.pkgs.consult-denote
       epkgs.consult-projectile
       epkgs.corfu

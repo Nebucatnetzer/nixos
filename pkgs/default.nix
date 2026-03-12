@@ -28,6 +28,10 @@ rec {
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
+  video-to-mpv = pkgs.callPackage ./video-to-mpv {
+    inherit yt-dlp;
+    mpv = custom-mpv;
+  };
   watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; };
   watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; };
 }

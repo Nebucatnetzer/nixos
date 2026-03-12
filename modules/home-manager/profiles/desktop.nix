@@ -32,6 +32,7 @@ in
       azPkgs.jdownloader
       azPkgs.raspi-video-output
       azPkgs.toggle-keyboard
+      azPkgs.video-to-mpv
       azPkgs.watch-playlist
       azPkgs.watch-video
 

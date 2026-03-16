@@ -38,6 +38,7 @@ in
 
       # photographie packages
       unstable.art
+      unstable.darktable
       pkgs.digikam
       pkgs.hugin
 

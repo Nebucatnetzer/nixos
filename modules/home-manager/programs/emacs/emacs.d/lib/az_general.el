@@ -98,10 +98,20 @@ minibuffer, even without explicitly focusing it."
       (set-face-background 'default "unspecified-bg" frame)))
 
 (defun az-open-notes ()
-  "Create a notes perspective and open dired in the notes directory."
+  "Toggle the notes perspective. If already on 'notes', switch to the previous
+perspective. If 'notes' exists but isn't active, switch to it. Otherwise,
+create it and open dired in the notes directory."
   (interactive)
-  (persp-switch "notes")
-  (dired denote-directory))
+  (cond
+   ((string= (persp-current-name) "notes")
+    (persp-prev))
+
+   ((member "notes" (persp-names))
+    (persp-switch "notes"))
+
+   (t
+    (persp-switch "notes")
+    (dired denote-directory))))
 
 ;; Taken from here: https://www.emacswiki.org/emacs/Replace-in-buffer
 (defun az-replace-in-buffer ()

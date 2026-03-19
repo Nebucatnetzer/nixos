@@ -1,14 +1,29 @@
 ;; -*- lexical-binding: t; -*-
-(use-package copilot
-  :ensure t
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . copilot-accept-completion)
-              ("TAB" . copilot-accept-completion)
-              ("C-<tab>" . copilot-accept-completion-by-word)
-              ("C-TAB" . copilot-accept-completion-by-word)
-              ("C-n" . copilot-next-completion)
-              ("C-p" . copilot-previous-completion)))
+
+;; https://github.com/s-kostyaev/ellama
+(use-package ellama
+  :bind ("C-c e" . ellama)
+  :init
+  (setopt ellama-auto-scroll t)
+  ;; setup key bindings
+  (setq llm-warn-on-nonfree nil)
+
+  ;; language you want ellama to translate to
+  (setopt ellama-language "German")
+
+  (require 'auth-source)
+  (setq github-key (auth-source-pick-first-password :host "models.inference.ai.azure.com"))
+
+  (require 'llm-github)
+  (setopt ellama-provider (make-llm-github
+                           :chat-model "gpt-4.1"
+                           :embedding-model "gpt-4.1"
+                           :key github-key))
+  :config
+  ;; show ellama context in header line in all buffers
+  (ellama-context-header-line-global-mode +1)
+  ;; show ellama session id in header line in all buffers
+  (ellama-session-header-line-global-mode +1))
 
 (use-package envrc
   :hook (after-init . envrc-global-mode))

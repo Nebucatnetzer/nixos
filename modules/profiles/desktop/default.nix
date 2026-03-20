@@ -114,6 +114,7 @@ in
       pkgs.appimage-run
       pkgs.brightnessctl
       pkgs.git-annex
+      pkgs.lollypop
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep

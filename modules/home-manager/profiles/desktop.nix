@@ -37,7 +37,6 @@ in
       azPkgs.watch-video
 
       # photographie packages
-      unstable.art
       unstable.darktable
       pkgs.digikam
       pkgs.hugin

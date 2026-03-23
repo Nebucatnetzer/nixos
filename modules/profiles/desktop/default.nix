@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
 {
   imports = [
     "${inputs.self}/modules/profiles/management"

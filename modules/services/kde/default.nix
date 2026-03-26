@@ -81,7 +81,6 @@
       pkgs.kdePackages.kwallet-pam # for kwallet automatic login
       pkgs.kdePackages.kde-gtk-config
       pkgs.krename
-      pkgs.kdePackages.kdenlive
     ];
   };
   services = {

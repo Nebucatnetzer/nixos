@@ -167,6 +167,7 @@ in
     foxFlssWrapper
   ];
   programs = {
+    kdeconnect.enable = true;
     localsend = {
       enable = true;
       openFirewall = true;

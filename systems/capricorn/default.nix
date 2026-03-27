@@ -1,5 +1,6 @@
 { hostname }:
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -178,6 +179,12 @@ in
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      user = config.az-username;
+      dataDir = "/home/${config.az-username}/.config/syncthing";
+    };
     thermald.enable = true;
   };
 }

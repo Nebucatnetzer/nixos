@@ -11,6 +11,7 @@ let
   ];
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
+  syncthingModule = import "${inputs.self}/modules/services/syncthing";
 in
 {
   imports = [
@@ -27,6 +28,7 @@ in
     "${inputs.self}/modules/services/zram-swap"
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule { resticSchedule = "*-*-* 06..21:30:00"; })
+    (syncthingModule { exposeWebInterface = true; })
   ];
 
   boot.initrd.availableKernelModules = [

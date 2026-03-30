@@ -27,6 +27,7 @@ let
   };
   mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
+  syncthingModule = import "${inputs.self}/modules/services/syncthing";
 in
 {
   imports = [
@@ -46,6 +47,7 @@ in
     (btrfsAuxModule { })
     (mediaShare { })
     (resticClientModule { })
+    (syncthingModule { })
   ];
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   boot.initrd.availableKernelModules = [
@@ -179,12 +181,6 @@ in
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      user = config.az-username;
-      dataDir = "/home/${config.az-username}/.config/syncthing";
-    };
     thermald.enable = true;
   };
 }

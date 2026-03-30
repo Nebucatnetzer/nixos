@@ -35,15 +35,14 @@
       frontend http
         bind *:80
         mode http
-        redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i search.zweili.org } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i searxng.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i actual.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i eactual.zweili.org } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i librenms.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i karakeep.zweili.org } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i search.zweili.org } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i searxng.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i www.zweili.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr_dom(host) -i zweili.ch } !{ ssl_fc }
 
@@ -56,15 +55,14 @@
         tcp-request content accept if { req_ssl_hello_type 1 }
 
         # Figure out which backend (= VM) to use
-        use_backend git_server if { req_ssl_sni -i git.2li.ch }
-        use_backend proxy if { req_ssl_sni -i search.zweili.org }
-        use_backend proxy if { req_ssl_sni -i searxng.zweili.org }
         use_backend budget_server if { req_ssl_sni -i actual.zweili.org }
         use_backend budget_server if { req_ssl_sni -i eactual.zweili.org }
-        use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
+        use_backend git_server if { req_ssl_sni -i git.2li.ch }
+        use_backend gwyn if { req_ssl_sni -i librenms.zweili.org }
+        use_backend proxy if { req_ssl_sni -i search.zweili.org }
+        use_backend proxy if { req_ssl_sni -i searxng.zweili.org }
         use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
-        use_backend librenms if { req_ssl_sni -i librenms.zweili.org }
-        use_backend karakeep if { req_ssl_sni -i karakeep.zweili.org }
+        use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
         use_backend proxy if { req_ssl_sni -i www.zweili.ch }
         use_backend proxy if { req_ssl_sni -i zweili.ch }
 
@@ -77,15 +75,12 @@
       backend rss_server
         mode tcp
         server server1 10.7.89.115:443 check
-      backend librenms
+      backend gwyn
         mode tcp
         server server1 10.7.89.153:443 check
       backend proxy
         mode tcp
         server server1 127.0.0.1:4433 check
-      backend karakeep
-        mode tcp
-        server server1 10.10.89.2:443 check
     '';
   };
 }

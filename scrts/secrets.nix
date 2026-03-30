@@ -42,19 +42,19 @@ let
 in
 {
   "cache_readonly.age".publicKeys = all;
-  "mail_password.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "gwyn_root_ssh_key.age".publicKeys = defaultKeys;
   "infomaniak_env.age".publicKeys = all;
-  "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
+  "mail_password.age".publicKeys = defaultKeys;
   "nextcloud_cli.age".publicKeys = defaultKeys;
+  "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];
   "restic.key.age".publicKeys = all;
-  "searxng_htpasswd.age".publicKeys = defaultKeys ++ [ proxy ];
   "searxng_env.age".publicKeys = defaultKeys ++ [ proxy ];
+  "searxng_htpasswd.age".publicKeys = defaultKeys ++ [ proxy ];
   "signing.key.age".publicKeys = defaultKeys;
   "telegram_notify_env.age".publicKeys = all;
   "zweili_search_env.age".publicKeys = defaultKeys ++ [ proxy ];

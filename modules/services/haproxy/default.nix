@@ -36,6 +36,7 @@
         bind *:80
         mode http
         redirect scheme https code 301 if { hdr(host) -i actual.zweili.org } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i dav.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i eactual.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i librenms.zweili.org } !{ ssl_fc }
@@ -56,6 +57,7 @@
 
         # Figure out which backend (= VM) to use
         use_backend budget_server if { req_ssl_sni -i actual.zweili.org }
+        use_backend gwyn if { req_ssl_sni -i dav.zweili.org }
         use_backend budget_server if { req_ssl_sni -i eactual.zweili.org }
         use_backend git_server if { req_ssl_sni -i git.2li.ch }
         use_backend gwyn if { req_ssl_sni -i librenms.zweili.org }

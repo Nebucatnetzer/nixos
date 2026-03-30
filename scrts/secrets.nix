@@ -42,6 +42,9 @@ let
 in
 {
   "cache_readonly.age".publicKeys = all;
+  "davis_admin_password.age".publicKeys = defaultKeys;
+  "davis_app_secret.age".publicKeys = defaultKeys;
+  "davis_mail_dsn.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];

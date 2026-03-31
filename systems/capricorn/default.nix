@@ -171,10 +171,6 @@ in
   ];
   programs = {
     kdeconnect.enable = true;
-    localsend = {
-      enable = true;
-      openFirewall = true;
-    };
   };
 
   services = {

@@ -26,6 +26,7 @@ in
     "${inputs.self}/modules/home-manager/programs/starship"
     "${inputs.self}/modules/home-manager/programs/tmux"
     gitModule
+    "${inputs.self}/modules/home-manager/services/syncthing"
     ./headless.nix
   ];
 

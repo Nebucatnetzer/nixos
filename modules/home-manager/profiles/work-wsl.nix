@@ -6,9 +6,7 @@
   ...
 }:
 let
-  gitModule = import "${inputs.self}/modules/home-manager/programs/git" {
-    userEmail = "zweili@contria.com";
-  };
+  gitModule = import "${inputs.self}/modules/home-manager/programs/git";
   hm-rebuild = pkgs.writeShellApplication {
     name = "hm-rebuild";
     runtimeInputs = [ ];
@@ -25,8 +23,8 @@ in
     "${inputs.self}/modules/home-manager/programs/hunspell"
     "${inputs.self}/modules/home-manager/programs/starship"
     "${inputs.self}/modules/home-manager/programs/tmux"
-    gitModule
     "${inputs.self}/modules/home-manager/services/syncthing"
+    (gitModule { userEmail = "zweili@contria.com"; })
     ./headless.nix
   ];
 

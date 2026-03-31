@@ -13,6 +13,7 @@
 /home/*/.steam
 /home/*/.thumbnails
 /home/*/Downloads
+/home/*/Videos/youtube
 /home/*/VMs
 /home/*/git_repos/work
 /home/*/programmes/tor-browser_en-US

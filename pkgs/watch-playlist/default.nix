@@ -13,7 +13,7 @@ writeShellApplication {
   ];
   text = ''
     fd \
-      --search-path ~/Downloads/youtube/playlists/ \
+      --search-path ~/Videos/youtube/playlists/ \
       --type directory \
       --no-hidden \
       --max-depth 1 |

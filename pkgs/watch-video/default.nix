@@ -13,7 +13,7 @@ writeShellApplication {
   ];
   text = ''
     fd \
-      --search-path ~/Downloads/youtube/independent_videos/ \
+      --search-path ~/Videos/youtube/independent_videos/ \
       --type file \
       --no-hidden \
       --max-depth 1 |

@@ -34,6 +34,7 @@ in
       azPkgs.toggle-keyboard
       azPkgs.video-to-mpv
       azPkgs.watch-playlist
+      azPkgs.watch-random-video
       azPkgs.watch-video
 
       # photographie packages

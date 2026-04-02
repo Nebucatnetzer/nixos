@@ -33,5 +33,6 @@ rec {
     mpv = custom-mpv;
   };
   watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; };
+  watch-random-video = pkgs.callPackage ./watch-random-video { mpv = custom-mpv; };
   watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; };
 }

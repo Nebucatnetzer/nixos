@@ -36,6 +36,18 @@
 
 (defsrc )
 
+(defalias
+  ;; If tapped within 200ms, it outputs e.
+  ;; If held longer than 200ms, it holds down Left Click.
+  e-click (tap-hold 200 200 (multi e @.tp) mlft)
+)
+
+(defalias
+  ;; If tapped within 200ms, it outputs r.
+  ;; If held longer than 200ms, it holds down Right Click.
+  r-click (tap-hold 200 200 (multi r @.tp) mrgt)
+)
+
 (deflayermap (base)
  ;; define home row mods (they act as typing-layer triggers, too )
  f (t! homerowmod $tot 200 f lctl)
@@ -46,8 +58,10 @@
  k (t! homerowmod $tot 200 k rsft)
  l (t! homerowmod $tot 200 l ralt)
  ; (t! homerowmod $tot 200 ; rmet)
+ e @e-click
+ r @r-click
  ;; define each letter as typing-layer trigger
- q (multi q @.tp) w (multi w @.tp) e (multi e @.tp) r (multi r @.tp) t (multi t @.tp) y (multi y @.tp) u (multi u @.tp) i (multi i @.tp) o (multi o @.tp) p (multi p @.tp) g (multi g @.tp) h (multi h @.tp) z (multi z @.tp) x (multi x @.tp) c (multi c @.tp) v (multi v @.tp) b (multi b @.tp) n (multi n @.tp) m (multi m @.tp)
+ q (multi q @.tp) w (multi w @.tp) t (multi t @.tp) y (multi y @.tp) u (multi u @.tp) i (multi i @.tp) o (multi o @.tp) p (multi p @.tp) g (multi g @.tp) h (multi h @.tp) z (multi z @.tp) x (multi x @.tp) c (multi c @.tp) v (multi v @.tp) b (multi b @.tp) n (multi n @.tp) m (multi m @.tp)
 )
 
 (deflayermap (typing)

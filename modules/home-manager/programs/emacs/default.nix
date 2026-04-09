@@ -43,6 +43,7 @@ in
     extraPackages = epkgs: [
       epkgs.ace-window
       epkgs.ag
+      unstable.emacsPackages.alabaster-themes
       epkgs.ansible
       epkgs.avy
       epkgs.bind-key
@@ -118,7 +119,6 @@ in
       epkgs.rainbow-delimiters
       epkgs.ripgrep
       epkgs.smooth-scrolling
-      epkgs.solarized-theme
       epkgs.string-inflection
       epkgs.swiper
       epkgs.system-packages

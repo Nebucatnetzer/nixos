@@ -24,13 +24,9 @@
 
 (when (boundp 'enable-color-theme)
   ;; load solarized color theme
-  (use-package solarized-theme
+  (use-package alabaster-themes
     :config
-    (setopt solarized-use-variable-pitch nil
-            solarized-scale-org-headlines nil
-            solarized-high-contrast-mode-line t)
-    (set-face-inverse-video 'region nil)
-    (load-theme 'solarized-light t)))
+    (load-theme 'alabaster-themes-light-bg t)))
 
 ;; highlight bad whitespace
 (use-package whitespace

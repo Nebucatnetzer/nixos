@@ -22,11 +22,18 @@ in
 
   services.nscd.enableNsncd = true;
   networking = {
-    domain = "2li.local";
     enableIPv6 = false;
     firewall = {
       allowPing = true;
       allowedTCPPorts = [ 22 ];
+      allowedUDPPorts = [
+        5353 # mDNS/resolved
+      ];
+    };
+    networkmanager = {
+      connectionConfig."connection.llmnr" = 0;
+      connectionConfig."connection.mdns" = 2;
+      dns = "systemd-resolved";
     };
     timeServers = [
       "10.7.89.1"
@@ -45,20 +52,34 @@ in
   # required in order to have apropos and whatis working
   programs.mosh.enable = true;
   programs.ssh.startAgent = true;
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
+  services = {
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
+      extraConfig = ''
+        AllowTcpForwarding yes
+        X11Forwarding no
+        AllowAgentForwarding no
+        AllowStreamLocalForwarding no
+        AuthenticationMethods publickey
+      '';
     };
-    extraConfig = ''
-      AllowTcpForwarding yes
-      X11Forwarding no
-      AllowAgentForwarding no
-      AllowStreamLocalForwarding no
-      AuthenticationMethods publickey
-    '';
+    resolved = {
+      dnsovertls = "opportunistic";
+      enable = true;
+      extraConfig = ''
+        MulticastDNS=true
+      '';
+      fallbackDns = [
+        "185.95.218.42"
+        "185.95.218.43"
+      ];
+      llmnr = "false";
+    };
   };
 
   # Select internationalisation properties.

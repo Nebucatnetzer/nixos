@@ -41,6 +41,7 @@ in
     "${inputs.self}/modules/programs/makemkv"
     "${inputs.self}/modules/programs/steam"
     "${inputs.self}/modules/services/binary-cache-client"
+    "${inputs.self}/modules/services/davis"
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"

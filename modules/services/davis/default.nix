@@ -44,14 +44,10 @@ in
       WEBDAV_ENABLED = false;
     };
     enable = true;
-    hostname = "dav.zweili.org";
+    hostname = "${config.networking.hostName}.local";
     mail = {
       dsnFile = mailDsnFile;
       inviteFromAddress = "andreas@zweili.ch";
-    };
-    nginx = {
-      enableACME = true;
-      forceSSL = true;
     };
     package = unstable.davis;
   };

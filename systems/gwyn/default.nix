@@ -22,7 +22,6 @@ in
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/services/binary-cache-client"
     "${inputs.self}/modules/services/data-share"
-    "${inputs.self}/modules/services/davis"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"

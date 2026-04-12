@@ -1,6 +1,5 @@
 { hostname }:
 {
-  config,
   inputs,
   pkgs,
   ...

@@ -20,7 +20,6 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
-    "${inputs.self}/modules/services/binary-cache-client"
     "${inputs.self}/modules/services/data-share"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"

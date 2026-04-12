@@ -51,4 +51,5 @@ in
     };
     package = unstable.davis;
   };
+  networking.firewall.allowedTCPPorts = [ 80 ];
 }

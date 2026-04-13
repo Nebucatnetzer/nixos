@@ -5,6 +5,7 @@
   python3,
   mkShellNoCC,
   vim,
+  wireguard-tools,
 }:
 mkShellNoCC {
   name = "nixosbuildshell";
@@ -14,6 +15,7 @@ mkShellNoCC {
       paths = [
         deadnix
         git
+        wireguard-tools
         (python3.withPackages (p: [
           p.python-lsp-server
           p.python-lsp-ruff

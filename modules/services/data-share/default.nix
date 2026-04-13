@@ -1,7 +1,7 @@
 { ... }:
 {
-  fileSystems."/mnt/data" = {
-    device = "10.7.89.108:server_data";
+  fileSystems."/mnt/fileserver/media" = {
+    device = "10.7.89.108:media";
     fsType = "nfs";
     options = [
       "x-systemd.automount"

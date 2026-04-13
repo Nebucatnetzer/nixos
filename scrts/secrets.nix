@@ -49,6 +49,7 @@ in
   "freshrss_user_pass.age".publicKeys = defaultKeys ++ [ ttrss ];
   "gitea_env.age".publicKeys = defaultKeys ++ [ git ];
   "gwyn_root_ssh_key.age".publicKeys = defaultKeys;
+  "gwyn_wg.key.age".publicKeys = defaultKeys;
   "infomaniak_env.age".publicKeys = all;
   "mail_password.age".publicKeys = defaultKeys;
   "nextcloud_cli.age".publicKeys = defaultKeys;

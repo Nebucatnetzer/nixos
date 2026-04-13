@@ -14,6 +14,7 @@ let
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
+  wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in
 {
   imports = [
@@ -22,6 +23,7 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/services/coredns"
     "${inputs.self}/modules/services/data-share"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"
@@ -31,8 +33,13 @@ in
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule { resticSchedule = "*-*-* 06..21:30:00"; })
     (syncthingModule { exposeWebInterface = true; })
+    (wireguardModule {
+      IP = "10.70.89.153";
+      privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
+    })
   ];
 
+  age.secrets.wireguardPrivateKey.file = "${inputs.self}/scrts/gwyn_wg.key.age";
   boot.initrd.availableKernelModules = [
     "aesni_intel"
     "ahci"
@@ -148,8 +155,7 @@ in
   services = {
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
-    # todo: has been renamed to `services.logind.settings.Login.HandleLidSwitchExternalPower`.
-    logind.lidSwitchExternalPower = "ignore";
+    logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     thermald.enable = true;
 
     # Disable the integrated webcam

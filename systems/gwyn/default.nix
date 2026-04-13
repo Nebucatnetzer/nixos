@@ -28,6 +28,7 @@ in
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
+    "${inputs.self}/modules/services/wireguard/routing.nix"
     "${inputs.self}/modules/services/zram-swap"
     (btrfsAuxModule { })
     (librenmsCertificateModule { inherit domains; })

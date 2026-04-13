@@ -18,7 +18,7 @@ in
       peers = [
         {
           # gwyn
-          publicKey = "47YruBG/r9TBN5SWzPMo5kgCgKsF58KJPuxGhvqrUzI=";
+          publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";
           allowedIPs = [
             "10.70.89.0/24"
           ];
@@ -33,7 +33,7 @@ in
         }
         {
           # fileserver
-          publicKey = "SEI5eP42cJ9g/pWePcXYIZPfBnQ85n31wUc2FVo78VM=";
+          publicKey = "ogbiAs4JY+tH/+M0JGN/5ZuVJ4SdFhK/pq+4LhmPmGw=";
           allowedIPs = [
             "10.70.89.0/24"
           ];

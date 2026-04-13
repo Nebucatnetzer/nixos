@@ -24,7 +24,6 @@ in
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/services/coredns"
-    "${inputs.self}/modules/services/data-share"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
@@ -133,6 +132,16 @@ in
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+  };
+
+  fileSystems."/mnt/fileserver/media" = {
+    device = "10.7.89.108:media";
+    fsType = "nfs";
+    options = [
+      "hard"
+      "noatime"
+      "rw"
+    ];
   };
 
   swapDevices = [ { device = "/swap/swapfile"; } ];

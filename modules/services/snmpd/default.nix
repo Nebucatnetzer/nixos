@@ -9,6 +9,8 @@
       sysServices    72
 
       rocommunity public 10.7.89.0/24
+      rocommunity public 10.70.89.0/24
+      rocommunity public 127.0.0.0/24
     '';
   };
 }

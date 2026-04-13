@@ -6,6 +6,8 @@
   ...
 }:
 let
+  btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
+  commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
     { fqdn = "${config.services.librenms.hostname}"; }
   ];
@@ -25,6 +27,7 @@ in
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/zram-swap"
+    (btrfsAuxModule { })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule { resticSchedule = "*-*-* 06..21:30:00"; })
     (syncthingModule { exposeWebInterface = true; })
@@ -63,45 +66,73 @@ in
     "ip=dhcp" # required for ssh at initrd
   ];
 
-  boot.initrd.luks.devices."cryptlvm" = {
+  boot.initrd.luks.devices."mainLuks" = {
     allowDiscards = true;
     device = "/dev/nvme0n1p2";
   };
 
   boot.supportedFilesystems = [
-    "apfs"
+    "btrfs"
+    "cifs"
     "exfat"
     "ext4"
+    "f2fs"
     "nfs"
     "nfs4"
     "ntfs"
-    "cifs"
-    "f2fs"
+    "squashfs"
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    neededForBoot = true;
+    options = [
+      "subvol=root"
+    ]
+    ++ commonBtrfsOptions;
+  };
+  fileSystems."/home" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    neededForBoot = true;
+    options = [
+      "subvol=home"
+    ]
+    ++ commonBtrfsOptions;
+  };
+  fileSystems."/nix" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    neededForBoot = true;
+    options = [
+      "subvol=nix"
+    ]
+    ++ commonBtrfsOptions;
+  };
+  fileSystems."/swap" = {
+    fsType = "btrfs";
+    label = "mainBtrfs";
+    options = [
+      "compress=no"
+      "noatime"
+      "nodatacow"
+      "nodatasum"
+      "ssd"
+      "subvol=swap"
+    ];
   };
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
 
+  swapDevices = [ { device = "/swap/swapfile"; } ];
+
   # USB address of the ethernet dongle: 0bda:8153
   networking = {
-    firewall.allowedTCPPorts = [
-      3389
-    ];
-    firewall.allowedUDPPorts = [
-      3389
-    ];
     useDHCP = false;
     hostName = hostname;
-    hosts = {
-      "127.0.0.1" = [ "${hostname}.2li.local" ];
-      ip = [ "${hostname}.2li.local" ];
-    };
     defaultGateway = "10.7.89.1";
     nameservers = [ "10.7.89.1" ];
     interfaces.enp58s0u1.ipv4.addresses = [
@@ -111,8 +142,6 @@ in
       }
     ];
   };
-
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   hardware.graphics.enable = true;
 

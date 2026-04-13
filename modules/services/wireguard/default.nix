@@ -20,7 +20,7 @@ in
           # capricorn
           publicKey = "BzZMupEJwJXzZMHDRXcLLLPsHI8HLORiy44vbekvBzU=";
           allowedIPs = [
-            "10.70.89.0/24"
+            "10.70.89.170/32"
           ];
         }
         {

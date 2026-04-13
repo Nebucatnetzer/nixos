@@ -22,18 +22,11 @@ in
 
   services.nscd.enableNsncd = true;
   networking = {
+    domain = "2li.local";
     enableIPv6 = false;
     firewall = {
       allowPing = true;
       allowedTCPPorts = [ 22 ];
-      allowedUDPPorts = [
-        5353 # mDNS/resolved
-      ];
-    };
-    networkmanager = {
-      connectionConfig."connection.llmnr" = 0;
-      connectionConfig."connection.mdns" = 2;
-      dns = "systemd-resolved";
     };
     timeServers = [
       "10.7.89.1"
@@ -67,18 +60,6 @@ in
         AllowStreamLocalForwarding no
         AuthenticationMethods publickey
       '';
-    };
-    resolved = {
-      dnsovertls = "opportunistic";
-      enable = true;
-      extraConfig = ''
-        MulticastDNS=true
-      '';
-      fallbackDns = [
-        "185.95.218.42"
-        "185.95.218.43"
-      ];
-      llmnr = "false";
     };
   };
 

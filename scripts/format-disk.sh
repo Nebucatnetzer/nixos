@@ -21,7 +21,7 @@ LUKS_PATH=/dev/mapper/$LUKS_NAME
 create_gpt() {
     echo "Create partition table."
     parted --script $DISK mklabel gpt
-    parted --script $DISK mkpart ESP fat32 0% 1GiB
+    parted --script $DISK mkpart ESP fat32 0% 2GiB
     parted --script $DISK set 1 esp on
 }
 
@@ -33,7 +33,7 @@ create_boot_partition() {
 
 create_main_partition() {
     echo "Create main partition."
-    parted --script $DISK mkpart primary 1GiB 100%
+    parted --script $DISK mkpart primary 2GiB 100%
 }
 
 create_luks_partition() {

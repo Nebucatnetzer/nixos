@@ -17,6 +17,13 @@ in
       listenPort = port;
       peers = [
         {
+          # capricorn
+          publicKey = "BzZMupEJwJXzZMHDRXcLLLPsHI8HLORiy44vbekvBzU=";
+          allowedIPs = [
+            "10.70.89.0/24"
+          ];
+        }
+        {
           # gwyn
           publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";
           allowedIPs = [
@@ -35,7 +42,7 @@ in
           # fileserver
           publicKey = "ogbiAs4JY+tH/+M0JGN/5ZuVJ4SdFhK/pq+4LhmPmGw=";
           allowedIPs = [
-            "10.70.89.0/24"
+            "10.70.89.108/32"
           ];
         }
       ];

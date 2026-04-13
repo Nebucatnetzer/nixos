@@ -1,5 +1,6 @@
 { hostname }:
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -27,6 +28,7 @@ let
   mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
+  wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in
 {
   imports = [
@@ -46,7 +48,14 @@ in
     (mediaShare { })
     (resticClientModule { })
     (syncthingModule { })
+    (wireguardModule {
+      IP = "10.70.89.170";
+      privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
+    })
   ];
+
+  age.secrets.wireguardPrivateKey.file = "${inputs.self}/scrts/capricorn_wg.key.age";
+
   # Capricorn is a Dell Latitude 7450 with an Intel Core Ultra 7 165U CPU of generation Meteor Lake.
   boot.initrd.availableKernelModules = [
     "aesni_intel"

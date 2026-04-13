@@ -42,6 +42,7 @@ let
 in
 {
   "cache_readonly.age".publicKeys = all;
+  "capricorn_wg.key.age".publicKeys = defaultKeys;
   "davis_admin_password.age".publicKeys = defaultKeys;
   "davis_app_secret.age".publicKeys = defaultKeys;
   "davis_mail_dsn.age".publicKeys = defaultKeys;

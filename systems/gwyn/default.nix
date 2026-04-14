@@ -24,6 +24,7 @@ in
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/services/coredns"
+    "${inputs.self}/modules/services/davis"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"

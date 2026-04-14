@@ -62,7 +62,7 @@ in
   programs = {
     bash = {
       shellAliases = {
-        management-server = "mosh ${config.home.username}@10.7.89.153 -- tmux new -A -s 0";
+        management-server = "mosh ${config.home.username}@10.70.89.153 -- tmux new -A -s 0";
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
       };
     };

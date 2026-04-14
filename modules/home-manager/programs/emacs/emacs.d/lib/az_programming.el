@@ -190,6 +190,7 @@
   :hook (git-commit-setup . flyspell-mode)
   :config
   (setopt magit-diff-refine-hunk (quote all)
+          magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)
           magit-save-repository-buffers 'dontask))
 
 (use-package nix-mode

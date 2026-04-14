@@ -12,11 +12,9 @@
 /home/*/.mozilla
 /home/*/.steam
 /home/*/.thumbnails
+/home/*/applications/tor-browser_en-US
 /home/*/Downloads
-/home/*/Videos/youtube
 /home/*/VMs
-/home/*/git_repos/work
-/home/*/programmes/tor-browser_en-US
 /home/*/snap
 /nix/var/nix/builds
 /nix/var/nix/db/big-lock

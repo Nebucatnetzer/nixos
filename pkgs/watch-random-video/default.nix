@@ -9,6 +9,6 @@ writeShellApplication {
   ];
   text = ''
     mpv --save-position-on-quit \
-        --shuffle ~/Videos/youtube/independent_videos/
+        --shuffle /run/media/andreas/20260414--ext-ssd/videos/youtube/independent_videos/
   '';
 }

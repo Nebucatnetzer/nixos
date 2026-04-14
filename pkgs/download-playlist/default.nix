@@ -12,7 +12,7 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --yes-playlist \
       --remux-video=mkv \
-      --paths=~/Videos/youtube/playlists/ \
+      --paths=/run/media/andreas/20260414--ext-ssd/videos/youtube/playlists/ \
       --output="%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
       "$@"
   '';

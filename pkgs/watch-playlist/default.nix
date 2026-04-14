@@ -13,7 +13,7 @@ writeShellApplication {
   ];
   text = ''
     fd \
-      --search-path ~/Videos/youtube/playlists/ \
+      --search-path /run/media/andreas/20260414--ext-ssd/videos/youtube/playlists/ \
       --type directory \
       --no-hidden \
       --max-depth 1 |

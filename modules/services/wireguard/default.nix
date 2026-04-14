@@ -45,6 +45,12 @@ in
             "10.70.89.108/32"
           ];
         }
+        {
+          publicKey = "MGmlmY7BnJrFLOyF8CzXAL1p7/mOe9Y2EYqGyRGHSSk=";
+          allowedIPs = [
+            "10.70.89.180/32"
+          ];
+        }
       ];
     };
   };

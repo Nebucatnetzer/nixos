@@ -12,6 +12,9 @@ let
   unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+  ];
   age.secrets.adminPasswordFile = {
     file = "${inputs.self}/scrts/davis_admin_password.age";
     mode = "640";

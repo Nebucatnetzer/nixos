@@ -23,7 +23,7 @@ in
   virtualisation.oci-containers = {
     backend = "docker";
     containers."zweili-search-app" = {
-      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:ad4127310d3161175749e55c46c30d9cc5ff204384fa964609af99656e74d9a2";
+      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:3710fa8692ffb42d8ab3922d2b4c18bec6ee292ea4e5da054bbe8e1ebf6c734e";
       autoStart = true;
       environmentFiles = [ config.age.secrets.zweiliSearchEnv.path ];
       environment = {

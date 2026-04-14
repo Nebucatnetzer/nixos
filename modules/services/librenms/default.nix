@@ -16,7 +16,6 @@ let
 in
 {
   imports = [
-    "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/snmpd"
   ];
   networking.firewall.allowedTCPPorts = [
@@ -42,13 +41,7 @@ in
         createLocally = true;
         socket = "/run/mysqld/mysqld.sock";
       };
-      hostname = "librenms.zweili.org";
-      nginx = {
-        forceSSL = true;
-        enableACME = true;
-        # To set the LibreNMS virtualHost as the default virtualHost;
-        default = true;
-      };
+      hostname = "gwyn.vpn.zweili.org";
       settings = {
         enable_syslog = true;
         ignore_mount = [

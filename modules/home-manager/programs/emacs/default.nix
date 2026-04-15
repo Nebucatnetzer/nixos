@@ -36,6 +36,11 @@ in
       WantedBy = [ "graphical-session.target" ];
     };
   };
+  systemd.user.services.emacs = {
+    Service = {
+      Environment = "COLORTERM=truecolor";
+    };
+  };
 
   programs.emacs = {
     enable = true;

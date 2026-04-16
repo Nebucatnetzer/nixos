@@ -45,11 +45,6 @@ in
       nginx.listen = [
         {
           addr = "127.0.0.1";
-          port = config.services.nginx.defaultSSLListenPort;
-          ssl = true;
-        }
-        {
-          addr = "127.0.0.1";
           port = config.services.nginx.defaultHTTPListenPort;
         }
       ];

@@ -151,6 +151,7 @@ in
     fsType = "vfat";
   };
 
+  networking.wg-quick.interfaces.wg0.dns = [ "10.70.89.153" ];
   networking.hostName = hostname;
 
   swapDevices = [ { device = "/swap/swapfile"; } ];

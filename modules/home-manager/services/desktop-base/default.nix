@@ -72,11 +72,4 @@
     # https://github.com/nix-community/home-manager/issues/1213
     configFile."mimeapps.list".force = true;
   };
-
-  services = {
-    nextcloud-client = {
-      enable = true;
-      startInBackground = true;
-    };
-  };
 }

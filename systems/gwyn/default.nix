@@ -26,7 +26,7 @@ in
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/services/blog"
-    "${inputs.self}/modules/services/coredns"
+    "${inputs.self}/modules/services/dnsmasq"
     "${inputs.self}/modules/services/davis"
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"

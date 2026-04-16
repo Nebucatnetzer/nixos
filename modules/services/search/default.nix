@@ -50,13 +50,6 @@ in
         "search.zweili.org" = {
           enableACME = true;
           forceSSL = true;
-          listen = [
-            {
-              port = 8433;
-              addr = "127.0.0.1";
-              ssl = true;
-            }
-          ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:8000";
             proxyWebsockets = true; # needed if you need to use WebSocket
@@ -68,13 +61,6 @@ in
         "searxng.zweili.org" = {
           enableACME = true;
           forceSSL = true;
-          listen = [
-            {
-              port = 8433;
-              addr = "127.0.0.1";
-              ssl = true;
-            }
-          ];
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
             proxyWebsockets = true; # needed if you need to use WebSocket

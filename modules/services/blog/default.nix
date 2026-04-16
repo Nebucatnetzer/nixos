@@ -34,13 +34,6 @@ in
           serverAliases = [ "www.zweili.ch" ];
           enableACME = true;
           forceSSL = true;
-          listen = [
-            {
-              port = 8433;
-              addr = "127.0.0.1";
-              ssl = true;
-            }
-          ];
           root = blogPosts;
         };
       };

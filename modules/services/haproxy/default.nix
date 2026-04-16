@@ -82,7 +82,7 @@
         server nginxHTTP 127.0.0.1:8080 check
       backend gwynHTTPS
         mode tcp
-        server nginxHTTPS 127.0.0.1:8433 check
+        server nginxHTTPS 127.0.0.1:8443 check
     '';
   };
 }

@@ -9,7 +9,9 @@ let
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
-    { fqdn = "${config.services.librenms.hostname}"; }
+    { fqdn = "www.zweili.ch"; }
+    { fqdn = "search.zweili.org"; }
+    { fqdn = "searxng.zweili.org"; }
   ];
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
@@ -23,9 +25,13 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/coredns"
     "${inputs.self}/modules/services/davis"
+    "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
+    "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/wireguard/routing.nix"
@@ -167,6 +173,9 @@ in
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+    nginx.defaultHTTPListenPort = 8080;
+    nginx.defaultListenAddresses = [ "127.0.0.1" ];
+    nginx.defaultSSLListenPort = 8443;
     thermald.enable = true;
 
     # Disable the integrated webcam

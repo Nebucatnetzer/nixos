@@ -24,7 +24,7 @@
         timeout server  30s
 
       listen haproxy-monitoring
-        bind *:1936
+        bind 10.70.89.153:1936
         mode http
         stats enable
         stats hide-version
@@ -46,6 +46,8 @@
         redirect scheme https code 301 if { hdr(host) -i www.zweili.ch } !{ ssl_fc }
         redirect scheme https code 301 if { hdr_dom(host) -i zweili.ch } !{ ssl_fc }
 
+        use_backend gwynHTTP if { hdr_dom(host) -i vpn.zweili.org }
+
       frontend https
         # Listen on port 443
         bind *:443
@@ -54,17 +56,17 @@
         tcp-request inspect-delay 5s
         tcp-request content accept if { req_ssl_hello_type 1 }
 
-        # Figure out which backend (= VM) to use
+        # Figure out which backend to use
         use_backend budget_server if { req_ssl_sni -i actual.zweili.org }
-        use_backend gwyn if { req_ssl_sni -i dav.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i dav.zweili.org }
         use_backend budget_server if { req_ssl_sni -i eactual.zweili.org }
         use_backend git_server if { req_ssl_sni -i git.2li.ch }
-        use_backend proxy if { req_ssl_sni -i search.zweili.org }
-        use_backend proxy if { req_ssl_sni -i searxng.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i search.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i searxng.zweili.org }
         use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
         use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
-        use_backend proxy if { req_ssl_sni -i www.zweili.ch }
-        use_backend proxy if { req_ssl_sni -i zweili.ch }
+        use_backend gwynHTTPS if { req_ssl_sni -i www.zweili.ch }
+        use_backend gwynHTTPS if { req_ssl_sni -i zweili.ch }
 
       backend git_server
         mode tcp
@@ -75,12 +77,12 @@
       backend rss_server
         mode tcp
         server server1 10.7.89.115:443 check
-      backend gwyn
+      backend gwynHTTP
+        mode http
+        server nginxHTTP 127.0.0.1:8080 check
+      backend gwynHTTPS
         mode tcp
-        server server1 10.7.89.153:443 check
-      backend proxy
-        mode tcp
-        server server1 127.0.0.1:4433 check
+        server nginxHTTPS 127.0.0.1:8433 check
     '';
   };
 }

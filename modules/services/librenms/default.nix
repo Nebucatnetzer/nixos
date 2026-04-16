@@ -42,6 +42,17 @@ in
         socket = "/run/mysqld/mysqld.sock";
       };
       hostname = "gwyn.vpn.zweili.org";
+      nginx.listen = [
+        {
+          addr = "127.0.0.1";
+          port = config.services.nginx.defaultSSLListenPort;
+          ssl = true;
+        }
+        {
+          addr = "127.0.0.1";
+          port = config.services.nginx.defaultHTTPListenPort;
+        }
+      ];
       settings = {
         enable_syslog = true;
         ignore_mount = [

@@ -29,6 +29,7 @@ in
     "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/dnsmasq"
     "${inputs.self}/modules/services/davis"
+    "${inputs.self}/modules/services/eactual"
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"

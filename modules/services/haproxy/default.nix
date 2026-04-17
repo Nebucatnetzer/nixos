@@ -59,7 +59,7 @@
         # Figure out which backend to use
         use_backend gwynHTTPS if { req_ssl_sni -i actual.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i dav.zweili.org }
-        use_backend budget_server if { req_ssl_sni -i eactual.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i eactual.zweili.org }
         use_backend git_server if { req_ssl_sni -i git.2li.ch }
         use_backend gwynHTTPS if { req_ssl_sni -i search.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i searxng.zweili.org }
@@ -71,9 +71,6 @@
       backend git_server
         mode tcp
         server server1 10.7.89.109:443 check
-      backend budget_server
-        mode tcp
-        server server1 10.7.89.113:443 check
       backend rss_server
         mode tcp
         server server1 10.7.89.115:443 check

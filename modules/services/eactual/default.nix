@@ -21,7 +21,6 @@ in
     "${inputs.self}/modules/services/telegram-notifications"
     librenmsCertificateModule
   ];
-  networking.firewall.allowedTCPPorts = [ 443 ];
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;

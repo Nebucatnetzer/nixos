@@ -25,6 +25,7 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/services/actualbudget"
     "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/dnsmasq"
     "${inputs.self}/modules/services/davis"

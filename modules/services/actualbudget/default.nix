@@ -22,7 +22,6 @@ in
     librenmsCertificateModule
   ];
   # Webserver setup
-  networking.firewall.allowedTCPPorts = [ 443 ];
   services.nginx = {
     enable = true;
     recommendedOptimisation = true;

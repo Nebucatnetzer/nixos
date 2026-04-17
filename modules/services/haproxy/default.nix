@@ -57,7 +57,7 @@
         tcp-request content accept if { req_ssl_hello_type 1 }
 
         # Figure out which backend to use
-        use_backend budget_server if { req_ssl_sni -i actual.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i actual.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i dav.zweili.org }
         use_backend budget_server if { req_ssl_sni -i eactual.zweili.org }
         use_backend git_server if { req_ssl_sni -i git.2li.ch }

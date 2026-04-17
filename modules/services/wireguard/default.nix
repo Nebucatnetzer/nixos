@@ -27,6 +27,7 @@ in
           # gwyn
           publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";
           allowedIPs = [
+            "10.7.89.0/24"
             "10.70.89.0/24"
           ];
           endpoint = "zweili.org:${toString port}";

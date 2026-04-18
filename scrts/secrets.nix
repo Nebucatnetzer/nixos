@@ -36,6 +36,8 @@ in
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys;
   "restic.key.age".publicKeys = all;
+  "radicale_htpasswd.age".publicKeys = defaultKeys;
+  "radicale_public_ics_location.age".publicKeys = defaultKeys;
   "searxng_env.age".publicKeys = defaultKeys;
   "searxng_htpasswd.age".publicKeys = defaultKeys;
   "telegram_notify_env.age".publicKeys = all;

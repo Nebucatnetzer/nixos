@@ -26,7 +26,7 @@ let
     '';
   };
   mediaShare = import "${inputs.self}/modules/services/media-share";
-  resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
+  resticClientModule = import "${inputs.self}/modules/services/restic-client-server";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in

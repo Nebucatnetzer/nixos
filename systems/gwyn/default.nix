@@ -14,7 +14,7 @@ let
     { fqdn = "searxng.zweili.org"; }
   ];
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
-  resticClientModule = import "${inputs.self}/modules/services/restic-client-desktop";
+  resticClientModule = import "${inputs.self}/modules/services/restic-client-server";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in
@@ -40,7 +40,12 @@ in
     "${inputs.self}/modules/services/zram-swap"
     (btrfsAuxModule { })
     (librenmsCertificateModule { inherit domains; })
-    (resticClientModule { resticSchedule = "*-*-* 06..21:30:00"; })
+    (resticClientModule {
+      mariadb = true;
+      paths = [ ];
+      postgresql = true;
+      resticSchedule = "*-*-* 06..21:30:00";
+    })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardModule {
       IP = "10.70.89.153";

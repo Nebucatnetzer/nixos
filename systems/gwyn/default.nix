@@ -17,7 +17,7 @@ let
     { fqdn = "searxng.zweili.org"; }
   ];
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
-  resticClientModule = import "${inputs.self}/modules/services/restic-client-server";
+  resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in

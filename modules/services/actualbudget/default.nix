@@ -1,12 +1,13 @@
 {
-  config,
+  dataDirectory,
+  domain,
+  port,
+}:
+{
   inputs,
-  pkgs,
   ...
 }:
 let
-  dataDirectory = "/var/lib/actualbudget";
-  domain = "actual.zweili.org";
   domains = [
     { fqdn = "${domain}"; }
   ];
@@ -31,7 +32,7 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://127.0.0.1:5006";
+        proxyPass = "http://127.0.0.1:${builtins.toString port}";
         proxyWebsockets = true; # needed if you need to use WebSocket
       };
     };
@@ -42,47 +43,12 @@ in
       # https://github.com/actualbudget/actual/releases
       image = "ghcr.io/actualbudget/actual:26.4.0@sha256:37bc525a8443c509026e6774c3e03f570c56f1caed9460e9a1f57e1a4bab475d";
       autoStart = true;
-      ports = [ "5006:5006" ];
+      ports = [ "${builtins.toString port}:5006" ];
       volumes = [
         "/etc/localtime:/etc/localtime:ro"
         "${dataDirectory}:/data"
       ];
-      extraOptions = [ "--log-opt=tag='actualbudget'" ];
+      extraOptions = [ "--log-opt=tag='${domain}'" ];
     };
-  };
-
-  # Backups
-  age.secrets.resticKey.file = "${inputs.self}/scrts/restic.key.age";
-  systemd.timers."restic-backups-actual" = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "restic-backups-actual.service" ];
-    timerConfig = {
-      OnCalendar = "22:40";
-    };
-  };
-
-  systemd.services."restic-backups-actual" = {
-    serviceConfig = {
-      User = "root";
-      Type = "oneshot";
-    };
-    environment = {
-      RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
-      RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
-    };
-    onFailure = [ "unit-status-telegram@%N.service" ];
-    script = ''
-      ${pkgs.restic}/bin/restic backup \
-        --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
-        --tag "actualbudget" ${dataDirectory}
-
-      ${pkgs.restic}/bin/restic forget \
-        --tag "actualbudget" \
-        --host ${config.networking.hostName} \
-        --keep-daily 7 \
-        --keep-weekly 5 \
-        --keep-monthly 12 \
-        --keep-yearly 2
-    '';
   };
 }

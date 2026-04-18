@@ -6,6 +6,9 @@
   ...
 }:
 let
+  actualBudgetModule = import "${inputs.self}/modules/services/actualbudget";
+  actualData = "/var/lib/actualbudget";
+  eactualData = "/var/lib/eactual";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
@@ -25,11 +28,9 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
-    "${inputs.self}/modules/services/actualbudget"
     "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/dnsmasq"
     "${inputs.self}/modules/services/davis"
-    "${inputs.self}/modules/services/eactual"
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
@@ -38,12 +39,23 @@ in
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/wireguard/routing.nix"
     "${inputs.self}/modules/services/zram-swap"
+    (actualBudgetModule {
+      domain = "actual.zweili.org";
+      dataDirectory = actualData;
+      port = 5006;
+    })
+    (actualBudgetModule {
+      domain = "eactual.zweili.org";
+      dataDirectory = eactualData;
+      port = 5007;
+    })
     (btrfsAuxModule { })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
-      mariadb = true;
-      paths = [ ];
-      postgresql = true;
+      paths = [
+        actualData
+        eactualData
+      ];
       resticSchedule = "*-*-* 06..21:30:00";
     })
     (syncthingModule { exposeWebInterface = true; })

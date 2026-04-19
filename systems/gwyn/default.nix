@@ -60,7 +60,7 @@ in
     })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardModule {
-      IP = "10.70.89.153";
+      IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
     })
   ];
@@ -180,7 +180,7 @@ in
     nameservers = [ "10.7.89.1" ];
     interfaces.enp58s0u1.ipv4.addresses = [
       {
-        address = "10.7.89.153";
+        address = config.az-hosts."${hostname}".physicalIp;
         prefixLength = 24;
       }
     ];

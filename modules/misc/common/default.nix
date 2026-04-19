@@ -22,18 +22,18 @@ in
 
   services.nscd.enableNsncd = true;
   networking = {
-    domain = "2li.local";
+    domain = "vpn.zweili.org";
     enableIPv6 = false;
     firewall = {
       allowPing = true;
       allowedTCPPorts = [ 22 ];
     };
     hosts = {
-      "10.70.89.170" = [ "capricorn.vpn.zweili.org" ];
-      "10.70.89.153" = [ "gwyn.vpn.zweili.org" ];
+      "${config.az-hosts.capricorn.wgIp}" = [ "${config.az-hosts.capricorn.wgFqdn}" ];
+      "${config.az-hosts.gwyn.wgIp}" = [ "${config.az-hosts.gwyn.wgFqdn}" ];
+      "${config.az-hosts.phone.wgIp}" = [ "${config.az-hosts.phone.wgFqdn}" ];
     };
     timeServers = [
-      "10.7.89.1"
       "ch.pool.ntp.org"
     ];
   };

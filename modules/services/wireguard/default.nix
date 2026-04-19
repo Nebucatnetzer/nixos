@@ -2,7 +2,7 @@
   IP,
   privateKeyFile,
 }:
-{ ... }:
+{ config, ... }:
 let
   port = 51820;
 in
@@ -20,11 +20,11 @@ in
           # capricorn
           publicKey = "BzZMupEJwJXzZMHDRXcLLLPsHI8HLORiy44vbekvBzU=";
           allowedIPs = [
-            "10.70.89.170/32"
+            "${config.az-hosts.capricorn.wgIp}/32"
           ];
         }
         {
-          # gwyn
+          # gwyn, acting as hub
           publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";
           allowedIPs = [
             "10.7.89.0/24"
@@ -36,7 +36,7 @@ in
           # phone
           publicKey = "ZbaHLibDBi0wFMERul8lVL3MovagB6seTS9UoVtiKDc=";
           allowedIPs = [
-            "10.70.89.200/32"
+            "${config.az-hosts.phone.wgIp}/32"
           ];
         }
         {

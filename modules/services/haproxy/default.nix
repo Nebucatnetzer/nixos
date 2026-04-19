@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   networking = {
     enableIPv6 = false;
@@ -24,7 +24,7 @@
         timeout server  30s
 
       listen haproxy-monitoring
-        bind 10.70.89.153:1936
+        bind ${config.az-hosts.gwyn.wgIp}:1936
         mode http
         stats enable
         stats hide-version

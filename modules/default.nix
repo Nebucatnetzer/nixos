@@ -5,6 +5,7 @@
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     ./misc/common
+    ./misc/hosts
     ./misc/username
   ];
 }

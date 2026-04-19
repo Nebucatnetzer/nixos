@@ -14,6 +14,7 @@ inputs.nixpkgs.lib.nixosSystem {
     # Common configuration
     "${inputs.self}/modules"
     {
+      az-hosts = import "${inputs.self}/modules/misc/hosts/hosts.nix";
       az-username = username;
       home-manager.backupFileExtension = "hmbpk";
       home-manager.users.${username}.imports = [

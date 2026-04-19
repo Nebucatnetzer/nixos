@@ -75,6 +75,7 @@
           extraSpecialArgs = {
             inherit inputs;
             nixosConfig = {
+              az-hosts = import "${inputs.self}/modules/misc/hosts/hosts.nix";
               az-username = "zweili";
             };
           };

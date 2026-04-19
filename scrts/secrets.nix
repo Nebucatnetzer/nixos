@@ -59,7 +59,6 @@ in
   "restic.key.age".publicKeys = all;
   "searxng_env.age".publicKeys = defaultKeys ++ [ proxy ];
   "searxng_htpasswd.age".publicKeys = defaultKeys ++ [ proxy ];
-  "signing.key.age".publicKeys = defaultKeys;
   "telegram_notify_env.age".publicKeys = all;
   "zweili_search_env.age".publicKeys = defaultKeys ++ [ proxy ];
 }

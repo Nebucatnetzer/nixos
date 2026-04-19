@@ -52,7 +52,6 @@ in
   "gwyn_wg.key.age".publicKeys = defaultKeys;
   "infomaniak_env.age".publicKeys = all;
   "mail_password.age".publicKeys = defaultKeys;
-  "nextcloud_cli.age".publicKeys = defaultKeys;
   "nextcloud_env.age".publicKeys = defaultKeys ++ [ nextcloud ];
   "personal_email.key.age".publicKeys = defaultKeys;
   "plex_claim.age".publicKeys = defaultKeys ++ [ plex ];

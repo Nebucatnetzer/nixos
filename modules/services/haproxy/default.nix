@@ -38,7 +38,7 @@
         redirect scheme https code 301 if { hdr(host) -i actual.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i dav.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i eactual.zweili.org } !{ ssl_fc }
-        redirect scheme https code 301 if { hdr(host) -i git.2li.ch } !{ ssl_fc }
+        redirect scheme https code 301 if { hdr(host) -i git.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss-bridge.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i rss.zweili.org } !{ ssl_fc }
         redirect scheme https code 301 if { hdr(host) -i search.zweili.org } !{ ssl_fc }
@@ -60,7 +60,7 @@
         use_backend gwynHTTPS if { req_ssl_sni -i actual.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i dav.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i eactual.zweili.org }
-        use_backend gwynHTTPS if { req_ssl_sni -i git.2li.ch }
+        use_backend gwynHTTPS if { req_ssl_sni -i git.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i search.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i searxng.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i rss-bridge.zweili.org }

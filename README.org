@@ -1,6 +1,6 @@
 #+title: NixOS Configuration
 
-This repository lives on https://git.2li.ch/. Due to agressive LLM
+This repository lives on https://git.zweili.org/. Due to agressive LLM
 crawlers I had to make it private there. If you want to collaborate you
 can contact me through email or Mastodon.
 

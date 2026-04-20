@@ -19,7 +19,7 @@ let
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
-  giteaDomain = "git.2li.ch";
+  giteaDomain = "git.zweili.org";
   giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   mediaShare = import "${inputs.self}/modules/services/media-share";

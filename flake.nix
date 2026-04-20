@@ -35,20 +35,13 @@
           modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
         }).config.system.build.sdImage;
       hosts = {
-        "budget" = { };
         "capricorn" = {
           home-module = "desktop";
         };
-        "git" = { };
         "gwyn" = {
           home-module = "management";
         };
-        "management" = { };
-        "plex" = { };
-        "proxy" = { };
         "restic-server" = { };
-        "test-raspi" = { };
-        "ttrss" = { };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (
         hostname:

@@ -47,7 +47,6 @@ def main() -> None:
             ],
             check=True,
         )
-        subprocess.run(["ssh", "-i", rsa_key, fqdn, "sudo reboot"], check=True)
     else:
         logger.info("%s", fqdn)
         subprocess.run(

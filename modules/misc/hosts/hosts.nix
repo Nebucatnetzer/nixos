@@ -20,10 +20,6 @@
     wgFqdn = "phone.vpn.zweili.org";
     wgIp = "10.70.89.200";
   };
-  restic-server = {
-    fqdn = "restic-server.int.zweili.org";
-    physicalIp = "10.7.89.30";
-  };
   yggdrasil = {
     fqdn = "yggdrasil.int.zweili.org";
     physicalIp = "10.7.89.3";

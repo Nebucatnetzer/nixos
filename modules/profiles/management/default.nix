@@ -20,15 +20,15 @@
 
   age.secrets.infomaniakEnv = {
     file = "${inputs.self}/scrts/infomaniak_env.age";
-    mode = "600";
+    mode = "440";
     owner = config.az-username;
-    group = "users";
+    group = "restic";
   };
   age.secrets.resticKey = {
     file = "${inputs.self}/scrts/restic.key.age";
-    mode = "600";
+    mode = "440";
     owner = config.az-username;
-    group = "users";
+    group = "restic";
   };
 
   # taken from here: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/hardware/video/hidpi.nix

@@ -29,19 +29,6 @@ in
   imports = [
     "${inputs.self}/modules/services/telegram-notifications"
   ];
-  age.secrets.resticKey = {
-    file = "${inputs.self}/scrts/restic.key.age";
-    mode = "440";
-    owner = "restic";
-    group = "restic";
-  };
-  age.secrets.infomaniakEnv = {
-    file = "${inputs.self}/scrts/infomaniak_env.age";
-    mode = "440";
-    owner = "restic";
-    group = "restic";
-  };
-
   environment.systemPackages = [
     pkgs.restic
   ];
@@ -50,8 +37,9 @@ in
     enable = true;
     dataDir = repository;
     extraFlags = [ "--no-auth" ];
+    listenAddress = "${config.az-hosts.gwyn.wgIp}:8123";
   };
-  networking.firewall.allowedTCPPorts = [ 8000 ];
+  networking.firewall.allowedTCPPorts = [ 8123 ];
 
   systemd.services.restic-prune = {
     serviceConfig = {

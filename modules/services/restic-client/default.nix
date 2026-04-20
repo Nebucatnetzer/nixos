@@ -69,7 +69,7 @@ in
     };
     environment = {
       RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
-      RESTIC_REPOSITORY = "rest:http://10.7.89.30:8000";
+      RESTIC_REPOSITORY = "rest:http://${config.az-hosts.gwyn.wgIp}:8123";
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''

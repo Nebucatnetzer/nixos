@@ -24,6 +24,7 @@ let
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
+  resticServer = import "${inputs.self}/modules/services/restic-server";
   rssBridgeDomain = "rss-bridge.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
@@ -75,6 +76,7 @@ in
       mariadb = true;
       resticSchedule = "*-*-* 06..21:30:00";
     })
+    (resticServer { })
     (rssBridgeModule {
       domain = rssBridgeDomain;
     })
@@ -179,6 +181,15 @@ in
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+  };
+  fileSystems."/var/lib/restic-server" = {
+    fsType = "btrfs";
+    label = "resticSSD";
+    neededForBoot = false;
+    options = [
+      "subvol=restic-repo"
+    ]
+    ++ commonBtrfsOptions;
   };
 
   swapDevices = [ { device = "/swap/swapfile"; } ];

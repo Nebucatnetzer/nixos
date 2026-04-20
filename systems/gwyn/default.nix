@@ -22,6 +22,7 @@ let
   giteaDomain = "git.2li.ch";
   giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
+  mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   rssBridgeDomain = "rss-bridge.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
@@ -61,6 +62,7 @@ in
       port = 5007;
     })
     (btrfsAuxModule { })
+    (mediaShare { hard = true; })
     (giteaModule { domain = giteaDomain; })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {

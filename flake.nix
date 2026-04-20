@@ -5,10 +5,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,11 +25,6 @@
     }:
     let
       mkComputer = import ./lib/mk_computer.nix;
-      mksdImage =
-        host:
-        (self.nixosConfigurations.${host}.extendModules {
-          modules = [ "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix" ];
-        }).config.system.build.sdImage;
       hosts = {
         "capricorn" = {
           home-module = "desktop";
@@ -41,7 +32,6 @@
         "gwyn" = {
           home-module = "management";
         };
-        "restic-server" = { };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (
         hostname:
@@ -53,14 +43,12 @@
       pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
     in
     {
-      images = nixpkgs.lib.attrsets.mapAttrs (name: _: mksdImage name) hosts;
       nixosConfigurations = hostConfigs;
       devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { };
       packages."x86_64-linux" = {
         inherit pkgs;
         azPkgs = import ./pkgs { inherit inputs pkgs; };
       };
-      packages."aarch64-linux".pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";

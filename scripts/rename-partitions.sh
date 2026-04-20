@@ -19,11 +19,6 @@ rename_btrfs() {
     btrfs filesystem label /dev/nvme0n1 mainBtrfs
 }
 
-rename_f2fs() {
-    echo "Rename f2fs partition."
-    f2fslabel /dev/disk/by-label/ROOTTOFRMT root
-}
-
 unmount_partitions() {
     echo "Unmounting partitions."
     umount /mnt/nixos/boot
@@ -42,13 +37,8 @@ rename_pc() {
     rename_btrfs
 }
 
-rename_raspi() {
-    rename_f2fs
-}
-
 unmount_partitions
 sleep 5
 rename_boot_partition
-# rename_raspi
 rename_pc
 close_luks

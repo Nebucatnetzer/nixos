@@ -8,12 +8,10 @@ let
 
   capricorn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRobGMQkRNxHCjRsNGDgCivywhVylkyN71V1ikWiPhX root@capricorn";
   gwyn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgU7uBGqpsp39oIotlhE5ohdFyTMGkLqOScW5ER6KAA root@gwyn";
-  restic-server = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIk2L0h0eV7wZDaltoSJUtkRX7KCErCfGtpEYCBH4nyP";
 
   systems = [
     capricorn
     gwyn
-    restic-server
   ];
   defaultKeys = [
     andreas

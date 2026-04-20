@@ -61,11 +61,6 @@ create_btrfs() {
 }
 # }
 
-create_f2fs() {
-    echo "Create f2fs"
-    mkfs.f2fs -l ROOTTOFRMT $LUKS_PATH
-}
-
 mount_partitions() {
     echo "Mount partitions."
     sleep 5
@@ -111,18 +106,6 @@ create_ssh_host_keys() {
     ssh-keygen -N "" -C "root@$host" -t ecdsa -f $ROOT_DIR/etc/ssh/ssh_host_ecdsa_key
     echo ""
     cat $ROOT_DIR/etc/ssh/ssh_host_ed25519_key.pub
-}
-
-create_pi() {
-    create_gpt
-    create_boot_partition
-    create_main_partition
-    create_luks_partition
-    create_f2fs
-    mount_partitions
-    create_uefi
-    create_initrd_keys
-    create_ssh_host_keys
 }
 
 create_pc() {

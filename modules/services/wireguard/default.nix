@@ -1,8 +1,9 @@
 {
   IP,
+  isHub ? false,
   privateKeyFile,
 }:
-{ config, ... }:
+{ config, lib, ... }:
 let
   port = 51820;
 in
@@ -23,7 +24,7 @@ in
             "${config.az-hosts.capricorn.wgIp}/32"
           ];
         }
-        {
+        (lib.mkIf (!isHub) {
           # gwyn, acting as hub
           publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";
           allowedIPs = [
@@ -31,7 +32,7 @@ in
             "10.70.89.0/24"
           ];
           endpoint = "zweili.org:${toString port}";
-        }
+        })
         {
           # phone
           publicKey = "ZbaHLibDBi0wFMERul8lVL3MovagB6seTS9UoVtiKDc=";

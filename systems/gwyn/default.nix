@@ -61,6 +61,7 @@ in
     (syncthingModule { exposeWebInterface = true; })
     (wireguardModule {
       IP = config.az-hosts."${hostname}".wgIp;
+      isHub = true;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
     })
   ];

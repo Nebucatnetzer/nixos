@@ -1,6 +1,7 @@
 {
   dataDirectory,
   domain,
+  name,
   port,
 }:
 {
@@ -39,7 +40,7 @@ in
   };
   virtualisation.oci-containers = {
     backend = "docker";
-    containers."actualbudget" = {
+    containers."${name}" = {
       # https://github.com/actualbudget/actual/releases
       image = "ghcr.io/actualbudget/actual:26.4.0@sha256:37bc525a8443c509026e6774c3e03f570c56f1caed9460e9a1f57e1a4bab475d";
       autoStart = true;

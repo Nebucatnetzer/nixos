@@ -43,11 +43,13 @@ in
     (actualBudgetModule {
       domain = "actual.zweili.org";
       dataDirectory = actualData;
+      name = "actual";
       port = 5006;
     })
     (actualBudgetModule {
       domain = "eactual.zweili.org";
       dataDirectory = eactualData;
+      name = "eactual";
       port = 5007;
     })
     (btrfsAuxModule { })

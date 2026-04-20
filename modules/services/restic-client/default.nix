@@ -77,11 +77,13 @@ in
 
       ${if postgresql then postgresBackup else ""}
 
+      echo "Start path backups"
       ${pkgs.restic}/bin/restic backup \
         --exclude-file=${inputs.self}/modules/misc/restic-client/excludes.txt \
         --one-file-system \
         --tag "paths" ${pathsString} /home/ /nix/var/nix
 
+      echo "Forget path backup points"
       ${pkgs.restic}/bin/restic forget \
         --tag "paths" \
         --host ${config.networking.hostName} \

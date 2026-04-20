@@ -51,7 +51,7 @@ def build_remotely_on_management(devenv_root: str, host: str) -> str:
         "--eval-store",
         "auto",
         "--store",
-        "ssh-ng://management.2li.local",
+        "ssh-ng://management.int.zweili.org",
         "--no-link",
         "--print-out-paths",
     ]

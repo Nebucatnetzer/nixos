@@ -34,7 +34,7 @@ def main(command: str) -> None:
     for host in hosts:
         if host in skip:
             continue
-        fqdn: str = f"{host}.2li.local"
+        fqdn: str = f"{host}.int.zweili.org"
         print(fqdn)
         ssh_cmd: list[str] = ["ssh", "-i", rsa_key, fqdn, command]
         subprocess.run(ssh_cmd, check=False)

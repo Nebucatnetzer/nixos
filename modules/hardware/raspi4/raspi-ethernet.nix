@@ -12,8 +12,8 @@
     useDHCP = false;
     hostName = hostname;
     hosts = {
-      "127.0.0.1" = [ "${hostname}.2li.local" ];
-      ip = [ "${hostname}.2li.local" ];
+      "127.0.0.1" = [ "${hostname}.int.zweili.org" ];
+      ip = [ "${hostname}.int.zweili.org" ];
     };
     defaultGateway = "10.7.89.1";
     nameservers = [ "10.7.89.1" ];

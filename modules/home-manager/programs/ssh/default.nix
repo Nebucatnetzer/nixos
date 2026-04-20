@@ -4,16 +4,16 @@
     enable = true;
     enableDefaultConfig = false;
     extraConfig = ''
-      Host nixos.2li.local
+      Host nixos.int.zweili.org
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
         User nixos
 
-      Host mobile.2li.local
-        StrictHostKeyChecking no
-        UserKnownHostsFile /dev/null
+      Host *.int.zweili.org
+        User andreas
+        IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
 
-      Host *.2li.local
+      Host *.vpn.zweili.org
         User andreas
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
 
@@ -21,13 +21,13 @@
         User andreas
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
 
+      Host 10.70.89.*
+        User andreas
+        IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
+
       Host 10.49.0.100
         User zweili
         IdentityFile ~/.ssh/zweili.key
-
-      Host cache.zweili.org
-        IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key
-        Port 2222
     '';
     matchBlocks."*" = {
       forwardAgent = false;

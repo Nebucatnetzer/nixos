@@ -29,7 +29,7 @@ def main() -> None:
     args: argparse.Namespace = parser.parse_args()
 
     host: str = args.host
-    fqdn: str = f"{host}.2li.local"
+    fqdn: str = f"{host}.int.zweili.org"
 
     if args.reboot:
         logger.info("%s with reboot", fqdn)

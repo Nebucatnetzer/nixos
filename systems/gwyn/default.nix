@@ -190,6 +190,7 @@ in
   };
 
   hardware.graphics.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
 
   services = {
     fstrim.enable = true; # Enable TRIM for SD cards

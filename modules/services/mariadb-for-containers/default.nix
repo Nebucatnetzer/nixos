@@ -6,10 +6,9 @@
   '';
   services.mysql = {
     enable = true;
-    package = pkgs.mariadb_114;
     settings = {
       mysqld = {
-        bind-address = "172.17.0.1";
+        bind-address = "127.0.0.1,172.17.0.1";
       };
     };
   };

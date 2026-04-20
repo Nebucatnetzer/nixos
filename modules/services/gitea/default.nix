@@ -5,11 +5,13 @@
   ...
 }:
 let
-  volumePath = "/mnt/server-data/gitea";
+  port = 3000;
+  volumePath = "/mnt/fileserver/server-data/gitea";
 in
 {
   imports = [
     "${inputs.self}/modules/services/docker"
+    "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/mariadb-for-containers"
   ];
   age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
@@ -22,6 +24,27 @@ in
       "noatime"
       "rw"
     ];
+  };
+
+  services = {
+    nginx = {
+      appendHttpConfig = ''
+        # Disable embedding as a frame
+        add_header X-Frame-Options DENY;
+      '';
+      recommendedProxySettings = true;
+      virtualHosts."${domain}" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString port}";
+          proxyWebsockets = true; # needed if you need to use WebSocket
+        };
+        extraConfig = ''
+          if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+        '';
+      };
+    };
   };
 
   services.snmpd.configText = ''
@@ -66,7 +89,7 @@ in
       environmentFiles = [ config.age.secrets.giteaEnv.path ];
       ports = [
         "2222:22"
-        "8080:3000"
+        "3000:3000"
       ];
       volumes = [
         "/etc/timezone:/etc/timezone:ro"

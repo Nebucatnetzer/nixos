@@ -13,11 +13,14 @@ let
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
     { fqdn = "${config.services.freshrss.virtualHost}"; }
+    { fqdn = "${giteaDomain}"; }
     { fqdn = rssBridgeDomain; }
     { fqdn = "www.zweili.ch"; }
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
+  giteaDomain = "git.2li.ch";
+  giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   rssBridgeDomain = "rss-bridge.zweili.org";
@@ -58,6 +61,7 @@ in
       port = 5007;
     })
     (btrfsAuxModule { })
+    (giteaModule { domain = giteaDomain; })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [
@@ -208,6 +212,7 @@ in
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+    mysql.package = pkgs.mariadb_114;
     nginx.defaultHTTPListenPort = 8080;
     nginx.defaultListenAddresses = [ "127.0.0.1" ];
     nginx.defaultSSLListenPort = 8443;

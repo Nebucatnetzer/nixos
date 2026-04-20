@@ -6,7 +6,7 @@
 }:
 let
   password_file = config.age.secrets.resticKey.path;
-  repository = "rest:http://10.7.89.30:8000";
+  repository = "rest:http://${config.az-hosts.gwyn.wgIp}:8123";
 
   restic-mount = pkgs.writeShellScriptBin "restic-mount" ''
     mkdir -p /tmp/restic &&

@@ -179,16 +179,6 @@ in
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/fileserver/media" = {
-    device = "${config.az-hosts.fileserver.physicalIp}:media";
-    fsType = "nfs";
-    options = [
-      "hard"
-      "noatime"
-      "rw"
-    ];
-  };
-
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # USB address of the ethernet dongle: 0bda:8153

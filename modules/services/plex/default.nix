@@ -25,9 +25,10 @@ in
       # https://fleet.linuxserver.io/image?name=linuxserver/plex
       image = "lscr.io/linuxserver/plex:1.43.0@sha256:937a04f1cfc72fe6580970b1965325310d7e61d3d97ea3d2adb269e70d32e10b";
       environment = {
-        TZ = " Europe/Zurich ";
-        PUID = "1000";
+        NVIDIA_VISIBLE_DEVICES = "all";
         PGID = "1000";
+        PUID = "1000";
+        TZ = " Europe/Zurich ";
         VERSION = "docker";
       };
       environmentFiles = [ config.age.secrets.plexClaim.path ];
@@ -40,6 +41,7 @@ in
         "/var/lib/plex/tmp:/transcode"
         "/etc/localtime:/etc/localtime:ro"
       ];
+      devices = [ "/dev/dri:/dev/dri" ];
       extraOptions = [
         "--log-opt=tag='plex'"
       ];

@@ -4,7 +4,7 @@
   ...
 }:
 let
-  volumePath = "/mnt/media";
+  volumePath = "/mnt/fileserver/media";
 in
 {
   imports = [

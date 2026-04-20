@@ -34,6 +34,7 @@ in
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/plex"
     "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
@@ -55,6 +56,7 @@ in
       paths = [
         actualData
         eactualData
+        "/var/lib/plex"
       ];
       resticSchedule = "*-*-* 06..21:30:00";
     })

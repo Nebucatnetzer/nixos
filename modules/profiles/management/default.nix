@@ -22,13 +22,13 @@
     file = "${inputs.self}/scrts/infomaniak_env.age";
     mode = "440";
     owner = config.az-username;
-    group = "restic";
+    group = (if config.users.users ? "restic" then "restic" else config.az-username);
   };
   age.secrets.resticKey = {
     file = "${inputs.self}/scrts/restic.key.age";
     mode = "440";
     owner = config.az-username;
-    group = "restic";
+    group = (if config.users.users ? "restic" then "restic" else config.az-username);
   };
 
   # taken from here: https://github.com/NixOS/nixpkgs/blob/nixos-22.11/nixos/modules/hardware/video/hidpi.nix

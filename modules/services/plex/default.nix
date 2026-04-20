@@ -23,7 +23,7 @@ in
     containers."plex" = {
       autoStart = true;
       # https://fleet.linuxserver.io/image?name=linuxserver/plex
-      image = "lscr.io/linuxserver/plex:1.43.0@sha256:937a04f1cfc72fe6580970b1965325310d7e61d3d97ea3d2adb269e70d32e10b";
+      image = "lscr.io/linuxserver/plex:1.43.1@sha256:e5c7c283b242966416a4bed2d666acf6f3fb8f957c704be8333f8dc987364825";
       environment = {
         NVIDIA_VISIBLE_DEVICES = "all";
         PGID = "1000";

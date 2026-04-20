@@ -15,7 +15,7 @@ in
   age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
 
   fileSystems."${volumePath}" = {
-    device = "10.7.89.108:server_data/gitea/data";
+    device = "${config.az-hosts.fileserver.physicalIp}:server_data/gitea/data";
     fsType = "nfs";
     options = [
       "hard"

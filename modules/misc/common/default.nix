@@ -30,8 +30,12 @@ in
     };
     hosts = {
       "${config.az-hosts.capricorn.wgIp}" = [ "${config.az-hosts.capricorn.wgFqdn}" ];
+      "${config.az-hosts.fileserver.physicalIp}" = [ "${config.az-hosts.fileserver.fqdn}" ];
       "${config.az-hosts.gwyn.wgIp}" = [ "${config.az-hosts.gwyn.wgFqdn}" ];
+      "${config.az-hosts.loki.physicalIp}" = [ "${config.az-hosts.loki.fqdn}" ];
       "${config.az-hosts.phone.wgIp}" = [ "${config.az-hosts.phone.wgFqdn}" ];
+      "${config.az-hosts."restic-server".physicalIp}" = [ "${config.az-hosts."restic-server".fqdn}" ];
+      "${config.az-hosts.yggdrasil.physicalIp}" = [ "${config.az-hosts.yggdrasil.fqdn}" ];
     };
     timeServers = [
       "ch.pool.ntp.org"

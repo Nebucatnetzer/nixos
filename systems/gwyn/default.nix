@@ -164,7 +164,7 @@ in
   };
 
   fileSystems."/mnt/fileserver/media" = {
-    device = "10.7.89.108:media";
+    device = "${config.az-hosts.fileserver.physicalIp}:media";
     fsType = "nfs";
     options = [
       "hard"
@@ -179,8 +179,8 @@ in
   networking = {
     useDHCP = false;
     hostName = hostname;
-    defaultGateway = "10.7.89.1";
-    nameservers = [ "10.7.89.1" ];
+    defaultGateway = config.az-hosts.loki.physicalIp;
+    nameservers = [ config.az-hosts.loki.physicalIp ];
     interfaces.enp58s0u1.ipv4.addresses = [
       {
         address = config.az-hosts."${hostname}".physicalIp;

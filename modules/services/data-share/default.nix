@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 {
   fileSystems."/mnt/fileserver/data" = {
-    device = "10.7.89.108:server_data";
+    device = "${config.az-hosts.fileserver.physicalIp}:server_data";
     fsType = "nfs";
     options = [
       "x-systemd.automount"

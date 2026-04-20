@@ -1,10 +1,10 @@
 {
   hard ? false,
 }:
-{ lib, ... }:
+{ config, lib, ... }:
 {
   fileSystems."/mnt/fileserver/media" = {
-    device = "10.7.89.108:media";
+    device = "${config.az-hosts.fileserver.physicalIp}:media";
     fsType = "nfs";
     options = lib.mkMerge [
       [

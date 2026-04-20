@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   networking.firewall.allowedUDPPorts = [ 53 ];
   services.dnsmasq = {
@@ -8,7 +8,7 @@
       interface = "wg0";
       no-resolv = true;
       server = [
-        "10.7.89.1"
+        config.az-hosts.loki.physicalIp
       ];
     };
   };

@@ -12,12 +12,16 @@ let
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
+    { fqdn = "${config.services.freshrss.virtualHost}"; }
+    { fqdn = rssBridgeDomain; }
     { fqdn = "www.zweili.ch"; }
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
+  rssBridgeDomain = "rss-bridge.zweili.org";
+  rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardModule = import "${inputs.self}/modules/services/wireguard";
 in
@@ -31,6 +35,7 @@ in
     "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/dnsmasq"
     "${inputs.self}/modules/services/davis"
+    "${inputs.self}/modules/services/freshrss"
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
@@ -59,8 +64,13 @@ in
         actualData
         eactualData
         "/var/lib/plex"
+        config.services.freshrss.dataDir
       ];
+      mariadb = true;
       resticSchedule = "*-*-* 06..21:30:00";
+    })
+    (rssBridgeModule {
+      domain = rssBridgeDomain;
     })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardModule {

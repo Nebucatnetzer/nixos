@@ -63,17 +63,14 @@
         use_backend git_server if { req_ssl_sni -i git.2li.ch }
         use_backend gwynHTTPS if { req_ssl_sni -i search.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i searxng.zweili.org }
-        use_backend rss_server if { req_ssl_sni -i rss-bridge.zweili.org }
-        use_backend rss_server if { req_ssl_sni -i rss.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i rss-bridge.zweili.org }
+        use_backend gwynHTTPS if { req_ssl_sni -i rss.zweili.org }
         use_backend gwynHTTPS if { req_ssl_sni -i www.zweili.ch }
         use_backend gwynHTTPS if { req_ssl_sni -i zweili.ch }
 
       backend git_server
         mode tcp
         server server1 10.7.89.109:443 check
-      backend rss_server
-        mode tcp
-        server server1 10.7.89.115:443 check
       backend gwynHTTP
         mode http
         server nginxHTTP 127.0.0.1:8080 check

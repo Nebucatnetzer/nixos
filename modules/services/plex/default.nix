@@ -16,15 +16,6 @@ in
     firewall.allowedTCPPorts = [
       32400 # Web Interface/ Remote Access
     ];
-    firewall.allowedUDPPorts = [
-      1900 # DLNA
-      5353 # Bonjour/Avahi
-      32410 # GDM network discovery
-      32412 # GDM network discovery
-      32413 # GDM network discovery
-      32414 # GDM network discovery
-      32469 # Plex DLNA Server
-    ];
   };
 
   virtualisation.oci-containers = {
@@ -40,6 +31,9 @@ in
         VERSION = "docker";
       };
       environmentFiles = [ config.age.secrets.plexClaim.path ];
+      ports = [
+        "32400:32400"
+      ];
       volumes = [
         "${volumePath}:/mnt/media"
         "/var/lib/plex/config:/config"
@@ -47,7 +41,6 @@ in
         "/etc/localtime:/etc/localtime:ro"
       ];
       extraOptions = [
-        "--network=host"
         "--log-opt=tag='plex'"
       ];
     };

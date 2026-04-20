@@ -115,6 +115,12 @@ in
   # Disable the root user
   users.users.root.hashedPassword = "!";
   # Define a user account. Don't forget to set a password with `passwd`.
+  users.groups.${config.az-username} = {
+    gid = 1000;
+    members = [
+      config.az-username
+    ];
+  };
   users.users.${config.az-username} = {
     isNormalUser = true;
     initialPassword = "password";

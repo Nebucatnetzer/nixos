@@ -14,7 +14,7 @@
     dataDir = "/home/${config.az-username}/.config/syncthing";
     guiAddress = (lib.mkIf exposeWebInterface "0.0.0.0:8384");
   };
-  networking.firewall.allowedTCPPorts = [
+  networking.firewall.interfaces.wg0.allowedTCPPorts = [
     (lib.mkIf exposeWebInterface 8384)
   ];
 }

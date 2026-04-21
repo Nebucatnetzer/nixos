@@ -85,7 +85,6 @@ in
   ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
-    "ip=dhcp" # required for ssh at initrd
     "i915.force_probe=!7d45"
     "xe.force_probe=7d45"
   ];

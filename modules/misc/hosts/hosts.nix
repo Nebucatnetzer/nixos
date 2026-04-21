@@ -1,4 +1,8 @@
 {
+  ap = {
+    fqdn = "wifi.unsafe.zweili.org";
+    physicalIp = "10.7.91.2";
+  };
   capricorn = {
     wgFqdn = "capricorn.vpn.zweili.org";
     wgIp = "10.70.89.170";

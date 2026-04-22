@@ -40,9 +40,7 @@
             mu4e-sent-folder   "/personal/Sent"
             mu4e-trash-folder  "/personal/Trash"
             mu4e-refile-folder "/personal/Archive"
-
-            browse-url-browser-function 'browse-url-generic
-            browse-url-generic-program "firefox")
+            )
 
     (require 'mu4e-contrib)
     (setopt mu4e-html2text-command 'mu4e-shr2text)
@@ -91,6 +89,14 @@
     (setopt mu4e-context-policy 'pick-first)
     ;; Don't ask to quit
     (setopt mu4e-confirm-quit nil)
+
+    ;; Open URLs in the browser even, there isn't a frame open
+    (with-eval-after-load 'shr
+      ;; Force `shr-browse-url` to ALWAYS use the external browser
+      ;; This automatically passes `t` to the function, simulating a `C-u RET` press.
+      (advice-add 'shr-browse-url :around
+                  (lambda (orig-fn &rest args)
+                    (apply orig-fn t (cdr args)))))
 
     ;; A function to create a persp for reading mail
     (defun open-mail ()

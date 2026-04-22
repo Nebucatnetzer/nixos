@@ -287,6 +287,7 @@ create it and open dired in the notes directory."
                                                                         'grep)))
 
   (setopt browse-url-browser-function 'browse-url-generic
+          browse-url-secondary-browser-function 'browse-url-generic
           browse-url-generic-program (getenv "DEFAULT_BROWSER"))
 
   (global-set-key [remap keyboard-quit] #'az-keyboard-quit)

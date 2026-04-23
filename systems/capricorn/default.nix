@@ -93,27 +93,6 @@ in
     allowDiscards = true;
     device = "/dev/nvme0n1p2";
   };
-  # Can be removed once this is in stable:
-  # https://github.com/NixOS/nixpkgs/pull/510953/changes
-  # {
-  boot.initrd.luks.cryptoModules = [
-    "aes"
-    # "aes_generic"
-    "blowfish"
-    "twofish"
-    "serpent"
-    "cbc"
-    "xts"
-    "lrw"
-    "sha1"
-    "sha256"
-    "sha512"
-    "af_alg"
-    "algif_skcipher"
-    "cryptd"
-    "input_leds" # for capslock LED on most keyboards in case decryption requires password
-  ];
-  # }
 
   boot.supportedFilesystems = [
     "btrfs"

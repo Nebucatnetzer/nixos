@@ -15,6 +15,22 @@
     :config
     (require 'org-indent)
 
+
+
+    ;; When you don't have a frame initialised (terminal mode) emacs doesn't
+    ;; doesn't want to open links in the browser because it thinks you're not
+    ;; running a GUI. This fixes this.
+    ;; Force Org mode to use your browser function and rebuild the full URL
+    (org-link-set-parameters "http"
+                             :follow (lambda (path &rest _args)
+                                       (funcall browse-url-browser-function (concat "http:" path))))
+    (org-link-set-parameters "https"
+                             :follow (lambda (path &rest _args)
+                                       (funcall browse-url-browser-function (concat "https:" path))))
+
+    ;; Intercept http and https links and force them to your graphical browser
+    (add-to-list 'browse-url-handlers '("\\`http" . browse-url-generic))
+
     ;; enable org-mode keys
     (global-set-key "\C-ca" 'org-agenda)
     (global-set-key "\C-cl" 'org-store-link)

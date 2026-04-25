@@ -156,6 +156,7 @@ in
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   hardware = {
+    cpu.intel.npu.enable = true;
     graphics = {
       enable = true;
       extraPackages = [

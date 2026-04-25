@@ -32,6 +32,7 @@
   services = {
     flatpak.enable = true;
     fwupd.enable = true;
+    smartd.notifications.systembus-notify.enable = true;
     udisks2.enable = true;
     # Enable the X11 windowing system.
     libinput = {

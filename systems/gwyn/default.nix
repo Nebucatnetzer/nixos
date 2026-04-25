@@ -220,6 +220,15 @@ in
     nginx.defaultHTTPListenPort = 8080;
     nginx.defaultListenAddresses = [ "127.0.0.1" ];
     nginx.defaultSSLListenPort = 8443;
+    smartd.devices = [
+      { device = "/dev/nvme0n1"; }
+      {
+        device = "/dev/sda";
+        # The flags here corespond not with the ones from smartctl. You can
+        # look them up with `man smartd.conf`.
+        options = "-a -d sntasmedia -d removable";
+      }
+    ];
     thermald.enable = true;
 
     # Disable the integrated webcam

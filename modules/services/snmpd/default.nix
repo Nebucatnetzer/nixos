@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.snmpd = {
     enable = true;

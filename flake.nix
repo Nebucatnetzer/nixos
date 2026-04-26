@@ -20,7 +20,6 @@
     inputs@{
       home-manager,
       nixpkgs,
-      self,
       ...
     }:
     let

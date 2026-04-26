@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.snmpd.configText = ''
     # monitor mysqld

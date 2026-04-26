@@ -73,6 +73,7 @@ in
         eactualData
         "/var/lib/plex"
         config.services.freshrss.dataDir
+        config.services.librenms.dataDir
       ];
       mariadb = true;
       resticSchedule = "*-*-* 06..21:30:00";

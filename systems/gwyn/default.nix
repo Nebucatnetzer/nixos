@@ -71,6 +71,7 @@ in
       paths = [
         actualData
         eactualData
+        "/mnt/fileserver/server-data/gitea"
         "/var/lib/plex"
         config.services.freshrss.dataDir
         config.services.librenms.dataDir

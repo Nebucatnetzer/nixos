@@ -31,6 +31,6 @@
 ;; highlight bad whitespace
 (use-package whitespace
   :config
-  (setopt whitespace-style '(face lines-tail tabs trailing))
+  (setopt whitespace-style '(face tabs trailing))
   (set-face-attribute 'whitespace-line nil :foreground "#af005f")
   (global-whitespace-mode t))

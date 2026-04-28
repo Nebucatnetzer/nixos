@@ -258,3 +258,7 @@
 (use-package ansible
   :after yaml-ts-mode
   :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))
+
+(use-package emacs
+  :hook
+  ((prog-mode . display-fill-column-indicator-mode)))

@@ -293,7 +293,7 @@ create it and open dired in the notes directory."
   (global-set-key [remap keyboard-quit] #'az-keyboard-quit)
 
   (setq-default
-   fill-column 79
+   fill-column 88
    ;; Spaces instead of TABs
    indent-tabs-mode nil
    ;; initial buffers should use text-mode

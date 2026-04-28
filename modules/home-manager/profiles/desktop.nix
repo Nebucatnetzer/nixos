@@ -66,10 +66,7 @@ in
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
       };
     };
-    tmux.extraConfig = ''
-      # enable the mouse
-      set -g mouse on
-    '';
+    tmux.mouse = true;
   };
 
 }

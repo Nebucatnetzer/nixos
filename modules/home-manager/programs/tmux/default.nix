@@ -2,17 +2,15 @@
 {
   programs.tmux = {
     enable = true;
+    baseIndex = 1;
+    escapeTime = 1;
+    focusEvents = true;
+    historyLimit = 300000;
+    keyMode = "vi";
+    terminal = "tmux-256color";
     extraConfig = ''
-      set -g default-terminal "tmux-256color"
-      set -ga terminal-overrides ",*256col*:Tc"
-      set-option -g history-limit 300000
+      set -as terminal-features ",*256col*:RGB"
 
-      # Start the windows at 1 instead of 0
-      set -g base-index 1
-      setw -g pane-base-index 1
-
-      # enable vim like key bindings
-      set-window-option -g mode-keys vi
       unbind [
       bind Escape copy-mode
       unbind p
@@ -33,19 +31,6 @@
       # enable logging on key P
       bind P pipe-pane -o "cat >>~/#W.log" \; display-message "Toggled logging to ~/#W.log"
 
-      ### Status bar design
-      # status line
-      set -g status-justify left
-      set -g status-bg black
-      set -g status-fg white
-      set -g status-interval 2
-
-      # window status
-      setw -g window-status-format " #F#I:#W#F "
-      setw -g window-status-current-format " #F#I:#W#F "
-      setw -g window-status-format "#[fg=magenta]#[bg=black] #I#[bg=cyan]#[fg=colour8] #W "
-      setw -g window-status-current-format "#[bg=brightmagenta]#[fg=colour8] #I#[fg=colour8]#[bg=colour14] #W "
-
       # loud or quiet?
       set-option -g visual-activity off
       set-option -g visual-bell off
@@ -56,14 +41,16 @@
       # The modes
       setw -g clock-mode-colour colour135
 
-      # The statusbar
-      set -g status-position top
+      ### Status bar design
       set -g status-bg colour234
       set -g status-fg colour137
+      set -g status-interval 2
+      set -g status-justify left
       set -g status-left ""
+      set -g status-left-length 20
+      set -g status-position top
       set -g status-right '#[fg=colour233,bg=colour245,bold] %m-%d %H:%M:%S '
       set -g status-right-length 50
-      set -g status-left-length 20
       setw -g window-status-current-format '#I#[fg=colour250]:#[fg=colour255]#W#[fg=colour50]#F '
       setw -g window-status-format '#I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
     '';

@@ -103,10 +103,7 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
-    tmux.extraConfig = ''
-      # enable the mouse
-      set -g mouse on
-    '';
+    tmux.mouse = true;
   };
 
   services = {

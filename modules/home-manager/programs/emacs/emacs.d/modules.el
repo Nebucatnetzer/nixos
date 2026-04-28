@@ -3,8 +3,7 @@
 (load-file (modules-path "az_general.el"))
 
 ;; keybindings and navigation
-(load-file (modules-path "az_evil.el"))
-(load-file (modules-path "az_god_mode.el"))
+(load-file (modules-path "az_meow.el"))
 (load-file (modules-path "az_hydra.el"))
 (load-file (modules-path "az_navigation.el"))
 

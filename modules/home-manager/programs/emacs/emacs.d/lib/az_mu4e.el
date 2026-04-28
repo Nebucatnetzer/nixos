@@ -7,25 +7,6 @@
     ([f4] . open-mail)
     :config
 
-    ;; Start mu4e-compose-mode in insert mode
-    (evil-set-initial-state 'mu4e-compose-mode 'insert)
-
-    ;; vim keybindings for mu4e
-    (evil-add-hjkl-bindings mu4e-headers-mode-map 'emacs
-      (kbd "/")       'evil-search-forward
-      (kbd "n")       'evil-search-next
-      (kbd "N")       'evil-search-previous
-      (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up)
-
-    (evil-add-hjkl-bindings mu4e-view-mode-map 'emacs
-      (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up)
-
-    (with-eval-after-load 'mu4e
-      (evil-define-key 'normal mu4e-view-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
-      )
-
     (require 'smtpmail)
 
     ;; use msmtp

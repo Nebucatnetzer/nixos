@@ -7,7 +7,7 @@
     focusEvents = true;
     historyLimit = 300000;
     keyMode = "vi";
-    terminal = "tmux-256color";
+    terminal = "xterm-256color";
     extraConfig = ''
       set -as terminal-features ",*256col*:RGB"
 

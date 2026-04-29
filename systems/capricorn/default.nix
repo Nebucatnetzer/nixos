@@ -41,7 +41,6 @@ in
     "${inputs.self}/modules/programs/droidcam"
     "${inputs.self}/modules/programs/makemkv"
     "${inputs.self}/modules/programs/steam"
-    "${inputs.self}/modules/services/data-share"
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"

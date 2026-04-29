@@ -1,4 +1,4 @@
-{ domain }:
+{ dataDir, domain }:
 {
   config,
   inputs,
@@ -6,7 +6,6 @@
 }:
 let
   port = 3000;
-  volumePath = "/mnt/fileserver/server-data/gitea";
 in
 {
   imports = [
@@ -15,16 +14,6 @@ in
     "${inputs.self}/modules/services/mariadb-for-containers"
   ];
   age.secrets.giteaEnv.file = "${inputs.self}/scrts/gitea_env.age";
-
-  fileSystems."${volumePath}" = {
-    device = "${config.az-hosts.fileserver.physicalIp}:server_data/gitea/data";
-    fsType = "nfs";
-    options = [
-      "hard"
-      "noatime"
-      "rw"
-    ];
-  };
 
   services = {
     nginx = {
@@ -94,7 +83,7 @@ in
       volumes = [
         "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
-        "${volumePath}:/data"
+        "${dataDir}:/data"
       ];
       extraOptions = [
         "--add-host=host.docker.internal:host-gateway"

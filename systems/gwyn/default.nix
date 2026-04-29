@@ -19,6 +19,7 @@ let
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
+  giteaDataDir = "/var/lib/gitea";
   giteaDomain = "git.zweili.org";
   giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
@@ -65,13 +66,16 @@ in
     })
     (btrfsAuxModule { })
     (mediaShare { hard = true; })
-    (giteaModule { domain = giteaDomain; })
+    (giteaModule {
+      dataDir = giteaDataDir;
+      domain = giteaDomain;
+    })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [
         actualData
         eactualData
-        "/mnt/fileserver/server-data/gitea"
+        giteaDataDir
         "/var/lib/plex"
         "/var/lib/radicale/collections"
         config.services.freshrss.dataDir

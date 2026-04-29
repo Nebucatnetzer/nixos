@@ -5,7 +5,7 @@
   :demand t
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
-         ("C-x b" . consult-buffer)
+         ("C-x C-b" . consult-buffer)
          ("C-c f" . consult-flymake)
          ("C-c j" . consult-ripgrep))                ;; orig. previous-matching-history-element
 

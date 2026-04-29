@@ -175,6 +175,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :config
   (hyperbole-mode 1)
   (define-key hyperbole-mode-map (kbd "M-o"  ) nil)
+  (define-key hyperbole-mode-map (kbd "M-S-RET"  ) nil)
   )
 
 ;; ultra-scroll

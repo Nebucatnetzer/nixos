@@ -261,4 +261,5 @@
 
 (use-package emacs
   :hook
-  ((prog-mode . display-fill-column-indicator-mode)))
+  ((prog-mode . display-fill-column-indicator-mode))
+  ((yaml-ts-mode . display-fill-column-indicator-mode)))

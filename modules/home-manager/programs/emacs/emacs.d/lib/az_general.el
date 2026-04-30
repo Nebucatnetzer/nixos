@@ -437,3 +437,16 @@ create it and open dired in the notes directory."
 (use-package xclip
   :config
   (xclip-mode 1))
+
+;; Clipboard in WSL
+(when (getenv "WSL_DISTRO_NAME")
+  (setq interprogram-cut-function
+        (lambda (text &optional _push)
+          (let ((process-connection-type nil))
+            (let ((proc (start-process "win32yank-cut" nil "win32yank.exe" "-i" "--crlf")))
+              (process-send-string proc text)
+              (process-send-eof proc)))))
+  (setq interprogram-paste-function
+        (lambda ()
+          (let ((text (shell-command-to-string "win32yank.exe -o --lf")))
+            (unless (string= text "") text)))))

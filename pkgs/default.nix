@@ -33,4 +33,5 @@ rec {
   watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; };
   watch-random-video = pkgs.callPackage ./watch-random-video { mpv = custom-mpv; };
   watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; };
+  win32yank = pkgs.callPackage ./win32yank { inherit (pkgs) pkgsCross; };
 }

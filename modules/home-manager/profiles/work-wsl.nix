@@ -6,6 +6,7 @@
   ...
 }:
 let
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
   gitModule = import "${inputs.self}/modules/home-manager/programs/git";
   hm-rebuild = pkgs.writeShellApplication {
     name = "hm-rebuild";
@@ -35,6 +36,7 @@ in
       ${pkgs.nix}/bin/nix store diff-closures $oldGenPath $newGenPath || true
     '';
     packages = [
+      azPkgs.win32yank
       pkgs.bottom
       pkgs.gh # GitHub CLI for working on poetry2nix
       pkgs.gyre-fonts

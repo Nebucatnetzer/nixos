@@ -20,6 +20,7 @@
      '("0" . meow-digit-argument)
      '("/" . meow-keypad-describe-key)
      '(";" . avy-goto-char-timer)
+     '("r" . undo-redo)
      '("?" . meow-cheatsheet))
     (meow-normal-define-key
      '("0" . meow-expand-0)

@@ -57,6 +57,7 @@ in
       pkgs.plex-desktop
       pkgs.remmina
       pkgs.tagger
+      unstable-pkgs.clode-code
     ];
   };
 

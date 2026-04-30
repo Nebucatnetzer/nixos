@@ -1,6 +1,6 @@
-{ inputs, pkgs, ... }:
+{ unstable-pkgs, ... }:
 let
-  signal = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.signal-desktop;
+  signal = unstable-pkgs.signal-desktop;
 in
 {
   home.packages = [ signal ];

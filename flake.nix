@@ -20,6 +20,7 @@
     inputs@{
       home-manager,
       nixpkgs,
+      nixpkgs-unstable,
       ...
     }:
     let
@@ -37,23 +38,37 @@
         {
           home-module ? "headless",
         }:
-        (mkComputer { inherit inputs hostname home-module; })
+        (mkComputer {
+          inherit
+            inputs
+            hostname
+            home-module
+            unstable-pkgs
+            ;
+        })
       ) hosts;
-      pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
+      unstable-pkgs = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
     in
     {
       nixosConfigurations = hostConfigs;
       devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { };
       packages."x86_64-linux" = {
         inherit pkgs;
-        azPkgs = import ./pkgs { inherit inputs pkgs; };
+        azPkgs = import ./pkgs { inherit pkgs unstable-pkgs; };
       };
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {
-          pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+          inherit pkgs;
           modules = [ ./modules/home-manager/profiles/work-wsl.nix ];
           extraSpecialArgs = {
-            inherit inputs;
+            inherit inputs unstable-pkgs;
             nixosConfig = {
               az-hosts = import "${inputs.self}/modules/misc/hosts/hosts.nix";
               az-username = "zweili";

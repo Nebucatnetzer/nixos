@@ -1,10 +1,11 @@
 {
   inputs,
   pkgs,
+  unstable-pkgs,
   ...
 }:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
   git = import "${inputs.self}/modules/home-manager/programs/git" { };
 in
 {

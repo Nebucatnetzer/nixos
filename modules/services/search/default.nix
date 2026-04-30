@@ -1,13 +1,12 @@
 {
   config,
   inputs,
-  pkgs,
+  unstable-pkgs,
   ...
 }:
 let
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
   searxngEnv = config.age.secrets.searxngEnv.path;
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [
@@ -97,7 +96,7 @@ in
           };
         };
       };
-      package = unstable.searxng;
+      package = unstable-pkgs.searxng;
       # https://github.com/searxng/searxng/blob/master/searx/settings.yml
       settings = {
         use_default_settings = true;

@@ -2,11 +2,12 @@
   home-module,
   hostname,
   inputs,
+  unstable-pkgs,
   username ? "andreas",
 }:
 inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
-    inherit inputs;
+    inherit inputs unstable-pkgs;
   };
   modules = [
     # System configuration for this host
@@ -17,6 +18,9 @@ inputs.nixpkgs.lib.nixosSystem {
       az-hosts = import "${inputs.self}/modules/misc/hosts/hosts.nix";
       az-username = username;
       home-manager.backupFileExtension = "hmbpk";
+      home-manager.extraSpecialArgs = {
+        inherit inputs unstable-pkgs;
+      };
       home-manager.users.${username}.imports = [
         "${inputs.self}/modules/home-manager/profiles/${home-module}.nix"
       ];

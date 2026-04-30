@@ -1,7 +1,9 @@
-{ inputs, pkgs }:
+{
+  pkgs,
+  unstable-pkgs,
+}:
 let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  yt-dlp = unstable.yt-dlp;
+  yt-dlp = unstable-pkgs.yt-dlp;
 in
 rec {
   az-media = pkgs.writeShellScriptBin "az-media" ''

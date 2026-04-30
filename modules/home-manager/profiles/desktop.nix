@@ -3,11 +3,11 @@
   inputs,
   nixosConfig,
   pkgs,
+  unstable-pkgs,
   ...
 }:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
 in
 {
   imports = [
@@ -38,7 +38,7 @@ in
       azPkgs.watch-video
 
       # photography packages
-      unstable.darktable
+      unstable-pkgs.darktable
       pkgs.digikam
       pkgs.hugin
 

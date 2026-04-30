@@ -2,10 +2,11 @@
   config,
   inputs,
   pkgs,
+  unstable-pkgs,
   ...
 }:
 let
-  distrobox = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.distrobox;
+  distrobox = unstable-pkgs.distrobox;
 in
 {
   environment = {

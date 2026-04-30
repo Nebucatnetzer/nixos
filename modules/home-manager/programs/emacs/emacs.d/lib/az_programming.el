@@ -14,11 +14,11 @@
   (require 'auth-source)
   (setq github-key (auth-source-pick-first-password :host "models.inference.ai.azure.com"))
 
-  (require 'llm-github)
-  (setopt ellama-provider (make-llm-github
-                           :chat-model "gpt-4.1"
-                           :embedding-model "gpt-4.1"
-                           :key github-key))
+  (require 'llm-openai)
+  (setopt ellama-provider (make-llm-openai-compatible
+                           :chat-model "soji"
+                           :url "https://mars.chub.ai/chub/soji/v1"
+                           :key "CHK-ZVQIIGAI24T36947MR716B04DTNF0TYL61UPBORD10890944"))
   :config
   ;; show ellama context in header line in all buffers
   (ellama-context-header-line-global-mode +1)

@@ -1,11 +1,13 @@
-{ inputs, pkgs, ... }:
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+{
+  inputs,
+  pkgs,
+  unstable-pkgs,
+  ...
+}:
 {
   programs.yt-dlp = {
     enable = true;
-    package = unstable.yt-dlp;
+    package = unstable-pkgs.yt-dlp;
     settings = {
       remux-video = "mkv";
     };

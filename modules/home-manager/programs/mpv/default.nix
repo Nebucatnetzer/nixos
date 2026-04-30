@@ -1,6 +1,11 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  unstable-pkgs,
+  ...
+}:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit inputs pkgs; };
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
 in
 {
   programs.mpv = {

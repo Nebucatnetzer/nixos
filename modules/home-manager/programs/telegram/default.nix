@@ -1,7 +1,6 @@
-{ inputs, pkgs, ... }:
+{ unstable-pkgs, ... }:
 let
-  telegram =
-    inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.telegram-desktop;
+  telegram = unstable-pkgs.telegram-desktop;
 in
 {
   home.packages = [ telegram ];

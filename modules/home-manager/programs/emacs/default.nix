@@ -1,7 +1,4 @@
-{ inputs, pkgs, ... }:
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+{ pkgs, unstable-pkgs, ... }:
 {
   home.sessionVariables = {
     LSP_USE_PLISTS = "true";
@@ -48,7 +45,7 @@ in
     extraPackages = epkgs: [
       epkgs.ace-window
       epkgs.ag
-      unstable.emacsPackages.alabaster-themes
+      unstable-pkgs.emacsPackages.alabaster-themes
       epkgs.ansible
       epkgs.avy
       epkgs.bind-key
@@ -56,16 +53,16 @@ in
       epkgs.cfrs
       epkgs.citeproc
       epkgs.consult
-      unstable.emacs.pkgs.consult-denote
+      unstable-pkgs.emacs.pkgs.consult-denote
       epkgs.consult-projectile
       epkgs.corfu
       epkgs.corfu-terminal
       epkgs.dap-mode
-      unstable.emacs.pkgs.denote
-      unstable.emacs.pkgs.denote-journal
-      unstable.emacs.pkgs.denote-org
+      unstable-pkgs.emacs.pkgs.denote
+      unstable-pkgs.emacs.pkgs.denote-journal
+      unstable-pkgs.emacs.pkgs.denote-org
       epkgs.elisp-refs
-      unstable.emacs.pkgs.ellama
+      unstable-pkgs.emacs.pkgs.ellama
       epkgs.embark
       epkgs.embark-consult
       epkgs.envrc

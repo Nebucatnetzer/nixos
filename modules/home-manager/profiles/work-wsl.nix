@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  unstable-pkgs,
   ...
 }:
 let
@@ -19,6 +20,7 @@ in
 {
   imports = [
     "${inputs.self}/modules/home-manager/programs/ansible"
+    "${inputs.self}/modules/home-manager/programs/claude"
     "${inputs.self}/modules/home-manager/programs/emacs"
     "${inputs.self}/modules/home-manager/programs/fzf"
     "${inputs.self}/modules/home-manager/programs/hunspell"

@@ -424,6 +424,7 @@ create it and open dired in the notes directory."
   :bind
   (:map
    dired-mode-map
+   ("l" . dired-find-file)
    ("h" . dired-up-directory)
    ("q" . az-kill-dired-buffers))
 

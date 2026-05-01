@@ -5,6 +5,8 @@
     :ensure nil
     :bind
     ([f4] . open-mail)
+    (:map mu4e-main-mode-map
+          ("J" . mu4e-search-maildir))
     :config
 
     (require 'smtpmail)

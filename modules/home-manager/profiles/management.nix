@@ -40,6 +40,9 @@ in
       pkgs.termscp
       pkgs.trippy # network diagnostics
     ];
+    sessionVariables = {
+      PATH = "$PATH:$HOME/.local/bin";
+    };
     shellAliases = {
       format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
     };

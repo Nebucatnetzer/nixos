@@ -92,3 +92,4 @@ flycheck_*
 /builds
 *.key
 /*.raw
+/CLAUDE.md

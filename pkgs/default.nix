@@ -23,6 +23,7 @@ rec {
   download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp; };
   jdownloader = pkgs.callPackage ./jdownloader { };
   rebuild = pkgs.callPackage ./rebuild { };
+  sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };

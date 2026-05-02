@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    "${inputs.self}/modules/home-manager/programs/claude"
     "${inputs.self}/modules/home-manager/programs/emacs"
     "${inputs.self}/modules/home-manager/programs/email"
     "${inputs.self}/modules/home-manager/programs/fzf"

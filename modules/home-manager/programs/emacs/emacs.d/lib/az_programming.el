@@ -25,6 +25,11 @@
   ;; show ellama session id in header line in all buffers
   (ellama-session-header-line-global-mode +1))
 
+(use-package editorconfig
+  :ensure nil
+  :config
+  (editorconfig-mode 1))
+
 (use-package envrc
   :hook (after-init . envrc-global-mode))
 
@@ -132,8 +137,12 @@
 
 (use-package haskell-mode
   :hook
-  (haskell-mode . eglot-ensure)
-  (haskell-literate-mode . eglot-ensure))
+  ((haskell-mode . eglot-ensure)
+   (haskell-literate-mode . eglot-ensure)
+   (haskell-mode . (lambda ()
+                     (setq tab-width 2
+                           haskell-indentation-layout-offset 2
+                           haskell-indentation-starter-offset 2)))))
 
 (use-package flymake-ansible-lint
   :ensure t
@@ -198,7 +207,9 @@
 
 (use-package nix-ts-mode
   :mode "\\.nix\\'"
-  :hook (nix-ts-mode . eglot-ensure))
+  :hook
+  ((nix-ts-mode . eglot-ensure)
+   (nix-ts-mode . (lambda () (setq tab-width 2)))))
 
 (use-package powershell
   :mode
@@ -251,6 +262,11 @@
    ("\\.mustache\\'" . web-mode)
    ("\\.djhtml\\'" . web-mode)
    ("\\.html?\\'" . web-mode))
+  :hook
+  (web-mode . (lambda ()
+                (setq web-mode-markup-indent-offset 2
+                      web-mode-css-indent-offset 2
+                      web-mode-code-indent-offset 4)))
   :config
   (add-to-list 'auto-mode-alist '("\\.php$" . my/php-setup))
   (add-to-list 'auto-mode-alist '("\\.phpi$" . my/php-setup)))
@@ -263,3 +279,16 @@
   :hook
   ((prog-mode . display-fill-column-indicator-mode))
   ((yaml-ts-mode . display-fill-column-indicator-mode)))
+
+(use-package emacs
+  :ensure nil
+  :hook
+  ((go-ts-mode         . (lambda () (setq indent-tabs-mode t)))
+   (yaml-ts-mode       . (lambda () (setq tab-width 2)))
+   (js-ts-mode         . (lambda () (setq tab-width 2
+                                          js-indent-level 2)))
+   (typescript-ts-mode . (lambda () (setq tab-width 2
+                                          typescript-ts-mode-indent-offset 2)))
+   (css-ts-mode        . (lambda () (setq tab-width 2
+                                          css-indent-offset 2)))
+   (json-ts-mode       . (lambda () (setq tab-width 2)))))

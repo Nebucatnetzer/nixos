@@ -40,7 +40,7 @@ in
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/services/blog"
     "${inputs.self}/modules/services/ddclient"
-    "${inputs.self}/modules/services/dnsmasq"
+    "${inputs.self}/modules/services/pihole"
     "${inputs.self}/modules/services/freshrss"
     "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
@@ -207,7 +207,7 @@ in
     useDHCP = false;
     hostName = hostname;
     defaultGateway = config.az-hosts.loki.physicalIp;
-    nameservers = [ config.az-hosts.loki.physicalIp ];
+    nameservers = [ "127.0.0.1" ];
     interfaces.enp58s0u1.ipv4.addresses = [
       {
         address = config.az-hosts."${hostname}".physicalIp;

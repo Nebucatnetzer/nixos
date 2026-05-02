@@ -44,8 +44,8 @@ in
       hostname = "gwyn.vpn.zweili.org";
       nginx.listen = [
         {
-          addr = "127.0.0.1";
-          port = config.services.nginx.defaultHTTPListenPort;
+          addr = config.az-hosts.gwyn.wgIp;
+          port = 80;
         }
       ];
       settings = {

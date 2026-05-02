@@ -19,9 +19,21 @@ in
     };
   };
 
-  networking.firewall.interfaces.wg0.allowedTCPPorts = [
-    webinterfacePort
-  ];
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    virtualHosts."pihole.vpn.zweili.org" = {
+      listen = [
+        {
+          addr = config.az-hosts.gwyn.wgIp;
+          port = 80;
+        }
+      ];
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString webinterfacePort}";
+      };
+    };
+  };
   services.pihole-web = {
     enable = true;
     hostName = "pihole.vpn.zweili.org";

@@ -42,7 +42,6 @@ in
     "${inputs.self}/modules/services/ddclient"
     "${inputs.self}/modules/services/pihole"
     "${inputs.self}/modules/services/freshrss"
-    "${inputs.self}/modules/services/haproxy"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/plex"
@@ -204,10 +203,15 @@ in
 
   # USB address of the ethernet dongle: 0bda:8153
   networking = {
+    enableIPv6 = false;
     useDHCP = false;
     hostName = hostname;
     defaultGateway = config.az-hosts.loki.physicalIp;
     nameservers = [ "127.0.0.1" ];
+    firewall.allowedTCPPorts = [
+      80
+      443
+    ];
     interfaces.enp58s0u1.ipv4.addresses = [
       {
         address = config.az-hosts."${hostname}".physicalIp;
@@ -224,9 +228,6 @@ in
     hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     mysql.package = pkgs.mariadb_114;
-    nginx.defaultHTTPListenPort = 8080;
-    nginx.defaultListenAddresses = [ "127.0.0.1" ];
-    nginx.defaultSSLListenPort = 8443;
     smartd.devices = [
       { device = "/dev/nvme0n1"; }
       {

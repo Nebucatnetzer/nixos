@@ -5,6 +5,7 @@
     (meow-motion-define-key
      '("j" . meow-next)
      '("k" . meow-prev)
+     '("/" . consult-line)
      '("<escape>" . ignore))
 
     (meow-leader-define-key
@@ -40,7 +41,7 @@
      '("." . meow-bounds-of-thing)
      '("[" . meow-beginning-of-thing)
      '("$" . meow-end-of-thing)
-     '("/" . consult-line)
+     '("/" . meow-visit)
      '("a" . meow-append)
      '("A" . meow-append-at-end)
      '("b" . meow-back-word)
@@ -49,7 +50,7 @@
      '("D" . meow-backward-delete)
      '("e" . meow-next-word)
      '("E" . meow-next-symbol)
-     '("f" . avy-goto-char-timer)
+     '("f" . meow-find)
      '("g" . meow-cancel-selection)
      '("G" . meow-grab)
      '("h" . meow-left)

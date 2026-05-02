@@ -52,6 +52,7 @@
           "Bash(nixos-rebuild-ng boot *)"
           "Bash(nixos-rebuild-ng switch *)"
           "Bash(nixos-rebuild-ng test *)"
+          "Bash(./scripts/update-single-machine *)"
           "Bash(rebuild)"
           "Bash(ssh*)"
           "Bash(sudo *)"

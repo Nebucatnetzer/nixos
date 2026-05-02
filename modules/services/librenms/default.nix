@@ -41,7 +41,7 @@ in
         createLocally = true;
         socket = "/run/mysqld/mysqld.sock";
       };
-      hostname = "gwyn.vpn.zweili.org";
+      hostname = "librenms.vpn.zweili.org";
       nginx.listen = [
         {
           addr = config.az-hosts.gwyn.wgIp;

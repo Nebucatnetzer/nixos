@@ -70,6 +70,7 @@ in
       };
       misc.dnsmasq_lines = [
         "address=/pihole.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
+        "address=/librenms.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
       ];
       webserver.api.cli_pw = true;
     };

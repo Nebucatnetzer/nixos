@@ -3,6 +3,11 @@
 ;; Example configuration for Consult
 (use-package consult
   :demand t
+  :init
+  (with-eval-after-load 'consult
+    (when-let* ((src (locate-library "consult-flymake.el")))
+      (load src nil nil t)))   ; NOSUFFIX=t → load the .el, not the .elc
+
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-x C-b" . consult-buffer)

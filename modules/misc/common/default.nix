@@ -18,7 +18,7 @@ in
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
-  services.timesyncd.enable = lib.mkForce true;
+  services.timesyncd.enable = true;
 
   services.nscd.enableNsncd = true;
   networking = {

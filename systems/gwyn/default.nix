@@ -44,6 +44,7 @@ in
     "${inputs.self}/modules/services/freshrss"
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/ntp"
     "${inputs.self}/modules/services/plex"
     "${inputs.self}/modules/services/radicale"
     "${inputs.self}/modules/services/search"

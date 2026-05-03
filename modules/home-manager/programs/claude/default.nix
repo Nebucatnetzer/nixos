@@ -11,7 +11,6 @@
           denyRead = [
             "./.env"
             "./secrets"
-            "//etc)"
             "~/.config"
             "~/.ssh"
             "//mnt"
@@ -34,6 +33,8 @@
           "Bash(ruff *)"
           "Bash(shellcheck *)"
           "Bash(shfmt *)"
+          "WebSearch"
+
         ];
         deny = [
           "Bash(ask-vault-pass)"
@@ -56,6 +57,7 @@
           "Bash(rebuild)"
           "Bash(ssh*)"
           "Bash(sudo *)"
+          "Read(//etc)"
           "Read(./secrets)"
           "Write(./scrts/**)"
           "Write(pyproject.yml)"

@@ -79,6 +79,8 @@ in
         "address=/pihole.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
         "address=/librenms.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
       ];
+      # We already use timesynd
+      ntp.sync.active = false;
       webserver.api.cli_pw = true;
     };
   };

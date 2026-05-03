@@ -45,7 +45,6 @@ in
   ];
   networking.firewall.allowedUDPPorts = [
     53 # DNS
-    123 # NTP
   ];
 
   services.pihole-ftl = {
@@ -80,7 +79,11 @@ in
         "address=/librenms.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
       ];
       # We already use timesynd
-      ntp.sync.active = false;
+      ntp = {
+        ipv4.active = false;
+        ipv6.active = false;
+        sync.active = false;
+      };
       webserver.api.cli_pw = true;
     };
   };

@@ -40,9 +40,16 @@ in
     ports = [ webinterfacePort ];
   };
 
+  networking.firewall.allowedTCPPorts = [
+    53 # DNS
+  ];
+  networking.firewall.allowedUDPPorts = [
+    53 # DNS
+    123 # NTP
+  ];
+
   services.pihole-ftl = {
     enable = true;
-    openFirewallDNS = true;
     lists = [
       {
         url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts";

@@ -17,22 +17,25 @@ def _raw_exists(path: Path) -> bool:
 
 
 def find_orphaned_sidecars(directory: Path) -> list[Path]:
-    """Return XMP sidecars in *directory* that have no matching raw file.
+    """Return XMP and ARP sidecars in *directory* that have no matching raw file.
 
     Scans recursively into subdirectories.
     """
     orphaned: list[Path] = []
-    for xmp in sorted(directory.glob("**/*.xmp")):
-        companion = xmp.parent / xmp.stem
+    for sidecar in sorted(
+        list(directory.glob("**/*.xmp")) + list(directory.glob("**/*.arp"))
+    ):
+        companion = sidecar.parent / sidecar.stem
         if companion.suffix.lower() in RAW_SUFFIXES:
             if not _raw_exists(companion):
-                orphaned.append(xmp)
+                orphaned.append(sidecar)
         else:
             has_raw = any(
-                _raw_exists(xmp.parent / (xmp.stem + ext)) for ext in RAW_SUFFIXES
+                _raw_exists(sidecar.parent / (sidecar.stem + ext))
+                for ext in RAW_SUFFIXES
             )
             if not has_raw:
-                orphaned.append(xmp)
+                orphaned.append(sidecar)
     return orphaned
 
 

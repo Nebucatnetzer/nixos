@@ -67,6 +67,9 @@ in
       User = "root";
       Type = "oneshot";
     };
+    unitConfig = {
+      ConditionACPower = true;
+    };
     environment = {
       RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
       RESTIC_REPOSITORY = "rest:http://${config.az-hosts.gwyn.wgIp}:8123";

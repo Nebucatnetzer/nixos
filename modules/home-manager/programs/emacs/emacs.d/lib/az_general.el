@@ -219,6 +219,16 @@ create it and open dired in the notes directory."
   ;; Refresh buffers if the file changes on disk
   (setopt global-auto-revert-non-file-buffers t)
 
+  ;; Sync GUI environment variables when a graphical client connects
+  (add-hook 'server-after-make-frame-hook
+            (lambda ()
+              (let ((display (frame-parameter nil 'display)))
+                ;; Only set the environment if it's a graphical frame (not terminal)
+                (when display
+                  (setenv "DISPLAY" display)
+                  ;; If you use Wayland, this ensures modern browsers route correctly
+                  (setenv "WAYLAND_DISPLAY" display)))))
+
   (setopt history-delete-duplicates t)
   ;; just create buffers don't ask
   (setopt ido-create-new-buffer 'always)

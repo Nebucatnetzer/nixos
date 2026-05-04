@@ -42,7 +42,7 @@ in
     backend = "docker";
     containers."${name}" = {
       # https://github.com/actualbudget/actual/releases
-      image = "ghcr.io/actualbudget/actual:26.4.0@sha256:37bc525a8443c509026e6774c3e03f570c56f1caed9460e9a1f57e1a4bab475d";
+      image = "ghcr.io/actualbudget/actual:26.5.0@sha256:b733ae30c70a66dc4d03577526e53575a0c04eab4f3ab6ace30934776251058c";
       autoStart = true;
       ports = [ "${builtins.toString port}:5006" ];
       volumes = [

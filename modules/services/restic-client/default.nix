@@ -76,6 +76,14 @@ in
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''
+      BACKUP_SERVER=${config.az-hosts.gwyn.wgIp}
+      PORT=8123
+      TIMEOUT=2
+      if ! ${pkgs.netcat}/bin/nc -vzw "$TIMEOUT" "$BACKUP_SERVER" "$PORT" >/dev/null 2>&1; then
+        echo "Target server $BACKUP_SERVER:$PORT is unreachable. Backup skipped."
+        exit 0
+      fi
+
       ${if mariadb then mariadbBackup else ""}
 
       ${if postgresql then postgresBackup else ""}

@@ -21,6 +21,7 @@ rec {
   download-articles = pkgs.callPackage ./download-articles { };
   download-video = pkgs.callPackage ./download-video { inherit yt-dlp; };
   download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp; };
+  dptfxtract = pkgs.callPackage ./dptfxtract { };
   jdownloader = pkgs.callPackage ./jdownloader { };
   rebuild = pkgs.callPackage ./rebuild { };
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };

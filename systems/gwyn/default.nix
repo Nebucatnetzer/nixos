@@ -127,7 +127,9 @@ in
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "rootdelay=10"
-    "ip=dhcp" # required for ssh at initrd
+    "ip=${
+      config.az-hosts."${hostname}".physicalIp
+    }::${config.az-hosts.loki.physicalIp}:255.255.255.0:${hostname}:enp58s0u1" # required for ssh at initrd
   ];
 
   boot.initrd.luks.devices."mainLuks" = {

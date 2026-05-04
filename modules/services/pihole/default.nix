@@ -70,6 +70,7 @@ in
     settings = {
       dns = {
         bogusPriv = true;
+        domain = "vpn.zweili.org";
         domainNeeded = true;
         listeningMode = "ALL";
         piholePTR = "HOSTNAMEFQDN";

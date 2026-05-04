@@ -69,10 +69,12 @@ in
     ];
     settings = {
       dns = {
-        upstreams = [ "127.0.0.1#5335" ];
-        listeningMode = "ALL";
-        domainNeeded = true;
         bogusPriv = true;
+        domain = "vpn.zweili.org";
+        domainNeeded = true;
+        listeningMode = "ALL";
+        piholePTR = "HOSTNAMEFQDN";
+        upstreams = [ "127.0.0.1#5335" ];
       };
       misc.dnsmasq_lines = [
         "address=/pihole.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"

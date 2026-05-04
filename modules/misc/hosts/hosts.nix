@@ -16,6 +16,10 @@
     wgFqdn = "gwyn.vpn.zweili.org";
     wgIp = "10.70.89.153";
   };
+  kvm = {
+    fqdn = "kvm.int.zweili.org";
+    physicalIp = "10.7.89.143";
+  };
   loki = {
     fqdn = "loki.int.zweili.org";
     physicalIp = "10.7.89.1";

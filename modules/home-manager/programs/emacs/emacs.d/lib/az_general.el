@@ -445,12 +445,14 @@ create it and open dired in the notes directory."
 
 (use-package gnu-elpa-keyring-update)
 
-(use-package xclip
-  :config
-  (xclip-mode 1))
+(unless (file-exists-p "/etc/wsl.conf")
+  (use-package xclip
+    :config
+    (xclip-mode 1)))
 
-;; Clipboard in WSL
-(when (getenv "WSL_DISTRO_NAME")
+;; Clipboard in WSL — xclip-mode is intentionally skipped above because it
+;; uses add-function :override and would shadow these, and xclip requires X11.
+(when (file-exists-p "/etc/wsl.conf")
   (setq interprogram-cut-function
         (lambda (text &optional _push)
           (let ((process-connection-type nil))

@@ -185,9 +185,6 @@ in
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
-    thermald = {
-      enable = true;
-      configFile = ./thermal-conf.xml;
-    };
+    thermald.enable = true;
   };
 }

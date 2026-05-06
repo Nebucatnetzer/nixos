@@ -67,6 +67,9 @@
       epkgs.embark-consult
       epkgs.envrc
       epkgs.epl
+      epkgs.evil
+      epkgs.evil-collection
+      epkgs.evil-surround
       epkgs.f
       epkgs.flymake-ansible-lint
       epkgs.flymake-collection
@@ -76,6 +79,7 @@
       epkgs.flymake-shellcheck
       epkgs.format-all
       epkgs.general
+      epkgs.god-mode
       epkgs.haskell-mode
       epkgs.helpful
       epkgs.highlight-indent-guides
@@ -94,7 +98,6 @@
       epkgs.makey
       epkgs.marginalia
       epkgs.markdown-mode
-      epkgs.meow
       epkgs.mu4e
       epkgs.nix-mode
       epkgs.nix-ts-mode
@@ -122,6 +125,7 @@
       epkgs.swiper
       epkgs.system-packages
       epkgs.treemacs
+      epkgs.treemacs-evil
       epkgs.treesit-grammars.with-all-grammars
       epkgs.vertico
       epkgs.vterm

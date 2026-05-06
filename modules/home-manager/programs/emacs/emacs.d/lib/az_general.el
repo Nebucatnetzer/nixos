@@ -319,8 +319,6 @@ create it and open dired in the notes directory."
                   mode-line-frame-identification
                   mode-line-buffer-identification
                   "   "
-                  (:eval (meow-indicator))
-                  "   "
                   mode-line-position
                   (vc-mode vc-mode)
                   "   "
@@ -434,10 +432,11 @@ create it and open dired in the notes directory."
   :bind
   (:map
    dired-mode-map
-   ("l" . dired-find-file)
    ("h" . dired-up-directory)
    ("q" . az-kill-dired-buffers))
 
+  (with-eval-after-load 'locate
+    (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setq-default dired-listing-switches "-Ahl --group-directories-first")

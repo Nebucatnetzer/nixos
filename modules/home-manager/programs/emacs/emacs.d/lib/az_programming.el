@@ -18,7 +18,7 @@
   (setopt ellama-provider (make-llm-openai-compatible
                            :chat-model "soji"
                            :url "https://mars.chub.ai/chub/soji/v1"
-                           :key "CHK-ZVQIIGAI24T36947MR716B04DTNF0TYL61UPBORD10890944"))
+                           :key (auth-source-pick-first-password :host "mars.chub.ai")))
   :config
   ;; show ellama context in header line in all buffers
   (ellama-context-header-line-global-mode +1)

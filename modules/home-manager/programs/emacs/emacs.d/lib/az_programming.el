@@ -261,9 +261,10 @@
                 (setq web-mode-markup-indent-offset 2
                       web-mode-css-indent-offset 2
                       web-mode-code-indent-offset 4)))
-  :config
-  (add-to-list 'auto-mode-alist '("\\.php$" . my/php-setup))
-  (add-to-list 'auto-mode-alist '("\\.phpi$" . my/php-setup)))
+  :config)
+
+(use-package php-mode
+  :mode "\\.php[i]?\\'")
 
 (use-package ansible
   :after yaml-ts-mode

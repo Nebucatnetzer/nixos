@@ -196,10 +196,6 @@
             org-beamer-theme "metropolis")
 
 
-    ;; enable org-mode keys
-    (global-set-key "\C-cl"'org-store-link)
-    (global-set-key "\C-cc" 'org-capture)
-
     ;; evilificate calendar in org-mode
     (define-key org-read-date-minibuffer-local-map (kbd "M-h")
                 (lambda ()

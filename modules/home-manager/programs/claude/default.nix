@@ -33,6 +33,7 @@
           "Bash(ruff *)"
           "Bash(shellcheck *)"
           "Bash(shfmt *)"
+          "Read(//etc)"
           "WebSearch"
 
         ];
@@ -57,7 +58,6 @@
           "Bash(rebuild)"
           "Bash(ssh*)"
           "Bash(sudo *)"
-          "Read(//etc)"
           "Read(./secrets)"
           "Write(./scrts/**)"
           "Write(pyproject.yml)"

@@ -409,8 +409,6 @@ create it and open dired in the notes directory."
         ("C-S-c" . az-copy-all)
         ;; keybinding for new frame
         ("C-x N" . make-frame)
-        ;; switch to frame
-        ("C-x O" . other-frame)
         ;; kill frame
         ("C-x K" . delete-frame)
         ;; keymap for dired

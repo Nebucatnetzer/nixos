@@ -69,6 +69,7 @@
   (with-eval-after-load 'dired
     (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
     (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
+    (evil-define-key 'normal dired-mode-map "l" 'dired-find-file)
     (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
 
   (with-eval-after-load 'locate

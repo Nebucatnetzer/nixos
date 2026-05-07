@@ -227,17 +227,6 @@
                 (lambda ()
                   (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
 
-    ;; evil keybindings for the org-agenda
-    (evil-add-hjkl-bindings org-agenda-mode-map 'emacs
-      ;;(kbd "/")       'evil-search-forward
-      (kbd "n")       'evil-search-next
-      (kbd "N")       'evil-search-previous
-      (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up
-      (kbd "c")       'org-capture
-      (kbd "$" )       'evil-end-of-line
-      (kbd "SPC") 'god-execute-with-current-bindings)
-
     (setopt org-attach-id-dir "resources/"
 
             ;; Set the agenda separator to a space character.

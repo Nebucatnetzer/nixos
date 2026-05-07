@@ -69,6 +69,18 @@
   (with-eval-after-load 'dired
     (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
     (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
-    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
-    )
-  )
+    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+
+  (with-eval-after-load 'locate
+    (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+
+  (with-eval-after-load 'org-agenda
+    (when (boundp 'enable-org)
+      (evil-add-hjkl-bindings org-agenda-mode-map 'emacs
+        (kbd "n")   'evil-search-next
+        (kbd "N")   'evil-search-previous
+        (kbd "C-d") 'evil-scroll-down
+        (kbd "C-u") 'evil-scroll-up
+        (kbd "c")   'org-capture
+        (kbd "$")   'evil-end-of-line
+        (kbd "SPC") 'god-execute-with-current-bindings))))

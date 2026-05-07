@@ -44,7 +44,6 @@
     package = pkgs.emacs-pgtk;
     extraPackages = epkgs: [
       epkgs.ace-window
-      epkgs.ag
       unstable-pkgs.emacs.pkgs.alabaster-themes
       epkgs.ansible
       epkgs.avy
@@ -73,10 +72,8 @@
       epkgs.f
       epkgs.flymake-ansible-lint
       epkgs.flymake-collection
-      epkgs.flymake-flycheck
       epkgs.flymake-ruff
       epkgs.flymake-languagetool
-      epkgs.flymake-shellcheck
       epkgs.format-all
       epkgs.general
       epkgs.god-mode
@@ -91,7 +88,6 @@
       epkgs.hydra
       epkgs.hyperbole
       epkgs.jq-mode
-      epkgs.know-your-http-well
       epkgs.lsp-haskell
       epkgs.lv
       epkgs.magit
@@ -121,16 +117,13 @@
       epkgs.rainbow-delimiters
       epkgs.ripgrep
       epkgs.smooth-scrolling
-      epkgs.string-inflection
       epkgs.swiper
-      epkgs.system-packages
       epkgs.treemacs
       epkgs.treemacs-evil
       epkgs.treesit-grammars.with-all-grammars
       epkgs.vertico
       epkgs.vterm
       epkgs.vundo
-      epkgs.web-completion-data
       epkgs.web-mode
       epkgs.wgrep
       epkgs.which-key

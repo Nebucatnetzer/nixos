@@ -145,7 +145,6 @@
                            haskell-indentation-starter-offset 2)))))
 
 (use-package flymake-ansible-lint
-  :ensure t
   :commands flymake-ansible-lint-setup
   :hook ((ansible-mode . flymake-ansible-lint-setup)
          (ansible-mode . flymake-mode)))
@@ -241,7 +240,6 @@
   )
 
 (use-package flymake-ruff
-  :ensure t
   :hook (eglot-managed-mode . flymake-ruff-load))
 
 ;; https://github.com/federicotdn/verb

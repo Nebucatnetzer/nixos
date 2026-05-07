@@ -121,7 +121,7 @@
       epkgs.swiper
       epkgs.treemacs
       epkgs.treemacs-evil
-      epkgs.treesit-grammars.with-all-grammars
+      unstable-pkgs.emacs.pkgs.treesit-grammars.with-all-grammars
       epkgs.ultra-scroll
       epkgs.vertico
       epkgs.vterm

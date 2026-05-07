@@ -180,7 +180,6 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 
 ;; ultra-scroll
 (use-package ultra-scroll
-  :vc (:url "https://github.com/jdtsmith/ultra-scroll") ; For Emacs>=30
   :init
   (setopt scroll-conservatively 101 ; important!
           scroll-margin 0)

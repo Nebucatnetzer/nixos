@@ -121,6 +121,7 @@
       epkgs.treemacs
       epkgs.treemacs-evil
       epkgs.treesit-grammars.with-all-grammars
+      epkgs.ultra-scroll
       epkgs.vertico
       epkgs.vterm
       epkgs.vundo

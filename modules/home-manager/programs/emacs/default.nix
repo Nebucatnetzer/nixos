@@ -60,6 +60,7 @@
       unstable-pkgs.emacs.pkgs.denote
       unstable-pkgs.emacs.pkgs.denote-journal
       unstable-pkgs.emacs.pkgs.denote-org
+      epkgs.eglot-booster
       epkgs.elisp-refs
       unstable-pkgs.emacs.pkgs.ellama
       epkgs.embark

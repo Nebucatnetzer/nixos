@@ -8,42 +8,17 @@
           evil-want-keybinding nil) ;; required by evil-collection
 
   :config
-  ;; Start these modes in emacs mode
-  (add-to-list 'evil-emacs-state-modes 'helpful-mode 'mu4e-headers)
+  (add-to-list 'evil-emacs-state-modes 'helpful-mode)
+  (add-to-list 'evil-emacs-state-modes 'mu4e-headers-mode)
   (general-def :states 'motion
     "/" 'consult-line)
-  (setopt global-evil-search-highlight-persist t)
 
-  ;; Add vim keybindings to the bookmark menu
-  (evil-add-hjkl-bindings bookmark-bmenu-mode-map 'emacs
-    ;; (kbd "/")       'evil-search-forward
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up)
-
-  ;; Add vim keybindings to the ibuffer
-  (evil-add-hjkl-bindings ibuffer-mode-map 'emacs
-    ;; (kbd "/")       'evil-search-forward
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up)
-
-  ;; Add vim keybindings to the package mode
-  (evil-add-hjkl-bindings package-menu-mode-map 'emacs
-    ;; (kbd "/")       'evil-search-forward
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up)
-
+  ;; helpful stays in emacs state — add vim scroll/search keys manually
   (evil-add-hjkl-bindings helpful-mode-map 'emacs
-    ;; (kbd "/")       'evil-search-forward
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up)
+    (kbd "n")   'evil-search-next
+    (kbd "N")   'evil-search-previous
+    (kbd "C-d") 'evil-scroll-down
+    (kbd "C-u") 'evil-scroll-up)
 
   (evil-mode 1))
 

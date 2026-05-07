@@ -242,7 +242,7 @@ create it and open dired in the notes directory."
                     (or
                      (mode . python-ts-mode)
                      (mode . web-mode)
-                     (mode . php-ts-mode)
+                     (mode . php-mode)
                      (mode . csharp-ts-mode)
                      (mode . javascript-mode)
                      (mode . sql-mode)
@@ -268,7 +268,6 @@ create it and open dired in the notes directory."
             (java-mode . java-ts-mode)
             (js2-mode . js-ts-mode)
             (json-mode . json-ts-mode)
-            (php-mode . php-ts-mode)
             (python-mode . python-ts-mode)
             (typescript-mode . typescript-ts-mode)
             (yaml-mode . yaml-ts-mode)

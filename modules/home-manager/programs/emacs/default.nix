@@ -45,7 +45,7 @@
     extraPackages = epkgs: [
       epkgs.ace-window
       epkgs.ag
-      unstable-pkgs.emacsPackages.alabaster-themes
+      unstable-pkgs.emacs.pkgs.alabaster-themes
       epkgs.ansible
       epkgs.avy
       epkgs.bind-key

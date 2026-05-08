@@ -1,8 +1,10 @@
-{ unstable-pkgs, ... }:
+{ pkgs, unstable-pkgs, ... }:
 {
   programs.claude-code = {
     enable = true;
-    package = unstable-pkgs.claude-code;
+    package = pkgs.callPackage ./claude_wrapper.nix {
+      claude-code = unstable-pkgs.claude-code;
+    };
     commands = {
       commit = ./skills/commit.md;
     };
@@ -10,14 +12,11 @@
     settings = {
       sandbox = {
         enabled = true;
-        autoAllowBashIfSandboxed = true;
+        allowUnsandboxedCommands = false;
         filesystem = {
           denyRead = [
             "./.env"
             "./secrets"
-            "~/.config"
-            "~/.ssh"
-            "//mnt"
           ];
         };
       };

@@ -3,6 +3,10 @@
   programs.claude-code = {
     enable = true;
     package = unstable-pkgs.claude-code;
+    commands = {
+      commit = ./skills/commit.md;
+    };
+    memory.source = ./CLAUDE.md;
     settings = {
       sandbox = {
         enabled = true;

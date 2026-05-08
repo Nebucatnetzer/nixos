@@ -447,7 +447,13 @@ create it and open dired in the notes directory."
             (let ((proc (start-process "win32yank-cut" nil "win32yank.exe" "-i" "--crlf")))
               (process-send-string proc text)
               (process-send-eof proc)))))
+
   (setq interprogram-paste-function
         (lambda ()
           (let ((text (shell-command-to-string "win32yank.exe -o --lf")))
-            (unless (string= text "") text)))))
+            ;; If the text is empty OR it perfectly matches the top of the kill-ring,
+            ;; return nil. Otherwise, return the new text.
+            (if (or (string= text "")
+                    (and kill-ring (string= text (car kill-ring))))
+                nil
+              text)))))

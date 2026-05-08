@@ -463,4 +463,12 @@ This function is intended for use with `org-agenda-skip-function'."
                                                   :emphasize nil :link nil :narrow 40! :indent t :filetitle nil
                                                   :hidefiles t :formula nil :timestamp nil :level nil :tcolumns nil
                                                   :formatter nil))
+
+      (defun az/org-cc-update-clocktable ()
+        "Update clocktable when C-c C-c is pressed anywhere inside one."
+        (when (org-in-clocktable-p)
+          (org-clock-report)
+          t))
+
+      (add-hook 'org-ctrl-c-ctrl-c-hook #'az/org-cc-update-clocktable)
       )))

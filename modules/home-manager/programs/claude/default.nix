@@ -59,7 +59,6 @@
           "Bash(sudo *)"
           "Read(./secrets)"
           "Write(./scrts/**)"
-          "Write(pyproject.yml)"
           "Write(~/.claude/settings.json)"
         ];
       };

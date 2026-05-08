@@ -185,6 +185,13 @@ in
     fprintd.enable = true;
     fstrim.enable = true; # Enable TRIM for SD cards
     hardware.bolt.enable = true; # Enable Thunderbolt control
+    smartd.devices = [
+      { device = "/dev/nvme0n1"; }
+      {
+        device = "/dev/disk/by-id/usb-WD_Elements_SE_SSD_323333373938343033373337-0:0";
+        options = "-a -d sntasmedia -d removable";
+      }
+    ];
     thermald.enable = true;
   };
 }

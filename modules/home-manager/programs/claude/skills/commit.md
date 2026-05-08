@@ -20,6 +20,8 @@ Each commit must represent exactly one logical change. Before committing, inspec
 
 If the working tree contains mixed changes, stage only the relevant files (or hunks) and commit them one at a time, describing each separately to the user before proceeding.
 
+An "and" is usually a sign that the commit should actually be two commits e.g. "Surpress NN123 and add foo" should be a commit for "Surpress NN123" and another commit for "Add foo".
+
 ## Commit Message Rules (cbea.ms/git-commit)
 
 ### Subject line
@@ -29,6 +31,7 @@ If the working tree contains mixed changes, stage only the relevant files (or hu
 3. **Use imperative mood** — write as a command. Test: "If applied, this commit will \_\_\_." Examples: `Fix null pointer in auth handler`, `Add retry logic to payment client`.
 4. **Limit to 50 characters.** Hard maximum is 72 characters.
 5. **Separate from the body with a blank line** if a body is present.
+6. **Don't mention linter codes, move them to the body**
 
 ### Body (include when the subject alone is insufficient)
 

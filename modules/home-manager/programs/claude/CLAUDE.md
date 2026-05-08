@@ -11,16 +11,16 @@ When suppressing a linter warning or disabling a lint rule inline, always place 
 **Format:**
 
 ```python
-result = some_func()  # noqa: E501 — URL cannot be shortened without breaking the link
+result = some_func()  # noqa: E501 - URL cannot be shortened without breaking the link
 ```
 
 ```typescript
-// eslint-disable-next-line @typescript-eslint/no-explicit-any — third-party callback has no published types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any - third-party callback has no published types
 function handle(data: any) {
 ```
 
 ```go
-var _ = unsafePtr // nolint:gosec — pointer cast required by cgo ABI contract
+var _ = unsafePtr // nolint:gosec - pointer cast required by cgo ABI contract
 ```
 
 Rules:
@@ -34,7 +34,7 @@ Rules:
 
 ---
 
-## Code Style: The Zen of Python (PEP 20) — Applied to All Languages
+## Code Style: The Zen of Python (PEP 20) - Applied to All Languages
 
 Regardless of the language in use, write code that embodies the principles of PEP 20. Apply these as judgment calls, not rigid rules.
 
@@ -48,7 +48,7 @@ Name things for what they are. Avoid magic values, hidden state, and side effect
 
 > Simple is better than complex. Complex is better than complicated.
 
-Reach for the simplest solution that actually solves the problem. Add complexity only when simplicity cannot handle the requirement — and when you must be complex, keep it coherent rather than tangled.
+Reach for the simplest solution that actually solves the problem. Add complexity only when simplicity cannot handle the requirement - and when you must be complex, keep it coherent rather than tangled.
 
 > Flat is better than nested.
 
@@ -64,7 +64,7 @@ Code is read far more often than it is written. Optimize for the next reader.
 
 > Special cases aren't special enough to break the rules. Although practicality beats purity.
 
-Follow conventions consistently. Deviate only when there is a concrete, demonstrable reason — and document it.
+Follow conventions consistently. Deviate only when there is a concrete, demonstrable reason - and document it.
 
 > Errors should never pass silently. Unless explicitly silenced.
 
@@ -74,7 +74,7 @@ Handle errors explicitly. Never swallow exceptions or error values without loggi
 
 When a requirement or interface contract is unclear, ask rather than assume. An incorrect assumption compounds.
 
-> There should be one — and preferably only one — obvious way to do it.
+> There should be one - and preferably only one - obvious way to do it.
 
 When multiple approaches exist, pick the idiomatic one for the language. Avoid inventing patterns when the language already provides one.
 

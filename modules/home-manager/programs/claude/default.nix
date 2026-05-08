@@ -40,7 +40,6 @@
         deny = [
           "Bash(ask-vault-pass)"
           "Bash(curl *)"
-          "Bash(git commit *)"
           "Bash(git push *)"
           "Bash(home-manager expire-generations *)"
           "Bash(home-manager init *)"

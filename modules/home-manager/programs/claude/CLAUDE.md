@@ -1,5 +1,9 @@
 # Claude Code Instructions
 
+# Timezone
+
+You write code for the timezone Europe/Zurich.
+
 ## Linter Suppressions
 
 When suppressing a linter warning or disabling a lint rule inline, always place the suppression comment directly next to the offending code (same line or immediately above it). Every suppression must be accompanied by a comment explaining why it is justified.
@@ -20,11 +24,12 @@ var _ = unsafePtr // nolint:gosec — pointer cast required by cgo ABI contract
 ```
 
 Rules:
+
 - Default to inline (per-line) suppressions placed next to the offending code.
 - File-level or global suppressions are allowed, but require two conditions to be met:
   1. The rule being disabled is already commonly suppressed across the codebase (i.e. it is an established pattern, not a one-off).
   2. You must ask the user for explicit approval before adding a global suppression.
-- The rationale must explain *why* the suppression is safe, not just restate what the rule checks.
+- The rationale must explain _why_ the suppression is safe, not just restate what the rule checks.
 - Prefer fixing the underlying issue over suppressing it. Suppression is a last resort.
 
 ---
@@ -77,6 +82,6 @@ When multiple approaches exist, pick the idiomatic one for the language. Avoid i
 
 If you can't describe what a function does in one sentence without caveats, simplify it first.
 
-> Now is better than never. Although never is often better than *right* now.
+> Now is better than never. Although never is often better than _right_ now.
 
 Don't defer indefinitely, but don't rush a design either. A slightly delayed correct solution beats an immediate wrong one.

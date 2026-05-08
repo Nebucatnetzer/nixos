@@ -34,6 +34,10 @@ Rules:
 
 ---
 
+## Code Style: Variable naming
+
+Avoid using the pattern `for i in projects` and similar. Use descriptive names for variables. E.g. `for project in projects`.
+
 ## Code Style: The Zen of Python (PEP 20) - Applied to All Languages
 
 Regardless of the language in use, write code that embodies the principles of PEP 20. Apply these as judgment calls, not rigid rules.

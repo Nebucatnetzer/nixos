@@ -5,6 +5,7 @@
   ...
 }:
 let
+  botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
   mariadbTuning = import "${inputs.self}/modules/services/mariadb/lib/mariadb-tuning.nix";
   port = 3000;
 in
@@ -31,7 +32,7 @@ in
           proxyWebsockets = true; # needed if you need to use WebSocket
         };
         extraConfig = ''
-          if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
         '';
       };
     };

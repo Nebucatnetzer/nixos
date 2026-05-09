@@ -4,6 +4,7 @@
   ...
 }:
 let
+  botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
   mariadbTuning = import "${inputs.self}/modules/services/mariadb/lib/mariadb-tuning.nix";
 in
 {
@@ -92,7 +93,7 @@ in
         enableACME = true;
         forceSSL = true;
         extraConfig = ''
-          if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+          if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
         '';
       };
     };

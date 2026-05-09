@@ -5,6 +5,7 @@
   ...
 }:
 let
+  botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
   searxngEnv = config.age.secrets.searxngEnv.path;
 in
@@ -54,7 +55,7 @@ in
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
           extraConfig = ''
-            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+            if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
           '';
         };
         "searxng.zweili.org" = {
@@ -65,7 +66,7 @@ in
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
           extraConfig = ''
-            if ($http_user_agent ~* "Bytespider|PetalBot|ClaudeBot|YandexBot|meta-externalagent|Amazonbot|Crawlers|facebookexternalhit|ImagesiftBot|Barkrowler|Googlebot|bingbot") { return 403; }
+            if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
           '';
           locations."/search" = {
             basicAuthFile = searxngHtpasswd;

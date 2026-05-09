@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Fail if $SUDO_USER is empty.
 if [ -z "$SUDO_USER" ]; then
@@ -11,7 +11,6 @@ fi
 ROOT_DIR=/mnt/nixos
 BOOT_DIR=/mnt/nixos/boot
 LUKS_NAME=crypttoformat
-LUKS_PATH=/dev/mapper/$LUKS_NAME
 
 umount_partitions() {
     echo "Unmount partitions."
@@ -21,7 +20,7 @@ umount_partitions() {
     umount "$ROOT_DIR"/nix
     umount "$ROOT_DIR"/swap
     umount "$ROOT_DIR"
-    cryptsetup close $LUKS_NAME
+    cryptsetup close "$LUKS_NAME"
 }
 
 umount_partitions

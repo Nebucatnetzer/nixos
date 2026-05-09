@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # Fail if $SUDO_USER is empty.
 if [ -z "$SUDO_USER" ]; then
@@ -10,8 +10,7 @@ fi
 
 DISK=/dev/nvme0n1
 
-BOOT_PARTITION="$DISK"p1
-ROOT_PARTITION="$DISK"p2
+ROOT_PARTITION="${DISK}p2"
 ROOT_DIR=/mnt/nixos
 BOOT_DIR=/mnt/nixos/boot
 LUKS_NAME=crypttoformat
@@ -19,7 +18,7 @@ LUKS_PATH=/dev/mapper/$LUKS_NAME
 
 mount_partitions() {
     echo "Mount partitions."
-    cryptsetup open $ROOT_PARTITION $LUKS_NAME
+    cryptsetup open "$ROOT_PARTITION" "$LUKS_NAME"
     sleep 5
     mount -o subvol=root,compress=zstd,noatime "$LUKS_PATH" "$ROOT_DIR"
     mkdir -p "$ROOT_DIR"/{home,nix,swap}

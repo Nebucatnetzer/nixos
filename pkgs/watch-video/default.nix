@@ -1,4 +1,5 @@
 {
+  lib,
   fd,
   fzf,
   mpv,
@@ -11,6 +12,12 @@ writeShellApplication {
     fzf
     mpv
   ];
+  meta = {
+    description = "Fuzzy-pick an independent video from the external SSD and play it in mpv";
+    license = lib.licenses.gpl3Plus;
+    mainProgram = "watch-video";
+    platforms = lib.platforms.linux;
+  };
   text = ''
     fd \
       --search-path /run/media/andreas/20260414--ext-ssd/videos/youtube/independent_videos/ \

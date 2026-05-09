@@ -1,4 +1,5 @@
 {
+  lib,
   mpv,
   yt-dlp,
   writeShellApplication,
@@ -9,9 +10,13 @@ writeShellApplication {
     mpv
     yt-dlp
   ];
+  meta = {
+    description = "Download a YouTube video to a temp dir and immediately open it in mpv";
+    license = lib.licenses.gpl3Plus;
+    mainProgram = "video-to-mpv";
+    platforms = lib.platforms.linux;
+  };
   text = ''
-    # download a single video from youtube, using cookies from firefox to bypass paywalls and age restrictions
-    # store it in a tmp directory and then open it with mpv
     tmpDir=$(mktemp -d);
     yt-dlp \
       --cookies-from-browser firefox \

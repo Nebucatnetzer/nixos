@@ -1,4 +1,5 @@
 {
+  lib,
   rsync,
   writers,
   writeShellApplication,
@@ -17,6 +18,12 @@ writeShellApplication {
     rsync
     dap-sync-python
   ];
+  meta = {
+    description = "Sync DAP (Digital Audio Player) content to and from the external SSD";
+    license = lib.licenses.gpl3Plus;
+    mainProgram = "dap-sync";
+    platforms = lib.platforms.linux;
+  };
   text = ''
     dap-sync-python "$@"
   '';

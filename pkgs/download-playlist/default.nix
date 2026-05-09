@@ -1,4 +1,5 @@
 {
+  lib,
   yt-dlp,
   writeShellApplication,
 }:
@@ -7,6 +8,12 @@ writeShellApplication {
   runtimeInputs = [
     yt-dlp
   ];
+  meta = {
+    description = "Download a YouTube playlist via yt-dlp using Firefox cookies";
+    license = lib.licenses.gpl3Plus;
+    mainProgram = "download-playlist";
+    platforms = lib.platforms.linux;
+  };
   text = ''
     yt-dlp \
       --cookies-from-browser firefox \

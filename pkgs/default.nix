@@ -6,14 +6,24 @@ let
   yt-dlp = unstable-pkgs.yt-dlp;
 in
 rec {
-  az-media = pkgs.writeShellScriptBin "az-media" ''
-    videos="videos"
-    directory="''${1:-videos}"
-    for i in $(seq 1 4);
-    do
-        mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
-    done
-  '';
+  az-media =
+    pkgs.lib.meta.addMetaAttrs
+      {
+        description = "Open four shuffled mpv instances for ambient video playback";
+        license = pkgs.lib.licenses.gpl3Plus;
+        mainProgram = "az-media";
+        platforms = pkgs.lib.platforms.linux;
+      }
+      (
+        pkgs.writeShellScriptBin "az-media" ''
+          videos="videos"
+          directory="''${1:-videos}"
+          for i in $(seq 1 4);
+          do
+              mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
+          done
+        ''
+      );
   custom-mpv = pkgs.callPackage ./mpv { };
   dap-sync = pkgs.callPackage ./dap-sync { };
   date-to-filename = pkgs.callPackage ./date-to-filename { };

@@ -7,7 +7,7 @@
 }:
 let
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
-  commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
+  btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
   foxFlssWrapper = pkgs.writeShellApplication {
     name = "enable-wwan";
@@ -45,6 +45,7 @@ in
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"
     (btrfsAuxModule { })
+    (btrfsLayout { })
     (mediaShare { })
     (resticClientModule { })
     (syncthingModule { })
@@ -105,54 +106,8 @@ in
     "squashfs"
   ];
 
-  fileSystems."/" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=root"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/home" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=home"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/nix" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=nix"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/swap" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    options = [
-      "compress=no"
-      "noatime"
-      "nodatacow"
-      "nodatasum"
-      "ssd"
-      "subvol=swap"
-    ];
-  };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
-
   networking.wg-quick.interfaces.wg0.dns = [ config.az-hosts.gwyn.wgIp ];
   networking.hostName = hostname;
-
-  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   hardware = {
     cpu.intel.npu.enable = true;

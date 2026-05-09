@@ -10,6 +10,7 @@ let
   actualData = "/var/lib/actualbudget";
   eactualData = "/var/lib/eactual";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
+  btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
     { fqdn = "${config.services.freshrss.virtualHost}"; }
@@ -65,6 +66,7 @@ in
       port = 5007;
     })
     (btrfsAuxModule { })
+    (btrfsLayout { })
     (mediaShare { hard = true; })
     (giteaModule {
       dataDir = giteaDataDir;
@@ -149,49 +151,6 @@ in
     "squashfs"
   ];
 
-  fileSystems."/" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=root"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/home" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=home"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/nix" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    neededForBoot = true;
-    options = [
-      "subvol=nix"
-    ]
-    ++ commonBtrfsOptions;
-  };
-  fileSystems."/swap" = {
-    fsType = "btrfs";
-    label = "mainBtrfs";
-    options = [
-      "compress=no"
-      "noatime"
-      "nodatacow"
-      "nodatasum"
-      "ssd"
-      "subvol=swap"
-    ];
-  };
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
   fileSystems."/var/lib/restic-server" = {
     fsType = "btrfs";
     label = "resticSSD";
@@ -201,8 +160,6 @@ in
     ]
     ++ commonBtrfsOptions;
   };
-
-  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # USB address of the ethernet dongle: 0bda:8153
   networking = {

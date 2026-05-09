@@ -3,6 +3,9 @@
   inputs,
   ...
 }:
+let
+  mariadbTuning = import "${inputs.self}/modules/services/mariadb/lib/mariadb-tuning.nix";
+in
 {
   age.secrets.freshrss_db_pass = {
     file = "${inputs.self}/scrts/freshrss_db_pass.age";
@@ -51,12 +54,7 @@
       ];
       initialDatabases = [ { name = "freshrss"; } ];
       settings = {
-        mysqld = {
-          innodb_file_per_table = 1;
-          innodb_buffer_pool_size = "2G";
-          read_rnd_buffer_size = "4M";
-          sort_buffer_size = "4M";
-        };
+        mysqld = mariadbTuning;
       };
     };
     nginx = {

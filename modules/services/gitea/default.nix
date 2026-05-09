@@ -5,6 +5,7 @@
   ...
 }:
 let
+  mariadbTuning = import "${inputs.self}/modules/services/mariadb/lib/mariadb-tuning.nix";
   port = 3000;
 in
 {
@@ -49,11 +50,8 @@ in
         collation-server = "utf8mb4_unicode_ci";
         init-connect = "SET NAMES utf8mb4";
         character-set-server = "utf8mb4";
-        innodb_file_per_table = 1;
-        innodb_buffer_pool_size = "2G";
-        read_rnd_buffer_size = "4M";
-        sort_buffer_size = "4M";
-      };
+      }
+      // mariadbTuning;
     };
   };
 

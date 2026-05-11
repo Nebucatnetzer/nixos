@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 ;; basic settings
-(load-file (modules-path "az_general.el"))
+(load-file (modules-path "az_lib.el"))
+(load-file (modules-path "az_commands.el"))
+(load-file (modules-path "az_core_settings.el"))
 
 ;; keybindings and navigation
 (load-file (modules-path "az_evil.el"))

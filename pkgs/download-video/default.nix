@@ -1,5 +1,6 @@
 {
   lib,
+  mediaPaths,
   yt-dlp,
   writeShellApplication,
 }:
@@ -19,7 +20,7 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --no-playlist \
       --remux-video=mkv \
-      --paths=/run/media/andreas/20260414--ext-ssd/videos/youtube/independent_videos/ \
+      --paths=${mediaPaths.youtubeIndependentVideos}/ \
       "$@"
   '';
 }

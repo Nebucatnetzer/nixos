@@ -1,5 +1,6 @@
 {
   lib,
+  mediaPaths,
   openjdk,
   ffmpeg,
   writeShellApplication,
@@ -17,6 +18,6 @@ writeShellApplication {
     platforms = lib.platforms.linux;
   };
   text = ''
-    java -jar "/home/andreas/applications/jd2/JDownloader.jar"
+    java -jar "${mediaPaths.jdownloaderJar}"
   '';
 }

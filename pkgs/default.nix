@@ -4,6 +4,7 @@
 }:
 let
   inherit (unstable-pkgs) yt-dlp;
+  mediaPaths = import ./mediaPaths.nix;
 in
 rec {
   az-media =
@@ -20,7 +21,7 @@ rec {
           directory="''${1:-videos}"
           for i in $(seq 1 4);
           do
-              mpv --shuffle --mute=yes "/run/media/andreas/various/$directory/" &
+              mpv --shuffle --mute=yes "${mediaPaths.variousVideos}/$directory/" &
           done
         ''
       );
@@ -29,10 +30,10 @@ rec {
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };
-  download-video = pkgs.callPackage ./download-video { inherit yt-dlp; };
-  download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp; };
+  download-video = pkgs.callPackage ./download-video { inherit yt-dlp mediaPaths; };
+  download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp mediaPaths; };
   dptfxtract = pkgs.callPackage ./dptfxtract { };
-  jdownloader = pkgs.callPackage ./jdownloader { };
+  jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
   rebuild = pkgs.callPackage ./rebuild { };
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
@@ -42,8 +43,8 @@ rec {
     inherit yt-dlp;
     mpv = custom-mpv;
   };
-  watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; };
-  watch-random-video = pkgs.callPackage ./watch-random-video { mpv = custom-mpv; };
-  watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; };
+  watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; inherit mediaPaths; };
+  watch-random-video = pkgs.callPackage ./watch-random-video { mpv = custom-mpv; inherit mediaPaths; };
+  watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; inherit mediaPaths; };
   win32yank = pkgs.callPackage ./win32yank { inherit (pkgs) pkgsCross; };
 }

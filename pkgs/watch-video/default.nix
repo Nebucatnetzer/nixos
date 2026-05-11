@@ -2,6 +2,7 @@
   lib,
   fd,
   fzf,
+  mediaPaths,
   mpv,
   writeShellApplication,
 }:
@@ -20,7 +21,7 @@ writeShellApplication {
   };
   text = ''
     fd \
-      --search-path /run/media/andreas/20260414--ext-ssd/videos/youtube/independent_videos/ \
+      --search-path ${mediaPaths.youtubeIndependentVideos}/ \
       --type file \
       --no-hidden \
       --max-depth 1 |

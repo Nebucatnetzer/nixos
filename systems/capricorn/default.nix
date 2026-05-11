@@ -78,11 +78,7 @@ in
     "thunderbolt"
     "i915"
   ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "sg"
-    "squashfs"
-  ];
+  boot.kernelModules = [ "squashfs" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "i915.force_probe=!7d45"
@@ -94,25 +90,12 @@ in
     device = "/dev/nvme0n1p2";
   };
 
-  boot.supportedFilesystems = [
-    "btrfs"
-    "cifs"
-    "exfat"
-    "ext4"
-    "f2fs"
-    "nfs"
-    "nfs4"
-    "ntfs"
-    "squashfs"
-  ];
-
   networking.wg-quick.interfaces.wg0.dns = [ config.az-hosts.gwyn.wgIp ];
   networking.hostName = hostname;
 
   hardware = {
     cpu.intel.npu.enable = true;
     graphics = {
-      enable = true;
       extraPackages = [
         pkgs.intel-compute-runtime
         pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
@@ -138,8 +121,6 @@ in
 
   services = {
     fprintd.enable = true;
-    fstrim.enable = true; # Enable TRIM for SD cards
-    hardware.bolt.enable = true; # Enable Thunderbolt control
     smartd.devices = [
       { device = "/dev/nvme0n1"; }
       {
@@ -147,6 +128,5 @@ in
         options = "-a -d sntasmedia -d removable";
       }
     ];
-    thermald.enable = true;
   };
 }

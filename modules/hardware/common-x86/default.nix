@@ -16,19 +16,26 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+  boot.kernelModules = [
+    "kvm-intel"
+    "sg"
+  ];
+  boot.supportedFilesystems = [
+    "btrfs"
+    "cifs"
+    "exfat"
+    "ext4"
+    "f2fs"
+    "nfs"
+    "nfs4"
+    "ntfs"
+    "squashfs"
+  ];
   hardware = {
     cpu.intel.updateMicrocode = true;
+    graphics.enable = true;
   };
   nixpkgs.hostPlatform = "x86_64-linux";
-  services.smartd = {
-    enable = true;
-    autodetect = true;
-    notifications.mail = {
-      enable = true;
-      recipient = "admin+smartd@zweili.ch";
-      sender = "admin@zweili.ch";
-    };
-  };
   programs.msmtp = {
     enable = true;
     defaults = {
@@ -46,5 +53,19 @@
         user = "admin@zweili.ch";
       };
     };
+  };
+  services = {
+    fstrim.enable = true;
+    hardware.bolt.enable = true;
+    smartd = {
+      enable = true;
+      autodetect = true;
+      notifications.mail = {
+        enable = true;
+        recipient = "admin+smartd@zweili.ch";
+        sender = "admin@zweili.ch";
+      };
+    };
+    thermald.enable = true;
   };
 }

@@ -122,10 +122,6 @@ in
     "r8153_ecm"
     "xhci_pci"
   ];
-  boot.kernelModules = [
-    "kvm-intel"
-    "sg"
-  ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
     "rootdelay=10"
@@ -138,18 +134,6 @@ in
     allowDiscards = true;
     device = "/dev/nvme0n1p2";
   };
-
-  boot.supportedFilesystems = [
-    "btrfs"
-    "cifs"
-    "exfat"
-    "ext4"
-    "f2fs"
-    "nfs"
-    "nfs4"
-    "ntfs"
-    "squashfs"
-  ];
 
   fileSystems."/var/lib/restic-server" = {
     fsType = "btrfs";
@@ -180,12 +164,9 @@ in
     ];
   };
 
-  hardware.graphics.enable = true;
   hardware.nvidia-container-toolkit.enable = true;
 
   services = {
-    fstrim.enable = true; # Enable TRIM for SD cards
-    hardware.bolt.enable = true; # Enable Thunderbolt control
     logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     mysql.package = pkgs.mariadb_114;
     smartd.devices = [
@@ -197,8 +178,6 @@ in
         options = "-a -d sntasmedia -d removable";
       }
     ];
-    thermald.enable = true;
-
     # Disable the integrated webcam
     udev.extraRules = ''
       ACTION=="add", ATTR{idVendor}=="0c45", ATTR{idProduct}=="671d", RUN="${pkgs.bash}/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"

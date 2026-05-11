@@ -10,6 +10,7 @@
     LSP_USE_PLISTS = "true";
   };
   home.packages = [
+    pkgs.deadnix
     pkgs.emacs-lsp-booster
     pkgs.fd
     pkgs.hurl # required for hurl-mode
@@ -22,6 +23,7 @@
     pkgs.shellcheck # shell script linter
     pkgs.shfmt # formatting bash scripts
     pkgs.silver-searcher
+    pkgs.statix
   ]
   ++ lib.optionals (config.programs.emacs.package != pkgs.emacs-nox) [
     pkgs.source-code-pro

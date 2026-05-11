@@ -1,4 +1,4 @@
-{ ... }:
+_:
 let
   blogPosts = "/var/lib/posts";
 in

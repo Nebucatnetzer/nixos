@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.kanata = {
     enable = true;
     keyboards."notebook" = {

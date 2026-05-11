@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   fileSystems."/var/log" = {
     device = "none";
     fsType = "tmpfs";

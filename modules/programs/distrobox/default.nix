@@ -6,7 +6,7 @@
   ...
 }:
 let
-  distrobox = unstable-pkgs.distrobox;
+  inherit (unstable-pkgs) distrobox;
 in
 {
   environment = {

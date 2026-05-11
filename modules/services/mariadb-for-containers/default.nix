@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.snmpd.configText = ''
     # monitor mysqld
     proc mysqld

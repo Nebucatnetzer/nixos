@@ -11,15 +11,15 @@ let
   offsiteRepo = "swift:default:/";
   passwordFile = config.age.secrets.resticKey.path;
   offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
-    envFile = swiftStorage.envFile;
+    inherit (swiftStorage) envFile;
     resticPassword = passwordFile;
     resticRepo = offsiteRepo;
-    swiftAuthUrl = swiftStorage.swiftAuthUrl;
+    inherit (swiftStorage) swiftAuthUrl;
   };
   offsite-repo-sync = pkgs.callPackage ./offsite_repo_sync.nix {
-    envFile = swiftStorage.envFile;
+    inherit (swiftStorage) envFile;
     localResticRepo = repository;
-    swiftAuthUrl = swiftStorage.swiftAuthUrl;
+    inherit (swiftStorage) swiftAuthUrl;
     swiftRegion = "RegionOne";
   };
   swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;

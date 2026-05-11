@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs.bash.shellAliases = {
     pra = ''mpv "$(beet random -a -p)" &'';
   };

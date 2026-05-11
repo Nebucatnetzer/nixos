@@ -2,7 +2,7 @@
   btrfsLabel ? "mainBtrfs",
   bootLabel ? "BOOT",
 }:
-{ ... }:
+_:
 let
   commonBtrfsOptions = import ./common_options.nix;
 in

@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.rsyslogd = {
     enable = true;
     defaultConfig = ''

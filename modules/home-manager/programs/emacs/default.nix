@@ -95,7 +95,7 @@
         epkgs.ht
         epkgs.htmlize
         (pkgs.callPackage ./packages/hurl-mode {
-          melpaBuild = epkgs.melpaBuild;
+          inherit (epkgs) melpaBuild;
         })
         epkgs.hydra
         epkgs.hyperbole

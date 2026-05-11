@@ -91,7 +91,7 @@ in
     file = "${inputs.self}/scrts/radicale_public_ics_location.age";
     mode = "440";
     owner = "root";
-    group = config.services.nginx.group;
+    inherit (config.services.nginx) group;
   };
 
   services.radicale = {

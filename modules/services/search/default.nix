@@ -23,7 +23,7 @@ in
     file = "${inputs.self}/scrts/searxng_htpasswd.age";
     mode = "640";
     owner = "root";
-    group = config.services.nginx.group;
+    inherit (config.services.nginx) group;
   };
   age.secrets.zweiliSearchEnv.file = "${inputs.self}/scrts/zweili_search_env.age";
   virtualisation.oci-containers = {

@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   security.acme = {
     acceptTerms = true;
     defaults.email = "admin+acme@zweili.ch";

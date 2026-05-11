@@ -1,8 +1,7 @@
 {
   userEmail ? "andreas@zweili.ch",
 }:
-{ ... }:
-{
+_: {
   programs.delta = {
     enable = true;
     enableGitIntegration = true;

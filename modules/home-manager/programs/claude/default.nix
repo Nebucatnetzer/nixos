@@ -3,7 +3,7 @@
   programs.claude-code = {
     enable = true;
     package = pkgs.callPackage ./claude_wrapper.nix {
-      claude-code = unstable-pkgs.claude-code;
+      inherit (unstable-pkgs) claude-code;
     };
     commands = {
       commit = ./skills/commit.md;

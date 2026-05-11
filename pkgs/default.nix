@@ -3,7 +3,7 @@
   unstable-pkgs,
 }:
 let
-  yt-dlp = unstable-pkgs.yt-dlp;
+  inherit (unstable-pkgs) yt-dlp;
 in
 rec {
   az-media =

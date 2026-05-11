@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   services.snmpd = {
     enable = true;
     openFirewall = true;

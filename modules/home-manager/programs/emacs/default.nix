@@ -16,7 +16,7 @@
     pkgs.multimarkdown
     pkgs.nixd # Nix language server
     pkgs.nodePackages.prettier # formatting files
-    pkgs.nixfmt-rfc-style
+    pkgs.nixfmt
     pkgs.pandoc
     pkgs.ripgrep
     pkgs.shellcheck # shell script linter

@@ -41,7 +41,6 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-pgtk;
     extraPackages = epkgs: [
       epkgs.ace-window
       unstable-pkgs.emacs.pkgs.alabaster-themes

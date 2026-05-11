@@ -102,7 +102,7 @@ in
   };
 
   programs = {
-    emacs.package = lib.mkForce pkgs.emacs-pgtk;
+    emacs.package = pkgs.emacs-pgtk;
     direnv = {
       enable = true;
       nix-direnv.enable = true;

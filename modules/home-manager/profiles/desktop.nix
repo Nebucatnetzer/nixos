@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   nixosConfig,
   pkgs,
   unstable-pkgs,
@@ -67,6 +68,7 @@ in
         work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
       };
     };
+    emacs.package = lib.mkForce pkgs.emacs-pgtk;
     tmux.mouse = true;
   };
 

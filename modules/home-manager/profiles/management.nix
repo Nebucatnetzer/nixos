@@ -48,6 +48,9 @@ in
       format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
     };
   };
+  programs = {
+    emacs.package = pkgs.emacs-nox;
+  };
   services = {
     ssh-agent.enable = true;
   };

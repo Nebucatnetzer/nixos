@@ -44,9 +44,6 @@ in
     sessionVariables = {
       PATH = "$PATH:$HOME/.local/bin";
     };
-    shellAliases = {
-      format-modules = "${pkgs.nixfmt-rfc-style}/bin/nixfmt **/*.nix";
-    };
   };
   programs = {
     emacs.package = pkgs.emacs-nox;

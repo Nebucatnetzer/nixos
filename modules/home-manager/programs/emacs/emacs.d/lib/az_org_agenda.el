@@ -113,8 +113,8 @@ This function is intended for use with `org-agenda-skip-function'."
     (defun az-update-org-agenda-files ()
       "Update the list of org-agenda-files dynamically."
       (setq org-agenda-files
-            (append (find-lisp-find-files "~/nextcloud/01_inbox/" "\\.org$")
-                    (find-lisp-find-files "~/nextcloud/02_projects/" "\\.org$"))))
+            (append (find-lisp-find-files az-org-inbox-dir "\\.org$")
+                    (find-lisp-find-files az-org-projects-dir "\\.org$"))))
 
     ;; Add a hook to update agenda files whenever org-agenda is invoked
     (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)))

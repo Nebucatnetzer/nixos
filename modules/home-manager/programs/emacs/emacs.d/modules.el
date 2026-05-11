@@ -1,4 +1,6 @@
 ;; -*- lexical-binding: t; -*-
+(load-file (modules-path "az_paths.el"))
+
 ;; basic settings
 (load-file (modules-path "az_lib.el"))
 (load-file (modules-path "az_commands.el"))

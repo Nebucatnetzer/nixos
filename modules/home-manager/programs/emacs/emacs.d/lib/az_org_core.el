@@ -103,19 +103,17 @@
 
     ;; capture templates
     (defun az-org-capture-read-file-name ()
-      (concat (expand-file-name (read-file-name "PROMPT: " "~/nextcloud/01_inbox/")) ".org"))
+      (concat (expand-file-name (read-file-name "PROMPT: " az-org-inbox-dir)) ".org"))
 
     (setopt org-capture-templates
-            (quote
-             (("t" "Adds a Next entry" entry
-               (file+headline "~/nextcloud/01_inbox/00_inbox.org" "Capture")
-               (file "~/nextcloud/99_archive/0000/settings/templates/temp_personal_todo.txt")
+            `(("t" "Adds a Next entry" entry
+               (file+headline ,az-org-inbox-file "Capture")
+               (file ,(concat az-org-templates-dir "temp_personal_todo.txt"))
                :clock-in t
                :clock-resume t
                :empty-lines 1)
               ("n" "Add note" plain (file az-org-capture-read-file-name)
-               (file "~/nextcloud/99_archive/0000/settings/templates/temp_note.txt"))
-              ))
+               (file ,(concat az-org-templates-dir "temp_note.txt"))))
 
             ;; org-refile options
             org-refile-allow-creating-parent-nodes (quote confirm)
@@ -157,7 +155,7 @@
     (setopt org-attach-id-dir "resources/"
 
             org-archive-location
-            (concat "~/nextcloud/99_archive/"
+            (concat az-org-archive-dir
                     (format-time-string "%Y" (current-time)) "/projects/"
                     (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))
 
@@ -232,7 +230,7 @@
       (defun start-main-clock ()
         "This functions always clocks in to the * Clock heading"
         (interactive)
-        (start-heading-clock "f4294c36-0b69-4a9e-a5d9-54c924011bf0" "~/nextcloud/02_projects/00_work.org"))
+        (start-heading-clock "f4294c36-0b69-4a9e-a5d9-54c924011bf0" az-org-work-file))
 
       (org-clock-persistence-insinuate)
 

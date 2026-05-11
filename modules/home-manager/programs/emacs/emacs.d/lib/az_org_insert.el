@@ -27,7 +27,7 @@
   (load-library "find-lisp")
   (global-set-key (kbd "C-c i") 'org-insert-image)
   ;; start directory
-  (defvar bjm/conference-image-dir (expand-file-name "~/nextcloud/21_auto_uploads/"))
+  (defvar bjm/conference-image-dir (expand-file-name az-auto-uploads-dir))
 
   (defun org-insert-image ()
     "Insert image from conference directory, rename and add link in current file.

@@ -30,7 +30,7 @@
       ExecStart = "${pkgs.jre}/bin/java -cp ${pkgs.languagetool}/share/languagetool-server.jar -Xmx512m org.languagetool.server.HTTPServer";
     };
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ "default.target" ];
     };
   };
   systemd.user.services.emacs = {

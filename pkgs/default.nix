@@ -56,4 +56,5 @@ rec {
     inherit mediaPaths;
   };
   win32yank = pkgs.callPackage ./win32yank { inherit (pkgs) pkgsCross; };
+  zapp = pkgs.callPackage ./zapp { };
 }

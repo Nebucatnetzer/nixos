@@ -43,8 +43,17 @@ rec {
     inherit yt-dlp;
     mpv = custom-mpv;
   };
-  watch-playlist = pkgs.callPackage ./watch-playlist { mpv = custom-mpv; inherit mediaPaths; };
-  watch-random-video = pkgs.callPackage ./watch-random-video { mpv = custom-mpv; inherit mediaPaths; };
-  watch-video = pkgs.callPackage ./watch-video { mpv = custom-mpv; inherit mediaPaths; };
+  watch-playlist = pkgs.callPackage ./watch-playlist {
+    mpv = custom-mpv;
+    inherit mediaPaths;
+  };
+  watch-random-video = pkgs.callPackage ./watch-random-video {
+    mpv = custom-mpv;
+    inherit mediaPaths;
+  };
+  watch-video = pkgs.callPackage ./watch-video {
+    mpv = custom-mpv;
+    inherit mediaPaths;
+  };
   win32yank = pkgs.callPackage ./win32yank { inherit (pkgs) pkgsCross; };
 }

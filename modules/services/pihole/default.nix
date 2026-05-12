@@ -66,6 +66,18 @@ in
         url = "https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/tif.txt";
         description = "HaGeZi Threat Intelligence Feeds - malware and phishing";
       }
+      {
+        url = "https://dbl.ipfire.org/lists/ads/rpz.zone";
+        description = "IPFire Advertising";
+      }
+      {
+        url = "https://dbl.ipfire.org/lists/malware/rpz.zone";
+        description = "IPFire Malware";
+      }
+      {
+        url = "https://dbl.ipfire.org/lists/phishing/rpz.zone";
+        description = "IPFire Phishing";
+      }
     ];
     settings = {
       dns = {

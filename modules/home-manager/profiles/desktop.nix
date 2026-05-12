@@ -38,6 +38,7 @@ in
       azPkgs.watch-playlist
       azPkgs.watch-random-video
       azPkgs.watch-video
+      azPkgs.zapp
 
       # photography packages
       unstable-pkgs.darktable
@@ -49,7 +50,6 @@ in
       pkgs.wine-wayland
       pkgs.wineWowPackages.waylandFull
 
-      pkgs.chromium # needed for cloud gaming and flashing zsa
       pkgs.czkawka
       pkgs.exercism
       pkgs.keepassxc

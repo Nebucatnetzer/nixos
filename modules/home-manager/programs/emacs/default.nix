@@ -73,7 +73,6 @@
         unstable-pkgs.emacs.pkgs.denote-org
         epkgs.eglot-booster
         epkgs.elisp-refs
-        unstable-pkgs.emacs.pkgs.ellama
         epkgs.embark
         epkgs.embark-consult
         epkgs.envrc

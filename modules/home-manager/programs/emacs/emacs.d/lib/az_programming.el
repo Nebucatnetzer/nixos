@@ -1,30 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-;; https://github.com/s-kostyaev/ellama
-(use-package ellama
-  :bind ("C-c e" . ellama)
-  :init
-  (setopt ellama-auto-scroll t)
-  ;; setup key bindings
-  (setq llm-warn-on-nonfree nil)
-
-  ;; language you want ellama to translate to
-  (setopt ellama-language "German")
-
-  (require 'auth-source)
-  (setq github-key (auth-source-pick-first-password :host "models.inference.ai.azure.com"))
-
-  (require 'llm-openai)
-  (setopt ellama-provider (make-llm-openai-compatible
-                           :chat-model "soji"
-                           :url "https://mars.chub.ai/chub/soji/v1"
-                           :key (auth-source-pick-first-password :host "mars.chub.ai")))
-  :config
-  ;; show ellama context in header line in all buffers
-  (ellama-context-header-line-global-mode +1)
-  ;; show ellama session id in header line in all buffers
-  (ellama-session-header-line-global-mode +1))
-
 (use-package editorconfig
   :ensure nil
   :config

@@ -1,6 +1,13 @@
 # Claude Code Instructions
 
-# Timezone
+## Communication Style
+
+- Be concise and direct.
+- Skip polite filler.
+- Don't ask if you should implement/commit or change something in any way.
+- Unless instructed to change something you are in read-only mode.
+
+## Timezone
 
 You write code for the timezone Europe/Zurich.
 

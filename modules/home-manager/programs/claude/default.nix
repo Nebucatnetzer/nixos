@@ -1,5 +1,6 @@
 { pkgs, unstable-pkgs, ... }:
 {
+  home.file.".claude/output-styles".source = ./output-styles;
   programs.claude-code = {
     enable = true;
     package = pkgs.callPackage ./claude_wrapper.nix {
@@ -10,6 +11,7 @@
     };
     memory.source = ./CLAUDE.md;
     settings = {
+      outputStyle = "Advisor";
       sandbox = {
         enabled = true;
         allowUnsandboxedCommands = false;
@@ -21,29 +23,20 @@
         };
       };
       permissions = {
+        defaultMode = "plan";
         allow = [
-          "Bash(black *)"
-          "Bash(deadnix *)"
-          "Bash(dev *)"
-          "Bash(docformatter *)"
-          "Bash(isort *)"
-          "Bash(mypy *)"
-          "Bash(nix build *)"
-          "Bash(nixfmt *)"
-          "Bash(prettier *)"
-          "Bash(pylint *)"
-          "Bash(pytest *)"
-          "Bash(ruff *)"
-          "Bash(shellcheck *)"
-          "Bash(shfmt *)"
-          "Read(//etc)"
+          "Read"
           "WebSearch"
 
         ];
         deny = [
           "Bash(ask-vault-pass)"
           "Bash(curl *)"
-          "Bash(git push *)"
+          "Bash(git checkout*)"
+          "Bash(git commit*)"
+          "Bash(git push*)"
+          "Bash(git restore*)"
+          "Bash(git switch*)"
           "Bash(home-manager expire-generations *)"
           "Bash(home-manager init *)"
           "Bash(home-manager remove-generations *)"
@@ -58,6 +51,7 @@
           "Bash(nixos-rebuild-ng test *)"
           "Bash(./scripts/update-single-machine *)"
           "Bash(rebuild)"
+          "Bash(rm*)"
           "Bash(ssh*)"
           "Bash(sudo *)"
           "Read(./secrets)"

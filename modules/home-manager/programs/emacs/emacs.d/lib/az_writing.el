@@ -62,3 +62,6 @@
   :hook (markdown-mode . olivetti-mode)
   :init
   (setopt olivetti-body-width 120))
+
+(use-package typst-ts-mode
+  :hook (nix-mode . eglot-ensure))

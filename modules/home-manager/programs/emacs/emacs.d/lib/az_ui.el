@@ -23,7 +23,6 @@
           scroll-step 1))
 
 (when (boundp 'enable-color-theme)
-  ;; load solarized color theme
   (use-package alabaster-themes
     :config
     (load-theme 'alabaster-themes-light-bg t)))

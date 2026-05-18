@@ -175,7 +175,7 @@ in
         device = "/dev/sda";
         # The flags here corespond not with the ones from smartctl. You can
         # look them up with `man smartd.conf`.
-        options = "-a -d sntasmedia -d removable";
+        options = "-a -d sntasmedia -n standby,q";
       }
     ];
     # Disable the integrated webcam

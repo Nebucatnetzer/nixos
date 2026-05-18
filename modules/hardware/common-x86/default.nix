@@ -59,7 +59,7 @@
     hardware.bolt.enable = true;
     smartd = {
       enable = true;
-      autodetect = true;
+      autodetect = false;
       notifications.mail = {
         enable = true;
         recipient = "admin+smartd@zweili.ch";

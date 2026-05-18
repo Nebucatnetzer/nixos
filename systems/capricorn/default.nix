@@ -78,8 +78,14 @@ in
     "thunderbolt"
     "i915"
   ];
-  boot.kernelModules = [ "squashfs" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [
+    "squashfs"
+    "v4l2loopback"
+  ];
+  boot.extraModprobeConfig = ''options v4l2loopback exclusive_caps=1 card_label="Intel MIPI Camera"'';
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback
+  ];
   boot.kernelParams = [
     "i915.force_probe=!7d45"
     "xe.force_probe=7d45"
@@ -105,10 +111,10 @@ in
       ];
     };
     keyboard.zsa.enable = true;
-    # ipu6 = {
-    #   enable = true;
-    #   platform = "ipu6epmtl";
-    # };
+    ipu6 = {
+      enable = true;
+      platform = "ipu6epmtl";
+    };
   };
 
   environment.systemPackages = [
@@ -128,5 +134,16 @@ in
         options = "-a -d sntasmedia -d removable";
       }
     ];
+    v4l2-relayd.instances.ipu6 = {
+      cardLabel = "Intel MIPI Camera";
+      input = {
+        format = "NV12";
+        width = 1920;
+        height = 1080;
+        framerate = 30;
+      };
+      output.format = "YUY2";
+      extraPackages = [ pkgs.gst_all_1.icamerasrc-ipu6epmtl ];
+    };
   };
 }

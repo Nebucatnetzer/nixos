@@ -150,7 +150,6 @@
                 "Split the frame if there is a single window."
                 (when (one-window-p) (split-window-sensibly))))
 
-  (az-on-frame-open (selected-frame))
   ;; pair parentheses
   (electric-pair-mode 1)
   ;; remap yes or no to y or n
@@ -188,7 +187,6 @@
     (when (is-linux-p)
       (set-fontset-font t nil "Symbola" nil 'prepend)))
 
-  (add-hook 'after-make-frame-functions 'az-on-frame-open)
   :hook
   (
    ;; Remove whitespace when saving
@@ -206,8 +204,7 @@
    (text-mode . az-generic-setup)
    ;; )
    ;; Enable line wrapping
-   (text-mode  . turn-on-auto-fill)
-   (window-setup . az-on-after-init))
+   (text-mode  . turn-on-auto-fill))
   :bind
   (:map global-map
         ("C-x C-1" . delete-other-windows)

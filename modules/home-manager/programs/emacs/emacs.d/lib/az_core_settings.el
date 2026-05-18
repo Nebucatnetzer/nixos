@@ -176,7 +176,7 @@
   (when (boundp 'enable-scroll-bar)
     (scroll-bar-mode -1))
   ;; Disable fringe because I use visual-line-mode
-  (when (boundp 'disable-fringe)
+  (when (and (boundp 'disable-fringe) (fboundp 'set-fringe-mode))
     (set-fringe-mode '(0 . 0)))
   (when (boundp 'enable-font)
     (set-face-attribute 'default nil

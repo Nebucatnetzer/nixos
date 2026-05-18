@@ -93,3 +93,4 @@ flycheck_*
 *.key
 /*.raw
 /CLAUDE.md
+/.claude/settings.local.json

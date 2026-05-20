@@ -11,7 +11,7 @@
     };
     memory.source = ./CLAUDE.md;
     settings = {
-      outputStyle = "Advisor";
+      outputStyle = "Mentor";
       sandbox = {
         enabled = true;
         allowUnsandboxedCommands = false;

@@ -23,7 +23,6 @@
         };
       };
       permissions = {
-        defaultMode = "plan";
         allow = [
           "Read"
           "WebSearch"

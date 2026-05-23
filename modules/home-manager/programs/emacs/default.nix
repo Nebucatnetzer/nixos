@@ -62,6 +62,9 @@
         epkgs.cape
         epkgs.cfrs
         epkgs.citeproc
+        epkgs.citar
+        epkgs.citar-denote
+        epkgs.citar-embark
         epkgs.consult
         unstable-pkgs.emacs.pkgs.consult-denote
         epkgs.consult-projectile

@@ -47,7 +47,6 @@ in
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/ntp"
     "${inputs.self}/modules/services/plex"
-    "${inputs.self}/modules/services/radicale"
     "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
@@ -79,7 +78,6 @@ in
         eactualData
         giteaDataDir
         "/var/lib/plex"
-        "/var/lib/radicale/collections"
         config.services.freshrss.dataDir
         config.services.librenms.dataDir
       ];

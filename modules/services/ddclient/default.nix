@@ -11,7 +11,6 @@
       "www.zweili.ch"
       "zweili.org"
       "actual.zweili.org"
-      "dav.zweili.org"
       "eactual.zweili.org"
       "git.zweili.org"
       "rss.zweili.org"

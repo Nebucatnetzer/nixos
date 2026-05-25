@@ -125,6 +125,16 @@ in
     kdeconnect.enable = true;
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      ipu6-camera-hal = prev.ipu6-camera-hal.overrideAttrs (old: {
+        cmakeFlags = map (
+          f: if builtins.match "-DIPU_VERSIONS=.*" f != null then "-DIPU_VERSIONS=ipu6;ipu6epmtl" else f
+        ) old.cmakeFlags;
+      });
+    })
+  ];
+
   services = {
     fprintd.enable = true;
     smartd.devices = [
@@ -138,8 +148,8 @@ in
       cardLabel = "Intel MIPI Camera";
       input = {
         format = "NV12";
-        width = 1920;
-        height = 1080;
+        width = 1280;
+        height = 720;
         framerate = 30;
       };
       output.format = "YUY2";

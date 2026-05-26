@@ -34,7 +34,7 @@
           denote-directory az-nextcloud-dir
           denote-dired-directories (list denote-directory)
           denote-dired-directories-include-subdirectories t
-          denote-excluded-directories-regexp "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public"
+          denote-excluded-directories-regexp "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public\\|98_zotero"
           denote-org-front-matter az-denote-org-front-matter
           denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n")))
 

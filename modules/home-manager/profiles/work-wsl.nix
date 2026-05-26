@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   unstable-pkgs,
   ...
@@ -56,6 +55,7 @@ in
       pkgs.unzip
       pkgs.wget
       pkgs.xdg-utils
+      unstable-pkgs.zotero
     ];
     sessionPath = [ "$HOME/.local/share/node_modules/bin" ];
     sessionVariables = {

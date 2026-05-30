@@ -1,5 +1,5 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
-  programs.adb.enable = true;
+  environment.systemPackages = [ pkgs.android-tools ];
   users.users."${config.az-username}".extraGroups = [ "adbusers" ];
 }

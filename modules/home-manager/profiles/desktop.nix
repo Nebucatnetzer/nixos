@@ -48,7 +48,7 @@ in
       # wine
       pkgs.bottles
       pkgs.wine-wayland
-      pkgs.wineWowPackages.waylandFull
+      pkgs.wineWow64Packages.waylandFull
 
       pkgs.czkawka
       pkgs.exercism

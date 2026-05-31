@@ -126,7 +126,7 @@ in
   };
 
   nixpkgs.overlays = [
-    (final: prev: {
+    (_: prev: {
       ipu6-camera-hal = prev.ipu6-camera-hal.overrideAttrs (old: {
         cmakeFlags = map (
           f: if builtins.match "-DIPU_VERSIONS=.*" f != null then "-DIPU_VERSIONS=ipu6;ipu6epmtl" else f

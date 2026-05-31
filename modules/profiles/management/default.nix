@@ -12,7 +12,7 @@
   ];
 
   documentation = {
-    man.generateCaches = false;
+    man.cache.enable = true;
     nixos.includeAllModules = true;
   };
 

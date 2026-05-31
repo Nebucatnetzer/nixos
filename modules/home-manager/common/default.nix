@@ -72,4 +72,5 @@
       VISUAL = "vim";
     };
   };
+  xdg.userDirs.setSessionVariables = false;
 }

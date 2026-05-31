@@ -20,6 +20,7 @@ lib.meta.addMetaAttrs
             -o UserKnownHostsFile=/dev/null \
             -o StrictHostKeyChecking=no \
             -o User=root \
+            -o RequestTTY=force \
             $1
     ''
   )

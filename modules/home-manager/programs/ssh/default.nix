@@ -28,7 +28,7 @@ _: {
         User zweili
         IdentityFile ~/.ssh/zweili.key
     '';
-    matchBlocks."*" = {
+    settings."*" = {
       forwardAgent = false;
       addKeysToAgent = "no";
       compression = false;

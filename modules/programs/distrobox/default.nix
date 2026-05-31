@@ -11,7 +11,7 @@ in
   environment = {
     systemPackages = [
       distrobox
-      pkgs.xorg.xhost
+      pkgs.xhost
     ];
     shellInit = ''
       [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true

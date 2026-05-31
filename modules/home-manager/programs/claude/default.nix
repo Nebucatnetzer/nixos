@@ -9,6 +9,6 @@
     commands = {
       commit = ./skills/commit.md;
     };
-    memory.source = ./CLAUDE.md;
+    context = ./CLAUDE.md;
   };
 }

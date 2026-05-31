@@ -1,6 +1,7 @@
 {
   fetchurl,
   ffmpeg-full,
+  mpv,
   mpv-unwrapped,
   stdenvNoCC,
 }:
@@ -29,8 +30,8 @@ let
     passthru.scriptName = "move_watched.lua";
   };
 in
-mpv-unwrapped.wrapper {
-  mpv = mpv-unwrapped.override {
+mpv.override {
+  mpv-unwrapped = mpv-unwrapped.override {
     ffmpeg = ffmpeg-full;
   };
   scripts = [

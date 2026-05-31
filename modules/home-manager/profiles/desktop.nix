@@ -57,6 +57,7 @@ in
       pkgs.meld
       pkgs.plex-desktop
       pkgs.remmina
+      pkgs.syncthingtray
       pkgs.tagger
       unstable-pkgs.zotero
     ];

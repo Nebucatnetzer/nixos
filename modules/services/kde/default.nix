@@ -82,7 +82,6 @@
       pkgs.kdePackages.kde-gtk-config
       pkgs.krename
 
-      pkgs.syncthingtray
     ];
   };
   services = {

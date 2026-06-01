@@ -163,6 +163,7 @@ in
   };
 
   hardware.nvidia-container-toolkit.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   services = {
     logind.settings.Login.HandleLidSwitchExternalPower = "ignore";

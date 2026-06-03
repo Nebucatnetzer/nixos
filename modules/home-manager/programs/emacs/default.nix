@@ -7,6 +7,7 @@
 }:
 {
   home.sessionVariables = {
+    EMACS_DICT_WORDS = "${pkgs.scowl}/share/dict/wbritish.txt";
     LSP_USE_PLISTS = "true";
   };
   home.packages = [
@@ -20,6 +21,7 @@
     pkgs.nixfmt
     pkgs.pandoc
     pkgs.ripgrep
+    pkgs.scowl # word dict for cape
     pkgs.shellcheck # shell script linter
     pkgs.shfmt # formatting bash scripts
     pkgs.silver-searcher

@@ -15,6 +15,6 @@ writeShellApplication {
     platforms = lib.platforms.linux;
   };
   text = ''
-    nixos-rebuild-ng -j auto switch --sudo
+    nixos-rebuild -j auto switch --sudo
   '';
 }

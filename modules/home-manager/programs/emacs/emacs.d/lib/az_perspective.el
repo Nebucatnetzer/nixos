@@ -7,7 +7,8 @@
   :custom
   (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
   :config
-  (consult-customize consult--source-buffer :hidden t :default nil)
+  (consult-customize consult-source-buffer :hidden t :default nil)
+
   (add-to-list 'consult-buffer-sources persp-consult-source)
   :init
   (setopt persp-state-default-file "~/.emacs.d/persp-session")

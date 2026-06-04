@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 {
@@ -81,6 +82,7 @@
       pkgs.kdePackages.kwallet-pam # for kwallet automatic login
       pkgs.kdePackages.kde-gtk-config
       pkgs.krename
+      pkgs.exiftool
 
     ];
   };
@@ -91,4 +93,23 @@
   };
   programs.xwayland.enable = true;
   programs.partition-manager.enable = true;
+  home-manager.users.${config.az-username} = {
+    home.file.".local/share/kio/servicemenus/removeMetadata.desktop".text = ''
+      # Based on https://github.com/Merrit/kde-dolphin-remove-metadata
+      [Desktop Entry]
+      Type=Service
+      MimeType=image/*
+      Actions=removeMetadata
+
+      [Desktop Action removeMetadata]
+      Name=Remove Metadata
+      Name[de]=Metadaten löschen
+      Name[fr]=Retirer les métadonnées
+      Name[nl]=Metagegevens wissen
+      Name[pl]=Usunąć Metadane
+      Name[zh_TW]=移除中繼資料
+      Icon=document-cleanup
+      Exec=${pkgs.bash}/bin/bash -c '${pkgs.kdePackages.kdialog}/bin/kdialog --yesno "Exif metadata is going to be removed. Are you sure?" --title "Confirmation" && ${pkgs.exiftool}/bin/exiftool -all= "$@" -tagsFromFile @ -Orientation -overwrite_original' -- %U
+    '';
+  };
 }

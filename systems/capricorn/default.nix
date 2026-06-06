@@ -139,10 +139,6 @@ in
     fprintd.enable = true;
     smartd.devices = [
       { device = "/dev/nvme0n1"; }
-      {
-        device = "/dev/disk/by-id/usb-WD_Elements_SE_SSD_323333373938343033373337-0:0";
-        options = "-a -d sntasmedia -n standby,q";
-      }
     ];
     v4l2-relayd.instances.ipu6 = {
       cardLabel = "Intel MIPI Camera";

@@ -67,6 +67,9 @@
         epkgs.citar
         epkgs.citar-denote
         epkgs.citar-embark
+        (pkgs.callPackage ./packages/claude-code-el {
+          inherit (epkgs) inheritenv melpaBuild;
+        })
         epkgs.consult
         unstable-pkgs.emacs.pkgs.consult-denote
         epkgs.consult-projectile

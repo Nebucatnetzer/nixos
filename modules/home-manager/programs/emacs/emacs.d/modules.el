@@ -41,6 +41,6 @@
 (load-file (modules-path "az_mu4e.el"))
 (load-file (modules-path "az_perspective.el"))
 (load-file (modules-path "az_treemacs.el"))
-(load-file (modules-path "az_vterm.el"))
+(load-file (modules-path "az_ghostel.el"))
 (load-file (modules-path "az_vundo.el"))
 (load-file (modules-path "az_yasnippet.el"))

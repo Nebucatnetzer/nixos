@@ -95,6 +95,11 @@
         epkgs.flymake-languagetool
         epkgs.format-all
         epkgs.general
+        unstable-pkgs.emacs.pkgs.ghostel
+        (pkgs.callPackage ./packages/evil-ghostel {
+          inherit (epkgs) melpaBuild evil;
+          ghostel = unstable-pkgs.emacs.pkgs.ghostel;
+        })
         epkgs.god-mode
         epkgs.haskell-mode
         epkgs.helpful
@@ -142,7 +147,6 @@
         unstable-pkgs.emacs.pkgs.treesit-grammars.with-all-grammars
         epkgs.ultra-scroll
         epkgs.vertico
-        epkgs.vterm
         epkgs.vundo
         epkgs.web-mode
         epkgs.wgrep
@@ -175,23 +179,5 @@
 
   programs.bash = {
     enable = true;
-    bashrcExtra = ''
-      vterm_printf(){
-          if [ -n "$TMUX" ] && ([ "\$\{TERM%%-*}" = "tmux" ] || [ "\$\{TERM%%-*}" = "screen" ] ); then
-              # Tell tmux to pass the escape sequences through
-              printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-          elif [ "\$\{TERM%%-*}" = "screen" ]; then
-              # GNU screen (screen, screen-256color, screen-256color-bce)
-              printf "\eP\e]%s\007\e\\" "$1"
-          else
-              printf "\e]%s\e\\" "$1"
-          fi
-      }
-
-      vterm_prompt_end(){
-          vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-      }
-      PS1=$PS1'\[$(vterm_prompt_end)\]'
-    '';
   };
 }

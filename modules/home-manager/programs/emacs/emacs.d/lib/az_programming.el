@@ -268,5 +268,5 @@
   :ensure nil  ; provided by Nix, don't let use-package fetch from MELPA
   :bind-keymap ("C-c o" . claude-code-command-map)
   :config
-  (setopt claude-code-terminal-backend 'vterm)
+  (setopt claude-code-terminal-backend 'ghostel)
   (claude-code-mode))

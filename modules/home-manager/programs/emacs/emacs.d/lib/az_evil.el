@@ -8,6 +8,7 @@
           evil-want-keybinding nil) ;; required by evil-collection
 
   :config
+  (add-to-list 'evil-emacs-state-modes 'claude-mode)
   (add-to-list 'evil-emacs-state-modes 'helpful-mode)
   (add-to-list 'evil-emacs-state-modes 'mu4e-headers-mode)
   (general-def :states 'motion

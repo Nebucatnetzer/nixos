@@ -9,6 +9,90 @@ provide any garantuees that it will work on other systems. In addition
 some of the scripts required for installation will destroy your data
 when used.
 
+
+* Desktop Profile Tools
+
+** Custom Scripts
+
+| Tool               | Description                                           |
+|--------------------+-------------------------------------------------------|
+| az-media           | Open four shuffled mpv instances for ambient playback |
+| dap-sync           | Synchronise files with a DAP device                   |
+| download-articles  | Download web articles for offline reading             |
+| download-playlist  | Download playlists via yt-dlp                         |
+| download-video     | Download a single video via yt-dlp                    |
+| jdownloader        | Launch JDownloader 2 download manager                 |
+| sidecar-cleanup    | Remove sidecar files left by photo tools              |
+| toggle-keyboard    | Toggle an external keyboard on/off via evtest         |
+| video-to-mpv       | Convert videos to an mpv-compatible format            |
+| watch-playlist     | Play a playlist with the custom mpv build             |
+| watch-random-video | Play a random video from a directory                  |
+| watch-video        | Play a video with the custom mpv build                |
+| zapp               | Flash ZSA keyboard firmware                           |
+
+** Photography
+
+| Tool                   | Description                                    |
+|------------------------+------------------------------------------------|
+| darktable              | RAW image processor with custom Lua automation |
+| digikam                | Photo organiser and image viewer               |
+| hugin                  | Panoramic image stitcher                       |
+| rapid-photo-downloader | Import photos from cameras and memory cards    |
+
+** Media & Entertainment
+
+| Tool         | Description                                           |
+|--------------+-------------------------------------------------------|
+| beets        | Music library organiser and tagger                    |
+| calibre      | Ebook library manager                                 |
+| lollypop     | Music player                                          |
+| mpv          | Video player with custom shuffle and rotation support |
+| plex-desktop | Plex media player client                              |
+
+** Office & Productivity
+
+| Tool        | Description                                           |
+|-------------+-------------------------------------------------------|
+| espanso     | Text expander with date/time shortcuts                |
+| libreoffice | Office suite (documents, spreadsheets, presentations) |
+| zotero      | Citation and bibliography manager                     |
+
+** Communication
+
+| Tool             | Description                 |
+|------------------+-----------------------------|
+| signal-desktop   | Encrypted private messaging |
+| telegram-desktop | Messaging platform          |
+
+** Utilities
+
+| Tool          | Description                                   |
+|---------------+-----------------------------------------------|
+| bottles       | Run Windows applications via Wine             |
+| czkawka       | Duplicate and similar file finder             |
+| exercism      | Programming exercise platform CLI             |
+| keepassxc     | Password manager                              |
+| meld          | Visual diff and merge tool                    |
+| pdfgrep       | Search text inside PDF files                  |
+| remmina       | Remote desktop client (RDP, VNC, SSH)         |
+| syncthingtray | System tray interface for Syncthing file sync |
+| tagger        | Audio file tag editor                         |
+
+** Development
+
+| Tool                 | Description                                 |
+|----------------------+---------------------------------------------|
+| dbeaver-bin          | Universal database GUI client               |
+| emacs                | Extensible text editor (Wayland/pgtk build) |
+| gh                   | GitHub CLI                                  |
+| git                  | Version control system                      |
+| nix-prefetch-github  | Fetch Nix hash for a GitHub source          |
+| nix-prefetch-scripts | Fetch Nix hashes for various source types   |
+| nix-tree             | Visualise Nix package dependency trees      |
+| nps                  | Run npm scripts interactively               |
+| termscp              | Terminal SCP/SFTP client                    |
+| trippy               | Network diagnostic tool (traceroute + ping) |
+
 * Installation
 ** x86_64-linux without disko
 

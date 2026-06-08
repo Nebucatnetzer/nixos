@@ -24,6 +24,8 @@ in
   ];
   home = {
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+    file.".config/darktable/lua/auto_tune.lua".source = ./auto_tune.lua;
+    file.".config/darktable/luarc".text = ''require "auto_tune"'';
 
     packages = [
       azPkgs.az-media

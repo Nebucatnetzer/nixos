@@ -23,6 +23,38 @@
         "type": "github"
       }
     },
+    "darktable-initial-workflow": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769366279,
+        "narHash": "sha256-GndQE7RV/nRxRzOKC9y4FyGZxj/uEpGqTbFyL/9Awmo=",
+        "owner": "UliGesing",
+        "repo": "Darktable-Initial-Workflow-Module",
+        "rev": "0072d12225c71a90ce2419fc0feb328a60987f75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "UliGesing",
+        "repo": "Darktable-Initial-Workflow-Module",
+        "type": "github"
+      }
+    },
+    "darktable-lua-scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1780671550,
+        "narHash": "sha256-jTHsJLdSH/skPIBDTimyQSs9NUB3gYg05wMN9ryz/Pc=",
+        "owner": "darktable-org",
+        "repo": "lua-scripts",
+        "rev": "d109612045bd4b118551487c4607cdde7766f22d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "darktable-org",
+        "repo": "lua-scripts",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -174,6 +206,8 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "darktable-initial-workflow": "darktable-initial-workflow",
+        "darktable-lua-scripts": "darktable-lua-scripts",
         "fox-flss": "fox-flss",
         "home-manager": "home-manager_2",
         "nixos-hardware": "nixos-hardware",

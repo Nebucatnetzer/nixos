@@ -5,6 +5,14 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darktable-initial-workflow = {
+      url = "github:UliGesing/Darktable-Initial-Workflow-Module";
+      flake = false;
+    };
+    darktable-lua-scripts = {
+      url = "github:darktable-org/lua-scripts";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -7,6 +7,7 @@ let
   mediaPaths = import ./mediaPaths.nix;
 in
 rec {
+  az-emacs = pkgs.callPackage ./az-emacs { inherit unstable-pkgs; };
   az-media =
     pkgs.lib.meta.addMetaAttrs
       {

@@ -73,6 +73,7 @@
       packages."x86_64-linux" = {
         inherit pkgs;
         azPkgs = import ./pkgs { inherit pkgs unstable-pkgs; };
+        az-emacs = (import ./pkgs { inherit pkgs unstable-pkgs; }).az-emacs;
       };
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {

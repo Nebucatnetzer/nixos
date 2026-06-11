@@ -1,0 +1,111 @@
+{
+  pkgs,
+  unstable-pkgs,
+  epkgs,
+  lib,
+  includeGuiPackages ? false,
+}:
+[
+  epkgs.ace-window
+  unstable-pkgs.emacs.pkgs.alabaster-themes
+  epkgs.ansible
+  epkgs.avy
+  epkgs.bind-key
+  epkgs.cape
+  epkgs.cfrs
+  epkgs.citeproc
+  epkgs.citar
+  epkgs.citar-denote
+  epkgs.citar-embark
+  (pkgs.callPackage ./packages/claude-code-el {
+    inherit (epkgs) inheritenv melpaBuild;
+  })
+  epkgs.consult
+  unstable-pkgs.emacs.pkgs.consult-denote
+  epkgs.consult-projectile
+  epkgs.corfu
+  epkgs.corfu-terminal
+  epkgs.dap-mode
+  unstable-pkgs.emacs.pkgs.denote
+  unstable-pkgs.emacs.pkgs.denote-journal
+  unstable-pkgs.emacs.pkgs.denote-org
+  epkgs.eglot-booster
+  epkgs.elisp-refs
+  epkgs.embark
+  epkgs.embark-consult
+  epkgs.envrc
+  epkgs.epl
+  epkgs.evil
+  epkgs.evil-collection
+  epkgs.evil-surround
+  epkgs.f
+  epkgs.flymake-ansible-lint
+  epkgs.flymake-collection
+  epkgs.flymake-ruff
+  epkgs.flymake-languagetool
+  epkgs.format-all
+  epkgs.general
+  unstable-pkgs.emacs.pkgs.ghostel
+  (pkgs.callPackage ./packages/evil-ghostel {
+    inherit (epkgs) melpaBuild evil;
+    ghostel = unstable-pkgs.emacs.pkgs.ghostel;
+  })
+  epkgs.god-mode
+  epkgs.haskell-mode
+  epkgs.helpful
+  epkgs.highlight-indent-guides
+  epkgs.ht
+  epkgs.htmlize
+  (pkgs.callPackage ./packages/hurl-mode {
+    inherit (epkgs) melpaBuild;
+  })
+  epkgs.hydra
+  epkgs.hyperbole
+  epkgs.jq-mode
+  epkgs.lsp-haskell
+  epkgs.lv
+  epkgs.magit
+  epkgs.makey
+  epkgs.marginalia
+  epkgs.markdown-mode
+  epkgs.mu4e
+  epkgs.nix-mode
+  epkgs.nix-ts-mode
+  epkgs.olivetti
+  epkgs.orderless
+  epkgs.org-contrib
+  epkgs.ox-pandoc
+  epkgs.parsebib
+  epkgs.perspective
+  epkgs.pfuture
+  epkgs.php-mode
+  epkgs.pkg-info
+  epkgs.posframe
+  epkgs.powershell
+  epkgs.projectile
+  epkgs.projectile-ripgrep
+  epkgs.python-mode
+  epkgs.python-pytest
+  epkgs.queue
+  epkgs.rainbow-delimiters
+  epkgs.ripgrep
+  epkgs.smooth-scrolling
+  epkgs.swiper
+  epkgs.treemacs
+  epkgs.treemacs-evil
+  epkgs.typst-ts-mode
+  unstable-pkgs.emacs.pkgs.treesit-grammars.with-all-grammars
+  epkgs.ultra-scroll
+  epkgs.vertico
+  epkgs.vundo
+  epkgs.web-mode
+  epkgs.wgrep
+  epkgs.which-key
+  epkgs.yaml-mode
+  epkgs.yasnippet-snippets
+  pkgs.mu # needed for mailing
+]
+++ lib.optionals includeGuiPackages [
+  epkgs.pdf-tools
+  epkgs.xclip
+]

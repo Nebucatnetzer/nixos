@@ -1,0 +1,124 @@
+{
+  pkgs,
+  unstable-pkgs,
+  epkgs,
+  lib,
+  includeGuiPackages ? false,
+  # Email (mu4e), note-taking (denote), citation/languagetool tooling and the
+  # claude-code assistant (which needs credentials that aren't present on the
+  # machines the wrapper targets). Disabled for the portable terminal az-emacs
+  # build, which is scoped to basic coding plus the occasional org note.
+  includeExtendedPackages ? true,
+}:
+[
+  epkgs.ace-window
+  unstable-pkgs.emacs.pkgs.alabaster-themes
+  epkgs.ansible
+  epkgs.avy
+  epkgs.bind-key
+  epkgs.cape
+  epkgs.cfrs
+  epkgs.consult
+  epkgs.consult-projectile
+  epkgs.corfu
+  epkgs.corfu-terminal
+  epkgs.dap-mode
+  epkgs.eglot-booster
+  epkgs.elisp-refs
+  epkgs.embark
+  epkgs.embark-consult
+  epkgs.envrc
+  epkgs.epl
+  epkgs.evil
+  epkgs.evil-collection
+  epkgs.evil-surround
+  epkgs.f
+  epkgs.flymake-ansible-lint
+  epkgs.flymake-collection
+  epkgs.flymake-ruff
+  epkgs.format-all
+  epkgs.general
+  unstable-pkgs.emacs.pkgs.ghostel
+  (pkgs.callPackage ./packages/evil-ghostel {
+    inherit (epkgs) melpaBuild evil;
+    ghostel = unstable-pkgs.emacs.pkgs.ghostel;
+  })
+  epkgs.god-mode
+  epkgs.haskell-mode
+  epkgs.helpful
+  epkgs.highlight-indent-guides
+  epkgs.ht
+  epkgs.htmlize
+  (pkgs.callPackage ./packages/hurl-mode {
+    inherit (epkgs) melpaBuild;
+  })
+  epkgs.hydra
+  epkgs.hyperbole
+  epkgs.jq-mode
+  epkgs.lsp-haskell
+  epkgs.lv
+  epkgs.magit
+  epkgs.makey
+  epkgs.marginalia
+  epkgs.markdown-mode
+  epkgs.nix-mode
+  epkgs.nix-ts-mode
+  epkgs.olivetti
+  epkgs.orderless
+  epkgs.org-contrib
+  epkgs.ox-pandoc
+  epkgs.perspective
+  epkgs.pfuture
+  epkgs.php-mode
+  epkgs.pkg-info
+  epkgs.posframe
+  epkgs.powershell
+  epkgs.projectile
+  epkgs.projectile-ripgrep
+  epkgs.python-mode
+  epkgs.python-pytest
+  epkgs.queue
+  epkgs.rainbow-delimiters
+  epkgs.ripgrep
+  epkgs.smooth-scrolling
+  epkgs.swiper
+  epkgs.treemacs
+  epkgs.treemacs-evil
+  epkgs.typst-ts-mode
+  unstable-pkgs.emacs.pkgs.treesit-grammars.with-all-grammars
+  epkgs.ultra-scroll
+  epkgs.vertico
+  epkgs.vundo
+  epkgs.web-mode
+  epkgs.verb
+  epkgs.wgrep
+  epkgs.which-key
+  epkgs.yaml-mode
+  epkgs.yasnippet-snippets
+]
+++ lib.optionals includeGuiPackages [
+  epkgs.pdf-tools
+  epkgs.xclip
+]
+++ lib.optionals includeExtendedPackages [
+  # citations
+  epkgs.citeproc
+  epkgs.citar
+  epkgs.citar-denote
+  epkgs.citar-embark
+  epkgs.parsebib
+  # note-taking (denote)
+  unstable-pkgs.emacs.pkgs.consult-denote
+  unstable-pkgs.emacs.pkgs.denote
+  unstable-pkgs.emacs.pkgs.denote-journal
+  unstable-pkgs.emacs.pkgs.denote-org
+  # email
+  epkgs.mu4e
+  pkgs.mu # needed for mailing
+  # languagetool prose linting
+  epkgs.flymake-languagetool
+  # AI coding assistant (requires credentials)
+  (pkgs.callPackage ./packages/claude-code-el {
+    inherit (epkgs) inheritenv melpaBuild;
+  })
+]

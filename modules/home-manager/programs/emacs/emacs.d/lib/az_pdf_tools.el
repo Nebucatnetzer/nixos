@@ -3,7 +3,8 @@
   (use-package pdf-tools
     :mode ("\\.pdf\\'" . pdf-view-mode)
     :config
-    (pdf-tools-install)
+    (with-demoted-errors "pdf-tools-install failed: %s"
+      (pdf-tools-install))
     (setq-default pdf-view-display-size 'fit-page)
     ;; turn off cua so copy works
     (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))

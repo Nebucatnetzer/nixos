@@ -7,6 +7,10 @@ let
   mediaPaths = import ./mediaPaths.nix;
 in
 rec {
+  az-emacs = pkgs.callPackage ./az-emacs {
+    inherit unstable-pkgs;
+    emacsDir = ../modules/home-manager/programs/emacs;
+  };
   az-media =
     pkgs.lib.meta.addMetaAttrs
       {

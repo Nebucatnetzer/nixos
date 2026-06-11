@@ -240,15 +240,17 @@
   (setq-default dired-listing-switches "-Ahl --group-directories-first")
   (setopt dired-auto-revert-buffer t))
 
-(use-package gnu-elpa-keyring-update)
+;; Skip gnu-elpa-keyring-update in read-only Nix store configs
+;; (use-package gnu-elpa-keyring-update)
 
 (unless (file-exists-p "/etc/wsl.conf")
-  (use-package xclip)
-  (add-hook 'after-make-frame-functions
-            (lambda (frame)
-              (when (and (display-graphic-p frame)
-                         (not xclip-mode))
-                (xclip-mode 1)))))
+  (when (boundp 'enable-xclip)
+    (use-package xclip)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (when (and (display-graphic-p frame)
+                           (not xclip-mode))
+                  (xclip-mode 1))))))
 
 ;; Clipboard in WSL — xclip-mode is intentionally skipped above because it
 ;; uses add-function :override and would shadow these, and xclip requires X11.

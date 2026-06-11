@@ -36,13 +36,13 @@
           denote-dired-directories-include-subdirectories t
           denote-excluded-directories-regexp "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public\\|98_zotero"
           denote-org-front-matter az-denote-org-front-matter
-          denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n")))
+          denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n"))
 
-(use-package denote-org)
+  (use-package denote-org)
 
-(use-package denote-journal
-  :bind
-  ("C-c n t" . denote-journal-new-or-existing-entry)
-  :config
-  (setopt denote-journal-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
-          denote-journal-title-format 'day-date-month-year))
+  (use-package denote-journal
+    :bind
+    ("C-c n t" . denote-journal-new-or-existing-entry)
+    :config
+    (setopt denote-journal-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
+            denote-journal-title-format 'day-date-month-year)))

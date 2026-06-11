@@ -78,10 +78,9 @@ in
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [
-    "xe" # graphics driver
+    "i915" # graphics driver (xe was unstable: VCS media engine job timeouts under HW video decode)
     "dm-snapshot"
     "thunderbolt"
-    "i915"
   ];
   boot.kernelModules = [
     "squashfs"
@@ -92,8 +91,8 @@ in
     config.boot.kernelPackages.v4l2loopback
   ];
   boot.kernelParams = [
-    "i915.force_probe=!7d45"
-    "xe.force_probe=7d45"
+    "i915.force_probe=7d45"
+    "xe.force_probe=!7d45"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {

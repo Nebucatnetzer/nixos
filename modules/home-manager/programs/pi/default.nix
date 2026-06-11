@@ -1,4 +1,9 @@
-{ inputs, pkgs, unstable-pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  unstable-pkgs,
+  ...
+}:
 {
   # programs.pi-coding-agent is not yet in our pinned home-manager input.
   imports = [ ./pi-coding-agent.nix ];

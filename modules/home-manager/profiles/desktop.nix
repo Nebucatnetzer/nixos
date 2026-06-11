@@ -15,6 +15,7 @@ in
     "${inputs.self}/modules/home-manager/programs/beets"
     "${inputs.self}/modules/home-manager/programs/calibre"
     "${inputs.self}/modules/home-manager/programs/mpv"
+    "${inputs.self}/modules/home-manager/programs/pi"
     "${inputs.self}/modules/home-manager/programs/rapid-photo-downloader"
     "${inputs.self}/modules/home-manager/programs/signal"
     "${inputs.self}/modules/home-manager/programs/telegram"

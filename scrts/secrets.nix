@@ -28,6 +28,7 @@ in
   "freshrss_user_pass.age".publicKeys = defaultKeys;
   "gitea_env.age".publicKeys = defaultKeys;
   "gwyn_wg.key.age".publicKeys = defaultKeys;
+  "infomaniak_ai.key.age".publicKeys = defaultKeys;
   "infomaniak_env.age".publicKeys = all;
   "mail_password.age".publicKeys = defaultKeys;
   "personal_email.key.age".publicKeys = defaultKeys;

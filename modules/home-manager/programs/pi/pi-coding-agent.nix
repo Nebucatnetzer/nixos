@@ -56,8 +56,7 @@ in
       file = {
         "${configDir}/settings.json".source =
           jsonFormat.generate "pi-coding-agent-settings.json" cfg.settings;
-        "${configDir}/models.json".source =
-          jsonFormat.generate "pi-coding-agent-models.json" cfg.models;
+        "${configDir}/models.json".source = jsonFormat.generate "pi-coding-agent-models.json" cfg.models;
         "${configDir}/AGENTS.md".source = cfg.context;
       };
     };

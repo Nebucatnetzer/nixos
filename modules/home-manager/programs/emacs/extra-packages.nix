@@ -18,6 +18,7 @@
   epkgs.bind-key
   epkgs.cape
   epkgs.cfrs
+  epkgs.clipetty
   epkgs.consult
   epkgs.consult-projectile
   epkgs.corfu

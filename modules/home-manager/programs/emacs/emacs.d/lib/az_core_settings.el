@@ -243,17 +243,17 @@
 ;; Skip gnu-elpa-keyring-update in read-only Nix store configs
 ;; (use-package gnu-elpa-keyring-update)
 
+;; Clipboard for terminal frames: copy through OSC 52 escape sequences so
+;; yanks reach the host clipboard over any terminal (Wayland, X, SSH) without
+;; an external helper. Replaces xclip, which was X11-only and dead on Wayland.
+;; Paste still comes from the terminal emulator's own paste binding.
 (unless (file-exists-p "/etc/wsl.conf")
-  (when (boundp 'enable-xclip)
-    (use-package xclip)
-    (add-hook 'after-make-frame-functions
-              (lambda (frame)
-                (when (and (display-graphic-p frame)
-                           (not xclip-mode))
-                  (xclip-mode 1))))))
+  (when (boundp 'enable-clipetty)
+    (use-package clipetty
+      :config
+      (global-clipetty-mode 1))))
 
-;; Clipboard in WSL — xclip-mode is intentionally skipped above because it
-;; uses add-function :override and would shadow these, and xclip requires X11.
+;; Clipboard in WSL — uses win32yank instead of the OSC 52 path above.
 (when (file-exists-p "/etc/wsl.conf")
   (setq interprogram-cut-function
         (lambda (text &optional _push)

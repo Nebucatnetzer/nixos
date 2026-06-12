@@ -8,3 +8,5 @@
 ;; a portable terminal editor.
 (setq enable-color-theme t)
 (setq enable-org t)
+;; Copy to the host clipboard from terminal frames via OSC 52.
+(setq enable-clipetty t)

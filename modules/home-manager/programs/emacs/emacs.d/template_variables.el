@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 ;; Copy these to ~/.emacs.d/variables.el and them as needed.
 ;;(setq disable-fringe t)
+;;(setq enable-clipetty t)
 ;;(setq enable-color-theme t)
 ;;(setq enable-email t)
 ;;(setq enable-emojis t)

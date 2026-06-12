@@ -7,7 +7,7 @@
         copy_album_art = "yes";
         format = "opus";
         formats = {
-          opus = "ffmpeg -i $source -y -vn -acodec libopus -ab 256k -vbr on $dest";
+          opus = "ffmpeg -i $source -y -vn -acodec libopus -ab 192k -vbr on $dest";
         };
         never_convert_lossy_files = true;
       };

@@ -22,7 +22,8 @@ win.buildRustPackage {
 
   meta = with lib; {
     description = "Clipboard tool for Windows/WSL2 interop";
-    homepage = "https://github.com/equalsraf/win32yank";
+    # Built from the maintained tk555 fork; upstream equalsraf is stale.
+    homepage = "https://github.com/tk555/win32yank";
     license = licenses.mit;
   };
 }

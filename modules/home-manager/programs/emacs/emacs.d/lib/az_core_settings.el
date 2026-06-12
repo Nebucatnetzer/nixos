@@ -253,7 +253,10 @@
       :config
       (global-clipetty-mode 1))))
 
-;; Clipboard in WSL — uses win32yank instead of the OSC 52 path above.
+;; Clipboard in WSL — win32yank rather than the OSC 52 path above. Emacs is
+;; run here in the terminal, where OSC 52 would only cover copy; win32yank
+;; shells out to the Windows clipboard for both copy and paste, so yanking
+;; Windows-copied text into Emacs keeps working.
 (when (file-exists-p "/etc/wsl.conf")
   (setq interprogram-cut-function
         (lambda (text &optional _push)

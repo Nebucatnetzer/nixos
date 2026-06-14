@@ -2,7 +2,6 @@
 (when (boundp 'enable-email)
   (use-package mu4e
     :if (is-linux-p)
-    :ensure nil
     :bind
     ([f4] . open-mail)
     (:map mu4e-main-mode-map

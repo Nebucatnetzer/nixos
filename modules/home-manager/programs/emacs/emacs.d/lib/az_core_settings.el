@@ -230,7 +230,6 @@
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 (use-package dired
-  :ensure nil
   :init
   (add-hook 'dired-load-hook
             (lambda ()

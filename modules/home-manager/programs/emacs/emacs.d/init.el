@@ -9,7 +9,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
-(setq use-package-always-ensure t)
+(setq use-package-always-ensure nil)
 (use-package use-package-ensure-system-package)
 
 ;; keep customize settings in their own file

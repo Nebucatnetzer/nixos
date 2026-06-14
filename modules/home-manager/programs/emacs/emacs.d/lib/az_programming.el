@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package editorconfig
-  :ensure nil
   :config
   (editorconfig-mode 1))
 
@@ -131,7 +130,6 @@
   :hook (sh-mode . flymake-mode))
 
 (use-package eglot-mode
-  :ensure nil
   :config
   (setopt eglot-autoshutdown t
           eldoc-echo-area-use-multiline-p nil
@@ -145,7 +143,6 @@
 
 ;; https://github.com/jdtsmith/eglot-booster
 (use-package eglot-booster
-  :ensure nil
   :after eglot
   :config
   (eglot-booster-mode))
@@ -253,7 +250,6 @@
   :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))
 
 (use-package emacs
-  :ensure nil
   :config
   ;; display the name of the function we are in the status bar
   (which-function-mode t)
@@ -272,7 +268,6 @@
    (json-ts-mode       . (lambda () (setq tab-width 2)))))
 
 (use-package claude-code
-  :ensure nil  ; provided by Nix, don't let use-package fetch from MELPA
   :bind-keymap ("C-c o" . claude-code-command-map)
   :config
   (setopt claude-code-terminal-backend 'ghostel)

@@ -16,13 +16,11 @@
   epkgs.ansible
   epkgs.avy
   epkgs.bind-key
-  epkgs.cape
   epkgs.cfrs
   epkgs.clipetty
+  epkgs.company
   epkgs.consult
   epkgs.consult-projectile
-  epkgs.corfu
-  epkgs.corfu-terminal
   epkgs.dap-mode
   epkgs.eglot-booster
   epkgs.elisp-refs

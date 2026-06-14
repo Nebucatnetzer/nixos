@@ -16,9 +16,8 @@
 (load-file (modules-path "az_ui.el"))
 
 ;; completion
-(load-file (modules-path "az_cape.el"))
+(load-file (modules-path "az_company.el"))
 (load-file (modules-path "az_consult.el"))
-(load-file (modules-path "az_corfu.el"))
 (load-file (modules-path "az_marginalia.el"))
 (load-file (modules-path "az_orderless.el"))
 (load-file (modules-path "az_vertico.el"))

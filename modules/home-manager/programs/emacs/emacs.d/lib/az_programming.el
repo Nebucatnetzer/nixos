@@ -254,6 +254,9 @@
 
 (use-package emacs
   :ensure nil
+  :config
+  ;; display the name of the function we are in the status bar
+  (which-function-mode t)
   :hook
   ((prog-mode . display-fill-column-indicator-mode)
    (yaml-ts-mode . display-fill-column-indicator-mode))

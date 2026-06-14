@@ -253,13 +253,11 @@
   :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))
 
 (use-package emacs
-  :hook
-  ((prog-mode . display-fill-column-indicator-mode))
-  ((yaml-ts-mode . display-fill-column-indicator-mode)))
-
-(use-package emacs
   :ensure nil
   :hook
+  ((prog-mode . display-fill-column-indicator-mode)
+   (yaml-ts-mode . display-fill-column-indicator-mode))
+  ;; indentations for various modes
   ((go-ts-mode         . (lambda () (setq indent-tabs-mode t)))
    (yaml-ts-mode       . (lambda () (setq tab-width 2)))
    (js-ts-mode         . (lambda () (setq tab-width 2

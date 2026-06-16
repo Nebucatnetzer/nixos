@@ -86,6 +86,7 @@ in
         domainNeeded = true;
         listeningMode = "ALL";
         piholePTR = "HOSTNAMEFQDN";
+        rateLimit.count = 100000;
         upstreams = [ "127.0.0.1#5335" ];
       };
       misc.dnsmasq_lines = [

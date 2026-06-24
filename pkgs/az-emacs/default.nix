@@ -24,9 +24,6 @@ let
       --replace-fail '~/.nixos/modules/home-manager/programs/emacs/emacs.d/lib/' '${placeholder "out"}/lib/' \
       --replace-fail '~/.nixos/modules/home-manager/programs/emacs/emacs.d/modules.el' '${placeholder "out"}/modules.el' \
       --replace-fail '~/.emacs.d/variables.el' '${placeholder "out"}/variables.el'
-    # Disable use-package-always-ensure since all packages are pre-installed via Nix
-    substituteInPlace $out/init.el \
-      --replace-fail '(setq use-package-always-ensure t)' '(setq use-package-always-ensure nil)'
   '';
 
   emacsWithPkgs = (emacsPackagesFor emacs-nox).emacsWithPackages (

@@ -6,4 +6,5 @@
           company-tooltip-align-annotations t
           company-dabbrev-downcase nil
           company-idle-delay 0)
+  (add-to-list 'company-backends 'company-files)
   (global-company-mode 1))

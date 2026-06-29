@@ -69,7 +69,7 @@
     in
     {
       nixosConfigurations = hostConfigs;
-      devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { };
+      devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { inherit pkgs unstable-pkgs; };
       packages."x86_64-linux" = {
         inherit pkgs;
         azPkgs = import ./pkgs { inherit pkgs unstable-pkgs; };

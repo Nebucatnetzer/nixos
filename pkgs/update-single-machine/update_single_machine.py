@@ -1,6 +1,3 @@
-#!/usr/bin/env -S nix shell .#pkgs.python3 --command python
-# -*- mode: python -*-
-
 import argparse
 import logging
 import os
@@ -23,7 +20,7 @@ def main() -> None:
         "-r",
         "--reboot",
         action="store_true",
-        help="Reboot the host after boot deployment",
+        help="Require a reboot after the update",
     )
     args: argparse.Namespace = parser.parse_args()
 
@@ -34,7 +31,7 @@ def main() -> None:
     logger.info("%s via %s", fqdn, subcommand)
     subprocess.run(
         [
-            "nixos-rebuild-ng",
+            "nixos-rebuild",
             subcommand,
             "-j",
             "auto",

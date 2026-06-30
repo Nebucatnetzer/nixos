@@ -27,8 +27,6 @@ in
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
     file.".config/darktable/luarc".text = ''
       package.path = package.path .. ";${inputs.darktable-lua-scripts}/?.lua"
-      package.path = package.path .. ";${inputs.darktable-initial-workflow}/?.lua"
-      require "InitialWorkflowModule"
     '';
 
     packages = [

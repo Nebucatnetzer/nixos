@@ -5,10 +5,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darktable-initial-workflow = {
-      url = "github:UliGesing/Darktable-Initial-Workflow-Module";
-      flake = false;
-    };
     darktable-lua-scripts = {
       url = "github:darktable-org/lua-scripts";
       flake = false;

@@ -81,9 +81,14 @@
       pkgs.kdePackages.kauth
       pkgs.kdePackages.kwallet-pam # for kwallet automatic login
       pkgs.kdePackages.kde-gtk-config
+      (pkgs.kdePackages.spectacle.override {
+        tesseractLanguages = [
+          "deu"
+          "eng"
+        ];
+      })
       pkgs.krename
       pkgs.exiftool
-
     ];
   };
   services = {

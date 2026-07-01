@@ -48,6 +48,7 @@ in
       unstable-pkgs.darktable
       pkgs.digikam
       pkgs.hugin
+      pkgs.tesseract # OCR in Digikam
 
       # wine
       pkgs.bottles

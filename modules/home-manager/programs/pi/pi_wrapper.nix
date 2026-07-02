@@ -11,6 +11,12 @@ writeShellApplication {
   ];
   text = ''
     unset CONTRIA_VAULT_PASS;
+    # `pi --write` starts in edit mode; the edit-mode extension reads PI_EDIT_MODE.
+    # (pi has no --write flag of its own, so intercept it here.) bwrap inherits the env.
+    if [ "''${1:-}" = "--write" ]; then
+      export PI_EDIT_MODE=1
+      shift
+    fi
     bwrap \
       --ro-bind / / \
       --tmpfs /mnt/ \

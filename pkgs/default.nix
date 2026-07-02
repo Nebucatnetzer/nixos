@@ -63,4 +63,14 @@ rec {
   };
   win32yank = pkgs.callPackage ./win32yank { inherit (pkgs) pkgsCross; };
   zotero-mcp = pkgs.callPackage ./zotero-mcp { };
+  container-updates = pkgs.callPackage ./container-updates { };
+  dry-build-all = pkgs.callPackage ./dry-build-all { };
+  fingerprint-fix = pkgs.callPackage ./fingerprint-fix { };
+  format-disk = pkgs.callPackage ./format-disk { };
+  install-home-manager = pkgs.callPackage ./install-home-manager { };
+  mount-btrfs-partitions = pkgs.callPackage ./mount-btrfs-partitions { };
+  rename-partitions = pkgs.callPackage ./rename-partitions { };
+  run-command = pkgs.callPackage ./run-command { };
+  test-build = pkgs.callPackage ./test-build { };
+  unmount-btrfs-partitions = pkgs.callPackage ./unmount-btrfs-partitions { };
 }

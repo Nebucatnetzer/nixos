@@ -1,9 +1,11 @@
 # Be aware this is AI generated code
-"""Convert swiss-qr-bill-decoder JSON into the Swiss Payments Code (SPC) payload.
+"""Convert swiss-qr-bill-decoder JSON into the Swiss Payments Code (SPC)
+payload.
 
-The decoder emits the decoded bill as JSON on stdin; this reads it and writes the Swiss
-QR-bill text payload (the same string that is encoded in the QR code) to stdout,
-following the Swiss Implementation Guidelines QR-bill, version 0200.
+The decoder emits the decoded bill as JSON on stdin; this reads it and
+writes the Swiss QR-bill text payload (the same string that is encoded
+in the QR code) to stdout, following the Swiss Implementation Guidelines
+QR-bill, version 0200.
 """
 
 from __future__ import annotations
@@ -14,11 +16,13 @@ from typing import Any
 
 
 def split_street_and_number(address_line: str) -> tuple[str, str]:
-    """Split e.g. 'Chemin de la Redoute 54' into ('Chemin de la Redoute', '54').
+    """Split e.g. 'Chemin de la Redoute 54' into ('Chemin de la Redoute',
+    '54').
 
-    For a structured address the building number is the trailing token, but only when it
-    actually looks like a number. Streets without a number (e.g. a P.O. box) keep the
-    whole line as the street name and an empty building number.
+    For a structured address the building number is the trailing token,
+    but only when it actually looks like a number. Streets without a
+    number (e.g. a P.O. box) keep the whole line as the street name and
+    an empty building number.
     """
     if not address_line:
         return "", ""
@@ -31,8 +35,9 @@ def split_street_and_number(address_line: str) -> tuple[str, str]:
 def split_postal_code_and_town(address_line: str) -> tuple[str, str]:
     """Split e.g. '1260 Nyon' into ('1260', 'Nyon').
 
-    The postal code is the leading token; the remainder is the town. If the first token
-    is not numeric the whole line is treated as the town.
+    The postal code is the leading token; the remainder is the town. If
+    the first token is not numeric the whole line is treated as the
+    town.
     """
     if not address_line:
         return "", ""

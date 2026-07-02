@@ -12,10 +12,6 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 
-[scripts/*]
-indent_style = space
-indent_size = 4
-
 [*.go]
 indent_style = tab
 indent_size = 4

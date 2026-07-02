@@ -1,8 +1,8 @@
 """Find and optionally remove orphaned Darktable XMP sidecar files.
 
-A sidecar is orphaned when no matching DNG or ARW file exists in the same
-directory. Darktable names sidecars as ``photo.dng.xmp``; plain ``photo.xmp``
-sidecars are also supported.
+A sidecar is orphaned when no matching DNG or ARW file exists in the
+same directory. Darktable names sidecars as ``photo.dng.xmp``; plain
+``photo.xmp`` sidecars are also supported.
 """
 
 import argparse
@@ -17,7 +17,8 @@ def _raw_exists(path: Path) -> bool:
 
 
 def find_orphaned_sidecars(directory: Path) -> list[Path]:
-    """Return XMP and ARP sidecars in *directory* that have no matching raw file.
+    """Return XMP and ARP sidecars in *directory* that have no matching raw
+    file.
 
     Scans recursively into subdirectories.
     """

@@ -1,4 +1,5 @@
 [project]
+name = "nixos-config-scripts"
 requires-python = ">=3.12"
 
 [tool.isort]
@@ -10,13 +11,6 @@ strict = true
 [tool.ruff]
 line-length = 88
 indent-width = 4
-exclude = [
-  "scripts/*.sh",
-  "scripts/test-build",
-]
-include = [
-  "scripts/*",
-]
 target-version = "py312"
 
 [tool.ruff.format]

@@ -10,6 +10,7 @@ import argparse
 import sys
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 def _get_datetime_from_input(filepath: Path, date_str: str | None) -> datetime:
@@ -25,6 +26,7 @@ def _get_datetime_from_input(filepath: Path, date_str: str | None) -> datetime:
 
     Raises:
         ValueError: If the provided date string has an invalid format.
+
     """
     if date_str:
         try:
@@ -39,7 +41,7 @@ def _get_datetime_from_input(filepath: Path, date_str: str | None) -> datetime:
 
     # Get modification time as a timestamp and convert it to a datetime object
     mtime_timestamp = filepath.stat().st_mtime
-    return datetime.fromtimestamp(mtime_timestamp)
+    return datetime.fromtimestamp(mtime_timestamp, tz=ZoneInfo("Europe/Zurich"))
 
 
 def rename_file(filepath: Path, date_str: str | None = None) -> None:
@@ -55,6 +57,7 @@ def rename_file(filepath: Path, date_str: str | None = None) -> None:
         ValueError: If the provided date string is in an invalid format.
         FileExistsError: If a file with the new name already exists.
         PermissionError: If the script lacks permissions to rename the file.
+
     """
     dt_obj = _get_datetime_from_input(filepath, date_str)
 

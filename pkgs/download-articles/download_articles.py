@@ -71,7 +71,7 @@ def download_epub(target_url: URL, output_dir: Path) -> None:
             save_path: Path = output_dir / filename
 
             # Use shutil.copyfileobj to stream data efficiently (Avoids FURB122)
-            with open(save_path, "wb") as out_file:
+            with save_path.open("wb") as out_file:
                 shutil.copyfileobj(response, out_file)
 
             print(f"  -> Saved: {filename}")

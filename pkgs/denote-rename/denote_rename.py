@@ -8,6 +8,7 @@ import datetime
 import re
 import sys
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 def parse_existing_filename(
@@ -23,6 +24,7 @@ def parse_existing_filename(
         tuple[Optional[str], str, Optional[list[str]]]: A tuple with
         extracted timestamp, title, and tags, where timestamp and tags are optional.
         The extension gets dropped.
+
     """
     match = re.match(r"(\d{8}T\d{6})--([^_]+?)(?:__([^\.]+?))?(?:\.(.+))?$", filename)
 
@@ -84,6 +86,7 @@ def rename_file_with_creation_timestamp_and_tags(
         tags (Optional[list[str]]): An optional list of tags to append to the file name.
         interactive (bool): When True, prompt to confirm or replace the derived title.
             When False, use the derived title without prompting (no stdin required).
+
     """
     # Get the filename without extension
     original_filename = file_path.stem
@@ -97,9 +100,9 @@ def rename_file_with_creation_timestamp_and_tags(
     # to our format.
     if not existing_timestamp:
         creation_time = file_path.stat().st_ctime
-        existing_timestamp = datetime.datetime.fromtimestamp(creation_time).strftime(
-            "%Y%m%dT%H%M%S"
-        )
+        existing_timestamp = datetime.datetime.fromtimestamp(
+            creation_time, tz=ZoneInfo("Europe/Zurich")
+        ).strftime("%Y%m%dT%H%M%S")
 
     formatted_title = format_title(raw_title=parsed_title)
 
@@ -117,7 +120,7 @@ def rename_file_with_creation_timestamp_and_tags(
         updated_title = formatted_title
 
     if tags is None:
-        tags = existing_tags if existing_tags else []
+        tags = existing_tags or []
     # remove duplicates
     tags = list(set(format_tags(tags)))
     tags.sort()

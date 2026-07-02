@@ -11,9 +11,13 @@ from datetime import date
 from datetime import datetime
 from datetime import time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 # Min year for yyyymmdd format to be considered valid
 MIN_VALID_YEAR = 1940
+
+# All timestamps are interpreted in the machine's local timezone.
+LOCAL_TZ = ZoneInfo("Europe/Zurich")
 
 
 def find_date_in_filename(filename: str) -> date | None:
@@ -30,7 +34,7 @@ def find_date_in_filename(filename: str) -> date | None:
                 # Special check for yyyymmdd to avoid matching random numbers
                 if date_format == "%Y%m%d":
                     year = int(match.group(1)[:4])
-                    current_year = datetime.now().year
+                    current_year = datetime.now(tz=LOCAL_TZ).year
                     if not (MIN_VALID_YEAR <= year <= current_year + 1):
                         continue  # Skip if year is out of a reasonable range
 
@@ -55,9 +59,10 @@ def find_time_in_filename(filename: str) -> time | None:
     for pattern, time_format in patterns:
         if match := re.search(pattern, filename):
             try:
-                return datetime.strptime(
+                # time parsed from a filename is inherently naive
+                return datetime.strptime(  # noqa: DTZ007
                     match.group(1), time_format
-                ).time()  # noqa: DTZ007
+                ).time()
             except ValueError:
                 continue
     return None
@@ -67,7 +72,7 @@ def get_file_mtime(file_path: Path) -> datetime | None:
     """Get the modification time of a file as a datetime object."""
     try:
         mtime_ts = file_path.stat().st_mtime
-        return datetime.fromtimestamp(mtime_ts)
+        return datetime.fromtimestamp(mtime_ts, tz=LOCAL_TZ)
     except FileNotFoundError:
         print(f"[ERROR] File not found at '{file_path}'")
         return None
@@ -186,7 +191,7 @@ def main() -> None:
         time_source = "default (midnight)"
 
     # Combine date and time
-    datetime_found = datetime.combine(date_part, time_part)
+    datetime_found = datetime.combine(date_part, time_part, tzinfo=LOCAL_TZ)
     source = f"date from {date_source}, time from {time_source}"
 
     # Check if the file's mtime should be updated

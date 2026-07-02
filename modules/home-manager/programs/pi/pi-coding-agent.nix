@@ -47,6 +47,12 @@ in
       type = lib.types.path;
       description = "Path to a file written to {file}`~/.pi/agent/AGENTS.md` (global agent context).";
     };
+
+    memory = mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = "Path to a file created at {file}`~/.pi/agent/MEMORY.md` on first activation (long-term agent memory). The file is writable and not overwritten on subsequent switches.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -59,6 +65,14 @@ in
         "${configDir}/models.json".source = jsonFormat.generate "pi-coding-agent-models.json" cfg.models;
         "${configDir}/AGENTS.md".source = cfg.context;
       };
+
+      activation.createMemoryFile = lib.mkIf (cfg.memory != null) (
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          if [ ! -f "${configDir}/MEMORY.md" ]; then
+            ${pkgs.coreutils}/bin/cp ${cfg.memory} "${configDir}/MEMORY.md"
+          fi
+        ''
+      );
     };
   };
 }

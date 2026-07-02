@@ -89,6 +89,7 @@ in
     models.providers = { };
 
     context = ./AGENTS.md;
+    memory = ./MEMORY.md;
   };
 
   # Extra pi resources dropped into ~/.pi/agent (auto-discovered by pi, and inside the
@@ -98,12 +99,13 @@ in
     ".pi/agent/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
 
     # Extensions: read-only default + edit toggle, web_fetch tool, /exit alias,
-    # dynamic Infomaniak model+pricing registration, and cost/bill visibility.
+    # dynamic Infomaniak model+pricing registration, cost/bill visibility, and CLAUDE.md context injection.
     ".pi/agent/extensions/edit-mode.ts".source = ./extensions/edit-mode.ts;
     ".pi/agent/extensions/web-fetch.ts".source = ./extensions/web-fetch.ts;
     ".pi/agent/extensions/exit-alias.ts".source = ./extensions/exit-alias.ts;
     ".pi/agent/extensions/infomaniak-models.ts".source = ./extensions/infomaniak-models.ts;
     ".pi/agent/extensions/infomaniak-cost.ts".source = ./extensions/infomaniak-cost.ts;
+    ".pi/agent/extensions/claude-context.ts".source = ./extensions/claude-context.ts;
 
     # Prompt templates -> /plan, /review, /commit, /explain.
     ".pi/agent/prompts/plan.md".source = ./prompts/plan.md;

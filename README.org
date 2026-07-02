@@ -14,21 +14,22 @@ when used.
 
 ** Custom Scripts
 
-| Tool               | Description                                           |
-|--------------------+-------------------------------------------------------|
-| az-media           | Open four shuffled mpv instances for ambient playback |
-| dap-sync           | Synchronise files with a DAP device                   |
-| download-articles  | Download web articles for offline reading             |
-| download-playlist  | Download playlists via yt-dlp                         |
-| download-video     | Download a single video via yt-dlp                    |
-| jdownloader        | Launch JDownloader 2 download manager                 |
-| sidecar-cleanup    | Remove sidecar files left by photo tools              |
-| toggle-keyboard    | Toggle an external keyboard on/off via evtest         |
-| video-to-mpv       | Convert videos to an mpv-compatible format            |
-| watch-playlist     | Play a playlist with the custom mpv build             |
-| watch-random-video | Play a random video from a directory                  |
-| watch-video        | Play a video with the custom mpv build                |
-| zapp               | Flash ZSA keyboard firmware                           |
+| Tool                  | Description                                           |
+|-----------------------+-------------------------------------------------------|
+| az-media              | Open four shuffled mpv instances for ambient playback |
+| dap-sync              | Synchronise files with a DAP device                   |
+| download-articles     | Download web articles for offline reading             |
+| download-playlist     | Download playlists via yt-dlp                         |
+| download-video        | Download a single video via yt-dlp                    |
+| jdownloader           | Launch JDownloader 2 download manager                 |
+| sidecar-cleanup       | Remove sidecar files left by photo tools              |
+| swiss-qr-bill-decoder | Decode a Swiss QR bill (image/PDF) to clipboard       |
+| toggle-keyboard       | Toggle an external keyboard on/off via evtest         |
+| video-to-mpv          | Convert videos to an mpv-compatible format            |
+| watch-playlist        | Play a playlist with the custom mpv build             |
+| watch-random-video    | Play a random video from a directory                  |
+| watch-video           | Play a video with the custom mpv build                |
+| zapp                  | Flash ZSA keyboard firmware                           |
 
 ** Photography
 

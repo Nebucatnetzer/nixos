@@ -2,8 +2,13 @@
   lib,
   pkgs,
   config,
+  inputs,
+  unstable-pkgs,
   ...
 }:
+let
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
+in
 {
   nixpkgs.overlays = lib.singleton (
     _: prev: {
@@ -115,6 +120,18 @@
       Name[zh_TW]=移除中繼資料
       Icon=document-cleanup
       Exec=${pkgs.bash}/bin/bash -c '${pkgs.kdePackages.kdialog}/bin/kdialog --yesno "Exif metadata is going to be removed. Are you sure?" --title "Confirmation" && ${pkgs.exiftool}/bin/exiftool -all= "$@" -tagsFromFile @ -Orientation -overwrite_original' -- %U
+    '';
+    home.file.".local/share/kio/servicemenus/swiss-qr-bill-decoder.desktop".text = ''
+      [Desktop Entry]
+      Type=Service
+      MimeType=application/pdf;image/*;
+      Actions=decodeSwissQrBill
+
+      [Desktop Action decodeSwissQrBill]
+      Name=Decode Swiss QR bill to clipboard
+      Name[de]=Schweizer QR-Rechnung in Zwischenablage dekodieren
+      Icon=view-barcode-qr
+      Exec=${lib.getExe azPkgs.swiss-qr-bill-decoder} %f
     '';
   };
 }

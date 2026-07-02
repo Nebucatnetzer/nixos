@@ -40,6 +40,7 @@ rec {
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
   rebuild = pkgs.callPackage ./rebuild { };
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };
+  swiss-qr-bill-decoder = pkgs.callPackage ./swiss-qr-bill-decoder { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };

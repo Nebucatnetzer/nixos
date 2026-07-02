@@ -134,5 +134,17 @@ in
       Icon=view-barcode-qr
       Exec=${lib.getExe azPkgs.swiss-qr-bill-decoder} %f
     '';
+    home.file.".local/share/kio/servicemenus/denote-rename.desktop".text = ''
+      [Desktop Entry]
+      Type=Service
+      MimeType=all/all;
+      Actions=denoteRename
+
+      [Desktop Action denoteRename]
+      Name=Rename in denote style
+      Name[de]=Im Denote-Stil umbenennen
+      Icon=edit-rename
+      Exec=${pkgs.bash}/bin/bash -c 'if out=$(${lib.getExe azPkgs.denote-rename} --non-interactive "$1" 2>&1); then ${pkgs.libnotify}/bin/notify-send --app-name="Denote Rename" --icon=edit-rename "Renamed in denote style" "$out"; else ${pkgs.libnotify}/bin/notify-send --app-name="Denote Rename" --icon=dialog-error --urgency=critical "Denote rename failed" "$out"; fi' -- %f
+    '';
   };
 }

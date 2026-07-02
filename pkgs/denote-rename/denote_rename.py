@@ -71,6 +71,7 @@ def format_tags(raw_tags: list[str]) -> list[str]:
 def rename_file_with_creation_timestamp_and_tags(
     file_path: Path,
     tags: list[str] | None = None,
+    interactive: bool = True,
 ) -> None:
     """Rename a file by prefixing it with its creation timestamp.
 
@@ -81,6 +82,8 @@ def rename_file_with_creation_timestamp_and_tags(
     Args:
         file_path (Path): The path to the file to be renamed.
         tags (Optional[list[str]]): An optional list of tags to append to the file name.
+        interactive (bool): When True, prompt to confirm or replace the derived title.
+            When False, use the derived title without prompting (no stdin required).
     """
     # Get the filename without extension
     original_filename = file_path.stem
@@ -100,15 +103,18 @@ def rename_file_with_creation_timestamp_and_tags(
 
     formatted_title = format_title(raw_title=parsed_title)
 
-    input_question = (
-        "Use the following title? "
-        f'"{formatted_title}" (press Enter to confirm or type a new title): '
-    )
-    input_title = input(input_question).strip()
-    if input_title == "":
-        updated_title = formatted_title
+    if interactive:
+        input_question = (
+            "Use the following title? "
+            f'"{formatted_title}" (press Enter to confirm or type a new title): '
+        )
+        input_title = input(input_question).strip()
+        if input_title == "":
+            updated_title = formatted_title
+        else:
+            updated_title = format_title(raw_title=input_title)
     else:
-        updated_title = format_title(raw_title=input_title)
+        updated_title = formatted_title
 
     if tags is None:
         tags = existing_tags if existing_tags else []
@@ -150,6 +156,11 @@ def arguments() -> argparse.Namespace:
         default=None,
         help="A list of optional tags associated with the file",
     )
+    parser.add_argument(
+        "--non-interactive",
+        action="store_true",
+        help="Skip the title confirmation prompt and use the derived title",
+    )
     return parser.parse_args()
 
 
@@ -161,6 +172,7 @@ def main() -> None:
         rename_file_with_creation_timestamp_and_tags(
             file_path=args.file_path,
             tags=args.tags,
+            interactive=not args.non_interactive,
         )
     else:
         print("File does not exist.")

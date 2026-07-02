@@ -70,6 +70,7 @@ in
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''
           if [ ! -f "${configDir}/MEMORY.md" ]; then
             ${pkgs.coreutils}/bin/cp ${cfg.memory} "${configDir}/MEMORY.md"
+            ${pkgs.coreutils}/bin/chmod +w "${configDir}/MEMORY.md"
           fi
         ''
       );

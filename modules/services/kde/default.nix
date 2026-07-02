@@ -92,6 +92,7 @@ in
           "eng"
         ];
       })
+      pkgs.kdePackages.prison # for qrcode scanning with spectacle
       pkgs.krename
       pkgs.exiftool
     ];

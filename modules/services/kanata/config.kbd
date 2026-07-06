@@ -1,5 +1,5 @@
 (defvirtualkeys
-  to-base (layer-switch base)
+  fast (layer-while-held typing)
 )
 
 (defvar
@@ -24,14 +24,7 @@
 
 (defalias
   ;; call @.tp whenever you want to enter fast typing-layer
-  .tp (switch
-        ;;(lsft rsft) XX break ;; optional skip typing-layer activation for upper case keys might solves some FJ problems
-        ()  (multi
-              (layer-switch typing)
-              (on-idle 55 tap-vkey to-base) ;; timeouts from 30 to 100 are wide spread
-            ) break
-      )
-  .spc-typing   (multi (layer-switch base) spc) ;; expilcitly leave typing-layer when hitting `space` - this allows experimenting with higher idle timeouts
+  .tp (hold-for-duration 55 fast)
 )
 
 (defsrc )
@@ -60,6 +53,7 @@
  ; (t! homerowmod $tot 200 ; rmet)
  e @e-click
  r @r-click
+ spc @spc_nav
  ;; define each letter as typing-layer trigger
  q (multi q @.tp) w (multi w @.tp) t (multi t @.tp) y (multi y @.tp) u (multi u @.tp) i (multi i @.tp) o (multi o @.tp) p (multi p @.tp) g (multi g @.tp) h (multi h @.tp) z (multi z @.tp) x (multi x @.tp) c (multi c @.tp) v (multi v @.tp) b (multi b @.tp) n (multi n @.tp) m (multi m @.tp)
 )

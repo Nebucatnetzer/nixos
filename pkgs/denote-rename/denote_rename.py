@@ -40,8 +40,8 @@ def parse_existing_filename(
 def format_title(raw_title: str) -> str:
     """Convert {raw_title}.
 
-    To lowercase, replace spaces with '-' and all special characters
-    with an empty string.
+    To lowercase, replace spaces and underscores with '-' and all special
+    characters with an empty string.
     """
     cleaned_title = re.sub(
         r"[\[\]\{\}!@#\$%\^&\*\(\)\+\'\"?,\.\|;:~`‘’“”/=]+",  # noqa: RUF001
@@ -49,14 +49,14 @@ def format_title(raw_title: str) -> str:
         raw_title,
     )
     lowercase_title = cleaned_title.lower()
-    return lowercase_title.replace(" ", "-")
+    return re.sub(r"[\s_]+", "-", lowercase_title)
 
 
 def format_tags(raw_tags: list[str]) -> list[str]:
     """Convert all given raw_tags.
 
-    To lowercase, replace spaces with '-' and all special characters
-    with an empty string.
+    To lowercase, replace spaces and underscores with '-' and all special
+    characters with an empty string.
     """
     formatted_tags = []
     for tag in raw_tags:
@@ -66,7 +66,7 @@ def format_tags(raw_tags: list[str]) -> list[str]:
             tag,
         )
         lowercase_tag = cleaned_tag.lower()
-        formatted_tags.append(lowercase_tag.replace(" ", "-"))
+        formatted_tags.append(re.sub(r"[\s_]+", "-", lowercase_tag))
     return formatted_tags
 
 

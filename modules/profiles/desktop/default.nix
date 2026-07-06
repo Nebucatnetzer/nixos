@@ -84,6 +84,7 @@
       ];
       nativeMessagingHosts.packages = [
         pkgs.kdePackages.plasma-browser-integration
+        pkgs.ff2mpv
       ];
       preferences = {
         "browser.aboutConfig.showWarning" = false; # Warning when opening about:config

@@ -20,7 +20,7 @@ in
       image-display-duration = 3;
       keep-open = "yes";
       keepaspect-window = "no";
-      volume = 50;
+      volume = 100;
       cache = "yes";
       demuxer-max-bytes = "512MiB";
       demuxer-readahead-secs = 20;

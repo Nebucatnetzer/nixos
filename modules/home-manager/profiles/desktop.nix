@@ -42,7 +42,6 @@ in
       azPkgs.watch-playlist
       azPkgs.watch-random-video
       azPkgs.watch-video
-      azPkgs.zapp
 
       # photography packages
       unstable-pkgs.darktable
@@ -64,6 +63,7 @@ in
       pkgs.remmina
       pkgs.syncthingtray
       pkgs.tagger
+      unstable-pkgs.zapp
       unstable-pkgs.zotero
     ];
   };

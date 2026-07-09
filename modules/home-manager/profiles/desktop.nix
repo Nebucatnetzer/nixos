@@ -49,11 +49,6 @@ in
       pkgs.hugin
       pkgs.tesseract # OCR in Digikam
 
-      # wine
-      pkgs.bottles
-      pkgs.wine-wayland
-      pkgs.wineWow64Packages.waylandFull
-
       pkgs.czkawka
       pkgs.exercism
       pkgs.keepassxc

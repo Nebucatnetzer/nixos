@@ -69,7 +69,6 @@ when used.
 
 | Tool          | Description                                   |
 |---------------+-----------------------------------------------|
-| bottles       | Run Windows applications via Wine             |
 | czkawka       | Duplicate and similar file finder             |
 | exercism      | Programming exercise platform CLI             |
 | keepassxc     | Password manager                              |

@@ -118,6 +118,7 @@
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep
+      pkgs.steam-run # FHS runtime for running dynamically-linked binaries
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
     ];
     sessionVariables = {

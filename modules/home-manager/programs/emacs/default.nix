@@ -17,7 +17,7 @@
     pkgs.hurl # required for hurl-mode
     pkgs.multimarkdown
     pkgs.nixd # Nix language server
-    pkgs.prettier # formatting files
+    unstable-pkgs.prettier # formatting files
     pkgs.nixfmt
     pkgs.pandoc
     pkgs.ripgrep

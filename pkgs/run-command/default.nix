@@ -1,5 +1,4 @@
 {
-  lib,
   writers,
 }:
 writers.writePython3Bin "run-command" {

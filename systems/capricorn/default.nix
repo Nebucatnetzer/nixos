@@ -25,11 +25,6 @@ let
       nmcli connection up yallo
     '';
   };
-  # Persist GPU crash dumps before the kernel auto-deletes them (~5 min).
-  # udev sets DEVPATH in the environment for RUN programs.
-  saveDevcoredump = pkgs.writeShellScript "save-gpu-devcoredump" ''
-    ${pkgs.coreutils}/bin/cp "/sys$DEVPATH/data" "/var/log/gpu-devcd-$(${pkgs.coreutils}/bin/date +%s).dump"
-  '';
   mediaShare = import "${inputs.self}/modules/services/media-share";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
@@ -128,34 +123,10 @@ in
     kdeconnect.enable = true;
   };
 
-  nixpkgs.overlays = [
-    (_: prev: {
-      ipu6-camera-hal = prev.ipu6-camera-hal.overrideAttrs (old: {
-        cmakeFlags = map (
-          f: if builtins.match "-DIPU_VERSIONS=.*" f != null then "-DIPU_VERSIONS=ipu6;ipu6epmtl" else f
-        ) old.cmakeFlags;
-      });
-    })
-  ];
-
   services = {
     fprintd.enable = true;
     smartd.devices = [
       { device = "/dev/nvme0n1"; }
     ];
-    udev.extraRules = ''
-      SUBSYSTEM=="devcoredump", ACTION=="add", RUN+="${saveDevcoredump}"
-    '';
-    v4l2-relayd.instances.ipu6 = {
-      cardLabel = "Intel MIPI Camera";
-      input = {
-        format = "NV12";
-        width = 1280;
-        height = 720;
-        framerate = 30;
-      };
-      output.format = "YUY2";
-      extraPackages = [ pkgs.gst_all_1.icamerasrc-ipu6epmtl ];
-    };
   };
 }

@@ -6,7 +6,11 @@
 }:
 let
   fetchPiExt =
-    { repo, rev, hash }:
+    {
+      repo,
+      rev,
+      hash,
+    }:
     pkgs.fetchFromGitHub {
       owner = "championswimmer";
       inherit repo rev hash;

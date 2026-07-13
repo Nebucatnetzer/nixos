@@ -10,6 +10,9 @@ writers.writePython3Bin "container-updates" {
     "--prefix"
     "PATH"
     ":"
-    (lib.makeBinPath [ ripgrep skopeo ])
+    (lib.makeBinPath [
+      ripgrep
+      skopeo
+    ])
   ];
 } (builtins.readFile ./container_updates.py)

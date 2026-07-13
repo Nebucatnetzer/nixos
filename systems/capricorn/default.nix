@@ -26,6 +26,7 @@ let
     '';
   };
   mediaShare = import "${inputs.self}/modules/services/media-share";
+  nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardModule = import "${inputs.self}/modules/services/wireguard";
@@ -46,6 +47,7 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (mediaShare { })
+    (nixBuilderModule { role = "client"; })
     (resticClientModule { })
     (syncthingModule { })
     (wireguardModule {

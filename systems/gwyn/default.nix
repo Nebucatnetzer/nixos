@@ -25,6 +25,7 @@ let
   giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   mediaShare = import "${inputs.self}/modules/services/media-share";
+  nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   resticServer = import "${inputs.self}/modules/services/restic-server";
   rssBridgeDomain = "rss-bridge.zweili.org";
@@ -67,6 +68,7 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (mediaShare { hard = true; })
+    (nixBuilderModule { role = "server"; })
     (giteaModule {
       dataDir = giteaDataDir;
       domain = giteaDomain;

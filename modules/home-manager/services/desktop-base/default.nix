@@ -1,13 +1,9 @@
 {
   config,
-  inputs,
   pkgs,
   ...
 }:
 {
-  imports = [
-    "${inputs.self}/modules/home-manager/services/espanso"
-  ];
   gtk = {
     cursorTheme = {
       package = pkgs.vanilla-dmz;

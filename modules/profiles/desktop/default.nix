@@ -26,7 +26,6 @@
   };
 
   users.users."${config.az-username}".extraGroups = [
-    "input" # required for espanso
     config.services.samba.usershares.group
   ];
   services = {

@@ -7,6 +7,11 @@
     wgFqdn = "capricorn.vpn.zweili.org";
     wgIp = "10.70.89.170";
   };
+  fenoglio = {
+    physicalIp = "10.7.89.120";
+    wgFqdn = "fenoglio.vpn.zweili.org";
+    wgIp = "10.70.89.120";
+  };
   fileserver = {
     fqdn = "fileserver.int.zweili.org";
     physicalIp = "10.7.89.108";

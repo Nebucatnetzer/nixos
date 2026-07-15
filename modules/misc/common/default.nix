@@ -30,6 +30,7 @@ in
     hosts = {
       "${config.az-hosts.ap.physicalIp}" = [ "${config.az-hosts.ap.fqdn}" ];
       "${config.az-hosts.capricorn.wgIp}" = [ "${config.az-hosts.capricorn.wgFqdn}" ];
+      "${config.az-hosts.fenoglio.wgIp}" = [ "${config.az-hosts.fenoglio.wgFqdn}" ];
       "${config.az-hosts.fileserver.physicalIp}" = [ "${config.az-hosts.fileserver.fqdn}" ];
       "${config.az-hosts.gwyn.wgIp}" = [ "${config.az-hosts.gwyn.wgFqdn}" ];
       "${config.az-hosts.loki.physicalIp}" = [ "${config.az-hosts.loki.fqdn}" ];

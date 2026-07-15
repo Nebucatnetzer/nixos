@@ -24,6 +24,13 @@ in
             "${config.az-hosts.capricorn.wgIp}/32"
           ];
         }
+        {
+          # fenoglio
+          publicKey = "bXKQTnyw7G93I0xktIa7kitL5kK3cMhSBAvuOOe0V3w=";
+          allowedIPs = [
+            "${config.az-hosts.fenoglio.wgIp}/32"
+          ];
+        }
         (lib.mkIf (!isHub) {
           # gwyn, acting as hub
           publicKey = "A96R1JeeZqT+pz15Dfl++1zmW8hpyefScQDNcxwB5l4=";

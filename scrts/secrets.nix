@@ -7,16 +7,19 @@ let
   ];
 
   capricorn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRobGMQkRNxHCjRsNGDgCivywhVylkyN71V1ikWiPhX root@capricorn";
+  fenoglio = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOonkLlbxOoCS/8s2BOhctEiFQfOrZrGMdYGY2Y69lbW root@fenoglio";
   gwyn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgU7uBGqpsp39oIotlhE5ohdFyTMGkLqOScW5ER6KAA root@gwyn";
 
   systems = [
     capricorn
+    fenoglio
     gwyn
   ];
   defaultKeys = [
     andreas
     andreas-nixos-vm
     capricorn
+    fenoglio
     gwyn
   ];
   all = users ++ systems;
@@ -24,6 +27,7 @@ in
 {
   "capricorn_wg.key.age".publicKeys = defaultKeys;
   "ddclient_password.txt.age".publicKeys = defaultKeys;
+  "fenoglio_wg.key.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys;
   "freshrss_user_pass.age".publicKeys = defaultKeys;
   "gitea_env.age".publicKeys = defaultKeys;

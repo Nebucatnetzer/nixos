@@ -36,6 +36,9 @@
         "capricorn" = {
           home-module = "desktop";
         };
+        "fenoglio" = {
+          home-module = "management";
+        };
         "gwyn" = {
           home-module = "management";
         };

@@ -26,6 +26,7 @@ let
 in
 {
   "capricorn_wg.key.age".publicKeys = defaultKeys;
+  "celler_env.age".publicKeys = defaultKeys;
   "ddclient_password.txt.age".publicKeys = defaultKeys;
   "fenoglio_wg.key.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys;

@@ -34,8 +34,10 @@ _: {
         mnemonicPrefix = true;
         renames = true;
       };
-      extensions.refstorage = "files";
       feature.experimental = true;
+      # feature.experimental enables reftable as the default ref backend, which
+      # Nix's bundled libgit2 cannot read. Force the classic files backend.
+      init.defaultRefFormat = "files";
       fetch = {
         all = true;
         prune = true; # not clear if I keep it

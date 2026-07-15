@@ -67,7 +67,7 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (mediaShare { hard = true; })
-    (nixBuilderModule { role = "server"; })
+    (nixBuilderModule { role = "client"; })
     (giteaModule {
       dataDir = giteaDataDir;
       domain = giteaDomain;

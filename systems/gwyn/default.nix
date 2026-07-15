@@ -31,7 +31,7 @@ let
   rssBridgeDomain = "rss-bridge.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
-  wireguardModule = import "${inputs.self}/modules/services/wireguard";
+  wireguardHub = import "${inputs.self}/modules/services/wireguard/hub.nix";
 in
 {
   imports = [
@@ -51,7 +51,6 @@ in
     "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
-    "${inputs.self}/modules/services/wireguard/routing.nix"
     "${inputs.self}/modules/services/zram-swap"
     (actualBudgetModule {
       domain = "actual.zweili.org";
@@ -91,9 +90,8 @@ in
       domain = rssBridgeDomain;
     })
     (syncthingModule { exposeWebInterface = true; })
-    (wireguardModule {
+    (wireguardHub {
       IP = config.az-hosts."${hostname}".wgIp;
-      isHub = true;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
     })
   ];

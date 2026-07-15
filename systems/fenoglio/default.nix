@@ -8,7 +8,7 @@ let
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
-  wireguardModule = import "${inputs.self}/modules/services/wireguard";
+  wireguardClient = import "${inputs.self}/modules/services/wireguard/client.nix";
 in
 {
   imports = [
@@ -19,9 +19,13 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "server"; })
-    (wireguardModule {
+    (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
+      # fenoglio sits on the LAN (eno2); don't route 10.7.89.0/24 through the tunnel
+      routeLan = false;
+      # reach gwyn directly over the LAN instead of hairpinning via the public IP
+      hubHost = config.az-hosts.gwyn.physicalIp;
     })
   ];
 

@@ -29,7 +29,7 @@ let
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
-  wireguardModule = import "${inputs.self}/modules/services/wireguard";
+  wireguardClient = import "${inputs.self}/modules/services/wireguard/client.nix";
 in
 {
   imports = [
@@ -50,7 +50,7 @@ in
     (nixBuilderModule { role = "client"; })
     (resticClientModule { })
     (syncthingModule { })
-    (wireguardModule {
+    (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
     })

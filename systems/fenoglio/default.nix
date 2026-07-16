@@ -66,8 +66,11 @@ in
     ];
   };
 
-  services.smartd.devices = [
-    { device = "/dev/nvme0n1"; }
-  ];
+  services = {
+    logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+    smartd.devices = [
+      { device = "/dev/nvme0n1"; }
+    ];
+  };
 
 }

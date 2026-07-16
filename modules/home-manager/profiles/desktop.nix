@@ -58,7 +58,6 @@ in
       pkgs.remmina
       pkgs.syncthingtray
       pkgs.tagger
-      unstable-pkgs.zapp
       unstable-pkgs.zotero
     ];
   };

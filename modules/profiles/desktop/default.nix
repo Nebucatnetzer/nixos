@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  unstable-pkgs,
   ...
 }:
 {
@@ -119,6 +120,8 @@
       pkgs.pdfgrep
       pkgs.steam-run # FHS runtime for running dynamically-linked binaries
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
+      pkgs.wally-cli # tool to flash a ZSA keyboard
+      unstable-pkgs.zapp # tool to flash Oryx links onto ZSA keyboards
     ];
     sessionVariables = {
       DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";

@@ -118,7 +118,6 @@ in
   };
 
   environment.systemPackages = [
-    pkgs.wally-cli # tool to flash a ZSA keyboard
     foxFlssWrapper
   ];
   programs = {

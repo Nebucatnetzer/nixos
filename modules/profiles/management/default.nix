@@ -2,8 +2,12 @@
   config,
   inputs,
   pkgs,
+  unstable-pkgs,
   ...
 }:
+let
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
+in
 {
   imports = [
     "${inputs.self}/modules/programs/nix-direnv"
@@ -46,6 +50,23 @@
     pkgs.podman-compose
     pkgs.quickemu
     pkgs.unrar
+
+    # moved from the management home-manager profile
+    azPkgs.date-to-filename
+    azPkgs.denote-rename
+    azPkgs.rebuild
+    azPkgs.unlock-luks
+    azPkgs.update-file-dates
+    pkgs.exercism
+    pkgs.gh # GitHub CLI for working on poetry2nix
+    pkgs.git
+    pkgs.nix-prefetch-github
+    pkgs.nix-prefetch-scripts
+    pkgs.nix-tree
+    pkgs.nps
+    pkgs.termscp
+    pkgs.trippy # network diagnostics
   ];
+  programs.ssh.startAgent = true;
   virtualisation.podman.enable = true;
 }

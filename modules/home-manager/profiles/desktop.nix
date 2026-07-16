@@ -4,22 +4,14 @@
   lib,
   nixosConfig,
   pkgs,
-  unstable-pkgs,
   ...
 }:
-let
-  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
-in
 {
   imports = [
     "${inputs.self}/modules/home-manager/programs/beets"
-    "${inputs.self}/modules/home-manager/programs/calibre"
     "${inputs.self}/modules/home-manager/programs/mpv"
     "${inputs.self}/modules/home-manager/programs/pi"
     "${inputs.self}/modules/home-manager/programs/rapid-photo-downloader"
-    "${inputs.self}/modules/home-manager/programs/signal"
-    "${inputs.self}/modules/home-manager/programs/telegram"
-    "${inputs.self}/modules/home-manager/programs/work-desktop"
     "${inputs.self}/modules/home-manager/services/desktop-base"
     ./management.nix
   ];
@@ -28,38 +20,6 @@ in
     file.".config/darktable/luarc".text = ''
       package.path = package.path .. ";${inputs.darktable-lua-scripts}/?.lua"
     '';
-
-    packages = [
-      azPkgs.az-media
-      azPkgs.dap-sync
-      azPkgs.download-articles
-      azPkgs.download-playlist
-      azPkgs.download-video
-      azPkgs.jdownloader
-      azPkgs.sidecar-cleanup
-      azPkgs.toggle-keyboard
-      azPkgs.video-to-mpv
-      azPkgs.watch-playlist
-      azPkgs.watch-random-video
-      azPkgs.watch-video
-
-      # photography packages
-      unstable-pkgs.darktable
-      pkgs.digikam
-      pkgs.hugin
-      pkgs.tesseract # OCR in Digikam
-
-      pkgs.czkawka
-      pkgs.exercism
-      pkgs.keepassxc
-      pkgs.libreoffice-qt-fresh
-      pkgs.meld
-      pkgs.plex-desktop
-      pkgs.remmina
-      pkgs.syncthingtray
-      pkgs.tagger
-      unstable-pkgs.zotero
-    ];
   };
 
   programs = {

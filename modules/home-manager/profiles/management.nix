@@ -1,11 +1,9 @@
 {
   inputs,
   pkgs,
-  unstable-pkgs,
   ...
 }:
 let
-  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
   git = import "${inputs.self}/modules/home-manager/programs/git" { };
 in
 {
@@ -25,30 +23,11 @@ in
   ];
 
   home = {
-    packages = [
-      azPkgs.date-to-filename
-      azPkgs.denote-rename
-      azPkgs.rebuild
-      azPkgs.unlock-luks
-      azPkgs.update-file-dates
-      pkgs.exercism
-      pkgs.gh # GitHub CLI for working on poetry2nix
-      pkgs.git
-      pkgs.nix-prefetch-github
-      pkgs.nix-prefetch-scripts
-      pkgs.nix-tree
-      pkgs.nps
-      pkgs.termscp
-      pkgs.trippy # network diagnostics
-    ];
     sessionVariables = {
       PATH = "$PATH:$HOME/.local/bin";
     };
   };
   programs = {
     emacs.package = pkgs.emacs-nox;
-  };
-  services = {
-    ssh-agent.enable = true;
   };
 }

@@ -5,10 +5,16 @@
   unstable-pkgs,
   ...
 }:
+let
+  azPkgs = import "${inputs.self}/pkgs" { inherit pkgs unstable-pkgs; };
+in
 {
   imports = [
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/programs/calibre"
     "${inputs.self}/modules/programs/libimobiledevice"
+    "${inputs.self}/modules/programs/rapid-photo-downloader"
+    "${inputs.self}/modules/programs/signal"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/pipewire"
   ];
@@ -127,6 +133,38 @@
       pkgs.vial # configure the Cornix keyboard layout
       pkgs.wally-cli # tool to flash a ZSA keyboard
       unstable-pkgs.zapp # tool to flash Oryx links onto ZSA keyboards
+
+      # moved from the desktop home-manager profile
+      azPkgs.az-media
+      azPkgs.dap-sync
+      azPkgs.download-articles
+      azPkgs.download-playlist
+      azPkgs.download-video
+      azPkgs.jdownloader
+      azPkgs.sidecar-cleanup
+      azPkgs.toggle-keyboard
+      azPkgs.video-to-mpv
+      azPkgs.watch-playlist
+      azPkgs.watch-random-video
+      azPkgs.watch-video
+
+      # photography packages
+      unstable-pkgs.darktable
+      pkgs.digikam
+      pkgs.hugin
+      pkgs.tesseract # OCR in Digikam
+
+      pkgs.czkawka
+      pkgs.dbeaver-bin
+      pkgs.keepassxc
+      pkgs.libreoffice-qt-fresh
+      pkgs.meld
+      pkgs.plex-desktop
+      pkgs.remmina
+      pkgs.syncthingtray
+      pkgs.tagger
+      unstable-pkgs.telegram-desktop
+      unstable-pkgs.zotero
     ];
     sessionVariables = {
       DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";

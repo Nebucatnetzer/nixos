@@ -34,6 +34,10 @@
     fwupd.enable = true;
     smartd.notifications.systembus-notify.enable = true;
     udisks2.enable = true;
+    # Grant Vial hidraw access to the Cornix keyboard (matches any Vial device)
+    udev.extraRules = ''
+      KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess"
+    '';
     # Enable the X11 windowing system.
     libinput = {
       enable = true;
@@ -120,6 +124,7 @@
       pkgs.pdfgrep
       pkgs.steam-run # FHS runtime for running dynamically-linked binaries
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
+      pkgs.vial # configure the Cornix keyboard layout
       pkgs.wally-cli # tool to flash a ZSA keyboard
       unstable-pkgs.zapp # tool to flash Oryx links onto ZSA keyboards
     ];

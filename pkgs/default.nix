@@ -44,7 +44,7 @@ rec {
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
-  update-single-machine = pkgs.callPackage ./update-single-machine { };
+  update-hosts = pkgs.callPackage ./update-hosts { };
   video-to-mpv = pkgs.callPackage ./video-to-mpv {
     inherit yt-dlp;
     mpv = custom-mpv;

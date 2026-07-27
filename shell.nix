@@ -22,7 +22,7 @@ mkShellNoCC {
         azPkgs.dry-build-all
         azPkgs.run-command
         azPkgs.test-build
-        azPkgs.update-single-machine
+        azPkgs.update-hosts
         deadnix
         git
         wireguard-tools

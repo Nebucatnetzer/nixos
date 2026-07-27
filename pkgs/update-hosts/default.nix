@@ -3,7 +3,7 @@
   nixos-rebuild-ng,
   writers,
 }:
-writers.writePython3Bin "update-single-machine" {
+writers.writePython3Bin "update-hosts" {
   flakeIgnore = [ "E501" ];
   makeWrapperArgs = [
     "--prefix"
@@ -11,4 +11,4 @@ writers.writePython3Bin "update-single-machine" {
     ":"
     (lib.makeBinPath [ nixos-rebuild-ng ])
   ];
-} (builtins.readFile ./update_single_machine.py)
+} (builtins.readFile ./update_hosts.py)

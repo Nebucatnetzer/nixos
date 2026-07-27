@@ -60,9 +60,8 @@ def find_image_references(image: str, search_path: str = "./modules") -> str:
 
 def main() -> None:
     images: list[str] = [
+        "docker.io/actualbudget/actual-server",
         "docker.io/gitea/gitea",
-        "docker.io/nginx",
-        "ghcr.io/actualbudget/actual-server",
         "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
         "lscr.io/linuxserver/plex",
     ]

@@ -22,13 +22,12 @@
           scroll-conservatively 9999
           scroll-step 1))
 
-(when (boundp 'enable-color-theme)
-  (use-package alabaster-themes
-    :config
-    (load-theme 'alabaster-themes-light-bg t)
-    (custom-set-faces
-     '(line-number ((((type tty)) :foreground "#777777" :background "#f5f5f5")))
-     '(line-number-current-line ((((type tty)) :foreground "#000000" :background "#ffffff" :weight bold))))))
+(use-package alabaster-themes
+  :config
+  (load-theme 'alabaster-themes-light-bg t)
+  (custom-set-faces
+   '(line-number ((((type tty)) :foreground "#777777" :background "#f5f5f5")))
+   '(line-number-current-line ((((type tty)) :foreground "#000000" :background "#ffffff" :weight bold)))))
 
 ;; highlight bad whitespace
 (use-package whitespace

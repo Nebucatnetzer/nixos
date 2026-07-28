@@ -26,7 +26,7 @@ writeShellApplication {
       --tmpfs "$HOME" \
       --tmpfs "$HOME/.cache" \
       --tmpfs "$HOME/.config" \
-      --bind "$PWD" "$PWD" \
+      --ro-bind "$PWD" "$PWD" \
       --bind "$HOME/.pi" "$HOME/.pi" \
       --ro-bind "$HOME/.config/git" "$HOME/.config/git" \
       --unshare-pid \

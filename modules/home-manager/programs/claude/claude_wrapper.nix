@@ -20,7 +20,7 @@ writeShellApplication {
       --tmpfs "$HOME" \
       --tmpfs "$HOME/.cache" \
       --tmpfs "$HOME/.config" \
-      --bind "$PWD" "$PWD" \
+      --ro-bind "$PWD" "$PWD" \
       --bind "$HOME/.claude" "$HOME/.claude" \
       --bind "$HOME/.claude.json" "$HOME/.claude.json" \
       --ro-bind "$HOME/.config/git" "$HOME/.config/git" \

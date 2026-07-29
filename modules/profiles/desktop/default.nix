@@ -149,6 +149,7 @@ in
       azPkgs.watch-video
 
       # photography packages
+      pkgs.art
       unstable-pkgs.darktable
       pkgs.digikam
       pkgs.hugin

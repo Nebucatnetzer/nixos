@@ -15,6 +15,7 @@ in
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/zram-swap"
     (btrfsAuxModule { })
     (btrfsLayout { })

@@ -86,9 +86,14 @@ in
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback
   ];
+  boot.resumeDevice = "/dev/mapper/mainLuks";
   boot.kernelParams = [
     "i915.force_probe=7d45"
     "xe.force_probe=!7d45"
+    # Hibernation: swapfile on the btrfs inside mainLuks.
+    # resume_offset comes from `btrfs inspect-internal map-swapfile -r /swap/swapfile`
+    # and must be regenerated if the swapfile is ever recreated or moved.
+    "resume_offset=533760"
   ];
 
   boot.initrd.luks.devices."mainLuks" = {
@@ -123,6 +128,18 @@ in
   programs = {
     kdeconnect.enable = true;
   };
+
+  services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
+  systemd.sleep.settings.Sleep.HibernateMode = "shutdown";
+  systemd.sleep.settings.Sleep.HibernateDelaySec = "30min";
+  # The LPSS I²C controller carrying the touchpad does not survive S4 and cannot
+  # be revived by rebinding, so unbind it before the snapshot and re-probe on resume.
+  powerManagement.powerDownCommands = ''
+    echo 0000:00:15.3 > /sys/bus/pci/drivers/intel-lpss/unbind
+  '';
+  powerManagement.resumeCommands = ''
+    echo 0000:00:15.3 > /sys/bus/pci/drivers/intel-lpss/bind
+  '';
 
   services = {
     fprintd.enable = true;

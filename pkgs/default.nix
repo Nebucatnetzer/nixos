@@ -42,6 +42,7 @@ rec {
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };
   swiss-qr-bill-decoder = pkgs.callPackage ./swiss-qr-bill-decoder { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
+  tube-podder = pkgs.callPackage ./tube-podder { inherit yt-dlp; };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
   update-hosts = pkgs.callPackage ./update-hosts { };

@@ -157,7 +157,23 @@
   ;; Refresh buffers if the file changes on disk
   (global-auto-revert-mode t)
 
-  (global-display-line-numbers-mode)
+  ;; Only enable line-numbers in specific modes
+  (defvar az/line-numbers-exempt-modes '(org-mode markdown-mode)
+    "Major modes that never get line numbers.
+  Needed because Org derives from `text-mode', so it would otherwise
+  inherit them from the hook below.")
+
+  (defun az/enable-line-numbers ()
+    "Turn on line numbers unless the major mode is exempt."
+    (unless (apply #'derived-mode-p az/line-numbers-exempt-modes)
+      (display-line-numbers-mode 1)))
+
+  ;; Opt in per mode family instead of globally: prose read in a centred
+  ;; Olivetti column has no use for a number gutter.
+  (dolist (hook '(prog-mode-hook conf-mode-hook text-mode-hook))
+    (add-hook hook #'az/enable-line-numbers))
+
+
   ;; Proper line wrapping
   (global-visual-line-mode 1)
   ;; disable menu and toolbar

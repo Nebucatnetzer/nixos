@@ -21,7 +21,7 @@ writeShellApplication {
   };
   text = ''
     fd \
-      --search-path ${mediaPaths.youtubeIndependentVideos}/ \
+      --search-path ${mediaPaths.youtubeVideos}/ \
       --type file \
       --no-hidden \
       --max-depth 1 |

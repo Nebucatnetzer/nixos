@@ -20,7 +20,7 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --no-playlist \
       --remux-video=mkv \
-      --paths=${mediaPaths.youtubeIndependentVideos}/ \
+      --paths=${mediaPaths.youtubeVideos}/ \
       "$@"
   '';
 }

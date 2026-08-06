@@ -18,6 +18,11 @@ _: {
       bind-key -T copy-mode-vi y send-keys -X copy-selection
       bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 
+      # Mouse drag copies but stays in copy-mode, so scroll position survives
+      # repeated selections. Leave copy-mode explicitly with q or Escape.
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
+
+
       # changing default delay
       set -s escape-time 1
 

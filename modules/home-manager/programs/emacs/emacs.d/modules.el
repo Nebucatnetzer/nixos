@@ -25,6 +25,7 @@
 ;; note taking and writing
 (load-file (modules-path "az_denote.el"))
 (load-file (modules-path "az_org_core.el"))
+(load-file (modules-path "az_org_log.el"))
 (load-file (modules-path "az_org_agenda.el"))
 (load-file (modules-path "az_org_export.el"))
 (load-file (modules-path "az_org_gitlab.el"))

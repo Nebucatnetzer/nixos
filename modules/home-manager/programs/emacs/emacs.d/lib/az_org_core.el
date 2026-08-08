@@ -113,7 +113,14 @@
                :clock-resume t
                :empty-lines 1)
               ("n" "Add note" plain (file az-org-capture-read-file-name)
-               (file ,(concat az-org-templates-dir "temp_note.txt"))))
+               (file ,(concat az-org-templates-dir "temp_note.txt")))
+              ;; plain, not item: item does list aware insertion and would
+              ;; reposition away from the append point az_org_log.el chose
+              ("l" "Log entry" plain
+               (function az-org-log-capture-target)
+               "- %?"
+               :empty-lines 0
+               :unnarrowed nil))
 
             ;; org-refile options
             org-refile-allow-creating-parent-nodes (quote confirm)

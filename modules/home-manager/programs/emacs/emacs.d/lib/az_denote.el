@@ -44,5 +44,8 @@
     :bind
     ("C-c n t" . denote-journal-new-or-existing-entry)
     :config
+    ;; The year here is computed once, at load time.  az_org_log.el advises
+    ;; the journal entry points to recompute it, so a daemon running past New
+    ;; Year does not keep writing into the previous year's directory.
     (setopt denote-journal-directory (concat denote-directory "99_archive/" (format-time-string "%Y") "/journal/")
             denote-journal-title-format 'day-date-month-year)))

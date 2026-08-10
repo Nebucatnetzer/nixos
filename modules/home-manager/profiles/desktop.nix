@@ -25,8 +25,8 @@
   programs = {
     bash = {
       shellAliases = {
-        management-server = "mosh ${config.home.username}@${nixosConfig.az-hosts.gwyn.wgIp} -- tmux new -A -s 0";
-        work-management = "mosh --ssh='ssh -i ~/.ssh/zweili.key' zweili@10.49.0.100 -- tmux new -A -s 0";
+        capricorn = "mosh ${config.home.username}@${nixosConfig.az-hosts.capricorn.wgIp} -- tmux new -A -s 0";
+        gwyn = "mosh ${config.home.username}@${nixosConfig.az-hosts.gwyn.wgIp} -- tmux new -A -s 0";
       };
     };
     emacs.package = lib.mkForce pkgs.emacs-pgtk;

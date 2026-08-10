@@ -26,11 +26,11 @@
     "darktable-lua-scripts": {
       "flake": false,
       "locked": {
-        "lastModified": 1783888082,
-        "narHash": "sha256-hJYQ+gIGELuWrUzgCM8swsBkSRRZLEUFyyTzfyqZ9wk=",
+        "lastModified": 1785969645,
+        "narHash": "sha256-Sd5+ik+Ux4s+5pTYmduhbB9+u4cLakAb2EqL1IThk4k=",
         "owner": "darktable-org",
         "repo": "lua-scripts",
-        "rev": "3ade2a8b4059b954ae2993b84bb29c65985f0deb",
+        "rev": "055ef31b09a4a67671aa51c4b2a5a5ea9d1317c7",
         "type": "github"
       },
       "original": {
@@ -157,11 +157,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1785571196,
-        "narHash": "sha256-KoTsyMQqnXQZq8deCEnu4QkyldkwH/bpMMhUcfMdGIw=",
+        "lastModified": 1786106723,
+        "narHash": "sha256-zDSUbpoeo/9ZmD2+wXnzxoo1+uhL8vxc0b8yuYMKYq0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "148bab9c1c3c53136ecb44a6ea356a0ed5b39b06",
+        "rev": "f13ff45afd1bb73e640eaa08a7066dbed07e3238",
         "type": "github"
       },
       "original": {
@@ -173,11 +173,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785599192,
-        "narHash": "sha256-dg4RTtDxnXY13UkJNdhmgTUTl0n/IJBlCigfO7nutZw=",
+        "lastModified": 1786201459,
+        "narHash": "sha256-CiOTEjmwAmG2AWnaIno9YaCJJmpca2FXPhMAsnrolCg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6d65bfc1bcef2ef39a239d38e577e92a89fb0f07",
+        "rev": "8b8c811c7c2541c30382c5de7ed26be055569c60",
         "type": "github"
       },
       "original": {

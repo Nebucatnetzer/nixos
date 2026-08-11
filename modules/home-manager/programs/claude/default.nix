@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   unstable-pkgs,
   ...
@@ -15,9 +16,19 @@ in
       inherit (unstable-pkgs) claude-code;
     };
     commands = {
-      commit = ./skills/commit.md;
+      commit = ../ai/commands/commit.md;
     };
-    context = ./CLAUDE.md;
+
+    # Claude is always read-only (see claude_wrapper.nix), so the advisory posture is
+    # prepended unconditionally to the rules shared with pi. The option takes `lines` or a
+    # path and branches on `lib.isPath`, which a derivation would not satisfy — so
+    # concatenate the text rather than building a file.
+    context = lib.concatStringsSep "\n" [
+      (builtins.readFile ../ai/ADVISORY.md)
+      (builtins.readFile ../ai/RULES.md)
+    ];
+
+    skills = ../ai/skills;
     mcpServers = {
       zotero = {
         type = "stdio";

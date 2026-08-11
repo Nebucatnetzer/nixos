@@ -1,6 +1,7 @@
 ---
 name: commit
 description: Stage and commit the current changes
+argument-hint: "[optional context]"
 disable-model-invocation: true
 allowed-tools: Bash(git add _) Bash(git commit _) Bash(git status \*) Bash(git diff _)
 ---
@@ -51,3 +52,14 @@ An "and" is usually a sign that the commit should actually be two commits e.g. "
 3. Draft the commit message following the rules above.
 4. Show the message to the user for confirmation before running `git commit`.
 5. Commit using a HEREDOC to preserve formatting exactly.
+
+## When you cannot write
+
+If `git add` / `git commit` are unavailable (read-only advisory mode), do not attempt them and do not report failure. Instead do steps 1-3, then output for each commit:
+
+- the commit message in a code block, and
+- the exact `git add` / `git commit` command to run, using a HEREDOC for the message.
+
+If the change needs splitting, give one such block per commit, in the order they should be applied. Then stop — the user runs them.
+
+Additional context (optional): $ARGUMENTS

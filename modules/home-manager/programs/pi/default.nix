@@ -92,7 +92,7 @@ in
     # so write an empty one; the extension adds the real provider at runtime.
     models.providers = { };
 
-    context = ./AGENTS.md;
+    context = ../ai/RULES.md;
     memory = ./MEMORY.md;
   };
 
@@ -100,12 +100,16 @@ in
   # bwrap-bound ~/.pi). The trimmed pi-coding-agent.nix module has no options for these,
   # so wire them directly via home.file to keep that module an upstream drop-in.
   home.file = {
-    ".pi/agent/APPEND_SYSTEM.md".source = ./APPEND_SYSTEM.md;
+    # The read-only posture is mode-dependent for pi, so the modes extension injects it per
+    # turn instead of an unconditional APPEND_SYSTEM.md. ai/ADVISORY.md is claude-only.
 
-    # Extensions: read-only default + edit toggle, web_fetch tool, /exit alias,
-    # dynamic Infomaniak model+pricing registration, cost/bill visibility, CLAUDE.md context injection,
-    # and memory loading at session start.
-    ".pi/agent/extensions/edit-mode.ts".source = ./extensions/edit-mode.ts;
+    # Move app.thinking.cycle off shift+tab so the modes extension can claim it.
+    ".pi/agent/keybindings.json".source = ./keybindings.json;
+
+    # Extensions: permission modes (plan/advise/edit) + bash guard, web_fetch tool,
+    # /exit alias, dynamic Infomaniak model+pricing registration, cost/bill visibility,
+    # CLAUDE.md context injection, and memory loading at session start.
+    ".pi/agent/extensions/modes".source = ./extensions/modes;
     ".pi/agent/extensions/web-fetch.ts".source = ./extensions/web-fetch.ts;
     ".pi/agent/extensions/exit-alias.ts".source = ./extensions/exit-alias.ts;
     ".pi/agent/extensions/infomaniak-models.ts".source = ./extensions/infomaniak-models.ts;
@@ -113,13 +117,15 @@ in
     ".pi/agent/extensions/claude-context.ts".source = ./extensions/claude-context.ts;
     ".pi/agent/extensions/load-memory.ts".source = ./extensions/load-memory.ts;
 
-    # Prompt templates -> /plan, /review, /commit, /explain.
-    ".pi/agent/prompts/plan.md".source = ./prompts/plan.md;
+    # Prompt templates -> /review, /commit, /explain. There is deliberately no plan.md:
+    # the modes extension registers /plan, and a template of the same name would collide.
+    # commit.md is shared with claude; pi reads only its `description`/`argument-hint`
+    # frontmatter and ignores the rest (dist/core/prompt-templates.js, loadTemplateFromFile).
     ".pi/agent/prompts/review.md".source = ./prompts/review.md;
-    ".pi/agent/prompts/commit.md".source = ./prompts/commit.md;
+    ".pi/agent/prompts/commit.md".source = ../ai/commands/commit.md;
     ".pi/agent/prompts/explain.md".source = ./prompts/explain.md;
 
-    # Skills -> /skill:nixos-flake (progressive disclosure).
-    ".pi/agent/skills/nixos-flake".source = ./skills/nixos-flake;
+    # Skills -> /skill:nixos-flake (progressive disclosure). Shared with claude.
+    ".pi/agent/skills/nixos-flake".source = ../ai/skills/nixos-flake;
   };
 }

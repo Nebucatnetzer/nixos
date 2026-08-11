@@ -11,12 +11,11 @@ writeShellApplication {
   ];
   text = ''
     unset CONTRIA_VAULT_PASS;
-    # `pi --write` starts in edit mode; the edit-mode extension reads PI_EDIT_MODE.
-    # (pi has no --write flag of its own, so intercept it here.) bwrap inherits the env.
-    if [ "''${1:-}" = "--write" ]; then
-      export PI_EDIT_MODE=1
-      shift
-    fi
+    # `--write` and `--plan` are real pi flags, registered by the modes extension via
+    # pi.registerFlag, so they pass straight through rather than being intercepted here.
+    #
+    # $PWD is bound writable on purpose: the modes extension is the write gate, and a
+    # --ro-bind would make that toggle dead code.
     bwrap \
       --ro-bind / / \
       --tmpfs /mnt/ \
@@ -26,7 +25,7 @@ writeShellApplication {
       --tmpfs "$HOME" \
       --tmpfs "$HOME/.cache" \
       --tmpfs "$HOME/.config" \
-      --ro-bind "$PWD" "$PWD" \
+      --bind "$PWD" "$PWD" \
       --bind "$HOME/.pi" "$HOME/.pi" \
       --ro-bind "$HOME/.config/git" "$HOME/.config/git" \
       --unshare-pid \

@@ -8,12 +8,14 @@
 
 (use-package emacs
   :config
-  ;; ispell settings
   (setenv "DICTIONARY" "en_GB")
+  ;; text-mode otherwise adds ispell-completion-at-point to
+  ;; completion-at-point-functions, and each call spawns look/grep over a
+  ;; word list; company hits it on every keystroke.
+  (setopt text-mode-ispell-word-completion nil)
   ;; ispell settings
   (setopt ispell-program-name "hunspell"
           ispell-local-dictionary "en_GB"
-          ispell-complete-word-dict (getenv "EMACS_DICT_WORDS")
           ispell-local-dictionary-alist
           '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
             ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8))))

@@ -10,7 +10,6 @@
   fd,
   ripgrep,
   pandoc,
-  scowl,
 }:
 let
   emacsConfig = runCommand "az-emacs-config" { } ''
@@ -54,7 +53,6 @@ writeShellApplication {
     platforms = lib.platforms.linux;
   };
   text = ''
-    export EMACS_DICT_WORDS="${scowl}/share/dict/wbritish.txt"
     export LSP_USE_PLISTS=true
     exec ${emacsWithPkgs}/bin/emacs --init-directory ${emacsConfig} "$@"
   '';

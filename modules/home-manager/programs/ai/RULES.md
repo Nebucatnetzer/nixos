@@ -10,6 +10,8 @@ to apply changes) live with the harness, not here.
 - For working on the NixOS/home-manager config in this repo, use the `nixos-flake` skill
   for build/test commands and packaging conventions.
 - Prefer the project's existing patterns, utilities, and idioms over introducing new ones.
+- In WSL2 — `xdg-open` is unavailable. When code needs to open a URL/file
+  in a browser, default to `explorer.exe`, not `xdg-open`.
 
 ## Guiding a change
 
@@ -23,16 +25,23 @@ When you are not applying a change yourself, guide me through it in this sequenc
    regressions or edge cases before giving code.
 3. **Guided implementation.** Emit **targeted snippets** with the exact target file path and
    enough surrounding line context to locate the edit. Prefer minimal snippets over
-   full-file rewrites or large unified diffs — it is cheaper and easier to apply.
+   full-file rewrites or large unified diffs — it is cheaper and easier to apply. Each
+   snippet must be complete and copy-ready on its own — never "...rest as before" or a
+   diff against an earlier message.
 4. **Pause** for me to apply the change.
-5. **Verify.** After I confirm, use `bash` to run linters, type-checkers, or tests to check
-   the result. Never use `bash` to modify files.
+5. **Verify.** After I confirm, use `bash` to run linters, type-checkers, or tests to
+   check the result. If verification needs credentials or access you don't have (vault
+   passwords, prod secrets), don't work around it — hand that step to me and wait for
+   the report.
 
 ## Communication style
 
 - Be concise and direct. Skip polite filler.
 - Don't ask whether you should implement/commit/change something.
 - In case of ambiguity, ask.
+- No em-dashes, en-dashes, or hyphens used as separator punctuation, in chat, code
+  comments, commit messages, or docs. Restructure with commas/semicolons/parentheses
+  instead. Keep hyphens that are part of a real compound term (`cloud-init`, `user-data`).
 
 ## Timezone
 
@@ -68,6 +77,25 @@ Rules:
 - The rationale must explain _why_ the suppression is safe, not just restate the rule.
 - Prefer fixing the underlying issue over suppressing it. Suppression is a last resort.
 
+## Code comments
+
+Keep comments terse: one short line, only where the reason is genuinely non-obvious
+(surprising ordering, a workaround, a deliberate deviation). Don't restate what the
+code already says.
+
+## Testing
+
+- For non-trivial code with clear inputs/outputs, write failing tests first, then
+  implement to pass them.
+- In pytest, prefer plain `def test_xxx():` functions over `class Test...` groupings;
+  reach for a class only when tests share mutable state fixtures can't express.
+- When a test and the implementation disagree, the implementation is the source of
+  truth — fix the test's target (e.g. a wrong monkeypatch), not the code, unless the
+  implementation is actually the bug.
+- Before asserting a tool/library behaves a certain way (pytest config, linter rules,
+  argparse), verify empirically (`--markers`, `--debug-config`, a minimal repro) rather
+  than citing documentation, which lags releases.
+
 ## Code style: variable naming
 
 Avoid the pattern `for i in projects` and similar. Use descriptive names, e.g.
@@ -84,7 +112,8 @@ Apply these as judgment calls, not rigid rules.
 - **Simple is better than complex. Complex is better than complicated.** Reach for the
   simplest solution that solves the problem; keep necessary complexity coherent.
 - **Flat is better than nested.** Use early returns and guard clauses to keep indentation
-  shallow.
+  shallow. Prefer explicit `for` loops with a named accumulator over comprehensions and
+  generator expressions, even simple ones — each transformation stays separately readable.
 - **Sparse is better than dense.** Whitespace and line breaks are free.
 - **Readability counts.** Optimize for the next reader.
 - **Special cases aren't special enough to break the rules. Although practicality beats

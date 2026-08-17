@@ -35,6 +35,7 @@ when used.
 
 | Tool                   | Description                                    |
 |------------------------+------------------------------------------------|
+| art                    | RAW image processor                            |
 | darktable              | RAW image processor with custom Lua automation |
 | digikam                | Photo organiser and image viewer               |
 | hugin                  | Panoramic image stitcher                       |

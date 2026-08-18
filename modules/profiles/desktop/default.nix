@@ -141,6 +141,7 @@ in
       azPkgs.download-playlist
       azPkgs.download-video
       azPkgs.jdownloader
+      azPkgs.raiffeisen-csv-cleanup
       azPkgs.sidecar-cleanup
       azPkgs.toggle-keyboard
       azPkgs.tube-podder

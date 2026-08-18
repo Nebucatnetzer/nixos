@@ -42,6 +42,8 @@ When you are not applying a change yourself, guide me through it in this sequenc
 - No em-dashes, en-dashes, or hyphens used as separator punctuation, in chat, code
   comments, commit messages, or docs. Restructure with commas/semicolons/parentheses
   instead. Keep hyphens that are part of a real compound term (`cloud-init`, `user-data`).
+- Never indent code snippets (e.g. with four spaces) in chat; provide them flush left to
+  ensure they are copy-paste ready.
 
 ## Timezone
 
@@ -98,8 +100,8 @@ code already says.
 
 ## Code style: variable naming
 
-Avoid the pattern `for i in projects` and similar. Use descriptive names, e.g.
-`for project in projects`.
+- Avoid the pattern `for i in projects` and similar. Use descriptive names, e.g. `for project in projects`.
+- Python code should be fully typed and conform to Black's formatting rules.
 
 ## Code style: the Zen of Python (PEP 20), applied to all languages
 

@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   unstable-pkgs,
   ...
@@ -34,16 +35,28 @@ let
   # pi bundles typebox under the specifier `typebox`, but pi-context-prune imports
   # `@sinclair/typebox` (same API). Rewrite the specifier so it resolves against pi's
   # bundled module without needing a node_modules closure.
-  pi-context-prune = pkgs.runCommandLocal "pi-context-prune-1.2.0" { } ''
+  pi-context-prune = pkgs.runCommandLocal "pi-context-prune-1.3.0" { } ''
     cp -r ${
       fetchPiExt {
         repo = "pi-context-prune";
-        rev = "v1.2.0";
-        hash = "sha256-ApSQt1gcxfDRM+0TZvsBNu3iHGYG++OrO3k9q6jlTbw=";
+        rev = "v1.3.0";
+        hash = "sha256-WZXcSB3N91NNNPNWihO5krX3a9dOKdSsV+Wgoyp2B14=";
       }
     } $out
     chmod -R +w $out
-    find $out -name '*.ts' -exec sed -i 's#@sinclair/typebox#typebox#g' {} +
+    find $out -type f -name "*.ts" -print -exec sed -i 's#@sinclair/typebox#typebox#g' {} +
+
+    # The summarizer calls provider.stream directly without maxRetries, and pi-ai's
+    # retryProviderRequest treats that as zero retries, so one 429 aborts the prune and
+    # the batch is re-queued for the next flush. Opt it into the same retry-after aware
+    # backoff the main loop gets. Drop this once upstream honours pi's retry settings.
+    summarizer=$out/src/summarizer.ts
+    anchor='\.\.\.summarizerThinkingOptions(config),'
+    if ! grep -q "$anchor" "$summarizer"; then
+      echo "pi-context-prune: retry patch anchor not found, re-check src/summarizer.ts" >&2
+      exit 1
+    fi
+    sed -i "s#^\( *\)$anchor#\1maxRetries: 4,\n\1...summarizerThinkingOptions(config),#" "$summarizer"
   '';
 in
 {
@@ -72,16 +85,22 @@ in
       compaction.enabled = true;
       enableSkillCommands = true;
 
+      # Infomaniak throttles, so 429s show up under load. retry.provider.* has no
+      # default (undefined becomes 0 retries in pi-ai's retryProviderRequest), which
+      # leaves only the session-level retry, and that resends the whole turn. Retrying
+      # inside the provider call honours retry-after and costs no extra input tokens.
+      retry.provider.maxRetries = 4;
+
       # Nix-pinned token-utility extensions loaded from their store paths.
-      # pi-context-prune: prune verbose tool outputs (agent-message keeps the cache
-      #   prefix stable across the tool loop); recover originals via context_tree_query.
+      # pi-context-prune: prunes verbose tool outputs; recover originals via
+      #   context_tree_query. It reads only ~/.pi/agent/context-prune/settings.json
+      #   (seeded below); pi's settings.json has no key for it.
       # pi-context-usage: /context window breakdown. pi-cache-graph: /cache stats.
       packages = [
         "${pi-context-prune}"
         "${pi-context-usage}"
         "${pi-cache-graph}"
       ];
-      piContextPrune.pruneOn = "agent-message";
     };
 
     # The Infomaniak provider (baseUrl, apiKey, and the model list with real context
@@ -95,6 +114,19 @@ in
     context = ../ai/RULES.md;
     memory = ./MEMORY.md;
   };
+
+  # The pruner rewrites this file itself (/pruner ...), so copy it once rather than
+  # linking it read-only from the store. agent-message batching merges a whole tool
+  # chain into one summary; per-turn batching lets a single tiny tool result form its
+  # own batch, where the summary can only ever come out larger than what it replaces.
+  home.activation.seedPiPruneSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    prune_settings="$HOME/.pi/agent/context-prune/settings.json"
+    if [ ! -f "$prune_settings" ]; then
+      ${pkgs.coreutils}/bin/mkdir -p "$HOME/.pi/agent/context-prune"
+      ${pkgs.coreutils}/bin/cp ${./context-prune-settings.json} "$prune_settings"
+      ${pkgs.coreutils}/bin/chmod +w "$prune_settings"
+    fi
+  '';
 
   # Extra pi resources dropped into ~/.pi/agent (auto-discovered by pi, and inside the
   # bwrap-bound ~/.pi). The trimmed pi-coding-agent.nix module has no options for these,

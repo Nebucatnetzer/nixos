@@ -23,6 +23,7 @@ Behaviour rules, the `/commit` command and the skills are shared with Claude Cod
 | `pi_wrapper.nix`         | `bwrap` sandbox around the `pi` binary                                                          |
 | `keybindings.json`       | Moves `app.thinking.cycle` off `shift+tab` so the mode cycle can claim it                       |
 | `MEMORY.md`              | Seed for `~/.pi/agent/MEMORY.md` (copied once, then user-writable; `memory` option)             |
+| `context-prune-settings.json` | Seed for `~/.pi/agent/context-prune/settings.json` (copied once, then user-writable)        |
 | `extensions/*.ts`        | TypeScript extensions (see below)                                                               |
 | `extensions/modes/`      | Permission modes, bash guard, `todo` tool, `plan` tool                                          |
 | `prompts/*.md`           | Slash commands                                                                                  |
@@ -118,23 +119,67 @@ To change the product id / budget / token path, edit the constants at the top of
 Three third-party extensions by [championswimmer](https://github.com/championswimmer),
 pinned in `default.nix` via `fetchFromGitHub` and loaded through `settings.packages` store
 paths — reproducible and sandbox-safe, unlike imperative `pi install`. All are
-dependency-free (peer deps only), so no `node_modules` build. `pi-context-prune` imports
-`@sinclair/typebox`, which pi bundles as `typebox`, so a small `runCommandLocal` rewrites
-that specifier.
+dependency-free (peer deps only), so no `node_modules` build. `pi-context-prune` goes
+through a `runCommandLocal` that applies two patches, both of which abort the build if
+their anchor disappears on a version bump:
+
+1. It imports `@sinclair/typebox`, which pi bundles as `typebox`, so the specifier is
+   rewritten.
+2. Its summarizer calls `provider.stream` without `maxRetries`, and pi-ai's
+   `retryProviderRequest` reads that as zero retries, so one 429 from Infomaniak aborts
+   the prune. `maxRetries: 4` is injected to match the main loop, see below.
 
 | Package            | Adds                                                                             | Notes                                                                    |
 | ------------------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `pi-context-prune` | Prunes verbose tool outputs from future context; `context_tree_query` recovers   | `piContextPrune.pruneOn = "agent-message"` keeps the cache prefix stable |
+| `pi-context-prune` | Prunes verbose tool outputs from future context; `context_tree_query` recovers   | Configured only via its own settings file, see below                     |
 | `pi-context-usage` | `/context` — context-window breakdown (system prompt / tools / messages / free)  | provider-agnostic                                                       |
 | `pi-cache-graph`   | `/cache graph\|stats\|export` — prompt-cache hit stats                            | works here because Infomaniak reports `cached_tokens`                    |
 
 To bump a version, change the `rev` in the `let` block of `default.nix`, set the matching
 `hash = pkgs.lib.fakeHash`, rebuild once, and paste the reported hash back.
 
+### Pruner configuration
+
+`pi-context-prune` ignores pi's `settings.json` entirely; it reads and rewrites
+`~/.pi/agent/context-prune/settings.json` (its `/pruner` subcommands write that file).
+`context-prune-settings.json` is therefore copied there once on activation, the same
+copy-once-then-writable treatment as `MEMORY.md`, and `/pruner` stays usable afterwards.
+
+`batchingMode` is set to `agent-message` on purpose. With the upstream default (`turn`),
+every assistant turn becomes its own batch, so a turn holding one short tool result
+(tens of chars) gets a summary that is necessarily longer than the output it replaces.
+The pruner then throws that summary away, warns `skipped pruning turn N ... frontier
+advanced past this range`, and the summarizer call is billed for nothing. Merging a whole
+user-to-final-answer span into one batch gives the summary enough raw text to beat.
+
+Per-turn batching also fires one summarizer request per pending turn, all in flight at
+once (`summarizeBatches` uses an unbounded `Promise.all`), which is a burst Infomaniak
+answers with 429s. Merged batching means one request per user turn instead.
+
+To change it at runtime: `/pruner batching agent-message`, `/pruner prune-on <mode>`,
+`/pruner status`. Runtime changes persist in the copied file and survive rebuilds; edit
+`context-prune-settings.json` for a fresh machine.
+
 ## Settings (token frugality)
 
 Set in `default.nix`: `quietStartup`, `defaultThinkingLevel = "low"`,
 `compaction.enabled`, `enableSkillCommands`. Default model is gemma 4 31B.
+
+## Rate limits
+
+Infomaniak returns 429 under load. Three layers handle it, and only the first is on by
+default:
+
+- **Session retry** (`retry.enabled`, default true, 3 attempts, 2s/4s/8s): pi drops the
+  failed assistant turn and replays it. It works, but it resends the whole context, so a
+  429 storm gets expensive.
+- **Provider retry** (`retry.provider.maxRetries = 4`, set in `default.nix`): retries
+  inside the request, honouring `retry-after`/`retry-after-ms` with jittered backoff and
+  no token cost. Off upstream, since `retry.provider.*` has no default and pi-ai reads
+  `maxRetries ?? 0`. Requests still fail immediately when the server asks for a delay
+  above `retry.provider.maxRetryDelayMs` (60s default).
+- **Summarizer retry**: the pruner bypasses both of the above, so it is patched in the
+  `runCommandLocal`, see the pinned-extensions section.
 
 ## Sandbox
 

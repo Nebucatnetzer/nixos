@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 ;; Copy these to ~/.emacs.d/variables.el and them as needed.
+;;(setq az-gitlab-host "some-host")
 ;;(setq disable-fringe t)
 ;;(setq enable-clipetty t)
 ;;(setq enable-email t)

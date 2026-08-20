@@ -27,6 +27,7 @@
 (load-file (modules-path "az_org_core.el"))
 (load-file (modules-path "az_org_agenda.el"))
 (load-file (modules-path "az_org_export.el"))
+(load-file (modules-path "az_org_gitlab.el"))
 (load-file (modules-path "az_org_insert.el"))
 (load-file (modules-path "az_pdf_tools.el"))
 (load-file (modules-path "az_writing.el"))

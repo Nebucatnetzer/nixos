@@ -8,5 +8,6 @@
 (defvar az-org-inbox-file (concat az-org-inbox-dir "00_inbox.org"))
 (defvar az-org-latex-style-file (concat az-org-archive-dir "0000/settings/latex/style.tex"))
 (defvar az-org-projects-dir (concat az-nextcloud-dir "02_projects/"))
+(defvar az-org-gitlab-file (concat az-org-projects-dir "00_gitlab.org"))
 (defvar az-org-templates-dir (concat az-org-archive-dir "0000/settings/templates/"))
 (defvar az-org-work-file (concat az-org-projects-dir "00_work.org"))

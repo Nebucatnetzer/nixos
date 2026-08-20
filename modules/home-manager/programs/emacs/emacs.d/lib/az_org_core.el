@@ -120,6 +120,18 @@
             org-refile-use-outline-path 'file
             org-outline-path-complete-in-steps nil)
 
+    ;; Runs while the capture buffer is still narrowed to the new entry, so
+    ;; `org-entry-put' cannot walk back past it into the wrong heading.
+    (defun az/org-capture-stamp-created ()
+      "Stamp the entry being captured with the time of capture."
+      (when (and (not org-note-abort)
+                 (eq (org-capture-get :type 'local) 'entry))
+        (save-excursion
+          (org-entry-put (point) "CREATED"
+                         (format-time-string "[%Y-%m-%d %a %H:%M]")))))
+
+    (add-hook 'org-capture-prepare-finalize-hook #'az/org-capture-stamp-created)
+
     (defun az-org-files-list ()
       (delq nil
             (mapcar (lambda (buffer)

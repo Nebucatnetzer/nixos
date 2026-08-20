@@ -68,14 +68,58 @@ This function is intended for use with `org-agenda-skip-function'."
           ;; Otherwise, return nil to include the entry in the agenda.
           nil)))
 
-    (add-to-list 'org-agenda-custom-commands
-                 '("n" "Tasks to Plan (sorted, by category)"
-                   ((alltodo ""
-                             ((org-agenda-skip-function
-                               '(my/org-agenda-skip-if-project-tagged-or-dated))
-                              (org-agenda-sorting-strategy
-                               '(category-keep priority-down))))))
-                 'append)
+    (defun az/org-entry-created-time (entry)
+      "Return the CREATED time of agenda line ENTRY, or nil when it has none."
+      (let* ((marker (or (get-text-property 0 'org-hd-marker entry)
+                         (get-text-property 0 'org-marker entry)))
+             (created (and marker (org-entry-get marker "CREATED"))))
+        (when (org-string-nw-p created)
+          (org-time-string-to-time created))))
+
+    (defun az/org-agenda-cmp-created (a b)
+      "Compare agenda lines A and B by capture time, oldest first.
+An entry without a CREATED property predates the property itself, so it
+counts as older than any stamped entry."
+      (let ((time-a (az/org-entry-created-time a))
+            (time-b (az/org-entry-created-time b)))
+        (cond ((and time-a time-b)
+               (cond ((time-less-p time-a time-b) -1)
+                     ((time-less-p time-b time-a) +1)))
+              (time-a +1)
+              (time-b -1))))
+
+    (setopt org-agenda-cmp-user-defined #'az/org-agenda-cmp-created)
+
+    (defun az/org-agenda-created-prefix ()
+      "Capture time of the entry at point, for `org-agenda-prefix-format'."
+      (let ((created (org-entry-get (point) "CREATED")))
+        (if (org-string-nw-p created)
+            (string-trim created "\\[" "\\]")
+          "no capture date")))
+
+    (defun az/org-agenda-tasks-to-plan (header sorting-strategy)
+      "Build the block list of a \"tasks to plan\" agenda command.
+HEADER titles the block, SORTING-STRATEGY is an
+`org-agenda-sorting-strategy' value.  Use `user-defined-up' to sort by
+capture date, oldest first, and prefix it with `category-keep' to group
+by category first."
+      `((alltodo ""
+                 ((org-agenda-overriding-header ,header)
+                  (org-agenda-skip-function
+                   '(my/org-agenda-skip-if-project-tagged-or-dated))
+                  (org-agenda-prefix-format
+                   '((todo . " %i %-25:c%-22(az/org-agenda-created-prefix)")))
+                  (org-agenda-sorting-strategy ',sorting-strategy)))))
+
+    (dolist (command
+             `(("n" "Tasks to Plan (by category, oldest capture first)"
+                (category-keep user-defined-up))
+               ("u" "Tasks to Plan (oldest capture first)"
+                (user-defined-up))))
+      (add-to-list 'org-agenda-custom-commands
+                   `(,(nth 0 command) ,(nth 1 command)
+                     ,(az/org-agenda-tasks-to-plan (nth 1 command) (nth 2 command)))
+                   'append))
 
     (setq org-agenda-sorting-strategy (quote
                                        ((agenda priority-down todo-state-up category-up))))

@@ -7,9 +7,6 @@
   emacs-nox,
   writeShellApplication,
   runCommand,
-  fd,
-  ripgrep,
-  pandoc,
 }:
 let
   emacsConfig = runCommand "az-emacs-config" { } ''
@@ -43,10 +40,11 @@ writeShellApplication {
   name = "az-emacs";
   runtimeInputs = [
     emacsWithPkgs
-    fd
-    ripgrep
-    pandoc
-  ];
+  ]
+  ++ import (emacsDir + "/runtime-tools.nix") {
+    inherit pkgs unstable-pkgs lib;
+    includeLanguageTools = false;
+  };
   meta = {
     description = "Andreas's terminal Emacs setup, bundled for portable nix run";
     mainProgram = "az-emacs";

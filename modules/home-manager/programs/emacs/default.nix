@@ -9,26 +9,12 @@
   home.sessionVariables = {
     LSP_USE_PLISTS = "true";
   };
-  home.packages = [
-    pkgs.deadnix
-    pkgs.emacs-lsp-booster
-    pkgs.fd
-    pkgs.hurl # required for hurl-mode
-    pkgs.multimarkdown
-    pkgs.nixd # Nix language server
-    unstable-pkgs.prettier # formatting files
-    pkgs.nixfmt
-    pkgs.pandoc
-    pkgs.ripgrep
-    pkgs.shellcheck # shell script linter
-    pkgs.shfmt # formatting bash scripts
-    pkgs.silver-searcher
-    pkgs.statix
-  ]
-  ++ lib.optionals (config.programs.emacs.package != pkgs.emacs-nox) [
-    pkgs.source-code-pro
-    pkgs.xclip # X11 clipboard from terminal
-  ];
+  home.packages =
+    import ./runtime-tools.nix { inherit pkgs unstable-pkgs lib; }
+    ++ lib.optionals (config.programs.emacs.package != pkgs.emacs-nox) [
+      pkgs.source-code-pro
+      pkgs.xclip # X11 clipboard from terminal
+    ];
 
   systemd.user.services.languagetool = {
     Unit = {

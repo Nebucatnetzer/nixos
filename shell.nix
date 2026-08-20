@@ -2,7 +2,13 @@
   buildEnv,
   deadnix,
   git,
+  nixd,
+  nixfmt,
   pkgs,
+  prettier,
+  shellcheck,
+  shfmt,
+  statix,
   python3,
   mkShellNoCC,
   unstable-pkgs,
@@ -25,6 +31,12 @@ mkShellNoCC {
         azPkgs.update-hosts
         deadnix
         git
+        nixd
+        nixfmt
+        prettier # formatting files
+        shellcheck # shell script linter
+        shfmt # formatting bash scripts
+        statix
         wireguard-tools
         (python3.withPackages (p: [
           p.python-lsp-server

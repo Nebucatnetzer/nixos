@@ -15,11 +15,11 @@ discipline to maintain.
 
 ## Daily use
 
-| Key | Does |
-| --- | --- |
+| Key       | Does                                                                            |
+| --------- | ------------------------------------------------------------------------------- |
 | `C-c c l` | Add a log entry. Prompts for a destination, then drops you in a capture buffer. |
-| `<f11>` | Show or hide the aggregated log panel on the right. |
-| `C-c n d` | Dashboard: the `A` agenda view in the main window, log panel beside it. |
+| `<f11>`   | Show or hide the aggregated log panel on the right.                             |
+| `C-c n d` | Dashboard: the `A` agenda view in the main window, log panel beside it.         |
 
 The destination prompt lists `(unassigned)` first, then your projects newest first:
 
@@ -71,7 +71,7 @@ Finish with `C-c C-c`. The whole thing stays one entry and appears complete in t
 Newest day on top, so opening a project shows you where you left off. New entries append under
 the current day. `* Log` is created on first use — **existing projects need no migration**.
 
-The day heading is an inactive timestamp (`[...]`, no time). Org only puts *active* `<...>`
+The day heading is an inactive timestamp (`[...]`, no time). Org only puts _active_ `<...>`
 timestamps in the agenda, so the log is invisible there. That is deliberate: unchecked `- [ ]`
 boxes inside log entries stay out of your task views too. If a sub-task turns out to matter,
 promote it to `* Tasks` as a real `NEXT`.
@@ -96,13 +96,13 @@ promote it to `* Tasks` as a real `NEXT`.
 
 Days descending, unassigned first within a day. Keys inside the panel:
 
-| Key | Does |
-| --- | --- |
-| `RET` | Jump to that entry in its source file |
+| Key       | Does                                                                 |
+| --------- | -------------------------------------------------------------------- |
+| `RET`     | Jump to that entry in its source file                                |
 | `C-c C-c` | Toggle the checkbox on this line, in the source file, then re-render |
-| `m` | Move this entry into a project, keeping its original date |
-| `r` | Rebuild |
-| `q` | Close the panel |
+| `m`       | Move this entry into a project, keeping its original date            |
+| `r`       | Rebuild                                                              |
+| `q`       | Close the panel                                                      |
 
 The panel refreshes itself after every capture. It shows `az-org-log-days` days back — 14 by
 default; lower it if entries routinely run long.
@@ -115,12 +115,12 @@ items, not headings.
 
 ## Configuration
 
-| Variable | Default | Meaning |
-| --- | --- | --- |
-| `az-org-log-days` | `14` | How far back the panel reaches |
-| `az-org-log-heading` | `"Log"` | Heading entries live under |
-| `az-org-log-buffer` | `"*Project Log*"` | Panel buffer name |
-| `az-org-log-unassigned-label` | `"(unassigned)"` | Label for journal entries |
+| Variable                      | Default           | Meaning                        |
+| ----------------------------- | ----------------- | ------------------------------ |
+| `az-org-log-days`             | `14`              | How far back the panel reaches |
+| `az-org-log-heading`          | `"Log"`           | Heading entries live under     |
+| `az-org-log-buffer`           | `"*Project Log*"` | Panel buffer name              |
+| `az-org-log-unassigned-label` | `"(unassigned)"`  | Label for journal entries      |
 
 Paths all derive from `az_paths.el`. Which means the whole thing re-roots with one line.
 
@@ -146,7 +146,7 @@ Some non-obvious constraints the code depends on. Breaking any of these fails qu
 than loudly.
 
 - **Never hand a file path to an org function that visits it.** `org-refile-targets` is built
-  from `az-org-files-list`, which returns *currently open* org buffers. `org-get-title "path"`
+  from `az-org-files-list`, which returns _currently open_ org buffers. `org-get-title "path"`
   and `find-file-noselect` both add buffers, so calling either across every project would grow
   your refile completions as a side effect. The aggregator reads bytes into a temp buffer
   instead.

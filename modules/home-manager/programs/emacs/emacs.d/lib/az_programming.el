@@ -154,10 +154,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.hurl\\'" . hurl-mode)))
 
-(use-package jq-mode
-  :config
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((jq . t))))
+(use-package jq-mode)
 
 (use-package magit
   :demand t

@@ -15,6 +15,7 @@ let
       home-manager switch
     '';
   };
+  resticWsl = import "${inputs.self}/modules/home-manager/services/restic-wsl";
 in
 {
   imports = [
@@ -27,6 +28,7 @@ in
     "${inputs.self}/modules/home-manager/programs/tmux"
     "${inputs.self}/modules/home-manager/services/syncthing"
     (gitModule { userEmail = "zweili@contria.com"; })
+    (resticWsl { repository = "/mnt/c/Users/zweili/Documents/wsl-backup"; })
     ./headless.nix
   ];
 

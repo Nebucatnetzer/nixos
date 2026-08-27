@@ -1,8 +1,12 @@
 *.lock
 *.log
+.direnv
+.devenv
+.venv
 /dev
 /etc/mtab
 /home/*/.cache
+/home/*/.cargo
 /home/*/.dropbox
 /home/*/.gvfs
 /home/*/.local/share/Steam/
@@ -10,10 +14,12 @@
 /home/*/.local/share/containers
 /home/*/.local/share/tor-browser/
 /home/*/.mozilla
+/home/*/.npm
 /home/*/.steam
 /home/*/.thumbnails
 /home/*/applications/tor-browser_en-US
 /home/*/Downloads
+/home/*/vendor
 /home/*/VMs
 /home/*/snap
 /nix/var/nix/builds
@@ -28,3 +34,4 @@
 /var/tmp
 __pycache__
 lost+found
+node_modules

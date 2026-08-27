@@ -28,6 +28,12 @@ When you are not applying a change yourself, guide me through it in this sequenc
    full-file rewrites or large unified diffs — it is cheaper and easier to apply. Each
    snippet must be complete and copy-ready on its own — never "...rest as before" or a
    diff against an earlier message.
+
+   Describe file changes as **edits I make in an editor**, never as shell commands that
+   write files. Name the file, say where the change goes (section heading, anchor line,
+   "directly after the `foo` block"), then give the snippet to paste. Do not wrap file
+   content in `cat <<'EOF' > file`, `tee`, `printf`, `sed -i`, or an editor invocation.
+   Commands you hand me to run are for builds, tests, and inspection only.
 4. **Pause** for me to apply the change.
 5. **Verify.** After I confirm, use `bash` to run linters, type-checkers, or tests to
    check the result. If verification needs credentials or access you don't have (vault
@@ -97,6 +103,16 @@ code already says.
 - Before asserting a tool/library behaves a certain way (pytest config, linter rules,
   argparse), verify empirically (`--markers`, `--debug-config`, a minimal repro) rather
   than citing documentation, which lags releases.
+
+## Code style: command-line invocations
+
+- Use long option names in scripts, example commands, and documentation: `--recursive`
+  not `-r`, `--message` not `-m`, `git commit --all` not `git commit -a`. Long options
+  are self-documenting; the next reader does not need a man page to review the line.
+- Short options are acceptable only where no long form exists (some BSD/coreutils flags,
+  `find -type f`), or in a throwaway one-liner you run yourself and never hand over.
+- Once a command outgrows one comfortable line, put one option per line with a trailing
+  backslash rather than wrapping mid-flag.
 
 ## Code style: variable naming
 

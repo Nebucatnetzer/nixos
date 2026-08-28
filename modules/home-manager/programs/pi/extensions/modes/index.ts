@@ -203,8 +203,16 @@ export default function (pi: ExtensionAPI) {
     systemPrompt: `${event.systemPrompt}\n\n${RULES[mode]}`,
   }));
 
-  // Keep the status progress counter live as the model toggles steps.
-  pi.on("turn_end", async (_event, ctx) => refreshStatus(ctx));
+  // Keep the status progress counter live as the model toggles steps, and mirror the list into
+  // the plan file: the todo tool's own state lives in the transcript, which dies with the
+  // session. One coalesced write per turn rather than one per toggle.
+  pi.on("turn_end", async (_event, ctx) => {
+    refreshStatus(ctx);
+    const error = plan.syncTodos(todo.getItems());
+    if (error && ctx.hasUI) {
+      ctx.ui.notify(error, "warning");
+    }
+  });
 
   // The handoff out of plan mode — pi's equivalent of Claude Code's ExitPlanMode. Keyed on a
   // plan file actually having been written this turn, so a clarifying question mid-plan does

@@ -59,7 +59,9 @@ as the source of truth for what we agreed to do, why, and how far we got.
 - **Store the session's task list in the plan file too**, including each task's state
   (open, in progress, done, dropped) and a one line note on what actually happened. The
   harness todo/task tool is per-session scratch space that vanishes with the session; the
-  copy in the plan file is the one that survives.
+  copy in the plan file is the one that survives. In pi the `todo` list is mirrored into the
+  active plan file automatically after every turn, so there just keep the `todo` list honest
+  and write into the plan only what checkboxes cannot express.
 - Update task state in the plan as you finish each task, not in one batch at the end. A
   session can be interrupted at any point, and whatever is not written down is lost.
 - When picking work back up, read the existing plan file for it first and continue that

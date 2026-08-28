@@ -40,6 +40,33 @@ When you are not applying a change yourself, guide me through it in this sequenc
    passwords, prod secrets), don't work around it — hand that step to me and wait for
    the report.
 
+## Plans and task lists
+
+A plan file is the durable record of a piece of work, not a throwaway message. Sessions
+end and their context is lost; the plan file is what survives into the next one. Treat it
+as the source of truth for what we agreed to do, why, and how far we got.
+
+- Plans live in the harness's own plan directory (`~/.claude/plans/` for Claude Code,
+  `~/.pi/agent/plans/` for pi), never in the project repo. Those directories stay
+  writable even in read-only mode, so recording a plan is always possible.
+- Write the plan to a file as soon as the approach is settled, not after the work is
+  done. Include the `path:line` evidence behind each step and the command that verifies
+  the result.
+- **Keep it current.** Whenever anything changes during the session (a step turns out
+  wrong, a new step appears, a decision is revised, the scope shifts, a verification
+  fails), update the plan file in the same turn you learn it. A stale plan is worse than
+  no plan, because the next session will trust it.
+- **Store the session's task list in the plan file too**, including each task's state
+  (open, in progress, done, dropped) and a one line note on what actually happened. The
+  harness todo/task tool is per-session scratch space that vanishes with the session; the
+  copy in the plan file is the one that survives.
+- Update task state in the plan as you finish each task, not in one batch at the end. A
+  session can be interrupted at any point, and whatever is not written down is lost.
+- When picking work back up, read the existing plan file for it first and continue that
+  file. Start a new plan file only for genuinely new work.
+- When the work is finished, close the plan out: final state of every task, plus anything
+  deliberately left undone and why.
+
 ## Communication style
 
 - Be concise and direct. Skip polite filler.

@@ -85,6 +85,9 @@ in
       compaction.enabled = true;
       enableSkillCommands = true;
 
+      # Alabaster (light), linked into ~/.pi/agent/themes below and picked up by name.
+      theme = "alabaster-light";
+
       # Infomaniak throttles, so 429s show up under load. retry.provider.* has no
       # default (undefined becomes 0 retries in pi-ai's retryProviderRequest), which
       # leaves only the session-level retry, and that resends the whole turn. Retrying
@@ -156,6 +159,10 @@ in
     ".pi/agent/prompts/review.md".source = ./prompts/review.md;
     ".pi/agent/prompts/commit.md".source = ../ai/commands/commit.md;
     ".pi/agent/prompts/explain.md".source = ./prompts/explain.md;
+
+    # Alabaster (light) port. ~/.pi/agent/themes/*.json is auto-discovered; the file must
+    # carry exactly the 51 schema tokens, since `colors` is additionalProperties: false.
+    ".pi/agent/themes/alabaster-light.json".source = ./themes/alabaster-light.json;
 
     # Skills -> /skill:nixos-flake (progressive disclosure). Shared with claude.
     ".pi/agent/skills/nixos-flake".source = ../ai/skills/nixos-flake;

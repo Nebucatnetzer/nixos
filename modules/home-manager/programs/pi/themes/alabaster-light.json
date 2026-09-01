@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/earendil-works/pi/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json",
+  "name": "alabaster-light",
+  "vars": {
+    "text": "#000000",
+    "active": "#007ACC",
+    "blue": "#325CC0",
+    "green": "#448C27",
+    "red": "#AA3731",
+    "magenta": "#7A3E9D",
+    "grey": "#777777",
+    "lightGrey": "#AAAAAA",
+    "orange": "#EC8013",
+    "selection": "#BFDBFE",
+    "lineHighlight": "#F0F0F0"
+  },
+  "colors": {
+    "accent": "active",
+    "border": "lightGrey",
+    "borderAccent": "active",
+    "borderMuted": "lightGrey",
+    "success": "green",
+    "error": "red",
+    "warning": "orange",
+    "muted": "grey",
+    "dim": "lightGrey",
+    "text": "text",
+    "thinkingText": "grey",
+
+    "selectedBg": "selection",
+    "userMessageBg": "lineHighlight",
+    "userMessageText": "text",
+    "customMessageBg": "#EFE7F7",
+    "customMessageText": "text",
+    "customMessageLabel": "magenta",
+    "toolPendingBg": "lineHighlight",
+    "toolSuccessBg": "#E8F2E4",
+    "toolErrorBg": "#F7E8E7",
+    "toolTitle": "text",
+    "toolOutput": "grey",
+
+    "mdHeading": "blue",
+    "mdLink": "active",
+    "mdLinkUrl": "grey",
+    "mdCode": "green",
+    "mdCodeBlock": "text",
+    "mdCodeBlockBorder": "lightGrey",
+    "mdQuote": "grey",
+    "mdQuoteBorder": "lightGrey",
+    "mdHr": "lightGrey",
+    "mdListBullet": "grey",
+
+    "toolDiffAdded": "green",
+    "toolDiffRemoved": "red",
+    "toolDiffContext": "grey",
+
+    "syntaxComment": "red",
+    "syntaxKeyword": "text",
+    "syntaxFunction": "blue",
+    "syntaxVariable": "text",
+    "syntaxString": "green",
+    "syntaxNumber": "magenta",
+    "syntaxType": "blue",
+    "syntaxOperator": "text",
+    "syntaxPunctuation": "grey",
+
+    "thinkingOff": "lightGrey",
+    "thinkingMinimal": "grey",
+    "thinkingLow": "blue",
+    "thinkingMedium": "active",
+    "thinkingHigh": "magenta",
+    "thinkingXhigh": "#8B008B",
+
+    "bashMode": "green"
+  },
+  "export": {
+    "pageBg": "#F7F7F7",
+    "cardBg": "#FFFFFF",
+    "infoBg": "#FFFAE6"
+  }
+}

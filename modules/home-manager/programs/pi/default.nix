@@ -135,8 +135,9 @@ in
   # bwrap-bound ~/.pi). The trimmed pi-coding-agent.nix module has no options for these,
   # so wire them directly via home.file to keep that module an upstream drop-in.
   home.file = {
-    # The read-only posture is mode-dependent for pi, so the modes extension injects it per
-    # turn instead of an unconditional APPEND_SYSTEM.md. ai/ADVISORY.md is claude-only.
+    # The read-only posture is mode-dependent for pi, so the modes extension injects it
+    # per turn rather than appending it to the system prompt unconditionally.
+    # ai/ADVISORY.md is claude-only; the rules shared with claude arrive via `context`.
 
     # Move app.thinking.cycle off shift+tab so the modes extension can claim it.
     ".pi/agent/keybindings.json".source = ./keybindings.json;

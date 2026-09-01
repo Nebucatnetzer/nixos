@@ -145,7 +145,25 @@ code already says.
 
 ## Code style: variable naming
 
-- Avoid the pattern `for i in projects` and similar. Use descriptive names, e.g. `for project in projects`.
+- Avoid the pattern `for i in projects` and similar. Use descriptive names, e.g.
+  `for project in projects`.
+- Spell the name out instead of abbreviating it: `volume_group` over `vg`, `connection`
+  over `conn`, `directory` over `dir`. This holds for loop variables, parameters, and
+  locals alike, and matters most where the value travels beyond a few lines.
+- Acronyms and initialisms that are the ordinary word in their domain stay short: `ip`,
+  `url`, `id`, `pid`, `http_client`, `smtp_host`. The test is whether the short form is
+  what people actually say; an established initialism is fine, a truncation you invented
+  for this one file is not.
+- If a short name is still the better fit (a tight numeric loop, or matching the
+  vocabulary of the library you are calling), expand it in a comment at its first use and
+  then stay consistent for the rest of the scope:
+
+```python
+# vg: LVM volume group
+for vg in volume_groups:
+    activate(vg)
+```
+
 - Python code should be fully typed and conform to Black's formatting rules.
 
 ## Code style: the Zen of Python (PEP 20), applied to all languages

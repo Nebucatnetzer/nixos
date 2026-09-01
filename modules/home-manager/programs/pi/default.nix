@@ -143,7 +143,8 @@ in
 
     # Extensions: permission modes (plan/advise/edit) + bash guard, web_fetch tool,
     # /exit alias, dynamic Infomaniak model+pricing registration, cost/bill visibility,
-    # CLAUDE.md context injection, and memory loading at session start.
+    # CLAUDE.md context injection, memory loading at session start, and code-block indent
+    # guides (pi has none built in, so they go in via registerMarkdownTransformer).
     ".pi/agent/extensions/modes".source = ./extensions/modes;
     ".pi/agent/extensions/web-fetch.ts".source = ./extensions/web-fetch.ts;
     ".pi/agent/extensions/exit-alias.ts".source = ./extensions/exit-alias.ts;
@@ -151,6 +152,7 @@ in
     ".pi/agent/extensions/infomaniak-cost.ts".source = ./extensions/infomaniak-cost.ts;
     ".pi/agent/extensions/claude-context.ts".source = ./extensions/claude-context.ts;
     ".pi/agent/extensions/load-memory.ts".source = ./extensions/load-memory.ts;
+    ".pi/agent/extensions/code-indent-guides.ts".source = ./extensions/code-indent-guides.ts;
 
     # Prompt templates -> /review, /commit, /explain. There is deliberately no plan.md:
     # the modes extension registers /plan, and a template of the same name would collide.

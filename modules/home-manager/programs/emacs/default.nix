@@ -37,6 +37,7 @@
 
   programs.emacs = {
     enable = true;
+    overrides = import ./package-overrides.nix { inherit pkgs; };
     extraPackages =
       epkgs:
       import ./extra-packages.nix {

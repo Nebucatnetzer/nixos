@@ -22,7 +22,11 @@ let
       --replace-fail '~/.emacs.d/variables.el' '${placeholder "out"}/variables.el'
   '';
 
-  emacsWithPkgs = (emacsPackagesFor emacs-nox).emacsWithPackages (
+  emacsPkgSet = (emacsPackagesFor emacs-nox).overrideScope (
+    import (emacsDir + "/package-overrides.nix") { inherit pkgs; }
+  );
+
+  emacsWithPkgs = emacsPkgSet.emacsWithPackages (
     epkgs:
     import (emacsDir + "/extra-packages.nix") {
       inherit

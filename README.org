@@ -47,8 +47,8 @@ when used.
 |--------------+-------------------------------------------------------|
 | beets        | Music library organiser and tagger                    |
 | calibre      | Ebook library manager                                 |
+| lollypop     | Music player                                          |
 | mpv          | Video player with custom shuffle and rotation support |
-| plexamp      | Plex music player                                     |
 | plex-desktop | Plex media player client                              |
 
 ** Office & Productivity

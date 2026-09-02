@@ -49,7 +49,6 @@ when used.
 | calibre      | Ebook library manager                                 |
 | lollypop     | Music player                                          |
 | mpv          | Video player with custom shuffle and rotation support |
-| plex-desktop | Plex media player client                              |
 
 ** Office & Productivity
 

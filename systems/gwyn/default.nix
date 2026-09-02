@@ -24,7 +24,6 @@ let
   giteaDomain = "git.zweili.org";
   giteaModule = import "${inputs.self}/modules/services/gitea";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
-  mediaShare = import "${inputs.self}/modules/services/media-share";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   resticServer = import "${inputs.self}/modules/services/restic-server";
@@ -47,7 +46,6 @@ in
     "${inputs.self}/modules/services/librenms"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/ntp"
-    "${inputs.self}/modules/services/plex"
     "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
     "${inputs.self}/modules/services/syslog"
@@ -66,7 +64,6 @@ in
     })
     (btrfsAuxModule { })
     (btrfsLayout { })
-    (mediaShare { hard = true; })
     (nixBuilderModule { role = "client"; })
     (giteaModule {
       dataDir = giteaDataDir;
@@ -78,7 +75,6 @@ in
         actualData
         eactualData
         giteaDataDir
-        "/var/lib/plex"
         config.services.freshrss.dataDir
         config.services.librenms.dataDir
       ];
@@ -162,7 +158,6 @@ in
     ];
   };
 
-  hardware.nvidia-container-toolkit.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   services = {

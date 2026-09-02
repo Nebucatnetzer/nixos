@@ -25,7 +25,6 @@ let
       nmcli connection up yallo
     '';
   };
-  mediaShare = import "${inputs.self}/modules/services/media-share";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
@@ -46,7 +45,6 @@ in
     "${inputs.self}/modules/services/zram-swap"
     (btrfsAuxModule { })
     (btrfsLayout { })
-    (mediaShare { })
     (nixBuilderModule { role = "client"; })
     (resticClientModule { })
     (syncthingModule { })

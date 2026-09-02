@@ -37,7 +37,6 @@ in
   "infomaniak_env.age".publicKeys = all;
   "mail_password.age".publicKeys = defaultKeys;
   "personal_email.key.age".publicKeys = defaultKeys;
-  "plex_claim.age".publicKeys = defaultKeys;
   "restic.key.age".publicKeys = all;
   "searxng_env.age".publicKeys = defaultKeys;
   "searxng_htpasswd.age".publicKeys = defaultKeys;

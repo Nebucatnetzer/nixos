@@ -63,7 +63,6 @@ def main() -> None:
         "docker.io/actualbudget/actual-server",
         "docker.io/gitea/gitea",
         "ghcr.io/nebucatnetzer/meta-search/zweili-search-app",
-        "lscr.io/linuxserver/plex",
     ]
 
     for image in images:

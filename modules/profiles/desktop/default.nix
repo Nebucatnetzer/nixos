@@ -162,7 +162,6 @@ in
       pkgs.keepassxc
       pkgs.libreoffice-qt-fresh
       pkgs.meld
-      pkgs.plex-desktop
       pkgs.remmina
       pkgs.syncthingtray
       pkgs.tagger
@@ -179,7 +178,7 @@ in
       enable = true;
       xdgOpenUsePortal = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-gtk # required for plex
+        pkgs.xdg-desktop-portal-gtk
         pkgs.kdePackages.xdg-desktop-portal-kde
       ];
     };

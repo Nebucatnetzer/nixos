@@ -25,7 +25,7 @@
   programs = {
     bash = {
       shellAliases = {
-        capricorn = "mosh ${config.home.username}@${nixosConfig.az-hosts.capricorn.wgIp} -- tmux new -A -s 0";
+        fenoglio = "mosh ${config.home.username}@${nixosConfig.az-hosts.fenoglio.wgIp} -- tmux new -A -s 0";
         gwyn = "mosh ${config.home.username}@${nixosConfig.az-hosts.gwyn.wgIp} -- tmux new -A -s 0";
       };
     };

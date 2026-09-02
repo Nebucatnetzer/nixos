@@ -38,6 +38,7 @@ rec {
   download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp mediaPaths; };
   dptfxtract = pkgs.callPackage ./dptfxtract { };
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
+  qudedup-extract-tool = pkgs.callPackage ./qudedup-extract-tool { };
   raiffeisen-csv-cleanup = pkgs.callPackage ./raiffeisen-csv-cleanup { };
   rebuild = pkgs.callPackage ./rebuild { };
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };

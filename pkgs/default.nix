@@ -46,6 +46,7 @@ rec {
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };
   tube-podder = pkgs.callPackage ./tube-podder { inherit yt-dlp; };
   unlock-luks = pkgs.callPackage ./unlock-luks { };
+  unsloth-studio = pkgs.callPackage ./unsloth-studio { };
   update-file-dates = pkgs.callPackage ./update-file-dates { };
   update-hosts = pkgs.callPackage ./update-hosts { };
   video-to-mpv = pkgs.callPackage ./video-to-mpv {

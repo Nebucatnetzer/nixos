@@ -29,6 +29,12 @@ let
   resticServer = import "${inputs.self}/modules/services/restic-server";
   rssBridgeDomain = "rss-bridge.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
+  storageBox = import "${inputs.self}/modules/misc/storage-box/restic.nix" {
+    host = storageBoxHost;
+    path = "backups/restic";
+  };
+  storageBoxHost = "u662087.your-storagebox.de";
+  storageBoxModule = import "${inputs.self}/modules/misc/storage-box";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardHub = import "${inputs.self}/modules/services/wireguard/hub.nix";
 in
@@ -84,6 +90,12 @@ in
     (resticServer { })
     (rssBridgeModule {
       domain = rssBridgeDomain;
+    })
+    (storageBoxModule {
+      host = storageBoxHost;
+      hostPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
+      keyFile = "gwyn_storagebox.key.age";
+      user = "u662087";
     })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardHub {

@@ -4,6 +4,7 @@
 }:
 let
   inherit (unstable-pkgs) yt-dlp;
+  hosts = import ../modules/misc/hosts/hosts.nix;
   mediaPaths = import ./mediaPaths.nix;
 in
 rec {
@@ -40,7 +41,7 @@ rec {
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
   qudedup-extract-tool = pkgs.callPackage ./qudedup-extract-tool { };
   raiffeisen-csv-cleanup = pkgs.callPackage ./raiffeisen-csv-cleanup { };
-  rebuild = pkgs.callPackage ./rebuild { };
+  rebuild = pkgs.callPackage ./rebuild { builderHost = hosts.fenoglio.wgIp; };
   sidecar-cleanup = pkgs.callPackage ./sidecar-cleanup { };
   swiss-qr-bill-decoder = pkgs.callPackage ./swiss-qr-bill-decoder { };
   toggle-keyboard = pkgs.callPackage ./toggle-keyboard { };

@@ -31,7 +31,11 @@ lib.mkMerge [
 
   # ---- clients (capricorn, gwyn): offload builds to fenoglio, fall back locally ----
   (lib.mkIf (role == "client") {
-    nix.distributedBuilds = true;
+    # Off by default: fenoglio is an on-demand builder, not a service host, so no build
+    # should assume it is up. /etc/nix/machines is still written, because buildMachines
+    # and distributedBuilds are independent, and the rebuild wrapper opts in per
+    # invocation with --builders @/etc/nix/machines once it has probed fenoglio.
+    nix.distributedBuilds = false;
     nix.buildMachines = [
       {
         # IP, not FQDN, to avoid a DNS lookup that stalls when the VPN is down

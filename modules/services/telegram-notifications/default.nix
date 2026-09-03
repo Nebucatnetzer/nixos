@@ -5,15 +5,11 @@
   ...
 }:
 let
-  send-to-telegram = pkgs.writeShellScriptBin "send-to-telegram" ''
-    while IFS='=' read -r key value; do
-        # Skip lines starting with # or empty lines
-        if [[ ! $key =~ ^# && -n $key ]]; then
-            export "$key=$value"
-        fi
-    done <${config.age.secrets.telegramNotifyEnv.path}
-    URL="https://api.telegram.org/bot$TELEGRAM_KEY/sendMessage"
-    ${pkgs.curl}/bin/curl -s -d "chat_id=$CHAT_ID&disable_web_page_preview=1&text=$1" $URL > /dev/null'';
+  # Lives in its own file so other modules can call it directly instead of going through
+  # the unit-status-telegram@ indirection.
+  send-to-telegram = pkgs.callPackage ./send_to_telegram.nix {
+    envFile = config.age.secrets.telegramNotifyEnv.path;
+  };
 
   unit-status-telegram = pkgs.writeShellScript "unit-status-telegram" ''
     UNIT="$1"

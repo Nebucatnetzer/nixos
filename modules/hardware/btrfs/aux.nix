@@ -1,5 +1,7 @@
 {
-  mountPath ? "/",
+  # A list, not a single path: importing this module twice would collide on
+  # services.btrfs.autoScrub.fileSystems instead of merging.
+  mountPaths ? [ "/" ],
 }:
 { pkgs, ... }:
 {
@@ -13,9 +15,7 @@
   services = {
     btrfs.autoScrub = {
       enable = true;
-      fileSystems = [
-        mountPath
-      ];
+      fileSystems = mountPaths;
       interval = "monthly";
     };
   };

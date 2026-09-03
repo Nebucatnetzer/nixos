@@ -141,12 +141,16 @@ in
     device = "/dev/nvme0n1p2";
   };
 
+  # nofail keeps a missing repo disk from blocking boot; the restic-server module pairs
+  # it with RequiresMountsFor so the services fail instead of writing to the root disk.
   fileSystems."/var/lib/restic-server" = {
     fsType = "btrfs";
     label = "resticSSD";
     neededForBoot = false;
     options = [
       "subvol=restic-repo"
+      "nofail"
+      "x-systemd.device-timeout=10"
     ]
     ++ commonBtrfsOptions;
   };

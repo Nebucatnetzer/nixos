@@ -24,6 +24,13 @@ let
   };
   swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;
 
+  # The repository lives on its own disk, mounted with nofail. nixpkgs' rest-server module
+  # sets createHome on the restic user, so without this a missing disk would leave every
+  # unit writing into a fresh empty repository on the root filesystem, with no error.
+  requireRepoMount = {
+    unitConfig.RequiresMountsFor = repository;
+  };
+
 in
 {
   imports = [
@@ -41,7 +48,9 @@ in
   };
   networking.firewall.allowedTCPPorts = [ 8123 ];
 
-  systemd.services.restic-prune = {
+  systemd.services.restic-rest-server = requireRepoMount;
+
+  systemd.services.restic-prune = requireRepoMount // {
     serviceConfig = {
       Type = "oneshot";
       User = "restic";
@@ -56,7 +65,7 @@ in
     '';
   };
 
-  systemd.services."restic-offsite-sync" = {
+  systemd.services."restic-offsite-sync" = requireRepoMount // {
     serviceConfig = {
       Type = "oneshot";
       User = "restic";
@@ -81,7 +90,7 @@ in
     timerConfig.OnCalendar = [ "*-*-* 08:00:00" ];
   };
 
-  systemd.services.restic-check = {
+  systemd.services.restic-check = requireRepoMount // {
     serviceConfig = {
       Type = "oneshot";
       User = "restic";

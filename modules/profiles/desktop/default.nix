@@ -128,6 +128,7 @@ in
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep
+      pkgs.plex-desktop
       pkgs.steam-run # FHS runtime for running dynamically-linked binaries
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
       pkgs.vial # configure the Cornix keyboard layout

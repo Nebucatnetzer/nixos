@@ -8,6 +8,7 @@ let
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
+  resticClientModule = import "${inputs.self}/modules/services/restic-client";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardClient = import "${inputs.self}/modules/services/wireguard/client.nix";
 in
@@ -22,6 +23,7 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "server"; })
+    (resticClientModule { })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;

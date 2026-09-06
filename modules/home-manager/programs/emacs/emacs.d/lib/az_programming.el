@@ -263,9 +263,3 @@
    (css-ts-mode        . (lambda () (setq tab-width 2
                                           css-indent-offset 2)))
    (json-ts-mode       . (lambda () (setq tab-width 2)))))
-
-(use-package claude-code
-  :bind-keymap ("C-c o" . claude-code-command-map)
-  :config
-  (setopt claude-code-terminal-backend 'ghostel)
-  (claude-code-mode))

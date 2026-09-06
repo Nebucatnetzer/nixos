@@ -4,10 +4,9 @@
   epkgs,
   lib,
   includeGuiPackages ? false,
-  # Email (mu4e), note-taking (denote), citation/languagetool tooling and the
-  # claude-code assistant (which needs credentials that aren't present on the
-  # machines the wrapper targets). Disabled for the portable terminal az-emacs
-  # build, which is scoped to basic coding plus the occasional org note.
+  # Email (mu4e), note-taking (denote), citation/languagetool tooling. Disabled for the
+  # portable terminal az-emacs build, which is scoped to basic coding plus the
+  # occasional org note.
   includeExtendedPackages ? true,
 }:
 [
@@ -116,8 +115,4 @@
   pkgs.mu # needed for mailing
   # languagetool prose linting
   epkgs.flymake-languagetool
-  # AI coding assistant (requires credentials)
-  (pkgs.callPackage ./packages/claude-code-el {
-    inherit (epkgs) inheritenv melpaBuild;
-  })
 ]

@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -23,37 +23,28 @@ let
       --password-file ${password_file} \
       mount /tmp/restic'';
 
-  offsiteRepo = "swift:default:/";
-  swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;
+  # No guard on az-storage-box: profiles/management imports the Storage Box module
+  # alongside this one, so every host with these helpers can reach the box.
+  # The transport is append-only, which is enough for list, mount and restore.
+  offsiteRepository = config.az-storage-box.repository;
+  offsiteRestic = lib.concatStringsSep " " (
+    [ "${pkgs.restic}/bin/restic" ] ++ config.az-storage-box.extraResticArgs
+  );
+
   restic-offsite-list = pkgs.writeShellScriptBin "restic-offsite-list" ''
-    while IFS='=' read -r key value; do
-        # Skip lines starting with # or empty lines
-        if [[ ! $key =~ ^# && -n $key ]]; then
-            export "$key=$value"
-        fi
-    done <${swiftStorage.envFile}
-    export RESTIC_REPOSITORY="${offsiteRepo}"
-    export OS_AUTH_URL="${swiftStorage.swiftAuthUrl}"
-    export OS_USER_DOMAIN_NAME=default
-
-    mkdir -p /tmp/restic &&
-
-    ${pkgs.restic}/bin/restic --password-file ${password_file} snapshots'';
+    ${offsiteRestic} \
+      --repo ${offsiteRepository} \
+      --password-file ${password_file} \
+      snapshots
+  '';
 
   restic-offsite-mount = pkgs.writeShellScriptBin "restic-offsite-mount" ''
-    while IFS='=' read -r key value; do
-        # Skip lines starting with # or empty lines
-        if [[ ! $key =~ ^# && -n $key ]]; then
-            export "$key=$value"
-        fi
-    done <${swiftStorage.envFile}
-    export RESTIC_REPOSITORY="${offsiteRepo}"
-    export OS_AUTH_URL="${swiftStorage.swiftAuthUrl}"
-    export OS_USER_DOMAIN_NAME=default
-
     mkdir -p /tmp/restic &&
-
-    ${pkgs.restic}/bin/restic --password-file ${password_file} mount /tmp/restic'';
+    ${offsiteRestic} \
+      --repo ${offsiteRepository} \
+      --password-file ${password_file} \
+      mount /tmp/restic
+  '';
 in
 {
   environment.shellAliases = {

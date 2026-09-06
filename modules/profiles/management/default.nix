@@ -13,6 +13,14 @@ in
     "${inputs.self}/modules/programs/nix-direnv"
     "${inputs.self}/modules/programs/restic-management"
     "${inputs.self}/modules/programs/scripts"
+    # Alongside restic-management deliberately: a host with the restore helpers but no
+    # Storage Box access would have a half-useful profile, so they arrive together.
+    (import "${inputs.self}/modules/misc/storage-box" {
+      host = "u662087.your-storagebox.de";
+      hostPublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
+      path = "backups/restic";
+      user = "u662087";
+    })
   ];
 
   documentation = {
@@ -22,12 +30,6 @@ in
 
   age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
 
-  age.secrets.infomaniakEnv = {
-    file = "${inputs.self}/scrts/infomaniak_env.age";
-    mode = "440";
-    owner = config.az-username;
-    group = if config.users.users ? "restic" then "restic" else config.az-username;
-  };
   age.secrets.resticKey = {
     file = "${inputs.self}/scrts/restic.key.age";
     mode = "440";

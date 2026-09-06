@@ -32,6 +32,8 @@ in
   "freshrss_db_pass.age".publicKeys = defaultKeys;
   "freshrss_user_pass.age".publicKeys = defaultKeys;
   "gitea_env.age".publicKeys = defaultKeys;
+  "capricorn_storagebox.key.age".publicKeys = defaultKeys;
+  "fenoglio_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_wg.key.age".publicKeys = defaultKeys;
   "infomaniak_ai.key.age".publicKeys = defaultKeys;

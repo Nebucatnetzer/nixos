@@ -9,22 +9,20 @@
   ...
 }:
 let
-  offsiteRepo = "swift:default:/";
   passwordFile = config.age.secrets.resticKey.path;
-  offsite-repo-check = pkgs.callPackage ./offsite_repo_check.nix {
-    inherit (swiftStorage) envFile;
-    resticPassword = passwordFile;
-    resticRepo = offsiteRepo;
-    inherit (swiftStorage) swiftAuthUrl;
-  };
-  offsite-repo-sync = pkgs.callPackage ./offsite_repo_sync.nix {
-    inherit (swiftStorage) envFile;
-    localResticRepo = repository;
-    inherit (swiftStorage) swiftAuthUrl;
-    swiftRegion = "RegionOne";
-  };
-  swiftStorage = import "${inputs.self}/modules/misc/swift-storage" config;
+  offsiteRestic = lib.concatStringsSep " " (
+    [ "${pkgs.restic}/bin/restic" ] ++ config.az-storage-box.extraResticArgs
+  );
 
+  # The offsite units run as root, not as restic: the Storage Box key is 0400 and owned
+  # by the main user so that the interactive helpers work, and root is the only other
+  # reader. Root's HOME would put restic's cache on the root filesystem and a remote repo
+  # without a cache re-reads the whole index every run, hence the explicit cache dir.
+  offsiteEnvironment = {
+    RESTIC_CACHE_DIR = "/var/cache/restic";
+    RESTIC_PASSWORD_FILE = passwordFile;
+    RESTIC_REPOSITORY = config.az-storage-box.repository;
+  };
   # The repository lives on its own disk, mounted with nofail. nixpkgs' rest-server module
   # sets createHome on the restic user, so without this a missing disk would leave every
   # unit writing into a fresh empty repository on the root filesystem, with no error.
@@ -114,21 +112,29 @@ in
 
   systemd.services."restic-offsite-sync" = requireRepoMount // {
     serviceConfig = {
+      CacheDirectory = "restic";
       Type = "oneshot";
-      User = "restic";
+    };
+    environment = offsiteEnvironment // {
+      RESTIC_FROM_PASSWORD_FILE = passwordFile;
+      RESTIC_FROM_REPOSITORY = repository;
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-offsite-check.service" ];
-    script = "${offsite-repo-sync}/bin/restic-offsite-sync";
+    # copy, not sync: the target is an independent repo with its own index, so a bad
+    # forget or a deleted local repo does not propagate. Snapshots already there are
+    # skipped, which makes the unit its own resume after a failed run.
+    script = "${offsiteRestic} copy";
   };
 
   systemd.services."restic-offsite-check" = {
     serviceConfig = {
+      CacheDirectory = "restic";
       Type = "oneshot";
-      User = "restic";
     };
+    environment = offsiteEnvironment;
     onFailure = [ "unit-status-telegram@%N.service" ];
-    script = "${offsite-repo-check}/bin/restic-offsite-check";
+    script = "${offsiteRestic} check";
   };
 
   systemd.timers.restic-prune = {

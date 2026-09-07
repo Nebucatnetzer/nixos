@@ -11,7 +11,7 @@
         };
         never_convert_lossy_files = true;
       };
-      directory = "/mnt/fileserver/media/audio/music/music";
+      directory = "/mnt/archive-disk/media/audio/music/music";
       fetchart = {
         auto = true;
       };

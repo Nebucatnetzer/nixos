@@ -19,6 +19,7 @@
 /home/*/.thumbnails
 /home/*/applications/tor-browser_en-US
 /home/*/Downloads
+/home/*/Music
 /home/*/vendor
 /home/*/VMs
 /home/*/snap

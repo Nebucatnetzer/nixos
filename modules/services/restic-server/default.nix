@@ -1,4 +1,9 @@
 {
+  # When the age check runs. After the 02:30 archive and the 09:00 offsite copy, so a
+  # same-day run is dated by today's backups.
+  ageSchedule ? "*-*-* 12:00:00",
+  # Hours without a recorded backup before the age check alerts.
+  maxBackupAge ? 48,
   repository ? "/var/lib/restic-server",
 }:
 {
@@ -9,6 +14,29 @@
   ...
 }:
 let
+  ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic-age/age_guard.nix" {
+    maxAge = maxBackupAge;
+    name = "restic-repository-age";
+    inherit sendToTelegram;
+    tiers = [
+      # Repository wide, not per host: snapshot file names are opaque, so nothing short of
+      # restic can tell whose snapshot a given file is. This answers whether the rest
+      # server is receiving anything at all; the per-job stamps on the clients are what
+      # name a single quiet host.
+      {
+        label = "local restic repository";
+        paths = [ "${repository}/snapshots" ];
+      }
+      # A stamp instead of a listing, because the offsite repository is only reachable
+      # through the rclone transport and nothing but restic can drive that. A copy that
+      # finds nothing new still succeeds, but then nothing new was in the local repository
+      # either, which is what the tier above catches.
+      {
+        label = "offsite restic copy";
+        paths = [ offsiteStamp ];
+      }
+    ];
+  };
   # Not the /var/cache/restic the root client jobs use: two uids sharing one cache
   # directory is the same ownership mix this module exists to avoid.
   cacheDirectory = "/var/cache/restic-server";
@@ -65,6 +93,8 @@ let
     ]
     ++ config.az-storage-box.pruneResticArgs
   );
+  offsiteStamp = "/var/lib/${offsiteStateDirectory}/last-success";
+  offsiteStateDirectory = "restic-age-offsite";
   # Per tag, because a tag absent here is never forgotten..
   offsiteRetention = {
     archive = offsiteKeepPolicy;
@@ -172,6 +202,34 @@ in
     timerConfig.OnCalendar = "hourly";
   };
 
+  # No RequiresMountsFor either, for the same reason: a missing disk has to make this unit
+  # run and alert, not leave it inactive as a dependency failure. With the disk gone the
+  # snapshots directory is absent, which the script reports as nothing on record.
+  systemd.services.restic-repository-age = {
+    description = "Alert when a restic repository has had no backup for ${toString maxBackupAge} hours";
+    after = [
+      "local-fs.target"
+      "network-online.target"
+    ];
+    wants = [ "network-online.target" ];
+    serviceConfig = resticIdentity // {
+      ExecStart = lib.getExe ageGuard;
+      # Shared with restic-offsite-copy, so the check can run before the first copy has
+      # written the stamp. Same user, so no ownership conflict.
+      StateDirectory = offsiteStateDirectory;
+    };
+  };
+
+  systemd.timers.restic-repository-age = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-repository-age.service" ];
+    timerConfig = {
+      OnCalendar = ageSchedule;
+      # So a host that was off catches up on boot rather than skipping the day.
+      Persistent = true;
+    };
+  };
+
   systemd.services.restic-rest-server = requireRepoMount;
 
   # Local repo: the clients push into the rest server all day, then prune, then check.
@@ -201,14 +259,23 @@ in
   # Offsite repo: its own timer rather than an onSuccess off restic-prune. A local repo
   # problem must not silently stop the copy that survives the house burning down.
   systemd.services.restic-offsite-copy = requireRepoMount // {
-    serviceConfig = resticIdentity;
+    serviceConfig = resticIdentity // {
+      # Holds the stamp restic-repository-age dates the offsite copy from.
+      StateDirectory = offsiteStateDirectory;
+    };
     environment = offsiteEnvironment // {
       RESTIC_FROM_PASSWORD_FILE = passwordFile;
       RESTIC_FROM_REPOSITORY = repository;
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-offsite-check.service" ];
-    script = "${offsiteRestic} copy";
+    script = ''
+      ${offsiteRestic} copy
+
+      # NixOS runs unit scripts under set -e, so this is only reached when the copy
+      # actually succeeded.
+      ${pkgs.coreutils}/bin/touch ${offsiteStamp}
+    '';
   };
 
   systemd.timers.restic-offsite-copy = {

@@ -9,6 +9,9 @@
   ...
 }:
 let
+  # Not the /var/cache/restic the root client jobs use: two uids sharing one cache
+  # directory is the same ownership mix this module exists to avoid.
+  cacheDirectory = "/var/cache/restic-server";
   # --retry-lock on everything: the chains overlap by design, a copy holds a shared lock
   # on both repos while a prune needs an exclusive one, so waiting beats failing.
   localRestic = lib.concatStringsSep " " [
@@ -17,12 +20,12 @@ let
     "--password-file ${passwordFile}"
     "--retry-lock 30m"
   ];
-  # The offsite units run as root, not as restic: the Storage Box key is 0400 and owned
-  # by the main user so that the interactive helpers work, and root is the only other
-  # reader. Root's HOME would put restic's cache on the root filesystem and a remote repo
-  # without a cache re-reads the whole index every run, hence the explicit cache dir.
+  # Every unit here runs as restic, the uid that owns the repository, so that nothing
+  # else ever writes into it: a file owned by another uid is one the rest server cannot
+  # open, and clients then get a 500 for that file. The Storage Box key exists a second
+  # time for this user, because ssh refuses a key that is group readable.
   offsiteEnvironment = {
-    RESTIC_CACHE_DIR = "/var/cache/restic";
+    RESTIC_CACHE_DIR = cacheDirectory;
     RESTIC_PASSWORD_FILE = passwordFile;
     RESTIC_REPOSITORY = config.az-storage-box.repository;
   };
@@ -93,6 +96,33 @@ let
   requireRepoMount = {
     unitConfig.RequiresMountsFor = repository;
   };
+  # The restic user's home is the repository directory itself, so an explicit cache
+  # directory is what keeps restic's cache from landing inside the repo.
+  resticIdentity = {
+    CacheDirectory = "restic-server";
+    Group = "restic";
+    Type = "oneshot";
+    User = "restic";
+  };
+  # Interactive use has to be restic as well. A restic run as root or as the main user
+  # against the repository path leaves files the rest server cannot open, which is what
+  # broke every client on 2026-09-07.
+  resticLocal = pkgs.writeShellApplication {
+    name = "restic-local";
+    runtimeInputs = [
+      pkgs.coreutils
+      pkgs.sudo
+    ];
+    text = ''
+      exec sudo --user=restic \
+        env RESTIC_CACHE_DIR=${cacheDirectory} \
+        ${pkgs.restic}/bin/restic \
+          --repo ${repository} \
+          --password-file ${passwordFile} \
+          --retry-lock 30m \
+          "$@"
+    '';
+  };
   sendToTelegram = pkgs.callPackage "${telegramNotifications}/send_to_telegram.nix" {
     envFile = config.age.secrets.telegramNotifyEnv.path;
   };
@@ -104,6 +134,7 @@ in
   ];
   environment.systemPackages = [
     pkgs.restic
+    resticLocal
   ];
 
   services.restic.server = {
@@ -113,6 +144,10 @@ in
     listenAddress = "${config.az-hosts.gwyn.wgIp}:8123";
   };
   networking.firewall.allowedTCPPorts = [ 8123 ];
+
+  # /var/cache is root owned, so the restic user cannot create its cache directory
+  # itself. The units get it from CacheDirectory, restic-local needs it to exist.
+  systemd.tmpfiles.rules = [ "d ${cacheDirectory} 0755 restic restic -" ];
 
   # The units below carry RequiresMountsFor, which aborts their start job as a dependency
   # failure when the disk is absent. That leaves them inactive rather than failed, so they
@@ -143,10 +178,8 @@ in
 
   # Local repo: the clients push into the rest server all day, then prune, then check.
   systemd.services.restic-prune = requireRepoMount // {
-    serviceConfig = {
-      Type = "oneshot";
-      User = "restic";
-    };
+    serviceConfig = resticIdentity;
+    environment.RESTIC_CACHE_DIR = cacheDirectory;
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-check.service" ];
     script = "${localRestic} prune";
@@ -161,10 +194,8 @@ in
   # No timer of its own. A check verifies what prune just rewrote, and a gap on the clock
   # cannot express that ordering. Started by prune, or by hand.
   systemd.services.restic-check = requireRepoMount // {
-    serviceConfig = {
-      Type = "oneshot";
-      User = "restic";
-    };
+    serviceConfig = resticIdentity;
+    environment.RESTIC_CACHE_DIR = cacheDirectory;
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = "${localRestic} check";
   };
@@ -172,10 +203,7 @@ in
   # Offsite repo: its own timer rather than an onSuccess off restic-prune. A local repo
   # problem must not silently stop the copy that survives the house burning down.
   systemd.services.restic-offsite-copy = requireRepoMount // {
-    serviceConfig = {
-      CacheDirectory = "restic";
-      Type = "oneshot";
-    };
+    serviceConfig = resticIdentity;
     environment = offsiteEnvironment // {
       RESTIC_FROM_PASSWORD_FILE = passwordFile;
       RESTIC_FROM_REPOSITORY = repository;
@@ -198,10 +226,7 @@ in
   systemd.services.restic-offsite-prune = {
     requires = [ "restic-offsite-copy.service" ];
     after = [ "restic-offsite-copy.service" ];
-    serviceConfig = {
-      CacheDirectory = "restic";
-      Type = "oneshot";
-    };
+    serviceConfig = resticIdentity;
     environment = offsiteEnvironment;
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-offsite-check.service" ];
@@ -230,10 +255,7 @@ in
       "restic-offsite-copy.service"
       "restic-offsite-prune.service"
     ];
-    serviceConfig = {
-      CacheDirectory = "restic";
-      Type = "oneshot";
-    };
+    serviceConfig = resticIdentity;
     environment = offsiteEnvironment;
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = "${offsiteRestic} check";

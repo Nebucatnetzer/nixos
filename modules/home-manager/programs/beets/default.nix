@@ -1,10 +1,11 @@
-{
+{ config, ... }: {
   programs.beets = {
     enable = true;
     settings = {
       asciify_paths = true;
       convert = {
         copy_album_art = "yes";
+        dest = "${config.home.homeDirectory}/Music";
         format = "opus";
         formats = {
           opus = "ffmpeg -i $source -y -vn -acodec libopus -ab 192k -vbr on $dest";

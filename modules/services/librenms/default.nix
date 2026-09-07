@@ -62,14 +62,7 @@ in
           "/sys/fs/cgroup"
         ];
         ignore_mount_string = [
-          "mnt"
-          "msg.lock" # qnap
-          "new_root" # qnap
-          "NFSv=4" # qnap
-          "store" # raspi
           "run" # linux
-          "samba_third_party" # qnap
-          "server-data" # servers
           "shm" # linux tmpfs
           # defaults: https://github.com/librenms/librenms/blob/2cb8d9f042c9658531d85047c62f958cb9519ac7/misc/config_definitions.json#L4238
           "packages"

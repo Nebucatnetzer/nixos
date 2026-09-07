@@ -65,9 +65,7 @@ let
     ]
     ++ config.az-storage-box.pruneResticArgs
   );
-  # Per tag, because a tag absent here is never forgotten. The archive tag joins this
-  # list once the archive job exists: its own unit cannot forget, the append-only
-  # transport refuses it.
+  # Per tag, because a tag absent here is never forgotten..
   offsiteRetention = {
     archive = offsiteKeepPolicy;
     paths = offsiteKeepPolicy;

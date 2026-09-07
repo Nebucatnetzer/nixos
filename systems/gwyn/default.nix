@@ -8,6 +8,8 @@
 let
   actualBudgetModule = import "${inputs.self}/modules/services/actualbudget";
   actualData = "/var/lib/actualbudget";
+  archiveLuks = "archiveLuks";
+  archivePath = "/mnt/archive-disk";
   eactualData = "/var/lib/eactual";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
@@ -23,6 +25,7 @@ let
   giteaDataDir = "/var/lib/gitea";
   giteaDomain = "git.zweili.org";
   giteaModule = import "${inputs.self}/modules/services/gitea";
+  hddBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/hdd_options.nix";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
@@ -62,7 +65,12 @@ in
       name = "eactual";
       port = 5007;
     })
-    (btrfsAuxModule { })
+    (btrfsAuxModule {
+      mountPaths = [
+        "/"
+        archivePath
+      ];
+    })
     (btrfsLayout { })
     (nixBuilderModule { role = "client"; })
     (giteaModule {
@@ -92,6 +100,10 @@ in
     })
   ];
 
+  age.secrets.archiveLuksKey = {
+    file = "${inputs.self}/scrts/gwyn_archive_luks.key.age";
+    mode = "400";
+  };
   age.secrets.wireguardPrivateKey.file = "${inputs.self}/scrts/gwyn_wg.key.age";
   boot.initrd.availableKernelModules = [
     "aesni_intel"
@@ -127,6 +139,28 @@ in
   boot.initrd.luks.devices."mainLuks" = {
     allowDiscards = true;
     device = "/dev/nvme0n1p2";
+  };
+
+  # Stage 2, not initrd: the root disk is unlocked interactively over initrd ssh, and a
+  # second prompt there would also mean a missing USB disk stalls the boot of a headless
+  # host. nixpkgs has no option for a non-root LUKS device, so this is the crypttab that
+  # systemd-cryptsetup-generator reads. The keyfile lives on the encrypted root.
+  environment.etc.crypttab.text = ''
+    ${archiveLuks} UUID=cffc97f9-48e6-48b2-9d90-876f7775a684 ${config.age.secrets.archiveLuksKey.path} luks,nofail,x-systemd.device-timeout=10
+  '';
+  # nofail keeps a missing archive disk from blocking boot, which is the whole reason the
+  # unlock moved out of initrd. The other half of that trade is that an absent disk leaves
+  # this path an empty directory on the root filesystem, so anything reading the archive
+  # has to check it is a mountpoint rather than trusting the path to exist.
+  fileSystems."${archivePath}" = {
+    device = "/dev/mapper/${archiveLuks}";
+    fsType = "btrfs";
+    neededForBoot = false;
+    options = [
+      "nofail"
+      "x-systemd.device-timeout=10"
+    ]
+    ++ hddBtrfsOptions;
   };
 
   # nofail keeps a missing repo disk from blocking boot; the restic-server module pairs

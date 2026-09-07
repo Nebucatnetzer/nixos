@@ -9,7 +9,6 @@
   ...
 }:
 let
-  passwordFile = config.age.secrets.resticKey.path;
   # --retry-lock on everything: the chains overlap by design, a copy holds a shared lock
   # on both repos while a prune needs an exclusive one, so waiting beats failing.
   localRestic = lib.concatStringsSep " " [
@@ -18,44 +17,15 @@ let
     "--password-file ${passwordFile}"
     "--retry-lock 30m"
   ];
-
-  offsiteRestic = lib.concatStringsSep " " (
-    [
-      "${pkgs.restic}/bin/restic"
-      "--retry-lock 30m"
-    ]
-    ++ config.az-storage-box.extraResticArgs
-  );
-
-  # forget and prune get a 403 through the append-only transport, so the maintenance unit
-  # is the one place that gets the writable one.
-  offsiteResticWritable = lib.concatStringsSep " " (
-    [
-      "${pkgs.restic}/bin/restic"
-      "--retry-lock 30m"
-    ]
-    ++ config.az-storage-box.pruneResticArgs
-  );
-
-  # Longer than the client-side policy on purpose, so forget offsite only ever removes
-  # what the local repo already dropped. yearly is unlimited, a literal restic accepts,
-  # because this is the copy that has to answer a deletion noticed years later.
-  offsiteKeepPolicy = [
-    "--keep-daily 7"
-    "--keep-weekly 5"
-    "--keep-monthly 24"
-    "--keep-yearly unlimited"
-  ];
-
-  # Per tag, because a tag absent here is never forgotten. The archive tag joins this
-  # list once the archive job exists: its own unit cannot forget, the append-only
-  # transport refuses it.
-  offsiteRetention = {
-    archive = offsiteKeepPolicy;
-    paths = offsiteKeepPolicy;
-    mariadb = offsiteKeepPolicy;
+  # The offsite units run as root, not as restic: the Storage Box key is 0400 and owned
+  # by the main user so that the interactive helpers work, and root is the only other
+  # reader. Root's HOME would put restic's cache on the root filesystem and a remote repo
+  # without a cache re-reads the whole index every run, hence the explicit cache dir.
+  offsiteEnvironment = {
+    RESTIC_CACHE_DIR = "/var/cache/restic";
+    RESTIC_PASSWORD_FILE = passwordFile;
+    RESTIC_REPOSITORY = config.az-storage-box.repository;
   };
-
   # host,paths,tags is the finest grouping restic offers, so one host going quiet can
   # never age out another host's snapshots.
   offsiteForget = lib.concatStringsSep "\n" (
@@ -67,28 +37,40 @@ let
         ${lib.concatStringsSep " \\\n  " policy}
     '') offsiteRetention
   );
-
-  # The offsite units run as root, not as restic: the Storage Box key is 0400 and owned
-  # by the main user so that the interactive helpers work, and root is the only other
-  # reader. Root's HOME would put restic's cache on the root filesystem and a remote repo
-  # without a cache re-reads the whole index every run, hence the explicit cache dir.
-  offsiteEnvironment = {
-    RESTIC_CACHE_DIR = "/var/cache/restic";
-    RESTIC_PASSWORD_FILE = passwordFile;
-    RESTIC_REPOSITORY = config.az-storage-box.repository;
+  # Longer than the client-side policy on purpose, so forget offsite only ever removes
+  # what the local repo already dropped. yearly is unlimited, a literal restic accepts,
+  # because this is the copy that has to answer a deletion noticed years later.
+  offsiteKeepPolicy = [
+    "--keep-daily 7"
+    "--keep-weekly 5"
+    "--keep-monthly 24"
+    "--keep-yearly unlimited"
+  ];
+  offsiteRestic = lib.concatStringsSep " " (
+    [
+      "${pkgs.restic}/bin/restic"
+      "--retry-lock 30m"
+    ]
+    ++ config.az-storage-box.extraResticArgs
+  );
+  # forget and prune get a 403 through the append-only transport, so the maintenance unit
+  # is the one place that gets the writable one.
+  offsiteResticWritable = lib.concatStringsSep " " (
+    [
+      "${pkgs.restic}/bin/restic"
+      "--retry-lock 30m"
+    ]
+    ++ config.az-storage-box.pruneResticArgs
+  );
+  # Per tag, because a tag absent here is never forgotten. The archive tag joins this
+  # list once the archive job exists: its own unit cannot forget, the append-only
+  # transport refuses it.
+  offsiteRetention = {
+    archive = offsiteKeepPolicy;
+    paths = offsiteKeepPolicy;
+    mariadb = offsiteKeepPolicy;
   };
-  # The repository lives on its own disk, mounted with nofail. nixpkgs' rest-server module
-  # sets createHome on the restic user, so without this a missing disk would leave every
-  # unit writing into a fresh empty repository on the root filesystem, with no error.
-  requireRepoMount = {
-    unitConfig.RequiresMountsFor = repository;
-  };
-
-  telegramNotifications = "${inputs.self}/modules/services/telegram-notifications";
-  sendToTelegram = pkgs.callPackage "${telegramNotifications}/send_to_telegram.nix" {
-    envFile = config.age.secrets.telegramNotifyEnv.path;
-  };
-
+  passwordFile = config.age.secrets.resticKey.path;
   # Reports for itself rather than through onFailure, so the message names the disk
   # instead of being a systemctl status dump. Still exits non-zero, so the unit also
   # shows up in systemctl --failed.
@@ -105,6 +87,16 @@ let
       exit 1
     '';
   };
+  # The repository lives on its own disk, mounted with nofail. nixpkgs' rest-server module
+  # sets createHome on the restic user, so without this a missing disk would leave every
+  # unit writing into a fresh empty repository on the root filesystem, with no error.
+  requireRepoMount = {
+    unitConfig.RequiresMountsFor = repository;
+  };
+  sendToTelegram = pkgs.callPackage "${telegramNotifications}/send_to_telegram.nix" {
+    envFile = config.age.secrets.telegramNotifyEnv.path;
+  };
+  telegramNotifications = "${inputs.self}/modules/services/telegram-notifications";
 in
 {
   imports = [

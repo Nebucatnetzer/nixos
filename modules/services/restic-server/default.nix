@@ -51,6 +51,7 @@ let
   # list once the archive job exists: its own unit cannot forget, the append-only
   # transport refuses it.
   offsiteRetention = {
+    archive = offsiteKeepPolicy;
     paths = offsiteKeepPolicy;
     mariadb = offsiteKeepPolicy;
   };

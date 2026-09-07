@@ -18,6 +18,7 @@
   probePort ? null,
   # null means the rest server on gwyn.
   repository ? null,
+  requireMountpoints ? [ ],
   retryLock ? "10m",
   resticSchedule ? "hourly",
   # An empty list means no forget at all, which is what an archive wants: forget removes
@@ -120,6 +121,12 @@ let
       exit 0
     fi
   '';
+  mountpointGuard = lib.concatMapStrings (mountPath: ''
+    if ! ${pkgs.util-linux}/bin/mountpoint --quiet ${mountPath}; then
+      echo "${mountPath} is not a mountpoint. Backup aborted."
+      exit 1
+    fi
+  '') requireMountpoints;
 
   pathsString = lib.concatStringsSep " " (paths ++ systemPaths);
 in
@@ -139,6 +146,9 @@ in
 
   systemd.services."${unitName}" = {
     serviceConfig = {
+      # Root's HOME would put restic's cache on the root filesystem, and a remote repo
+      # without a cache re-reads the whole index every run.
+      CacheDirectory = "restic";
       User = "root";
       Type = "oneshot";
     };
@@ -146,12 +156,15 @@ in
       ConditionACPower = true;
     };
     environment = {
+      RESTIC_CACHE_DIR = "/var/cache/restic";
       RESTIC_PASSWORD_FILE = config.age.secrets.resticKey.path;
       RESTIC_REPOSITORY = resticRepository;
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = ''
-      ${probeScript}
+        ${probeScript}
+
+        ${mountpointGuard}
 
       ${if mariadb then mariadbBackup else ""}
 

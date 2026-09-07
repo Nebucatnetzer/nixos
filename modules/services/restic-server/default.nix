@@ -195,7 +195,7 @@ in
     serviceConfig = resticIdentity;
     environment.RESTIC_CACHE_DIR = cacheDirectory;
     onFailure = [ "unit-status-telegram@%N.service" ];
-    script = "${localRestic} check";
+    script = "${localRestic} check --read-data-subset=5%";
   };
 
   # Offsite repo: its own timer rather than an onSuccess off restic-prune. A local repo

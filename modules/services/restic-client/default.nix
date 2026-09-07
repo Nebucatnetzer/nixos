@@ -18,6 +18,7 @@
   probePort ? null,
   # null means the rest server on gwyn.
   repository ? null,
+  retryLock ? "10m",
   resticSchedule ? "hourly",
   # An empty list means no forget at all, which is what an archive wants: forget removes
   # snapshots, so a bounded policy eventually ages out every snapshot holding a file that
@@ -74,7 +75,9 @@ let
     lib.optional useSharedExcludes "--exclude-file=${sharedExcludeFile}"
     ++ lib.optional (excludes != [ ]) "--exclude-file=${ownExcludeFile}";
 
-  restic = lib.concatStringsSep " " ([ "${pkgs.restic}/bin/restic" ] ++ extraResticArgs);
+  restic = lib.concatStringsSep " " (
+    [ "${pkgs.restic}/bin/restic" ] ++ [ "--retry-lock ${retryLock}" ] ++ extraResticArgs
+  );
   continued = " \\\n  ";
 
   forget =

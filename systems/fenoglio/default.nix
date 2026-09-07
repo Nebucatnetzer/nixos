@@ -23,7 +23,7 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "server"; })
-    (resticClientModule { })
+    (resticClientModule { resticSchedule = "*-*-* 00..06,09..23:25:00"; })
     (syncthingModule { exposeWebInterface = true; })
     (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;

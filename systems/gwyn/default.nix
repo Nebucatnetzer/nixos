@@ -79,7 +79,7 @@ in
         config.services.librenms.dataDir
       ];
       mariadb = true;
-      resticSchedule = "*-*-* 06..21:30:00";
+      resticSchedule = "*-*-* 00..06,09..23:45:00";
     })
     (resticServer { })
     (rssBridgeModule {

@@ -10,8 +10,61 @@
 }:
 let
   passwordFile = config.age.secrets.resticKey.path;
+  # --retry-lock on everything: the chains overlap by design, a copy holds a shared lock
+  # on both repos while a prune needs an exclusive one, so waiting beats failing.
+  localRestic = lib.concatStringsSep " " [
+    "${pkgs.restic}/bin/restic"
+    "--repo ${repository}"
+    "--password-file ${passwordFile}"
+    "--retry-lock 30m"
+  ];
+
   offsiteRestic = lib.concatStringsSep " " (
-    [ "${pkgs.restic}/bin/restic" ] ++ config.az-storage-box.extraResticArgs
+    [
+      "${pkgs.restic}/bin/restic"
+      "--retry-lock 30m"
+    ]
+    ++ config.az-storage-box.extraResticArgs
+  );
+
+  # forget and prune get a 403 through the append-only transport, so the maintenance unit
+  # is the one place that gets the writable one.
+  offsiteResticWritable = lib.concatStringsSep " " (
+    [
+      "${pkgs.restic}/bin/restic"
+      "--retry-lock 30m"
+    ]
+    ++ config.az-storage-box.pruneResticArgs
+  );
+
+  # Longer than the client-side policy on purpose, so forget offsite only ever removes
+  # what the local repo already dropped. yearly is unlimited, a literal restic accepts,
+  # because this is the copy that has to answer a deletion noticed years later.
+  offsiteKeepPolicy = [
+    "--keep-daily 7"
+    "--keep-weekly 5"
+    "--keep-monthly 24"
+    "--keep-yearly unlimited"
+  ];
+
+  # Per tag, because a tag absent here is never forgotten. The archive tag joins this
+  # list once the archive job exists: its own unit cannot forget, the append-only
+  # transport refuses it.
+  offsiteRetention = {
+    paths = offsiteKeepPolicy;
+    mariadb = offsiteKeepPolicy;
+  };
+
+  # host,paths,tags is the finest grouping restic offers, so one host going quiet can
+  # never age out another host's snapshots.
+  offsiteForget = lib.concatStringsSep "\n" (
+    lib.mapAttrsToList (forgetTag: policy: ''
+      echo "Forget ${forgetTag} snapshots offsite."
+      ${offsiteResticWritable} forget \
+        --tag ${forgetTag} \
+        --group-by host,paths,tags \
+        ${lib.concatStringsSep " \\\n  " policy}
+    '') offsiteRetention
   );
 
   # The offsite units run as root, not as restic: the Storage Box key is 0400 and owned
@@ -95,22 +148,37 @@ in
 
   systemd.services.restic-rest-server = requireRepoMount;
 
+  # Local repo: the clients push into the rest server all day, then prune, then check.
   systemd.services.restic-prune = requireRepoMount // {
     serviceConfig = {
       Type = "oneshot";
       User = "restic";
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
-    onSuccess = [ "restic-offsite-sync.service" ];
-    script = ''
-      ${pkgs.restic}/bin/restic \
-      --repo ${repository} \
-      --password-file ${config.age.secrets.resticKey.path} \
-      prune \
-    '';
+    onSuccess = [ "restic-check.service" ];
+    script = "${localRestic} prune";
   };
 
-  systemd.services."restic-offsite-sync" = requireRepoMount // {
+  systemd.timers.restic-prune = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-prune.service" ];
+    timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];
+  };
+
+  # No timer of its own. A check verifies what prune just rewrote, and a gap on the clock
+  # cannot express that ordering. Started by prune, or by hand.
+  systemd.services.restic-check = requireRepoMount // {
+    serviceConfig = {
+      Type = "oneshot";
+      User = "restic";
+    };
+    onFailure = [ "unit-status-telegram@%N.service" ];
+    script = "${localRestic} check";
+  };
+
+  # Offsite repo: its own timer rather than an onSuccess off restic-prune. A local repo
+  # problem must not silently stop the copy that survives the house burning down.
+  systemd.services.restic-offsite-copy = requireRepoMount // {
     serviceConfig = {
       CacheDirectory = "restic";
       Type = "oneshot";
@@ -121,13 +189,54 @@ in
     };
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-offsite-check.service" ];
-    # copy, not sync: the target is an independent repo with its own index, so a bad
-    # forget or a deleted local repo does not propagate. Snapshots already there are
-    # skipped, which makes the unit its own resume after a failed run.
     script = "${offsiteRestic} copy";
   };
 
-  systemd.services."restic-offsite-check" = {
+  systemd.timers.restic-offsite-copy = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-offsite-copy.service" ];
+    timerConfig = {
+      OnCalendar = [ "*-*-* 09:00:00" ];
+      Persistent = true;
+    };
+  };
+
+  # Quarterly forget and prune in one shot
+  systemd.services.restic-offsite-prune = {
+    requires = [ "restic-offsite-copy.service" ];
+    after = [ "restic-offsite-copy.service" ];
+    serviceConfig = {
+      CacheDirectory = "restic";
+      Type = "oneshot";
+    };
+    environment = offsiteEnvironment;
+    onFailure = [ "unit-status-telegram@%N.service" ];
+    onSuccess = [ "restic-offsite-check.service" ];
+    script = ''
+      ${offsiteForget}
+
+      echo "Prune the offsite repository."
+      ${offsiteResticWritable} prune
+    '';
+  };
+
+  systemd.timers.restic-offsite-prune = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "restic-offsite-prune.service" ];
+    timerConfig = {
+      OnCalendar = [ "*-01,04,07,10-01 09:00:00" ];
+      Persistent = true;
+    };
+  };
+
+  # after, not requires: the copy queues this on success, and on a prune day the prune is
+  # starting at that same moment. Without the ordering the check would hold a shared lock
+  # while prune wants an exclusive one, and prune would exit 11.
+  systemd.services.restic-offsite-check = {
+    after = [
+      "restic-offsite-copy.service"
+      "restic-offsite-prune.service"
+    ];
     serviceConfig = {
       CacheDirectory = "restic";
       Type = "oneshot";
@@ -135,30 +244,5 @@ in
     environment = offsiteEnvironment;
     onFailure = [ "unit-status-telegram@%N.service" ];
     script = "${offsiteRestic} check";
-  };
-
-  systemd.timers.restic-prune = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "restic-prune.service" ];
-    timerConfig.OnCalendar = [ "*-*-* 08:00:00" ];
-  };
-
-  systemd.services.restic-check = requireRepoMount // {
-    serviceConfig = {
-      Type = "oneshot";
-      User = "restic";
-    };
-    onFailure = [ "unit-status-telegram@%N.service" ];
-    script = ''
-      ${pkgs.restic}/bin/restic \
-      --repo ${repository} \
-      --password-file ${config.age.secrets.resticKey.path} \
-      check \
-    '';
-  };
-  systemd.timers.restic-check = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "restic-check.service" ];
-    timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];
   };
 }

@@ -6,6 +6,8 @@
   ...
 }:
 let
+  archivePath = "/mnt/archive-disk";
+  archiveShareClient = import "${inputs.self}/modules/services/archive-share/client.nix";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   foxFlss = inputs.fox-flss.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -43,6 +45,7 @@ in
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/zram-swap"
+    (archiveShareClient { path = archivePath; })
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "client"; })

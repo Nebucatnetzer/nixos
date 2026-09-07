@@ -10,6 +10,7 @@ let
   actualData = "/var/lib/actualbudget";
   archiveLuks = "archiveLuks";
   archivePath = "/mnt/archive-disk";
+  archiveShareServer = import "${inputs.self}/modules/services/archive-share/server.nix";
   eactualData = "/var/lib/eactual";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
@@ -64,6 +65,10 @@ in
       dataDirectory = eactualData;
       name = "eactual";
       port = 5007;
+    })
+    (archiveShareServer {
+      clients = [ config.az-hosts.capricorn.wgIp ];
+      path = archivePath;
     })
     (btrfsAuxModule {
       mountPaths = [

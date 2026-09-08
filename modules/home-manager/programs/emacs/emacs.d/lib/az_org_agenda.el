@@ -108,7 +108,7 @@ by category first."
                   (org-agenda-skip-function
                    '(my/org-agenda-skip-if-project-tagged-or-dated))
                   (org-agenda-prefix-format
-                   '((todo . " %i %-25:c%-22(az/org-agenda-created-prefix)")))
+                   '((todo . " %i %-20:c%-22(az/org-agenda-created-prefix)")))
                   (org-agenda-sorting-strategy ',sorting-strategy)))))
 
     (dolist (command
@@ -127,10 +127,10 @@ by category first."
     ;; don't show the warnings for deadlines if the item is scheduled
     (setopt org-agenda-skip-deadline-prewarning-if-scheduled t
 
-            org-agenda-prefix-format '((agenda . " %i %-25:c%?-12t% s")
-                                       (todo . " %i %-25:c")
-                                       (tags . " %i %-25:c")
-                                       (search . " %i %-25:c"))
+            org-agenda-prefix-format '((agenda . " %i %-20:c%?-12t% s")
+                                       (todo . " %i %-20:c")
+                                       (tags . " %i %-20:c")
+                                       (search . " %i %-20:c"))
 
             ;; start the agenda on the current day and show the next 13 days
             org-agenda-span 8
@@ -140,8 +140,65 @@ by category first."
             ;; dimm open tasks
             org-agenda-dim-blocked-tasks t
 
-            ;; Put the tags in a more visible spot
-            org-agenda-tags-column -120)
+            ;; Any alignment column pads tagged lines out to it, so a
+            ;; narrower window wraps even the short ones.  0 makes
+            ;; `org-agenda-align-tags' fall back to a single space, which
+            ;; `az/org-agenda-compact-tags' then widens to the real gap.
+            org-agenda-tags-column 0)
+
+    (defvar az/org-agenda-tags-gap 2
+      "Spaces between an agenda headline and its tags.")
+
+    (defun az/org-agenda-compact-tags ()
+      "Put agenda tags right after their headline instead of at a fixed column.
+Line length then follows the content, so nothing wraps just because the
+window is narrower than the alignment column.  `org-agenda-finalize' runs
+`org-agenda-align-tags' before this hook, so this is the last word."
+      (when (derived-mode-p 'org-agenda-mode)
+        (let ((inhibit-read-only t)
+              (gap (make-string az/org-agenda-tags-gap ?\s)))
+          (save-excursion
+            (goto-char (point-min))
+            (while (re-search-forward org-tag-group-re nil t)
+              (goto-char (match-beginning 1))
+              (delete-region (save-excursion (skip-chars-backward " \t") (point))
+                             (point))
+              ;; Carry the line's properties onto the gap the way
+              ;; `org-agenda-align-tags' does, minus the tag face.
+              (insert (org-add-props gap
+                          (plist-put (copy-sequence (text-properties-at (point)))
+                                     'face nil)))
+              (forward-line 1))))))
+
+    (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
+
+    (defvar az/org-agenda-max-title-length 48
+      "Longest headline text kept in an agenda line, in characters.
+Sized for the 93 column agenda left beside the project log panel: the
+widest prefix runs to column 33, a `NEXT [#A] ' keyword costs 10 more, and
+`az/org-agenda-tags-gap' plus a tag such as `:gitlab::' another 11.  Set it
+high to keep full titles instead and let the rare long line wrap.")
+
+    (defun az/org-agenda-truncate-title (arguments)
+      "Cut over long headlines in ARGUMENTS, for `org-agenda-format-item'.
+The headline still carries its tag group at this point, so the tags are
+lifted off, the text alone is cut, and the tags are put back.  Cutting
+here rather than on the finished line keeps the tags out of the way; they
+sit at the end of the line and would otherwise be what gets cut."
+      (let ((txt (nth 1 arguments)))
+        (when (stringp txt)
+          (let* ((tags (when (string-match org-tag-group-re txt)
+                         (match-string 1 txt)))
+                 (head (if tags (substring txt 0 (match-beginning 0)) txt)))
+            (when (> (length head) az/org-agenda-max-title-length)
+              (setf (nth 1 arguments)
+                    (concat (substring head 0 (1- az/org-agenda-max-title-length))
+                            "…"
+                            (when tags (concat " " tags)))))))
+        arguments))
+
+    (advice-add 'org-agenda-format-item :filter-args
+                #'az/org-agenda-truncate-title)
 
     ;; automatically refresh the agenda after adding a task
     (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)

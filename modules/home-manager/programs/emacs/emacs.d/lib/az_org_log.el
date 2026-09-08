@@ -331,6 +331,18 @@ parsing hundreds of files on every refresh."
     "Major mode for the aggregated project log panel."
     (setq buffer-read-only t))
 
+  ;; Deriving from org-mode also runs `org-mode-hook', and with it
+  ;; `az-org-editing', which centres prose and turns wrapping off.  The panel is
+  ;; a narrow read only report column and wants plain wrapping instead.  A mode
+  ;; hook wins because `run-mode-hooks' runs the parent hooks first.
+  (add-hook 'az-org-log-view-mode-hook
+            (defun az-org-log--panel-display ()
+              "Undo the prose editing setup applied through `org-mode-hook'."
+              (when (bound-and-true-p olivetti-mode)
+                (olivetti-mode -1))
+              (setq truncate-lines nil)
+              (visual-line-mode 1)))
+
   (with-eval-after-load 'evil
     (evil-set-initial-state 'az-org-log-view-mode 'motion)
     (evil-define-key 'motion az-org-log-view-mode-map
@@ -401,8 +413,11 @@ can address a specific nested sub task."
   (defun az-org-log-dashboard ()
     "Show the custom agenda with the aggregated log panel beside it."
     (interactive)
-    (az/custom-agenda)
-    (az-org-log-show))
+    ;; Panel first: `org-agenda-window-setup' is `reorganize-frame', which runs
+    ;; `delete-other-windows', so the agenda has to lay itself out into the space
+    ;; already left over or its tags align to the full frame width.
+    (az-org-log-show)
+    (az/custom-agenda))
 
 ;;; --- acting on a panel line ---------------------------------------------
 
@@ -515,7 +530,12 @@ rather than headings."
                `(,(regexp-quote az-org-log-buffer)
                  (display-buffer-in-side-window)
                  (side . right)
-                 (window-width . 60)
+                 ;; 50 columns leaves 93 for the agenda on a 144 column frame.
+                 (window-width . 50)
+                 ;; Without these the panel rescales on every frame resize and
+                 ;; the agenda's `delete-other-windows' throws it away.
+                 (preserve-size . (t . nil))
+                 (window-parameters . ((no-delete-other-windows . t)))
                  (slot . 0)))
 
   (add-hook 'org-capture-after-finalize-hook #'az-org-log-refresh)

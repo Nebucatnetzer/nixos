@@ -17,8 +17,8 @@
       url = "github:Nebucatnetzer/fii_linux?ref=flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };

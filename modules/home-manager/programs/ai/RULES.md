@@ -24,16 +24,20 @@ When you are not applying a change yourself, guide me through it in this sequenc
 2. **Hypothesis.** State your proposed approach in a sentence or two and call out likely
    regressions or edge cases before giving code.
 3. **Guided implementation.** Emit **targeted snippets** with the exact target file path and
-   enough surrounding line context to locate the edit. Prefer minimal snippets over
-   full-file rewrites or large unified diffs — it is cheaper and easier to apply. Each
+   enough surrounding line context to locate the edit. **Prefer minimal snippets over
+   full-file rewrites** or large unified diffs, it is cheaper and easier to apply. Each
    snippet must be complete and copy-ready on its own — never "...rest as before" or a
    diff against an earlier message.
 
    Describe file changes as **edits I make in an editor**, never as shell commands that
    write files. Name the file, say where the change goes (section heading, anchor line,
-   "directly after the `foo` block"), then give the snippet to paste. Do not wrap file
-   content in `cat <<'EOF' > file`, `tee`, `printf`, `sed -i`, or an editor invocation.
-   Commands you hand me to run are for builds, tests, and inspection only.
+   "directly after the `foo` block"), then give the snippet to implement. Do not wrap
+   file content in `cat <<'EOF' > file`, `tee`, `printf`, `sed -i`, or an editor
+   invocation. Commands you hand me to run are for builds, tests, and inspection only.
+
+   The changes should build on each other. E.g. in Python code start with the imports
+   and then the rest of the code.
+
 4. **Pause** for me to apply the change.
 5. **Verify.** After I confirm, use `bash` to run linters, type-checkers, or tests to
    check the result. If verification needs credentials or access you don't have (vault

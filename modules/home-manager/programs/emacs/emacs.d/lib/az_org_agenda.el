@@ -140,8 +140,9 @@ by category first."
             ;; dimm open tasks
             org-agenda-dim-blocked-tasks t
 
-            ;; Any alignment column pads tagged lines out to it, so a
-            ;; narrower window wraps even the short ones.  0 makes
+            ;; Any alignment column pads tagged lines out to it, which pushes
+            ;; the tags off the right edge of the narrow agenda window once
+            ;; lines are truncated rather than wrapped.  0 makes
             ;; `org-agenda-align-tags' fall back to a single space, which
             ;; `az/org-agenda-compact-tags' then widens to the real gap.
             org-agenda-tags-column 0)
@@ -151,8 +152,9 @@ by category first."
 
     (defun az/org-agenda-compact-tags ()
       "Put agenda tags right after their headline instead of at a fixed column.
-Line length then follows the content, so nothing wraps just because the
-window is narrower than the alignment column.  `org-agenda-finalize' runs
+Line length then follows the content, so the tags stay on screen next to
+their entry instead of being truncated away with the padding that an
+alignment column would add.  `org-agenda-finalize' runs
 `org-agenda-align-tags' before this hook, so this is the last word."
       (when (derived-mode-p 'org-agenda-mode)
         (let ((inhibit-read-only t)
@@ -172,33 +174,17 @@ window is narrower than the alignment column.  `org-agenda-finalize' runs
 
     (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
 
-    (defvar az/org-agenda-max-title-length 48
-      "Longest headline text kept in an agenda line, in characters.
-Sized for the 93 column agenda left beside the project log panel: the
-widest prefix runs to column 33, a `NEXT [#A] ' keyword costs 10 more, and
-`az/org-agenda-tags-gap' plus a tag such as `:gitlab::' another 11.  Set it
-high to keep full titles instead and let the rare long line wrap.")
-
-    (defun az/org-agenda-truncate-title (arguments)
-      "Cut over long headlines in ARGUMENTS, for `org-agenda-format-item'.
-The headline still carries its tag group at this point, so the tags are
-lifted off, the text alone is cut, and the tags are put back.  Cutting
-here rather than on the finished line keeps the tags out of the way; they
-sit at the end of the line and would otherwise be what gets cut."
-      (let ((txt (nth 1 arguments)))
-        (when (stringp txt)
-          (let* ((tags (when (string-match org-tag-group-re txt)
-                         (match-string 1 txt)))
-                 (head (if tags (substring txt 0 (match-beginning 0)) txt)))
-            (when (> (length head) az/org-agenda-max-title-length)
-              (setf (nth 1 arguments)
-                    (concat (substring head 0 (1- az/org-agenda-max-title-length))
-                            "…"
-                            (when tags (concat " " tags)))))))
-        arguments))
-
-    (advice-add 'org-agenda-format-item :filter-args
-                #'az/org-agenda-truncate-title)
+    ;; The agenda is a table, not prose: let a long line run off the right edge
+    ;; instead of wrapping, so every entry keeps one screen line and closing the
+    ;; log panel reveals the rest.  `org-agenda-mode' sets `truncate-lines'
+    ;; itself, but `global-visual-line-mode' runs afterwards and undoes it;
+    ;; switching `visual-line-mode' off here marks the buffer as explicitly set,
+    ;; which makes the global mode skip it.
+    (add-hook 'org-agenda-mode-hook
+              (defun az/org-agenda-no-wrap ()
+                "Keep every agenda entry on a single screen line."
+                (visual-line-mode -1)
+                (setq truncate-lines t)))
 
     ;; automatically refresh the agenda after adding a task
     (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)

@@ -1,9 +1,16 @@
 ;; -*- lexical-binding: t; -*-
 ;; Run with:
-;;   emacs -Q --batch -l tests/az_org_log-tests.el -f ert-run-tests-batch-and-exit
+;;   ORG=$(ls -d /nix/store/*-emacs-org-9.8.*/share/emacs/site-lisp/elpa/org-9.8.* | head -1)
+;;   emacs -Q --batch --eval "(add-to-list 'load-path \"$ORG\")" \
+;;     --load tests/az_org_log-tests.el --funcall ert-run-tests-batch-and-exit
+;; -Q drops site-lisp, so without the load-path line this runs against Emacs'
+;; bundled org 9.7 instead of the version package-overrides.nix pins.  The two
+;; capture tests below only fail on 9.8, where :target-entry-p outranks
+;; :exact-position.
 (require 'ert)
 (require 'cl-lib)
 (require 'org)
+(require 'org-capture)
 
 (setenv "TZ" "Europe/Zurich")
 
@@ -191,3 +198,58 @@
   (az-org-log-with-org "* Log\n** [2026-08-10 Mon]\n- still here\n"
     (az-org-log--delete-day-if-empty "2026-08-10")
     (should (equal (az-org-log-test-day-keys) '("2026-08-10")))))
+
+;; --- capture placement --------------------------------------------------
+
+(defmacro az-org-log-with-capture (content &rest body)
+  "Capture \"- NEW\" into a temp file holding CONTENT, then run BODY.
+BODY sees the resulting text in `result'.  Only a real `org-capture' run
+exercises how org reads point back from `az-org-log-capture-target'; the
+buffer level tests above insert at point themselves and would stay green
+through a placement bug."
+  (declare (indent 1))
+  `(let* ((file (make-temp-file "az-org-log-" nil ".org" ,content))
+          (org-capture-bookmark nil)
+          (org-capture-templates
+           '(("l" "Log entry" plain
+              (function az-org-log-capture-target)
+              "- %?"
+              :empty-lines 0
+              :unnarrowed nil))))
+     (unwind-protect
+         (cl-letf (((symbol-function 'az-org-log--read-destination)
+                    (lambda () file)))
+           (org-capture nil "l")
+           (insert "NEW")
+           (org-capture-finalize)
+           (let ((result (with-current-buffer (find-file-noselect file)
+                           (buffer-substring-no-properties (point-min) (point-max)))))
+             ,@body))
+       (when-let* ((buffer (find-buffer-visiting file)))
+         (with-current-buffer buffer (set-buffer-modified-p nil))
+         (kill-buffer buffer))
+       (delete-file file))))
+
+(defun az-org-log-test-today-stamp ()
+  "Return today's day heading line.
+Pairing this with a fixed old day keeps the fixtures time independent."
+  (concat "** " (az-org-log--day-stamp (current-time))))
+
+(ert-deftest az-org-log-capture-fills-a-new-day ()
+  (az-org-log-with-capture "* Log\n** [2020-01-01 Wed]\n- alt\n"
+    (should (equal result
+                   (concat "* Log\n"
+                           (az-org-log-test-today-stamp) "\n"
+                           "- NEW\n"
+                           "** [2020-01-01 Wed]\n- alt\n")))))
+
+(ert-deftest az-org-log-capture-appends-to-todays-day ()
+  (az-org-log-with-capture (concat "* Log\n"
+                                   (az-org-log-test-today-stamp) "\n"
+                                   "- erste\n"
+                                   "** [2020-01-01 Wed]\n- alt\n")
+    (should (equal result
+                   (concat "* Log\n"
+                           (az-org-log-test-today-stamp) "\n"
+                           "- erste\n- NEW\n"
+                           "** [2020-01-01 Wed]\n- alt\n")))))

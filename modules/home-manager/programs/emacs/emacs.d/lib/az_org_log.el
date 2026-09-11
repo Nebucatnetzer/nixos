@@ -172,7 +172,8 @@ Leaves point at the start of a fresh line, ready for a new item."
   (defun az-org-log--insert-day (date key days)
     "Insert a day heading for DATE above the first day older than KEY.
 DAYS is the alist from `az-org-log--day-headings'.  Point must be on the
-`* Log' heading.  Leaves point on the line below the new heading."
+`* Log' heading.  Leaves point at the start of the following line, which
+is the older day's heading whenever one exists."
     (let ((older (seq-find (lambda (day) (string< (car day) key)) days)))
       (if older
           (goto-char (cdr older))
@@ -198,13 +199,25 @@ Create the `* Log' heading and DATE's day heading when they are missing."
 
 ;;; --- capture ------------------------------------------------------------
 
+  (defun az-org-log--open-line-for-capture ()
+    "Open a spare line when point sits on a heading.
+`org-capture' reads `org-at-heading-p' at the position the target
+function leaves behind, and since org 9.8 the resulting `:target-entry-p'
+outranks `:exact-position'.  Landing on the day below, which is what
+`az-org-log--goto-day' does whenever the new entry goes above an existing
+day, would therefore file the entry under that older day."
+    (when (org-at-heading-p)
+      (insert "\n")
+      (forward-line -1)))
+
   (defun az-org-log-capture-target ()
     "Position point at today's entry in the Log tree of a chosen destination."
     (let ((file (az-org-log--read-destination)))
       (set-buffer (org-capture-target-buffer file))
       (widen)
       (goto-char (point-min))
-      (az-org-log--goto-day (current-time))))
+      (az-org-log--goto-day (current-time))
+      (az-org-log--open-line-for-capture)))
 
 ;;; --- reading the log back -----------------------------------------------
 

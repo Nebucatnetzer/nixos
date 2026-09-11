@@ -122,7 +122,63 @@ Rules:
 
 Keep comments terse: one short line, only where the reason is genuinely non-obvious
 (surprising ordering, a workaround, a deliberate deviation). Don't restate what the
-code already says.
+code already says. Write them in the plain English described below.
+
+If the reason needs more than about three lines, the code is the problem. Name the
+constant, extract a function, or move the derivation into a doc or a linked issue.
+
+## Writing for non-native English speakers
+
+Everything you write (code comments, docs, commit messages, chat) is read by people whose
+first language is not English. Aim at a reader with solid technical English and no feel
+for literary English. They should get it on the first pass.
+
+Everywhere:
+
+- One idea per sentence, and write full sentences: subject, verb, object.
+- Keep sentences short, roughly 20 words. Split a sentence instead of extending it with
+  another clause after a comma, a semicolon, or a colon.
+- Prefer the common word: "enough" over "sufficient", "use" over "leverage", "set" over
+  "provision", "about" over "on the order of".
+- Point first, background after. A reader who stops after the first sentence should still
+  have the useful part.
+
+In code comments, and in any other text that lives inside the code, additionally:
+
+- No idioms, metaphors, or figurative language: "a hair above", "buys us", "held there
+  by", "lands on". Say the literal thing. Idioms are fine in prose, which means chat and
+  documentation, but not next to the code.
+- No noun-phrase fragments. Instead of "Share of a newly added slice that ext4 spends on
+  its own metadata", write "ext4 uses part of every new slice for its own metadata."
+- No inversions or fronted qualifiers. Instead of "A Fraction rather than 0.07: the float
+  division can land a hair above an integer", write "Use Fraction, not 0.07, because float
+  division can round up."
+- Let numbers, units, and identifiers carry the precision. Don't restate them in prose.
+- The same applies to names: `metadata_overhead_fraction` reads clearly, `slack_factor`
+  does not.
+
+Too literary:
+
+```python
+# Share of a newly added slice of a volume that ext4 spends on its own metadata:
+# the inode table for the new space, plus two bitmaps per new 128 MiB block group.
+# Derived from the densest inode ratio storage_volume permits (4096 bytes per inode,
+# held there by its floor assert), where the true figure is 6.2561 %. One constant
+# for every volume, so a dense volume is never under-provisioned; a default-ratio
+# volume needs only 1.5686 % and simply gets more usable space than it asked for.
+# A Fraction rather than 0.07: the float division can land a hair above an integer
+# and cost a whole extra GiB in the rounding below.
+```
+
+Plain:
+
+```python
+# ext4 uses part of each new slice for metadata: the inode table plus two bitmaps
+# per 128 MiB block group. 7 % covers the worst case, which is the densest inode
+# ratio storage_volume allows (4096 bytes per inode, needs 6.2561 %). Volumes with
+# the default ratio need only 1.5686 % and get more usable space.
+# Use Fraction, not 0.07, because float division can round up and waste a whole GiB.
+```
 
 ## Testing
 

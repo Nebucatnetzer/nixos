@@ -13,7 +13,7 @@
 }:
 let
   backupPaths = if paths == [ ] then [ config.home.homeDirectory ] else paths;
-  excludeFile = "${inputs.self}/modules/misc/restic-client/excludes.txt";
+  excludeFile = "${inputs.self}/modules/misc/restic/client_excludes.txt";
 
   # restic refuses an empty password unless --insecure-no-password is passed to every
   # single command, and that flag cannot be expressed through the environment. Overriding

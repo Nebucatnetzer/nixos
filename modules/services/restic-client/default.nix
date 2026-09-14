@@ -1,10 +1,10 @@
 {
   # When the age check runs. Daily is enough for a threshold measured in days.
   ageSchedule ? "*-*-* 12:00:00",
-  # Patterns for this instantiation only. The shared excludes.txt is read by every host
-  # and would be read by the archive job too, and restic matches unanchored patterns at
-  # any depth, so a bare "Music" line there would silently drop the FLAC masters from the
-  # archive backup. Anchor everything put here.
+  # Patterns for this instantiation only. The shared cient_excludes.txt is read by every
+  # host and would be read by the archive job too, and restic matches unanchored
+  # patterns at any depth, so a bare "Music" line there would silently drop the FLAC
+  # masters from the archive backup. Anchor everything put here.
   excludes ? [ ],
   # Global restic options, e.g. -o rclone.program=... for a Hetzner Storage Box target.
   extraResticArgs ? [ ],
@@ -53,7 +53,7 @@
 let
   unitName = "restic-${name}";
 
-  ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic-age/age_guard.nix" {
+  ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic/age_guard.nix" {
     maxAge = maxBackupAge;
     name = "${unitName}-age";
     inherit sendToTelegram;
@@ -97,7 +97,7 @@ let
     else
       null;
 
-  sharedExcludeFile = "${inputs.self}/modules/misc/restic-client/excludes.txt";
+  sharedExcludeFile = "${inputs.self}/modules/misc/restic/client_excludes.txt";
   ownExcludeFile = pkgs.writeText "${unitName}-excludes.txt" (
     lib.concatStringsSep "\n" excludes + "\n"
   );

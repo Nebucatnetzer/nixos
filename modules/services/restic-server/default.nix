@@ -14,7 +14,7 @@
   ...
 }:
 let
-  ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic-age/age_guard.nix" {
+  ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic/age_guard.nix" {
     maxAge = maxBackupAge;
     name = "restic-repository-age";
     inherit sendToTelegram;

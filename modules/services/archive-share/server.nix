@@ -4,7 +4,7 @@
   clients,
   path,
 }:
-{ lib, ... }:
+{ lib, utils, ... }:
 {
   services.nfs.server = {
     enable = true;
@@ -23,4 +23,17 @@
   # would see an archive that had lost everything. Requires also stops the server when
   # the mount goes away, instead of leaving it exporting the wrong tree.
   systemd.services.nfs-server.unitConfig.RequiresMountsFor = path;
+
+  # RequiresMountsFor gives Requires plus After, so a failed mount job leaves this
+  # service dead and nothing retries it when the mount succeeds later. A Wants= on the
+  # mount unit starts the server whenever the mount comes up. Do not use the
+  # x-systemd.wants mount option for this: it also adds After= and that would form an
+  # ordering cycle with RequiresMountsFor.
+  systemd.units."${utils.escapeSystemdPath path}.mount" = {
+    overrideStrategy = "asDropin";
+    text = ''
+      [Unit]
+      Wants=nfs-server.service
+    '';
+  };
 }

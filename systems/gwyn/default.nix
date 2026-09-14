@@ -168,8 +168,11 @@ in
   # second prompt there would also mean a missing USB disk stalls the boot of a headless
   # host. nixpkgs has no option for a non-root LUKS device, so this is the crypttab that
   # systemd-cryptsetup-generator reads. The keyfile lives on the encrypted root.
+  # key-slot=1 pins the unlock to the keyfile slot. Without it cryptsetup tries slot 0
+  # first, which is the interactive passphrase, and pays a full 1 GiB argon2id run before
+  # it fails there. That extra run is what made the unlock miss its device timeout.
   environment.etc.crypttab.text = ''
-    ${archiveLuks} UUID=cffc97f9-48e6-48b2-9d90-876f7775a684 ${config.age.secrets.archiveLuksKey.path} luks,nofail,x-systemd.device-timeout=10
+    ${archiveLuks} UUID=cffc97f9-48e6-48b2-9d90-876f7775a684 ${config.age.secrets.archiveLuksKey.path} luks,nofail,key-slot=1,x-systemd.device-timeout=60
   '';
   # nofail keeps a missing archive disk from blocking boot, which is the whole reason the
   # unlock moved out of initrd. The other half of that trade is that an absent disk leaves
@@ -181,7 +184,9 @@ in
     neededForBoot = false;
     options = [
       "nofail"
-      "x-systemd.device-timeout=10"
+      # 60 s covers USB enumeration and spin-up of a sleeping 8 TB disk. nofail keeps the
+      # mount out of the ordering before local-fs.target, so this wait never delays boot.
+      "x-systemd.device-timeout=60"
     ]
     ++ hddBtrfsOptions;
   };

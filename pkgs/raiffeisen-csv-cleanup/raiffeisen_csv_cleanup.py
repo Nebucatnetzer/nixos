@@ -38,6 +38,14 @@ def clean_text(text: str) -> str:
     return cleaned.strip().rstrip(",")
 
 
+def detect_encoding(path: Path) -> str:
+    try:
+        path.read_text(encoding="utf-8-sig")  # can handle BOM if there is one
+    except UnicodeDecodeError:
+        return "cp1252"
+    return "utf-8-sig"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Cleanup bank CSVs for Actual Budget")
     parser.add_argument("input", help="Input CSV file")
@@ -63,7 +71,12 @@ def main() -> None:
         temp_file = sys.stdout
 
     try:
-        with Path.open(input_path, mode="r", encoding="utf-8") as infile:
+        with Path.open(
+            input_path,
+            mode="r",
+            encoding=detect_encoding(input_path),
+            newline="",
+        ) as infile:
             reader = csv.reader(infile, delimiter=";")
             try:
                 header = next(reader)

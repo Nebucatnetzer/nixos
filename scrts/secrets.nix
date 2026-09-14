@@ -38,7 +38,6 @@ in
   "gwyn_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_wg.key.age".publicKeys = defaultKeys;
   "infomaniak_ai.key.age".publicKeys = defaultKeys;
-  "infomaniak_env.age".publicKeys = all;
   "mail_password.age".publicKeys = defaultKeys;
   "personal_email.key.age".publicKeys = defaultKeys;
   "restic.key.age".publicKeys = all;

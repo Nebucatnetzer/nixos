@@ -15,6 +15,7 @@ def clean_text(text: str) -> str:
     # it will loop through them until it doesn't find a match anymore.
     prefixes = [
         r"\*+\s*",
+        r"dauerauftrag\s+",
         r"einkauf\s+",
         r"gutschrift\s+",
         r"online\s+",

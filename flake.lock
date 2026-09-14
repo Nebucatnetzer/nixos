@@ -23,22 +23,6 @@
         "type": "github"
       }
     },
-    "darktable-lua-scripts": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1785969645,
-        "narHash": "sha256-Sd5+ik+Ux4s+5pTYmduhbB9+u4cLakAb2EqL1IThk4k=",
-        "owner": "darktable-org",
-        "repo": "lua-scripts",
-        "rev": "055ef31b09a4a67671aa51c4b2a5a5ea9d1317c7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darktable-org",
-        "repo": "lua-scripts",
-        "type": "github"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -184,7 +168,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "darktable-lua-scripts": "darktable-lua-scripts",
         "fox-flss": "fox-flss",
         "home-manager": "home-manager_2",
         "nixos-hardware": "nixos-hardware",

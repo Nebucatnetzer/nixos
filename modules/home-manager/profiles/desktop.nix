@@ -17,9 +17,6 @@
   ];
   home = {
     file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
-    file.".config/darktable/luarc".text = ''
-      package.path = package.path .. ";${inputs.darktable-lua-scripts}/?.lua"
-    '';
   };
 
   programs = {

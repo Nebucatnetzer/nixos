@@ -14,6 +14,7 @@ def clean_text(text: str) -> str:
     # Order matters: more specific prefixes first but if you just use one word per line
     # it will loop through them until it doesn't find a match anymore.
     prefixes = [
+        r"\*+\s*",
         r"einkauf\s+",
         r"gutschrift\s+",
         r"online\s+",

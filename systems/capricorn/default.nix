@@ -29,6 +29,7 @@ let
   };
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
+  resticColdOffsite = import "${inputs.self}/modules/services/restic-cold-offsite";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardClient = import "${inputs.self}/modules/services/wireguard/client.nix";
 in
@@ -50,6 +51,10 @@ in
     (btrfsLayout { })
     (nixBuilderModule { role = "client"; })
     (resticClientModule { resticSchedule = "*-*-* 00..06,09..23:05:00"; })
+    (resticColdOffsite {
+      inherit archivePath;
+      luksUuid = "b4ee4a64-2c54-4bd7-9c00-dce046ab8c30";
+    })
     (syncthingModule { })
     (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;

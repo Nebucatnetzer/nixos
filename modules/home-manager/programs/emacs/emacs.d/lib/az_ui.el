@@ -24,6 +24,10 @@
 
 (use-package alabaster-themes
   :config
+  ;; Emacs only probes the terminal background under TERM=xterm*. Under tmux-256color
+  ;; it does not, and would guess dark, which breaks this light theme in a tty.
+  (setopt frame-background-mode 'light)
+  (mapc #'frame-set-background-mode (frame-list))
   (load-theme 'alabaster-themes-light-bg t)
   (custom-set-faces
    '(line-number ((((type tty)) :foreground "#777777" :background "#f5f5f5")))

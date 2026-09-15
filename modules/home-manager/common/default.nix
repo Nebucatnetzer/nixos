@@ -68,7 +68,6 @@
       HIGHLIGHT_STYLE = "solarized-light";
       HISTTIMEFORMAT = "%F %T ";
       NIXPKGS_ALLOW_UNFREE = "1";
-      TERM = "xterm-256color";
       VISUAL = "vim";
     };
   };

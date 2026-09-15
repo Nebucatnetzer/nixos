@@ -2,13 +2,22 @@ _: {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
-    escapeTime = 1;
+    # 1 ms is too tight for the WSL2 pty. Escape sequences from Windows Terminal get
+    # split across reads and tmux then prints the tail as literal characters.
+    escapeTime = 10;
     focusEvents = true;
     historyLimit = 300000;
     keyMode = "vi";
-    terminal = "xterm-256color";
+    terminal = "tmux-256color";
     extraConfig = ''
       set -as terminal-features ",*256col*:RGB"
+
+      # Resize a window to the smallest client actually viewing it, not to the
+      # smallest client attached to the session.
+      setw -g aggressive-resize on
+
+      # Manual escape hatch if the display still desyncs.
+      bind R refresh-client \; display-message "redrawn"
 
       unbind [
       bind Escape copy-mode
@@ -21,10 +30,6 @@ _: {
       # Mouse drag copies but stays in copy-mode, so scroll position survives
       # repeated selections. Leave copy-mode explicitly with q or Escape.
       bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
-
-
-      # changing default delay
-      set -s escape-time 1
 
       # window navigation with the meta key + vim keybinding
       bind -n M-h select-pane -L

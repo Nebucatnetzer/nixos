@@ -28,6 +28,21 @@
         singleton = "$artist/Non-Album/$title";
         comp = "Various_Artists/$album/\${track}_\${title}";
       };
+      # Beets replaces the default rules instead of merging, so the defaults are
+      # repeated here. The last rule turns every run of whitespace into "_".
+      # Nix sorts these keys and beets applies them in that order. The default
+      # rules '\s+$' and '^\s+' are left out because they sort after '\s+' and
+      # would never match.
+      replace = {
+        "\"" = "_";
+        "[<>:\\?\\*\\|]" = "_";
+        "[\\\\/]" = "_";
+        "[\\x00-\\x1f]" = "_";
+        "\\.$" = "_";
+        "\\s+" = "_";
+        "^-" = "_";
+        "^\\." = "_";
+      };
       plugins = [
         "convert"
         "export"

@@ -8,6 +8,7 @@
   includeLanguageTools ? true,
 }:
 [
+  pkgs.curl # plz shells out to this; minuet uses plz for HTTP
   pkgs.direnv # envrc-global-mode shells out to this for per-project tooling
   pkgs.emacs-lsp-booster # eglot-booster shells out to this
   pkgs.fd

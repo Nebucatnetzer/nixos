@@ -19,6 +19,7 @@
 (load-file (modules-path "az_company.el"))
 (load-file (modules-path "az_consult.el"))
 (load-file (modules-path "az_marginalia.el"))
+(load-file (modules-path "az_minuet.el"))
 (load-file (modules-path "az_orderless.el"))
 (load-file (modules-path "az_vertico.el"))
 

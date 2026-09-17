@@ -99,6 +99,8 @@
   epkgs.xclip
 ]
 ++ lib.optionals includeExtendedPackages [
+  # AI code completion (requires an Infomaniak API token)
+  epkgs.minuet
   # citations
   epkgs.citeproc
   epkgs.citar

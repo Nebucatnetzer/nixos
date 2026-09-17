@@ -135,14 +135,14 @@ in
   # bwrap-bound ~/.pi). The trimmed pi-coding-agent.nix module has no options for these,
   # so wire them directly via home.file to keep that module an upstream drop-in.
   home.file = {
-    # The read-only posture is mode-dependent for pi, so the modes extension injects it
-    # per turn rather than appending it to the system prompt unconditionally.
+    # pi has two read-only modes (plan and advise) whose instructions differ, so the modes
+    # extension injects the posture per turn rather than appending one fixed text.
     # ai/ADVISORY.md is claude-only; the rules shared with claude arrive via `context`.
 
     # Move app.thinking.cycle off shift+tab so the modes extension can claim it.
     ".pi/agent/keybindings.json".source = ./keybindings.json;
 
-    # Extensions: permission modes (plan/advise/edit) + bash guard, web_fetch tool,
+    # Extensions: permission modes (plan/advise) + bash guard, web_fetch tool,
     # /exit alias, dynamic Infomaniak model+pricing registration, cost/bill visibility,
     # CLAUDE.md context injection, memory loading at session start, and code-block indent
     # guides (pi has none built in, so they go in via registerMarkdownTransformer).

@@ -1,9 +1,9 @@
 // The `plan` tool: records a plan as a file on disk instead of leaving it in the transcript.
 //
 // Borrowed from the community @dreki-gg/pi-plan-mode "plan ledger" idea. Plans go under
-// ~/.pi/agent/plans/ rather than into the repo: ~/.pi is bind-mounted writable in every mode
-// (pi_wrapper.nix), so plan mode can record a plan while still being read-only toward $PWD,
-// and plans do not belong in project history. This mirrors Claude Code's own ~/.claude/plans/.
+// ~/.pi/agent/plans/ rather than into the repo: ~/.pi is bind-mounted writable while $PWD is
+// bound read-only (pi_wrapper.nix), so a plan file cannot be written into the repo anyway.
+// Plans also do not belong in project history. This mirrors Claude Code's own ~/.claude/plans/.
 //
 // The tool is registered in all modes rather than being added to and removed from the active
 // tool set per mode: writing a plan file is never harmful, and keeping it out of the tool-set

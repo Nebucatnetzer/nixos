@@ -1,15 +1,15 @@
-// Permission modes for pi: plan -> advise -> edit, cycled with shift+tab.
+// Permission modes for pi: plan -> advise, cycled with shift+tab.
 //
-// Replaces the earlier edit-mode.ts, which had only read-only/edit. `advise` is that old
-// read-only state unchanged (F2 and /edit still jump straight to `edit`); `plan` is new and
-// mirrors Claude Code's plan mode — investigate, produce a plan, then hand off.
+// Replaces the earlier edit-mode.ts, which had read-only/edit. `advise` is that old read-only
+// state unchanged; `plan` mirrors Claude Code's plan mode, meaning investigate, produce a plan,
+// then hand off.
 //
-// Writes are gated here rather than by the bwrap wrapper: pi_wrapper.nix binds $PWD
-// writable, so this extension is the actual gate. There are deliberately no per-tool-call
-// approval prompts — one explicit toggle, defaulting to read-only.
+// There is no write mode. pi_wrapper.nix binds $PWD read-only, so a write would fail anyway.
+// This extension keeps `edit`/`write` out of the active tool set and blocks mutating bash, so
+// the model gets a clear refusal instead of a filesystem error.
 //
 // Unlike the upstream plan-mode example this does not save and restore the whole active tool
-// set. It only ever adds or removes `edit`/`write`, so tools registered by other extensions
+// set. It only ever removes `edit`/`write`, so tools registered by other extensions
 // (web_fetch) and any manual /tools choices survive a mode switch untouched.
 
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
@@ -17,9 +17,9 @@ import { registerPlan } from "./plan.ts";
 import { registerTodo } from "./todo.ts";
 import { isDestructive } from "./utils.ts";
 
-type Mode = "plan" | "advise" | "edit";
+type Mode = "plan" | "advise";
 
-const CYCLE: Mode[] = ["plan", "advise", "edit"];
+const CYCLE: Mode[] = ["plan", "advise"];
 const DEFAULT_MODE: Mode = "advise";
 const MUTATING_TOOLS = ["edit", "write"];
 const STATE_ENTRY = "pi-mode";
@@ -27,13 +27,11 @@ const STATE_ENTRY = "pi-mode";
 const STATUS: Record<Mode, string> = {
   plan: "◔ plan",
   advise: "◎ read-only",
-  edit: "✎ EDIT",
 };
 
 const NOTICE: Record<Mode, string> = {
-  plan: "Plan mode — investigate and plan, no changes.",
-  advise: "Read-only mode — pi will guide changes only.",
-  edit: "Edit mode ON — pi may modify files.",
+  plan: "Plan mode: investigate and plan, no changes.",
+  advise: "Read-only mode: pi will guide changes only.",
 };
 
 // Appended to the system prompt each turn for the current mode. The shared "Guiding a
@@ -41,37 +39,25 @@ const NOTICE: Record<Mode, string> = {
 const RULES: Record<Mode, string> = {
   plan: `# Mode: plan
 
-You cannot modify files: \`edit\`/\`write\` are disabled and file-mutating shell commands are
-blocked. Do not try to work around this with \`bash\`.
+You cannot modify files: \`edit\`/\`write\` are disabled, file-mutating shell commands are
+blocked, and the working directory is mounted read-only. Do not try to work around this with
+\`bash\`.
 
-Investigate the request and produce a plan. Do **not** emit implementation code in this mode —
+Investigate the request and produce a plan. Do **not** emit implementation code in this mode:
 no snippets, no diffs. Establish ground truth first and cite it as \`path:line\`.
 
-Record the plan with the \`plan\` tool, then stop. I will choose whether you walk me through it
-or apply it yourself.`,
+Record the plan with the \`plan\` tool, then stop. I will choose whether you walk me through it.`,
 
   advise: `# Mode: advisory (read-only)
 
-You cannot modify files: \`edit\`/\`write\` are disabled and file-mutating shell commands are
-blocked. Do not try to work around this with \`bash\`.
+You cannot modify files: \`edit\`/\`write\` are disabled, file-mutating shell commands are
+blocked, and the working directory is mounted read-only. Do not try to work around this with
+\`bash\`.
 
 Guide me through the change following the "Guiding a change" rules: one step at a time, a
 targeted snippet with the exact file path, then pause for me to apply it. Use \`bash\` only to
 inspect, and to verify after I confirm.`,
-
-  edit: `# Mode: edit (write access enabled)
-
-Write access is enabled for this session. Apply changes directly with \`edit\`/\`write\` — do
-not emit snippets for me to paste.
-
-The "Guiding a change" rules still govern how you work: establish ground truth before
-changing anything, then make the change, then run the project's linters, type-checkers or
-tests to verify it.`,
 };
-
-function isReadOnly(mode: Mode): boolean {
-  return mode !== "edit";
-}
 
 export default function (pi: ExtensionAPI) {
   let mode: Mode = DEFAULT_MODE;
@@ -87,19 +73,11 @@ export default function (pi: ExtensionAPI) {
     default: false,
   });
 
-  pi.registerFlag("write", {
-    description: "Start in edit mode (allow pi to modify files)",
-    type: "boolean",
-    default: false,
-  });
-
+  // Every mode is read-only, so the mutating tools are only ever removed. This stays a
+  // function because the active tool set is rebuilt on session start and on each mode switch.
   function applyToolState(): void {
     const active = pi.getActiveTools();
-    if (mode === "edit") {
-      pi.setActiveTools([...new Set([...active, ...MUTATING_TOOLS])]);
-    } else {
-      pi.setActiveTools(active.filter((tool) => !MUTATING_TOOLS.includes(tool)));
-    }
+    pi.setActiveTools(active.filter((tool) => !MUTATING_TOOLS.includes(tool)));
   }
 
   function refreshStatus(ctx: ExtensionContext): void {
@@ -144,7 +122,7 @@ export default function (pi: ExtensionAPI) {
     refreshStatus(ctx);
     persist();
     if (notify) {
-      ctx.ui.notify(NOTICE[mode], mode === "edit" ? "warning" : "info");
+      ctx.ui.notify(NOTICE[mode], "info");
     }
   }
 
@@ -167,22 +145,20 @@ export default function (pi: ExtensionAPI) {
       mode = restored.data.mode;
     }
 
-    // Only a set flag overrides; both default to false, so false never means "force advise".
+    // Only a set flag overrides; it defaults to false, so false never means "force advise".
     if (pi.getFlag("plan") === true) {
       mode = "plan";
-    } else if (pi.getFlag("write") === true) {
-      mode = "edit";
     }
 
     applyToolState();
     refreshStatus(ctx);
   });
 
-  // Close the bash side-channel: with edit/write gone a model can still mutate files through
-  // the shell (sed -i, redirects, tee, git apply, ...). Read-only shell — git diff/log/status,
-  // builds, linters, tests — passes through untouched.
+  // Close the bash side-channel: with edit/write gone a model can still try to mutate files
+  // through the shell (sed -i, redirects, tee, git apply, ...). The read-only bind rejects
+  // those anyway, but blocking them gives a clear reason instead of an EROFS error. Read-only
+  // shell commands (git diff/log/status, builds, linters, tests) pass through untouched.
   pi.on("tool_call", async (event) => {
-    if (!isReadOnly(mode)) return undefined;
     if (event.toolName !== "bash") return undefined;
 
     const command = (event.input?.command as string) ?? "";
@@ -192,7 +168,7 @@ export default function (pi: ExtensionAPI) {
       block: true,
       reason:
         `${mode === "plan" ? "Plan" : "Read-only"} mode: file mutation via bash is disabled. ` +
-        "Guide the change instead, or ask me to press shift+tab (or F2) to enable edit mode.",
+        "Guide the change instead and I will apply it.",
     };
   });
 
@@ -214,30 +190,27 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
-  // The handoff out of plan mode — pi's equivalent of Claude Code's ExitPlanMode. Keyed on a
+  // The handoff out of plan mode, pi's equivalent of Claude Code's ExitPlanMode. Keyed on a
   // plan file actually having been written this turn, so a clarifying question mid-plan does
-  // not trigger the prompt.
+  // not trigger the prompt. There is no "apply it yourself" branch: pi cannot apply anything.
   pi.on("agent_end", async (_event, ctx) => {
     const planPath = plan.takeWritten();
     if (mode !== "plan" || !planPath || !ctx.hasUI) return;
 
     const choice = await ctx.ui.select(`Plan recorded at ${planPath}\n\nWhat next?`, [
       "Walk me through it",
-      "Apply it yourself (enable edit mode)",
       "Stay in plan mode",
     ]);
 
-    if (choice === "Stay in plan mode" || !choice) return;
+    if (choice !== "Walk me through it") return;
 
-    const applyYourself = choice.startsWith("Apply");
-    setMode(applyYourself ? "edit" : "advise", ctx);
+    setMode("advise", ctx);
 
     pi.sendMessage(
       {
         customType: "pi-mode-handoff",
-        content: applyYourself
-          ? "Execute the plan yourself. Work through the todo steps in order, toggling each one done as you finish it."
-          : "Walk me through the plan one step at a time. Give me the first step now: a targeted snippet with the exact file path, then stop and wait for me to apply it.",
+        content:
+          "Walk me through the plan one step at a time. Give me the first step now: a targeted snippet with the exact file path, then stop and wait for me to apply it.",
         display: true,
       },
       { triggerTurn: true, deliverAs: "followUp" },
@@ -245,7 +218,7 @@ export default function (pi: ExtensionAPI) {
   });
 
   pi.registerCommand("mode", {
-    description: "Show or set the permission mode (plan | advise | edit)",
+    description: "Show or set the permission mode (plan | advise)",
     handler: async (args, ctx) => {
       const requested = args.trim() as Mode;
       if (!requested) {
@@ -265,20 +238,9 @@ export default function (pi: ExtensionAPI) {
     handler: async (_args, ctx) => setMode("plan", ctx),
   });
 
-  pi.registerCommand("edit", {
-    description: "Toggle edit mode (allow pi to modify files)",
-    handler: async (_args, ctx) => setMode(mode === "edit" ? DEFAULT_MODE : "edit", ctx),
-  });
-
   // shift+tab matches Claude Code. keybindings.json moves pi's app.thinking.cycle off it.
   pi.registerShortcut("shift+tab", {
-    description: "Cycle permission mode (plan / read-only / edit)",
+    description: "Cycle permission mode (plan / read-only)",
     handler: async (ctx) => cycle(ctx),
-  });
-
-  // F2 is kept from the previous edit-mode.ts for muscle memory; ctrl+e is pi's cursorLineEnd.
-  pi.registerShortcut("f2", {
-    description: "Toggle edit mode",
-    handler: async (ctx) => setMode(mode === "edit" ? DEFAULT_MODE : "edit", ctx),
   });
 }

@@ -1,9 +1,9 @@
 # pi coding agent — custom setup
 
 Home-manager module that packages [pi](https://pi.dev) (`pi-coding-agent`) as a
-**read-only advisory agent by default**, with a Claude-Code-style permission-mode cycle:
-plan → read-only → edit. It also adds a task list, a plan-file artifact, slash commands,
-skills shared with Claude Code, internet reads, and live cost/model info from the Infomaniak API.
+**read-only advisory agent**, with a Claude-Code-style permission-mode cycle of plan and
+read-only. It also adds a task list, a plan-file artifact, slash commands, skills shared
+with Claude Code, internet reads, and live cost/model info from the Infomaniak API.
 
 pi's core ships deliberately minimal (no built-in MCP or sub-agents), but it does ship working
 reference implementations of plan mode and a todo tool under
@@ -36,37 +36,39 @@ binds **writable** — that is where the plan files and `MEMORY.md` live.
 
 ## Permission modes
 
-Cycle with **`shift+tab`**; the footer shows the current mode and task progress.
+Cycle with **`shift+tab`**; the footer shows the current mode and task progress. There is no
+write mode, so pi never modifies a file.
 
 | Mode                | `edit`/`write` | Behaviour                                                              |
 | ------------------- | -------------- | ---------------------------------------------------------------------- |
 | `◔ plan`            | blocked        | Investigate only, no code. Records a plan file + populates the task list |
 | `◎ read-only`       | blocked        | **Default.** Guides one step at a time; you apply the changes           |
-| `✎ EDIT`            | allowed        | Applies changes directly. No per-change prompts                        |
 
-- **`shift+tab`** cycles; **F2** or **`/edit`** jumps straight to edit and back; **`/plan`**
-  enters plan mode; **`/mode [plan\|advise\|edit]`** shows or sets it.
-- Start in a mode with **`pi --plan`** or **`pi --write`**.
+- **`shift+tab`** cycles; **`/plan`** enters plan mode; **`/mode [plan\|advise]`** shows or
+  sets it.
+- Start in plan mode with **`pi --plan`**.
 - The mode survives `/resume` and branches with `/tree` (persisted as a session entry).
-- **Bash guardrail:** outside edit mode, file-mutating shell commands (`sed -i`, `>`/`>>` to a
-  real file, `tee`, `patch`, `git apply/add/commit/…`, `rm`/`mv`/`cp`, …) plus `sudo`,
+- **Bash guardrail:** file-mutating shell commands (`sed -i`, `>`/`>>` to a real file,
+  `tee`, `patch`, `git apply/add/commit/…`, `rm`/`mv`/`cp`, …) plus `sudo`,
   `systemctl`, package installs and interactive editors are blocked, so the model can't bypass
   the disabled tools. Read-only shell (`git diff/log/status`, `nix build`, tests, linters,
   `>/dev/null`) passes through. This is a denylist on purpose: upstream's allowlist has no
   `nix`/`pytest`/`cargo`/`make` entries and would block the verification step.
 
-Writes are gated **in-app**, not by the sandbox: `pi_wrapper.nix` binds `$PWD` writable, so
-the extension is the real gate. There are deliberately no per-tool-call approval prompts.
+Writes are blocked twice over: `pi_wrapper.nix` binds `$PWD` read-only, and the extension
+keeps the `edit`/`write` tools out of the active tool set and blocks mutating bash. The
+extension is what gives the model a clear refusal instead of a filesystem error. There are
+deliberately no per-tool-call approval prompts.
 
 ### Plan → guide handoff
 
 In plan mode, once pi records a plan with the `plan` tool it asks what to do next: *walk me
-through it* (switches to read-only and starts on step 1), *apply it yourself* (switches to
-edit), or *stay in plan mode*. This is the equivalent of Claude Code's ExitPlanMode.
+through it* (switches to read-only and starts on step 1) or *stay in plan mode*. This is the
+equivalent of Claude Code's ExitPlanMode, without the "apply it yourself" branch.
 
-Plans are written to `~/.pi/agent/plans/<timestamp>-<slug>.md` — not into the repo, since
-`~/.pi` is writable in every mode and plans don't belong in project history. The last 20 are
-kept.
+Plans are written to `~/.pi/agent/plans/<timestamp>-<slug>.md`, not into the repo: `~/.pi` is
+writable while `$PWD` is read-only, and plans don't belong in project history. The last 20
+are kept.
 
 Implemented in `extensions/modes/`.
 
@@ -88,8 +90,7 @@ Implemented in `extensions/modes/`.
 ## Slash commands & skill
 
 - `/plan` — enter plan mode (a *mode*, not a template — hence no `prompts/plan.md`)
-- `/mode [plan|advise|edit]` — show or set the permission mode
-- `/edit` — toggle edit mode
+- `/mode [plan|advise]` — show or set the permission mode
 - `/todos` — show the current task list
 - `/review [focus]` — review the current `git diff`
 - `/commit [context]` — draft a commit message from the staged diff
@@ -183,11 +184,15 @@ default:
 
 ## Sandbox
 
-`pi_wrapper.nix` runs pi under `bwrap`: root filesystem read-only, `$PWD` and `~/.pi`
-bound writable, network open (needed for the API + `web_fetch`), TS cache in the `~/.cache`
-tmpfs. `$PWD` is writable so the in-app mode gate is the thing that decides — note `~/.claude`
-is *not* bound, so Claude Code's skills are not reachable from inside pi's sandbox. Extensions must import only bundled modules (`@earendil-works/pi-*`, `typebox`,
-`node:*`) — no npm install happens in the sandbox.
+`pi_wrapper.nix` runs pi under `bwrap`: root filesystem read-only, `$PWD` bound read-only,
+`~/.pi` bound writable, network open (needed for the API + `web_fetch`), TS cache in the
+`~/.cache` tmpfs. Note that `~/.claude` is *not* bound, so Claude Code's skills are not
+reachable from inside pi's sandbox. Extensions must import only bundled modules
+(`@earendil-works/pi-*`, `typebox`, `node:*`); no npm install happens in the sandbox.
+
+Do not swap the read-only bind for `--tmp-overlay`. overlayfs caches the name to inode
+mapping, so a file replaced by rename, which is what editors do, keeps showing its old
+content for the rest of the session.
 
 ## Adding resources
 
@@ -212,6 +217,6 @@ sudo nixos-rebuild switch --flake .#capricorn
 ```
 
 Then check: `pi --list-models` (context sizes attached), `/rates` (non-zero for used models),
-`shift+tab` cycles the three modes, a mutating bash command is blocked outside edit mode but
-`nix build` is not, `/plan` produces a file under `~/.pi/agent/plans/`, and the mode survives
-`pi --continue`.
+`shift+tab` cycles the two modes, `pi --write` is rejected as an unknown flag, a mutating
+bash command is blocked but `nix build` is not, `/plan` produces a file under
+`~/.pi/agent/plans/`, and the mode survives `pi --continue`.

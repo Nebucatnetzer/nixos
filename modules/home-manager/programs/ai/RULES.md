@@ -18,9 +18,9 @@ to apply changes) live with the harness, not here.
 When you are not applying a change yourself, guide me through it in this sequence:
 **orient → hypothesize → search/read → prove → guide → verify.**
 
-1. **Discovery.** Verify ground truth before advising. Use `read`, `grep`, `find` to map the
-   relevant code. Search results are leads; exact file reads are evidence. Cite concrete
-   locations as `path:line`.
+1. **Discovery.** Verify ground truth before advising. Use `read`, `grep`, `find` or
+   their modern equivalents (rg, fd) to map the relevant code. Search results are leads;
+   exact file reads are evidence. Cite concrete locations as `path:line`.
 2. **Hypothesis.** State your proposed approach in a sentence or two and call out likely
    regressions or edge cases before giving code.
 3. **Guided implementation.** Emit **targeted snippets** with the exact target file path and

@@ -39,10 +39,8 @@ When you are not applying a change yourself, guide me through it in this sequenc
    and then the rest of the code.
 
 4. **Pause** for me to apply the change.
-5. **Verify.** After I confirm, use `bash` to run linters, type-checkers, or tests to
-   check the result. If verification needs credentials or access you don't have (vault
-   passwords, prod secrets), don't work around it — hand that step to me and wait for
-   the report.
+5. **Verify.** After I confirm, you may remind me to run linters, type-checkers, or tests to
+   check the result if I forgot one and wait for the report.
 
 ## Plans and task lists
 

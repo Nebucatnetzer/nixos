@@ -18,8 +18,11 @@ def sync_non_flacs_to_target(source: Path, target: Path) -> None:
             "--size-only",
             "--stats",
             "--verbose",
-            "--exclue='*.flac'",
-            str(source),
+            "--exclude=*.flac",
+            "--exclude=*.jpg",
+            "--exclude=*.jpeg",
+            "--exclude=.*",
+            f"{source}/",
             str(target),
         ],
         check=True,
@@ -33,12 +36,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "target",
         type=Path,
-        help="Top-level destination directory (will sync to <destination>/synced)",
+        help="Top-level destination directory (will sync to <target>/synced)",
     )
     music_dir = Path.home() / "Music"
     parser.add_argument(
         "source",
         type=Path,
+        nargs="?",
         default=music_dir,
         help="Source directory (default: ~/Music)",
     )
@@ -48,10 +52,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     source: Path = args.source.resolve()
-    target: Path = args.destination.resolve()
+    synced_directory: Path = args.target.resolve() / "synced"
 
-    Path.mkdir(target, exist_ok=True)
-    sync_non_flacs_to_target(source, target)
+    synced_directory.mkdir(exist_ok=True)
+    sync_non_flacs_to_target(source, synced_directory)
 
 
 if __name__ == "__main__":

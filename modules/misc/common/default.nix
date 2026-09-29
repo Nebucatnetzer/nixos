@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -20,6 +21,11 @@ in
   services.timesyncd.enable = true;
 
   services.nscd.enableNsncd = true;
+  # Disable unused packages
+  documentation.doc.enable = false;
+  services.speechd.enable = lib.mkForce false;
+  services.orca.enable = false;
+
   networking = {
     domain = "vpn.zweili.org";
     enableIPv6 = false;

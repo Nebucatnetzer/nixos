@@ -4,23 +4,22 @@
     settings = {
       asciify_paths = true;
       convert = {
-        copy_album_art = "yes";
+        copy_album_art = false;
         dest = "${config.home.homeDirectory}/Music";
+        embed = true;
         format = "opus";
         formats = {
           opus = "ffmpeg -i $source -y -vn -acodec libopus -ab 192k -vbr on $dest";
         };
         never_convert_lossy_files = true;
         # convert.paths replaces the global paths block, it does not merge, so
-        # singleton and comp are repeated here. %title{} is string.capwords, which
-        # collapses the 15 albumartist spellings that differ only in case. The SD
-        # card is exFAT and cannot hold two names that differ only in case.
+        # singleton and comp are repeated here. They are identical to the global
+        # ones, so the SD card and the library use the same names.
         paths = {
-          default = "%title{$albumartist}/\${year}_\${album}/\${track}_\${title}";
-          singleton = "%title{$artist}/Non-Album/$title";
-          comp = "Various_Artists/$album/\${track}_\${title}";
+          default = "%titlecase{$albumartist}/\${year}_%titlecase{$album}/\${track}_\${title}";
+          singleton = "%titlecase{$artist}/Non-Album/$title";
+          comp = "Various_Artists/%titlecase{$album}/\${track}_\${title}";
         };
-
       };
       directory = "/mnt/archive-disk/media/audio/music/music";
       embedart = {
@@ -34,12 +33,12 @@
         copy = true;
         move = false;
         resume = false;
-        write = false;
+        write = true;
       };
       paths = {
-        default = "$albumartist/\${year}_\${album}/\${track}_\${title}";
-        singleton = "$artist/Non-Album/$title";
-        comp = "Various_Artists/$album/\${track}_\${title}";
+        default = "%titlecase{$albumartist}/\${year}_%titlecase{$album}/\${track}_\${title}";
+        singleton = "%titlecase{$artist}/Non-Album/$title";
+        comp = "Various_Artists/%titlecase{$album}/\${track}_\${title}";
       };
       # Beets replaces the default rules instead of merging, so the defaults are
       # repeated here. The last rule turns every run of whitespace into "_".
@@ -56,6 +55,16 @@
         "^-" = "_";
         "^\\." = "_";
       };
+      # exFAT is case insensitive, so two path names that differ only in case
+      # collide on the SD card. force_lowercase makes %titlecase{} lowercase the
+      # text before it cases it, so two spellings that differ only in case always
+      # produce the same name. auto is off: the tags keep the spelling the band
+      # uses, only the paths are normalised.
+      titlecase = {
+        auto = false;
+        force_lowercase = true;
+        replace = [ { "æ" = "ae"; } ];
+      };
       plugins = [
         "convert"
         "embedart"
@@ -63,6 +72,7 @@
         "fetchart"
         "lastgenre"
         "random"
+        "titlecase"
       ];
     };
   };

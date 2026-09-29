@@ -1,5 +1,7 @@
 # Agent Rules
 
+Please remove all mannered prose.
+
 Shared behaviour rules for the coding agents configured in this flake. Loaded as Claude
 Code's context file and as pi's `AGENTS.md`. Harness-specific rules (operating modes, how
 to apply changes) live with the harness, not here.

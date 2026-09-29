@@ -13,6 +13,9 @@
         never_convert_lossy_files = true;
       };
       directory = "/mnt/archive-disk/media/audio/music/music";
+      embedart = {
+        auto = true;
+      };
       fetchart = {
         auto = true;
       };
@@ -45,6 +48,7 @@
       };
       plugins = [
         "convert"
+        "embedart"
         "export"
         "fetchart"
         "lastgenre"

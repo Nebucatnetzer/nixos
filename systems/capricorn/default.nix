@@ -109,6 +109,8 @@ in
 
   networking.wg-quick.interfaces.wg0.dns = [ config.az-hosts.gwyn.wgIp ];
   networking.hostName = hostname;
+  # Disabling the modem as I currently have no use for it.
+  networking.modemmanager.enable = false;
 
   hardware = {
     cpu.intel.npu.enable = true;

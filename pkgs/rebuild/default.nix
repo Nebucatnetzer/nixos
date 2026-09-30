@@ -1,5 +1,6 @@
 {
   builderHost,
+  iproute2,
   lib,
   netcat,
   nixos-rebuild-ng,
@@ -8,6 +9,7 @@
 writeShellApplication {
   name = "rebuild";
   runtimeInputs = [
+    iproute2
     netcat
     nixos-rebuild-ng
   ];
@@ -19,7 +21,10 @@ writeShellApplication {
   };
   text = ''
     builders=()
-    if nc -zw2 ${builderHost} 22 >/dev/null 2>&1; then
+    # Check if we are running on the remote builder itself
+    if ip -oneline address show | grep --quiet --fixed-strings " ${builderHost}/"; then
+      echo "This host is the builder ${builderHost}, building locally."
+    elif nc -zw2 ${builderHost} 22 >/dev/null 2>&1; then
       echo "Builder ${builderHost} is reachable, offloading."
       builders=(--builders '@/etc/nix/machines')
     else

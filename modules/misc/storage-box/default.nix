@@ -18,7 +18,7 @@ let
   secretFile =
     if keyFile != null then keyFile else "${config.networking.hostName}_storagebox.key.age";
   # Only the host running the rest server has this user.
-  hasResticUser = config.users.users ? "restic";
+  hasResticUser = (config.users.users or { }) ? "restic";
 in
 {
   # Declared globally in ./options.nix, so that consumers can read it without caring

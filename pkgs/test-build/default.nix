@@ -12,5 +12,5 @@ writeShellApplication {
     mainProgram = "test-build";
     platforms = lib.platforms.linux;
   };
-  text = builtins.readFile ./test_build.sh;
+  text = builtins.readFile ./test_build.bash;
 }

@@ -15,6 +15,8 @@
     };
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    # Zotero is broken in unstable
+    nixpkgs-zotero.url = "github:NixOS/nixpkgs/363fdbe57ed052c76e816e6270206b0cb348e53a";
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
     nixos-hardware.url = "github:nixos/nixos-hardware";
   };
@@ -24,6 +26,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      nixpkgs-zotero,
       ...
     }:
     let
@@ -58,6 +61,15 @@
         config.allowUnfree = true;
       };
       unstable-pkgs = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+        overlays = [
+          # Zotero comes from the pinned commit, with the dependencies it was built
+          # against there.
+          (final: prev: { inherit (zotero-pkgs) zotero; })
+        ];
+      };
+      zotero-pkgs = import nixpkgs-zotero {
         system = "x86_64-linux";
         config.allowUnfree = true;
       };

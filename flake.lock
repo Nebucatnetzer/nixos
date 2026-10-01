@@ -106,6 +106,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
+    "nixpkgs-zotero": {
+      "locked": {
+        "lastModified": 1789322069,
+        "narHash": "sha256-eaIzbbImStaHMgxftbumWoZuMC+Xm7TraQSsf6da+VI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "363fdbe57ed052c76e816e6270206b0cb348e53a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "363fdbe57ed052c76e816e6270206b0cb348e53a",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1790635395,
@@ -126,7 +142,8 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-zotero": "nixpkgs-zotero"
       }
     }
   },

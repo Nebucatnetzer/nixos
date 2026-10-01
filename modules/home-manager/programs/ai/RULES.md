@@ -73,6 +73,41 @@ as the source of truth for what we agreed to do, why, and how far we got.
 - When the work is finished, close the plan out: final state of every task, plus anything
   deliberately left undone and why.
 
+## Plan file format
+
+Write plan files in Org Mode, not Markdown, and give them the `.org` extension.
+Chat replies and the plan mode approval message stay Markdown, because the terminal
+renders them that way.
+
+- Open the file with a lowercase `#+title:` line and nothing else. Do not add `#+TODO:`
+  or `#+STARTUP:`. My Emacs config sets the task states and the folding globally, and a
+  file local keyword line would override them.
+- Structure the file with `*`, `**`, `***` headings. Do not use `#` headings.
+- Each task is a heading with a state keyword in front of the text, for example
+  `** NEXT Add the disk role`. The available states are:
+  `TODO` (open), `NEXT` (in progress), `WAITING` (blocked on me or on a third party),
+  `PROJECT` (a heading whose children are the real tasks), `DONE`, and `CANCELLED`
+  (dropped).
+- When you set a task to `DONE` or `CANCELLED`, add the closing timestamp on the next
+  line: `CLOSED: [2026-10-01 Thu 14:32]`. Emacs writes that line itself, so match its
+  format exactly.
+- A parent heading cannot be `DONE` while a child is still open, because the config
+  enforces todo and checkbox dependencies. Close the children first.
+- The note on what actually happened goes in the body under the task heading.
+- Leave one blank line before every heading.
+- Write body text flush left. Emacs indents it on screen, so indentation in the file is
+  wrong and doubles up.
+- Put code and commands in lowercase `#+begin_src sh` ... `#+end_src` blocks. Always name
+  the language, and keep the block and its contents flush left, because the config
+  preserves source indentation verbatim.
+- Mark inline code, paths, and `path:line` evidence with `~verbatim~`, not with backticks.
+- For paths and similar use `=verbatim=`.
+- Write links as `[[file:path][label]]`.
+- Use Org pipe tables.
+- If a heading carries tags, write them one space after the heading text.
+- When you pick up an existing plan that is still Markdown, continue it in Markdown. Do
+  not convert old plan files.
+
 ## Communication style
 
 - Be concise and direct. Skip polite filler.

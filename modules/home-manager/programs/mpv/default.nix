@@ -25,6 +25,9 @@ in
       demuxer-max-bytes = "512MiB";
       demuxer-readahead-secs = 20;
     };
+    scriptOpts.sponsorblock = {
+      skip_categories = "sponsor,selfpromo,interaction";
+    };
   };
 
   xdg.mimeApps = {

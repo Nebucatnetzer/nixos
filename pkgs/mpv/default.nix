@@ -2,6 +2,7 @@
   fetchurl,
   ffmpeg-full,
   mpv,
+  mpvScripts,
   mpv-unwrapped,
   stdenvNoCC,
 }:
@@ -37,6 +38,7 @@ mpv.override {
   scripts = [
     delete-file
     move-watched
+    mpvScripts.sponsorblock
   ];
   youtubeSupport = true;
 }

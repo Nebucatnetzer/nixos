@@ -20,6 +20,8 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --yes-playlist \
       --remux-video=mkv \
+      --sponsorblock-mark=all \
+      --sponsorblock-remove=sponsor,selfpromo,interaction \
       --paths=${mediaPaths.youtubePlaylists}/ \
       --output="%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" \
       "$@"

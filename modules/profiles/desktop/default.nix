@@ -113,6 +113,23 @@ in
         "services.sync.engine.passwords" = false; # Don't ask for passwords
         "widget.use-xdg-desktop-portal.file-picker" = 1;
       };
+      policies = {
+        ExtensionSettings = {
+          "uBlock0@raymondhill.net" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            installation_mode = "force_installed";
+          };
+        };
+        "3rdparty".Extensions."uBlock0@raymondhill.net" = {
+          toOverwrite.filters = [
+            # Block YouTube video and audio streams; thumbnails come from i.ytimg.com.
+            "||googlevideo.com^"
+
+            "! 2 Apr 2025 https://www.woz.ch"
+            "www.woz.ch##.wozwall__expanded"
+          ];
+        };
+      };
     };
   };
   environment = {

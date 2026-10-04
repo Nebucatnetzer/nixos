@@ -22,6 +22,8 @@ writeShellApplication {
       --cookies-from-browser firefox \
       --no-playlist \
       --remux-video=mkv \
+      --sponsorblock-mark=all \
+      --sponsorblock-remove=sponsor,selfpromo,interaction \
       --paths="$tmpDir" \
       "$@";
     mpv "$tmpDir"/*.mkv;

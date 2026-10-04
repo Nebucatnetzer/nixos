@@ -121,11 +121,9 @@ in
       pkgs.adwaita-icon-theme
       pkgs.appimage-run
       pkgs.brightnessctl
-      pkgs.lollypop
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol
       pkgs.pdfgrep
-      pkgs.plex-desktop
       pkgs.steam-run # FHS runtime for running dynamically-linked binaries
       pkgs.v4l-utils # required for video capture, e.g. Raspberry Pi
       pkgs.vial # configure the Cornix keyboard layout
@@ -158,7 +156,9 @@ in
       pkgs.dbeaver-bin
       pkgs.keepassxc
       pkgs.libreoffice-qt-fresh
+      pkgs.lollypop
       pkgs.meld
+      pkgs.plex-desktop
       pkgs.remmina
       pkgs.syncthingtray
       pkgs.tagger

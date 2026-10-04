@@ -14,7 +14,7 @@ writeShellApplication {
     mpv
   ];
   meta = {
-    description = "Fuzzy-pick a downloaded playlist from the external SSD and play it in mpv";
+    description = "Fuzzy-pick a downloaded playlist from ${mediaPaths.youtubePlaylists} and play it in mpv";
     license = lib.licenses.gpl3Plus;
     mainProgram = "watch-playlist";
     platforms = lib.platforms.linux;

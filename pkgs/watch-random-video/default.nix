@@ -10,7 +10,7 @@ writeShellApplication {
     mpv
   ];
   meta = {
-    description = "Play all independent videos from the external SSD in random order";
+    description = "Play all independent videos from ${mediaPaths.youtubeVideos} in random order";
     license = lib.licenses.gpl3Plus;
     mainProgram = "watch-random-video";
     platforms = lib.platforms.linux;

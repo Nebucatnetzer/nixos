@@ -14,7 +14,7 @@ writeShellApplication {
     mpv
   ];
   meta = {
-    description = "Fuzzy-pick an independent video from the external SSD and play it in mpv";
+    description = "Fuzzy-pick an independent video from ${mediaPaths.youtubeVideos} and play it in mpv";
     license = lib.licenses.gpl3Plus;
     mainProgram = "watch-video";
     platforms = lib.platforms.linux;

@@ -17,6 +17,7 @@ in
     "${inputs.self}/modules/programs/signal"
     "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/pipewire"
+    "${inputs.self}/modules/services/video-image"
   ];
   networking.networkmanager = {
     enable = true;

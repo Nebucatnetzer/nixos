@@ -155,6 +155,7 @@ in
       pkgs.czkawka
       pkgs.dbeaver-bin
       pkgs.keepassxc
+      pkgs.kiwix
       pkgs.libreoffice-qt-fresh
       pkgs.lollypop
       pkgs.meld

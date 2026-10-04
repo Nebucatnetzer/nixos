@@ -121,7 +121,6 @@ in
       pkgs.adwaita-icon-theme
       pkgs.appimage-run
       pkgs.brightnessctl
-      pkgs.git-annex
       pkgs.lollypop
       pkgs.networkmanager-openvpn
       pkgs.pavucontrol

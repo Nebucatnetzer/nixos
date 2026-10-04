@@ -157,7 +157,6 @@ in
       azPkgs.raiffeisen-csv-cleanup
       azPkgs.sidecar-cleanup
       azPkgs.toggle-keyboard
-      azPkgs.tube-podder
       azPkgs.video-to-mpv
       azPkgs.watch-playlist
       azPkgs.watch-random-video

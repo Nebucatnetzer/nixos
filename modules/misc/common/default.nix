@@ -22,7 +22,6 @@ in
 
   services.nscd.enableNsncd = true;
   # Disable unused packages
-  documentation.doc.enable = false;
   services.speechd.enable = lib.mkForce false;
   services.orca.enable = false;
 

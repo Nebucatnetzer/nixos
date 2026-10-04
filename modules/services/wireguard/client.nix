@@ -41,4 +41,11 @@ in
       }
     ];
   };
+  # At boot nm-online returns before Wi-Fi is connected, so the DNS lookup of
+  # hubHost fails. Retry until the network is up.
+  systemd.services.wg-quick-wg0.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = 5;
+  };
+
 }

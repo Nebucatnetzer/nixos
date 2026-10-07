@@ -559,5 +559,16 @@ rather than headings."
   (advice-add 'denote-journal-path-to-new-or-existing-entry :before
               #'az-org-log--sync-journal-directory)
 
+  ;; plain, not item: item does list aware insertion and would
+  ;; reposition away from the append point az-org-log-capture-target chose
+  (with-eval-after-load 'org-capture
+    (add-to-list 'org-capture-templates
+                 '("l" "Log entry" plain
+                   (function az-org-log-capture-target)
+                   "- %?"
+                   :empty-lines 0
+                   :unnarrowed nil)
+                 t))
+
   (global-set-key (kbd "<f11>") #'az-org-log-toggle)
   (global-set-key (kbd "C-c n d") #'az-org-log-dashboard))

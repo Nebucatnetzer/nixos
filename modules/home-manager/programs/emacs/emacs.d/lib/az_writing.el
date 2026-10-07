@@ -67,7 +67,7 @@
   (setopt olivetti-body-width 120))
 
 (use-package typst-ts-mode
-  :hook (nix-mode . eglot-ensure))
+  :hook (typst-ts-mode . eglot-ensure))
 
 (use-package citar
   :no-require

@@ -96,6 +96,17 @@
   (setopt tooltip-use-echo-area t)
 
   (setopt use-short-answers t)
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setopt minibuffer-prompt-properties
+          '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;; Allow minibuffer commands inside the minibuffer
+  (setopt enable-recursive-minibuffers t)
+  (setopt read-file-name-completion-ignore-case t
+          read-buffer-completion-ignore-case t)
+  ;; Hide commands in M-x which do not work in the current mode
+  (setopt read-extended-command-predicate #'command-completion-default-include-p)
+
   ;; My details
   (setopt user-full-name "Andreas Zweili")
   (setopt user-mail-address "andreas@zweili.ch")

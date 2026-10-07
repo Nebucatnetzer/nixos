@@ -6,14 +6,21 @@
   (flymake-languagetool-maybe-load)
   (flymake-mode 1))
 
-(use-package emacs
+(use-package text-mode
   :config
-  (setenv "DICTIONARY" "en_GB")
   ;; text-mode otherwise adds ispell-completion-at-point to
   ;; completion-at-point-functions, and each call spawns look/grep over a
   ;; word list; company hits it on every keystroke.
-  (setopt text-mode-ispell-word-completion nil)
-  ;; ispell settings
+  (setopt text-mode-ispell-word-completion nil))
+
+(use-package ispell
+  ;; word list; company hits it on every keystroke.
+  (setopt text-mode-ispell-word-completion nil))
+
+(use-package ispell
+  :defer t
+  :config
+  (setenv "DICTIONARY" "en_GB")
   (setopt ispell-program-name "hunspell"
           ispell-local-dictionary "en_GB"
           ispell-local-dictionary-alist

@@ -240,20 +240,26 @@
   :after yaml-ts-mode
   :config (add-hook 'yaml-ts-mode-hook '(lambda () (ansible-mode 1))))
 
-(use-package emacs
+;; display the name of the function we are in the status bar
+(use-package which-func
   :config
-  ;; display the name of the function we are in the status bar
-  (which-function-mode t)
-  :hook
-  ((prog-mode . display-fill-column-indicator-mode)
-   (yaml-ts-mode . display-fill-column-indicator-mode))
-  ;; indentations for various modes
-  ((go-ts-mode         . (lambda () (setq indent-tabs-mode t)))
-   (yaml-ts-mode       . (lambda () (setq tab-width 2)))
-   (js-ts-mode         . (lambda () (setq tab-width 2
-                                          js-indent-level 2)))
-   (typescript-ts-mode . (lambda () (setq tab-width 2
-                                          typescript-ts-mode-indent-offset 2)))
-   (css-ts-mode        . (lambda () (setq tab-width 2
-                                          css-indent-offset 2)))
-   (json-ts-mode       . (lambda () (setq tab-width 2)))))
+  (which-function-mode 1))
+
+;; yaml-ts-mode derives from text-mode, so prog-mode does not cover it
+(use-package display-fill-column-indicator
+  :hook (prog-mode yaml-ts-mode))
+
+(use-package js
+  :defer t
+  :custom (js-indent-level 2))
+
+(use-package typescript-ts-mode
+  :defer t
+  :custom (typescript-ts-mode-indent-offset 2))
+
+(use-package css-mode
+  :defer t
+  :custom (css-indent-offset 2))
+
+(use-package go-ts-mode
+  :hook (go-ts-mode . indent-tabs-mode))

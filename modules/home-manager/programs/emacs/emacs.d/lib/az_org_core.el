@@ -206,9 +206,6 @@ a new archive file."
 
     ;; --- Keybindings ---
 
-    ;; verb-command-map must be bound as a keymap variable, not via :bind
-    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-
     ;; Calendar date entry navigation
     (define-key org-read-date-minibuffer-local-map (kbd "M-h")
                 (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))

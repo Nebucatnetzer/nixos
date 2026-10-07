@@ -1,284 +1,283 @@
 ;; -*- lexical-binding: t; -*-
-(when (bound-and-true-p enable-org)
-  (with-eval-after-load 'org
-    ;; Agenda faces
-    (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
-    (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium)
-    (set-face-attribute 'org-agenda-calendar-event nil :weight 'medium)
-    (set-face-attribute 'org-agenda-date nil :inherit 'default :height 1.00 :weight 'bold)
-    (set-face-attribute 'org-agenda-date-today nil :slant 'normal :weight 'bold :height 1.00)
+(with-eval-after-load 'org
+  ;; Agenda faces
+  (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
+  (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium)
+  (set-face-attribute 'org-agenda-calendar-event nil :weight 'medium)
+  (set-face-attribute 'org-agenda-date nil :inherit 'default :height 1.00 :weight 'bold)
+  (set-face-attribute 'org-agenda-date-today nil :slant 'normal :weight 'bold :height 1.00)
 
-    (setopt org-agenda-block-separator " "
+  (setopt org-agenda-block-separator " "
 
-            org-todo-keyword-faces
-            `(("WAITING"   :foreground "#0087ff" :weight bold)
-              ("TODO" :foreground "#d75f00" :weight bold)
-              ("PROJECT"      :foreground "#626262" :weight bold)
-              ("NEXT"      :foreground "#d70000" :weight bold)))
+          org-todo-keyword-faces
+          `(("WAITING"   :foreground "#0087ff" :weight bold)
+            ("TODO" :foreground "#d75f00" :weight bold)
+            ("PROJECT"      :foreground "#626262" :weight bold)
+            ("NEXT"      :foreground "#d70000" :weight bold)))
 
-    (defun az/custom-agenda (&optional arg)
-      (interactive "P")
-      (org-agenda arg "A"))
+  (defun az/custom-agenda (&optional arg)
+    (interactive "P")
+    (org-agenda arg "A"))
 
-    ;; hide done tasks in the agenda
-    (setopt org-agenda-skip-deadline-if-done t
-            org-agenda-skip-scheduled-if-done t
-            org-agenda-skip-timestamp-if-done t
+  ;; hide done tasks in the agenda
+  (setopt org-agenda-skip-deadline-if-done t
+          org-agenda-skip-scheduled-if-done t
+          org-agenda-skip-timestamp-if-done t
 
-            ;; Custom agenda command to list the stuck projects in the normal
-            ;; agenda view.
-            org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
+          ;; Custom agenda command to list the stuck projects in the normal
+          ;; agenda view.
+          org-stuck-projects '("/PROJECT" ("NEXT") nil ""))
 
-    (setq org-agenda-custom-commands (quote (("A" "Custom Agenda"
-                                              ((agenda "" nil)
-                                               (stuck ""
-                                                      ((org-agenda-overriding-header "Stuck Projects")
-                                                       (org-agenda-sorting-strategy
-                                                        '(priority-down category-up))))
-                                               (tags-todo "TODO=\"PROJECT\" "
-                                                          ((org-agenda-overriding-header "Projects")
-                                                           (org-agenda-sorting-strategy
-                                                            '(priority-down category-up))))
-                                               nil))
-                                             ;; Show all headings with the corresponding TODO state
-                                             ("N" occur-tree "NEXT")
-                                             ("O" occur-tree "TODO")
-                                             ("W" occur-tree "WAITING"))))
+  (setq org-agenda-custom-commands (quote (("A" "Custom Agenda"
+                                            ((agenda "" nil)
+                                             (stuck ""
+                                                    ((org-agenda-overriding-header "Stuck Projects")
+                                                     (org-agenda-sorting-strategy
+                                                      '(priority-down category-up))))
+                                             (tags-todo "TODO=\"PROJECT\" "
+                                                        ((org-agenda-overriding-header "Projects")
+                                                         (org-agenda-sorting-strategy
+                                                          '(priority-down category-up))))
+                                             nil))
+                                           ;; Show all headings with the corresponding TODO state
+                                           ("N" occur-tree "NEXT")
+                                           ("O" occur-tree "TODO")
+                                           ("W" occur-tree "WAITING"))))
 
-    (defun my/org-agenda-skip-if-project-tagged-or-dated ()
-      "Skip entry if it is a PROJECT, has a 'skip-agenda' tag, or has any date.
+  (defun my/org-agenda-skip-if-project-tagged-or-dated ()
+    "Skip entry if it is a PROJECT, has a 'skip-agenda' tag, or has any date.
 This function is intended for use with `org-agenda-skip-function'."
-      (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
-            (todo-state (org-get-todo-state))
-            (tags (org-get-tags-at)))
-        (if (or
-             ;; Condition 1: The task has any kind of date (scheduled, deadline, or timestamp).
-             (org-get-scheduled-time (point))
-             (org-get-deadline-time (point))
-             (org-entry-get (point) "TIMESTAMP")
+    (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+          (todo-state (org-get-todo-state))
+          (tags (org-get-tags-at)))
+      (if (or
+           ;; Condition 1: The task has any kind of date (scheduled, deadline, or timestamp).
+           (org-get-scheduled-time (point))
+           (org-get-deadline-time (point))
+           (org-entry-get (point) "TIMESTAMP")
 
-             ;; Condition 2: The task's TODO keyword is "PROJECT".
-             (and todo-state (string= todo-state "PROJECT"))
+           ;; Condition 2: The task's TODO keyword is "PROJECT".
+           (and todo-state (string= todo-state "PROJECT"))
 
-             ;; Condition 3: The task is tagged with "skip-agenda".
-             (member "skipagenda" tags))
-            ;; If any condition is met, return the position of the next headline to skip this entry.
-            next-headline
-          ;; Otherwise, return nil to include the entry in the agenda.
-          nil)))
+           ;; Condition 3: The task is tagged with "skip-agenda".
+           (member "skipagenda" tags))
+          ;; If any condition is met, return the position of the next headline to skip this entry.
+          next-headline
+        ;; Otherwise, return nil to include the entry in the agenda.
+        nil)))
 
-    (defun az/org-entry-created-time (entry)
-      "Return the CREATED time of agenda line ENTRY, or nil when it has none."
-      (let* ((marker (or (get-text-property 0 'org-hd-marker entry)
-                         (get-text-property 0 'org-marker entry)))
-             (created (and marker (org-entry-get marker "CREATED"))))
-        (when (org-string-nw-p created)
-          (org-time-string-to-time created))))
+  (defun az/org-entry-created-time (entry)
+    "Return the CREATED time of agenda line ENTRY, or nil when it has none."
+    (let* ((marker (or (get-text-property 0 'org-hd-marker entry)
+                       (get-text-property 0 'org-marker entry)))
+           (created (and marker (org-entry-get marker "CREATED"))))
+      (when (org-string-nw-p created)
+        (org-time-string-to-time created))))
 
-    (defun az/org-agenda-cmp-created (a b)
-      "Compare agenda lines A and B by capture time, oldest first.
+  (defun az/org-agenda-cmp-created (a b)
+    "Compare agenda lines A and B by capture time, oldest first.
 An entry without a CREATED property predates the property itself, so it
 counts as older than any stamped entry."
-      (let ((time-a (az/org-entry-created-time a))
-            (time-b (az/org-entry-created-time b)))
-        (cond ((and time-a time-b)
-               (cond ((time-less-p time-a time-b) -1)
-                     ((time-less-p time-b time-a) +1)))
-              (time-a +1)
-              (time-b -1))))
+    (let ((time-a (az/org-entry-created-time a))
+          (time-b (az/org-entry-created-time b)))
+      (cond ((and time-a time-b)
+             (cond ((time-less-p time-a time-b) -1)
+                   ((time-less-p time-b time-a) +1)))
+            (time-a +1)
+            (time-b -1))))
 
-    (setopt org-agenda-cmp-user-defined #'az/org-agenda-cmp-created)
+  (setopt org-agenda-cmp-user-defined #'az/org-agenda-cmp-created)
 
-    (defun az/org-agenda-created-prefix ()
-      "Capture time of the entry at point, for `org-agenda-prefix-format'."
-      (let ((created (org-entry-get (point) "CREATED")))
-        (if (org-string-nw-p created)
-            (string-trim created "\\[" "\\]")
-          "no capture date")))
+  (defun az/org-agenda-created-prefix ()
+    "Capture time of the entry at point, for `org-agenda-prefix-format'."
+    (let ((created (org-entry-get (point) "CREATED")))
+      (if (org-string-nw-p created)
+          (string-trim created "\\[" "\\]")
+        "no capture date")))
 
-    (defun az/org-agenda-tasks-to-plan (header sorting-strategy)
-      "Build the block list of a \"tasks to plan\" agenda command.
+  (defun az/org-agenda-tasks-to-plan (header sorting-strategy)
+    "Build the block list of a \"tasks to plan\" agenda command.
 HEADER titles the block, SORTING-STRATEGY is an
 `org-agenda-sorting-strategy' value.  Use `user-defined-up' to sort by
 capture date, oldest first, and prefix it with `category-keep' to group
 by category first."
-      `((alltodo ""
-                 ((org-agenda-overriding-header ,header)
-                  (org-agenda-skip-function
-                   '(my/org-agenda-skip-if-project-tagged-or-dated))
-                  (org-agenda-prefix-format
-                   '((todo . " %i %-20:c%-22(az/org-agenda-created-prefix)")))
-                  (org-agenda-sorting-strategy ',sorting-strategy)))))
+    `((alltodo ""
+               ((org-agenda-overriding-header ,header)
+                (org-agenda-skip-function
+                 '(my/org-agenda-skip-if-project-tagged-or-dated))
+                (org-agenda-prefix-format
+                 '((todo . " %i %-20:c%-22(az/org-agenda-created-prefix)")))
+                (org-agenda-sorting-strategy ',sorting-strategy)))))
 
-    (dolist (command
-             `(("n" "Tasks to Plan (by category, oldest capture first)"
-                (category-keep user-defined-up))
-               ("u" "Tasks to Plan (oldest capture first)"
-                (user-defined-up))))
-      (add-to-list 'org-agenda-custom-commands
-                   `(,(nth 0 command) ,(nth 1 command)
-                     ,(az/org-agenda-tasks-to-plan (nth 1 command) (nth 2 command)))
-                   'append))
+  (dolist (command
+           `(("n" "Tasks to Plan (by category, oldest capture first)"
+              (category-keep user-defined-up))
+             ("u" "Tasks to Plan (oldest capture first)"
+              (user-defined-up))))
+    (add-to-list 'org-agenda-custom-commands
+                 `(,(nth 0 command) ,(nth 1 command)
+                   ,(az/org-agenda-tasks-to-plan (nth 1 command) (nth 2 command)))
+                 'append))
 
-    (setq org-agenda-sorting-strategy (quote
-                                       ((agenda priority-down todo-state-up category-up))))
+  (setq org-agenda-sorting-strategy (quote
+                                     ((agenda priority-down todo-state-up category-up))))
 
-    ;; don't show the warnings for deadlines if the item is scheduled
-    (setopt org-agenda-skip-deadline-prewarning-if-scheduled t
+  ;; don't show the warnings for deadlines if the item is scheduled
+  (setopt org-agenda-skip-deadline-prewarning-if-scheduled t
 
-            org-agenda-prefix-format '((agenda . " %i %-20:c%?-12t% s")
-                                       (todo . " %i %-20:c")
-                                       (tags . " %i %-20:c")
-                                       (search . " %i %-20:c"))
+          org-agenda-prefix-format '((agenda . " %i %-20:c%?-12t% s")
+                                     (todo . " %i %-20:c")
+                                     (tags . " %i %-20:c")
+                                     (search . " %i %-20:c"))
 
-            ;; start the agenda on the current day and show the next 13 days
-            org-agenda-span 8
-            org-agenda-start-on-weekday nil
-            org-agenda-show-future-repeats (quote next)
+          ;; start the agenda on the current day and show the next 13 days
+          org-agenda-span 8
+          org-agenda-start-on-weekday nil
+          org-agenda-show-future-repeats (quote next)
 
-            ;; dimm open tasks
-            org-agenda-dim-blocked-tasks t
+          ;; dimm open tasks
+          org-agenda-dim-blocked-tasks t
 
-            ;; Any alignment column pads tagged lines out to it, which pushes
-            ;; the tags off the right edge of the narrow agenda window once
-            ;; lines are truncated rather than wrapped.  0 makes
-            ;; `org-agenda-align-tags' fall back to a single space, which
-            ;; `az/org-agenda-compact-tags' then widens to the real gap.
-            org-agenda-tags-column 0)
+          ;; Any alignment column pads tagged lines out to it, which pushes
+          ;; the tags off the right edge of the narrow agenda window once
+          ;; lines are truncated rather than wrapped.  0 makes
+          ;; `org-agenda-align-tags' fall back to a single space, which
+          ;; `az/org-agenda-compact-tags' then widens to the real gap.
+          org-agenda-tags-column 0)
 
-    (defvar az/org-agenda-tags-gap 2
-      "Spaces between an agenda headline and its tags.")
+  (defvar az/org-agenda-tags-gap 2
+    "Spaces between an agenda headline and its tags.")
 
-    (defun az/org-agenda-compact-tags ()
-      "Put agenda tags right after their headline instead of at a fixed column.
+  (defun az/org-agenda-compact-tags ()
+    "Put agenda tags right after their headline instead of at a fixed column.
 Line length then follows the content, so the tags stay on screen next to
 their entry instead of being truncated away with the padding that an
 alignment column would add.  `org-agenda-finalize' runs
 `org-agenda-align-tags' before this hook, so this is the last word."
-      (when (derived-mode-p 'org-agenda-mode)
-        (let ((inhibit-read-only t)
-              (gap (make-string az/org-agenda-tags-gap ?\s)))
-          (save-excursion
-            (goto-char (point-min))
-            (while (re-search-forward org-tag-group-re nil t)
-              (goto-char (match-beginning 1))
-              (delete-region (save-excursion (skip-chars-backward " \t") (point))
-                             (point))
-              ;; Carry the line's properties onto the gap the way
-              ;; `org-agenda-align-tags' does, minus the tag face.
-              (insert (org-add-props gap
-                          (plist-put (copy-sequence (text-properties-at (point)))
-                                     'face nil)))
-              (forward-line 1))))))
+    (when (derived-mode-p 'org-agenda-mode)
+      (let ((inhibit-read-only t)
+            (gap (make-string az/org-agenda-tags-gap ?\s)))
+        (save-excursion
+          (goto-char (point-min))
+          (while (re-search-forward org-tag-group-re nil t)
+            (goto-char (match-beginning 1))
+            (delete-region (save-excursion (skip-chars-backward " \t") (point))
+                           (point))
+            ;; Carry the line's properties onto the gap the way
+            ;; `org-agenda-align-tags' does, minus the tag face.
+            (insert (org-add-props gap
+                        (plist-put (copy-sequence (text-properties-at (point)))
+                                   'face nil)))
+            (forward-line 1))))))
 
-    (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
+  (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
 
-    ;; The agenda is a table, not prose: let a long line run off the right edge
-    ;; instead of wrapping, so every entry keeps one screen line and closing the
-    ;; log panel reveals the rest.  `org-agenda-mode' sets `truncate-lines'
-    ;; itself, but `global-visual-line-mode' runs afterwards and undoes it;
-    ;; switching `visual-line-mode' off here marks the buffer as explicitly set,
-    ;; which makes the global mode skip it.
-    (add-hook 'org-agenda-mode-hook
-              (defun az/org-agenda-no-wrap ()
-                "Keep every agenda entry on a single screen line."
-                (visual-line-mode -1)
-                (setq truncate-lines t)))
+  ;; The agenda is a table, not prose: let a long line run off the right edge
+  ;; instead of wrapping, so every entry keeps one screen line and closing the
+  ;; log panel reveals the rest.  `org-agenda-mode' sets `truncate-lines'
+  ;; itself, but `global-visual-line-mode' runs afterwards and undoes it;
+  ;; switching `visual-line-mode' off here marks the buffer as explicitly set,
+  ;; which makes the global mode skip it.
+  (add-hook 'org-agenda-mode-hook
+            (defun az/org-agenda-no-wrap ()
+              "Keep every agenda entry on a single screen line."
+              (visual-line-mode -1)
+              (setq truncate-lines t)))
 
-    ;; automatically refresh the agenda after adding a task
-    (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
+  ;; automatically refresh the agenda after adding a task
+  (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
 
-    (defun az-org-agenda-redo ()
-      (interactive)
-      (when (get-buffer "*Org Agenda*")
-        (with-current-buffer "*Org Agenda*"
-          (org-agenda-redo t)
-          (message "[org agenda] refreshed!"))))
+  (defun az-org-agenda-redo ()
+    (interactive)
+    (when (get-buffer "*Org Agenda*")
+      (with-current-buffer "*Org Agenda*"
+        (org-agenda-redo t)
+        (message "[org agenda] refreshed!"))))
 
-    (require 'find-lisp)
-    (defun az-update-org-agenda-files ()
-      "Update the list of org-agenda-files dynamically."
-      (setq org-agenda-files
-            (append (find-lisp-find-files az-org-inbox-dir "\\.org$")
-                    (find-lisp-find-files az-org-projects-dir "\\.org$"))))
+  (require 'find-lisp)
+  (defun az-update-org-agenda-files ()
+    "Update the list of org-agenda-files dynamically."
+    (setq org-agenda-files
+          (append (find-lisp-find-files az-org-inbox-dir "\\.org$")
+                  (find-lisp-find-files az-org-projects-dir "\\.org$"))))
 
-    ;; Add a hook to update agenda files whenever org-agenda is invoked
-    (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)
+  ;; Add a hook to update agenda files whenever org-agenda is invoked
+  (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)
 
-    (when (bound-and-true-p enable-clocking)
-      (require 'org-clock)
+  (when (bound-and-true-p enable-clocking)
+    (require 'org-clock)
 
-      (defvar az-org-daily-work-minutes 510
-        "Target number of minutes to work per day (8.5 hours).")
+    (defvar az-org-daily-work-minutes 510
+      "Target number of minutes to work per day (8.5 hours).")
 
-      (defvar az-org-weekly-work-minutes 2040
-        "Target number of minutes to work per week (34 hours).")
+    (defvar az-org-weekly-work-minutes 2040
+      "Target number of minutes to work per week (34 hours).")
 
-      (defun az/org-clocked-minutes-in-range (range)
-        "Total minutes clocked within RANGE across `org-agenda-files'.
+    (defun az/org-clocked-minutes-in-range (range)
+      "Total minutes clocked within RANGE across `org-agenda-files'.
 RANGE is a (START END) pair as returned by `org-clock-special-range'.
 Includes the still-running clock, if any."
-        (let ((total 0))
-          (dolist (file (org-agenda-files))
-            (with-current-buffer (find-file-noselect file)
-              (setq total (+ total (or (org-clock-sum (car range) (cadr range)) 0)))))
-          (when (org-clocking-p)
-            (setq total (+ total (floor (float-time (time-since org-clock-start-time)) 60))))
-          total))
+      (let ((total 0))
+        (dolist (file (org-agenda-files))
+          (with-current-buffer (find-file-noselect file)
+            (setq total (+ total (or (org-clock-sum (car range) (cadr range)) 0)))))
+        (when (org-clocking-p)
+          (setq total (+ total (floor (float-time (time-since org-clock-start-time)) 60))))
+        total))
 
-      (defun az/org-clocked-minutes-today ()
-        "Total minutes clocked today across `org-agenda-files'."
-        (az/org-clocked-minutes-in-range (org-clock-special-range 'today)))
+    (defun az/org-clocked-minutes-today ()
+      "Total minutes clocked today across `org-agenda-files'."
+      (az/org-clocked-minutes-in-range (org-clock-special-range 'today)))
 
-      (defun az/org-clocked-minutes-this-week ()
-        "Total minutes clocked this week across `org-agenda-files'."
-        (az/org-clocked-minutes-in-range (org-clock-special-range 'thisweek)))
+    (defun az/org-clocked-minutes-this-week ()
+      "Total minutes clocked this week across `org-agenda-files'."
+      (az/org-clocked-minutes-in-range (org-clock-special-range 'thisweek)))
 
-      (defun az/org-format-minutes (minutes)
-        "Format MINUTES as \"Xh YYm\"."
-        (format "%dh %02dm" (/ minutes 60) (% minutes 60)))
+    (defun az/org-format-minutes (minutes)
+      "Format MINUTES as \"Xh YYm\"."
+      (format "%dh %02dm" (/ minutes 60) (% minutes 60)))
 
-      (defun az/org-agenda-work-until-string ()
-        "Describe when today's clocked time reaches `az-org-daily-work-minutes'.
+    (defun az/org-agenda-work-until-string ()
+      "Describe when today's clocked time reaches `az-org-daily-work-minutes'.
 Turns green (face `success') once the target is reached."
-        (let* ((worked (az/org-clocked-minutes-today))
-               (remaining (- az-org-daily-work-minutes worked)))
-          (if (<= remaining 0)
-              (propertize (format "Worked %s today - 8.5h reached %s ago"
-                                  (az/org-format-minutes worked)
-                                  (az/org-format-minutes (- remaining)))
-                          'face 'success)
-            (format "Worked %s today - work until %s to reach 8.5h"
-                    (az/org-format-minutes worked)
-                    (format-time-string "%H:%M" (time-add (current-time) (* remaining 60)))))))
+      (let* ((worked (az/org-clocked-minutes-today))
+             (remaining (- az-org-daily-work-minutes worked)))
+        (if (<= remaining 0)
+            (propertize (format "Worked %s today - 8.5h reached %s ago"
+                                (az/org-format-minutes worked)
+                                (az/org-format-minutes (- remaining)))
+                        'face 'success)
+          (format "Worked %s today - work until %s to reach 8.5h"
+                  (az/org-format-minutes worked)
+                  (format-time-string "%H:%M" (time-add (current-time) (* remaining 60)))))))
 
-      (defun az/org-agenda-week-summary-string ()
-        "Describe when this week's clocked time reaches `az-org-weekly-work-minutes'.
+    (defun az/org-agenda-week-summary-string ()
+      "Describe when this week's clocked time reaches `az-org-weekly-work-minutes'.
 Turns green (face `success') once the target is reached."
-        (let* ((worked (az/org-clocked-minutes-this-week))
-               (target (az/org-format-minutes az-org-weekly-work-minutes))
-               (remaining (- az-org-weekly-work-minutes worked)))
-          (if (<= remaining 0)
-              (propertize (format "Worked %s this week - %s reached (%s over)"
-                                  (az/org-format-minutes worked) target
-                                  (az/org-format-minutes (- remaining)))
-                          'face 'success)
-            ;; Unlike the daily projection, this can roll past midnight, so
-            ;; the weekday is included to keep the timestamp unambiguous.
-            (format "Worked %s this week - work until %s to reach %s"
-                    (az/org-format-minutes worked)
-                    (format-time-string "%a %H:%M" (time-add (current-time) (* remaining 60)))
-                    target))))
+      (let* ((worked (az/org-clocked-minutes-this-week))
+             (target (az/org-format-minutes az-org-weekly-work-minutes))
+             (remaining (- az-org-weekly-work-minutes worked)))
+        (if (<= remaining 0)
+            (propertize (format "Worked %s this week - %s reached (%s over)"
+                                (az/org-format-minutes worked) target
+                                (az/org-format-minutes (- remaining)))
+                        'face 'success)
+          ;; Unlike the daily projection, this can roll past midnight, so
+          ;; the weekday is included to keep the timestamp unambiguous.
+          (format "Worked %s this week - work until %s to reach %s"
+                  (az/org-format-minutes worked)
+                  (format-time-string "%a %H:%M" (time-add (current-time) (* remaining 60)))
+                  target))))
 
-      (defun az/org-agenda-insert-summary-lines ()
-        "Insert the weekly and daily work summaries at the top of the agenda.
+    (defun az/org-agenda-insert-summary-lines ()
+      "Insert the weekly and daily work summaries at the top of the agenda.
 `org-agenda-finalize-hook' also runs after single-line updates (e.g.
 toggling a TODO state), with the buffer narrowed to just that one
 line - skip in that case, or the lines get inserted mid-agenda
 instead of at the real top."
-        (when (and (derived-mode-p 'org-agenda-mode) (not (buffer-narrowed-p)))
-          (goto-char (point-min))
-          (insert (az/org-agenda-week-summary-string) "\n"
-                  (az/org-agenda-work-until-string) "\n\n")))
+      (when (and (derived-mode-p 'org-agenda-mode) (not (buffer-narrowed-p)))
+        (goto-char (point-min))
+        (insert (az/org-agenda-week-summary-string) "\n"
+                (az/org-agenda-work-until-string) "\n\n")))
 
-      (add-hook 'org-agenda-finalize-hook #'az/org-agenda-insert-summary-lines))))
+    (add-hook 'org-agenda-finalize-hook #'az/org-agenda-insert-summary-lines)))

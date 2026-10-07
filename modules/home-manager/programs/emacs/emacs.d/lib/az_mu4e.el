@@ -91,14 +91,6 @@
     ;; Don't ask to quit
     (setopt mu4e-confirm-quit nil)
 
-    ;; Open URLs in the browser even, there isn't a frame open
-    (with-eval-after-load 'shr
-      ;; Force `shr-browse-url` to ALWAYS use the external browser
-      ;; This automatically passes `t` to the function, simulating a `C-u RET` press.
-      (advice-add 'shr-browse-url :around
-                  (lambda (orig-fn &rest args)
-                    (apply orig-fn t (cdr args)))))
-
     ;; A function to create a persp for reading mail
     (defun open-mail ()
       "Create a mail perspective and open mu4e"

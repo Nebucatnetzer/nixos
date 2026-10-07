@@ -165,13 +165,7 @@
   :config
   (setopt magit-diff-refine-hunk (quote all)
           magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)
-          magit-save-repository-buffers 'dontask)
-
-  ;; Open URLs in the browser even without a frame, consistent with Org mode and mu4e
-  (advice-add 'magit-browse-thing :around
-              (lambda (orig-fn &rest args)
-                (let ((browse-url-browser-function 'browse-url-generic))
-                  (apply orig-fn args)))))
+          magit-save-repository-buffers 'dontask))
 
 (use-package nix-mode
   :hook (nix-mode . eglot-ensure))

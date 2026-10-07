@@ -258,6 +258,17 @@
 ;; Skip gnu-elpa-keyring-update in read-only Nix store configs
 ;; (use-package gnu-elpa-keyring-update)
 
+;; browse-url sets up the GUI display before it opens a URL, and that fails
+;; in terminal frames. Call the URL handler directly when there is no GUI.
+(defun az-browse-url-in-terminal (orig-fn url &rest args)
+  "Call ORIG-FN in graphical frames, else dispatch URL to its handler directly."
+  (if (display-graphic-p)
+      (apply orig-fn url args)
+    (let ((handler (or (browse-url-select-handler url)
+                       browse-url-browser-function)))
+      (apply handler url args))))
+(advice-add 'browse-url :around #'az-browse-url-in-terminal)
+
 ;; Clipboard for terminal frames: copy through OSC 52 escape sequences so
 ;; yanks reach the host clipboard over any terminal (Wayland, X, SSH) without
 ;; an external helper. Replaces xclip, which was X11-only and dead on Wayland.

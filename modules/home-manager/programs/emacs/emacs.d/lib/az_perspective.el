@@ -8,6 +8,10 @@
   (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
   :config
   (consult-customize consult-source-buffer :hidden t :default nil)
+  ;; perspective binds to mouse click instead of release which then sometimes causes the org clock drawer to fire.
+  ;; Rebinding it to mouse release.
+  (keymap-unset persp-mode-line-map "<mode-line> <down-mouse-1>" t)
+  (keymap-set persp-mode-line-map "<mode-line> <mouse-1>" #'persp-mode-line-click)
 
   (add-to-list 'consult-buffer-sources persp-consult-source)
   :init

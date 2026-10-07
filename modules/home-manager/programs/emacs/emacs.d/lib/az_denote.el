@@ -1,11 +1,28 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-notes)
+  (defun az-open-notes ()
+    "Toggle the notes perspective.
+  On notes, go back to the previous perspective. Otherwise switch to
+  notes and create it with a dired buffer in the notes directory."
+    (interactive)
+    (cond
+     ((string= (persp-current-name) "notes")
+      (persp-prev))
+     ((member "notes" (persp-names))
+      (persp-switch "notes"))
+     (t
+      ;; denote-directory only exists after denote and its :config load.
+      (require 'denote)
+      (persp-switch "notes")
+      (dired denote-directory))))
+
   (use-package denote
     :bind
     (("C-c n r" . denote-rename-file)
      ("C-c n p" . az-note-from-region)
      ("C-c n l" . denote-link)
-     ("C-c n n" . denote-subdirectory))
+     ("C-c n n" . denote-subdirectory)
+     ("<f5>" . az-open-notes))
     :config
     (defvar az-denote-org-front-matter
       (concat "#+title: %s\n:preamble:\n"

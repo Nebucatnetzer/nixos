@@ -79,22 +79,6 @@ minibuffer, even without explicitly focusing it."
                (not (string-equal old-location new-location)))
       (delete-file old-location))))
 
-(defun az-open-notes ()
-  "Toggle the notes perspective. If already on 'notes', switch to the previous
-perspective. If 'notes' exists but isn't active, switch to it. Otherwise,
-create it and open dired in the notes directory."
-  (interactive)
-  (cond
-   ((string= (persp-current-name) "notes")
-    (persp-prev))
-
-   ((member "notes" (persp-names))
-    (persp-switch "notes"))
-
-   (t
-    (persp-switch "notes")
-    (dired denote-directory))))
-
 ;; Taken from here: https://www.emacswiki.org/emacs/Replace-in-buffer
 (defun az-replace-in-buffer ()
   "Search and replace given string in current buffer."

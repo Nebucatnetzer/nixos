@@ -238,7 +238,6 @@
         ;; keymap for dired
         ("C-x d" . dired-jump)
         ("M-m" . az-switch-to-minibuffer)
-        ("<f5>" . az-open-notes)
         ))
 
 (use-package tramp

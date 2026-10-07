@@ -53,6 +53,7 @@
             (mapcar #'car
                     (sort file-list
                           #'(lambda (x y) (time-less-p (nth 6 y) (nth 6 x))))))
+      (setq start-file (completing-read "Image: " file-list-sorted nil t))
 
       ;; add full path to start file and end-file
       (setq start-file-full

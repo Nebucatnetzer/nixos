@@ -17,9 +17,9 @@ writeShellApplication {
   };
   text = ''
     # --shuffle makes the default --directory-mode recursive, which would drag in
-    # every playlist video, so the immediate children are asked for explicitly.
+    # every playlist video, with ignore we only play top-level files.
     mpv --save-position-on-quit \
-        --directory-mode=lazy \
+        --directory-mode=ignore \
         --shuffle ${mediaPaths.youtubeVideos}/
   '';
 }

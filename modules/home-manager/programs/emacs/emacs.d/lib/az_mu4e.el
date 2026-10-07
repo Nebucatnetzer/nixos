@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-email)
+(when (bound-and-true-p enable-email)
   (use-package mu4e
     :if (is-linux-p)
     :bind
@@ -10,30 +10,11 @@
 
     ;; Start mu4e-compose-mode in insert mode
     (evil-set-initial-state 'mu4e-compose-mode 'insert)
-
-    ;; vim keybindings for mu4e
-    (evil-add-hjkl-bindings mu4e-headers-mode-map 'emacs
-      (kbd "/")       'evil-search-forward
-      (kbd "n")       'evil-search-next
-      (kbd "N")       'evil-search-previous
-      (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up)
-
-    (evil-add-hjkl-bindings mu4e-view-mode-map 'emacs
-      (kbd "C-d")     'evil-scroll-down
-      (kbd "C-u")     'evil-scroll-up)
-
-    (with-eval-after-load 'mu4e
-      (evil-define-key 'normal mu4e-view-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
-      )
-
-    (require 'smtpmail)
+    (evil-define-key 'normal mu4e-view-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
 
     ;; use msmtp
     (setopt message-send-mail-function 'message-send-mail-with-sendmail
             sendmail-program "msmtp")
-
-    (require 'mu4e)
 
     (setopt mail-user-agent 'mu4e-user-agent
 
@@ -102,7 +83,6 @@
     (add-hook 'mu4e-compose-mode-hook
               (defun az-do-compose-stuff ()
                 "My settings for message composition."
-                (setopt mu4e-compose-format-flowed t)
                 (use-hard-newlines -1)
                 (turn-off-auto-fill)
                 (flyspell-mode)))))

@@ -4,8 +4,6 @@
   :config
   (yas-global-mode 1))
 
-;; enable yasnippet
+;; adds the snippet collection to yas-snippet-dirs when loaded
 (use-package yasnippet-snippets
-  :after yasnippet
-  :config
-  (yas-global-mode 1))
+  :after yasnippet)

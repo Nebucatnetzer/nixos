@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-org)
+(when (bound-and-true-p enable-org)
   (use-package ox-pandoc
     :after org)
 
@@ -178,10 +178,8 @@ a new archive file."
 
     (add-hook 'org-mode-hook
               (defun az-org-editing ()
-                "My settings for message composition."
-                (setq whitespace-line-column 500)
-                (olivetti-mode)
-                (turn-off-auto-fill)
+                "Prose setup, but with one screen line per line."
+                (az-prose-editing)
                 ;; Olivetti and global-visual-line-mode both re-wrap after
                 ;; org-mode set truncate-lines; this also marks the buffer so
                 ;; the global mode skips it.
@@ -218,7 +216,7 @@ a new archive file."
     (define-key org-read-date-minibuffer-local-map (kbd "M-J")
                 (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
 
-    (when (boundp 'enable-clocking)
+    (when (bound-and-true-p enable-clocking)
       (defun start-heading-clock (id file)
         "Start clock programmatically for heading with ID in FILE."
         (require 'org-id)

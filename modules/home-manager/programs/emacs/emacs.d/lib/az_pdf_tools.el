@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-pdf-tools)
+(when (bound-and-true-p enable-pdf-tools)
   (use-package pdf-tools
     :mode ("\\.pdf\\'" . pdf-view-mode)
     :config
@@ -15,6 +15,5 @@
     (define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
     (define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)))
 
-(when (boundp 'enable-pdf-tools)
-  ;; improve the resolution of doc-view
-  (setopt doc-view-resolution 200))
+;; doc-view is the fallback viewer when pdf-tools is off
+(setopt doc-view-resolution 200)

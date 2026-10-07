@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-clocking)
+(when (bound-and-true-p enable-clocking)
 
   (defvar az-gitlab-host ""
     "Hostname of the GitLab instance, e.g. \"gitlab.example.com\".

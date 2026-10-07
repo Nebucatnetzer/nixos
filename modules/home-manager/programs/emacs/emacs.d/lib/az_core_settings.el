@@ -42,8 +42,6 @@
                   (setenv "WAYLAND_DISPLAY" display)))))
 
   (setopt history-delete-duplicates t)
-  ;; just create buffers don't ask
-  (setopt ido-create-new-buffer 'always)
   ;; Add groups to the buffer overview
   (setopt ibuffer-saved-filter-groups
           (quote (("default"
@@ -59,7 +57,7 @@
                      (mode . javascript-mode)
                      (mode . sql-mode)
                      (mode . powershell-mode)
-                     (mode . nix-mode)
+                     (mode . nix-ts-mode)
                      (mode . yaml-ts-mode)
                      (mode . ansible-mode)
                      (mode . emacs-lisp-mode)))
@@ -92,8 +90,6 @@
   ;; insert only one space after a period
   (setopt sentence-end-double-space nil)
   (setopt sh-basic-offset 4)
-  ;; disable tooltips
-  (setopt tooltip-use-echo-area t)
 
   (setopt use-short-answers t)
   ;; Do not allow the cursor in the minibuffer prompt
@@ -163,8 +159,6 @@
 
   ;; pair parentheses
   (electric-pair-mode 1)
-  ;; remap yes or no to y or n
-  (fset 'yes-or-no-p 'y-or-n-p)
   ;; Refresh buffers if the file changes on disk
   (global-auto-revert-mode t)
 
@@ -188,29 +182,27 @@
   ;; Proper line wrapping
   (global-visual-line-mode 1)
   ;; disable menu and toolbar
-  (menu-bar-mode -99)
+  (menu-bar-mode -1)
   ;; file encodings
   (prefer-coding-system 'utf-8-unix)
-  ;; Matches parentheses and such in every mode
-  (show-paren-mode 1)
 
   (tool-bar-mode -1)
   (tooltip-mode -1)
   ;; enable mouse support in the terminal
   (xterm-mouse-mode 1)
 
-  (when (boundp 'enable-scroll-bar)
+  (when (bound-and-true-p disable-scroll-bar)
     (scroll-bar-mode -1))
   ;; Disable fringe because I use visual-line-mode
-  (when (and (boundp 'disable-fringe) (fboundp 'set-fringe-mode))
+  (when (and (bound-and-true-p disable-fringe) (fboundp 'set-fringe-mode))
     (set-fringe-mode '(0 . 0)))
-  (when (boundp 'enable-font)
+  (when (bound-and-true-p enable-font)
     (set-face-attribute 'default nil
                         :family "Source Code Pro"
                         :height 140
                         :weight 'normal
                         :width 'normal))
-  (when (boundp 'enable-emojis)
+  (when (bound-and-true-p enable-emojis)
     (when (is-linux-p)
       (set-fontset-font t nil "Symbola" nil 'prepend)))
 
@@ -226,10 +218,6 @@
    (ibuffer-mode .
                  (lambda ()
                    (ibuffer-filter-by-name "^[^*]")))
-   ;; improve performance with large files (
-   (prog-mode . az-generic-setup)
-   (text-mode . az-generic-setup)
-   ;; )
    ;; Enable line wrapping
    (text-mode  . turn-on-auto-fill))
   :bind
@@ -283,8 +271,8 @@
 ;; yanks reach the host clipboard over any terminal (Wayland, X, SSH) without
 ;; an external helper. Replaces xclip, which was X11-only and dead on Wayland.
 ;; Paste still comes from the terminal emulator's own paste binding.
-(unless (file-exists-p "/etc/wsl.conf")
-  (when (boundp 'enable-clipetty)
+(unless (az-wsl-p)
+  (when (bound-and-true-p enable-clipetty)
     (use-package clipetty
       :config
       (global-clipetty-mode 1))))
@@ -293,7 +281,7 @@
 ;; run here in the terminal, where OSC 52 would only cover copy; win32yank
 ;; shells out to the Windows clipboard for both copy and paste, so yanking
 ;; Windows-copied text into Emacs keeps working.
-(when (file-exists-p "/etc/wsl.conf")
+(when (az-wsl-p)
   (setq interprogram-cut-function
         (lambda (text &optional _push)
           (let ((process-connection-type nil))

@@ -5,7 +5,7 @@
 ;; they archive together with the project.  Entries that have no project yet
 ;; go to the denote journal.  The chronological cross project view is built on
 ;; demand and never stored.
-(when (boundp 'enable-notes)
+(when (bound-and-true-p enable-notes)
 
   (require 'denote-journal)
   (require 'find-lisp)

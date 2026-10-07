@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-notes)
+(when (bound-and-true-p enable-notes)
   (defun az-open-notes ()
     "Toggle the notes perspective.
   On notes, go back to the previous perspective. Otherwise switch to

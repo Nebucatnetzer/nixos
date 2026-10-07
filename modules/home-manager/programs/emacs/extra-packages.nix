@@ -58,7 +58,6 @@
   epkgs.makey
   epkgs.marginalia
   epkgs.markdown-mode
-  epkgs.nix-mode
   epkgs.nix-ts-mode
   epkgs.olivetti
   epkgs.orderless

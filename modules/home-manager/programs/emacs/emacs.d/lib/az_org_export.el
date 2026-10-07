@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-org)
+(when (bound-and-true-p enable-org)
   (with-eval-after-load 'org
     ;; org-export formats
     (setq org-export-backends (quote (beamer html latex md odt reveal)))

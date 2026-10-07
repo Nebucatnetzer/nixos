@@ -8,28 +8,14 @@
           evil-want-keybinding nil) ;; required by evil-collection
 
   :config
-  (add-to-list 'evil-emacs-state-modes 'claude-mode)
-  (add-to-list 'evil-emacs-state-modes 'helpful-mode)
-  (add-to-list 'evil-emacs-state-modes 'mu4e-headers-mode)
   (general-def :states 'motion
     "/" 'consult-line)
-
-  ;; helpful stays in emacs state — add vim scroll/search keys manually
-  (evil-add-hjkl-bindings helpful-mode-map 'emacs
-    (kbd "n")   'evil-search-next
-    (kbd "N")   'evil-search-previous
-    (kbd "C-d") 'evil-scroll-down
-    (kbd "C-u") 'evil-scroll-up)
 
   (evil-mode 1))
 
 (define-key evil-normal-state-map [escape] 'az-keyboard-quit)
 (define-key evil-visual-state-map [escape] 'az-keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 (use-package evil-surround
   :after evil
@@ -52,7 +38,7 @@
     (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
 
   (with-eval-after-load 'org-agenda
-    (when (boundp 'enable-org)
+    (when (bound-and-true-p enable-org)
       (evil-add-hjkl-bindings org-agenda-mode-map 'emacs
         (kbd "n")   'evil-search-next
         (kbd "N")   'evil-search-previous

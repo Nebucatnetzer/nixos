@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-org)
+(when (bound-and-true-p enable-org)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; add image from conference phone upload                                 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -24,7 +24,6 @@
   (require 'swiper)
   (require 's)
 
-  (load-library "find-lisp")
   (global-set-key (kbd "C-c i") 'org-insert-image)
   ;; start directory
   (defvar bjm/conference-image-dir (expand-file-name az-auto-uploads-dir))

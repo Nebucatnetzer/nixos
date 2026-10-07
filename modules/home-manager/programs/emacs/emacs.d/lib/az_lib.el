@@ -1,22 +1,12 @@
 ;; -*- lexical-binding: t; -*-
-(defun az-buffer-too-big-p ()
-  (or (> (buffer-size) (* 5000 64))
-      (> (line-number-at-pos (point-max)) 5000)))
-
-(defun az-generic-setup ()
-  "turn off `linum-mode' when there are more than 5000 lines."
-  (if (az-buffer-too-big-p) (display-line-numbers-mode -1)))
-
-(defun is-mac-p ()
-  (eq system-type 'darwin))
-
 (defun is-linux-p ()
   (eq system-type 'gnu/linux))
 
-(defun is-windows-p ()
-  (or (eq system-type 'ms-dos)
-      (eq system-type 'windows-nt)
-      (eq system-type 'cygwin)))
+(defun az-wsl-p ()
+  "Return non-nil when Emacs runs inside WSL."
+  (file-exists-p "/etc/wsl.conf"))
 
-(defun is-bsd-p ()
-  (eq system-type 'gnu/kfreebsd))
+(defun az-prose-editing ()
+  "Centre the text with olivetti and stop hard line breaks."
+  (olivetti-mode 1)
+  (auto-fill-mode -1))

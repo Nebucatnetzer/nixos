@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-org)
+(when (bound-and-true-p enable-org)
   (with-eval-after-load 'org
     ;; Agenda faces
     (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
@@ -195,7 +195,7 @@ alignment column would add.  `org-agenda-finalize' runs
           (org-agenda-redo t)
           (message "[org agenda] refreshed!"))))
 
-    (load-library "find-lisp")
+    (require 'find-lisp)
     (defun az-update-org-agenda-files ()
       "Update the list of org-agenda-files dynamically."
       (setq org-agenda-files
@@ -205,7 +205,7 @@ alignment column would add.  `org-agenda-finalize' runs
     ;; Add a hook to update agenda files whenever org-agenda is invoked
     (add-hook 'org-agenda-mode-hook #'az-update-org-agenda-files)
 
-    (when (boundp 'enable-clocking)
+    (when (bound-and-true-p enable-clocking)
       (require 'org-clock)
 
       (defvar az-org-daily-work-minutes 510

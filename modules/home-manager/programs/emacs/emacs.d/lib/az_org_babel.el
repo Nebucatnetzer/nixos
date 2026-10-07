@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(when (boundp 'enable-org)
+(when (bound-and-true-p enable-org)
   (with-eval-after-load 'org
     ;; Single owner of the registry: `org-babel-do-load-languages' replaces the
     ;; variable wholesale, so every enabled language must be listed here.

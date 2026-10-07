@@ -274,4 +274,12 @@ a new archive file."
       (global-set-key (kbd "<f7>") #'org-clock-in)
       (global-set-key (kbd "<f8>") #'org-clock-out)
       (global-set-key (kbd "C-x C-d") #'org-clock-mark-default-task)
-      )))
+      ))
+
+  ;; Load additional org config files.
+  (load-file (modules-path "az_org_babel.el"))
+  (load-file (modules-path "az_org_agenda.el"))
+  (load-file (modules-path "az_org_export.el"))
+  (load-file (modules-path "az_org_insert.el"))
+  (load-file (modules-path "az_org_log.el"))
+  (load-file (modules-path "az_org_gitlab.el")))

@@ -119,7 +119,6 @@
          ^^_G_^^
    --------------------------------------------------------------------------------
         "
-  ("\\" hydra-master/body "back")
   ("<ESC>" nil "quit")
   ("al" pdf-annot-list-annotations)
   ("ad" pdf-annot-delete)
@@ -158,7 +157,6 @@
     :states '(normal visual insert emacs)
     :prefix "C-SPC"
     "a" '(hydra-apropos/body t :which-key "Apropos Commands")
-    "f" '(hydra-flycheck/body t :which-key "Flycheck")
     "i" '(hydra-yasnippet/body t :which-key "Yasnippets")
     "m" '(hydra-info/body t :which-key "Info")
     "p" '(hydra-pdftools/body t :which-key "PDF Tools")

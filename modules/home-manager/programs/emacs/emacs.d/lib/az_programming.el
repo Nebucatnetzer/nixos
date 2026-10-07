@@ -129,7 +129,7 @@
 (use-package flymake
   :hook (sh-mode . flymake-mode))
 
-(use-package eglot-mode
+(use-package eglot
   :config
   (setopt eglot-autoshutdown t
           eldoc-echo-area-use-multiline-p nil

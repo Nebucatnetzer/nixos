@@ -77,7 +77,6 @@
   epkgs.queue
   epkgs.rainbow-delimiters
   epkgs.ripgrep
-  epkgs.smooth-scrolling
   epkgs.swiper
   epkgs.treemacs
   epkgs.treemacs-evil

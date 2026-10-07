@@ -15,13 +15,6 @@
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-;; smooth scrolling
-(use-package smooth-scrolling
-  :config
-  (setopt scroll-margin 1
-          scroll-conservatively 9999
-          scroll-step 1))
-
 (use-package alabaster-themes
   :config
   ;; Emacs only probes the terminal background under TERM=xterm*. Under tmux-256color

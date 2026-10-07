@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
-  (use-package org
-    :config
+  (with-eval-after-load 'org
     ;; org-export formats
     (setq org-export-backends (quote (beamer html latex md odt reveal)))
 

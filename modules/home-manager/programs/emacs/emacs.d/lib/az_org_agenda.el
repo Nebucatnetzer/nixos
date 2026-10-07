@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
-  (use-package org
-    :config
+  (with-eval-after-load 'org
     ;; Agenda faces
     (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
     (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium)

@@ -1,7 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 (when (boundp 'enable-org)
-  (use-package org
-    :config
+  (with-eval-after-load 'org
     ;; Single owner of the registry: `org-babel-do-load-languages' replaces the
     ;; variable wholesale, so every enabled language must be listed here.
     (org-babel-do-load-languages

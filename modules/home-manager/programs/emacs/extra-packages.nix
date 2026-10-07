@@ -87,7 +87,6 @@
   epkgs.vertico
   epkgs.vundo
   epkgs.web-mode
-  epkgs.verb
   epkgs.wgrep
   epkgs.which-key
   epkgs.yaml-mode

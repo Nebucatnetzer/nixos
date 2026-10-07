@@ -218,10 +218,6 @@
 (use-package flymake-ruff
   :hook (eglot-managed-mode . flymake-ruff-load))
 
-;; https://github.com/federicotdn/verb
-;; A very nice restclient working with org-mode
-(use-package verb)
-
 (use-package web-mode
   :mode
   (("\\.phtml\\'" . web-mode)

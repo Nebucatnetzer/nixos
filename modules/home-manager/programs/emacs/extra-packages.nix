@@ -14,23 +14,17 @@
   unstable-pkgs.emacs.pkgs.alabaster-themes
   epkgs.ansible
   epkgs.avy
-  epkgs.bind-key
-  epkgs.cfrs
   epkgs.clipetty
   epkgs.company
   epkgs.consult
   epkgs.consult-projectile
-  epkgs.dap-mode
   epkgs.eglot-booster
-  epkgs.elisp-refs
   epkgs.embark
   epkgs.embark-consult
   epkgs.envrc
-  epkgs.epl
   epkgs.evil
   epkgs.evil-collection
   epkgs.evil-surround
-  epkgs.f
   epkgs.flymake-ansible-lint
   epkgs.flymake-collection
   epkgs.flymake-ruff
@@ -45,17 +39,13 @@
   epkgs.haskell-mode
   epkgs.helpful
   epkgs.highlight-indent-guides
-  epkgs.ht
   epkgs.htmlize
   (pkgs.callPackage ./packages/hurl-mode {
     inherit (epkgs) melpaBuild;
   })
   epkgs.hydra
   epkgs.jq-mode
-  epkgs.lsp-haskell
-  epkgs.lv
   epkgs.magit
-  epkgs.makey
   epkgs.marginalia
   epkgs.markdown-mode
   epkgs.nix-ts-mode
@@ -64,19 +54,11 @@
   epkgs.org-contrib
   epkgs.ox-pandoc
   epkgs.perspective
-  epkgs.pfuture
   epkgs.php-mode
-  epkgs.pkg-info
-  epkgs.posframe
   epkgs.powershell
   epkgs.projectile
-  epkgs.projectile-ripgrep
-  epkgs.python-mode
   epkgs.python-pytest
-  epkgs.queue
   epkgs.rainbow-delimiters
-  epkgs.ripgrep
-  epkgs.swiper
   epkgs.treemacs
   epkgs.treemacs-evil
   epkgs.typst-ts-mode
@@ -86,13 +68,11 @@
   epkgs.vundo
   epkgs.web-mode
   epkgs.wgrep
-  epkgs.which-key
   epkgs.yaml-mode
   epkgs.yasnippet-snippets
 ]
 ++ lib.optionals includeGuiPackages [
   epkgs.pdf-tools
-  epkgs.xclip
 ]
 ++ lib.optionals includeExtendedPackages [
   # AI code completion (requires an Infomaniak API token)

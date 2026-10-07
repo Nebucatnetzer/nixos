@@ -77,12 +77,8 @@
   :config
   (eglot-booster-mode))
 
-;; optionally if you want to use debugger
-(use-package dap-mode)
-
 (use-package hurl-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.hurl\\'" . hurl-mode)))
+  :defer t)
 
 (use-package jq-mode)
 
@@ -124,7 +120,7 @@
           projectile-switch-project-action #'projectile-dired)
   )
 
-(use-package python-mode
+(use-package python
   :config
   (setopt python-shell-interpreter "python3"
           flymake-pylint-executable "pylint")

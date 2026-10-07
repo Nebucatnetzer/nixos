@@ -55,7 +55,6 @@ writeShellApplication {
     platforms = lib.platforms.linux;
   };
   text = ''
-    export LSP_USE_PLISTS=true
     exec ${emacsWithPkgs}/bin/emacs --init-directory ${emacsConfig} "$@"
   '';
 }

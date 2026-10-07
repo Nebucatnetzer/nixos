@@ -13,14 +13,10 @@
 (use-package dash
   :defer t)
 
-(use-package swiper
-  :defer t)
-
 (use-package s
   :defer t)
 
 (require 'dash)
-(require 'swiper)
 (require 's)
 
 (global-set-key (kbd "C-c i") 'org-insert-image)

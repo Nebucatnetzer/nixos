@@ -14,6 +14,5 @@
 
 ;; which key is a package to show which keys can be pressed
 (use-package which-key
-  :diminish which-key-mode
   :config
   (which-key-mode))

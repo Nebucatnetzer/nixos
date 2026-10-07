@@ -6,9 +6,6 @@
   ...
 }:
 {
-  home.sessionVariables = {
-    LSP_USE_PLISTS = "true";
-  };
   home.packages =
     import ./runtime-tools.nix { inherit pkgs unstable-pkgs lib; }
     ++ lib.optionals (config.programs.emacs.package != pkgs.emacs-nox) [

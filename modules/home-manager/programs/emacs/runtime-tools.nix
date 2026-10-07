@@ -19,7 +19,6 @@
   pkgs.ripgrep
   pkgs.shellcheck # shell script linter
   pkgs.shfmt # formatting bash scripts
-  pkgs.silver-searcher
 ]
 ++ lib.optionals includeLanguageTools [
   pkgs.deadnix

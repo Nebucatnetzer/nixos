@@ -141,6 +141,10 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init
+  ;; Evil binds M-. to evil-repeat-pop-next in normal state, which hides
+  ;; the global binding.
+  (general-def :states 'normal
+    "M-." 'embark-act)
   ;; Optionally replace the key help with a completing-read interface
   (setopt prefix-help-command #'embark-prefix-help-command)
 

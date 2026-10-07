@@ -100,11 +100,12 @@ create it and open dired in the notes directory."
   "Search and replace given string in current buffer."
   (interactive)
   (save-excursion
-    (if (equal mark-active nil) (mark-word))
-    (setopt curr-word (buffer-substring-no-properties (mark) (point))
-            old-string (read-string "Replace: " curr-word)
-            new-string (read-string "With: " old-string))
-    (query-replace old-string new-string nil (point-min) (point-max))))
+    (unless mark-active
+      (mark-word))
+    (let* ((selected-text (buffer-substring-no-properties (mark) (point)))
+           (old-string (read-string "Replace: " selected-text))
+           (new-string (read-string "With: " old-string)))
+      (query-replace old-string new-string nil (point-min) (point-max)))))
 
 (defun az-split-window-below-and-move-cursor ()
   (interactive)

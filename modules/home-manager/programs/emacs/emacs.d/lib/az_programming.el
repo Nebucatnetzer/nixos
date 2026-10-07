@@ -201,16 +201,20 @@
   :config
   (setopt python-shell-interpreter "python3"
           flymake-pylint-executable "pylint")
-  :hook ((python-ts-mode . eglot-ensure)
-         (eglot-managed-mode . pylint-setup-flymake-backend)))
+  :hook (python-ts-mode . eglot-ensure))
 
 (use-package python-pytest
   :config
   (define-key python-ts-mode-map (kbd "C-c t" ) #'python-pytest-dispatch)
   )
 
-(use-package flymake-ruff
-  :hook (eglot-managed-mode . flymake-ruff-load))
+(defun az-python-flymake-setup ()
+  "Add pylint and ruff after eglot has set its own flymake backend."
+  (when (derived-mode-p 'python-base-mode)
+    (pylint-setup-flymake-backend)
+    (flymake-ruff-load)))
+
+(add-hook 'eglot-managed-mode-hook #'az-python-flymake-setup)
 
 (use-package web-mode
   :mode

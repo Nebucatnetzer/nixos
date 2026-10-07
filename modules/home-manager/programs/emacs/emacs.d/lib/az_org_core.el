@@ -11,11 +11,6 @@
            :map org-mode-map
            ("C-c C-," . org-insert-structure-template)
            ("C-c C-$" . org-archive-subtree))
-    :hook
-    (org-mode-hook . (lambda () (org-map-entries #'org-fold-hide-subtree
-                                                 "/+DONE" 'file 'archive 'comment)
-                       (org-map-entries #'org-fold-hide-subtree
-                                        "/+CANCELLED" 'file 'archive 'comment)))
     :config
     (require 'org-indent)
 
@@ -138,6 +133,15 @@
                          (format-time-string "[%Y-%m-%d %a %H:%M]")))))
 
     (add-hook 'org-capture-prepare-finalize-hook #'az/org-capture-stamp-created)
+    (defun az/org-fold-finished-entries ()
+      "Fold the body of every DONE and CANCELLED entry in a file buffer to make files look a bit tidier.
+Scope nil, not 'file: 'file prompts for files not yet on disk, such as
+a new archive file."
+      (when buffer-file-name
+        (org-map-entries #'org-fold-hide-subtree
+                         "/DONE|CANCELLED" nil 'archive 'comment)))
+
+    (add-hook 'org-mode-hook #'az/org-fold-finished-entries)
 
     (defun az-org-files-list ()
       (delq nil

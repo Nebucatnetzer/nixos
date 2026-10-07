@@ -222,8 +222,6 @@ a new archive file."
 
     ;; verb-command-map must be bound as a keymap variable, not via :bind
     (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
-    ;; disable hyperbole's C-c / so org-sparse-tree takes it
-    (define-key hyperbole-mode-map (kbd "C-c /") nil)
 
     ;; Calendar date entry navigation
     (define-key org-read-date-minibuffer-local-map (kbd "M-h")

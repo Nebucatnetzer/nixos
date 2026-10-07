@@ -51,7 +51,6 @@
     inherit (epkgs) melpaBuild;
   })
   epkgs.hydra
-  epkgs.hyperbole
   epkgs.jq-mode
   epkgs.lsp-haskell
   epkgs.lv

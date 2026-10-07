@@ -22,7 +22,6 @@
       (?b aw-split-window-horz "Split Horz Window")
       (?o delete-other-windows "Delete Other Windows")
       (?t az-tear-off-window "Create frame with window")
-      ;; ?i ?r ?t are used by hyperbole.el
       (?? aw-show-dispatch-help)))
   :config
   (defun az-tear-off-window (window)
@@ -165,16 +164,6 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
 (use-package embark-consult
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
-
-;; hyperbole
-(use-package hyperbole
-  :init
-  (setopt hywiki-directory "~/.emacs.d/hywiki")
-  :config
-  (hyperbole-mode 1)
-  (define-key hyperbole-mode-map (kbd "M-o"  ) nil)
-  (define-key hyperbole-mode-map (kbd "M-S-RET"  ) nil)
-  )
 
 ;; ultra-scroll
 (use-package ultra-scroll

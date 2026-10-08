@@ -120,9 +120,10 @@
   :hook (python-ts-mode . eglot-ensure))
 
 (use-package python-pytest
-  :config
-  (define-key python-ts-mode-map (kbd "C-c t" ) #'python-pytest-dispatch)
-  )
+  :bind (:map python-ts-mode-map
+              :package python
+              ("C-c C-t" . python-pytest-run-def-at-point-treesit)
+              ("C-c t" . python-pytest-dispatch)))
 
 (defun az-python-flymake-setup ()
   "Add pylint and ruff after eglot has set its own flymake backend."

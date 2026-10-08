@@ -8,16 +8,16 @@
           evil-want-keybinding nil) ;; required by evil-collection
 
   :config
-  (general-def :states 'motion
-    "/" 'consult-line
+  (evil-define-key 'motion 'global
+    "/" #'consult-line
     ;; Repeated zz cycles centre, top, bottom like C-l, which is now a prefix.
-    "zz" 'recenter-top-bottom)
+    "zz" #'recenter-top-bottom)
+
+  (evil-define-key '(normal visual) 'global
+    (kbd "<escape>") #'az-keyboard-quit)
+  (keymap-set minibuffer-local-map "<escape>" #'minibuffer-keyboard-quit)
 
   (evil-mode 1))
-
-(define-key evil-normal-state-map [escape] 'az-keyboard-quit)
-(define-key evil-visual-state-map [escape] 'az-keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 
 (use-package evil-surround
   :after evil
@@ -31,13 +31,14 @@
 
   ;; evil keybindings for dired
   (with-eval-after-load 'dired
-    (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
-    (evil-define-key 'normal dired-mode-map "q" 'az-kill-dired-buffers)
-    (evil-define-key 'normal dired-mode-map "l" 'dired-find-file)
-    (evil-define-key 'normal dired-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+    (evil-define-key 'normal dired-mode-map
+      "h" #'dired-up-directory
+      "q" #'az-kill-dired-buffers
+      "l" #'dired-find-file
+      (kbd "SPC") #'god-execute-with-current-bindings))
 
   (with-eval-after-load 'locate
-    (define-key locate-mode-map (kbd "SPC") 'god-execute-with-current-bindings))
+    (keymap-set locate-mode-map "SPC" #'god-execute-with-current-bindings))
 
   (with-eval-after-load 'org-agenda
     (when (bound-and-true-p enable-org)

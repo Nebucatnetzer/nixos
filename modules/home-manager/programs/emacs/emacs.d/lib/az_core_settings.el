@@ -111,7 +111,7 @@
           browse-url-secondary-browser-function 'browse-url-generic
           browse-url-generic-program (getenv "DEFAULT_BROWSER"))
 
-  (global-set-key [remap keyboard-quit] #'az-keyboard-quit)
+  (keymap-global-set "<remap> <keyboard-quit>" #'az-keyboard-quit)
 
   (setq-default
    fill-column 88

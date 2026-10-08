@@ -29,7 +29,6 @@
   epkgs.flymake-collection
   epkgs.flymake-ruff
   epkgs.format-all
-  epkgs.general
   unstable-pkgs.emacs.pkgs.ghostel
   (pkgs.callPackage ./packages/evil-ghostel {
     inherit (epkgs) melpaBuild evil;

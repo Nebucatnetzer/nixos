@@ -66,7 +66,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (keymap-global-set "C-x O" 'ace-window-one-command)
 
   ;; General ace settings
-  (global-set-key (kbd "M-o") 'ace-window)
+  (keymap-global-set "M-o" #'ace-window)
   (setopt ace-window-display-mode t
           aw-dispatch-always t
           aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
@@ -131,7 +131,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   (setf (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay
         (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line)
 
-  (global-set-key (kbd "C-;") 'avy-goto-char-timer))
+  (keymap-global-set "C-;" #'avy-goto-char-timer))
 
 ;; https://github.com/oantolin/embark
 (use-package embark
@@ -142,8 +142,7 @@ When `switch-to-buffer-obey-display-actions' is non-nil,
   :init
   ;; Evil binds M-. to evil-repeat-pop-next in normal state, which hides
   ;; the global binding.
-  (general-def :states 'normal
-    "M-." 'embark-act)
+  (evil-define-key 'normal 'global (kbd "M-.") #'embark-act)
   ;; Optionally replace the key help with a completing-read interface
   (setopt prefix-help-command #'embark-prefix-help-command)
 

@@ -9,12 +9,12 @@
 
 (defun pylint-flymake (report-fn &rest _args)
 
-  (unless (projectile-current-project-buffer-p)
-    (error "Only buffers under Projectile-project is supported for pylint"))
+  (unless (project-current)
+    (error "pylint only runs in buffers that belong to a project"))
 
   (unless flymake-pylint-executable
     (error "Path to the executable is not set; \
-use M-x projectile-edit-dir-locals and define `flymake-pylint-executable`."))
+  use M-x add-dir-local-variable and define `flymake-pylint-executable`."))
 
   ;; Not having pylint is a serious problem which should cause
   ;; the backend to disable itself, so an error is signaled.
@@ -41,7 +41,7 @@ use M-x projectile-edit-dir-locals and define `flymake-pylint-executable`."))
       ;;
       (setq
        pylint--flymake-proc
-       (let ((default-directory (projectile-project-root)))
+       (let ((default-directory (project-root (project-current))))
          (make-process
           :name "pylint-flymake" :noquery t :connection-type 'pipe
           ;; Make output go to a temporary buffer.

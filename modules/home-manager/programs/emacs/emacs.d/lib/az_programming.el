@@ -104,21 +104,15 @@
   (("\\.ps1\\'" . powershell-mode)
    ("\\.psm1\\'" . powershell-mode)))
 
-;; used because I can mark arbitrary directories as projects
-;; Haven't found an alternative to the projectile-project-search-path yet
-(use-package projectile
-  :init
-  (projectile-mode +1)
+(use-package project
+  :defer t
   :config
-  (setopt projectile-project-search-path '(("~/.nixos" . 1)
-                                           "~/git_repos/projects/"
-                                           "~/git_repos/work/")
-          projectile-completion-system 'default
-          projectile-git-fd-args "-H -0 -E .git -tf --strip-cwd-prefix -c never"
-          projectile-sort-order 'recently-active
-          projectile-ignored-project-function 'file-remote-p
-          projectile-switch-project-action #'projectile-dired)
-  )
+  ;; A directory with one of these files is a project, even without git.
+  ;; .projectile keeps the directories marked for projectile working.
+  (setopt project-vc-extra-root-markers '(".project" ".projectile"))
+  (dolist (directory '("~/git_repos/projects/" "~/git_repos/work/"))
+    (when (file-directory-p directory)
+      (project-remember-projects-under directory))))
 
 (use-package python
   :config

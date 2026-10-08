@@ -12,7 +12,9 @@
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-x C-b" . consult-buffer)
          ("C-c f" . consult-flymake)
-         ("C-c j" . consult-ripgrep))                ;; orig. previous-matching-history-element
+         ("C-c j" . consult-ripgrep)                ;; orig. previous-matching-history-element
+         ("C-c k" . az-consult-ripgrep-filetype)
+         ("C-s" . consult-line))
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -30,21 +32,18 @@
    :preview-key '(:debounce 0.5 any))
   )
 
-(use-package consult-projectile
-  :bind
-  (("C-x C-p" . consult-projectile)
-   ("C-c k" . az-consult-git-grep-filetype)
-   ("C-s" . consult-line)
-   ("C-c g" . consult-projectile)))
+;; One list of project buffers (b), project files (f) and known projects (p).
+(use-package consult-project-extra
+  :bind (("C-x C-p" . consult-project-extra-find)
+         ("C-c g" . consult-project-extra-find)))
 
-(defun az-consult-git-grep-filetype (query)
-  (interactive "s#: ")
-  (let* ((filetype (file-name-extension (buffer-file-name)))
-         (git-root (locate-dominating-file default-directory ".git"))
-         (cmd (format "git --no-pager grep --ignore-case --line-number --full-name %s -- '*.%s'" query filetype))
-         (results (split-string (shell-command-to-string cmd) "\n" t))
-         (selection (completing-read "Select: " results nil t)))
-    (when (and selection (string-match "^\\(.*\\):\\([0-9]+\\):" selection))
-      (find-file (expand-file-name (match-string 1 selection) git-root))
-      (goto-char (point-min))
-      (forward-line (1- (string-to-number (match-string 2 selection)))))))
+(defun az-consult-ripgrep-filetype ()
+  "Search the project with ripgrep, only in files with the current extension."
+  (interactive)
+  (let* ((extension (and buffer-file-name
+                         (file-name-extension buffer-file-name)))
+         (consult-ripgrep-args (if extension
+                                   (concat consult-ripgrep-args
+                                           " --glob=*." extension)
+                                 consult-ripgrep-args)))
+    (consult-ripgrep)))

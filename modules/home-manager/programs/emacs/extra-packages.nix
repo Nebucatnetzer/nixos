@@ -17,7 +17,7 @@
   epkgs.clipetty
   epkgs.company
   epkgs.consult
-  epkgs.consult-projectile
+  epkgs.consult-project-extra
   epkgs.eglot-booster
   epkgs.embark
   epkgs.embark-consult
@@ -56,7 +56,6 @@
   epkgs.perspective
   epkgs.php-mode
   epkgs.powershell
-  epkgs.projectile
   epkgs.python-pytest
   epkgs.rainbow-delimiters
   epkgs.treemacs

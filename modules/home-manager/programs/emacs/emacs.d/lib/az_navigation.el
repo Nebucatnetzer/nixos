@@ -1,12 +1,11 @@
 ;; -*- lexical-binding: t; -*-
-;; todo: switch-buffer should use consult-projectile
 (use-package ace-window
   :init
   ;; inspired by: https://github.com/SalOrak/dotfiles/blob/32a48e11964e8c501c9e9bf0f63b50a6034c04cb/files/emacs/plugins/ace-window.el#L12
   (defun az/aw-consult-switch-buffer (window)
-    "Switch the buffer of the selected window using `ace-window' ala `consult-projectile'"
+    "Select WINDOW with `ace-window', then open a project buffer or file there."
     (aw-switch-to-window window)
-    (consult-projectile))
+    (consult-project-extra-find))
 
   (defvar aw-dispatch-alist
     '((?x aw-delete-window "Delete Window")

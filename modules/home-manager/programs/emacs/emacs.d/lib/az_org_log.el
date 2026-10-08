@@ -329,16 +329,14 @@ parsing hundreds of files on every refresh."
 
 ;;; --- the panel ----------------------------------------------------------
 
-  (defvar az-org-log-view-mode-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "r") #'az-org-log-show)
-      (define-key map (kbd "g") #'az-org-log-show)
-      (define-key map (kbd "q") #'quit-window)
-      (define-key map (kbd "RET") #'az-org-log-goto-source)
-      (define-key map (kbd "m") #'az-org-log-move-item)
-      (define-key map (kbd "C-c C-c") #'az-org-log-toggle-checkbox)
-      map)
-    "Keymap for `az-org-log-view-mode'.")
+  (defvar-keymap az-org-log-view-mode-map
+    :doc "Keymap for `az-org-log-view-mode'."
+    "r" #'az-org-log-show
+    "g" #'az-org-log-show
+    "q" #'quit-window
+    "RET" #'az-org-log-goto-source
+    "m" #'az-org-log-move-item
+    "C-c C-c" #'az-org-log-toggle-checkbox)
 
   (define-derived-mode az-org-log-view-mode org-mode "Project Log"
     "Major mode for the aggregated project log panel."
@@ -570,5 +568,5 @@ rather than headings."
                    :unnarrowed nil)
                  t))
 
-  (global-set-key (kbd "<f11>") #'az-org-log-toggle)
+  (keymap-global-set "<f11>" #'az-org-log-toggle)
   (keymap-set az-notes-map "C-d" #'az-org-log-dashboard))

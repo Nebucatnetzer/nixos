@@ -209,22 +209,19 @@ a new archive file."
     ;; --- Keybindings ---
 
     ;; Calendar date entry navigation
-    (define-key org-read-date-minibuffer-local-map (kbd "M-h")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-day 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-l")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-day 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-k")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-week 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-j")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-week 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-H")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-month 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-L")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-month 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-K")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-backward-year 1))))
-    (define-key org-read-date-minibuffer-local-map (kbd "M-J")
-                (lambda () (interactive) (org-eval-in-calendar '(calendar-forward-year 1))))
+    (dolist (binding '(("M-h" . calendar-backward-day)
+                       ("M-l" . calendar-forward-day)
+                       ("M-k" . calendar-backward-week)
+                       ("M-j" . calendar-forward-week)
+                       ("M-H" . calendar-backward-month)
+                       ("M-L" . calendar-forward-month)
+                       ("M-K" . calendar-backward-year)
+                       ("M-J" . calendar-forward-year)))
+      (let ((calendar-command (cdr binding)))
+        (keymap-set org-read-date-minibuffer-local-map (car binding)
+                    (lambda ()
+                      (interactive)
+                      (org-eval-in-calendar (list calendar-command 1))))))
 
     (when (bound-and-true-p enable-clocking)
       (defun start-heading-clock (id file)
@@ -272,10 +269,10 @@ a new archive file."
       (add-hook 'org-ctrl-c-ctrl-c-hook #'az/org-cc-update-clocktable)
 
       ;; Clocking keybindings
-      (global-set-key (kbd "<f6>") #'start-main-clock)
-      (global-set-key (kbd "<f7>") #'org-clock-in)
-      (global-set-key (kbd "<f8>") #'org-clock-out)
-      (global-set-key (kbd "C-x C-d") #'org-clock-mark-default-task)
+      (keymap-global-set "<f6>" #'start-main-clock)
+      (keymap-global-set "<f7>" #'org-clock-in)
+      (keymap-global-set "<f8>" #'org-clock-out)
+      (keymap-global-set "C-x C-d" #'org-clock-mark-default-task)
       ))
 
   ;; Load additional org config files.

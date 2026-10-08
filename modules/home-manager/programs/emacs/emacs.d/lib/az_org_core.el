@@ -155,12 +155,21 @@ a new archive file."
     (set-face-attribute 'org-upcoming-deadline nil :foreground "#d70000" :weight 'normal)
     (set-face-attribute 'org-warning nil :foreground "#d70000" :weight 'normal)
 
-    (setopt org-attach-id-dir "resources/"
+    (defun az-org-archive-location ()
+      "Return the archive location for the current month."
+      (concat az-org-archive-dir
+              (format-time-string "%Y") "/projects/"
+              (format-time-string "%Y-%m") "-%s::datetree/"))
 
-            org-archive-location
-            (concat az-org-archive-dir
-                    (format-time-string "%Y" (current-time)) "/projects/"
-                    (format-time-string "%Y-%m" (current-time)) "-%s::datetree/"))
+    ;; The daemon runs for days. Refresh the month before each archive.
+    (defun az-org-refresh-archive-location (&rest _)
+      "Set `org-archive-location' for the current month."
+      (setq org-archive-location (az-org-archive-location)))
+
+    (advice-add 'org-archive-subtree :before #'az-org-refresh-archive-location)
+
+    (setopt org-attach-id-dir "resources/"
+            org-archive-location (az-org-archive-location))
 
     (defun org-update-cookies-after-save()
       (interactive)

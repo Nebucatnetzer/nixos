@@ -143,13 +143,6 @@
                   mode-line-misc-info
                   ))
 
-  ;; required for autoloading packages on nixos
-  (dolist (path load-path)
-    (when (string-match-p "/nix/store/[a-z0-9]\\{32\\}-emacs-packages-deps.*" path)
-      (dolist (autoload-file (directory-files path t "-autoloads.el"))
-        (with-demoted-errors "init.el error: %s"
-          (load autoload-file nil t)))))
-
   ;; Create a new window when there isn't one.
   ;; Taken from: https://karthinks.com/software/emacs-window-management-almanac/#double-duty
   (advice-add 'other-window :before

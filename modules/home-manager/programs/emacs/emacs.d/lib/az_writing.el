@@ -45,7 +45,9 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :hook (markdown-mode . az-prose-editing)
+  :hook ((markdown-mode . az-prose-editing)
+         (markdown-mode . (lambda () (setq-local yas-indent-line 'fixed))))
+  :bind (:map markdown-mode-map ("C-c i" . insert-file-name-as-wikilink))
   :init
   (setopt markdown-command "multimarkdown"
           markdown-enable-wiki-links t
@@ -56,16 +58,12 @@
           markdown-unordered-list-item-prefix "    - "
           markdown-italic-underscore t
           markdown-link-space-sub-char " ")
-  (add-hook 'markdown-mode-hook '(lambda ()
-                                   (set (make-local-variable
-                                         'yas-indent-line) 'fixed)))
   :config
   (defun insert-file-name-as-wikilink (filename &optional args)
     (interactive "*fInsert file name: \nP")
     (insert (concat "[[" (file-name-sans-extension (file-relative-name
-                                                    filename)) "]]")))
+                                                    filename)) "]]"))))
 
-  (define-key markdown-mode-map (kbd "C-c i") 'insert-file-name-as-wikilink))
 
 (use-package olivetti
   :defer t

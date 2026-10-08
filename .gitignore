@@ -94,3 +94,13 @@ flycheck_*
 /*.raw
 /CLAUDE.md
 /.claude/settings.local.json
+/.zshrc
+/.bash_profile
+/.bashrc
+/.gitconfig
+/.idea
+/.mcp.json
+/.profile
+/.ripgreprc
+/.vscode
+/.zprofile

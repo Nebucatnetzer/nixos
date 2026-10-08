@@ -1,16 +1,6 @@
 ;; -*- lexical-binding: t; -*-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;; Packages come from Nix. Emacs activates them before this file runs.
 (package-initialize)
-
-;; MELPA
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
-(setq use-package-always-ensure nil)
-(use-package use-package-ensure-system-package)
 
 ;; keep customize settings in their own file
 (setq custom-file "~/.emacs.d/custom.el")
@@ -18,8 +8,8 @@
   (load custom-file))
 
 (defun modules-path (config)
-  (setq emacs-config-dir "~/.nixos/modules/home-manager/programs/emacs/emacs.d/lib/")
-  (concat emacs-config-dir config))
+  "Return the path of CONFIG in the lib directory."
+  (concat "~/.nixos/modules/home-manager/programs/emacs/emacs.d/lib/" config))
 
 ;; load config files
 (load-file "~/.emacs.d/variables.el")

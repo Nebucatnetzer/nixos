@@ -6,6 +6,13 @@
   (flymake-languagetool-maybe-load)
   (flymake-mode 1))
 
+(defvar-keymap az-spell-map
+  :doc "Spell checking on C-l C-w."
+  "C-d" #'ispell-change-dictionary
+  "C-s" #'ispell
+  "C-l" #'az-lang-tool)
+(keymap-set az-map "C-w" az-spell-map)
+
 (use-package text-mode
   :config
   ;; text-mode otherwise adds ispell-completion-at-point to

@@ -43,7 +43,6 @@
   (pkgs.callPackage ./packages/hurl-mode {
     inherit (epkgs) melpaBuild;
   })
-  epkgs.hydra
   epkgs.jq-mode
   epkgs.magit
   epkgs.marginalia

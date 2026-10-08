@@ -4,6 +4,13 @@
   :config
   (editorconfig-mode 1))
 
+;; Opens every file with a tree-sitter mode when its grammar is installed.
+;; Nix provides the grammars; treesit-auto-install stays nil, so nothing downloads.
+(use-package treesit-auto
+  :config
+  (treesit-auto-add-to-auto-mode-alist)
+  (global-treesit-auto-mode))
+
 (use-package envrc
   :hook (after-init . envrc-global-mode))
 
@@ -57,7 +64,7 @@
   :hook (after-init . flymake-collection-hook-setup))
 
 (use-package flymake
-  :hook (sh-mode . flymake-mode))
+  :hook (sh-base-mode . flymake-mode))
 
 (use-package eglot
   :config

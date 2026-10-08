@@ -69,20 +69,6 @@
   ;; Disable splash screen
   (setopt inhibit-splash-screen t)
 
-  (setopt major-mode-remap-alist
-          '(
-            (bash-mode . bash-ts-mode)
-            (csharp-mode . csharp-ts-mode)
-            (css-mode . css-ts-mode)
-            (go-mode . go-ts-mode)
-            (java-mode . java-ts-mode)
-            (js2-mode . js-ts-mode)
-            (json-mode . json-ts-mode)
-            (python-mode . python-ts-mode)
-            (typescript-mode . typescript-ts-mode)
-            (yaml-mode . yaml-ts-mode)
-            ))
-
   ;; switch focus to man page
   (setopt man-notify-method t)
   ;; disbale the bell

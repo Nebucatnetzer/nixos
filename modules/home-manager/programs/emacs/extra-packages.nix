@@ -60,6 +60,7 @@
   epkgs.rainbow-delimiters
   epkgs.treemacs
   epkgs.treemacs-evil
+  epkgs.treesit-auto
   epkgs.typst-ts-mode
   unstable-pkgs.emacs.pkgs.treesit-grammars.with-all-grammars
   epkgs.ultra-scroll

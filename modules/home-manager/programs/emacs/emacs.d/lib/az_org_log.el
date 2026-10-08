@@ -571,4 +571,4 @@ rather than headings."
                  t))
 
   (global-set-key (kbd "<f11>") #'az-org-log-toggle)
-  (global-set-key (kbd "C-c n d") #'az-org-log-dashboard))
+  (keymap-set az-notes-map "C-d" #'az-org-log-dashboard))

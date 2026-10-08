@@ -1,5 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 (when (bound-and-true-p enable-notes)
+  (defvar-keymap az-notes-map
+    :doc "Notes commands on C-l C-n.")
+  (keymap-set az-map "C-n" az-notes-map)
+
   (defun az-open-notes ()
     "Toggle the notes perspective.
   On notes, go back to the previous perspective. Otherwise switch to
@@ -18,11 +22,12 @@
 
   (use-package denote
     :bind
-    (("C-c n r" . denote-rename-file)
-     ("C-c n p" . az-note-from-region)
-     ("C-c n l" . denote-link)
-     ("C-c n n" . denote-subdirectory)
-     ("<f5>" . az-open-notes))
+    (("<f5>" . az-open-notes)
+     :map az-notes-map
+     ("C-r" . denote-rename-file)
+     ("C-p" . az-note-from-region)
+     ("C-l" . denote-link)
+     ("C-n" . denote-subdirectory))
     :config
     (defvar az-denote-org-front-matter
       (concat "#+title: %s\n:preamble:\n"
@@ -59,7 +64,8 @@
 
   (use-package denote-journal
     :bind
-    ("C-c n t" . denote-journal-new-or-existing-entry)
+    (:map az-notes-map
+          ("C-t" . denote-journal-new-or-existing-entry))
     :config
     ;; The year here is computed once, at load time.  az_org_log.el advises
     ;; the journal entry points to recompute it, so a daemon running past New

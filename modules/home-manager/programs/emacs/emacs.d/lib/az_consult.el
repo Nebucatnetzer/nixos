@@ -9,12 +9,12 @@
       (load src nil nil t)))   ; NOSUFFIX=t → load the .el, not the .elc
 
   ;; Replace bindings. Lazily loaded due by `use-package'.
-  :bind (;; C-c bindings in `mode-specific-map'
-         ("C-x C-b" . consult-buffer)
-         ("C-c f" . consult-flymake)
-         ("C-c j" . consult-ripgrep)                ;; orig. previous-matching-history-element
-         ("C-c k" . az-consult-ripgrep-filetype)
-         ("C-s" . consult-line))
+  :bind (("C-x C-b" . consult-buffer)
+         ("C-s" . consult-line)
+         :map az-map
+         ("C-y" . consult-flymake)
+         ("C-j" . consult-ripgrep)
+         ("C-k" . az-consult-ripgrep-filetype))
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -34,8 +34,7 @@
 
 ;; One list of project buffers (b), project files (f) and known projects (p).
 (use-package consult-project-extra
-  :bind (("C-x C-p" . consult-project-extra-find)
-         ("C-c g" . consult-project-extra-find)))
+  :bind ("C-x C-p" . consult-project-extra-find))
 
 (defun az-consult-ripgrep-filetype ()
   "Search the project with ripgrep, only in files with the current extension."

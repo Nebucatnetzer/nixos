@@ -1,4 +1,11 @@
 ;; -*- lexical-binding: t; -*-
+;; Personal commands. Each package adds its keys with :bind (:map az-map ...).
+;; Keys are C-<letter>, so god-mode reaches C-l C-a as SPC l a.
+(defvar-keymap az-map
+  :doc "Personal command map on C-l."
+  "C-l" #'recenter-top-bottom)
+(keymap-global-set "C-l" az-map)
+
 (use-package emacs
   :config
   ;; Supress "ad-handle-definition: `tramp-read-passwd' got redefined" message at

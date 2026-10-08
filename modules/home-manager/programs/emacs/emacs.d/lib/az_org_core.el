@@ -4,10 +4,11 @@
     :after org)
 
   (use-package org
-    :bind (("C-c a" . org-agenda)
-           ("C-c l" . org-store-link)
-           ("C-c c" . org-capture)
-           ("<f9>" . az/custom-agenda)
+    :bind (("<f9>" . az/custom-agenda)
+           :map az-map
+           ("C-a" . org-agenda)
+           ("C-c" . org-capture)
+           ("C-s" . org-store-link)
            :map org-mode-map
            ("C-c C-," . org-insert-structure-template)
            ("C-c C-$" . org-archive-subtree))

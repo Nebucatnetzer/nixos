@@ -9,7 +9,9 @@
 
   :config
   (general-def :states 'motion
-    "/" 'consult-line)
+    "/" 'consult-line
+    ;; Repeated zz cycles centre, top, bottom like C-l, which is now a prefix.
+    "zz" 'recenter-top-bottom)
 
   (evil-mode 1))
 

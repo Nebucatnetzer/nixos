@@ -22,14 +22,8 @@
    (markdown-mode . format-all-ensure-formatter)
    (markdown-mode . format-all-mode)
    (prog-mode . format-all-mode))
-  :preface
-  (defun az-format-code ()
-    "format buffer."
-    (interactive)
-    (format-all-buffer))
+  :bind (:map az-map ("C-f" . format-all-buffer))
   :config
-  (global-set-key (kbd "C-c C-f") #'az-format-code)
-
   (define-format-all-formatter docformatter
     (:executable "docformatter")
     (:install)
@@ -73,9 +67,7 @@
           gc-cons-threshold 100000000
           read-process-output-max (* 1024 1024))
   (add-to-list 'eglot-server-programs '(typst-ts-mode . ("tinymist")))
-  :bind
-  (:map eglot-mode-map
-        ("C-c C-r" . eglot-rename))
+  :bind (:map az-map ("C-r" . eglot-rename))
   :commands (eglot eglot-code-actions eglot-rename))
 
 ;; https://github.com/jdtsmith/eglot-booster

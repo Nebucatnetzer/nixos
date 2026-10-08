@@ -19,7 +19,8 @@
 (require 'dash)
 (require 's)
 
-(global-set-key (kbd "C-c i") 'org-insert-image)
+(with-eval-after-load 'org
+  (keymap-set org-mode-map "C-c i" #'org-insert-image))
 ;; start directory
 (defvar bjm/conference-image-dir (expand-file-name az-auto-uploads-dir))
 

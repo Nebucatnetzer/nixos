@@ -15,4 +15,6 @@
 ;; which key is a package to show which keys can be pressed
 (use-package which-key
   :config
-  (which-key-mode))
+  (which-key-mode)
+  ;; Show the popup for sequences typed through god-mode (SPC l ...).
+  (which-key-enable-god-mode-support))

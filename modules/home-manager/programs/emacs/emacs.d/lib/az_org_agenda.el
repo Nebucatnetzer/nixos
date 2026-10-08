@@ -1,19 +1,25 @@
 ;; -*- lexical-binding: t; -*-
 (with-eval-after-load 'org
   ;; Agenda faces
-  (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00)
-  (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium)
-  (set-face-attribute 'org-agenda-calendar-event nil :weight 'medium)
-  (set-face-attribute 'org-agenda-date nil :inherit 'default :height 1.00 :weight 'bold)
-  (set-face-attribute 'org-agenda-date-today nil :slant 'normal :weight 'bold :height 1.00)
+  ;; alabaster-themes-light-bg has no org faces, so take the colors from its palette.
+  (alabaster-themes-with-colors
+    (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.00 :foreground fg-alt :weight 'bold)
+    (set-face-attribute 'org-agenda-date nil :inherit 'default :height 1.00 :weight 'bold :foreground blue)
+    (set-face-attribute 'org-agenda-date-weekend nil :height 1.00 :weight 'medium :foreground fg-alt)
+    (set-face-attribute 'org-agenda-date-today nil :slant 'normal :weight 'bold :height 1.00 :background bg-blue-subtle)
+    (set-face-attribute 'org-agenda-calendar-event nil :weight 'medium)
+    (set-face-attribute 'org-time-grid nil :foreground fg-dim)
+    (set-face-attribute 'org-agenda-current-time nil :foreground fg-main :weight 'bold)
+    (set-face-attribute 'org-agenda-done nil :foreground fg-dim)
+    (set-face-attribute 'org-agenda-clocking nil :background bg-yellow-subtle)
 
-  (setopt org-agenda-block-separator " "
+    (setopt org-agenda-block-separator " "
 
-          org-todo-keyword-faces
-          `(("WAITING"   :foreground "#0087ff" :weight bold)
-            ("TODO" :foreground "#d75f00" :weight bold)
-            ("PROJECT"      :foreground "#626262" :weight bold)
-            ("NEXT"      :foreground "#d70000" :weight bold)))
+            org-todo-keyword-faces
+            `(("WAITING" :foreground ,blue :weight bold)
+              ("TODO" :foreground "#d75f00" :weight bold)
+              ("PROJECT" :foreground ,fg-dim :weight bold)
+              ("NEXT" :foreground ,red :weight bold))))
 
   (defun az/custom-agenda (&optional arg)
     (interactive "P")

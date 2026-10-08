@@ -21,10 +21,20 @@
   ;; it does not, and would guess dark, which breaks this light theme in a tty.
   (setopt frame-background-mode 'light)
   (mapc #'frame-set-background-mode (frame-list))
+
+  ;; Terminals get #000000 as palette color 0 and often show bold palette colors
+  ;; as bright instead of bold. Near black is sent as 24-bit color.
+  (setopt alabaster-themes-light-bg-palette-overrides
+          '((fg-main "#0a0a0a")
+            (fg-intense "#0a0a0a")
+            (fg-mode-line "#0a0a0a")
+            (fg-region "#0a0a0a")))
+
   (load-theme 'alabaster-themes-light-bg t)
   (custom-set-faces
    '(line-number ((((type tty)) :foreground "#777777" :background "#f5f5f5")))
-   '(line-number-current-line ((((type tty)) :foreground "#000000" :background "#ffffff" :weight bold)))))
+   '(line-number-current-line ((((type tty)) :foreground "#0a0a0a" :background "#ffffff" :weight bold)))))
+
 
 ;; highlight bad whitespace
 (use-package whitespace

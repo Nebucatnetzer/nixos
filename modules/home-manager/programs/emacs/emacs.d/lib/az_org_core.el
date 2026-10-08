@@ -36,12 +36,13 @@
         ;; Make the document title a bit bigger
         (set-face-attribute 'org-document-title nil :weight 'bold :height 1.7)
 
+        (set-face-attribute 'org-document-info nil         :inherit '(shadow fixed-pitch) :height 0.8 :slant 'italic :foreground 'unspecified)
+        (set-face-attribute 'org-document-info-keyword nil :inherit '(shadow fixed-pitch) :height 0.8 :slant 'italic :foreground 'unspecified)
+
         (set-face-attribute 'org-block nil :foreground 'unspecified  :inherit 'fixed-pitch)
         (set-face-attribute 'org-checkbox nil              :inherit 'fixed-pitch)
         (set-face-attribute 'org-code nil                  :inherit 'fixed-pitch)
         (set-face-attribute 'org-date nil                  :inherit '(shadow fixed-pitch) :height 0.8)
-        (set-face-attribute 'org-document-info nil         :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
-        (set-face-attribute 'org-document-info-keyword nil :inherit 'fixed-pitch :height 0.8 :slant 'italic :foreground "#93a1a1")
         (set-face-attribute 'org-drawer nil                :inherit 'fixed-pitch :height 0.8)
         (set-face-attribute 'org-indent nil                :inherit '(org-hide fixed-pitch))
         (set-face-attribute 'org-meta-line nil             :inherit 'fixed-pitch :height 0.8)
@@ -147,14 +148,19 @@ a new archive file."
                     (plain-list-item . auto))))
 
     ;; org faces
-    (set-face-attribute 'org-done nil :foreground "#5f8700" :weight 'bold)
-    (set-face-attribute 'org-link nil :foreground "#0087ff" :underline t)
-    (set-face-attribute 'org-scheduled nil :foreground "#5f8700" :slant 'italic :weight 'normal)
-    (set-face-attribute 'org-scheduled-previously nil :foreground "#d70000" :weight 'normal)
-    (set-face-attribute 'org-scheduled-today nil :foreground "#5f8700" :slant 'italic :weight 'normal)
-    (set-face-attribute 'org-todo nil :background "nil" :foreground "#d70000" :weight 'bold)
-    (set-face-attribute 'org-upcoming-deadline nil :foreground "#d70000" :weight 'normal)
-    (set-face-attribute 'org-warning nil :foreground "#d70000" :weight 'normal)
+    ;; alabaster-themes-light-bg has no org faces, so take the colors from its palette.
+    (alabaster-themes-with-colors
+      (set-face-attribute 'org-done nil :foreground green :weight 'bold)
+      (set-face-attribute 'org-link nil :foreground link :underline t)
+      (set-face-attribute 'org-scheduled nil :foreground green :slant 'italic :weight 'normal)
+      (set-face-attribute 'org-scheduled-previously nil :foreground red :weight 'normal)
+      (set-face-attribute 'org-scheduled-today nil :foreground green :slant 'italic :weight 'normal)
+      (set-face-attribute 'org-todo nil :background 'unspecified :foreground red :weight 'bold)
+      (set-face-attribute 'org-upcoming-deadline nil :foreground red :weight 'normal)
+      (set-face-attribute 'org-warning nil :foreground red :weight 'normal)
+      ;; Remove org's own foreground so the inherited shadow face shows.
+      (set-face-attribute 'org-date nil :foreground 'unspecified)
+      (set-face-attribute 'org-drawer nil :foreground 'unspecified))
 
     (defun az-org-archive-location ()
       "Return the archive location for the current month."

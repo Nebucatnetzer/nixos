@@ -29,7 +29,6 @@
 (load-file (modules-path "az_writing.el"))
 
 ;; programming
-(load-file (modules-path "az_flymake_pylint.el"))
 (load-file (modules-path "az_programming.el"))
 
 ;; various third party

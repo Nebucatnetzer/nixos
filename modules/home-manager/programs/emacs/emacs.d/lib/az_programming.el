@@ -134,8 +134,7 @@
 
 (use-package python
   :config
-  (setopt python-shell-interpreter "python3"
-          flymake-pylint-executable "pylint")
+  (setopt python-shell-interpreter "python3")
   :hook (python-ts-mode . eglot-ensure))
 
 (use-package python-pytest
@@ -144,11 +143,13 @@
               ("C-c C-t" . python-pytest-run-def-at-point-treesit)
               ("C-c t" . python-pytest-dispatch)))
 
+;; eglot replaces flymake-diagnostic-functions with its own backend
+;; (eglot--setq-saving), so add the linters after it takes over.
 (defun az-python-flymake-setup ()
-  "Add pylint and ruff after eglot has set its own flymake backend."
+  "Add pylint and ruff next to eglot's flymake backend."
   (when (derived-mode-p 'python-base-mode)
-    (pylint-setup-flymake-backend)
-    (flymake-ruff-load)))
+    (add-hook 'flymake-diagnostic-functions #'flymake-collection-pylint nil t)
+    (add-hook 'flymake-diagnostic-functions #'flymake-collection-ruff nil t)))
 
 (add-hook 'eglot-managed-mode-hook #'az-python-flymake-setup)
 

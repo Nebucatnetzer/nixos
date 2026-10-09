@@ -27,7 +27,6 @@
   epkgs.evil-surround
   epkgs.flymake-ansible-lint
   epkgs.flymake-collection
-  epkgs.flymake-ruff
   epkgs.format-all
   unstable-pkgs.emacs.pkgs.ghostel
   (pkgs.callPackage ./packages/evil-ghostel {

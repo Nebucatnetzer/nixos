@@ -23,12 +23,11 @@
 (use-package ispell
   :defer t
   :config
-  (setenv "DICTIONARY" "en_GB")
-  (setopt ispell-program-name "hunspell"
-          ispell-local-dictionary "en_GB"
-          ispell-local-dictionary-alist
-          '(("en_GB" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_GB") nil utf-8)
-            ("de_CH" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "de_CH") nil utf-8))))
+  ;; hunspell lists its dictionaries itself; the Nix wrapper sets DICPATH.
+  ;; ispell-dictionary comes first: setting ispell-program-name starts the
+  ;; dictionary lookup, which falls back to ispell-dictionary.
+  (setopt ispell-dictionary "en_GB"
+          ispell-program-name "hunspell"))
 
 (when (bound-and-true-p enable-langtool)
   (use-package flymake-languagetool

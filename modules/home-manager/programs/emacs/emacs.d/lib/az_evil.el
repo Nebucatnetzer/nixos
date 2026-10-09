@@ -33,7 +33,6 @@
   (with-eval-after-load 'dired
     (evil-define-key 'normal dired-mode-map
       "h" #'dired-up-directory
-      "q" #'az-kill-dired-buffers
       "l" #'dired-find-file
       (kbd "SPC") #'god-execute-with-current-bindings))
 

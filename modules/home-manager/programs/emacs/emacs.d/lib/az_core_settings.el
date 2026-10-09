@@ -49,29 +49,6 @@
                   (setenv "WAYLAND_DISPLAY" display)))))
 
   (setopt history-delete-duplicates t)
-  ;; Add groups to the buffer overview
-  (setopt ibuffer-saved-filter-groups
-          (quote (("default"
-                   ("Notes" ;; all org-related buffers
-                    (mode . markdown-mode)
-                    (mode . org-mode))
-                   ("Programming" ;; prog stuff not already in MyProjectX
-                    (or
-                     (mode . python-ts-mode)
-                     (mode . web-mode)
-                     (mode . php-mode)
-                     (mode . csharp-ts-mode)
-                     (mode . javascript-mode)
-                     (mode . sql-mode)
-                     (mode . powershell-mode)
-                     (mode . nix-ts-mode)
-                     (mode . yaml-ts-mode)
-                     (mode . ansible-mode)
-                     (mode . emacs-lisp-mode)))
-                   ;; etc
-                   ("Dired"
-                    (mode . dired-mode))))))
-
   (setopt inhibit-compacting-font-caches t)
   ;; Disable splash screen
   (setopt inhibit-splash-screen t)
@@ -101,11 +78,8 @@
   (setopt user-mail-address "andreas@zweili.ch")
   ;; always follow symlinks
   (setopt vc-follow-symlinks t)
-  ;; use ripgrep or rg if possible
-  (setopt xref-search-program (cond ((or (executable-find "ripgrep")
-                                         (executable-find "rg")) 'ripgrep)
-                                    ((executable-find "ugrep") 'ugrep) (t
-                                                                        'grep)))
+  ;; use ripgrep
+  (setopt xref-search-program 'ripgrep)
 
   (setopt browse-url-browser-function 'browse-url-generic
           browse-url-secondary-browser-function 'browse-url-generic
@@ -196,14 +170,6 @@
   (
    ;; Remove whitespace when saving
    (before-save . whitespace-cleanup)
-
-   (ibuffer-mode .
-                 (lambda ()
-                   (ibuffer-switch-to-saved-filter-groups "default")))
-   ;; hide temporary buffers
-   (ibuffer-mode .
-                 (lambda ()
-                   (ibuffer-filter-by-name "^[^*]")))
    ;; Enable line wrapping
    (text-mode  . turn-on-auto-fill))
   :bind
@@ -222,7 +188,7 @@
         ("C-x K" . delete-frame)
         ;; keymap for dired
         ("C-x d" . dired-jump)
-        ("M-m" . az-switch-to-minibuffer)
+        ("M-m" . switch-to-minibuffer)
         ))
 
 (use-package tramp
@@ -230,14 +196,32 @@
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 (use-package dired
-  :init
-  (add-hook 'dired-load-hook
-            (lambda ()
-              (load "dired-x")))
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setq-default dired-listing-switches "-Ahl --group-directories-first")
-  (setopt dired-auto-revert-buffer t))
+  (setopt dired-auto-revert-buffer t
+          ;; Reuse one buffer while moving through directories.
+          dired-kill-when-opening-new-dired-buffer t))
+
+;; persp-ibuffer (C-x b) refuses to run until ibuffer is loaded.
+(use-package ibuffer
+  :demand t
+  :hook (ibuffer-mode . az-ibuffer-setup)
+  :config
+  ;; Filters inside one group must all match, so alternatives need `or'.
+  (setopt ibuffer-saved-filter-groups
+          '(("default"
+             ("Notes" (or (mode . org-mode)
+                          (mode . markdown-mode)))
+             ("Programming" (or (derived-mode . prog-mode)
+                                (mode . yaml-ts-mode)))
+             ("Dired" (mode . dired-mode)))))
+
+  (defun az-ibuffer-setup ()
+    "Group the buffers and hide those whose name starts with *."
+    (ibuffer-switch-to-saved-filter-groups "default")
+    (ibuffer-filter-by-name "^[^*]")))
+
 
 ;; Skip gnu-elpa-keyring-update in read-only Nix store configs
 ;; (use-package gnu-elpa-keyring-update)

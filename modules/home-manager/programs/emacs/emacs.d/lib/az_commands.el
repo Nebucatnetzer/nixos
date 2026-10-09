@@ -1,21 +1,8 @@
 ;; -*- lexical-binding: t; -*-
-(defun az-center-buffer ()
-  (interactive)
-  (let ((margin-size (/ (- (frame-width) 80) 2)))
-    (set-window-margins nil margin-size margin-size)))
-
 (defun az-copy-all ()
   "Copy entire buffer to clipboard."
   (interactive)
   (clipboard-kill-ring-save (point-min) (point-max)))
-
-(defun az-kill-dired-buffers ()
-  "Kill all buffers in Dired mode."
-  (interactive)
-  (dolist (buffer (buffer-list))
-    (when (with-current-buffer buffer
-            (eq major-mode 'dired-mode))
-      (kill-buffer buffer))))
 
 ;; taken from: https://emacsredux.com/blog/2025/06/01/let-s-make-keyboard-quit-smarter/
 (defun az-keyboard-quit ()
@@ -60,25 +47,6 @@ minibuffer, even without explicitly focusing it."
         (system-time-locale "de_CH"))
     (insert (format-time-string format))))
 
-;; taken from here: https://zck.org/emacs-move-file
-(defun az-move-file (new-location)
-  "Write this file to NEW-LOCATION, and delete the old one."
-  (interactive (list (expand-file-name
-                      (if buffer-file-name
-                          (read-file-name "Move file to: ")
-                        (read-file-name "Move file to: "
-                                        default-directory
-                                        (expand-file-name (file-name-nondirectory (buffer-name))
-                                                          default-directory))))))
-  (when (file-exists-p new-location)
-    (delete-file new-location))
-  (let ((old-location (expand-file-name (buffer-file-name))))
-    (write-file new-location t)
-    (when (and old-location
-               (file-exists-p new-location)
-               (not (string-equal old-location new-location)))
-      (delete-file old-location))))
-
 ;; Taken from here: https://www.emacswiki.org/emacs/Replace-in-buffer
 (defun az-replace-in-buffer ()
   "Search and replace given string in current buffer."
@@ -100,19 +68,6 @@ minibuffer, even without explicitly focusing it."
   (interactive)
   (split-window-right)
   (other-window 1))
-
-(defun az-switch-to-minibuffer ()
-  "Switch to minibuffer window."
-  (interactive)
-  (if (active-minibuffer-window)
-      (select-window (active-minibuffer-window))
-    (error "Minibuffer is not active")))
-
-(defun az-toggle-window-dedication ()
-  "Toggle window dedication in the selected window."
-  (interactive)
-  (set-window-dedicated-p (selected-window)
-                          (not (window-dedicated-p (selected-window)))))
 
 (defun az-toggle-window-split ()
   "Toggle between horizontal and vertical split when two windows are open."

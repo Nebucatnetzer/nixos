@@ -204,13 +204,10 @@ a new archive file."
     (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
     ;; Calender should start on Monday
-    (setopt calendar-week-start-day 1
+    (setopt calendar-week-start-day 1)
 
-            ;; Enable additional org modules
-            ;; org-checklist to un-toggle checklists when a repeating task gets set to done
-            org-modules
-            '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc ol-mhe
-                      ol-rmail ol-w3m org-checklist))
+    ;; org-checklist resets checkboxes when a repeating task is marked done.
+    (require 'org-checklist)
 
     ;; --- Keybindings ---
 

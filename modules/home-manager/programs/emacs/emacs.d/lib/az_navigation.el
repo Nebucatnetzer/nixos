@@ -34,24 +34,6 @@ This displays the window in a new frame, see `tear-off-window'."
       (pop-to-buffer-same-window buf)
       (delete-window win)))
 
-  (defun ace-window-prefix ()
-    "Use `ace-window' to display the buffer of the next command.
-The next buffer is the buffer displayed by the next command invoked
-immediately after this command (ignoring reading from the minibuffer).
-Creates a new window before displaying the buffer.
-When `switch-to-buffer-obey-display-actions' is non-nil,
-`switch-to-buffer' commands are also supported."
-    (interactive)
-    (display-buffer-override-next-command
-     (lambda (buffer _)
-       (let (window type)
-         (setq
-          window (aw-select (propertize " ACE" 'face 'mode-line-highlight))
-          type 'reuse)
-         (cons window type)))
-     nil "[ace-window]")
-    (message "Use `ace-window' to display next command buffer..."))
-
   (defun ace-window-one-command ()
     (interactive)
     (let ((win (aw-select " ACE")))

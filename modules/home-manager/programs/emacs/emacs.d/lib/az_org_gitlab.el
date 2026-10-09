@@ -228,13 +228,8 @@ still assigned."
           (org-todo "DONE")
           (setq closed (1+ closed))
           (when was-clocked
-            ;; `start-main-clock' is defined inside a deferred `use-package org
-            ;; :config' block, which aborts on its first error, so it can be
-            ;; missing even though this module loaded.  Never drop the clock
-            ;; silently: the whole point here is not to lose tracked time.
-            (if (fboundp 'start-main-clock)
-                (start-main-clock)
-              (warn "Closed a clocked GitLab issue but `start-main-clock' is undefined; clock lost"))))
+            ;; Never drop the clock silently: the point here is not to lose tracked time.
+            (start-main-clock)))
         (set-marker marker nil))
       closed))
 

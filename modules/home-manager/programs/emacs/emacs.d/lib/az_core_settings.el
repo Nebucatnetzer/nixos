@@ -133,14 +133,17 @@
     (unless (apply #'derived-mode-p az/line-numbers-exempt-modes)
       (display-line-numbers-mode 1)))
 
+  (defun az-truncate-lines ()
+    "Let long lines run off the window instead of wrapping."
+    (setq truncate-lines t))
+
   ;; Opt in per mode family instead of globally: prose read in a centred
-  ;; Olivetti column has no use for a number gutter.
+  ;; Olivetti column has no use for a number gutter. Prose modes turn
+  ;; visual-line-mode back on, which undoes the truncation.
   (dolist (hook '(prog-mode-hook conf-mode-hook text-mode-hook))
-    (add-hook hook #'az/enable-line-numbers))
+    (add-hook hook #'az/enable-line-numbers)
+    (add-hook hook #'az-truncate-lines))
 
-
-  ;; Proper line wrapping
-  (global-visual-line-mode 1)
   ;; disable menu and toolbar
   (menu-bar-mode -1)
   ;; file encodings
@@ -153,7 +156,7 @@
 
   (when (bound-and-true-p disable-scroll-bar)
     (scroll-bar-mode -1))
-  ;; Disable fringe because I use visual-line-mode
+  ;; Hide the fringe. Truncated lines then end in a $ at the window edge.
   (when (and (bound-and-true-p disable-fringe) (fboundp 'set-fringe-mode))
     (set-fringe-mode '(0 . 0)))
   (when (bound-and-true-p enable-font)
@@ -169,9 +172,7 @@
   :hook
   (
    ;; Remove whitespace when saving
-   (before-save . whitespace-cleanup)
-   ;; Enable line wrapping
-   (text-mode  . turn-on-auto-fill))
+   (before-save . whitespace-cleanup))
   :bind
   (:map global-map
         ("C-x C-1" . delete-other-windows)
@@ -196,6 +197,7 @@
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 (use-package dired
+  :hook (dired-mode . az-truncate-lines)
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setq-default dired-listing-switches "-Ahl --group-directories-first")

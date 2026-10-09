@@ -84,5 +84,5 @@
               (defun az-do-compose-stuff ()
                 "My settings for message composition."
                 (use-hard-newlines -1)
-                (turn-off-auto-fill)
+                (visual-line-mode 1)
                 (flyspell-mode)))))

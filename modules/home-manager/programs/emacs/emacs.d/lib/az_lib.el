@@ -8,5 +8,4 @@
 
 (defun az-prose-editing ()
   "Centre the text with olivetti and stop hard line breaks."
-  (olivetti-mode 1)
-  (auto-fill-mode -1))
+  (olivetti-mode 1))

@@ -178,18 +178,6 @@ alignment column would add.  `org-agenda-finalize' runs
 
   (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
 
-  ;; The agenda is a table, not prose: let a long line run off the right edge
-  ;; instead of wrapping, so every entry keeps one screen line and closing the
-  ;; log panel reveals the rest.  `org-agenda-mode' sets `truncate-lines'
-  ;; itself, but `global-visual-line-mode' runs afterwards and undoes it;
-  ;; switching `visual-line-mode' off here marks the buffer as explicitly set,
-  ;; which makes the global mode skip it.
-  (add-hook 'org-agenda-mode-hook
-            (defun az/org-agenda-no-wrap ()
-              "Keep every agenda entry on a single screen line."
-              (visual-line-mode -1)
-              (setq truncate-lines t)))
-
   ;; automatically refresh the agenda after adding a task
   (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
 

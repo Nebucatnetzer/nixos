@@ -46,6 +46,7 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :hook ((markdown-mode . az-prose-editing)
+         (markdown-mode . visual-line-mode)
          (markdown-mode . (lambda () (setq-local yas-indent-line 'fixed))))
   :bind (:map markdown-mode-map ("C-c i" . insert-file-name-as-wikilink))
   :init
@@ -68,7 +69,10 @@
 (use-package olivetti
   :defer t
   :init
-  (setopt olivetti-body-width 120))
+  (setopt olivetti-body-width 120
+          ;; Olivetti turns on visual-line-mode by default. Modes that want
+          ;; soft wrapping (markdown, mail) turn it on themselves.
+          olivetti-mode-on-hook nil))
 
 (use-package typst-ts-mode
   :hook (typst-ts-mode . eglot-ensure))

@@ -343,7 +343,7 @@ parsing hundreds of files on every refresh."
     (setq buffer-read-only t))
 
   ;; Deriving from org-mode also runs `org-mode-hook', and with it
-  ;; `az-org-editing', which centres prose and turns wrapping off.  The panel is
+  ;; `az-prose-editing', which centres prose, and truncation.  The panel is
   ;; a narrow read only report column and wants plain wrapping instead.  A mode
   ;; hook wins because `run-mode-hooks' runs the parent hooks first.
   (add-hook 'az-org-log-view-mode-hook

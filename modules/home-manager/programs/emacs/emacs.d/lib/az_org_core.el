@@ -192,15 +192,7 @@ a new archive file."
               (lambda ()
                 (add-hook 'before-save-hook 'org-update-cookies-after-save nil 'make-it-local)))
 
-    (add-hook 'org-mode-hook
-              (defun az-org-editing ()
-                "Prose setup, but with one screen line per line."
-                (az-prose-editing)
-                ;; Olivetti and global-visual-line-mode both re-wrap after
-                ;; org-mode set truncate-lines; this also marks the buffer so
-                ;; the global mode skips it.
-                (visual-line-mode -1)
-                (setq truncate-lines t)))
+    (add-hook 'org-mode-hook #'az-prose-editing)
     (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
 
     ;; Calender should start on Monday

@@ -52,7 +52,6 @@
   epkgs.org-contrib
   epkgs.ox-pandoc
   epkgs.perspective
-  epkgs.php-mode
   epkgs.powershell
   epkgs.python-pytest
   epkgs.rainbow-delimiters

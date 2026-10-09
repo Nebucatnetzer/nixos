@@ -1,7 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 (with-eval-after-load 'org
   ;; org-export formats
-  (setq org-export-backends (quote (beamer html latex md odt reveal)))
+  ;; The :set function loads new backends, because ox is already loaded here,
+  ;; and unregisters backends missing from the list, so pandoc must stay.
+  ;; customize-set-variable, not setopt: org's :type does not list pandoc
+  ;; (ox-pandoc is a separate package), and setopt would warn about that.
+  (customize-set-variable 'org-export-backends
+                          '(beamer html latex md odt pandoc))
 
   (setopt org-startup-shrink-all-tables t
 

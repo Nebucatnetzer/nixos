@@ -11,6 +11,25 @@
   (treesit-auto-add-to-auto-mode-alist)
   (global-treesit-auto-mode))
 
+;; Emacs 30.2 lists keywords that tree-sitter-php 0.24 no longer has as
+;; tokens ("callable", "from"). One unknown name breaks the whole keyword
+;; query and leaves PHP buffers uncoloured. Keep only the keywords the
+;; installed grammar accepts; php-ts-mode probes its grammar the same way.
+(use-package php-ts-mode
+  :defer t
+  :config
+  (setq php-ts-mode--keywords
+        (seq-filter #'az-php-keyword-known-p php-ts-mode--keywords)))
+
+(defun az-php-keyword-known-p (keyword)
+  "Return t if the PHP grammar has a token for KEYWORD."
+  ;; EAGER t compiles at once, so an unknown name signals an error here.
+  (condition-case nil
+      (progn
+        (treesit-query-compile 'php (format "%S @keyword" keyword) t)
+        t)
+    (treesit-query-error nil)))
+
 (use-package envrc
   :hook (after-init . envrc-global-mode))
 
@@ -149,9 +168,6 @@
                       web-mode-css-indent-offset 2
                       web-mode-code-indent-offset 4)))
   :config)
-
-(use-package php-mode
-  :mode "\\.php[i]?\\'")
 
 (use-package ansible
   :after yaml-ts-mode

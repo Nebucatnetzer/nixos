@@ -10,15 +10,6 @@
 
 ;; required libraries
 
-(use-package dash
-  :defer t)
-
-(use-package s
-  :defer t)
-
-(require 'dash)
-(require 's)
-
 (with-eval-after-load 'org
   (keymap-set org-mode-map "C-c i" #'org-insert-image))
 ;; start directory
@@ -35,8 +26,8 @@
   (let (file-list target-dir file-list-sorted start-file start-file-full file-ext end-file end-file-base end-file-full file-number)
     ;; clean directories from list but keep times
     (setq file-list
-          (-remove (lambda (x) (nth 1 x))
-                   (directory-files-and-attributes bjm/conference-image-dir)))
+          (seq-remove (lambda (entry) (nth 1 entry))
+                      (directory-files-and-attributes bjm/conference-image-dir)))
 
     ;; get target directory
     (setq target-dir (concat (file-name-directory buffer-file-name) "_resources/"))
@@ -57,10 +48,14 @@
     (setq file-ext
           (file-name-extension start-file t))
 
-    ;; get section heading and clean it up
-    (setq end-file-base (s-downcase (s-dashed-words (nth 4 (org-heading-components)))))
+    ;; get section heading and turn it into lower-case words joined by dashes
+    (setq end-file-base
+          (string-trim (replace-regexp-in-string
+                        "[^[:alnum:]]+" "-"
+                        (downcase (nth 4 (org-heading-components))))
+                       "-+" "-+"))
     ;; shorten to first 40 chars to avoid long file names
-    (setq end-file-base (s-left 40 end-file-base))
+    (setq end-file-base (string-limit end-file-base 40))
     ;; number to append to ensure unique name
     (setq file-number 1)
     (setq end-file (concat

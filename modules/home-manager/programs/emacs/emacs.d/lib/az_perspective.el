@@ -1,11 +1,21 @@
 ;; -*- lexical-binding: t; -*-
+;; Keys are C-<letter>, so god-mode reaches C-l C-x C-s as SPC l x s.
+(defvar-keymap az-persp-map
+  :doc "Perspective commands on C-l C-x."
+  "C-s" #'persp-switch
+  "C-c" #'persp-kill
+  "C-r" #'persp-rename)
+(keymap-set az-map "C-x" az-persp-map)
+
 (use-package perspective
   :after consult
   :bind
-  (("C-x b" . persp-ibuffer)         ; or use a nicer switcher, see below
+  (("C-x b" . persp-ibuffer)
    ("C-x k" . persp-kill-buffer*))
   :custom
-  (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
+  ;; Perspective's own map uses plain letters, which god-mode cannot reach.
+  (persp-mode-prefix-key nil)
+  (persp-suppress-no-prefix-key-warning t)
   :config
   (consult-customize consult-source-buffer :hidden t :default nil)
   ;; perspective binds to mouse click instead of release which then sometimes causes the org clock drawer to fire.
@@ -15,5 +25,7 @@
 
   (add-to-list 'consult-buffer-sources persp-consult-source)
   :init
-  (setopt persp-state-default-file "~/.emacs.d/persp-session")
+  ;; Default file for M-x persp-state-save and persp-state-load.
+  (setopt persp-state-default-file
+          (expand-file-name "persp-session" user-emacs-directory))
   (persp-mode))

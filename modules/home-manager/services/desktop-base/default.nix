@@ -31,6 +31,7 @@
         "application/x-extension-xhtml" = "firefox.desktop";
         "application/x-www-browser" = "firefox.desktop";
         "application/xhtml+xml" = "firefox.desktop";
+        "image/x-adobe-dng" = "ART.desktop";
         "text/html" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/chrome" = "firefox.desktop";
@@ -48,6 +49,7 @@
         "application/x-extension-xhtml" = "firefox.desktop";
         "application/x-www-browser" = "firefox.desktop";
         "application/xhtml+xml" = "firefox.desktop";
+        "image/x-adobe-dng" = "ART.desktop";
         "text/html" = "firefox.desktop";
         "x-scheme-handler/about" = "firefox.desktop";
         "x-scheme-handler/chrome" = "firefox.desktop";

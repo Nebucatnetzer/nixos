@@ -1,0 +1,33 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[RAW Bayer]
+Method=amazebilinear
+Border=4
+ImageNum=1
+CcSteps=0
+LMMSEIterations=2
+DualDemosaicAutoContrast=true
+DualDemosaicContrast=0
+PixelShiftMotionCorrectionMethod=1
+PixelShiftEperIso=0
+PixelShiftSigma=1
+PixelShiftShowMotion=false
+PixelShiftShowMotionMaskOnly=false
+pixelShiftHoleFill=true
+pixelShiftMedian=false
+pixelShiftGreen=true
+pixelShiftBlur=true
+pixelShiftSmoothFactor=0.69999999999999996
+pixelShiftEqualBright=false
+pixelShiftEqualBrightChannel=false
+pixelShiftNonGreenCross=true
+pixelShiftDemosaicMethod=amaze
+
+[RAW X-Trans]
+Method=3-pass (best)
+DualDemosaicAutoContrast=true
+DualDemosaicContrast=20
+Border=7
+CcSteps=0

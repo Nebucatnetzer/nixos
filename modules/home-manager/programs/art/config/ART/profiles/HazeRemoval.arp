@@ -1,0 +1,9 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[Dehaze]
+Enabled=true
+Strength=1;0;0.75;0;0;1;0.75;0;0;
+Blackpoint=0
+Luminance=true

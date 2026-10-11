@@ -1,0 +1,15 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[Film Simulation]
+Enabled=true
+ClutFilename=file://S/luts/sigmoid.ctl
+Strength=100
+ClutParams=b_inset=15.000000;b_rotation=-3.000000;contrast_skewness=-0.200000;custom_primaries=1.000000;g_inset=10.000000;g_rotation=-1.000000;middle_grey_contrast=1.500000;primaries_base_profile=0.000000;purity=60.000000;r_inset=10.000000;r_rotation=2.000000;white_point=1.000000;
+
+[Grain]
+Enabled=true
+ISO=400
+Strength=50
+Color=true

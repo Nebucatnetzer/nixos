@@ -1,0 +1,57 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[LensProfile]
+LcMode=lfauto
+LCPFile=
+UseDistortion=true
+UseVignette=true
+UseCA=true
+LFCameraMake=
+LFCameraModel=
+LFLens=
+
+[Color Management]
+InputProfile=file://H/nextcloud/20_pictures/21_photos/Profiles/20251111T230600--adobe-dng-converter-profiles/CameraProfiles/Adobe%20Standard/Canon%20EOS%20450D%20Adobe%20Standard.dcp
+ToneCurve=true
+ApplyLookTable=true
+ApplyBaselineExposureOffset=true
+ApplyHueSatMap=true
+DCPIlluminant=0
+DCPLookEarly=false
+WorkingProfile=Rec2020
+OutputProfile=RTv2_sRGB
+OutputProfileIntent=Relative
+OutputBPC=true
+InputProfileCAT=false
+
+[RAW Bayer]
+Method=rcdbilinear
+Border=4
+ImageNum=1
+CcSteps=0
+LMMSEIterations=2
+DualDemosaicAutoContrast=true
+DualDemosaicContrast=20
+PixelShiftMotionCorrectionMethod=1
+PixelShiftEperIso=0
+PixelShiftSigma=1
+PixelShiftShowMotion=false
+PixelShiftShowMotionMaskOnly=false
+pixelShiftHoleFill=true
+pixelShiftMedian=false
+pixelShiftGreen=true
+pixelShiftBlur=true
+pixelShiftSmoothFactor=0.69999999999999996
+pixelShiftEqualBright=false
+pixelShiftEqualBrightChannel=false
+pixelShiftNonGreenCross=true
+pixelShiftDemosaicMethod=amaze
+
+[RAW X-Trans]
+Method=3-pass (best)
+DualDemosaicAutoContrast=true
+DualDemosaicContrast=20
+Border=7
+CcSteps=0

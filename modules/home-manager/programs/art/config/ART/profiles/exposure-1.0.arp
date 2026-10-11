@@ -1,0 +1,10 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[Exposure]
+Enabled=true
+Compensation=1.00000000000000001
+Black=0
+HLRecovery=Balanced
+HLRecoveryBlur=0

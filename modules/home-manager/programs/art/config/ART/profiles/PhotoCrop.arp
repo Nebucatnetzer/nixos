@@ -1,0 +1,14 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[Crop]
+Enabled=true
+X=0
+Y=339
+W=4088
+H=2725
+FixedRatio=true
+Ratio=3:2
+Orientation=As Image
+Guide=Rule of thirds

@@ -1,0 +1,14 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[Crop]
+Enabled=true
+X=67
+Y=0
+W=3037
+H=2336
+FixedRatio=true
+Ratio=Current
+Orientation=As Image
+Guide=Frame

@@ -174,12 +174,12 @@ in
       ];
       warn-dirty = false;
     };
-    # enable garbage collection
+    # enable garbage collection; the desktop profile overrides the schedule
     gc = {
       automatic = true;
-      dates = "weekly";
+      dates = lib.mkDefault "weekly";
+      persistent = lib.mkDefault true;
       options = "--delete-older-than 30d";
-      persistent = true;
     };
   };
   nixpkgs.config.allowUnfree = true;

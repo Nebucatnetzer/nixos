@@ -9,6 +9,19 @@ provide any garantuees that it will work on other systems. In addition
 some of the scripts required for installation will destroy your data
 when used.
 
+* Debug Script
+
+#+begin_src bash
+cat /proc/pressure/cpu /proc/pressure/memory /proc/pressure/io
+#+end_src
+
+#+begin_src bash
+powerprofilesctl get
+#+end_src
+
+#+begin_src bash
+top -b -n 1 -o %CPU | head -15
+#+end_src
 
 * Desktop Profile Tools
 

@@ -36,6 +36,7 @@ in
   "capricorn_storagebox.key.age".publicKeys = defaultKeys;
   "fenoglio_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_archive_luks.key.age".publicKeys = defaultKeys;
+  "gwyn_github.key.age".publicKeys = defaultKeys;
   "gwyn_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_wg.key.age".publicKeys = defaultKeys;
   "infomaniak_ai.key.age".publicKeys = defaultKeys;

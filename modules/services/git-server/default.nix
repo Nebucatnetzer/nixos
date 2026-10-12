@@ -15,6 +15,7 @@ let
   ) config.users.users.${config.az-username}.openssh.authorizedKeys.keys;
   emptyHooks = pkgs.runCommand "git-hooks-empty" { } "mkdir $out";
   hasActions = repo: (repo.pushMirrors or [ ]) != [ ];
+
   hooksFor = name: repo: if hasActions repo then spoolHooks name else emptyHooks;
   initCalls = lib.concatStrings (
     lib.mapAttrsToList (name: repo: ''
@@ -23,34 +24,44 @@ let
       } ${hooksFor name repo}
     '') repos
   );
-  repos = import ./repos.nix;
-  spoolDirectory = "${repoRoot}/.spool";
-  # Append, not overwrite, so a second push before the service runs keeps its ref lines.
-  spoolHooks =
-    name:
-    pkgs.writeTextFile {
-      name = "git-hooks-${slug name}";
-      destination = "/post-receive";
-      executable = true;
-      text = ''
-        #!${pkgs.runtimeShell}
-        cat >> ${spoolDirectory}/${slug name}
-      '';
+  hookPaths = lib.mapAttrs' (
+    name: repo:
+    lib.nameValuePair "git-hook-${slug name}" {
+      wantedBy = [ "multi-user.target" ];
+      pathConfig.PathExists = "${spoolDirectory}/${slug name}";
+    }
+  ) mirroredRepos;
+  # The spool file goes first. post-receive runs after the refs are updated, so a push
+  # during this run is either in this push --mirror or starts the service again.
+  hookService = name: repo: {
+    description = "Push ${name} to its mirrors";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    onFailure = [ "unit-status-telegram@%N.service" ];
+    path = [
+      pkgs.git
+      pkgs.openssh
+    ];
+    environment.GIT_SSH_COMMAND = "ssh -i ${config.age.secrets.githubMirrorKey.path} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "git";
+      Group = "git";
     };
-  slug = name: lib.replaceStrings [ "/" ] [ "-" ] name;
-in
-{
-  users.groups.git = { };
-  users.users.git = {
-    isSystemUser = true;
-    group = "git";
-    home = repoRoot;
-    shell = "${pkgs.git}/bin/git-shell";
-    openssh.authorizedKeys.keys = authorizedKeys;
+    script = ''
+      cat ${spoolDirectory}/${slug name}
+      rm ${spoolDirectory}/${slug name}
+    ''
+    + lib.concatMapStrings (remote: ''
+      git --git-dir=${repoRoot}/${name}.git push --mirror ${lib.escapeShellArg remote}
+    '') repo.pushMirrors;
   };
+  hookServices = lib.mapAttrs' (
+    name: repo: lib.nameValuePair "git-hook-${slug name}" (hookService name repo)
+  ) mirroredRepos;
 
   # RemainAfterExit: a rebuild that changes the repo set restarts the unit.
-  systemd.services.git-repos-init = {
+  initService = {
     description = "Create the declared bare git repositories";
     wantedBy = [ "multi-user.target" ];
     after = [ "systemd-tmpfiles-setup.service" ];
@@ -78,14 +89,60 @@ in
     '';
   };
 
-  systemd.tmpfiles.rules = [
-    "d ${repoRoot} 0750 git git -"
-    "d ${spoolDirectory} 0750 git git -"
-  ];
+  mirroredRepos = lib.filterAttrs (name: repo: hasActions repo) repos;
+  repos = import ./repos.nix;
+  spoolDirectory = "${repoRoot}/.spool";
+  # Append, not overwrite, so a second push before the service runs keeps its ref lines.
+  spoolHooks =
+    name:
+    pkgs.writeTextFile {
+      name = "git-hooks-${slug name}";
+      destination = "/post-receive";
+      executable = true;
+      text = ''
+        #!${pkgs.runtimeShell}
+        cat >> ${spoolDirectory}/${slug name}
+      '';
+    };
+
+  slug = name: lib.replaceStrings [ "/" ] [ "-" ] name;
+in
+{
+  imports = [ "${inputs.self}/modules/services/telegram-notifications" ];
+
+  age.secrets.githubMirrorKey = {
+    file = "${inputs.self}/scrts/gwyn_github.key.age";
+    mode = "400";
+    owner = "git";
+    group = "git";
+  };
+
+  programs.ssh.knownHosts.github = {
+    hostNames = [ "github.com" ];
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+  };
 
   # Must stay last in sshd_config. A Match list needs the leading * to match anything.
   services.openssh.extraConfig = lib.mkAfter ''
     Match Address *,!10.7.89.0/24,!10.70.89.0/24,!127.0.0.0/8
       AllowUsers git
   '';
+
+  systemd.paths = hookPaths;
+  systemd.services = hookServices // {
+    git-repos-init = initService;
+  };
+  systemd.tmpfiles.rules = [
+    "d ${repoRoot} 0750 git git -"
+    "d ${spoolDirectory} 0750 git git -"
+  ];
+
+  users.groups.git = { };
+  users.users.git = {
+    isSystemUser = true;
+    group = "git";
+    home = repoRoot;
+    shell = "${pkgs.git}/bin/git-shell";
+    openssh.authorizedKeys.keys = authorizedKeys;
+  };
 }

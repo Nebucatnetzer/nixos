@@ -1,7 +1,7 @@
 #+title: NixOS Configuration
 
-This repository lives on https://git.zweili.org/. Due to agressive LLM
-crawlers I had to make it private there. If you want to collaborate you
+This repository lives on my own git server git.zweili.org. Due to agressive LLM
+crawlers I was forced to remove the web-interface there. If you want to collaborate you
 can contact me through email or Mastodon.
 
 This repository contains my configuration for my Nixos systems. I don't

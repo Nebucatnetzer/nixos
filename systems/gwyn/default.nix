@@ -18,7 +18,6 @@ let
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
     { fqdn = "${config.services.freshrss.virtualHost}"; }
-    { fqdn = "${giteaDomain}"; }
     { fqdn = rssBridgeDomain; }
     { fqdn = "www.zweili.ch"; }
     { fqdn = "actual-andreas.zweili.org"; }
@@ -32,9 +31,6 @@ let
   gitRepoRoot = "/var/lib/git";
   gitServerModule = import "${inputs.self}/modules/services/git-server";
 
-  giteaDataDir = "/var/lib/gitea";
-  giteaDomain = "git.zweili.org";
-  giteaModule = import "${inputs.self}/modules/services/gitea";
   hddBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/hdd_options.nix";
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
@@ -90,16 +86,11 @@ in
     })
     (btrfsLayout { })
     (nixBuilderModule { role = "client"; })
-    (giteaModule {
-      dataDir = giteaDataDir;
-      domain = giteaDomain;
-    })
     (gitServerModule { repoRoot = gitRepoRoot; })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [
         actualBudgetData
-        giteaDataDir
         gitRepoRoot
         config.services.freshrss.dataDir
         config.services.librenms.dataDir

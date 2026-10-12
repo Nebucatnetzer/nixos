@@ -32,7 +32,6 @@ in
   "fenoglio_wg.key.age".publicKeys = defaultKeys;
   "freshrss_db_pass.age".publicKeys = defaultKeys;
   "freshrss_user_pass.age".publicKeys = defaultKeys;
-  "gitea_env.age".publicKeys = defaultKeys;
   "capricorn_storagebox.key.age".publicKeys = defaultKeys;
   "fenoglio_storagebox.key.age".publicKeys = defaultKeys;
   "gwyn_archive_luks.key.age".publicKeys = defaultKeys;

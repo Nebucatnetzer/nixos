@@ -6,12 +6,13 @@
   ...
 }:
 let
+  # ActualBudget
+  actualBudgetData = "/var/lib/actualbudget";
   actualBudgetModule = import "${inputs.self}/modules/services/actualbudget";
-  actualData = "/var/lib/actualbudget";
+
   archiveLuks = "archiveLuks";
   archivePath = "/mnt/archive-disk";
   archiveShareServer = import "${inputs.self}/modules/services/archive-share/server.nix";
-  eactualData = "/var/lib/eactual";
   btrfsAuxModule = import "${inputs.self}/modules/hardware/btrfs/aux.nix";
   btrfsLayout = import "${inputs.self}/modules/hardware/btrfs/layout.nix";
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
@@ -20,6 +21,9 @@ let
     { fqdn = "${giteaDomain}"; }
     { fqdn = rssBridgeDomain; }
     { fqdn = "www.zweili.ch"; }
+    { fqdn = "actual-andreas.zweili.org"; }
+    { fqdn = "actual-benjamin.zweili.org"; }
+    { fqdn = "actual-eleonore.zweili.org"; }
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
@@ -55,16 +59,19 @@ in
     "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/zram-swap"
     (actualBudgetModule {
-      domain = "actual.zweili.org";
-      dataDirectory = actualData;
-      name = "actual";
+      domain = "actual-andreas.zweili.org";
+      name = "andreas";
       port = 5006;
     })
     (actualBudgetModule {
-      domain = "eactual.zweili.org";
-      dataDirectory = eactualData;
-      name = "eactual";
+      domain = "actual-eleonore.zweili.org";
+      name = "eleonore";
       port = 5007;
+    })
+    (actualBudgetModule {
+      domain = "actual-benjamin.zweili.org";
+      name = "benjamin";
+      port = 5008;
     })
     (archiveShareServer {
       clients = [ config.az-hosts.capricorn.wgIp ];
@@ -85,8 +92,7 @@ in
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [
-        actualData
-        eactualData
+        actualBudgetData
         giteaDataDir
         config.services.freshrss.dataDir
         config.services.librenms.dataDir

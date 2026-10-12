@@ -23,6 +23,7 @@ let
       } ${hooksFor name repo}
     '') repos
   );
+  repos = import ./repos.nix;
   spoolDirectory = "${repoRoot}/.spool";
   # Append, not overwrite, so a second push before the service runs keeps its ref lines.
   spoolHooks =

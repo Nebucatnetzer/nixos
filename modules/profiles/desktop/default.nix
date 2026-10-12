@@ -15,7 +15,6 @@ in
     "${inputs.self}/modules/programs/libimobiledevice"
     "${inputs.self}/modules/programs/rapid-photo-downloader"
     "${inputs.self}/modules/programs/signal"
-    "${inputs.self}/modules/services/nginx-acme-base"
     "${inputs.self}/modules/services/idle-maintenance"
     "${inputs.self}/modules/services/pipewire"
     "${inputs.self}/modules/services/video-image"

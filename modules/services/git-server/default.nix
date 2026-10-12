@@ -54,7 +54,8 @@ let
       rm ${spoolDirectory}/${slug name}
     ''
     + lib.concatMapStrings (remote: ''
-      git --git-dir=${repoRoot}/${name}.git push --mirror ${lib.escapeShellArg remote}
+      git --git-dir=${repoRoot}/${name}.git push --prune ${lib.escapeShellArg remote} \
+        '+refs/heads/*:refs/heads/*' '+refs/tags/*:refs/tags/*'
     '') repo.pushMirrors;
   };
   hookServices = lib.mapAttrs' (

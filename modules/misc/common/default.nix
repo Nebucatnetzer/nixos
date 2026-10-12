@@ -181,10 +181,6 @@ in
       options = "--delete-older-than 30d";
       persistent = true;
     };
-    optimise = {
-      automatic = true;
-      dates = [ "17:00" ];
-    };
   };
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [

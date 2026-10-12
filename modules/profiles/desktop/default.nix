@@ -163,7 +163,7 @@ in
       azPkgs.watch-video
 
       # photography packages
-      pkgs.art
+      azPkgs.art-dimmed
       pkgs.digikam
       pkgs.hugin
       pkgs.tesseract # OCR in Digikam

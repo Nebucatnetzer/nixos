@@ -100,7 +100,9 @@
     pushMirrors = [ "git@github.com:Nebucatnetzer/nixos.git" ];
   };
   "Nebucatnetzer/notes" = { };
-  "Nebucatnetzer/org-posts" = { };
+  "Nebucatnetzer/org-posts" = {
+    pushMirrors = [ "git@github.com:Nebucatnetzer/org-posts.git" ];
+  };
   "Nebucatnetzer/posts" = { };
   "Nebucatnetzer/price_checker" = { };
   "Nebucatnetzer/python_cheatsheet" = { };

@@ -32,7 +32,8 @@ let
     }
   ) mirroredRepos;
   # The spool file goes first. post-receive runs after the refs are updated, so a push
-  # during this run is either in this push --mirror or starts the service again.
+  # during this run is either in this push or starts the service again.
+  # Only branches and tags: GitHub rejects other refs, for example gitea's refs/pull/*.
   hookService = name: repo: {
     description = "Push ${name} to its mirrors";
     after = [ "network-online.target" ];

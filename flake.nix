@@ -19,6 +19,11 @@
     nixpkgs-zotero.url = "github:NixOS/nixpkgs/363fdbe57ed052c76e816e6270206b0cb348e53a";
     # look here for the hardware options https://github.com/NixOS/nixos-hardware/blob/master/flake.nix#L5
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs =

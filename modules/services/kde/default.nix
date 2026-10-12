@@ -104,7 +104,10 @@ in
   };
   programs.xwayland.enable = true;
   programs.partition-manager.enable = true;
+
+  home-manager.sharedModules = [ inputs.plasma-manager.homeModules.plasma-manager ];
   home-manager.users.${config.az-username} = {
+    imports = [ "${inputs.self}/modules/home-manager/programs/plasma" ];
     home.file.".local/share/kio/servicemenus/removeMetadata.desktop".text = ''
       # Based on https://github.com/Merrit/kde-dolphin-remove-metadata
       [Desktop Entry]

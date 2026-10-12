@@ -1,0 +1,4 @@
+spectaclerc.ImageSave.lastImageSave
+dolphinrc.ExtractDialog.
+"kate/anonymous.katesession"
+ktrashrc."\\/run\\/media\\/

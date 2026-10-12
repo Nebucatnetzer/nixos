@@ -97,6 +97,7 @@
   "Nebucatnetzer/nix-libs" = { };
   "Nebucatnetzer/nixos" = {
     description = "NixOS configuration";
+    pushMirrors = [ "git@github.com:Nebucatnetzer/nixos.git" ];
   };
   "Nebucatnetzer/notes" = { };
   "Nebucatnetzer/org-posts" = { };

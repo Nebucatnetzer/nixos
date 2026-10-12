@@ -27,6 +27,11 @@ let
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
   ];
+
+  # git server
+  gitRepoRoot = "/var/lib/git";
+  gitServerModule = import "${inputs.self}/modules/services/git-server";
+
   giteaDataDir = "/var/lib/gitea";
   giteaDomain = "git.zweili.org";
   giteaModule = import "${inputs.self}/modules/services/gitea";
@@ -89,11 +94,13 @@ in
       dataDir = giteaDataDir;
       domain = giteaDomain;
     })
+    (gitServerModule { repoRoot = gitRepoRoot; })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [
         actualBudgetData
         giteaDataDir
+        gitRepoRoot
         config.services.freshrss.dataDir
         config.services.librenms.dataDir
       ];

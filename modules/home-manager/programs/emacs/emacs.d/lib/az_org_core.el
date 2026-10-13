@@ -10,6 +10,13 @@
         (org-insert-item 'checkbox)
       (org-insert-todo-heading-respect-content)))
 
+  (defun az-org-insert-item-or-heading ()
+    "Insert an item in a plain list, else a heading after the subtree."
+    (interactive)
+    (if (org-in-item-p)
+        (org-insert-item)
+      (org-insert-heading-respect-content)))
+
   (use-package org
     :bind (("<f9>" . az/custom-agenda)
            :map az-map
@@ -17,6 +24,7 @@
            ("C-c" . org-capture)
            ("C-s" . org-store-link)
            :map org-mode-map
+           ("M-RET" . az-org-insert-item-or-heading)
            ("C-c C-," . org-insert-structure-template)
            ("C-l C-t" . az-org-insert-todo-or-checkbox)
            ("C-c C-$" . org-archive-subtree))
@@ -68,9 +76,6 @@
 
     (setopt org-tags-column 0
             org-use-tag-inheritance t
-
-            ;; disable line split with M-RET
-            org-M-RET-may-split-line (quote ((default)))
 
             ;; Allow headings with visibility folded to get folded when opening a file
             org-startup-folded 'nofold

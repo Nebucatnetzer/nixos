@@ -10,10 +10,15 @@
 }:
 let
   # restrict: no pty and no forwarding. git-shell already limits the commands.
-  authorizedKeys = map (
-    key: "restrict ${key}"
-  ) config.users.users.${config.az-username}.openssh.authorizedKeys.keys;
+  authorizedKeys = map (key: "restrict ${key}") (
+    config.users.users.${config.az-username}.openssh.authorizedKeys.keys ++ gitOnlyKeys
+  );
   emptyHooks = pkgs.runCommand "git-hooks-empty" { } "mkdir $out";
+  # These keys may only use git. They cannot log in to any host.
+  gitOnlyKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0EtKlimFd56pvvHr+witH8ru5suizw4MDnIbRqEy/t zweili@CO-NB-102"
+  ];
+
   hasActions = repo: (repo.pushMirrors or [ ]) != [ ];
 
   hooksFor = name: repo: if hasActions repo then spoolHooks name else emptyHooks;

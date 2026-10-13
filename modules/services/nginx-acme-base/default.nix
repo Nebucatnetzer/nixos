@@ -31,5 +31,11 @@ _: {
     '';
     recommendedOptimisation = true;
     recommendedTlsSettings = true;
+    # Reject unknown hostnames instead of serving the first vhost alphabetically.
+    virtualHosts."_" = {
+      default = true;
+      rejectSSL = true;
+      locations."/".return = "444";
+    };
   };
 }

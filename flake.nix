@@ -44,7 +44,7 @@
           home-module = "management";
         };
         "gwyn" = {
-          home-module = "management";
+          home-module = "headless";
         };
       };
       hostConfigs = nixpkgs.lib.attrsets.mapAttrs (

@@ -20,12 +20,13 @@ writeShellApplication {
     platforms = lib.platforms.linux;
   };
   text = ''
+    # Skip subdirectories so mpv never plays or resumes into the watched/ folder.
     fd \
       --search-path ${mediaPaths.youtubePlaylists}/ \
       --type directory \
       --no-hidden \
       --max-depth 1 |
         fzf \
-          --bind 'enter:become(mpv --save-position-on-quit {})'
+          --bind 'enter:become(mpv --save-position-on-quit --directory-mode=ignore {})'
   '';
 }

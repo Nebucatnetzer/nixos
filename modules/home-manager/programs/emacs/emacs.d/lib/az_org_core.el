@@ -3,6 +3,13 @@
   (use-package ox-pandoc
     :after org)
 
+  (defun az-org-insert-todo-or-checkbox ()
+    "Insert a checkbox item in a plain list, else a TODO heading after the subtree."
+    (interactive)
+    (if (org-in-item-p)
+        (org-insert-item 'checkbox)
+      (org-insert-todo-heading-respect-content)))
+
   (use-package org
     :bind (("<f9>" . az/custom-agenda)
            :map az-map
@@ -11,6 +18,7 @@
            ("C-s" . org-store-link)
            :map org-mode-map
            ("C-c C-," . org-insert-structure-template)
+           ("C-l C-t" . az-org-insert-todo-or-checkbox)
            ("C-c C-$" . org-archive-subtree))
     :config
     (require 'org-indent)

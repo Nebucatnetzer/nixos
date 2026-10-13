@@ -1,8 +1,4 @@
 ;; -*- lexical-binding: t; -*-
-(defun az-copy-all ()
-  "Copy entire buffer to clipboard."
-  (interactive)
-  (clipboard-kill-ring-save (point-min) (point-max)))
 
 ;; taken from: https://emacsredux.com/blog/2025/06/01/let-s-make-keyboard-quit-smarter/
 (defun az-keyboard-quit ()

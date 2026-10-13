@@ -182,7 +182,6 @@
         ("C-x C-0" . kill-buffer-and-window)
         ;; kill THIS buffer
         ("C-x C-k" . kill-current-buffer)
-        ("C-S-c" . az-copy-all)
         ;; keybinding for new frame
         ("C-x N" . make-frame)
         ;; kill frame

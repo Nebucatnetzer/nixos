@@ -104,3 +104,4 @@ flycheck_*
 /.ripgreprc
 /.vscode
 /.zprofile
+/todos

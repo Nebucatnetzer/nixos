@@ -55,15 +55,29 @@
     (defvar az-org-no-cost-center "No cost center"
       "Group name for clocked time without a cost center.")
 
-    (defun az-org-clocktable--group-by-cost-center (tables)
+    (defvar az-org-clock-factor-property "CLOCK_FACTOR"
+      "Property with a factor for clocked time, for example 1.25 for after hours.")
+
+    (defun az--org-clock-factor (entry)
+      "Return the clock factor of clocktable ENTRY, or 1 if it has none."
+      (let ((value (cdr (assoc az-org-clock-factor-property (nth 5 entry)))))
+        (cond ((null value) 1)
+              ((string-match-p "\\`[0-9]+\\(?:\\.[0-9]+\\)?\\'" value)
+               (string-to-number value))
+              (t (user-error "Invalid %s %S in clocktable row %S"
+                             az-org-clock-factor-property value (nth 1 entry))))))
+
+    (defun az--org-clocktable-group-by-cost-center (tables)
       "Merge clocktable TABLES into one table grouped by cost center.
 TABLES is a list of tables as `org-clock-get-table-data' returns them.
-Each cost center becomes a level 1 row with its sum, followed by its rows."
+Each cost center becomes a level 1 row with its sum, followed by its rows.
+The level 1 row stores its factored minutes in the property \"Factored\"."
       (let ((groups nil)
             (total 0))
         (dolist (table tables)
           (setq total (+ total (or (nth 1 table) 0)))
-          ;; Each element is (LEVEL GROUP ROOT-LEVEL ROW) for an open ancestor.
+          ;; Each element is (LEVEL GROUP ROOT-LEVEL ROW SHARE) for an open ancestor.
+          ;; SHARE is (OWN-MINUTES . FACTOR); OWN-MINUTES excludes the child rows.
           (let ((ancestors nil))
             (dolist (entry (nth 2 table))
               (let ((level (nth 0 entry))
@@ -75,7 +89,11 @@ Each cost center becomes a level 1 row with its sum, followed by its rows."
                        (root-p (not (and parent (equal (nth 1 parent) group))))
                        (root-level (if root-p level (nth 2 parent)))
                        (row (copy-sequence entry))
+                       (share (cons (nth 4 entry) (az--org-clock-factor entry)))
                        (group-cell (assoc group groups)))
+                  (when parent
+                    (let ((parent-share (nth 4 parent)))
+                      (setcar parent-share (- (car parent-share) (nth 4 entry)))))
                   ;; Parent rows include this time, so remove it from the parent's group.
                   (when (and root-p parent)
                     (let ((parent-group (nth 1 parent))
@@ -87,13 +105,14 @@ Each cost center becomes a level 1 row with its sum, followed by its rows."
                                 (- (nth 4 ancestor-row) (nth 4 entry)))))))
                   (setf (nth 0 row) (+ 2 (- level root-level)))
                   (unless group-cell
-                    (setq group-cell (list group nil nil))
+                    (setq group-cell (list group nil nil nil))
                     (push group-cell groups))
-                  ;; group-cell is (GROUP ROWS ROOTS), both lists in reverse order.
+                  ;; group-cell is (GROUP ROWS ROOTS SHARES), all lists in reverse order.
                   (push row (nth 1 group-cell))
                   (when root-p
                     (push row (nth 2 group-cell)))
-                  (push (list level group root-level row) ancestors))))))
+                  (push share (nth 3 group-cell))
+                  (push (list level group root-level row share) ancestors))))))
         (let ((sorted (sort groups
                             (lambda (left right)
                               (cond ((equal (car left) az-org-no-cost-center) nil)
@@ -101,25 +120,52 @@ Each cost center becomes a level 1 row with its sum, followed by its rows."
                                     (t (string< (car left) (car right)))))))
               (entries nil))
           (dolist (group-cell sorted)
-            (let ((sum 0))
+            (let ((sum 0)
+                  (factored 0))
               (dolist (root (nth 2 group-cell))
                 (setq sum (+ sum (nth 4 root))))
-              (push (list 1 (car group-cell) nil nil sum nil) entries)
-              (dolist (row (reverse (nth 1 group-cell)))
-                (push row entries))))
+              (dolist (share (nth 3 group-cell))
+                (setq factored (+ factored (* (car share) (cdr share)))))
+              ;; A parent can lose all its time to child rows of other groups.
+              (unless (= sum 0)
+                (push (list 1 (car group-cell) nil nil sum
+                            (list (cons "Factored" factored)))
+                      entries)
+                (dolist (row (reverse (nth 1 group-cell)))
+                  (unless (= (nth 4 row) 0)
+                    (push row entries))))))
           (list nil total (nreverse entries)))))
 
     (defun az-org-clocktable-by-cost-center (ipos tables params)
       "Clocktable formatter that groups rows by `az-org-cost-center-property'.
-The clocktable needs :properties (\"COST_CENTER\") :inherit-props t."
-      (org-clocktable-write-default
-       ipos
-       (list (az-org-clocktable--group-by-cost-center tables))
-       ;; The group row adds one level, so allow one more time column.
-       (org-combine-plists params
-                           (list :properties nil
-                                 :multifile nil
-                                 :maxlevel (1+ (or (plist-get params :maxlevel) 3))))))
+The clocktable needs :properties (\"COST_CENTER\" \"CLOCK_FACTOR\") :inherit-props t.
+The Factored column shows the time multiplied by `az-org-clock-factor-property'."
+      (let* ((table (az--org-clocktable-group-by-cost-center tables))
+             (factored-total 0))
+        ;; The default writer prints property values, so format the minutes here.
+        (dolist (row (nth 2 table))
+          (let ((factored (assoc "Factored" (nth 5 row))))
+            (when (and factored (= (nth 0 row) 1))
+              (setq factored-total (+ factored-total (cdr factored)))
+              (setcdr factored (org-duration-from-minutes (cdr factored))))))
+        (prog1
+            (org-clocktable-write-default
+             ipos
+             (list table)
+             ;; The group row adds one level, so allow one more time column.
+             (org-combine-plists params
+                                 (list :properties '("Factored")
+                                       :multifile nil
+                                       :maxlevel (1+ (or (plist-get params :maxlevel) 3)))))
+          ;; The default writer leaves the Factored cell of the total row empty.
+          ;; Table line 2 is the total row, because org-table-put skips hlines.
+          (save-excursion
+            (goto-char ipos)
+            (skip-chars-forward "^|")
+            (org-table-put 2 1 (format "*%s*" (org-duration-from-minutes factored-total)) t)
+            ;; The writer puts property columns first; move Factored after Headline.
+            (org-table-goto-column 1)
+            (org-table-move-column-right)))))
 
     ;; Clocking keybindings
     (keymap-global-set "C-x C-d" #'org-clock-mark-default-task)))

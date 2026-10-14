@@ -41,13 +41,13 @@
                                                 :hidefiles t :formula nil :timestamp nil :level nil :tcolumns nil
                                                 :formatter nil))
 
-    (defun az/org-cc-update-clocktable ()
+    (defun az-org-cc-update-clocktable ()
       "Update clocktable when C-c C-c is pressed anywhere inside one."
       (when (org-in-clocktable-p)
         (org-clock-report)
         t))
 
-    (add-hook 'org-ctrl-c-ctrl-c-hook #'az/org-cc-update-clocktable)
+    (add-hook 'org-ctrl-c-ctrl-c-hook #'az-org-cc-update-clocktable)
 
     (defvar az-org-cost-center-property "COST_CENTER"
       "Property that assigns a heading and its children to an ERP cost center.")

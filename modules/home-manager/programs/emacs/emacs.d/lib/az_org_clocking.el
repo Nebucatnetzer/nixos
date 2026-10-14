@@ -49,5 +49,77 @@
 
     (add-hook 'org-ctrl-c-ctrl-c-hook #'az/org-cc-update-clocktable)
 
+    (defvar az-org-cost-center-property "COST_CENTER"
+      "Property that assigns a heading and its children to an ERP cost center.")
+
+    (defvar az-org-no-cost-center "No cost center"
+      "Group name for clocked time without a cost center.")
+
+    (defun az-org-clocktable--group-by-cost-center (tables)
+      "Merge clocktable TABLES into one table grouped by cost center.
+TABLES is a list of tables as `org-clock-get-table-data' returns them.
+Each cost center becomes a level 1 row with its sum, followed by its rows."
+      (let ((groups nil)
+            (total 0))
+        (dolist (table tables)
+          (setq total (+ total (or (nth 1 table) 0)))
+          ;; Each element is (LEVEL GROUP ROOT-LEVEL ROW) for an open ancestor.
+          (let ((ancestors nil))
+            (dolist (entry (nth 2 table))
+              (let ((level (nth 0 entry))
+                    (group (or (cdr (assoc az-org-cost-center-property (nth 5 entry)))
+                               az-org-no-cost-center)))
+                (while (and ancestors (>= (nth 0 (car ancestors)) level))
+                  (pop ancestors))
+                (let* ((parent (car ancestors))
+                       (root-p (not (and parent (equal (nth 1 parent) group))))
+                       (root-level (if root-p level (nth 2 parent)))
+                       (row (copy-sequence entry))
+                       (group-cell (assoc group groups)))
+                  ;; Parent rows include this time, so remove it from the parent's group.
+                  (when (and root-p parent)
+                    (let ((parent-group (nth 1 parent))
+                          (remaining ancestors))
+                      (while (and remaining
+                                  (equal (nth 1 (car remaining)) parent-group))
+                        (let ((ancestor-row (nth 3 (pop remaining))))
+                          (setf (nth 4 ancestor-row)
+                                (- (nth 4 ancestor-row) (nth 4 entry)))))))
+                  (setf (nth 0 row) (+ 2 (- level root-level)))
+                  (unless group-cell
+                    (setq group-cell (list group nil nil))
+                    (push group-cell groups))
+                  ;; group-cell is (GROUP ROWS ROOTS), both lists in reverse order.
+                  (push row (nth 1 group-cell))
+                  (when root-p
+                    (push row (nth 2 group-cell)))
+                  (push (list level group root-level row) ancestors))))))
+        (let ((sorted (sort groups
+                            (lambda (left right)
+                              (cond ((equal (car left) az-org-no-cost-center) nil)
+                                    ((equal (car right) az-org-no-cost-center) t)
+                                    (t (string< (car left) (car right)))))))
+              (entries nil))
+          (dolist (group-cell sorted)
+            (let ((sum 0))
+              (dolist (root (nth 2 group-cell))
+                (setq sum (+ sum (nth 4 root))))
+              (push (list 1 (car group-cell) nil nil sum nil) entries)
+              (dolist (row (reverse (nth 1 group-cell)))
+                (push row entries))))
+          (list nil total (nreverse entries)))))
+
+    (defun az-org-clocktable-by-cost-center (ipos tables params)
+      "Clocktable formatter that groups rows by `az-org-cost-center-property'.
+The clocktable needs :properties (\"COST_CENTER\") :inherit-props t."
+      (org-clocktable-write-default
+       ipos
+       (list (az-org-clocktable--group-by-cost-center tables))
+       ;; The group row adds one level, so allow one more time column.
+       (org-combine-plists params
+                           (list :properties nil
+                                 :multifile nil
+                                 :maxlevel (1+ (or (plist-get params :maxlevel) 3))))))
+
     ;; Clocking keybindings
     (keymap-global-set "C-x C-d" #'org-clock-mark-default-task)))

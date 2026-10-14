@@ -61,7 +61,8 @@
         (set-face-attribute 'org-date nil                  :inherit '(shadow fixed-pitch) :height 0.8)
         (set-face-attribute 'org-drawer nil                :inherit 'fixed-pitch :height 0.8)
         (set-face-attribute 'org-indent nil                :inherit '(org-hide fixed-pitch))
-        (set-face-attribute 'org-meta-line nil             :inherit 'fixed-pitch :height 0.8)
+        (set-face-attribute 'org-meta-line nil             :inherit '(shadow fixed-pitch) :height 0.8 :foreground 'unspecified)
+        (set-face-attribute 'org-block-begin-line nil      :inherit '(shadow fixed-pitch) :height 0.8 :background 'unspecified)
         (set-face-attribute 'org-special-keyword nil       :inherit 'fixed-pitch :height 0.8)
         (set-face-attribute 'org-table nil                 :inherit 'fixed-pitch)
         (set-face-attribute 'org-verbatim nil              :inherit '(shadow fixed-pitch))
@@ -71,8 +72,7 @@
     (add-hook 'after-make-frame-functions #'az/apply-font-settings)
 
     ;; Also apply immediately if not in daemon mode, or if a frame already exists
-    (when (display-graphic-p)
-      (az/apply-font-settings (selected-frame)))
+    (az/apply-font-settings (selected-frame))
 
     (setopt org-tags-column 0
             org-use-tag-inheritance t

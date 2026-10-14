@@ -36,8 +36,10 @@ rec {
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };
-  download-video = pkgs.callPackage ./download-video { inherit yt-dlp mediaPaths; };
-  download-playlist = pkgs.callPackage ./download-playlist { inherit yt-dlp mediaPaths; };
+  download-video = unstable-pkgs.callPackage ./download-videos/video.nix { inherit mediaPaths; };
+  download-playlist = unstable-pkgs.callPackage ./download-videos/playlist.nix {
+    inherit mediaPaths;
+  };
   dptfxtract = pkgs.callPackage ./dptfxtract { };
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
   qudedup-extract-tool = pkgs.callPackage ./qudedup-extract-tool { };

@@ -51,8 +51,7 @@ This displays the window in a new frame, see `tear-off-window'."
   (keymap-global-set "M-o" #'ace-window)
   (setopt ace-window-display-mode t
           aw-dispatch-always t
-          aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-          ace-window-mode t)
+          aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   )
 
 ;; https://github.com/abo-abo/avy
@@ -126,7 +125,7 @@ This displays the window in a new frame, see `tear-off-window'."
   ;; the global binding.
   (evil-define-key 'normal 'global (kbd "M-.") #'embark-act)
   ;; Optionally replace the key help with a completing-read interface
-  (setopt prefix-help-command #'embark-prefix-help-command)
+  (setq prefix-help-command #'embark-prefix-help-command)
 
   ;; Show the Embark target at point via Eldoc. You may adjust the
   ;; Eldoc strategy, if you want to see the documentation from

@@ -2,7 +2,6 @@
 (use-package highlight-indent-guides
   :config
   (setopt highlight-indent-guides-method 'character
-          hightlight-indentation-mode nil
           highlight-indent-guides-auto-enabled nil)
   (set-face-background 'highlight-indent-guides-odd-face "darkgray")
   (set-face-background 'highlight-indent-guides-even-face "gray")

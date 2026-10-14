@@ -51,13 +51,14 @@
          "No region is available")))
     (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
     (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
-    (setq denote-rename-buffer-mode 1
-          denote-file-type "org"
-          denote-directory az-nextcloud-dir
-          denote-dired-directories (list denote-directory)
-          denote-dired-directories-include-subdirectories t
-          denote-excluded-directories-regexp "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public\\|98_zotero"
-          denote-org-front-matter az-denote-org-front-matter
+    (denote-rename-buffer-mode 1)
+    (setopt denote-file-type 'org
+            denote-directory az-nextcloud-dir
+            denote-dired-directories (list denote-directory)
+            denote-dired-directories-include-subdirectories t
+            denote-excluded-directories-regexp
+            "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public\\|98_zotero")
+    (setq denote-org-front-matter az-denote-org-front-matter
           denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n"))
 
   (use-package denote-org)

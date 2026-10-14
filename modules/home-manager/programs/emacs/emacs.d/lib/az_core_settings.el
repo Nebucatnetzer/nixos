@@ -49,12 +49,11 @@
                   (setenv "WAYLAND_DISPLAY" display)))))
 
   (setopt history-delete-duplicates t)
-  (setopt inhibit-compacting-font-caches t)
+  (setq inhibit-compacting-font-caches t)
   ;; Disable splash screen
-  (setopt inhibit-splash-screen t)
-
+  (setopt inhibit-startup-screen t)
   ;; switch focus to man page
-  (setopt man-notify-method t)
+  (setopt Man-notify-method 'aggressive)
   ;; disbale the bell
   (setopt ring-bell-function 'ignore)
   ;; insert only one space after a period

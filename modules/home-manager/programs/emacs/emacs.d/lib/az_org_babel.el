@@ -36,4 +36,4 @@
 
   ;; Without this a bare shell block returns its stdout whitespace-split into
   ;; a table, because `org-babel-result-cond' only sees ":results replace".
-  (setopt org-babel-default-header-args:shell '((:results . "output"))))
+  (setq org-babel-default-header-args:shell '((:results . "output"))))

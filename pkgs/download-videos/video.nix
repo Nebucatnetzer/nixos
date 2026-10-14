@@ -25,6 +25,8 @@ lib.meta.addMetaAttrs
         "--destination=${mediaPaths.youtubeVideos}"
         "--add-flag"
         "--video-root=${mediaPaths.youtubeVideos}"
+        "--add-flag"
+        "--mode=video"
       ];
     } (builtins.readFile ./download_video.py)
   )

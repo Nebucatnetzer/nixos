@@ -10,7 +10,6 @@ from typing import Any
 import yt_dlp
 
 BYTES_PER_GIB = 1024**3
-# Only the real download needs these. The size estimate skips them.
 PLAYLIST_OUTPUT = "%(playlist)s/%(playlist_index)s - %(title)s [%(id)s].%(ext)s"
 # yt-dlp sizes are estimates. Ask for 10 % more free space.
 SIZE_MARGIN = 1.1
@@ -42,7 +41,10 @@ def existing_youtube_ids(video_root: Path) -> list[str]:
 
 
 def make_match_filter(
-    existing_ids: set[str], destination: Path, user_filter: MatchFilter | None
+    existing_ids: set[str],
+    destination: Path,
+    stop_when_full: bool,
+    user_filter: MatchFilter | None,
 ) -> MatchFilter:
     # yt-dlp passes incomplete as a bool or as a set of format fields.
     def match_filter(
@@ -63,7 +65,11 @@ def make_match_filter(
                 f"Warning: yt-dlp gives no size for {info.get('id')}.", file=sys.stderr
             )
             return None
-        return missing_space_message(destination, int(size * SIZE_MARGIN))
+        message = missing_space_message(destination, int(size * SIZE_MARGIN))
+        if message is not None and stop_when_full:
+            # yt-dlp prints the message and cancels the remaining downloads.
+            raise yt_dlp.utils.RejectedVideoReached(message)
+        return message
 
     return match_filter
 
@@ -77,7 +83,7 @@ def missing_space_message(directory: Path, needed_bytes: int) -> str | None:
     return f"Not enough space in {directory}: needs {needed_gib:.1f} GiB, has {free_gib:.1f} GiB."
 
 
-def yt_dlp_options(destination: Path, run_directory: Path, playlist: bool) -> list[str]:
+def yt_dlp_options(destination: Path, run_directory: Path, mode: str) -> list[str]:
     options = [
         "--cookies-from-browser",
         "firefox",
@@ -87,11 +93,12 @@ def yt_dlp_options(destination: Path, run_directory: Path, playlist: bool) -> li
         f"--paths=home:{destination}",
         f"--paths=temp:{run_directory}",
     ]
-    if playlist:
-        options.append("--yes-playlist")
-        options.append(f"--output={PLAYLIST_OUTPUT}")
-    else:
+    if mode == "video":
         options.append("--no-playlist")
+    else:
+        options.append("--yes-playlist")
+    if mode == "playlist":
+        options.append(f"--output={PLAYLIST_OUTPUT}")
     return options
 
 
@@ -102,7 +109,10 @@ def main() -> int:
     )
     parser.add_argument("--destination", type=Path, required=True)
     parser.add_argument("--video-root", type=Path, required=True)
-    parser.add_argument("--playlist", action="store_true")
+    # watch-later skips videos that do not fit, playlist stops at the first one.
+    parser.add_argument(
+        "--mode", choices=["video", "playlist", "watch-later"], required=True
+    )
     arguments, yt_dlp_arguments = parser.parse_known_args()
 
     arguments.destination.mkdir(parents=True, exist_ok=True)
@@ -110,16 +120,22 @@ def main() -> int:
     existing_ids = set(existing_youtube_ids(arguments.video_root))
     with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as run_directory_name:
         options = yt_dlp_options(
-            arguments.destination, Path(run_directory_name), arguments.playlist
+            arguments.destination, Path(run_directory_name), arguments.mode
         )
         parsed = yt_dlp.parse_options([*options, *yt_dlp_arguments])
         ydl_options = parsed.ydl_opts
         ydl_options["match_filter"] = make_match_filter(
-            existing_ids, arguments.destination, ydl_options.get("match_filter")
+            existing_ids,
+            arguments.destination,
+            arguments.mode == "playlist",
+            ydl_options.get("match_filter"),
         )
         try:
             with yt_dlp.YoutubeDL(ydl_options) as downloader:
                 return downloader.download(parsed.urls)
+        except yt_dlp.utils.DownloadCancelled:
+            # Same exit code as yt-dlp's own main().
+            return 101
         except YT_DLP_ERRORS:
             # yt-dlp has already printed the error.
             return 1

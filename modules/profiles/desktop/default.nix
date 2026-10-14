@@ -153,6 +153,7 @@ in
       azPkgs.download-articles
       azPkgs.download-playlist
       azPkgs.download-video
+      azPkgs.download-watch-later
       azPkgs.jdownloader
       azPkgs.raiffeisen-csv-cleanup
       azPkgs.sidecar-cleanup

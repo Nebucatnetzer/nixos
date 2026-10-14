@@ -26,7 +26,7 @@ lib.meta.addMetaAttrs
         "--add-flag"
         "--video-root=${mediaPaths.youtubeVideos}"
         "--add-flag"
-        "--playlist"
+        "--mode=playlist"
       ];
     } (builtins.readFile ./download_video.py)
   )

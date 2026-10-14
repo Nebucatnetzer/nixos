@@ -36,8 +36,11 @@ rec {
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };
-  download-video = unstable-pkgs.callPackage ./download-videos/video.nix { inherit mediaPaths; };
   download-playlist = unstable-pkgs.callPackage ./download-videos/playlist.nix {
+    inherit mediaPaths;
+  };
+  download-video = unstable-pkgs.callPackage ./download-videos/video.nix { inherit mediaPaths; };
+  download-watch-later = unstable-pkgs.callPackage ./download-videos/watch-later.nix {
     inherit mediaPaths;
   };
   dptfxtract = pkgs.callPackage ./dptfxtract { };

@@ -333,7 +333,7 @@
       dolphinrc.ContentDisplay.UseShortRelativeDates = false;
       dolphinrc.DetailsMode.PreviewSize = 16;
       dolphinrc.General.RememberOpenedTabs = false;
-      dolphinrc.General.ViewPropsTimestamp = "2025,3,24,17,46,30.431";
+      dolphinrc.General.ViewPropsTimestamp = "2026,10,15,22,9,12.626";
       dolphinrc.IconsMode.PreviewSize = 256;
       dolphinrc."KFileDialog Settings"."Places Icons Auto-resize" = false;
       dolphinrc."KFileDialog Settings"."Places Icons Static Size" = 22;

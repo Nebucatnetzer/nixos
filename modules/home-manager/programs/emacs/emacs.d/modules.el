@@ -32,6 +32,7 @@
 (load-file (modules-path "az_programming.el"))
 
 ;; various third party
+(load-file (modules-path "az_elfeed.el"))
 (load-file (modules-path "az_manuals.el"))
 (load-file (modules-path "az_mu4e.el"))
 (load-file (modules-path "az_perspective.el"))

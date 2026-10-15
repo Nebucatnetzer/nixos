@@ -87,6 +87,9 @@
   # email
   epkgs.mu4e
   pkgs.mu # needed for mailing
+  # feeds (FreshRSS sync)
+  epkgs.elfeed
+  epkgs.elfeed-protocol
   # languagetool prose linting
   epkgs.flymake-languagetool
 ]

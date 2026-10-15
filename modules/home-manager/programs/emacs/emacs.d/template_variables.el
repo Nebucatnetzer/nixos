@@ -8,6 +8,7 @@
 ;;(setq enable-clocking t)
 ;;(setq enable-email t)
 ;;(setq enable-emojis t)
+;;(setq enable-feeds t)
 ;;(setq enable-font t)
 ;;(setq enable-langtool t)
 ;;(setq enable-notes t)

@@ -103,6 +103,7 @@
   "Nebucatnetzer/org-posts" = {
     pushMirrors = [ "git@github.com:Nebucatnetzer/org-posts.git" ];
   };
+  "Nebucatnetzer/photo-vote" = { };
   "Nebucatnetzer/posts" = { };
   "Nebucatnetzer/price_checker" = { };
   "Nebucatnetzer/python_cheatsheet" = { };

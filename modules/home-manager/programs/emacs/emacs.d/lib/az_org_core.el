@@ -18,7 +18,7 @@
       (org-insert-heading-respect-content)))
 
   (use-package org
-    :bind (("<f9>" . az/custom-agenda)
+    :bind (("<f9>" . az-custom-agenda)
            :map az-map
            ("C-a" . org-agenda)
            ("C-c" . org-capture)
@@ -35,7 +35,7 @@
             org-indent-mode-turns-on-hiding-stars nil
             )
 
-    (defun az/apply-font-settings (frame)
+    (defun az-apply-font-settings (frame)
       "Apply font settings when a new FRAME is created."
       (with-selected-frame frame
         (set-face-attribute 'fixed-pitch nil :family "Source Code Pro")
@@ -69,10 +69,10 @@
         (plist-put org-format-latex-options :scale 2)))
 
     ;; Apply when a new frame is created
-    (add-hook 'after-make-frame-functions #'az/apply-font-settings)
+    (add-hook 'after-make-frame-functions #'az-apply-font-settings)
 
     ;; Also apply immediately if not in daemon mode, or if a frame already exists
-    (az/apply-font-settings (selected-frame))
+    (az-apply-font-settings (selected-frame))
 
     (setopt org-tags-column 0
             org-use-tag-inheritance t
@@ -119,7 +119,7 @@
 
     ;; Runs while the capture buffer is still narrowed to the new entry, so
     ;; `org-entry-put' cannot walk back past it into the wrong heading.
-    (defun az/org-capture-stamp-created ()
+    (defun az-org-capture-stamp-created ()
       "Stamp the entry being captured with the time of capture."
       (when (and (not org-note-abort)
                  (eq (org-capture-get :type 'local) 'entry))
@@ -127,8 +127,8 @@
           (org-entry-put (point) "CREATED"
                          (format-time-string "[%Y-%m-%d %a %H:%M]")))))
 
-    (add-hook 'org-capture-prepare-finalize-hook #'az/org-capture-stamp-created)
-    (defun az/org-fold-finished-entries ()
+    (add-hook 'org-capture-prepare-finalize-hook #'az-org-capture-stamp-created)
+    (defun az-org-fold-finished-entries ()
       "Fold the body of every DONE and CANCELLED entry in a file buffer to make files look a bit tidier.
 Scope nil, not 'file: 'file prompts for files not yet on disk, such as
 a new archive file."
@@ -136,7 +136,7 @@ a new archive file."
         (org-map-entries #'org-fold-hide-subtree
                          "/DONE|CANCELLED" nil 'archive 'comment)))
 
-    (add-hook 'org-mode-hook #'az/org-fold-finished-entries)
+    (add-hook 'org-mode-hook #'az-org-fold-finished-entries)
 
     (defun az-org-files-list ()
       (delq nil
@@ -191,22 +191,22 @@ a new archive file."
     (setopt org-attach-id-dir "resources/"
             org-archive-location (az-org-archive-location))
 
-    (defun org-update-cookies-after-save()
+    (defun az-org-update-cookies-after-save()
       (interactive)
       (let ((current-prefix-arg '(4)))
         (org-update-statistics-cookies "ALL")))
 
-    (defun org-summary-todo (n-done n-not-done)
+    (defun az-org-summary-todo (n-done n-not-done)
       "Switch entry to DONE when all subentries are done, to TODO otherwise."
       (let (org-log-done org-log-states)   ; turn off logging
         (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
     (add-hook 'org-mode-hook
               (lambda ()
-                (add-hook 'before-save-hook 'org-update-cookies-after-save nil 'make-it-local)))
+                (add-hook 'before-save-hook 'az-org-update-cookies-after-save nil 'make-it-local)))
 
     (add-hook 'org-mode-hook #'az-prose-editing)
-    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+    (add-hook 'org-after-todo-statistics-hook 'az-org-summary-todo)
 
     ;; Calender should start on Monday
     (setopt calendar-week-start-day 1)
@@ -232,10 +232,10 @@ a new archive file."
                       (org-eval-in-calendar (list calendar-command 1)))))))
 
   ;; Load additional org config files.
-  (load-file (modules-path "az_org_babel.el"))
-  (load-file (modules-path "az_org_clocking.el"))
-  (load-file (modules-path "az_org_agenda.el"))
-  (load-file (modules-path "az_org_export.el"))
-  (load-file (modules-path "az_org_insert.el"))
-  (load-file (modules-path "az_org_log.el"))
-  (load-file (modules-path "az_org_gitlab.el")))
+  (load-file (az-modules-path "az_org_babel.el"))
+  (load-file (az-modules-path "az_org_clocking.el"))
+  (load-file (az-modules-path "az_org_agenda.el"))
+  (load-file (az-modules-path "az_org_export.el"))
+  (load-file (az-modules-path "az_org_insert.el"))
+  (load-file (az-modules-path "az_org_log.el"))
+  (load-file (az-modules-path "az_org_gitlab.el")))

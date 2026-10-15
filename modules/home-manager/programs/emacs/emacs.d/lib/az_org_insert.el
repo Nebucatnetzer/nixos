@@ -11,14 +11,14 @@
 ;; required libraries
 
 (with-eval-after-load 'org
-  (keymap-set org-mode-map "C-c i" #'org-insert-image))
+  (keymap-set org-mode-map "C-c i" #'az-org-insert-image))
 ;; start directory
-(defvar bjm/conference-image-dir (expand-file-name az-auto-uploads-dir))
+(defvar az-conference-image-dir (expand-file-name az-auto-uploads-dir))
 
-(defun org-insert-image ()
+(defun az-org-insert-image ()
   "Insert image from conference directory, rename and add link in current file.
     The file is taken from a start directory set by
-    `bjm/conference-image-dir' and moved to the current directory, renamed
+    `az-conference-image-dir' and moved to the current directory, renamed
     and embedded at the point as an org-mode link. The user is presented
     with a list of files in the start directory, from which to select the
     file to move, sorted by most recent first."
@@ -27,7 +27,7 @@
     ;; clean directories from list but keep times
     (setq file-list
           (seq-remove (lambda (entry) (nth 1 entry))
-                      (directory-files-and-attributes bjm/conference-image-dir)))
+                      (directory-files-and-attributes az-conference-image-dir)))
 
     ;; get target directory
     (setq target-dir (concat (file-name-directory buffer-file-name) "_resources/"))
@@ -43,7 +43,7 @@
 
     ;; add full path to start file and end-file
     (setq start-file-full
-          (expand-file-name start-file bjm/conference-image-dir))
+          (expand-file-name start-file az-conference-image-dir))
     ;; generate target file name from current org section
     (setq file-ext
           (file-name-extension start-file t))

@@ -1,9 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 (when (bound-and-true-p enable-email)
   (use-package mu4e
-    :if (is-linux-p)
+    :if (az-is-linux-p)
     :bind
-    ([f4] . open-mail)
+    ([f4] . az-open-mail)
     (:map mu4e-main-mode-map
           ("J" . mu4e-search-maildir))
     :config
@@ -61,7 +61,7 @@
     (setopt mu4e-confirm-quit nil)
 
     ;; A function to create a persp for reading mail
-    (defun open-mail ()
+    (defun az-open-mail ()
       "Create a mail perspective and open mu4e"
       (interactive)
       (persp-switch "mail")

@@ -21,7 +21,7 @@
               ("PROJECT" :foreground ,fg-dim :weight bold)
               ("NEXT" :foreground ,red :weight bold))))
 
-  (defun az/custom-agenda (&optional arg)
+  (defun az-custom-agenda (&optional arg)
     (interactive "P")
     (org-agenda arg "A"))
 
@@ -50,7 +50,7 @@
                                            ("O" occur-tree "TODO")
                                            ("W" occur-tree "WAITING"))))
 
-  (defun my/org-agenda-skip-if-project-tagged-or-dated ()
+  (defun az-org-agenda-skip-if-project-tagged-or-dated ()
     "Skip entry if it is a PROJECT, has a 'skip-agenda' tag, or has any date.
 This function is intended for use with `org-agenda-skip-function'."
     (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
@@ -72,7 +72,7 @@ This function is intended for use with `org-agenda-skip-function'."
         ;; Otherwise, return nil to include the entry in the agenda.
         nil)))
 
-  (defun az/org-entry-created-time (entry)
+  (defun az-org-entry-created-time (entry)
     "Return the CREATED time of agenda line ENTRY, or nil when it has none."
     (let* ((marker (or (get-text-property 0 'org-hd-marker entry)
                        (get-text-property 0 'org-marker entry)))
@@ -80,28 +80,28 @@ This function is intended for use with `org-agenda-skip-function'."
       (when (org-string-nw-p created)
         (org-time-string-to-time created))))
 
-  (defun az/org-agenda-cmp-created (a b)
+  (defun az-org-agenda-cmp-created (a b)
     "Compare agenda lines A and B by capture time, oldest first.
 An entry without a CREATED property predates the property itself, so it
 counts as older than any stamped entry."
-    (let ((time-a (az/org-entry-created-time a))
-          (time-b (az/org-entry-created-time b)))
+    (let ((time-a (az-org-entry-created-time a))
+          (time-b (az-org-entry-created-time b)))
       (cond ((and time-a time-b)
              (cond ((time-less-p time-a time-b) -1)
                    ((time-less-p time-b time-a) +1)))
             (time-a +1)
             (time-b -1))))
 
-  (setopt org-agenda-cmp-user-defined #'az/org-agenda-cmp-created)
+  (setopt org-agenda-cmp-user-defined #'az-org-agenda-cmp-created)
 
-  (defun az/org-agenda-created-prefix ()
+  (defun az-org-agenda-created-prefix ()
     "Capture time of the entry at point, for `org-agenda-prefix-format'."
     (let ((created (org-entry-get (point) "CREATED")))
       (if (org-string-nw-p created)
           (string-trim created "\\[" "\\]")
         "no capture date")))
 
-  (defun az/org-agenda-tasks-to-plan (header sorting-strategy)
+  (defun az-org-agenda-tasks-to-plan (header sorting-strategy)
     "Build the block list of a \"tasks to plan\" agenda command.
 HEADER titles the block, SORTING-STRATEGY is an
 `org-agenda-sorting-strategy' value.  Use `user-defined-up' to sort by
@@ -110,9 +110,9 @@ by category first."
     `((alltodo ""
                ((org-agenda-overriding-header ,header)
                 (org-agenda-skip-function
-                 '(my/org-agenda-skip-if-project-tagged-or-dated))
+                 '(az-org-agenda-skip-if-project-tagged-or-dated))
                 (org-agenda-prefix-format
-                 '((todo . " %i %-20:c%-22(az/org-agenda-created-prefix)")))
+                 '((todo . " %i %-20:c%-22(az-org-agenda-created-prefix)")))
                 (org-agenda-sorting-strategy ',sorting-strategy)))))
 
   (dolist (command
@@ -122,7 +122,7 @@ by category first."
               (user-defined-up))))
     (add-to-list 'org-agenda-custom-commands
                  `(,(nth 0 command) ,(nth 1 command)
-                   ,(az/org-agenda-tasks-to-plan (nth 1 command) (nth 2 command)))
+                   ,(az-org-agenda-tasks-to-plan (nth 1 command) (nth 2 command)))
                  'append))
 
   (setq org-agenda-sorting-strategy (quote
@@ -148,13 +148,13 @@ by category first."
           ;; the tags off the right edge of the narrow agenda window once
           ;; lines are truncated rather than wrapped.  0 makes
           ;; `org-agenda-align-tags' fall back to a single space, which
-          ;; `az/org-agenda-compact-tags' then widens to the real gap.
+          ;; `az-org-agenda-compact-tags' then widens to the real gap.
           org-agenda-tags-column 0)
 
-  (defvar az/org-agenda-tags-gap 2
+  (defvar az-org-agenda-tags-gap 2
     "Spaces between an agenda headline and its tags.")
 
-  (defun az/org-agenda-compact-tags ()
+  (defun az-org-agenda-compact-tags ()
     "Put agenda tags right after their headline instead of at a fixed column.
 Line length then follows the content, so the tags stay on screen next to
 their entry instead of being truncated away with the padding that an
@@ -162,7 +162,7 @@ alignment column would add.  `org-agenda-finalize' runs
 `org-agenda-align-tags' before this hook, so this is the last word."
     (when (derived-mode-p 'org-agenda-mode)
       (let ((inhibit-read-only t)
-            (gap (make-string az/org-agenda-tags-gap ?\s)))
+            (gap (make-string az-org-agenda-tags-gap ?\s)))
         (save-excursion
           (goto-char (point-min))
           (while (re-search-forward org-tag-group-re nil t)
@@ -176,7 +176,7 @@ alignment column would add.  `org-agenda-finalize' runs
                                    'face nil)))
             (forward-line 1))))))
 
-  (add-hook 'org-agenda-finalize-hook #'az/org-agenda-compact-tags)
+  (add-hook 'org-agenda-finalize-hook #'az-org-agenda-compact-tags)
 
   ;; automatically refresh the agenda after adding a task
   (add-hook 'org-capture-after-finalize-hook 'az-org-agenda-redo)
@@ -207,7 +207,7 @@ alignment column would add.  `org-agenda-finalize' runs
     (defvar az-org-weekly-work-minutes 2040
       "Target number of minutes to work per week (34 hours).")
 
-    (defun az/org-clocked-minutes-in-range (range)
+    (defun az-org-clocked-minutes-in-range (range)
       "Total minutes clocked within RANGE across `org-agenda-files'.
 RANGE is a (START END) pair as returned by `org-clock-special-range'.
 Includes the still-running clock, if any."
@@ -219,51 +219,51 @@ Includes the still-running clock, if any."
           (setq total (+ total (floor (float-time (time-since org-clock-start-time)) 60))))
         total))
 
-    (defun az/org-clocked-minutes-today ()
+    (defun az-org-clocked-minutes-today ()
       "Total minutes clocked today across `org-agenda-files'."
-      (az/org-clocked-minutes-in-range (org-clock-special-range 'today)))
+      (az-org-clocked-minutes-in-range (org-clock-special-range 'today)))
 
-    (defun az/org-clocked-minutes-this-week ()
+    (defun az-org-clocked-minutes-this-week ()
       "Total minutes clocked this week across `org-agenda-files'."
-      (az/org-clocked-minutes-in-range (org-clock-special-range 'thisweek)))
+      (az-org-clocked-minutes-in-range (org-clock-special-range 'thisweek)))
 
-    (defun az/org-format-minutes (minutes)
+    (defun az-org-format-minutes (minutes)
       "Format MINUTES as \"Xh YYm\"."
       (format "%dh %02dm" (/ minutes 60) (% minutes 60)))
 
-    (defun az/org-agenda-work-until-string ()
+    (defun az-org-agenda-work-until-string ()
       "Describe when today's clocked time reaches `az-org-daily-work-minutes'.
 Turns green (face `success') once the target is reached."
-      (let* ((worked (az/org-clocked-minutes-today))
+      (let* ((worked (az-org-clocked-minutes-today))
              (remaining (- az-org-daily-work-minutes worked)))
         (if (<= remaining 0)
             (propertize (format "Worked %s today - 8.5h reached %s ago"
-                                (az/org-format-minutes worked)
-                                (az/org-format-minutes (- remaining)))
+                                (az-org-format-minutes worked)
+                                (az-org-format-minutes (- remaining)))
                         'face 'success)
           (format "Worked %s today - work until %s to reach 8.5h"
-                  (az/org-format-minutes worked)
+                  (az-org-format-minutes worked)
                   (format-time-string "%H:%M" (time-add (current-time) (* remaining 60)))))))
 
-    (defun az/org-agenda-week-summary-string ()
+    (defun az-org-agenda-week-summary-string ()
       "Describe when this week's clocked time reaches `az-org-weekly-work-minutes'.
 Turns green (face `success') once the target is reached."
-      (let* ((worked (az/org-clocked-minutes-this-week))
-             (target (az/org-format-minutes az-org-weekly-work-minutes))
+      (let* ((worked (az-org-clocked-minutes-this-week))
+             (target (az-org-format-minutes az-org-weekly-work-minutes))
              (remaining (- az-org-weekly-work-minutes worked)))
         (if (<= remaining 0)
             (propertize (format "Worked %s this week - %s reached (%s over)"
-                                (az/org-format-minutes worked) target
-                                (az/org-format-minutes (- remaining)))
+                                (az-org-format-minutes worked) target
+                                (az-org-format-minutes (- remaining)))
                         'face 'success)
           ;; Unlike the daily projection, this can roll past midnight, so
           ;; the weekday is included to keep the timestamp unambiguous.
           (format "Worked %s this week - work until %s to reach %s"
-                  (az/org-format-minutes worked)
+                  (az-org-format-minutes worked)
                   (format-time-string "%a %H:%M" (time-add (current-time) (* remaining 60)))
                   target))))
 
-    (defun az/org-agenda-insert-summary-lines ()
+    (defun az-org-agenda-insert-summary-lines ()
       "Insert the weekly and daily work summaries at the top of the agenda.
 `org-agenda-finalize-hook' also runs after single-line updates (e.g.
 toggling a TODO state), with the buffer narrowed to just that one
@@ -271,7 +271,7 @@ line - skip in that case, or the lines get inserted mid-agenda
 instead of at the real top."
       (when (and (derived-mode-p 'org-agenda-mode) (not (buffer-narrowed-p)))
         (goto-char (point-min))
-        (insert (az/org-agenda-week-summary-string) "\n"
-                (az/org-agenda-work-until-string) "\n\n")))
+        (insert (az-org-agenda-week-summary-string) "\n"
+                (az-org-agenda-work-until-string) "\n\n")))
 
-    (add-hook 'org-agenda-finalize-hook #'az/org-agenda-insert-summary-lines)))
+    (add-hook 'org-agenda-finalize-hook #'az-org-agenda-insert-summary-lines)))

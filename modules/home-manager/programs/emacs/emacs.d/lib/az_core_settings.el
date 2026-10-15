@@ -112,7 +112,7 @@
   ;; Create a new window when there isn't one.
   ;; Taken from: https://karthinks.com/software/emacs-window-management-almanac/#double-duty
   (advice-add 'other-window :before
-              (defun other-window-split-if-single (&rest _)
+              (defun az-other-window-split-if-single (&rest _)
                 "Split the frame if there is a single window."
                 (when (one-window-p) (split-window-sensibly))))
 
@@ -122,14 +122,14 @@
   (global-auto-revert-mode t)
 
   ;; Only enable line-numbers in specific modes
-  (defvar az/line-numbers-exempt-modes '(org-mode markdown-mode)
+  (defvar az-line-numbers-exempt-modes '(org-mode markdown-mode)
     "Major modes that never get line numbers.
   Needed because Org derives from `text-mode', so it would otherwise
   inherit them from the hook below.")
 
-  (defun az/enable-line-numbers ()
+  (defun az-enable-line-numbers ()
     "Turn on line numbers unless the major mode is exempt."
-    (unless (apply #'derived-mode-p az/line-numbers-exempt-modes)
+    (unless (apply #'derived-mode-p az-line-numbers-exempt-modes)
       (display-line-numbers-mode 1)))
 
   (defun az-truncate-lines ()
@@ -140,7 +140,7 @@
   ;; Olivetti column has no use for a number gutter. Prose modes turn
   ;; visual-line-mode back on, which undoes the truncation.
   (dolist (hook '(prog-mode-hook conf-mode-hook text-mode-hook))
-    (add-hook hook #'az/enable-line-numbers)
+    (add-hook hook #'az-enable-line-numbers)
     (add-hook hook #'az-truncate-lines))
 
   ;; disable menu and toolbar
@@ -165,7 +165,7 @@
                         :weight 'normal
                         :width 'normal))
   (when (bound-and-true-p enable-emojis)
-    (when (is-linux-p)
+    (when (az-is-linux-p)
       (set-fontset-font t nil "Symbola" nil 'prepend)))
 
   :hook

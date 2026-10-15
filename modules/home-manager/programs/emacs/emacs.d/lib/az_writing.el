@@ -47,7 +47,7 @@
   :hook ((markdown-mode . az-prose-editing)
          (markdown-mode . visual-line-mode)
          (markdown-mode . (lambda () (setq-local yas-indent-line 'fixed))))
-  :bind (:map markdown-mode-map ("C-c i" . insert-file-name-as-wikilink))
+  :bind (:map markdown-mode-map ("C-c i" . az-insert-file-name-as-wikilink))
   :init
   (setopt markdown-command "multimarkdown"
           markdown-enable-wiki-links t
@@ -59,7 +59,7 @@
           markdown-italic-underscore t
           markdown-link-space-sub-char " ")
   :config
-  (defun insert-file-name-as-wikilink (filename &optional args)
+  (defun az-insert-file-name-as-wikilink (filename &optional args)
     (interactive "*fInsert file name: \nP")
     (insert (concat "[[" (file-name-sans-extension (file-relative-name
                                                     filename)) "]]"))))

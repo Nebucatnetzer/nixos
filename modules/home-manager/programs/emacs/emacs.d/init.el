@@ -4,7 +4,7 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
-(defun modules-path (config)
+(defun az-modules-path (config)
   "Return the path of CONFIG in the lib directory."
   (concat "~/.nixos/modules/home-manager/programs/emacs/emacs.d/lib/" config))
 

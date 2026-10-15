@@ -2,7 +2,7 @@
 (use-package ace-window
   :init
   ;; inspired by: https://github.com/SalOrak/dotfiles/blob/32a48e11964e8c501c9e9bf0f63b50a6034c04cb/files/emacs/plugins/ace-window.el#L12
-  (defun az/aw-consult-switch-buffer (window)
+  (defun az-aw-consult-switch-buffer (window)
     "Select WINDOW with `ace-window', then open a project buffer or file there."
     (aw-switch-to-window window)
     (consult-project-extra-find))
@@ -14,7 +14,7 @@
       (?c aw-copy-window "Copy Window")
       (?j aw-switch-buffer-in-window "Select Buffer")
       (?n aw-flip-window)
-      (?u az/aw-consult-switch-buffer "Switch Buffer Other Window")
+      (?u az-aw-consult-switch-buffer "Switch Buffer Other Window")
       (?e aw-execute-command-other-window "Execute Command Other Window")
       (?F aw-split-window-fair "Split Fair Window")
       (?v aw-split-window-vert "Split Vert Window")
@@ -34,7 +34,7 @@ This displays the window in a new frame, see `tear-off-window'."
       (pop-to-buffer-same-window buf)
       (delete-window win)))
 
-  (defun ace-window-one-command ()
+  (defun az-ace-window-one-command ()
     (interactive)
     (let ((win (aw-select " ACE")))
       (when (windowp win)
@@ -45,7 +45,7 @@ This displays the window in a new frame, see `tear-off-window'."
                  (this-command command))
             (call-interactively command))))))
 
-  (keymap-global-set "C-x O" 'ace-window-one-command)
+  (keymap-global-set "C-x O" 'az-ace-window-one-command)
 
   ;; General ace settings
   (keymap-global-set "M-o" #'ace-window)
@@ -56,7 +56,7 @@ This displays the window in a new frame, see `tear-off-window'."
 
 ;; https://github.com/abo-abo/avy
 ;; https://karthinks.com/software/avy-can-do-anything
-(defun avy-action-copy-whole-line (pt)
+(defun az-avy-action-copy-whole-line (pt)
   (save-excursion
     (goto-char pt)
     (cl-destructuring-bind (start . end)
@@ -67,7 +67,7 @@ This displays the window in a new frame, see `tear-off-window'."
     (ring-ref avy-ring 0)))
   t)
 
-(defun avy-action-embark (pt)
+(defun az-avy-action-embark (pt)
   (unwind-protect
       (save-excursion
         (goto-char pt)
@@ -76,7 +76,7 @@ This displays the window in a new frame, see `tear-off-window'."
      (cdr (ring-ref avy-ring 0))))
   t)
 
-(defun avy-action-kill-whole-line (pt)
+(defun az-avy-action-kill-whole-line (pt)
   (save-excursion
     (goto-char pt)
     (kill-whole-line))
@@ -85,12 +85,12 @@ This displays the window in a new frame, see `tear-off-window'."
     (ring-ref avy-ring 0)))
   t)
 
-(defun avy-action-mark-to-char (pt)
+(defun az-avy-action-mark-to-char (pt)
   (activate-mark)
   (goto-char pt))
 
-(defun avy-action-yank-whole-line (pt)
-  (avy-action-copy-whole-line pt)
+(defun az-avy-action-yank-whole-line (pt)
+  (az-avy-action-copy-whole-line pt)
   (save-excursion (yank))
   t)
 
@@ -101,16 +101,16 @@ This displays the window in a new frame, see `tear-off-window'."
                         ?c ?q
                         )
           avy-all-windows 'all-frames)
-  (setf (alist-get ?. avy-dispatch-alist) 'avy-action-embark)
-  (setf (alist-get ?  avy-dispatch-alist) 'avy-action-mark-to-char)
+  (setf (alist-get ?. avy-dispatch-alist) 'az-avy-action-embark)
+  (setf (alist-get ?  avy-dispatch-alist) 'az-avy-action-mark-to-char)
 
   (setf (alist-get ?y avy-dispatch-alist) 'avy-action-yank
         (alist-get ?w avy-dispatch-alist) 'avy-action-copy
-        (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
-        (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line)
+        (alist-get ?W avy-dispatch-alist) 'az-avy-action-copy-whole-line
+        (alist-get ?Y avy-dispatch-alist) 'az-avy-action-yank-whole-line)
 
   (setf (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay
-        (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line)
+        (alist-get ?K avy-dispatch-alist) 'az-avy-action-kill-whole-line)
 
   (keymap-global-set "C-;" #'avy-goto-char-timer))
 

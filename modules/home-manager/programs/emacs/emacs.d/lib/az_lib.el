@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-(defun is-linux-p ()
+(defun az-is-linux-p ()
   (eq system-type 'gnu/linux))
 
 (defun az-wsl-p ()

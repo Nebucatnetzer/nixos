@@ -428,7 +428,7 @@ can address a specific nested sub task."
     ;; `delete-other-windows', so the agenda has to lay itself out into the space
     ;; already left over or its tags align to the full frame width.
     (az-org-log-show)
-    (az/custom-agenda))
+    (az-custom-agenda))
 
 ;;; --- acting on a panel line ---------------------------------------------
 

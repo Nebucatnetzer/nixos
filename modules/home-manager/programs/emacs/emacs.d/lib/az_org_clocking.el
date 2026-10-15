@@ -58,14 +58,20 @@
     (defvar az-org-clock-factor-property "CLOCK_FACTOR"
       "Property with a factor for clocked time, for example 1.25 for after hours.")
 
+    (defun az--org-clock-factor-value (value headline)
+      "Return the clock factor VALUE as a number, or 1 if VALUE is nil.
+HEADLINE names the heading in the error message."
+      (cond ((null value) 1)
+            ((string-match-p "\\`[0-9]+\\(?:\\.[0-9]+\\)?\\'" value)
+             (string-to-number value))
+            (t (user-error "Invalid %s %S in %S"
+                           az-org-clock-factor-property value headline))))
+
     (defun az--org-clock-factor (entry)
       "Return the clock factor of clocktable ENTRY, or 1 if it has none."
-      (let ((value (cdr (assoc az-org-clock-factor-property (nth 5 entry)))))
-        (cond ((null value) 1)
-              ((string-match-p "\\`[0-9]+\\(?:\\.[0-9]+\\)?\\'" value)
-               (string-to-number value))
-              (t (user-error "Invalid %s %S in clocktable row %S"
-                             az-org-clock-factor-property value (nth 1 entry))))))
+      (az--org-clock-factor-value
+       (cdr (assoc az-org-clock-factor-property (nth 5 entry)))
+       (nth 1 entry)))
 
     (defun az--org-clocktable-group-by-cost-center (tables)
       "Merge clocktable TABLES into one table grouped by cost center.
@@ -138,8 +144,14 @@ The level 1 row stores its factored minutes in the property \"Factored\"."
 
     (defun az-org-clocktable-by-cost-center (ipos tables params)
       "Clocktable formatter that groups rows by `az-org-cost-center-property'.
-The clocktable needs :properties (\"COST_CENTER\" \"CLOCK_FACTOR\") :inherit-props t.
-The Factored column shows the time multiplied by `az-org-clock-factor-property'."
+The clocktable needs :inherit-props t and
+:properties (\"COST_CENTER\" \"CLOCK_FACTOR\").
+The Factored column shows the time multiplied by `az-org-clock-factor-property'.
+With :az-total-only t the table shows only the total row."
+      ;; Org collects only the listed properties, so a missing one gives wrong sums.
+      (dolist (property (list az-org-cost-center-property az-org-clock-factor-property))
+        (unless (member property (plist-get params :properties))
+          (user-error "Clocktable needs %S in :properties" property)))
       (let* ((table (az--org-clocktable-group-by-cost-center tables))
              (factored-total 0))
         ;; The default writer prints property values, so format the minutes here.
@@ -148,6 +160,9 @@ The Factored column shows the time multiplied by `az-org-clock-factor-property'.
             (when (and factored (= (nth 0 row) 1))
               (setq factored-total (+ factored-total (cdr factored)))
               (setcdr factored (org-duration-from-minutes (cdr factored))))))
+        ;; The rows are still needed above to compute the factored total.
+        (when (plist-get params :az-total-only)
+          (setf (nth 2 table) nil))
         (prog1
             (org-clocktable-write-default
              ipos
@@ -166,6 +181,98 @@ The Factored column shows the time multiplied by `az-org-clock-factor-property'.
             ;; The writer puts property columns first; move Factored after Headline.
             (org-table-goto-column 1)
             (org-table-move-column-right)))))
+
+    (defun az--org-hundredths-string (hundredths)
+      "Format HUNDREDTHS of an hour as hours with two decimals."
+      (format "%d.%02dh" (/ hundredths 100) (% hundredths 100)))
+
+    (defun az--org-clock-factor-line (start end factor day-start day-end)
+      "Describe the part of the clock from START to END inside one day.
+The day runs from DAY-START to DAY-END.
+FACTOR is the property value as a string.
+Return (TEXT . FACTORED-HUNDREDTHS), or nil if the clock is outside the day."
+      (let ((clipped-start (if (time-less-p start day-start) day-start start))
+            (clipped-end (if (time-less-p day-end end) day-end end)))
+        (when (time-less-p clipped-start clipped-end)
+          (let* ((minutes (round (float-time (time-subtract clipped-end clipped-start)) 60))
+                 ;; Round half up, so a reviewer gets the same result by hand.
+                 (hundredths (floor (+ (/ (* minutes 100) 60.0) 0.5)))
+                 (factored (floor (+ (* hundredths (string-to-number factor)) 0.5))))
+            (cons (format "%s-%s = %s * %s = %s"
+                          (format-time-string "%H:%M" clipped-start)
+                          (if (time-equal-p clipped-end day-end)
+                              "24:00"
+                            (format-time-string "%H:%M" clipped-end))
+                          (az--org-hundredths-string hundredths)
+                          factor
+                          (az--org-hundredths-string factored))
+                  factored)))))
+
+    (defun az--org-clock-factor-report (day)
+      "Return the clocks on DAY whose factor is not 1, as text.
+DAY is any time on that day.  Clocks are clipped to the day and sorted by start."
+      (let* ((decoded (decode-time day))
+             (day-start (org-encode-time 0 0 0
+                                         (decoded-time-day decoded)
+                                         (decoded-time-month decoded)
+                                         (decoded-time-year decoded)))
+             (day-end (org-encode-time 0 0 0
+                                       (1+ (decoded-time-day decoded))
+                                       (decoded-time-month decoded)
+                                       (decoded-time-year decoded)))
+             (found nil))
+        (dolist (file (org-agenda-files))
+          (with-current-buffer (find-file-noselect file)
+            (org-with-wide-buffer
+             (goto-char (point-min))
+             (while (re-search-forward org-clock-line-re nil t)
+               (let ((clock (org-element-at-point)))
+                 (when (and (eq (org-element-type clock) 'clock)
+                            (eq (org-element-property :status clock) 'closed)
+                            (not (org-before-first-heading-p)))
+                   (let* ((headline (save-excursion
+                                      (org-back-to-heading t)
+                                      (org-get-heading t t t t)))
+                          (factor (org-entry-get nil az-org-clock-factor-property t))
+                          (timestamp (org-element-property :value clock))
+                          (start (org-timestamp-to-time timestamp))
+                          (line (and factor
+                                     (/= (az--org-clock-factor-value factor headline) 1)
+                                     (az--org-clock-factor-line
+                                      start
+                                      (org-timestamp-to-time timestamp t)
+                                      factor day-start day-end))))
+                     (when line
+                       (push (list start headline line) found)))))))))
+        (let ((lines (list (format-time-string "%Y-%m-%d" day-start)))
+              (last-headline nil)
+              (total 0))
+          (dolist (clock (sort found (lambda (left right)
+                                       (time-less-p (car left) (car right)))))
+            (let ((headline (nth 1 clock))
+                  (line (nth 2 clock)))
+              (unless (equal headline last-headline)
+                (push headline lines)
+                (setq last-headline headline))
+              (push (car line) lines)
+              (setq total (+ total (cdr line)))))
+          (push (format "Total = %s" (az--org-hundredths-string total)) lines)
+          (string-join (nreverse lines) "\n"))))
+
+    (defun az-org-clock-factor-report (day)
+      "Show the clocks on DAY whose factor is not 1, and copy them.
+Each line shows the clock times, the hours, the factor and the result."
+      (interactive (list (org-read-date nil t)))
+      (let ((report (az--org-clock-factor-report day))
+            (buffer (get-buffer-create "*Clock factor report*")))
+        (kill-new report)
+        (with-current-buffer buffer
+          (let ((inhibit-read-only t))
+            (erase-buffer)
+            (insert report))
+          (special-mode))
+        (display-buffer buffer)
+        (message "Clock factor report copied to the kill ring")))
 
     ;; Clocking keybindings
     (keymap-global-set "C-x C-d" #'org-clock-mark-default-task)))

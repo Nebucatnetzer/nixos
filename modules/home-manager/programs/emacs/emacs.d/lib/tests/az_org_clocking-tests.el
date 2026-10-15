@@ -188,3 +188,116 @@
       (should (string-match-p "| After hours +| 1.00h +| 0.67h" output))
       (should (string-match-p "| No cost center +| 0.50h +| 0.50h" output))
       (should-not (string-match-p "COST_CENTER |" output)))))
+
+(ert-deftest az-org-clocking-formatter-requires-properties ()
+  (with-temp-buffer
+    (insert "* ERP\n"
+            "CLOCK: [2026-10-13 Tue 09:00]--[2026-10-13 Tue 10:00] =>  1:00\n"
+            "#+BEGIN: clocktable :scope file :properties (\"COST_CENTER\") "
+            ":inherit-props t :formatter az-org-clocktable-by-cost-center\n"
+            "#+END:\n")
+    (delay-mode-hooks (org-mode))
+    (goto-char (point-min))
+    (search-forward "#+BEGIN:")
+    (beginning-of-line)
+    (should-error (org-update-dblock) :type 'user-error)))
+
+(ert-deftest az-org-clocking-formatter-writes-only-total ()
+  (with-temp-buffer
+    (insert "* Night\n"
+            ":PROPERTIES:\n:COST_CENTER: After hours\n:CLOCK_FACTOR: 1.5\n:END:\n"
+            "CLOCK: [2026-10-13 Tue 23:00]--[2026-10-13 Tue 23:40] =>  0:40\n"
+            "#+BEGIN: clocktable :scope file :maxlevel 3 "
+            ":properties (\"COST_CENTER\" \"CLOCK_FACTOR\") :inherit-props t "
+            ":formatter az-org-clocktable-by-cost-center :az-total-only t\n"
+            "#+END:\n")
+    (delay-mode-hooks (org-mode))
+    (goto-char (point-min))
+    (search-forward "#+BEGIN:")
+    (beginning-of-line)
+    (org-update-dblock)
+    (let ((output (buffer-string)))
+      (should (string-match-p "| \\*Total time\\* +| \\*1.00h\\* +| \\*0.67h\\* |" output))
+      (should-not (string-match-p "| After hours" output)))))
+
+(ert-deftest az-org-clocking-factor-line-shows-calculation ()
+  (should (equal (az--org-clock-factor-line
+                  (org-encode-time 0 55 20 7 10 2026) (org-encode-time 0 59 22 7 10 2026) "1.25"
+                  (org-encode-time 0 0 0 7 10 2026) (org-encode-time 0 0 0 8 10 2026))
+                 '("20:55-22:59 = 2.07h * 1.25 = 2.59h" . 259))))
+
+(ert-deftest az-org-clocking-factor-line-clips-at-day-end ()
+  (should (equal (az--org-clock-factor-line
+                  (org-encode-time 0 54 23 24 6 2026) (org-encode-time 0 46 1 25 6 2026) "1.5"
+                  (org-encode-time 0 0 0 24 6 2026) (org-encode-time 0 0 0 25 6 2026))
+                 '("23:54-24:00 = 0.10h * 1.5 = 0.15h" . 15))))
+
+(ert-deftest az-org-clocking-factor-line-clips-at-day-start ()
+  ;; 106 minutes are 1.77h; 1.77h * 1.5 = 2.655h rounds up to 2.66h.
+  (should (equal (az--org-clock-factor-line
+                  (org-encode-time 0 54 23 24 6 2026) (org-encode-time 0 46 1 25 6 2026) "1.5"
+                  (org-encode-time 0 0 0 25 6 2026) (org-encode-time 0 0 0 26 6 2026))
+                 '("00:00-01:46 = 1.77h * 1.5 = 2.66h" . 266))))
+
+(ert-deftest az-org-clocking-factor-line-ignores-other-days ()
+  (should (null (az--org-clock-factor-line
+                 (org-encode-time 0 0 20 6 10 2026) (org-encode-time 0 0 21 6 10 2026) "1.25"
+                 (org-encode-time 0 0 0 7 10 2026) (org-encode-time 0 0 0 8 10 2026)))))
+
+(ert-deftest az-org-clocking-factor-report-lists-factored-clocks ()
+  (let* ((directory (make-temp-file "az-org-clocking" t))
+         (file (expand-file-name "notes.org" directory))
+         (org-agenda-files (list file)))
+    (unwind-protect
+        (progn
+          (with-temp-file file
+            (insert "* Repeating\n"
+                    "** Mo-Fri 20:00-23:00 x1.25\n"
+                    ":PROPERTIES:\n:CLOCK_FACTOR: 1.25\n:END:\n"
+                    ":LOGBOOK:\n"
+                    "CLOCK: [2026-10-07 Wed 20:55]--[2026-10-07 Wed 22:59] =>  2:04\n"
+                    "CLOCK: [2026-09-02 Wed 22:00]--[2026-09-02 Wed 23:00] =>  1:00\n"
+                    ":END:\n"
+                    "** Mo-Fri 23:00-06:00 x1.5\n"
+                    ":PROPERTIES:\n:CLOCK_FACTOR: 1.5\n:END:\n"
+                    ":LOGBOOK:\n"
+                    "CLOCK: [2026-10-07 Wed 22:59]--[2026-10-07 Wed 23:41] =>  0:42\n"
+                    ":END:\n"
+                    "* Normal work\n"
+                    ":PROPERTIES:\n:CLOCK_FACTOR: 1\n:END:\n"
+                    "CLOCK: [2026-10-07 Wed 09:00]--[2026-10-07 Wed 12:00] =>  3:00\n"
+                    "* No factor\n"
+                    "CLOCK: [2026-10-07 Wed 13:00]--[2026-10-07 Wed 14:00] =>  1:00\n"))
+          (should (equal (az--org-clock-factor-report (org-encode-time 0 30 15 7 10 2026))
+                         (concat "2026-10-07\n"
+                                 "Mo-Fri 20:00-23:00 x1.25\n"
+                                 "20:55-22:59 = 2.07h * 1.25 = 2.59h\n"
+                                 "Mo-Fri 23:00-06:00 x1.5\n"
+                                 "22:59-23:41 = 0.70h * 1.5 = 1.05h\n"
+                                 "Total = 3.64h"))))
+      (let ((buffer (find-buffer-visiting file)))
+        (when buffer
+          (kill-buffer buffer)))
+      (delete-directory directory t))))
+
+(ert-deftest az-org-clocking-factor-report-sorts-by-start-time ()
+  (let* ((directory (make-temp-file "az-org-clocking" t))
+         (file (expand-file-name "notes.org" directory))
+         (org-agenda-files (list file)))
+    (unwind-protect
+        (progn
+          (with-temp-file file
+            (insert "* Night x1.5\n"
+                    ":PROPERTIES:\n:CLOCK_FACTOR: 1.5\n:END:\n"
+                    "CLOCK: [2026-06-24 Wed 23:54]--[2026-06-25 Thu 01:46] =>  1:52\n"
+                    "CLOCK: [2026-06-24 Wed 23:00]--[2026-06-24 Wed 23:31] =>  0:31\n"))
+          (should (equal (az--org-clock-factor-report (org-encode-time 0 0 0 24 6 2026))
+                         (concat "2026-06-24\n"
+                                 "Night x1.5\n"
+                                 "23:00-23:31 = 0.52h * 1.5 = 0.78h\n"
+                                 "23:54-24:00 = 0.10h * 1.5 = 0.15h\n"
+                                 "Total = 0.93h"))))
+      (let ((buffer (find-buffer-visiting file)))
+        (when buffer
+          (kill-buffer buffer)))
+      (delete-directory directory t))))

@@ -1,12 +1,19 @@
-# Read-only mode
+# Advisory mode
 
-The working directory is mounted read-only. Writing a project file fails with a read-only
-filesystem error. That applies to the `edit`/`write` tools and to `bash` alike, so do not try
-to work around it with `bash`.
-You can however use tools to inspect code or version control systems.
+You may read and inspect anything: code, files, and version control. You may not change
+project files until I allow it. This applies to the `edit`/`write` tools and to `bash`
+alike, so do not work around it with `bash`.
 
-Guide me through changes instead, following the "Guiding a change" rules. If a change genuinely
-must be applied by you rather than by me, say so and I will enable write access.
+By default, guide me through changes instead, following the "Guiding a change" rules.
 
-One directory stays writable. `~/.claude/plans/` is yours: keep writing and updating your plan
-file as the "Plans and task lists" rules require.
+You may write only in these two cases:
+
+- I tell you to apply a change, for example "apply it" or "go ahead and edit".
+- You ask me for write access, and I say yes.
+
+My permission covers only the change we discussed. Do not take it as general write access
+for the rest of the session. When the change is done, go back to advisory mode. If a change
+must be applied by you rather than by me, say why and ask.
+
+The one exception is your own plan file under `~/.claude/plans/`. Keep writing and updating
+it as the "Plans and task lists" rules require. That directory is not project state.

@@ -1,4 +1,5 @@
 {
+  domain ? "git.zweili.org",
   repoRoot ? "/var/lib/git",
 }:
 {
@@ -96,6 +97,46 @@ let
     '';
   };
 
+  # The start page and old gitea links point visitors to the GitHub mirrors.
+  landingPage = pkgs.writeTextDir "index.html" ''
+    <!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${domain}</title>
+    </head>
+    <body>
+    <h1>${domain}</h1>
+    <p>This server used to have a web interface. Aggressive LLM crawlers forced me to remove it.
+    The public repositories moved to GitHub.</p>
+    <p>This server now hosts git over SSH only.</p>
+    <p>These repositories have a mirror on GitHub:</p>
+    <ul>
+    ${mirrorList}
+    </ul>
+    <p>All projects: <a href="https://github.com/Nebucatnetzer">github.com/Nebucatnetzer</a></p>
+    </body>
+    </html>
+  '';
+  mirrorList = lib.concatStrings (
+    lib.mapAttrsToList (name: repo: ''
+      <li><a href="${mirrorWebUrl (lib.head repo.pushMirrors)}">${lib.escapeXML name}</a>${
+        lib.optionalString (repo ? description) ": ${lib.escapeXML repo.description}"
+      }</li>
+    '') mirroredRepos
+  );
+  # Case-insensitive, because gitea URLs were.
+  mirrorRedirects = lib.mapAttrs' (
+    name: repo:
+    lib.nameValuePair "~* ^/${lib.escapeRegex name}(/|$)" {
+      return = "302 ${mirrorWebUrl (lib.head repo.pushMirrors)}";
+    }
+  ) mirroredRepos;
+  mirrorWebUrl =
+    remote:
+    lib.removeSuffix ".git" (lib.replaceStrings [ "git@github.com:" ] [ "https://github.com/" ] remote);
+
   mirroredRepos = lib.filterAttrs (name: repo: hasActions repo) repos;
   repos = import ./repos.nix;
   spoolDirectory = "${repoRoot}/.spool";
@@ -115,7 +156,10 @@ let
   slug = name: lib.replaceStrings [ "/" ] [ "-" ] name;
 in
 {
-  imports = [ "${inputs.self}/modules/services/telegram-notifications" ];
+  imports = [
+    "${inputs.self}/modules/services/nginx-acme-base"
+    "${inputs.self}/modules/services/telegram-notifications"
+  ];
 
   age.secrets.githubMirrorKey = {
     file = "${inputs.self}/scrts/gwyn_github.key.age";
@@ -134,6 +178,13 @@ in
     Match Address *,!10.7.89.0/24,!10.70.89.0/24,!127.0.0.0/8
       AllowUsers git
   '';
+
+  services.nginx.virtualHosts.${domain} = {
+    enableACME = true;
+    forceSSL = true;
+    root = landingPage;
+    locations = mirrorRedirects;
+  };
 
   systemd.paths = hookPaths;
   systemd.services = hookServices // {

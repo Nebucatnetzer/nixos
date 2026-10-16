@@ -25,6 +25,7 @@ let
     { fqdn = "actual-eleonore.zweili.org"; }
     { fqdn = "search.zweili.org"; }
     { fqdn = "searxng.zweili.org"; }
+    { fqdn = "git.zweili.org"; }
   ];
 
   # git server

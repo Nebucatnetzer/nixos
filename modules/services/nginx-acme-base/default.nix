@@ -28,6 +28,9 @@ _: {
 
       # This might create errors
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+      # Send the access log to journald. Errors go to stderr already (services.nginx.logError).
+      access_log syslog:server=unix:/dev/log,tag=nginx_access;
     '';
     recommendedOptimisation = true;
     recommendedTlsSettings = true;
@@ -38,4 +41,5 @@ _: {
       locations."/".return = "444";
     };
   };
+  services.logrotate.settings.nginx.enable = false;
 }

@@ -57,7 +57,6 @@ in
     "${inputs.self}/modules/services/ntp"
     "${inputs.self}/modules/services/search"
     "${inputs.self}/modules/services/snmpd"
-    "${inputs.self}/modules/services/syslog"
     "${inputs.self}/modules/services/zram-swap"
     (actualBudgetModule {
       domain = "actual-andreas.zweili.org";

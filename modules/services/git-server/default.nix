@@ -108,9 +108,10 @@ let
     </head>
     <body>
     <h1>${domain}</h1>
-    <p>This server used to have a web interface. Aggressive LLM crawlers forced me to remove it.
-    The public repositories moved to GitHub.</p>
-    <p>This server now hosts git over SSH only.</p>
+    <p>This server used to have a web interface.
+    Aggressive LLM crawlers forced me to remove it.
+    The public repositories moved to GitHub.
+    </p>
     <p>These repositories have a mirror on GitHub:</p>
     <ul>
     ${mirrorList}

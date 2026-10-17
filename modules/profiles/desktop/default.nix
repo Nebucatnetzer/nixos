@@ -176,7 +176,7 @@ in
       pkgs.libreoffice-qt-fresh
       pkgs.lollypop
       pkgs.meld
-      pkgs.plex-desktop
+      pkgs.plezy
       pkgs.remmina
       pkgs.syncthingtray
       pkgs.tagger

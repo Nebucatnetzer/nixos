@@ -171,7 +171,11 @@ in
     extraFlags = [ "--no-auth" ];
     listenAddress = "${config.az-hosts.gwyn.wgIp}:8123";
   };
-  networking.firewall.allowedTCPPorts = [ 8123 ];
+  # Only hosts that back up may reach the rest server. gwyn itself connects over lo.
+  networking.firewall.extraCommands = ''
+    iptables -A nixos-fw -p tcp --dport 8123 -s ${config.az-hosts.capricorn.wgIp} -j nixos-fw-accept
+    iptables -A nixos-fw -p tcp --dport 8123 -s ${config.az-hosts.fenoglio.wgIp} -j nixos-fw-accept
+  '';
 
   # /var/cache is root owned, so the restic user cannot create its cache directory
   # itself. The units get it from CacheDirectory, restic-local needs it to exist.

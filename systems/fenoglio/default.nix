@@ -24,7 +24,10 @@ in
     (btrfsLayout { })
     (nixBuilderModule { role = "server"; })
     (resticClientModule { resticSchedule = "*-*-* 00..06,09..23:25:00"; })
-    (syncthingModule { exposeWebInterface = true; })
+    (syncthingModule {
+      dataRoot = "/home/${config.az-username}/syncthing";
+      exposeWebInterface = true;
+    })
     (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;

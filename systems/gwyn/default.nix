@@ -119,7 +119,10 @@ in
     (rssBridgeModule {
       domain = rssBridgeDomain;
     })
-    (syncthingModule { exposeWebInterface = true; })
+    (syncthingModule {
+      dataRoot = "/home/${config.az-username}/syncthing";
+      exposeWebInterface = true;
+    })
     (wireguardHub {
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;

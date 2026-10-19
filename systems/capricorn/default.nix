@@ -55,7 +55,7 @@ in
       inherit archivePath;
       luksUuid = "b4ee4a64-2c54-4bd7-9c00-dce046ab8c30";
     })
-    (syncthingModule { })
+    (syncthingModule { dataRoot = "/home/${config.az-username}/nextcloud"; })
     (wireguardClient {
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;

@@ -61,23 +61,21 @@ in
         "searxng.zweili.org" = {
           enableACME = true;
           forceSSL = true;
+          basicAuthFile = searxngHtpasswd;
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
             proxyWebsockets = true; # needed if you need to use WebSocket
           };
+          # Browsers fetch this without credentials when they add the search engine.
+          locations."= /opensearch.xml" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
+            extraConfig = ''
+              auth_basic off;
+            '';
+          };
           extraConfig = ''
             if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
           '';
-          locations."/search" = {
-            basicAuthFile = searxngHtpasswd;
-            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
-            proxyWebsockets = true; # needed if you need to use WebSocket
-          };
-          locations."/stats" = {
-            basicAuthFile = searxngHtpasswd;
-            proxyPass = "http://127.0.0.1:${toString config.services.searx.settings.server.port}";
-            proxyWebsockets = true; # needed if you need to use WebSocket
-          };
         };
       };
     };

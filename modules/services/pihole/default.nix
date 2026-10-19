@@ -92,6 +92,7 @@ in
       misc.dnsmasq_lines = [
         "address=/pihole.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
         "address=/librenms.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
+        "address=/rss-bridge.vpn.zweili.org/${config.az-hosts.gwyn.wgIp}"
       ];
       # We already use timesynd
       ntp = {

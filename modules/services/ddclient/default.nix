@@ -15,7 +15,6 @@
       "actual-eleonore.zweili.org"
       "git.zweili.org"
       "rss.zweili.org"
-      "rss-bridge.zweili.org"
       "search.zweili.org"
       "searxng.zweili.org"
     ];

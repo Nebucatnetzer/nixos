@@ -18,7 +18,6 @@ let
   commonBtrfsOptions = import "${inputs.self}/modules/hardware/btrfs/common_options.nix";
   domains = [
     { fqdn = "${config.services.freshrss.virtualHost}"; }
-    { fqdn = rssBridgeDomain; }
     { fqdn = "www.zweili.ch"; }
     { fqdn = "actual-andreas.zweili.org"; }
     { fqdn = "actual-benjamin.zweili.org"; }
@@ -37,7 +36,7 @@ let
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
   resticServer = import "${inputs.self}/modules/services/restic-server";
-  rssBridgeDomain = "rss-bridge.zweili.org";
+  rssBridgeDomain = "rss-bridge.vpn.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
   wireguardHub = import "${inputs.self}/modules/services/wireguard/hub.nix";

@@ -40,6 +40,26 @@ let
   # Not the /var/cache/restic the root client jobs use: two uids sharing one cache
   # directory is the same ownership mix this module exists to avoid.
   cacheDirectory = "/var/cache/restic-server";
+  # Clients cannot forget through the append-only rest server, so forget runs here.
+  # Same policy as the clients used before.
+  localForget = lib.concatMapStringsSep "\n" (forgetTag: ''
+    echo "Forget ${forgetTag} snapshots."
+    ${localRestic} forget \
+      --tag ${forgetTag} \
+      --group-by host,paths,tags \
+      ${lib.concatStringsSep " \\\n  " localKeepPolicy}
+  '') localForgetTags;
+  localForgetTags = [
+    "mariadb"
+    "paths"
+    "postgres"
+  ];
+  localKeepPolicy = [
+    "--keep-daily 7"
+    "--keep-weekly 5"
+    "--keep-monthly 12"
+    "--keep-yearly 2"
+  ];
   # --retry-lock on everything: the chains overlap by design, a copy holds a shared lock
   # on both repos while a prune needs an exclusive one, so waiting beats failing.
   localRestic = lib.concatStringsSep " " [
@@ -169,6 +189,7 @@ in
     enable = true;
     dataDir = repository;
     extraFlags = [ "--no-auth" ];
+    appendOnly = true;
     listenAddress = "${config.az-hosts.gwyn.wgIp}:8123";
   };
   # Only hosts that back up may reach the rest server. gwyn itself connects over lo.
@@ -242,7 +263,12 @@ in
     environment.RESTIC_CACHE_DIR = cacheDirectory;
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-check.service" ];
-    script = "${localRestic} prune";
+    script = ''
+      ${localForget}
+
+      echo "Prune the local repository."
+      ${localRestic} prune
+    '';
   };
 
   systemd.timers.restic-prune = {

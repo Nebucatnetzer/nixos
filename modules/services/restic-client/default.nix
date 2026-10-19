@@ -112,7 +112,8 @@ let
 
   forget =
     forgetTag:
-    lib.optionalString (retention != [ ]) ''
+    # The rest server is append-only; restic-server forgets there.
+    lib.optionalString (retention != [ ] && !usesDefaultRepository) ''
       echo "Forget ${forgetTag} backup points."
       ${restic} forget \
         --tag ${forgetTag} \

@@ -105,3 +105,4 @@ flycheck_*
 /.vscode
 /.zprofile
 /todos
+/worktable/

@@ -8,6 +8,10 @@ _: {
         UserKnownHostsFile /dev/null
         User nixos
 
+      Host git.zweili.org
+        HostName gwyn.vpn.zweili.org
+        HostKeyAlias git.zweili.org
+
       Host *.int.zweili.org
         User andreas
         IdentityFile ~/.nixos/secrets/ssh_keys/ansible/ansible.key

@@ -35,7 +35,6 @@ let
   librenmsCertificateModule = import "${inputs.self}/modules/services/librenms-certificate";
   nixBuilderModule = import "${inputs.self}/modules/services/nix-remote-builder";
   resticClientModule = import "${inputs.self}/modules/services/restic-client";
-  resticServer = import "${inputs.self}/modules/services/restic-server";
   rssBridgeDomain = "rss-bridge.vpn.zweili.org";
   rssBridgeModule = import "${inputs.self}/modules/services/rss-bridge";
   syncthingModule = import "${inputs.self}/modules/services/syncthing";
@@ -95,7 +94,8 @@ in
         config.services.librenms.dataDir
       ];
       mariadb = true;
-      resticSchedule = "*-*-* 00..06,09..23:45:00";
+      # Before the 03:00 prune.
+      resticSchedule = "*-*-* 01:45:00";
     })
     (resticClientModule {
       name = "archive";
@@ -105,17 +105,12 @@ in
       requireMountpoints = [ archivePath ];
       repository = config.az-storage-box.repository;
       extraResticArgs = config.az-storage-box.extraResticArgs;
-      # The archive's forget cannot run from here: the offsite transport is append-only
-      # and forget gets a 403 through it. It belongs to the quarterly
-      # restic-offsite-prune, which is the one unit carrying the writable transport.
-      retention = [ ];
       # Matches the server-side units: the quarterly offsite prune needs an exclusive
       # lock, and a long archive backup should wait for it rather than fail and alert.
       retryLock = "30m";
       resticSchedule = "*-*-* 02:30:00";
     })
-
-    (resticServer { })
+    "${inputs.self}/modules/services/restic-server"
     (rssBridgeModule {
       domain = rssBridgeDomain;
     })

@@ -24,6 +24,6 @@ in
   extraResticArgs = transport " --append-only";
 
   # forget and prune get a 403 through the transport above, so they need this one.
-  # Deliberately not wired into any unit: it is run by hand, rarely.
+  # Only restic-offsite-prune on gwyn uses it.
   pruneResticArgs = transport "";
 }

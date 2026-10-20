@@ -1,12 +1,4 @@
 {
-  # When the age check runs. After the 02:30 archive and the 09:00 offsite copy, so a
-  # same-day run is dated by today's backups.
-  ageSchedule ? "*-*-* 12:00:00",
-  # Hours without a recorded backup before the age check alerts.
-  maxBackupAge ? 48,
-  repository ? "/var/lib/restic-server",
-}:
-{
   config,
   inputs,
   lib,
@@ -14,6 +6,9 @@
   ...
 }:
 let
+  # Hours without a recorded backup before the age check alerts.
+  maxBackupAge = 48;
+  repository = "/var/lib/restic-server";
   ageGuard = pkgs.callPackage "${inputs.self}/modules/misc/restic/age_guard.nix" {
     maxAge = maxBackupAge;
     name = "restic-repository-age";
@@ -40,21 +35,29 @@ let
   # Not the /var/cache/restic the root client jobs use: two uids sharing one cache
   # directory is the same ownership mix this module exists to avoid.
   cacheDirectory = "/var/cache/restic-server";
+  # A snapshot matches when it carries any of the tags, and a tag absent here is never
+  # forgotten. host,paths,tags is the finest grouping restic offers, so one host going
+  # quiet can never age out another host's snapshots.
+  forgetAndPrune =
+    restic: tags: policy:
+    lib.concatStringsSep " \\\n  " (
+      [
+        "${restic} forget"
+        "--prune"
+        "--group-by host,paths,tags"
+      ]
+      ++ map (tag: "--tag ${tag}") tags
+      ++ policy
+    );
   # Clients cannot forget through the append-only rest server, so forget runs here.
-  # Same policy as the clients used before.
-  localForget = lib.concatMapStringsSep "\n" (forgetTag: ''
-    echo "Forget ${forgetTag} snapshots."
-    ${localRestic} forget \
-      --tag ${forgetTag} \
-      --group-by host,paths,tags \
-      ${lib.concatStringsSep " \\\n  " localKeepPolicy}
-  '') localForgetTags;
+  # postgres stays, so the snapshots from before 2026-04-18 still age out.
   localForgetTags = [
     "mariadb"
     "paths"
     "postgres"
   ];
   localKeepPolicy = [
+    "--keep-hourly 24"
     "--keep-daily 7"
     "--keep-weekly 5"
     "--keep-monthly 12"
@@ -77,21 +80,16 @@ let
     RESTIC_PASSWORD_FILE = passwordFile;
     RESTIC_REPOSITORY = config.az-storage-box.repository;
   };
-  # host,paths,tags is the finest grouping restic offers, so one host going quiet can
-  # never age out another host's snapshots.
-  offsiteForget = lib.concatStringsSep "\n" (
-    lib.mapAttrsToList (forgetTag: policy: ''
-      echo "Forget ${forgetTag} snapshots offsite."
-      ${offsiteResticWritable} forget \
-        --tag ${forgetTag} \
-        --group-by host,paths,tags \
-        ${lib.concatStringsSep " \\\n  " policy}
-    '') offsiteRetention
-  );
+  offsiteForgetTags = [
+    "archive"
+    "mariadb"
+    "paths"
+  ];
   # Longer than the client-side policy on purpose, so forget offsite only ever removes
   # what the local repo already dropped. yearly is unlimited, a literal restic accepts,
   # because this is the copy that has to answer a deletion noticed years later.
   offsiteKeepPolicy = [
+    "--keep-hourly 24"
     "--keep-daily 7"
     "--keep-weekly 5"
     "--keep-monthly 24"
@@ -115,12 +113,6 @@ let
   );
   offsiteStamp = "/var/lib/${offsiteStateDirectory}/last-success";
   offsiteStateDirectory = "restic-age-offsite";
-  # Per tag, because a tag absent here is never forgotten..
-  offsiteRetention = {
-    archive = offsiteKeepPolicy;
-    paths = offsiteKeepPolicy;
-    mariadb = offsiteKeepPolicy;
-  };
   passwordFile = config.age.secrets.resticKey.path;
   # Reports for itself rather than through onFailure, so the message names the disk
   # instead of being a systemctl status dump. Still exits non-zero, so the unit also
@@ -249,7 +241,9 @@ in
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-repository-age.service" ];
     timerConfig = {
-      OnCalendar = ageSchedule;
+      # After the 02:30 archive and the 09:00 offsite copy, so a same-day run is dated by
+      # today's backups.
+      OnCalendar = "*-*-* 12:00:00";
       # So a host that was off catches up on boot rather than skipping the day.
       Persistent = true;
     };
@@ -257,24 +251,20 @@ in
 
   systemd.services.restic-rest-server = requireRepoMount;
 
-  # Local repo: the clients push into the rest server all day, then prune, then check.
+  # Local repo: prune, then check. Both take an exclusive lock, so the servers back up
+  # before 03:00 and capricorn skips 03:00 and 04:00.
   systemd.services.restic-prune = requireRepoMount // {
     serviceConfig = resticIdentity;
     environment.RESTIC_CACHE_DIR = cacheDirectory;
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-check.service" ];
-    script = ''
-      ${localForget}
-
-      echo "Prune the local repository."
-      ${localRestic} prune
-    '';
+    script = forgetAndPrune localRestic localForgetTags localKeepPolicy;
   };
 
   systemd.timers.restic-prune = {
     wantedBy = [ "timers.target" ];
     partOf = [ "restic-prune.service" ];
-    timerConfig.OnCalendar = [ "*-*-* 07:00:00" ];
+    timerConfig.OnCalendar = [ "*-*-* 03:00:00" ];
   };
 
   # No timer of its own. A check verifies what prune just rewrote, and a gap on the clock
@@ -325,12 +315,7 @@ in
     environment = offsiteEnvironment;
     onFailure = [ "unit-status-telegram@%N.service" ];
     onSuccess = [ "restic-offsite-check.service" ];
-    script = ''
-      ${offsiteForget}
-
-      echo "Prune the offsite repository."
-      ${offsiteResticWritable} prune
-    '';
+    script = forgetAndPrune offsiteResticWritable offsiteForgetTags offsiteKeepPolicy;
   };
 
   systemd.timers.restic-offsite-prune = {

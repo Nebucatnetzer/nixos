@@ -23,7 +23,8 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "server"; })
-    (resticClientModule { resticSchedule = "*-*-* 00..06,09..23:25:00"; })
+    # Before the 03:00 prune on gwyn.
+    (resticClientModule { resticSchedule = "*-*-* 01:25:00"; })
     (syncthingModule {
       dataRoot = "/home/${config.az-username}/syncthing";
       exposeWebInterface = true;

@@ -50,7 +50,8 @@ in
     (btrfsAuxModule { })
     (btrfsLayout { })
     (nixBuilderModule { role = "client"; })
-    (resticClientModule { resticSchedule = "*-*-* 00..06,09..23:05:00"; })
+    # Skips 03:00 and 04:00, when prune and check on gwyn hold an exclusive lock.
+    (resticClientModule { resticSchedule = "*-*-* 00..02,05..23:05:00"; })
     (resticColdOffsite {
       inherit archivePath;
       luksUuid = "b4ee4a64-2c54-4bd7-9c00-dce046ab8c30";

@@ -2595,6 +2595,22 @@ NSettings=0
 Column Id=digikam-tags
 NSettings=0
 
+[resize Tool]
+Alpha=0.10000000149011612
+Amplitude=20
+Anisotropy=0.8999999761581421
+BTile=4
+Da=30
+Dl=0.800000011920929
+FastApprox=true
+GaussPrec=2
+Interpolation=0
+Iteration=3
+RestorePhotograph=false
+Sharpness=0.20000000298023224
+Sigma=1.5
+Tile=256
+
 [whitebalance Tool]
 Black=0
 Dark=0

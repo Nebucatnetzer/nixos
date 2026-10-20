@@ -5,6 +5,7 @@
 }:
 let
   botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
+  denyPrivateNetworks = import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
   mariadbTuning = import "${inputs.self}/modules/services/mariadb/lib/mariadb-tuning.nix";
 in
 {
@@ -25,6 +26,10 @@ in
     acceptTerms = true;
     defaults.email = "admin+acme@zweili.ch";
   };
+
+  # The updater fetches the feeds, the pool serves the web interface.
+  systemd.services.freshrss-updater.serviceConfig = denyPrivateNetworks;
+  systemd.services.phpfpm-freshrss.serviceConfig = denyPrivateNetworks;
 
   services.snmpd.configText = ''
     # monitor php

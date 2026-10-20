@@ -6,6 +6,7 @@
 }:
 let
   botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
+  iptables = "${config.networking.firewall.package}/bin/iptables";
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
   searxngEnv = config.age.secrets.searxngEnv.path;
 in
@@ -43,6 +44,15 @@ in
       extraOptions = [ "--log-opt=tag='zweili-search-app'" ];
     };
   };
+  # Containers cannot reach the LAN or the WireGuard network. systemd filters do not apply
+  # to containers, so this uses DOCKER-USER, a chain Docker never changes itself.
+  systemd.services.docker.postStart = ''
+    for network in 10.0.0.0/8 169.254.0.0/16 192.168.0.0/16; do
+      ${iptables} --check DOCKER-USER --in-interface docker0 --destination "$network" --jump DROP 2>/dev/null \
+        || ${iptables} --insert DOCKER-USER --in-interface docker0 --destination "$network" --jump DROP
+    done
+  '';
+  systemd.services.searx.serviceConfig = import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
   services = {
     nginx = {
       enable = true;

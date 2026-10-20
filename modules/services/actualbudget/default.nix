@@ -25,6 +25,7 @@ let
     ];
   };
   dataDirectory = "/var/lib/actualbudget/${name}";
+  denyPrivateNetworks = import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
   serviceName = "actual-${name}";
 in
 {
@@ -96,7 +97,8 @@ in
         "@pkey"
       ];
       UMask = "0077";
-    };
+    }
+    // denyPrivateNetworks;
   };
 
   users.users."${serviceName}" = {

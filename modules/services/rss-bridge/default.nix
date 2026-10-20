@@ -1,5 +1,5 @@
 { domain }:
-{ config, ... }:
+{ config, inputs, ... }:
 {
   services.nginx.virtualHosts."${domain}".listen = [
     {
@@ -12,4 +12,6 @@
     config.system.enabled_bridges = [ "*" ];
     virtualHost = domain;
   };
+  systemd.services."phpfpm-${config.services.rss-bridge.pool}".serviceConfig =
+    import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
 }

@@ -26,7 +26,7 @@ in
     # Before the 03:00 prune on gwyn.
     (resticClientModule { resticSchedule = "*-*-* 01:25:00"; })
     (syncthingModule {
-      dataRoot = "/home/${config.az-username}/syncthing";
+      dataRoot = "/home/${config.az-username}/data";
       exposeWebInterface = true;
     })
     (wireguardClient {

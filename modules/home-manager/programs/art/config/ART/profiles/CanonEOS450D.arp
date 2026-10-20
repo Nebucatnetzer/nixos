@@ -13,7 +13,7 @@ LFCameraModel=
 LFLens=
 
 [Color Management]
-InputProfile=file://H/nextcloud/20_pictures/21_photos/Profiles/20251111T230600--adobe-dng-converter-profiles/CameraProfiles/Adobe%20Standard/Canon%20EOS%20450D%20Adobe%20Standard.dcp
+InputProfile=file://H/data/98_applications/photo_profiles/adobe_dng_converter/CameraProfiles/Adobe%20Standard/Canon%20EOS%20450D%20Adobe%20Standard.dcp
 ToneCurve=true
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true

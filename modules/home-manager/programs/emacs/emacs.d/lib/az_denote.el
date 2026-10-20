@@ -53,11 +53,11 @@
     (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
     (denote-rename-buffer-mode 1)
     (setopt denote-file-type 'org
-            denote-directory az-nextcloud-dir
+            denote-directory az-data-dir
             denote-dired-directories (list denote-directory)
             denote-dired-directories-include-subdirectories t
             denote-excluded-directories-regexp
-            "20_pictures\\|21_auto_uploads\\|22_avatars\\|23_ich\\|24_wallpapers\\|30_keepass\\|40_books\\|90_public\\|98_zotero")
+            "20_pictures\\|98_applications")
     (setq denote-org-front-matter az-denote-org-front-matter
           denote-yaml-front-matter "---\ntitle: %s\ndate: %s\ntags: %s\nidentifier: %S\n---\n\n"))
 

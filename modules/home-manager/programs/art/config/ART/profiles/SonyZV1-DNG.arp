@@ -18,7 +18,7 @@ LFCameraModel=
 LFLens=
 
 [Color Management]
-InputProfile=file://H/nextcloud/20_pictures/21_photos/Profiles/my_cameras/color_profiles/Sony%20ZV-1A%20Adobe%20Standard.dcp
+InputProfile=file://H/data/98_applications/photo_profiles/my_cameras/color_profiles/Sony%20ZV-1A%20Adobe%20Standard.dcp
 ToneCurve=true
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true

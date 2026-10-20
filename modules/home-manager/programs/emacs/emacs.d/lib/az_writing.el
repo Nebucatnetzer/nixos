@@ -79,7 +79,7 @@
 (use-package citar
   :no-require
   :custom
-  (org-cite-global-bibliography '("~/nextcloud/99_archive/0000/bibliography.bib"))
+  (org-cite-global-bibliography (list az-org-bibliography-file))
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)

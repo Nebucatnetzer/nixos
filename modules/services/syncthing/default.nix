@@ -23,5 +23,9 @@ in
       inherit dataRoot homeDirectory lib;
     };
   };
+  # A root outside the home directory (gwyn) must exist and belong to the Syncthing user.
+  systemd.tmpfiles.rules = lib.optional (
+    !lib.hasPrefix homeDirectory dataRoot
+  ) "d ${dataRoot} 0700 ${config.az-username} ${config.az-username} -";
   networking.firewall.interfaces.wg0.allowedTCPPorts = lib.optional exposeWebInterface 8384;
 }

@@ -4,7 +4,7 @@ Version=1044
 
 [LensProfile]
 LcMode=lcp
-LCPFile=file://H/nextcloud/20_pictures/21_photos/Profiles/my_cameras/lenses/RICOH%20(RICOH%20GR%20IIIx)%20-%20RAW.lcp
+LCPFile=file://H/data/98_applications/photo_profiles/my_cameras/lenses/RICOH%20(RICOH%20GR%20IIIx)%20-%20RAW.lcp
 UseDistortion=true
 UseVignette=true
 UseCA=true
@@ -13,7 +13,7 @@ LFCameraModel=Ricoh GR IIIx
 LFLens=Ricoh imaging company, ltd. Ricoh GR IIIx & compatibles
 
 [Color Management]
-InputProfile=file://H/nextcloud/20_pictures/21_photos/Profiles/my_cameras/color_profiles/RICOH%20GR%20IIIx%20Adobe%20Standard.dcp
+InputProfile=file://H/data/98_applications/photo_profiles/my_cameras/color_profiles/RICOH%20GR%20IIIx%20Adobe%20Standard.dcp
 ToneCurve=false
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true

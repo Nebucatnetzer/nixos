@@ -361,7 +361,7 @@ DeconvRadius=0.75
 DeconvAmount=100
 
 [Color Management]
-InputProfile=file://H/nextcloud/20_pictures/21_photos/Profiles/20251111T230600--adobe-dng-converter-profiles/CameraProfiles/Camera/Sony%20ZV-1A/Sony%20ZV-1A%20Camera%20Standard.dcp
+InputProfile=file://H/data/98_applications/photo_profiles/adobe_dng_converter/CameraProfiles/Camera/Sony%20ZV-1A/Sony%20ZV-1A%20Camera%20Standard.dcp
 ToneCurve=true
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true

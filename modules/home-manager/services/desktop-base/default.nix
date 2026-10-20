@@ -62,7 +62,7 @@
     };
     userDirs = {
       enable = true;
-      pictures = "${config.home.homeDirectory}/nextcloud/20_pictures";
+      pictures = "${config.home.homeDirectory}/data/20_pictures";
       createDirectories = true;
     };
     # forcecully override the mimeapps.list

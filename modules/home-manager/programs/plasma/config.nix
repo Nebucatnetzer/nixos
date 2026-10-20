@@ -429,9 +429,9 @@
       krunnerrc."Plugins/Favorites".plugins =
         "krunner_powerdevil,krunner_services,krunner_shell,krunner_systemsettings,windows,browsertabs";
       kscreenlockerrc."Greeter/Wallpaper/org.kde.image/General".Image =
-        "/home/andreas/nextcloud/24_wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
+        "/home/andreas/data/20_pictures/wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
       kscreenlockerrc."Greeter/Wallpaper/org.kde.image/General".PreviewImage =
-        "/home/andreas/nextcloud/24_wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
+        "/home/andreas/data/20_pictures/wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
       kservicemenurc.Show.compressfileitemaction = true;
       kservicemenurc.Show.decodeSwissQrBill = true;
       kservicemenurc.Show.denoteRename = true;
@@ -705,7 +705,7 @@
       plasmanotifyrc."Applications/org.telegram.desktop".Seen = true;
       plasmanotifyrc."Applications/plexamp".Seen = true;
       plasmanotifyrc."Applications/signal".Seen = true;
-      plasmarc.Wallpapers.usersWallpapers = "/home/andreas/nextcloud/20_pictures/24_wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
+      plasmarc.Wallpapers.usersWallpapers = "/home/andreas/data/20_pictures/wallpapers/space_and_stars/shuttleiss_nasa_6048.jpg";
       spectaclerc.Annotations.annotationToolType = 11;
       spectaclerc.Annotations.rectangleStrokeColor = "255,0,0";
       spectaclerc.General.ocrLanguages = "deu,eng";

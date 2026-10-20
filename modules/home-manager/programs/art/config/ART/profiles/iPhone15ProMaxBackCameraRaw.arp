@@ -4,7 +4,7 @@ Version=1041
 
 [LensProfile]
 LcMode=lcp
-LCPFile=file:///home/andreas/nextcloud/20_pictures/Profiles/my_cameras/lenses/Apple%20iPhone%20(Apple%20iPhone%2015%20Pro%20Max%20back%20camera%206.86mm%20f1.78)%20-%20RAW.lcp
+LCPFile=file:///home/andreas/data/98_applications/photo_profiles/my_cameras/lenses/Apple%20iPhone%20(Apple%20iPhone%2015%20Pro%20Max%20back%20camera%206.86mm%20f1.78)%20-%20RAW.lcp
 UseDistortion=true
 UseVignette=true
 UseCA=true
@@ -13,7 +13,7 @@ LFCameraModel=
 LFLens=
 
 [Color Management]
-InputProfile=file:///home/andreas/nextcloud/20_pictures/Profiles/my_cameras/color_profiles/Apple%20iPhone16,2%20back%20camera%20Adobe%20Standard.dcp
+InputProfile=file:///home/andreas/data/98_applications/photo_profiles/my_cameras/color_profiles/Apple%20iPhone16,2%20back%20camera%20Adobe%20Standard.dcp
 ToneCurve=true
 ApplyLookTable=false
 ApplyBaselineExposureOffset=true

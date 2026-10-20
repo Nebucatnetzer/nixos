@@ -122,7 +122,7 @@ in
       domain = rssBridgeDomain;
     })
     (syncthingModule {
-      dataRoot = "/home/${config.az-username}/syncthing";
+      dataRoot = "/var/lib/syncthing";
       exposeWebInterface = true;
     })
     (wireguardHub {

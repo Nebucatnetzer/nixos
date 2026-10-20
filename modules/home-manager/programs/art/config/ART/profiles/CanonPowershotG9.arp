@@ -3,7 +3,7 @@ AppVersion=unknown
 Version=1041
 [LensProfile]
 LcMode=lfauto
-LCPFile=file:///home/andreas/nextcloud/20_pictures/Profiles/my_cameras/lenses/Apple%20iPhone%20(Apple%20iPhone%2015%20Pro%20Max%20back%20camera%206.86mm%20f1.78)%20-%20RAW.lcp
+LCPFile=file:///home/andreas/data/98_applications/photo_profiles/my_cameras/lenses/Apple%20iPhone%20(Apple%20iPhone%2015%20Pro%20Max%20back%20camera%206.86mm%20f1.78)%20-%20RAW.lcp
 UseDistortion=true
 UseVignette=true
 UseCA=true

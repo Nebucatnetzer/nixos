@@ -28,7 +28,7 @@ in
     "${inputs.self}/modules/home-manager/programs/starship"
     "${inputs.self}/modules/home-manager/programs/tmux"
     (syncthingModule {
-      dataRoot = "${config.home.homeDirectory}/nextcloud";
+      dataRoot = "${config.home.homeDirectory}/data";
       hostname = "red";
     })
     (gitModule { userEmail = "zweili@contria.com"; })

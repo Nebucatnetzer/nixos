@@ -1,7 +1,7 @@
 [General]
 TabbedEditor=false
 StartupDirectory=custom
-StartupPath=/home/andreas/nextcloud/20_pictures/20.1_to_process
+StartupPath=/home/andreas/data/20_pictures/0_workbench
 DateFormat=%Y-%m-%d
 AdjusterMinDelay=100
 AdjusterMaxDelay=200
@@ -44,7 +44,7 @@ MaxCacheEntries=20000
 ParseExtensions=3fr;arw;arq;cr2;cr3;crf;crw;dcr;dng;fff;iiq;jpg;jpeg;kdc;mef;mos;mrw;nef;nrw;orf;pef;png;raf;raw;rw2;rwl;rwz;sr2;srf;srw;tif;tiff;x3f;
 ParseExtensionsEnabled=1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;0;1;1;1;1;1;1;1;1;1;1;1;
 ThumbnailInterpolation=1
-FavoriteDirs=/home/andreas/nextcloud/20_pictures/21_photos/0000;/home/andreas/nextcloud/20_pictures/20.1_to_process;
+FavoriteDirs=/home/andreas/data/20_pictures/0_workbench;/home/andreas/data/20_pictures/photos;
 ThumbnailZoomRatios=0.20000000000000001;0.29999999999999999;0.45000000000000001;0.59999999999999998;0.80000000000000004;1;
 OverlayedFileNames=false
 FilmStripOverlayedFileNames=false
@@ -53,7 +53,7 @@ FilmStripShowFileNames=false
 HighlightSelected=false
 InternalThumbIfUntouched=false
 MaxRecentFolders=15
-RecentFolders=/home/andreas/nextcloud/20_pictures/20.1_to_process/;
+RecentFolders=
 ThumbnailRatingMode=xmp
 
 [Clipping Indication]
@@ -209,7 +209,7 @@ AdjusterForceLinear=false
 PPI=600
 
 [Color Management]
-PrinterProfile=file:/home/andreas/nextcloud/20_pictures/21_photos/Profiles/saa_digital_icc_profiles/SaalDigital_PhotoPrints_matte.icc
+PrinterProfile=file:/home/andreas/data/98_applications/photo_profiles/saal_digital_icc/SaalDigital_PhotoPrints_matte.icc
 PrinterIntent=1
 PrinterBPC=true
 ICCDirectory=
@@ -234,7 +234,7 @@ MaxWidth=1920
 MaxHeight=1920
 
 [Dialogs]
-LastIccDir=/home/andreas/nextcloud/20_pictures/21_photos/Profiles/my_cameras/color_profiles/Ricoh Colors
+LastIccDir=/home/andreas/data/98_applications/photo_profiles/my_cameras/color_profiles/Ricoh Colors
 LastDarkframeDir=
 LastFlatfieldDir=
 LastRgbCurvesDir=/home/andreas/.config/ART/profiles
@@ -243,7 +243,7 @@ LastPFCurvesDir=/home/andreas/.config/ART/profiles
 LastHsvCurvesDir=/home/andreas/.config/ART/profiles
 LastToneCurvesDir=/home/andreas/.config/ART/profiles
 LastProfilingReferenceDir=/home/andreas/.config/ART/profiles
-LastLensProfileDir=/home/andreas/nextcloud/20_pictures/21_photos/Profiles/my_cameras/lenses
+LastLensProfileDir=/home/andreas/data/98_applications/photo_profiles/my_cameras/lenses
 LastICCProfCreatorDir=/home/andreas/.config/ART/profiles
 LastSessionAddDir=
 LastSessionLoadSaveDir=

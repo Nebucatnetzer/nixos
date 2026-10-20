@@ -31,21 +31,6 @@
       "red"
     ];
   };
-  "20_pictures" = {
-    id = "xn6td-bdakn";
-    devices = [
-      "capricorn"
-      "phone"
-    ];
-  };
-  "30_keepass" = {
-    id = "drhic-3jmuj";
-    devices = [
-      "capricorn"
-      "gwyn"
-      "phone"
-    ];
-  };
   "40_books" = {
     id = "gbsei-pfetk";
     devices = [
@@ -53,19 +38,11 @@
       "gwyn"
     ];
   };
-  "97_joplin" = {
-    id = "4w6ee-pvgrj";
+  "40_reading" = {
+    id = "40_reading";
     devices = [
       "capricorn"
       "phone"
-    ];
-  };
-  "98_zotero" = {
-    id = "xd2p4-ur6jl";
-    devices = [
-      "capricorn"
-      "gwyn"
-      "red"
     ];
   };
   "99_archive" = {
@@ -76,10 +53,37 @@
       "gwyn"
     ];
   };
+  keepass = {
+    id = "drhic-3jmuj";
+    path = "98_applications/keepass";
+    devices = [
+      "capricorn"
+      "gwyn"
+      "phone"
+    ];
+  };
+  org = {
+    id = "org";
+    path = "98_applications/org";
+    devices = [
+      "capricorn"
+      "fenoglio"
+      "gwyn"
+      "red"
+    ];
+  };
   phone-photos = {
     id = "rxcuy-k4fbv";
     homePath = "Downloads/inbox/photos";
     type = "receiveonly";
+    devices = [
+      "capricorn"
+      "phone"
+    ];
+  };
+  photos = {
+    id = "xn6td-bdakn";
+    path = "20_pictures/photos";
     devices = [
       "capricorn"
       "phone"
@@ -92,6 +96,15 @@
     devices = [
       "capricorn"
       "phone"
+    ];
+  };
+  zotero = {
+    id = "xd2p4-ur6jl";
+    path = "98_applications/zotero";
+    devices = [
+      "capricorn"
+      "gwyn"
+      "red"
     ];
   };
 }

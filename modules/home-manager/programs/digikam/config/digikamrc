@@ -239,7 +239,7 @@ MAKERNOTE Level=0
 XMP Level=0
 
 [Collection Settings]
-LastAddedCollectionPath=/home/andreas/nextcloud/20_pictures
+LastAddedCollectionPath=/home/andreas/data/20_pictures
 
 [Color Management]
 BPCAlgorithm=true
@@ -1015,10 +1015,10 @@ tagPaths=1
 Database Connectoptions=
 Database Encrypted Password=AwLl5eU=
 Database Hostname=
-Database Name=/home/andreas/nextcloud/20_pictures/21_photos/digikam_db/
-Database Name Face=/home/andreas/nextcloud/20_pictures/21_photos/digikam_db/
-Database Name Similarity=/home/andreas/nextcloud/20_pictures/21_photos/digikam_db/
-Database Name Thumbnails=/home/andreas/nextcloud/20_pictures/21_photos/digikam_db/
+Database Name=/home/andreas/data/98_applications/digikam/
+Database Name Face=/home/andreas/data/98_applications/digikam/
+Database Name Similarity=/home/andreas/data/98_applications/digikam/
+Database Name Thumbnails=/home/andreas/data/98_applications/digikam/
 Database Port=-1
 Database Type=QSQLITE
 Database Username=
@@ -2009,7 +2009,7 @@ DontAskAgainToDeleteItemsFromCamera=false
 HelpBoxNotifSeen=true
 
 [Panorama ImagesList]
-Last Image Path=/home/andreas/nextcloud/02_projects/00000000T000000--pictures-to-process/2026/20260129T150000--socrates-switzerland-2026/panorama/
+Last Image Path=
 
 [Panorama Settings]
 Celeste=true

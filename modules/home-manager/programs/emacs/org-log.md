@@ -131,7 +131,7 @@ its paths with `defvar` — which does not overwrite an already-bound value. So 
 machine, put this in that machine's `~/.emacs.d/variables.el`:
 
 ```elisp
-(setq az-nextcloud-dir "~/notes/")
+(setq az-data-dir "~/notes/")
 (setq enable-org t)
 (setq enable-notes t)
 ```

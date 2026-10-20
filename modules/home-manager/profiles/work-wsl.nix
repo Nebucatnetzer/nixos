@@ -16,6 +16,7 @@ let
     '';
   };
   resticWsl = import "${inputs.self}/modules/home-manager/services/restic-wsl";
+  syncthingModule = import "${inputs.self}/modules/home-manager/services/syncthing";
 in
 {
   imports = [
@@ -26,7 +27,10 @@ in
     "${inputs.self}/modules/home-manager/programs/hunspell"
     "${inputs.self}/modules/home-manager/programs/starship"
     "${inputs.self}/modules/home-manager/programs/tmux"
-    "${inputs.self}/modules/home-manager/services/syncthing"
+    (syncthingModule {
+      dataRoot = "${config.home.homeDirectory}/nextcloud";
+      hostname = "red";
+    })
     (gitModule { userEmail = "zweili@contria.com"; })
     (resticWsl { repository = "/mnt/c/Users/zweili/Documents/wsl-backup"; })
     ./headless.nix

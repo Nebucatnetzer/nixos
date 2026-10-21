@@ -10,10 +10,12 @@
 }:
 let
   builderHost = config.az-hosts.fenoglio.wgIp;
+  # The tests build in the store of an untrusted user on fenoglio. The results stay there.
+  buildStore = "ssh-ng://flake-builder@${builderHost}?ssh-key=${config.age.secrets.flakeBuilderKey.path}";
   cacheDirectory = "/var/cache/flake-updater";
   defaultSchedule = "Sat *-*-* 04:00:00";
-  defaultUpdateScript = "nix flake update --commit-lock-file";
-  # The update settings live with the repository in repos.nix.
+  # The update settings live with the repository in repos.nix. script and tests name flake
+  # outputs: the updater runs `nix run .#<script>` and builds `.#<tests>`.
   repos = lib.mapAttrs (name: repo: repo.update) (
     lib.filterAttrs (name: repo: repo ? update) (
       import "${inputs.self}/modules/services/git-server/repos.nix"
@@ -34,9 +36,7 @@ let
     pkgs.writeShellApplication {
       name = unitName name;
       runtimeInputs = [
-        pkgs.bash
         pkgs.git
-        pkgs.netcat
         config.nix.package
         send-to-telegram
       ];
@@ -46,7 +46,18 @@ let
         git clone --quiet ${repoRoot}/${name}.git "$work_tree"
         cd "$work_tree"
 
-        bash -c ${lib.escapeShellArg (repo.script or defaultUpdateScript)}
+      ''
+      + (
+        if repo ? script then
+          ''
+            nix run ${lib.escapeShellArg ".#${repo.script}"}
+          ''
+        else
+          ''
+            nix flake update --commit-lock-file
+          ''
+      )
+      + ''
         if [ -n "$(git status --porcelain)" ]; then
           git add --all
           git commit --quiet --message "Automatic update"
@@ -57,12 +68,10 @@ let
         fi
       ''
       + lib.optionalString (repo ? tests) ''
-        # Build only on fenoglio. Local builds would fill the store and load the CPU of this host.
-        if ! nc -zw2 ${builderHost} 22 >/dev/null 2>&1; then
-          echo "Builder ${builderHost} is unreachable." >&2
-          exit 1
-        fi
-        bash -c ${lib.escapeShellArg repo.tests}
+        # If fenoglio is unreachable, the build fails. It never falls back to this host.
+        nix build --no-link --print-build-logs \
+          --store ${lib.escapeShellArg buildStore} \
+          ${lib.escapeShellArg ".#${repo.tests}"}
       ''
       + ''
         git push --force origin HEAD:refs/heads/${updateBranch}
@@ -123,6 +132,13 @@ in
   imports = [
     "${inputs.self}/modules/services/telegram-notifications"
   ];
+
+  age.secrets.flakeBuilderKey = {
+    file = "${inputs.self}/scrts/gwyn_flake_builder.key.age";
+    mode = "400";
+    owner = "git";
+    group = "git";
+  };
 
   systemd.services = lib.mapAttrs' (
     name: repo: lib.nameValuePair (unitName name) (updateService name repo)

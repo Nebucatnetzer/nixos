@@ -14,6 +14,7 @@ let
   capricornHostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPRobGMQkRNxHCjRsNGDgCivywhVylkyN71V1ikWiPhX root@capricorn";
   fenoglioHostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOonkLlbxOoCS/8s2BOhctEiFQfOrZrGMdYGY2Y69lbW root@fenoglio";
   builderUser = "nixremote";
+  flakeBuilderUser = "flake-builder";
 in
 lib.mkMerge [
   # ---- fenoglio: accept remote builds from capricorn and gwyn ----
@@ -30,6 +31,18 @@ lib.mkMerge [
     };
     # merges with the existing [ "root" "@wheel" ] in common/default.nix
     nix.settings.trusted-users = [ builderUser ];
+
+    # This user is untrusted, so a leaked key can only run sandboxed builds. The flake
+    # updater on gwyn uses it as its Nix store, so the results stay on this host.
+    users.groups.${flakeBuilderUser} = { };
+    users.users.${flakeBuilderUser} = {
+      isSystemUser = true;
+      group = flakeBuilderUser;
+      shell = pkgs.bashInteractive; # nix-daemon --stdio needs a real shell over ssh
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH7J+odJDkSBxv8UDJkJ4/oVfHBdzYZs6sO6ms2L+ees git@gwyn flake-builder"
+      ];
+    };
   })
 
   # ---- clients (capricorn, gwyn): offload builds to fenoglio, fall back locally ----

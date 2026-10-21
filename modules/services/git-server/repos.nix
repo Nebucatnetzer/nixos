@@ -88,7 +88,7 @@
   "Nebucatnetzer/learning-haskell" = { };
   "Nebucatnetzer/meetup_snappass_presentation" = { };
   "Nebucatnetzer/meta-search" = {
-    update.tests = "nix build --no-link --print-build-logs .#checks.x86_64-linux.nixos-module";
+    update.tests = "checks.x86_64-linux.nixos-module";
     pushMirrors = [ "git@github.com:Nebucatnetzer/meta-search.git" ];
   };
   "Nebucatnetzer/moviespy" = { };
@@ -101,7 +101,7 @@
   "Nebucatnetzer/nixos" = {
     description = "NixOS configuration";
     update = {
-      tests = "nix build --no-link --print-build-logs .#all-hosts";
+      tests = "all-hosts";
       schedule = "*-*-* 04:00:00";
     };
     pushMirrors = [ "git@github.com:Nebucatnetzer/nixos.git" ];

@@ -29,6 +29,8 @@ writeShellApplication {
       builders=(--builders '@/etc/nix/machines')
     else
       echo "Builder ${builderHost} is unreachable, building locally."
+      # Hosts that offload by default would otherwise wait for the SSH timeout.
+      builders=(--builders "")
     fi
 
     nixos-rebuild -j auto switch --sudo "''${builders[@]}"

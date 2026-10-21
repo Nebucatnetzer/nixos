@@ -1,4 +1,7 @@
-{ role }:
+{
+  role,
+  offloadByDefault ? false,
+}:
 {
   config,
   lib,
@@ -34,7 +37,8 @@ lib.mkMerge [
     # Off by default: /etc/nix/machines is still written, because buildMachines
     # and distributedBuilds are independent, and the rebuild wrapper opts in per
     # invocation with --builders @/etc/nix/machines once it has probed fenoglio.
-    nix.distributedBuilds = false;
+    # With offloadByDefault, a command opts out with --builders ''.
+    nix.distributedBuilds = offloadByDefault;
     nix.buildMachines = [
       {
         # IP, not FQDN, to avoid a DNS lookup that stalls when the VPN is down

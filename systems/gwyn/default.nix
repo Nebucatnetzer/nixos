@@ -27,6 +27,8 @@ let
     { fqdn = "git.zweili.org"; }
   ];
 
+  flakeUpdaterModule = import "${inputs.self}/modules/services/flake-updater";
+
   # git server
   gitRepoRoot = "/var/lib/git";
   gitServerModule = import "${inputs.self}/modules/services/git-server";
@@ -83,8 +85,12 @@ in
       ];
     })
     (btrfsLayout { })
-    (nixBuilderModule { role = "client"; })
+    (nixBuilderModule {
+      role = "client";
+      offloadByDefault = true;
+    })
     (gitServerModule { repoRoot = gitRepoRoot; })
+    (flakeUpdaterModule { repoRoot = gitRepoRoot; })
     (librenmsCertificateModule { inherit domains; })
     (resticClientModule {
       paths = [

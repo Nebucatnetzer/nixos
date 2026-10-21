@@ -101,7 +101,7 @@
   "Nebucatnetzer/nixos" = {
     description = "NixOS configuration";
     update = {
-      tests = "nix build --no-link --print-build-logs .#nixosConfigurations.gwyn.config.system.build.toplevel";
+      tests = "nix build --no-link --print-build-logs .#all-hosts";
       schedule = "*-*-* 04:00:00";
     };
     pushMirrors = [ "git@github.com:Nebucatnetzer/nixos.git" ];

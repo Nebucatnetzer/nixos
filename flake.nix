@@ -97,6 +97,10 @@
         inherit pkgs;
         azPkgs = import ./pkgs { inherit pkgs unstable-pkgs; };
         az-emacs = (import ./pkgs { inherit pkgs unstable-pkgs; }).az-emacs;
+        # Builds the toplevel of every host, for example to test an update.
+        all-hosts = pkgs.linkFarm "all-hosts" (
+          nixpkgs.lib.mapAttrs (hostname: host: host.config.system.build.toplevel) hostConfigs
+        );
       };
       homeConfigurations = {
         "zweili@CO-NB-102" = home-manager.lib.homeManagerConfiguration {

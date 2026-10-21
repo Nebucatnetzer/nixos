@@ -2,10 +2,12 @@
   home-module,
   hostname,
   inputs,
+  pkgs,
   unstable-pkgs,
   username ? "andreas",
 }:
 inputs.nixpkgs.lib.nixosSystem {
+  inherit pkgs;
   specialArgs = {
     inherit inputs unstable-pkgs;
   };

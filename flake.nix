@@ -57,13 +57,20 @@
             inputs
             hostname
             home-module
+            pkgs
             unstable-pkgs
             ;
         })
       ) hosts;
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "python3.13-beets-2.5.1"
+          ];
+        };
+        overlays = import ./pkgs/overlays;
       };
       unstable-pkgs = import nixpkgs-unstable {
         system = "x86_64-linux";

@@ -182,10 +182,6 @@ in
       options = "--delete-older-than 30d";
     };
   };
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "python3.13-beets-2.5.1"
-  ];
 
   security.sudo = {
     wheelNeedsPassword = false;

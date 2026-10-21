@@ -53,13 +53,6 @@
       "gwyn"
     ];
   };
-  "97_joplin" = {
-    id = "4w6ee-pvgrj";
-    devices = [
-      "capricorn"
-      "phone"
-    ];
-  };
   "98_zotero" = {
     id = "xd2p4-ur6jl";
     devices = [

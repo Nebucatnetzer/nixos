@@ -92,6 +92,7 @@ in
         gitRepoRoot
         config.services.freshrss.dataDir
         config.services.librenms.dataDir
+        config.services.zweili-search.stateDir
       ];
       mariadb = true;
       # Before the 03:00 prune.

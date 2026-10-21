@@ -6,13 +6,13 @@
 }:
 let
   botBlockRegex = import "${inputs.self}/modules/services/nginx/lib/nginx-bot-block.nix";
-  iptables = "${config.networking.firewall.package}/bin/iptables";
+  denyPrivateNetworks = import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
   searxngHtpasswd = config.age.secrets.searxngHtpasswd.path;
   searxngEnv = config.age.secrets.searxngEnv.path;
 in
 {
   imports = [
-    "${inputs.self}/modules/services/docker"
+    inputs.meta-search.nixosModules.default
   ];
   age.secrets.searxngEnv = {
     file = "${inputs.self}/scrts/searxng_env.age";
@@ -27,33 +27,15 @@ in
     inherit (config.services.nginx) group;
   };
   age.secrets.zweiliSearchEnv.file = "${inputs.self}/scrts/zweili_search_env.age";
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers."zweili-search-app" = {
-      image = "ghcr.io/nebucatnetzer/meta-search/zweili-search-app:latest@sha256:0369a72441946f9a383536eb5e71977a4186b1e846ff70570aac4c7539d782be";
-      autoStart = true;
-      environmentFiles = [ config.age.secrets.zweiliSearchEnv.path ];
-      environment = {
-        ZWEILI_SEARCH_DOMAIN = "search.zweili.org";
-      };
-      ports = [ "8000:8000" ];
-      volumes = [
-        "/etc/localtime:/etc/localtime:ro"
-        "/var/lib/zweili_search:/var/lib/zweili_search"
-      ];
-      extraOptions = [ "--log-opt=tag='zweili-search-app'" ];
-    };
-  };
-  # Containers cannot reach the LAN or the WireGuard network. systemd filters do not apply
-  # to containers, so this uses DOCKER-USER, a chain Docker never changes itself.
-  systemd.services.docker.postStart = ''
-    for network in 10.0.0.0/8 169.254.0.0/16 192.168.0.0/16; do
-      ${iptables} --check DOCKER-USER --in-interface docker0 --destination "$network" --jump DROP 2>/dev/null \
-        || ${iptables} --insert DOCKER-USER --in-interface docker0 --destination "$network" --jump DROP
-    done
-  '';
-  systemd.services.searx.serviceConfig = import "${inputs.self}/modules/services/lib/deny-private-networks.nix";
+  systemd.services.searx.serviceConfig = denyPrivateNetworks;
+  systemd.services.zweili-search.serviceConfig = denyPrivateNetworks;
+  systemd.services.zweili-search-setup.serviceConfig = denyPrivateNetworks;
   services = {
+    zweili-search = {
+      enable = true;
+      domain = "search.zweili.org";
+      environmentFile = config.age.secrets.zweiliSearchEnv.path;
+    };
     nginx = {
       enable = true;
       virtualHosts = {

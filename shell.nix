@@ -24,7 +24,6 @@ mkShellNoCC {
     (buildEnv {
       name = "zweili-nixos-devShell";
       paths = [
-        azPkgs.container-updates
         azPkgs.dry-build-all
         azPkgs.run-command
         azPkgs.test-build

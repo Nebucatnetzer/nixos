@@ -13,6 +13,10 @@
       url = "github:Nebucatnetzer/fii_linux?ref=flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    meta-search = {
+      url = "git+ssh://git@git.zweili.org/Nebucatnetzer/meta-search.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     # Zotero is broken in unstable

@@ -62,6 +62,26 @@
         "type": "github"
       }
     },
+    "meta-search": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792612640,
+        "narHash": "sha256-gOyTgHfvVnZiCFK+x9Gq8mxHBS6rePllM8mHMQ0NipI=",
+        "ref": "refs/heads/main",
+        "rev": "adb5cb1e69674e7d85ea211550d780e96333c7ea",
+        "revCount": 174,
+        "type": "git",
+        "url": "ssh://git@git.zweili.org/Nebucatnetzer/meta-search.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@git.zweili.org/Nebucatnetzer/meta-search.git"
+      }
+    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -163,6 +183,7 @@
         "agenix": "agenix",
         "fox-flss": "fox-flss",
         "home-manager": "home-manager",
+        "meta-search": "meta-search",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",

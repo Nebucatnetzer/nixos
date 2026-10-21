@@ -14,11 +14,11 @@
        (sunday-time (time-add now (seconds-to-time (* days-to-add 86400)))))
   (format-time-string "%Y-%m-%d" sunday-time))` Sun
 ** Week
-#+BEGIN: clocktable :scope agenda :maxlevel 0 :step week :block lastweek
+#+BEGIN: clocktable :scope agenda :maxlevel 3 :step week :block lastweek :properties ("COST_CENTER" "CLOCK_FACTOR") :inherit-props t :formatter az-org-clocktable-by-cost-center :az-total-only t
 
 #+END: clocktable
 
 ** By Day
-#+BEGIN: clocktable :maxlevel 3 :scope agenda :step day :block thisweek$0
+#+BEGIN: clocktable :maxlevel 3 :scope agenda :step day :block thisweek :properties ("COST_CENTER" "CLOCK_FACTOR") :inherit-props t :formatter az-org-clocktable-by-cost-center
 
 #+END: clocktable

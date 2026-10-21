@@ -15,6 +15,16 @@ let
     config.users.users.${config.az-username}.openssh.authorizedKeys.keys ++ gitOnlyKeys
   );
   emptyHooks = pkgs.runCommand "git-hooks-empty" { } "mkdir $out";
+  # sshd runs `shell -c "git-upload-pack '/owner/repo.git'"`. Remove the leading / so
+  # ssh:// URLs are relative to the home directory, like scp-style URLs.
+  gitLoginShell = pkgs.writeShellScriptBin "git-login-shell" ''
+    if [ "$#" -eq 2 ] && [ "$1" = "-c" ]; then
+      absolute_prefix=" '/"
+      relative_prefix=" '"
+      exec ${pkgs.git}/bin/git-shell -c "''${2/"$absolute_prefix"/"$relative_prefix"}"
+    fi
+    exec ${pkgs.git}/bin/git-shell "$@"
+  '';
   # These keys may only use git. They cannot log in to any host.
   gitOnlyKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK0EtKlimFd56pvvHr+witH8ru5suizw4MDnIbRqEy/t zweili@CO-NB-102"
@@ -201,7 +211,8 @@ in
     isSystemUser = true;
     group = "git";
     home = repoRoot;
-    shell = "${pkgs.git}/bin/git-shell";
+    # A bare store path counts as a package without shellPath, which NixOS rejects.
+    shell = "${gitLoginShell}/bin/git-login-shell";
     openssh.authorizedKeys.keys = authorizedKeys;
   };
 }

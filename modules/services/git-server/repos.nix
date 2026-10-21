@@ -87,7 +87,9 @@
   "Nebucatnetzer/latex" = { };
   "Nebucatnetzer/learning-haskell" = { };
   "Nebucatnetzer/meetup_snappass_presentation" = { };
-  "Nebucatnetzer/meta-search" = { };
+  "Nebucatnetzer/meta-search" = {
+    pushMirrors = [ "git@github.com:Nebucatnetzer/meta-search.git" ];
+  };
   "Nebucatnetzer/moviespy" = { };
   "Nebucatnetzer/network_inventory" = { };
   "Nebucatnetzer/new_dot_files" = { };

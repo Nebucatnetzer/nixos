@@ -5,7 +5,13 @@
 }:
 {
   services.usbmuxd.enable = true;
-  environment.systemPackages = [ pkgs.libimobiledevice ];
+  environment.systemPackages = [
+    pkgs.libimobiledevice
+    pkgs.ifuse
+  ];
+
+  # fusermount mounts only on a directory that the user owns.
+  systemd.tmpfiles.rules = [ "d /mnt/iphone 0700 ${config.az-username} users -" ];
 
   home-manager.users.${config.az-username} = {
     home.shellAliases = {

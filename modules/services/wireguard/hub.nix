@@ -28,6 +28,10 @@ let
       ip = config.az-hosts.phone.wgIp;
     }
     {
+      publicKey = "nJaY/NeJSUvpZJB/9s3CHMIIJvgdU7MbzfrpRDZlTEs="; # groeibschi
+      ip = config.az-hosts.groeibschi.wgIp;
+    }
+    {
       publicKey = "MGmlmY7BnJrFLOyF8CzXAL1p7/mOe9Y2EYqGyRGHSSk="; # (unnamed peer)
       ip = "10.70.89.180";
     }

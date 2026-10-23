@@ -14,6 +14,10 @@
     wgFqdn = "fenoglio.vpn.zweili.org";
     wgIp = "10.70.89.120";
   };
+  groeibschi = {
+    wgFqdn = "groeibschi.vpn.zweili.org";
+    wgIp = "10.70.89.202";
+  };
   gwyn = {
     physicalIp = "10.7.89.153";
     syncthingId = "QQ6R66N-OLMFINF-DEQFKO3-G7SDMBO-K4FQNLX-WKLWYHC-FCZQ2I4-TFBPAQK";

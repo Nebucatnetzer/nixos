@@ -1,4 +1,5 @@
 {
+  ifuse,
   lib,
   rsync,
   writers,
@@ -15,6 +16,7 @@ in
 writeShellApplication {
   name = "dap-sync";
   runtimeInputs = [
+    ifuse
     rsync
     dap-sync-python
   ];

@@ -5,6 +5,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+IPHONE_MOUNT_POINT = Path("/mnt/iphone")
+IPHONE_APP_ID = "com.plastaq.music1"
+
 
 def sync_non_flacs_to_target(source: Path, target: Path) -> None:
     print("Sync files")
@@ -29,13 +32,55 @@ def sync_non_flacs_to_target(source: Path, target: Path) -> None:
     )
 
 
+def is_mounted(mount_point: Path) -> bool:
+    # os.path.ismount() returns False for a stale FUSE mount, so read the mount table.
+    with open("/proc/self/mounts") as mounts:
+        for line in mounts:
+            fields = line.split()
+            if fields[1] == str(mount_point):
+                return True
+    return False
+
+
+def unmount_iphone() -> None:
+    print(f"Unmount {IPHONE_MOUNT_POINT}")
+    # Use the setuid wrapper from /run/wrappers/bin, not fuse3 from the store.
+    subprocess.run(
+        ["fusermount3", "--unmount", str(IPHONE_MOUNT_POINT)],
+        check=True,
+    )
+
+
+def sync_to_iphone(source: Path) -> None:
+    # An old mount can be stale after the phone was unplugged, so always mount again.
+    if is_mounted(IPHONE_MOUNT_POINT):
+        unmount_iphone()
+
+    print(f"Mount {IPHONE_APP_ID} on {IPHONE_MOUNT_POINT}")
+    subprocess.run(
+        ["ifuse", "--documents", IPHONE_APP_ID, str(IPHONE_MOUNT_POINT)],
+        check=True,
+    )
+    # finally also runs on Ctrl+C, because KeyboardInterrupt is an exception.
+    try:
+        sync_non_flacs_to_target(source, IPHONE_MOUNT_POINT)
+    finally:
+        unmount_iphone()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Sync playlist files and cover art to target location",
     )
     parser.add_argument(
+        "--iphone",
+        action="store_true",
+        help=f"Mount the documents of {IPHONE_APP_ID} on {IPHONE_MOUNT_POINT} and sync into them",
+    )
+    parser.add_argument(
         "target",
         type=Path,
+        nargs="?",
         help="Top-level destination directory (will sync to <target>/synced)",
     )
     music_dir = Path.home() / "Music"
@@ -46,12 +91,24 @@ def parse_args() -> argparse.Namespace:
         default=music_dir,
         help="Source directory (default: ~/Music)",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    if args.iphone and args.target is not None:
+        parser.error("--iphone does not take a target directory")
+    if not args.iphone and args.target is None:
+        parser.error("the target directory is required without --iphone")
+
+    return args
 
 
 def main() -> None:
     args = parse_args()
     source: Path = args.source.resolve()
+
+    if args.iphone:
+        sync_to_iphone(source)
+        return
+
     synced_directory: Path = args.target.resolve() / "synced"
 
     synced_directory.mkdir(exist_ok=True)

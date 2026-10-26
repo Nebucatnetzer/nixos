@@ -15,6 +15,7 @@
     wgIp = "10.70.89.120";
   };
   groeibschi = {
+    syncthingId = "BXQ7RFL-Z237ND3-ZAHLVZF-NLXQF4T-2TXF6LG-FTBAW7Z-FUVS4GQ-V4XCCAE";
     wgFqdn = "groeibschi.vpn.zweili.org";
     wgIp = "10.70.89.202";
   };

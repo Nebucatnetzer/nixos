@@ -7,6 +7,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "groeibschi"
       "gwyn"
       "phone"
       "red"
@@ -17,6 +18,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "groeibschi"
       "gwyn"
       "phone"
     ];
@@ -26,6 +28,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "groeibschi"
       "gwyn"
       "phone"
       "red"
@@ -35,6 +38,7 @@
     id = "40_reading";
     devices = [
       "capricorn"
+      "groeibschi"
       "phone"
     ];
   };

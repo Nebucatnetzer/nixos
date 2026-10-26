@@ -97,10 +97,10 @@ TreeView Font=Noto Sans,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
 Update Type=0
 
 [AlbumFolderView Sidebar]
-CurrentIndex=8300
-Expansion=0,8083,8259,8105,8095,8096,8098,8258,8100,8293,8297,8300,8121,8122,8123,8144,8145,8146,8147,8152,8155,8159,8166,8109,8115,8116,8261,8117,8118,-2,5665,5683,7139,7142,7147,7150,7298,7299,7300,7301,7302,7303,7304,7305,7306,7307,7308,7315,6014,6015,6018,7380,6136,6383,6776,6788,6818,6835,5676,6859,6875,6887,6900,6908,6927,8082,8058,6981,7027,7036,7082,8076,8080
+CurrentIndex=8229
+Expansion=0,8083,8095,8096,8105,8109,8115,8116,8121,8144,8145,8147,8152,8155,8159,8166,-4,8229,8259,9328,9329,9330,9331,9332,9335
 RestoreChecked=false
-Selection=8300
+Selection=8229
 SortColumn=0
 SortOrder=0
 
@@ -109,7 +109,7 @@ CaseSensitive=0
 
 [AlbumSelectWidget]
 AlbumTreeViewCurrentIndex=
-AlbumTreeViewExpansion=5665
+AlbumTreeViewExpansion=8083,8229
 AlbumTreeViewRestoreChecked=false
 AlbumTreeViewSelection=
 AlbumTreeViewSortColumn=0
@@ -118,10 +118,10 @@ CaseSensitive=0
 
 [Autotags Settings]
 AlbumComboBox-Checked=
-AlbumComboBox-CurrentIndex=5665
-AlbumComboBox-Expansion=5665
+AlbumComboBox-CurrentIndex=8083
+AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=8083,5665
+AlbumComboBox-Selection=8083
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -135,7 +135,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=253,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -252,15 +252,15 @@ EnableCM=true
 GamutCheckMaskColor=126,255,255
 LastMismatchBehavior=2049
 LastMissingProfileBehavior=2050
-LastSpecifiedAssignProfile[$e]=/nix/store/rrjdiww9b0r8mgzdy3k7f36pi392mb2z-digikam-9.1.0/share/digikam/profiles/
+LastSpecifiedAssignProfile=
 LastSpecifiedInputProfile=
 LastUncalibratedBehavior=2080
 ManagedPreviews=true
 ManagedView=true
-MonitorProfileFile[$e]=/nix/store/rrjdiww9b0r8mgzdy3k7f36pi392mb2z-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
+MonitorProfileFile[$e]=/nix/store/8mm5fvzn5hn0gli9yg2aar50hg6jv942-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
 ProofingRenderingIntent=3
 RenderingIntent=0
-WorkProfileFile[$e]=/nix/store/rrjdiww9b0r8mgzdy3k7f36pi392mb2z-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
+WorkProfileFile[$e]=/nix/store/8mm5fvzn5hn0gli9yg2aar50hg6jv942-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
 
 [Color Names]
 ColorName_black=Black
@@ -1013,7 +1013,7 @@ tagPaths=1
 
 [Database Settings]
 Database Connectoptions=
-Database Encrypted Password=AwLl5eU=
+Database Encrypted Password=AwJoaGg=
 Database Hostname=
 Database Name=/home/andreas/data/98_applications/digikam/
 Database Name Face=/home/andreas/data/98_applications/digikam/
@@ -1032,7 +1032,7 @@ Internal Database Server Path=
 
 [DateFolderView Sidebar]
 CurrentIndex=173
-Expansion=1,4,161,163
+Expansion=161,163
 Selection=173
 SortColumn=0
 SortOrder=0
@@ -1220,11 +1220,11 @@ Detection Accuracy=0.7
 Use Yolo V3=false
 
 [Face Management Settings]
-AlbumComboBox-Checked=8030,8055,6831,6830,6827,8052,7999,6826,8009,6828,8035,7155,6908,8056,8007,8069,8044,8062,8034,6859,8053,8027,6819,8029,6887,8010,8046,8033,8057,8018,8016,8031,8049,8067,8011,8072,5676,8028,8004,8017,7036,6788,8066,8000,6900,8047,8021,7027,-2,8037,8063,8040,6981,8073,6822,6832,8001,8003,8005,8006,8039,8071,7082,8077,8064,8080,8014,6829,8020,6825,6833,8068,8076,8041,8075,8024,8013,8082,8054,8036,6875,8074,7998,8026,8032,8045,8059,6927,6820,8058,8043,8070,6818,8023,6834,8015,8008,8079,8012,8048,8061,8078,6835,8051,8022,8002,8038,8042,8050,6824,6821,8025,6836,8019,8060,8065
-AlbumComboBox-CurrentIndex=5665
-AlbumComboBox-Expansion=5665
+AlbumComboBox-Checked=
+AlbumComboBox-CurrentIndex=8083
+AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=8083,5665
+AlbumComboBox-Selection=8083
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -1242,7 +1242,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=253,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 Use Full CPU=false
@@ -1278,10 +1278,10 @@ Last search album tag relation=0
 Last search results restriction=0
 Lower bound for minimum similarity=40
 TagComboBox-Checked=
-TagComboBox-CurrentIndex=253
+TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=253
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -1305,10 +1305,10 @@ SortOrder=0
 
 [Fuzzy Search View]
 AlbumComboBox-Checked=
-AlbumComboBox-CurrentIndex=5665
-AlbumComboBox-Expansion=5665
+AlbumComboBox-CurrentIndex=8083
+AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=8083,5665
+AlbumComboBox-Selection=8083
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -1396,11 +1396,11 @@ EXIF Tags Filter=Exif.Image.PhotometricInterpretation,Exif.Image.ProfileName,Exi
 EXIFTOOL Tags Filter=
 
 [Image Quality Settings]
-AlbumComboBox-Checked=-2
-AlbumComboBox-CurrentIndex=5665
-AlbumComboBox-Expansion=5665
+AlbumComboBox-Checked=
+AlbumComboBox-CurrentIndex=8083
+AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=8083,5665
+AlbumComboBox-Selection=8083
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -1425,7 +1425,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=253,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -1873,9 +1873,9 @@ Version Properties Tab=versions
 Version Properties View Mode=2
 
 [MainWindow]
-InitialAlbumID=8300
+InitialAlbumID=8229
 SplitterState=AAAA/wAAAAEAAAADAAABbQAABEoAAAF9Af////8AAAAAAQE=
-ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAARKAAAAifwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAABEoAAABpAP///wAABEoAAAPvAAAABAAAAAQAAAAIAAAACPwAAAAA
+ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAARKAAAAifwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAABEoAAABpAP///wAABEoAAAevAAAABAAAAAQAAAAIAAAACPwAAAAA
 
 [MaintenanceDlg Settings]
 AlbumComboBox-Checked=6985,6887,6923,6846,7034,7030,6987,6801,6992,6789,6802,6879,6836,6804,6806,6799,6931,6793,6791,6967,6809,6820,6834,6788,6976,6979,6816,6975,6920,7012,6994,6977,6983,6811,6869,6866,6974,6817,6819,5674,6822,6854,6812,6814,6927,7041,6826,6862,6914,7002,6813,6827,6823,6794,6803,6807,6831,-2,6790,6800,6830,5676,6824,6857,7009,6837,6828,7000,6912,6959,6871,6808,6796,6978,6818,6981,6877,5671,6952,7027,6833,7035,6795,6805,6832,6797,6840,6821,6798,6810,7004,6850,6875,6792,6829,6815,7014,6825,6835,6864,5678,6873
@@ -1986,9 +1986,9 @@ Rotate Contents Lossy=false
 Save Color Label=true
 Save Date Time=true
 Save EXIF Comments=true
-Save FaceTags=false
+Save FaceTags=true
 Save Pick Label=true
-Save Position=false
+Save Position=true
 Save Rating=true
 Save Tags=true
 Save Template=true
@@ -2024,11 +2024,11 @@ hugin_executorBinary[$e]=
 pano_modifyBinary[$e]=
 
 [People Sidebar]
-CurrentIndex=39
-Expansion=4,23,5,78,83,82,121,103,117,120,46,102,112,22,39,81,108,115,50,49,127,64,72,62,128,32,70,29,45,59,116,109,28,75,137,136,66,31,99,132,104,84,87,97,91,44,88,36,93,55,85,124,129,123,131,96,69,27,86,111,134,90,40,74,63,119,133,92,143,107,125,98,146,51,110,106,130,58,126,135,94
+CurrentIndex=49
+Expansion=4,23,5,78,121,103,117,120,46,102,112,22,82,39,81,108,115,50,49,127,64,72,62,128,32,70,29,83,45,59,116,109,28,75,137,136,66,31,99,132,104,84,87,97,91,44,88,36,93,55,85,124,129,123,131,96,69,27,86,111,134,90,40,74,63,119,133,92,143,107,125,98,146,51,110,106,130,58,126,135,94
 FaceScanWidgetExpanded=true
 RestoreChecked=false
-Selection=39
+Selection=49
 SortColumn=0
 SortOrder=0
 
@@ -2080,7 +2080,7 @@ UseWholeAlbumsEntry=false
 2 screens: Width=1411
 3840x2160 screen: Height=2088
 3840x2160 screen: Width=1920
-AlbumView Tab=5
+AlbumView Tab=0
 Albumview Tab=0
 Camera Tab=0
 Collections Tab=0
@@ -2091,16 +2091,16 @@ Metadata SubTab=0
 Metadata Tab=0
 Misc Tab=0
 Plugin Tab=0
-Setup Page=2
+Setup Page=4
 Template Tab=0
 ToolTip Tab=0
 
 [Sketch Search View]
 AlbumComboBox-Checked=
-AlbumComboBox-CurrentIndex=5665
-AlbumComboBox-Expansion=5665
+AlbumComboBox-CurrentIndex=8083
+AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=8083,5665
+AlbumComboBox-Selection=8083
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 UseWholeAlbumsEntry=true

@@ -31,13 +31,6 @@
       "red"
     ];
   };
-  "40_books" = {
-    id = "gbsei-pfetk";
-    devices = [
-      "capricorn"
-      "gwyn"
-    ];
-  };
   "40_reading" = {
     id = "40_reading";
     devices = [

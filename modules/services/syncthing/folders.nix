@@ -71,7 +71,7 @@
   };
   phone-photos = {
     id = "rxcuy-k4fbv";
-    homePath = "Downloads/inbox/photos";
+    homePath = "Downloads/inbox/photos/fairphone/dcim";
     type = "receiveonly";
     devices = [
       "capricorn"
@@ -80,7 +80,7 @@
   };
   snapseed = {
     id = "x979j-lp6qy";
-    homePath = "Downloads/inbox/photos";
+    homePath = "Downloads/inbox/photos/fairphone/snapseed";
     type = "receiveonly";
     devices = [
       "capricorn"

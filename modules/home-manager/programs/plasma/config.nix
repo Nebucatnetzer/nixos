@@ -306,8 +306,6 @@
         "Alt+F2"
         "Alt+Space"
       ];
-      "services/org.kde.spectacle.desktop".CurrentMonitorScreenShot = [ ];
-      "services/org.kde.spectacle.desktop".OpenWithoutScreenshot = [ ];
       "services/org.kde.spectacle.desktop".RecordRegion = "Meta+Shift+R";
       "services/org.kde.spectacle.desktop".RectangularRegionScreenShot = [
         "Meta+Shift+Print"
@@ -333,7 +331,7 @@
       dolphinrc.ContentDisplay.UseShortRelativeDates = false;
       dolphinrc.DetailsMode.PreviewSize = 16;
       dolphinrc.General.RememberOpenedTabs = false;
-      dolphinrc.General.ViewPropsTimestamp = "2026,10,15,22,9,12.626";
+      dolphinrc.General.ViewPropsTimestamp = "2026,10,26,17,13,54.628";
       dolphinrc.IconsMode.PreviewSize = 256;
       dolphinrc."KFileDialog Settings"."Places Icons Auto-resize" = false;
       dolphinrc."KFileDialog Settings"."Places Icons Static Size" = 22;
@@ -385,7 +383,7 @@
       kdeglobals."KFileDialog Settings"."Allow Expansion" = false;
       kdeglobals."KFileDialog Settings"."Automatically select filename extension" = true;
       kdeglobals."KFileDialog Settings"."Breadcrumb Navigation" = false;
-      kdeglobals."KFileDialog Settings"."Decoration position" = 2;
+      kdeglobals."KFileDialog Settings"."Decoration position" = 0;
       kdeglobals."KFileDialog Settings"."Show Full Path" = false;
       kdeglobals."KFileDialog Settings"."Show Inline Previews" = true;
       kdeglobals."KFileDialog Settings"."Show Preview" = false;
@@ -396,7 +394,7 @@
       kdeglobals."KFileDialog Settings"."Sort hidden files last" = false;
       kdeglobals."KFileDialog Settings"."Sort reversed" = false;
       kdeglobals."KFileDialog Settings"."Speedbar Width" = 165;
-      kdeglobals."KFileDialog Settings"."View Style" = "Simple";
+      kdeglobals."KFileDialog Settings"."View Style" = "Detail";
       kdeglobals."KShortcutsDialog Settings"."Dialog Size" = "1920,1128";
       kdeglobals.PreviewSettings.EnableRemoteFolderThumbnail = false;
       kdeglobals.PreviewSettings.MaximumRemoteSize = 524288000;

@@ -138,9 +138,13 @@ in
     kdeconnect.enable = true;
   };
 
-  services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
-  systemd.sleep.settings.Sleep.HibernateMode = "shutdown";
-  systemd.sleep.settings.Sleep.HibernateDelaySec = "30min";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
+  # Hibernation is broken on this machine. Disallow it so logind refuses it and KDE hides it.
+  systemd.sleep.settings.Sleep = {
+    AllowHibernation = "no";
+    AllowSuspendThenHibernate = "no";
+    AllowHybridSleep = "no";
+  };
   # The LPSS I²C controller carrying the touchpad does not survive S4 and cannot
   # be revived by rebinding, so unbind it before the snapshot and re-probe on resume.
   powerManagement.powerDownCommands = ''

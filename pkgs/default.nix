@@ -45,6 +45,7 @@ rec {
   };
   dptfxtract = pkgs.callPackage ./dptfxtract { };
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
+  minimoon-sync-server = pkgs.callPackage ./minimoon-sync-server { };
   qudedup-extract-tool = pkgs.callPackage ./qudedup-extract-tool { };
   raiffeisen-csv-cleanup = pkgs.callPackage ./raiffeisen-csv-cleanup { };
   rebuild = pkgs.callPackage ./rebuild { builderHost = hosts.fenoglio.wgIp; };

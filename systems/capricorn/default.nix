@@ -42,6 +42,7 @@ in
     "${inputs.self}/modules/programs/adb"
     "${inputs.self}/modules/programs/distrobox"
     "${inputs.self}/modules/programs/droidcam"
+    "${inputs.self}/modules/programs/minimoon-sync"
     #     "${inputs.self}/modules/programs/makemkv" (temporarily disabled: upstream download 525)
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"

@@ -38,6 +38,7 @@ let
       runtimeInputs = [
         pkgs.git
         config.nix.package
+        config.programs.ssh.package
         send-to-telegram
       ];
       text = ''

@@ -46,6 +46,7 @@ in
     #     "${inputs.self}/modules/programs/makemkv" (temporarily disabled: upstream download 525)
     "${inputs.self}/modules/services/kanata"
     "${inputs.self}/modules/services/kde"
+    "${inputs.self}/modules/services/photo-sftp"
     "${inputs.self}/modules/services/zram-swap"
     (archiveShareClient { path = archivePath; })
     (btrfsAuxModule { })

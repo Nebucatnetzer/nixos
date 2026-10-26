@@ -8,6 +8,7 @@ _: {
     focusEvents = true;
     historyLimit = 300000;
     keyMode = "vi";
+    mouse = true;
     terminal = "tmux-256color";
     extraConfig = ''
       set -as terminal-features ",*256col*:RGB"
@@ -27,9 +28,9 @@ _: {
       bind-key -T copy-mode-vi y send-keys -X copy-selection
       bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 
-      # Mouse drag copies but stays in copy-mode, so scroll position survives
-      # repeated selections. Leave copy-mode explicitly with q or Escape.
-      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
+      # Mouse drag only selects and stays in copy-mode. Headless hosts cannot share
+      # their clipboard with the desktop. Desktop profiles add the copy binding back.
+      unbind-key -T copy-mode-vi MouseDragEnd1Pane
 
       # window navigation with the meta key + vim keybinding
       bind -n M-h select-pane -L

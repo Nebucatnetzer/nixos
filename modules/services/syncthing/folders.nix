@@ -55,6 +55,7 @@
     path = "98_applications/keepass";
     devices = [
       "capricorn"
+      "groeibschi"
       "gwyn"
       "phone"
     ];

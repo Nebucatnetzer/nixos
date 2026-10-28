@@ -13,12 +13,13 @@
         };
         never_convert_lossy_files = true;
         # convert.paths replaces the global paths block, it does not merge, so
-        # singleton and comp are repeated here. They are identical to the global
-        # ones, so the SD card and the library use the same names.
+        # singleton and comp are repeated here. Converted paths are all
+        # lowercase. Two titles that differ only in case then get the same name,
+        # so they cannot collide on exFAT or in the MiniMoon app.
         paths = {
-          default = "%titlecase{$albumartist}/\${year}_%titlecase{$album}/\${track}_\${title}";
-          singleton = "%titlecase{$artist}/Non-Album/$title";
-          comp = "Various_Artists/%titlecase{$album}/\${track}_\${title}";
+          default = "%lower{$albumartist}/\${year}_%lower{$album}/\${track}_%lower{$title}";
+          singleton = "%lower{$artist}/non-album/%lower{$title}";
+          comp = "various_artists/%lower{$album}/\${track}_%lower{$title}";
         };
       };
       directory = "/mnt/archive-disk/media/audio/music/music";

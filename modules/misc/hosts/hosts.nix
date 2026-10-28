@@ -38,11 +38,6 @@
     fqdn = "loki.int.zweili.org";
     physicalIp = "10.7.89.1";
   };
-  phone = {
-    syncthingId = "PISG3CA-4UWCENT-24H6DWJ-ECLIC5H-JNKOHMJ-J5CJVQY-2O4RXUJ-SSH2LAN";
-    wgFqdn = "phone.vpn.zweili.org";
-    wgIp = "10.70.89.200";
-  };
   red = {
     syncthingId = "DAG3FAJ-HTW7XKM-ZOSYERU-F5PIAB7-BWXYPYI-QZBAD3F-LXRQZHL-BLOFHAG";
   };

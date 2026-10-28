@@ -24,10 +24,6 @@ let
       ip = config.az-hosts.fenoglio.wgIp;
     }
     {
-      publicKey = "ZbaHLibDBi0wFMERul8lVL3MovagB6seTS9UoVtiKDc="; # phone
-      ip = config.az-hosts.phone.wgIp;
-    }
-    {
       publicKey = "nJaY/NeJSUvpZJB/9s3CHMIIJvgdU7MbzfrpRDZlTEs="; # groeibschi
       ip = config.az-hosts.groeibschi.wgIp;
     }

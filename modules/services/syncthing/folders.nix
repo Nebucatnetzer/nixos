@@ -10,7 +10,6 @@
       "flunder"
       "groeibschi"
       "gwyn"
-      "phone"
       "red"
     ];
   };
@@ -22,7 +21,6 @@
       "flunder"
       "groeibschi"
       "gwyn"
-      "phone"
     ];
   };
   "03_notes" = {
@@ -33,7 +31,6 @@
       "flunder"
       "groeibschi"
       "gwyn"
-      "phone"
       "red"
     ];
   };
@@ -43,7 +40,6 @@
       "capricorn"
       "flunder"
       "groeibschi"
-      "phone"
     ];
   };
   "99_archive" = {
@@ -62,7 +58,6 @@
       "flunder"
       "groeibschi"
       "gwyn"
-      "phone"
     ];
   };
   org = {
@@ -73,32 +68,6 @@
       "fenoglio"
       "gwyn"
       "red"
-    ];
-  };
-  phone-photos = {
-    id = "rxcuy-k4fbv";
-    homePath = "Downloads/inbox/photos/fairphone/dcim";
-    type = "receiveonly";
-    devices = [
-      "capricorn"
-      "phone"
-    ];
-  };
-  photos = {
-    id = "xn6td-bdakn";
-    path = "20_pictures/photos";
-    devices = [
-      "capricorn"
-      "phone"
-    ];
-  };
-  snapseed = {
-    id = "x979j-lp6qy";
-    homePath = "Downloads/inbox/photos/fairphone/snapseed";
-    type = "receiveonly";
-    devices = [
-      "capricorn"
-      "phone"
     ];
   };
   zotero = {

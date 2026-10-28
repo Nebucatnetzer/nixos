@@ -41,7 +41,6 @@ in
       "${config.az-hosts.gwyn.wgIp}" = [ "${config.az-hosts.gwyn.wgFqdn}" ];
       "${config.az-hosts.loki.physicalIp}" = [ "${config.az-hosts.loki.fqdn}" ];
       "${config.az-hosts.kvm.physicalIp}" = [ "${config.az-hosts.kvm.fqdn}" ];
-      "${config.az-hosts.phone.wgIp}" = [ "${config.az-hosts.phone.wgFqdn}" ];
       "${config.az-hosts.yggdrasil.physicalIp}" = [ "${config.az-hosts.yggdrasil.fqdn}" ];
     };
     timeServers = [

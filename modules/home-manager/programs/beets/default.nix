@@ -16,10 +16,12 @@
         # singleton and comp are repeated here. Converted paths are all
         # lowercase. Two titles that differ only in case then get the same name,
         # so they cannot collide on exFAT or in the MiniMoon app.
+        # %asciify runs before %lower, because asciify_paths runs after the
+        # template and can produce capitals, for example "空" becomes "Kong".
         paths = {
-          default = "%lower{$albumartist}/\${year}_%lower{$album}/\${track}_%lower{$title}";
-          singleton = "%lower{$artist}/non-album/%lower{$title}";
-          comp = "various_artists/%lower{$album}/\${track}_%lower{$title}";
+          default = "%lower{%asciify{$albumartist}}/\${year}_%lower{%asciify{$album}}/\${track}_%lower{%asciify{$title}}";
+          singleton = "%lower{%asciify{$artist}}/non-album/%lower{%asciify{$title}}";
+          comp = "various_artists/%lower{%asciify{$album}}/\${track}_%lower{%asciify{$title}}";
         };
       };
       directory = "/mnt/archive-disk/media/audio/music/music";

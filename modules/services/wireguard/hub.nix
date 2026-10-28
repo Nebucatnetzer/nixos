@@ -32,6 +32,10 @@ let
       ip = config.az-hosts.groeibschi.wgIp;
     }
     {
+      publicKey = "B10bbtGdcU+GTP3bCquucl8J9tzjjgywlAWFS/S/FzE="; # flunder
+      ip = config.az-hosts.flunder.wgIp;
+    }
+    {
       publicKey = "MGmlmY7BnJrFLOyF8CzXAL1p7/mOe9Y2EYqGyRGHSSk="; # (unnamed peer)
       ip = "10.70.89.180";
     }

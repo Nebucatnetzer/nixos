@@ -14,6 +14,11 @@
     wgFqdn = "fenoglio.vpn.zweili.org";
     wgIp = "10.70.89.120";
   };
+  flunder = {
+    syncthingId = "5CTPRAM-I53W7AY-7TH74JV-NXNVY4E-2P4AZSI-WYPLAUE-HXWK2CV-GQ22XQD";
+    wgFqdn = "flunder.vpn.zweili.org";
+    wgIp = "10.70.89.203";
+  };
   groeibschi = {
     syncthingId = "BXQ7RFL-Z237ND3-ZAHLVZF-NLXQF4T-2TXF6LG-FTBAW7Z-FUVS4GQ-V4XCCAE";
     wgFqdn = "groeibschi.vpn.zweili.org";

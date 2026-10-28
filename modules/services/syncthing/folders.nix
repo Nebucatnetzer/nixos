@@ -7,6 +7,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "flunder"
       "groeibschi"
       "gwyn"
       "phone"
@@ -18,6 +19,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "flunder"
       "groeibschi"
       "gwyn"
       "phone"
@@ -28,6 +30,7 @@
     devices = [
       "capricorn"
       "fenoglio"
+      "flunder"
       "groeibschi"
       "gwyn"
       "phone"
@@ -38,6 +41,7 @@
     id = "40_reading";
     devices = [
       "capricorn"
+      "flunder"
       "groeibschi"
       "phone"
     ];
@@ -55,6 +59,7 @@
     path = "98_applications/keepass";
     devices = [
       "capricorn"
+      "flunder"
       "groeibschi"
       "gwyn"
       "phone"

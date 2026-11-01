@@ -1,9 +1,7 @@
 { inputs, config, ... }:
 {
-  age.secrets.ddclientPassword = {
-    file = "${inputs.self}/scrts/ddclient_password.txt.age";
-    mode = "444";
-  };
+  # The ddclient prestart runs as root and copies the file, so the default 0400 is enough.
+  age.secrets.ddclientPassword.file = "${inputs.self}/scrts/ddclient_password.txt.age";
   services.ddclient = {
     domains = [
       "pfannedechu.ch"

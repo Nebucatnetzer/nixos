@@ -2,6 +2,12 @@
   programs.beets = {
     enable = true;
     settings = {
+      # The inline plugin computes this field. It is true when the album has
+      # more than one disc number. Disc 0 means untagged and does not count.
+      # The paths use it to put the disc number before the track number.
+      album_fields = {
+        multidisc = "len({item.disc for item in items if item.disc}) > 1";
+      };
       asciify_paths = true;
       convert = {
         copy_album_art = false;
@@ -19,9 +25,9 @@
         # %asciify runs before %lower, because asciify_paths runs after the
         # template and can produce capitals, for example "空" becomes "Kong".
         paths = {
-          default = "%lower{%asciify{$albumartist}}/\${year}_%lower{%asciify{$album}}/\${track}_%lower{%asciify{$title}}";
+          default = "%lower{%asciify{$albumartist}}/\${year}_%lower{%asciify{$album}}/%if{$multidisc,\${disc}-}\${track}_%lower{%asciify{$title}}";
           singleton = "%lower{%asciify{$artist}}/non-album/%lower{%asciify{$title}}";
-          comp = "various_artists/%lower{%asciify{$album}}/\${track}_%lower{%asciify{$title}}";
+          comp = "various_artists/%lower{%asciify{$album}}/%if{$multidisc,\${disc}-}\${track}_%lower{%asciify{$title}}";
         };
       };
       directory = "/mnt/archive-disk/media/audio/music/music";
@@ -39,9 +45,9 @@
         write = true;
       };
       paths = {
-        default = "%titlecase{$albumartist}/\${year}_%titlecase{$album}/\${track}_\${title}";
+        default = "%titlecase{$albumartist}/\${year}_%titlecase{$album}/%if{$multidisc,\${disc}-}\${track}_\${title}";
         singleton = "%titlecase{$artist}/Non-Album/$title";
-        comp = "Various_Artists/%titlecase{$album}/\${track}_\${title}";
+        comp = "Various_Artists/%titlecase{$album}/%if{$multidisc,\${disc}-}\${track}_\${title}";
       };
       # Beets replaces the default rules instead of merging, so the defaults are
       # repeated here. The last rule turns every run of whitespace into "_".
@@ -73,7 +79,9 @@
         "embedart"
         "export"
         "fetchart"
+        "inline"
         "lastgenre"
+        "musicbrainz"
         "random"
         "titlecase"
       ];

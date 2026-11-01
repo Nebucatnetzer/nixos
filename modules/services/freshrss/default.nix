@@ -67,6 +67,17 @@ in
       appendHttpConfig = ''
         # Disable embedding as a frame
         add_header X-Frame-Options DENY;
+
+        # Login requests get the client IP as key. All other requests get an empty key,
+        # which limit_req does not count.
+        # The web form posts to ?c=auth&a=login or a=formLogin. PHP decodes %XX and uses
+        # the last duplicate argument, so match "login" anywhere and limit every POST with %.
+        map "$request_method:$uri?$args" $freshrss_login_limit_key {
+          "~^[A-Z]+:/api/greader\.php/accounts/ClientLogin" $binary_remote_addr;
+          "~*^POST:[^?]*\?.*(login|%)" $binary_remote_addr;
+          default "";
+        }
+        limit_req_zone $freshrss_login_limit_key zone=freshrss_login:1m rate=1r/m;
       '';
       commonHttpConfig = ''
         # Add HSTS header with.
@@ -99,6 +110,8 @@ in
         forceSSL = true;
         extraConfig = ''
           if ($http_user_agent ~* "${botBlockRegex}") { return 403; }
+          limit_req zone=freshrss_login burst=5 nodelay;
+          limit_req_status 429;
         '';
       };
     };

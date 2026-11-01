@@ -149,12 +149,10 @@ let
   # broke every client on 2026-09-07.
   resticLocal = pkgs.writeShellApplication {
     name = "restic-local";
-    runtimeInputs = [
-      pkgs.coreutils
-      pkgs.sudo
-    ];
+    runtimeInputs = [ pkgs.coreutils ];
+    # pkgs.sudo has no setuid bit; only the wrapper works.
     text = ''
-      exec sudo --user=restic \
+      exec ${config.security.wrapperDir}/sudo --user=restic \
         env RESTIC_CACHE_DIR=${cacheDirectory} \
         ${pkgs.restic}/bin/restic \
           --repo ${repository} \

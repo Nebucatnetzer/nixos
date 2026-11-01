@@ -1,0 +1,8 @@
+[Version]
+AppVersion=unknown
+Version=1044
+
+[ToneCurve]
+Enabled=true
+CurveMode=Perceptual
+BaseCurve=Linear

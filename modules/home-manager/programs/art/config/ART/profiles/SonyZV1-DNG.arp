@@ -2,16 +2,11 @@
 AppVersion=unknown
 Version=1044
 
-[Saturation]
-Enabled=true
-Saturation=15
-Vibrance=15
-
 [LensProfile]
-LcMode=lfauto
+LcMode=exif
 LCPFile=
 UseDistortion=true
-UseVignette=false
+UseVignette=true
 UseCA=false
 LFCameraMake=
 LFCameraModel=
@@ -19,12 +14,12 @@ LFLens=
 
 [Color Management]
 InputProfile=file://H/data/98_applications/photo_profiles/my_cameras/color_profiles/Sony%20ZV-1A%20Adobe%20Standard.dcp
-ToneCurve=true
+ToneCurve=false
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true
 ApplyHueSatMap=true
 DCPIlluminant=0
-DCPLookEarly=true
+DCPLookEarly=false
 WorkingProfile=Rec2020
 OutputProfile=RTv2_sRGB
 OutputProfileIntent=Relative

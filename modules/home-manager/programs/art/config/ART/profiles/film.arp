@@ -13,3 +13,17 @@ Enabled=true
 ISO=400
 Strength=50
 Color=true
+
+[ToneCurve]
+Enabled=true
+Contrast=0
+HistogramMatching=false
+CurveFromHistogramMatching=false
+CurveMode=Perceptual
+Curve=0;
+Curve2=0;
+Saturation=0;
+Saturation2=0;
+WhitePoint=1
+BaseCurve=Linear
+PerceptualStrength=100

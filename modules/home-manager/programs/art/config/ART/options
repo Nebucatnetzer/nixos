@@ -51,7 +51,7 @@ FilmStripOverlayedFileNames=false
 ShowFileNames=true
 FilmStripShowFileNames=false
 HighlightSelected=false
-InternalThumbIfUntouched=false
+InternalThumbIfUntouched=true
 MaxRecentFolders=15
 RecentFolders=
 ThumbnailRatingMode=xmp
@@ -61,14 +61,14 @@ HighlightThreshold=253
 ShadowThreshold=8
 
 [Performance]
-RgbDenoiseThreadLimit=10
+RgbDenoiseThreadLimit=0
 ClutCacheSize=14
-MaxInspectorBuffers=10
+MaxInspectorBuffers=12
 InspectorDelay=0
 PreviewDemosaicFromSidecar=0
 SerializeTiffRead=true
 DenoiseZoomedOut=false
-ThumbUpdateThreadLimit=10
+ThumbUpdateThreadLimit=0
 ThumbDelayUpdate=false
 ThumbLazyCaching=true
 ThumbCacheProcessed=true
@@ -322,5 +322,5 @@ Foreground=170;170;170;
 Highlight=227;146;67;
 
 [Export Profile jpg]
-Profile=
-Enabled=false
+Profile=${U}/ExportCleanup
+Enabled=true

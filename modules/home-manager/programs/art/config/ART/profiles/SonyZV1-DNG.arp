@@ -14,7 +14,7 @@ LFLens=
 
 [Color Management]
 InputProfile=file://H/data/98_applications/photo_profiles/my_cameras/color_profiles/Sony%20ZV-1A%20Adobe%20Standard.dcp
-ToneCurve=false
+ToneCurve=true
 ApplyLookTable=true
 ApplyBaselineExposureOffset=true
 ApplyHueSatMap=true

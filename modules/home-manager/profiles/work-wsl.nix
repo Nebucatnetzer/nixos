@@ -43,6 +43,7 @@ in
     activation.report-changes = config.lib.dag.entryAnywhere ''
       ${pkgs.nix}/bin/nix store diff-closures $oldGenPath $newGenPath || true
     '';
+    extraOutputsToInstall = [ "doc" ];
     packages = [
       azPkgs.win32yank
       pkgs.bottom
@@ -110,6 +111,8 @@ in
 
   programs = {
     emacs.package = pkgs.emacs-pgtk;
+    info.enable = true;
+    man.generateCaches = true;
     direnv = {
       enable = true;
       nix-direnv.enable = true;

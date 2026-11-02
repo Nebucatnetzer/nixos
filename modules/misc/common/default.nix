@@ -94,6 +94,9 @@ in
     keyMap = "us";
   };
 
+  # Builds the whatis database for apropos and man -k.
+  documentation.man.cache.enable = true;
+
   environment = {
     variables = {
       EDITOR = "vim";

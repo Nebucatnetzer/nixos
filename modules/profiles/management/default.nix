@@ -23,10 +23,7 @@ in
     })
   ];
 
-  documentation = {
-    man.cache.enable = false;
-    nixos.includeAllModules = true;
-  };
+  documentation.nixos.includeAllModules = true;
 
   age.identityPaths = [ "/home/${config.az-username}/.ssh/id_rsa" ];
 

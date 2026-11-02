@@ -75,6 +75,42 @@ def deploy(devenv_root: str, host: str, subcommand: str) -> bool:
     return result.returncode == 0
 
 
+def show_changes(devenv_root: str, host: str) -> bool:
+    """Show what a deployment would change on a host without activating it.
+
+    Builds the new system and copies it to the host. Activation then prints
+    the units it would stop, start, or restart. The diff activation script
+    prints the package version changes.
+
+    Args:
+        devenv_root: The path to the flake root.
+        host: The hostname to inspect.
+
+    Returns:
+        True if the dry activation succeeded, False otherwise.
+    """
+    logger = logging.getLogger(__name__)
+    fqdn: str = f"{host}.vpn.zweili.org"
+    logger.info("%s via dry-activate", fqdn)
+    result = subprocess.run(
+        [
+            "nixos-rebuild",
+            "dry-activate",
+            "--quiet",
+            "-j",
+            "auto",
+            "--sudo",
+            "--target-host",
+            fqdn,
+            "--flake",
+            f"{devenv_root}#{host}",
+        ],
+        check=False,
+    )
+    print()
+    return result.returncode == 0
+
+
 def main() -> None:
     logger = logging.getLogger(__name__)
     logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -90,11 +126,17 @@ def main() -> None:
         nargs="*",
         help="Target hostnames (defaults to all hosts in the flake)",
     )
-    parser.add_argument(
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
         "-r",
         "--reboot",
         action="store_true",
         help="Require a reboot after the update",
+    )
+    mode.add_argument(
+        "--diff",
+        action="store_true",
+        help="Show the changes a deployment would make, without activating it",
     )
     args: argparse.Namespace = parser.parse_args()
 
@@ -113,7 +155,12 @@ def main() -> None:
             skipped.append(host)
             continue
 
-        if deploy(devenv_root, host, subcommand):
+        if args.diff:
+            succeeded_host: bool = show_changes(devenv_root, host)
+        else:
+            succeeded_host = deploy(devenv_root, host, subcommand)
+
+        if succeeded_host:
             succeeded.append(host)
         else:
             logger.error("Deployment of %s failed", host)

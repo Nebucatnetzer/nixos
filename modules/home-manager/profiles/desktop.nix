@@ -25,7 +25,8 @@
     bash = {
       shellAliases = {
         fenoglio = "mosh ${config.home.username}@${nixosConfig.az-hosts.fenoglio.wgIp} -- tmux new -A -s 0";
-        gwyn = "mosh ${config.home.username}@${nixosConfig.az-hosts.gwyn.wgIp} -- tmux new -A -s 0";
+        # gwyn is not intented to be worked on so we connect directly via SSH.
+        gwyn = "ssh ${config.home.username}@${nixosConfig.az-hosts.gwyn.wgIp}";
       };
     };
     emacs.package = lib.mkForce pkgs.emacs-pgtk;

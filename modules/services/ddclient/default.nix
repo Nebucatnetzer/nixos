@@ -1,7 +1,24 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  lib,
+  ...
+}:
 {
   # The ddclient prestart runs as root and copies the file, so the default 0400 is enough.
   age.secrets.ddclientPassword.file = "${inputs.self}/scrts/ddclient_password.txt.age";
+  # The upstream prestart runs "install --owner=ddclient" as root. The DynamicUser does
+  # not resolve at that point, so the prestart fails. A static user always resolves.
+  users.users.ddclient = {
+    isSystemUser = true;
+    group = "ddclient";
+  };
+  users.groups.ddclient = { };
+  systemd.services.ddclient.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    User = "ddclient";
+    Group = "ddclient";
+  };
   services.ddclient = {
     domains = [
       "pfannedechu.ch"

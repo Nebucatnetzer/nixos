@@ -84,6 +84,7 @@
   "Nebucatnetzer/ibz" = { };
   "Nebucatnetzer/ios_pyto_scripts" = { };
   "Nebucatnetzer/jupyter_plotly" = { };
+  "Nebucatnetzer/keyboard" = { };
   "Nebucatnetzer/latex" = { };
   "Nebucatnetzer/learning-haskell" = { };
   "Nebucatnetzer/meetup_snappass_presentation" = { };

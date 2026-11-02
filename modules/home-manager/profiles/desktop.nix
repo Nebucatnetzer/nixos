@@ -30,10 +30,6 @@
       };
     };
     emacs.package = lib.mkForce pkgs.emacs-pgtk;
-    # Must come after the unbind in the tmux module. Copy-mode survives repeated selections.
-    tmux.extraConfig = lib.mkAfter ''
-      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
-    '';
   };
 
 }

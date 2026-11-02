@@ -28,9 +28,11 @@ _: {
       bind-key -T copy-mode-vi y send-keys -X copy-selection
       bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
 
-      # Mouse drag only selects and stays in copy-mode. Headless hosts cannot share
-      # their clipboard with the desktop. Desktop profiles add the copy binding back.
-      unbind-key -T copy-mode-vi MouseDragEnd1Pane
+      # Mouse drag copies to the local clipboard through OSC 52, also over mosh.
+      # mosh ignores OSC 52 without a selection, so always send "c".
+      # Keep %p1 in the string, or ncurses rejects it and tmux sends nothing.
+      set -as terminal-overrides ',xterm*:Ms=\E]52;c%p1%s;%p2%s\7'
+      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection
 
       # window navigation with the meta key + vim keybinding
       bind -n M-h select-pane -L

@@ -286,3 +286,24 @@ Apply these as judgment calls, not rigid rules.
   to explain.
 - **Now is better than never. Although never is often better than _right_ now.** A slightly
   delayed correct solution beats an immediate wrong one.
+
+## Code style: YAGNI (You Aren't Gonna Need It)
+
+Build what the current task needs, and nothing for a future that nobody asked for.
+
+- Implement only the requested behaviour. Do not add features, options, or modes "while
+  you are at it".
+- No speculative parameters, config flags, Nix options, hooks, or extension points. Add
+  them when a real second caller or a second host needs a different value.
+- No abstraction for a single use. Write the concrete code first. Extract a function,
+  class, or module when the third real use appears, or the second if the copies must
+  stay in sync.
+- No handling for cases that cannot occur in the current code. Real error paths still
+  need explicit handling (see "Errors should never pass silently").
+- Do not add a dependency, service, or tool for a need that does not exist yet.
+- Do not leave unused code, commented-out code, or empty stubs "for later". Version
+  control keeps the history.
+- If you see a useful extension, mention it in one line in chat or add it as a `TODO`
+  in the plan file. Do not implement it without my approval.
+- YAGNI limits scope, not quality. Tests, typing, clear names, and the plan file are
+  still required for the code you do write.

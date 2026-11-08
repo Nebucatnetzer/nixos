@@ -10,6 +10,7 @@
   imports = [
     "${inputs.self}/modules/home-manager/programs/art"
     "${inputs.self}/modules/home-manager/programs/beets"
+    "${inputs.self}/modules/home-manager/programs/darktable"
     "${inputs.self}/modules/home-manager/programs/digikam"
     "${inputs.self}/modules/home-manager/programs/mpv"
     "${inputs.self}/modules/home-manager/programs/pi"

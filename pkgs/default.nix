@@ -8,7 +8,10 @@ let
   mediaPaths = import ./mediaPaths.nix;
 in
 rec {
-  art-dimmed = pkgs.callPackage ./art-dimmed { };
+  art-dimmed = pkgs.callPackage ./dimmed-launcher {
+    package = pkgs.art;
+    binaryName = "ART";
+  };
   az-emacs = pkgs.callPackage ./az-emacs {
     inherit unstable-pkgs;
     emacsDir = ../modules/home-manager/programs/emacs;
@@ -33,6 +36,10 @@ rec {
       );
   custom-mpv = pkgs.callPackage ./mpv { };
   dap-sync = pkgs.callPackage ./dap-sync { };
+  darktable-dimmed = pkgs.callPackage ./dimmed-launcher {
+    package = unstable-pkgs.darktable;
+    binaryName = "darktable";
+  };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };
   download-articles = pkgs.callPackage ./download-articles { };

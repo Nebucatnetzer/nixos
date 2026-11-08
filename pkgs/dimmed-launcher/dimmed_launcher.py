@@ -52,7 +52,7 @@ def dim_displays(bus: dbus.SessionBus, display_paths: list[str]) -> dict[str, in
 
 def restore_displays(bus: dbus.SessionBus, original_brightness: dict[str, int]) -> None:
     for display_path, brightness in original_brightness.items():
-        # A display can disappear while ART runs, for example an unplugged monitor.
+        # A display can disappear while the program runs, for example an unplugged monitor.
         try:
             display_object = bus.get_object(BRIGHTNESS_SERVICE, display_path)
             display = dbus.Interface(display_object, DISPLAY_INTERFACE)
@@ -62,7 +62,8 @@ def restore_displays(bus: dbus.SessionBus, original_brightness: dict[str, int]) 
             )
         except dbus.DBusException as error:
             print(
-                f"art-dimmed: cannot restore {display_path}: {error}", file=sys.stderr
+                f"dimmed-launcher: cannot restore {display_path}: {error}",
+                file=sys.stderr,
             )
 
 
@@ -79,23 +80,26 @@ def uninhibit_night_light(bus: dbus.SessionBus, cookie: int) -> None:
         night_light = dbus.Interface(night_light_object, NIGHT_LIGHT_INTERFACE)
         night_light.uninhibit(dbus.UInt32(cookie))
     except dbus.DBusException as error:
-        print(f"art-dimmed: cannot uninhibit night light: {error}", file=sys.stderr)
+        print(
+            f"dimmed-launcher: cannot uninhibit night light: {error}",
+            file=sys.stderr,
+        )
 
 
-def run_art(art_binary: str, arguments: list[str]) -> int:
-    art_process = subprocess.Popen([art_binary, *arguments])
+def run_program(binary: str, arguments: list[str]) -> int:
+    process = subprocess.Popen([binary, *arguments])
 
     def forward_sigterm(signal_number: int, frame: object) -> None:
-        art_process.terminate()
+        process.terminate()
 
     signal.signal(signal.SIGTERM, forward_sigterm)
-    # Ctrl+C in a terminal also reaches ART, so the launcher waits for ART to exit.
+    # Ctrl+C in a terminal also reaches the program, so the launcher waits for it to exit.
     signal.signal(signal.SIGINT, signal.SIG_IGN)
-    return art_process.wait()
+    return process.wait()
 
 
 def main() -> int:
-    art_binary = os.environ["ART_REAL_BINARY"]
+    binary = os.environ["DIMMED_LAUNCHER_BINARY"]
     bus = dbus.SessionBus()
     original_brightness: dict[str, int] = {}
     night_light_cookie: int | None = None
@@ -103,15 +107,18 @@ def main() -> int:
     try:
         original_brightness = dim_displays(bus, get_display_paths(bus))
     except dbus.DBusException as error:
-        print(f"art-dimmed: cannot dim displays: {error}", file=sys.stderr)
+        print(f"dimmed-launcher: cannot dim displays: {error}", file=sys.stderr)
 
     try:
         night_light_cookie = inhibit_night_light(bus)
     except dbus.DBusException as error:
-        print(f"art-dimmed: cannot inhibit night light: {error}", file=sys.stderr)
+        print(
+            f"dimmed-launcher: cannot inhibit night light: {error}",
+            file=sys.stderr,
+        )
 
     try:
-        return run_art(art_binary, sys.argv[1:])
+        return run_program(binary, sys.argv[1:])
     finally:
         restore_displays(bus, original_brightness)
         if night_light_cookie is not None:

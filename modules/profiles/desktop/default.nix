@@ -165,6 +165,7 @@ in
 
       # photography packages
       azPkgs.art-dimmed
+      azPkgs.darktable-dimmed
       pkgs.digikam
       pkgs.hugin
       pkgs.tesseract # OCR in Digikam

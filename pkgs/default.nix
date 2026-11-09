@@ -53,6 +53,7 @@ rec {
   dptfxtract = pkgs.callPackage ./dptfxtract { };
   jdownloader = pkgs.callPackage ./jdownloader { inherit mediaPaths; };
   minimoon-sync-server = pkgs.callPackage ./minimoon-sync-server { };
+  org-to-zotero = pkgs.callPackage ./org-to-zotero { };
   qudedup-extract-tool = pkgs.callPackage ./qudedup-extract-tool { };
   raiffeisen-csv-cleanup = pkgs.callPackage ./raiffeisen-csv-cleanup { };
   rebuild = pkgs.callPackage ./rebuild { builderHost = hosts.fenoglio.wgIp; };

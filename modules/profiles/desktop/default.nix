@@ -155,6 +155,7 @@ in
       azPkgs.download-video
       azPkgs.download-watch-later
       azPkgs.jdownloader
+      azPkgs.org-to-zotero
       azPkgs.raiffeisen-csv-cleanup
       azPkgs.sidecar-cleanup
       azPkgs.toggle-keyboard

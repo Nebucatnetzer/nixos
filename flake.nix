@@ -94,7 +94,7 @@
       nixosConfigurations = hostConfigs;
       devShells."x86_64-linux".default = pkgs.callPackage ./shell.nix { inherit pkgs unstable-pkgs; };
       packages."x86_64-linux" = {
-        inherit pkgs;
+        inherit pkgs unstable-pkgs;
         azPkgs = import ./pkgs { inherit pkgs unstable-pkgs; };
         az-emacs = (import ./pkgs { inherit pkgs unstable-pkgs; }).az-emacs;
         # Builds the toplevel of every host, for example to test an update.

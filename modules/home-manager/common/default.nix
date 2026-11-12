@@ -12,6 +12,20 @@
       enable = true;
       initExtra = ''
         shopt -s direxpand
+
+        # Run a package from this flake's pinned pkgs: run foo [args...]
+        run() {
+          local package="$1"
+          shift
+          nix run "nix-config#pkgs.$package" -- "$@"
+        }
+
+        # Same, but from the pinned nixpkgs-unstable.
+        run-unstable() {
+          local package="$1"
+          shift
+          nix run "nix-config#unstable-pkgs.$package" -- "$@"
+        }
       '';
       shellAliases = {
         nix-generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

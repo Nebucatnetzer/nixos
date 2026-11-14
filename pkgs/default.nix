@@ -35,6 +35,10 @@ rec {
   darktable-dimmed = pkgs.callPackage ./dimmed-launcher {
     package = unstable-pkgs.darktable;
     binaryName = "darktable";
+    preLaunch = darktable-purge-missing;
+  };
+  darktable-purge-missing = pkgs.callPackage ./darktable-purge-missing {
+    darktable = unstable-pkgs.darktable;
   };
   date-to-filename = pkgs.callPackage ./date-to-filename { };
   denote-rename = pkgs.callPackage ./denote-rename { };

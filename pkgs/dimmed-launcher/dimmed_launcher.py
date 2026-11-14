@@ -98,7 +98,21 @@ def run_program(binary: str, arguments: list[str]) -> int:
     return process.wait()
 
 
+def run_pre_launch() -> None:
+    pre_launch = os.environ.get("DIMMED_LAUNCHER_PRE_LAUNCH")
+    if pre_launch is None:
+        return
+    result = subprocess.run([pre_launch], check=False)
+    # A failed pre-launch step must not stop the program from starting.
+    if result.returncode != 0:
+        print(
+            f"dimmed-launcher: {pre_launch} exited with {result.returncode}",
+            file=sys.stderr,
+        )
+
+
 def main() -> int:
+    run_pre_launch()
     binary = os.environ["DIMMED_LAUNCHER_BINARY"]
     bus = dbus.SessionBus()
     original_brightness: dict[str, int] = {}

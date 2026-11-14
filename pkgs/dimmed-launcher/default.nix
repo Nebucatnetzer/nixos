@@ -2,6 +2,7 @@
   lib,
   package,
   binaryName,
+  preLaunch ? null,
   python3Packages,
   symlinkJoin,
   writers,
@@ -14,8 +15,13 @@ let
       "--set"
       "DIMMED_LAUNCHER_BINARY"
       (lib.getExe' package binaryName)
+    ]
+    ++ lib.optionals (preLaunch != null) [
+      "--set"
+      "DIMMED_LAUNCHER_PRE_LAUNCH"
+      (lib.getExe preLaunch)
     ];
-  } (builtins.readFile ./dimmed_launcher.py);
+  }(builtins.readFile ./dimmed_launcher.py);
 in
 symlinkJoin {
   name = "${package.pname}-dimmed-${package.version}";

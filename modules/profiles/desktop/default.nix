@@ -165,7 +165,6 @@ in
       azPkgs.watch-video
 
       # photography packages
-      azPkgs.art-dimmed
       azPkgs.darktable-dimmed
       pkgs.digikam
       pkgs.hugin

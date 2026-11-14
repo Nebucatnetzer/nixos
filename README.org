@@ -48,7 +48,6 @@ top -b -n 1 -o %CPU | head -15
 
 | Tool                   | Description                                    |
 |------------------------+------------------------------------------------|
-| art                    | RAW image processor                            |
 | digikam                | Photo organiser and image viewer               |
 | hugin                  | Panoramic image stitcher                       |
 | rapid-photo-downloader | Import photos from cameras and memory cards    |

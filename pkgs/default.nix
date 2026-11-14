@@ -8,10 +8,6 @@ let
   mediaPaths = import ./mediaPaths.nix;
 in
 rec {
-  art-dimmed = pkgs.callPackage ./dimmed-launcher {
-    package = pkgs.art;
-    binaryName = "ART";
-  };
   az-emacs = pkgs.callPackage ./az-emacs {
     inherit unstable-pkgs;
     emacsDir = ../modules/home-manager/programs/emacs;

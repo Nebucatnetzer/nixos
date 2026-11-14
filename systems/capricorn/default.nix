@@ -121,7 +121,6 @@ in
       extraPackages = [
         pkgs.intel-compute-runtime
         pkgs.intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
-        pkgs.intel-ocl
         pkgs.libvdpau-va-gl
         pkgs.vpl-gpu-rt
       ];

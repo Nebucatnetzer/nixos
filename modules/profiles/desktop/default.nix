@@ -96,6 +96,9 @@ in
       ];
       preferences = {
         "browser.aboutConfig.showWarning" = false; # Warning when opening about:config
+        "network.offline-mirrors-connectivity" = true; # No network link means offline mode, so restored tabs load from the cache
+        "browser.cache.disk.smart_size.enabled" = false; # Use the fixed size below, not the automatic max of 1 GiB
+        "browser.cache.disk.capacity" = 4194304; # 4 GiB in KiB, keeps pages of old tabs cached longer
         "browser.contentblocking.category" = "strict"; # Strong content blocking
         "browser.disableResetPrompt" = true; # "Looks like you haven't started Firefox in a while."
         "browser.ml.chat.enabled" = false; # Disable ChatGPT

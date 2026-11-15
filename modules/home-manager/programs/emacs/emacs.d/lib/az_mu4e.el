@@ -12,9 +12,9 @@
     (evil-set-initial-state 'mu4e-compose-mode 'insert)
     (evil-define-key 'normal mu4e-view-mode-map (kbd "SPC") 'god-execute-with-current-bindings)
 
-    ;; use msmtp
+    ;; msmtpq queues mail when offline. A systemd timer sends the queue later.
     (setopt message-send-mail-function 'message-send-mail-with-sendmail
-            sendmail-program "msmtp")
+            sendmail-program "msmtpq")
 
     (setopt mail-user-agent 'mu4e-user-agent
 
@@ -33,7 +33,6 @@
     (setopt message-dont-reply-to-names #'mu4e-personal-or-alternative-address-or-empty-p
             message-signature nil
             mu4e-get-mail-command "offlineimap -qo"
-            mu4e-update-interval 120
             mu4e-headers-auto-update t
             mu4e-compose-format-flowed t
             mu4e-index-update-in-background t

@@ -20,9 +20,17 @@ let
       "${dataRoot}/${folder.path or name}";
 in
 {
-  devices = lib.genAttrs devices (device: {
-    id = azHosts.${device}.syncthingId;
-  });
+  devices = lib.genAttrs devices (
+    device:
+    let
+      host = azHosts.${device};
+    in
+    {
+      id = host.syncthingId;
+      # Try the WireGuard address first; dynamic covers LAN discovery and hosts without wg.
+      addresses = lib.optional (host ? wgIp) "tcp://${host.wgIp}:22000" ++ [ "dynamic" ];
+    }
+  );
   folders = lib.mapAttrs (name: folder: {
     inherit (folder) id;
     label = name;

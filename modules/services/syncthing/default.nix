@@ -13,7 +13,6 @@ in
 {
   services.syncthing = {
     enable = true;
-    openDefaultPorts = true;
     user = config.az-username;
     dataDir = "${homeDirectory}/.config/syncthing";
     guiAddress = lib.mkIf exposeWebInterface "0.0.0.0:8384";
@@ -27,5 +26,14 @@ in
   systemd.tmpfiles.rules = lib.optional (
     !lib.hasPrefix homeDirectory dataRoot
   ) "d ${dataRoot} 0700 ${config.az-username} ${config.az-username} -";
-  networking.firewall.interfaces.wg0.allowedTCPPorts = lib.optional exposeWebInterface 8384;
+  networking.firewall = {
+    # sync protocol: TCP and QUIC
+    allowedTCPPorts = [ 22000 ];
+    allowedUDPPorts = [
+      22000
+      # local discovery broadcasts
+      21027
+    ];
+    interfaces.wg0.allowedTCPPorts = lib.optional exposeWebInterface 8384;
+  };
 }

@@ -192,7 +192,23 @@
 
 (use-package tramp
   :config
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  ;; VC runs several git commands over TRAMP for each remote file. Magit still works.
+  (setopt vc-ignore-dir-regexp
+          (format "%s\\|%s" vc-ignore-dir-regexp tramp-file-name-regexp))
+  ;; Lock files and auto-save-visited cost a remote round trip each time.
+  (setopt remote-file-name-inhibit-locks t
+          remote-file-name-inhibit-auto-save-visited t)
+  ;; Start async processes (Magit, Eglot, Flymake) with their own ssh call,
+  ;; not through the TRAMP shell.
+  (connection-local-set-profile-variables
+   'az-remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+  (connection-local-set-profiles
+   '(:application tramp)
+   'az-remote-direct-async-process)
+  ;; Magit needs this when processes start without the TRAMP shell.
+  (setopt magit-tramp-pipe-stty-settings 'pty))
 
 (use-package dired
   :hook (dired-mode . az-truncate-lines)

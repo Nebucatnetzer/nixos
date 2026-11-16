@@ -11,12 +11,16 @@ in
 {
   imports = [
     "${inputs.self}/modules/profiles/management"
+    "${inputs.self}/modules/programs/adb"
     "${inputs.self}/modules/programs/calibre"
+    "${inputs.self}/modules/programs/distrobox"
+    "${inputs.self}/modules/programs/droidcam"
     "${inputs.self}/modules/programs/kdeconnect"
     "${inputs.self}/modules/programs/libimobiledevice"
     "${inputs.self}/modules/programs/rapid-photo-downloader"
     "${inputs.self}/modules/programs/signal"
     "${inputs.self}/modules/services/idle-maintenance"
+    "${inputs.self}/modules/services/kde"
     "${inputs.self}/modules/services/pipewire"
     "${inputs.self}/modules/services/video-image"
   ];

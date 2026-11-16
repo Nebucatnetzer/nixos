@@ -8,12 +8,14 @@ from pathlib import Path
 from typing import Any
 
 import yt_dlp
+from yt_dlp.postprocessor import PostProcessor
 
 BYTES_PER_GIB = 1024**3
 PLAYLIST_OUTPUT = "%(playlist)s/%(playlist_index)s - %(title)s [%(id)s].%(ext)s"
 # yt-dlp sizes are estimates. Ask for 10 % more free space.
 SIZE_MARGIN = 1.1
 # Each run gets its own directory here. It is removed when the run ends.
+# yt-dlp finishes every video in it, then MoveIntoDestinationPP moves the video out.
 TEMP_ROOT = Path.home() / "Downloads" / ".yt-dlp"
 # YouTube IDs are 11 characters. yt-dlp puts them in brackets in the filename.
 YOUTUBE_ID_PATTERN = re.compile(r"\[([A-Za-z0-9_-]{11})\]")
@@ -83,15 +85,60 @@ def missing_space_message(directory: Path, needed_bytes: int) -> str | None:
     return f"Not enough space in {directory}: needs {needed_gib:.1f} GiB, has {free_gib:.1f} GiB."
 
 
-def yt_dlp_options(destination: Path, run_directory: Path, mode: str) -> list[str]:
+def copy_then_rename(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # The random hidden name has no YouTube ID, so a leftover never counts as downloaded.
+    with tempfile.NamedTemporaryFile(
+        dir=target.parent, prefix=".", suffix=".part", delete=False
+    ) as partial_file:
+        partial_path = Path(partial_file.name)
+    try:
+        shutil.copy2(source, partial_path)
+        partial_path.replace(target)
+    except BaseException:
+        # Also on Ctrl+C: never leave a partial copy in the destination.
+        partial_path.unlink(missing_ok=True)
+        raise
+    source.unlink()
+
+
+class MoveIntoDestinationPP(PostProcessor):
+    """Move each finished video from the run directory into the destination."""
+
+    def __init__(
+        self, run_directory: Path, destination: Path, stop_when_full: bool
+    ) -> None:
+        super().__init__()
+        self._run_directory = run_directory
+        self._destination = destination
+        self._stop_when_full = stop_when_full
+
+    def run(self, info: dict[str, Any]) -> tuple[list[str], dict[str, Any]]:
+        source = Path(info["filepath"])
+        target = self._destination / source.relative_to(self._run_directory)
+        message = missing_space_message(self._destination, source.stat().st_size)
+        if message is not None:
+            # Delete it now, so a long run does not fill the run directory.
+            source.unlink()
+            if self._stop_when_full:
+                raise yt_dlp.utils.RejectedVideoReached(message)
+            raise yt_dlp.utils.PostProcessingError(message)
+        self.to_screen(f'Moving "{source.name}" to {target.parent}')
+        copy_then_rename(source, target)
+        info["filepath"] = str(target)
+        return [], info
+
+
+def yt_dlp_options(run_directory: Path, mode: str) -> list[str]:
     options = [
         "--cookies-from-browser",
         "firefox",
         "--remux-video=mkv",
         "--sponsorblock-mark=all",
         "--sponsorblock-remove=sponsor,selfpromo,interaction",
-        f"--paths=home:{destination}",
-        f"--paths=temp:{run_directory}",
+        # No separate temp path, so yt-dlp does not move the video itself.
+        # MoveIntoDestinationPP moves it from here into the destination.
+        f"--paths=home:{run_directory}",
     ]
     if mode == "video":
         options.append("--no-playlist")
@@ -119,19 +166,25 @@ def main() -> int:
     TEMP_ROOT.mkdir(parents=True, exist_ok=True)
     existing_ids = set(existing_youtube_ids(arguments.video_root))
     with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as run_directory_name:
-        options = yt_dlp_options(
-            arguments.destination, Path(run_directory_name), arguments.mode
-        )
+        run_directory = Path(run_directory_name)
+        stop_when_full = arguments.mode == "playlist"
+        options = yt_dlp_options(run_directory, arguments.mode)
         parsed = yt_dlp.parse_options([*options, *yt_dlp_arguments])
         ydl_options = parsed.ydl_opts
         ydl_options["match_filter"] = make_match_filter(
             existing_ids,
             arguments.destination,
-            arguments.mode == "playlist",
+            stop_when_full,
             ydl_options.get("match_filter"),
         )
         try:
             with yt_dlp.YoutubeDL(ydl_options) as downloader:
+                downloader.add_post_processor(
+                    MoveIntoDestinationPP(
+                        run_directory, arguments.destination, stop_when_full
+                    ),
+                    when="after_move",
+                )
                 return downloader.download(parsed.urls)
         except yt_dlp.utils.DownloadCancelled:
             # Same exit code as yt-dlp's own main().

@@ -4,6 +4,7 @@ import shutil
 import sys
 import tempfile
 from collections.abc import Callable
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +31,49 @@ YT_DLP_ERRORS = (
 MatchFilter = Callable[..., str | None]
 
 
+def video_label(info: dict[str, Any]) -> str:
+    title = info.get("title") or "unknown title"
+    return f"{title} [{info['id']}]"
+
+
+def print_section(heading: str, lines: list[str]) -> None:
+    print(f"{heading}: {len(lines)}")
+    for line in lines:
+        print(f"  {line}")
+
+
+@dataclass
+class RunReport:
+    """What happened to each video of this run. All dicts use the video ID as key."""
+
+    # Every video that reached the match filter.
+    seen: dict[str, str] = field(default_factory=dict)
+    downloaded: dict[str, str] = field(default_factory=dict)
+    skipped: dict[str, str] = field(default_factory=dict)
+
+    def record_seen(self, info: dict[str, Any]) -> None:
+        # The second check has the full info, so its title replaces the first one.
+        self.seen[info["id"]] = video_label(info)
+
+    def record_downloaded(self, info: dict[str, Any]) -> None:
+        self.downloaded[info["id"]] = video_label(info)
+
+    def record_skipped(self, info: dict[str, Any], reason: str) -> None:
+        self.skipped[info["id"]] = f"{video_label(info)}: {reason}"
+
+    def print_summary(self) -> None:
+        # yt-dlp has printed an error for each of these.
+        failed: list[str] = []
+        for video_id, label in self.seen.items():
+            if video_id in self.downloaded or video_id in self.skipped:
+                continue
+            failed.append(label)
+        print()
+        print_section("Downloaded", list(self.downloaded.values()))
+        print_section("Skipped", list(self.skipped.values()))
+        print_section("Failed", failed)
+
+
 def existing_youtube_ids(video_root: Path) -> list[str]:
     youtube_ids: list[str] = []
     for path in video_root.rglob("*"):
@@ -47,16 +91,25 @@ def make_match_filter(
     destination: Path,
     stop_when_full: bool,
     user_filter: MatchFilter | None,
+    report: RunReport,
 ) -> MatchFilter:
     # yt-dlp passes incomplete as a bool or as a set of format fields.
     def match_filter(
         info: dict[str, Any], *, incomplete: bool | set[str]
     ) -> str | None:
+        # yt-dlp also checks the playlist itself. It has no video ID.
+        if "id" not in info:
+            if user_filter is None:
+                return None
+            return user_filter(info, incomplete=incomplete)
+        report.record_seen(info)
         if user_filter is not None:
             user_reason = user_filter(info, incomplete=incomplete)
             if user_reason is not None:
+                report.record_skipped(info, user_reason)
                 return user_reason
         if info.get("id") in existing_ids:
+            report.record_skipped(info, "already in the video directory")
             return f"{info['id']} already exists in the video directory"
         # Playlist entries are checked twice: first without formats, then with.
         if incomplete:
@@ -68,7 +121,10 @@ def make_match_filter(
             )
             return None
         message = missing_space_message(destination, int(size * SIZE_MARGIN))
-        if message is not None and stop_when_full:
+        if message is None:
+            return None
+        report.record_skipped(info, message)
+        if stop_when_full:
             # yt-dlp prints the message and cancels the remaining downloads.
             raise yt_dlp.utils.RejectedVideoReached(message)
         return message
@@ -106,12 +162,17 @@ class MoveIntoDestinationPP(PostProcessor):
     """Move each finished video from the run directory into the destination."""
 
     def __init__(
-        self, run_directory: Path, destination: Path, stop_when_full: bool
+        self,
+        run_directory: Path,
+        destination: Path,
+        stop_when_full: bool,
+        report: RunReport,
     ) -> None:
         super().__init__()
         self._run_directory = run_directory
         self._destination = destination
         self._stop_when_full = stop_when_full
+        self._report = report
 
     def run(self, info: dict[str, Any]) -> tuple[list[str], dict[str, Any]]:
         source = Path(info["filepath"])
@@ -120,12 +181,14 @@ class MoveIntoDestinationPP(PostProcessor):
         if message is not None:
             # Delete it now, so a long run does not fill the run directory.
             source.unlink()
+            self._report.record_skipped(info, message)
             if self._stop_when_full:
                 raise yt_dlp.utils.RejectedVideoReached(message)
             raise yt_dlp.utils.PostProcessingError(message)
         self.to_screen(f'Moving "{source.name}" to {target.parent}')
         copy_then_rename(source, target)
         info["filepath"] = str(target)
+        self._report.record_downloaded(info)
         return [], info
 
 
@@ -168,6 +231,7 @@ def main() -> int:
     with tempfile.TemporaryDirectory(dir=TEMP_ROOT) as run_directory_name:
         run_directory = Path(run_directory_name)
         stop_when_full = arguments.mode == "playlist"
+        report = RunReport()
         options = yt_dlp_options(run_directory, arguments.mode)
         parsed = yt_dlp.parse_options([*options, *yt_dlp_arguments])
         ydl_options = parsed.ydl_opts
@@ -176,12 +240,13 @@ def main() -> int:
             arguments.destination,
             stop_when_full,
             ydl_options.get("match_filter"),
+            report,
         )
         try:
             with yt_dlp.YoutubeDL(ydl_options) as downloader:
                 downloader.add_post_processor(
                     MoveIntoDestinationPP(
-                        run_directory, arguments.destination, stop_when_full
+                        run_directory, arguments.destination, stop_when_full, report
                     ),
                     when="after_move",
                 )
@@ -192,6 +257,9 @@ def main() -> int:
         except YT_DLP_ERRORS:
             # yt-dlp has already printed the error.
             return 1
+        finally:
+            # Also after Ctrl+C, so the report shows what this run finished.
+            report.print_summary()
 
 
 if __name__ == "__main__":

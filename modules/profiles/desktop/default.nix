@@ -12,6 +12,7 @@ in
   imports = [
     "${inputs.self}/modules/profiles/management"
     "${inputs.self}/modules/programs/calibre"
+    "${inputs.self}/modules/programs/kdeconnect"
     "${inputs.self}/modules/programs/libimobiledevice"
     "${inputs.self}/modules/programs/rapid-photo-downloader"
     "${inputs.self}/modules/programs/signal"

@@ -135,10 +135,6 @@ in
   environment.systemPackages = [
     foxFlssWrapper
   ];
-  programs = {
-    kdeconnect.enable = true;
-  };
-
   services.logind.settings.Login.HandleLidSwitch = "suspend";
   # Hibernation is broken on this machine. Disallow it so logind refuses it and KDE hides it.
   systemd.sleep.settings.Sleep = {

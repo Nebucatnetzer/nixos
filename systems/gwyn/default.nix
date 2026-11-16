@@ -45,7 +45,6 @@ in
 {
   imports = [
     inputs.nixos-hardware.nixosModules.dell-precision-5530
-    "${inputs.self}/modules/hardware/bluetooth"
     "${inputs.self}/modules/hardware/common-x86"
     "${inputs.self}/modules/misc/initrd-ssh"
     "${inputs.self}/modules/profiles/management"

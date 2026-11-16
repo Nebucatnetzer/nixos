@@ -30,6 +30,16 @@ let
     '';
     passthru.scriptName = "move_watched.lua";
   };
+  save-position-on-skip = stdenvNoCC.mkDerivation rec {
+    name = "mpv-save-position-on-skip";
+    src = ./save_position_on_skip.lua;
+    dontBuild = true;
+    dontUnpack = true;
+    installPhase = ''
+      install -Dm644 ${src} $out/share/mpv/scripts/save_position_on_skip.lua
+    '';
+    passthru.scriptName = "save_position_on_skip.lua";
+  };
 in
 mpv.override {
   mpv-unwrapped = mpv-unwrapped.override {
@@ -38,6 +48,7 @@ mpv.override {
   scripts = [
     delete-file
     move-watched
+    save-position-on-skip
     mpvScripts.sponsorblock
   ];
   youtubeSupport = true;

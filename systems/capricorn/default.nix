@@ -59,6 +59,7 @@ in
       IP = config.az-hosts."${hostname}".wgIp;
       privateKeyFile = config.age.secrets.wireguardPrivateKey.path;
     })
+    ./speaker-corrections
   ];
 
   age.secrets.wireguardPrivateKey.file = "${inputs.self}/scrts/capricorn_wg.key.age";

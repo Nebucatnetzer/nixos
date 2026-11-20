@@ -55,8 +55,8 @@ Cycle with **`shift+tab`**; the footer shows the current mode and task progress.
   `>/dev/null`) passes through. This is a denylist on purpose: upstream's allowlist has no
   `nix`/`pytest`/`cargo`/`make` entries and would block the verification step.
 
-Writes are gated **in-app**, not by the sandbox: `pi_wrapper.nix` binds `$PWD` writable, so
-the extension is the real gate. There are deliberately no per-tool-call approval prompts.
+Writes are gated **in-app**, not by the sandbox: `pi_wrapper.nix` binds the project root
+writable, so the extension is the real gate. There are deliberately no per-tool-call approval prompts.
 
 ### Plan → guide handoff
 
@@ -183,10 +183,20 @@ default:
 
 ## Sandbox
 
-`pi_wrapper.nix` runs pi under `bwrap`: root filesystem read-only, `$PWD` and `~/.pi`
-bound writable, network open (needed for the API + `web_fetch`), TS cache in the `~/.cache`
-tmpfs. `$PWD` is writable so the in-app mode gate is the thing that decides — note `~/.claude`
-is *not* bound, so Claude Code's skills are not reachable from inside pi's sandbox. Extensions must import only bundled modules (`@earendil-works/pi-*`, `typebox`,
+`pi_wrapper.nix` runs pi under `bwrap`: root filesystem read-only, the git toplevel (or
+`$PWD` outside a repo) and `~/.pi` bound writable, network open (needed for the API +
+`web_fetch`), TS cache in the `~/.cache` tmpfs. The project root is writable so the in-app
+mode gate is the thing that decides. The wrapper refuses to start in `$HOME` or `/`.
+
+Hidden or read-only inside the sandbox:
+
+- `/run/user/$UID` (ssh-agent, gpg-agent, D-Bus, tmux, Emacs sockets) and `/run/WSL`
+  (Windows interop), so pi cannot start processes outside the sandbox.
+- `.git/config` and `.git/hooks` are read-only, so pi cannot plant commands that git runs
+  later. Commands that rewrite the config (`git remote add`, `--set-upstream`) fail inside pi.
+- `~/.claude` is *not* bound, so Claude Code's skills are not reachable from inside pi's sandbox.
+
+Extensions must import only bundled modules (`@earendil-works/pi-*`, `typebox`,
 `node:*`) — no npm install happens in the sandbox.
 
 ## Adding resources

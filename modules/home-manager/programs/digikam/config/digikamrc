@@ -47,7 +47,7 @@ Preview Image Smooth Scaled=false
 Preview Load Full Image Size=true
 Preview Magnifier Size=150
 Preview Magnifier Zoom Factor=1.5
-Preview Overlay=false
+Preview Overlay=true
 Preview Raw Use Loading Data=0
 Preview Scale Fit To Window=false
 Preview Show Icons=true
@@ -97,10 +97,10 @@ TreeView Font=Noto Sans,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
 Update Type=0
 
 [AlbumFolderView Sidebar]
-CurrentIndex=8217
-Expansion=0,8083,8084,8095,8096,8209,8216,8217,8225,-3,8229,8259,9328,9329,9330,9331,9332,9335,8212
+CurrentIndex=8225
+Expansion=0,8083,8084,8096,8209,8223,8224,8225,8226,-3,8229,8259,9328,9329,9330,9331,9332,9335,8212,8216
 RestoreChecked=false
-Selection=8217
+Selection=8225
 SortColumn=0
 SortOrder=0
 
@@ -135,7 +135,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=375,4
+TagComboBox-Selection=406,4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -252,15 +252,13 @@ EnableCM=true
 GamutCheckMaskColor=126,255,255
 LastMismatchBehavior=2049
 LastMissingProfileBehavior=2050
-LastSpecifiedAssignProfile[$e]=/nix/store/q25l3nh0rk0kfk5x9qmb27m9ik0mn2d0-digikam-9.1.0/share/digikam/profiles/
+LastSpecifiedAssignProfile[$e]=/nix/store/wfw8byf07v3lgh8pisy0zdhrrxyb3ndd-digikam-9.1.0/share/digikam/profiles/
 LastSpecifiedInputProfile=
 LastUncalibratedBehavior=2080
 ManagedPreviews=true
 ManagedView=true
-MonitorProfileFile[$e]=/nix/store/8mm5fvzn5hn0gli9yg2aar50hg6jv942-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
 ProofingRenderingIntent=3
 RenderingIntent=0
-WorkProfileFile[$e]=/nix/store/8mm5fvzn5hn0gli9yg2aar50hg6jv942-digikam-9.1.0/share/digikam/profiles/srgb-d65.icm
 
 [Color Names]
 ColorName_black=Black
@@ -1013,7 +1011,7 @@ tagPaths=1
 
 [Database Settings]
 Database Connectoptions=
-Database Encrypted Password=AwLu7u4=
+Database Encrypted Password=AwIEBAQ=
 Database Hostname=
 Database Name=/home/andreas/data/98_applications/digikam/
 Database Name Face=/home/andreas/data/98_applications/digikam/
@@ -1048,7 +1046,7 @@ Minimized=false
 RestoreSize=-1
 
 [Digikam Right Sidebar]
-ActiveTab=0
+ActiveTab=6
 DigikamProperties Expanded=true
 FileProperties Expanded=true
 ItemProperties Expanded=true
@@ -1242,7 +1240,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=375,4
+TagComboBox-Selection=406,4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 Use Full CPU=false
@@ -1278,10 +1276,10 @@ Last search album tag relation=0
 Last search results restriction=0
 Lower bound for minimum similarity=40
 TagComboBox-Checked=
-TagComboBox-CurrentIndex=375
+TagComboBox-CurrentIndex=406
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=375
+TagComboBox-Selection=406
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -1425,7 +1423,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=375,4
+TagComboBox-Selection=406,4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -1706,7 +1704,7 @@ FullScreen Hide ToolBars=false
 Horizontal Splitter State=AAAA/wAAAAEAAAADAAABfQAAAGkAAAF9Af////8AAAAAAQE=
 Navigate By Pair=false
 Show Thumbbar=true
-ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAAvAAAAAwPwBAAAAAfsAAAAmAGwAaQBnAGgAdAB0AGEAYgBsAGUAXwB0AGgAdQBtAGIAYgBhAHIAAAAAAAAAC8AAAABpAP///wAAC8AAAAbuAAAABAAAAAQAAAAIAAAACPwAAAAA
+ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAAvAAAAAwPwBAAAAAfsAAAAmAGwAaQBnAGgAdAB0AGEAYgBsAGUAXwB0AGgAdQBtAGIAYgBhAHIAAAAAAAAAC8AAAABpAP///wAAC8AAAAevAAAABAAAAAQAAAAIAAAACPwAAAAA
 
 [LightTable Settings][Left Sidebar]
 ActiveTab=0
@@ -1873,16 +1871,16 @@ Version Properties Tab=versions
 Version Properties View Mode=2
 
 [MainWindow]
-InitialAlbumID=8217
-SplitterState=AAAA/wAAAAEAAAADAAABbQAABEoAAAF9Af////8AAAAAAQE=
-ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAAvKAAAAifwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAAC8oAAABpAP///wAAC8oAAAevAAAABAAAAAQAAAAIAAAACPwAAAAA
+InitialAlbumID=8225
+SplitterState=AAAA/wAAAAEAAAADAAABbQAAC8oAAAF9Af////8AAAAAAQE=
+ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAARKAAAAifwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAABEoAAABpAP///wAABEoAAAPvAAAABAAAAAQAAAAIAAAACPwAAAAA
 
 [MaintenanceDlg Settings]
-AlbumComboBox-Checked=6985,6887,6923,6846,7034,7030,6987,6801,6992,6789,6802,6879,6836,6804,6806,6799,6931,6793,6791,6967,6809,6820,6834,6788,6976,6979,6816,6975,6920,7012,6994,6977,6983,6811,6869,6866,6974,6817,6819,5674,6822,6854,6812,6814,6927,7041,6826,6862,6914,7002,6813,6827,6823,6794,6803,6807,6831,-2,6790,6800,6830,5676,6824,6857,7009,6837,6828,7000,6912,6959,6871,6808,6796,6978,6818,6981,6877,5671,6952,7027,6833,7035,6795,6805,6832,6797,6840,6821,6798,6810,7004,6850,6875,6792,6829,6815,7014,6825,6835,6864,5678,6873
-AlbumComboBox-CurrentIndex=5782
-AlbumComboBox-Expansion=5665,4229
+AlbumComboBox-Checked=9572,9555,9592,9458,9491,9587,8084,9450,9533,9526,9588,9547,9462,9477,-2,9457,9546,9509,8093,9494,9492,9449,9571,9505,9514,9517,9584,9504,9560,9585,9464,9502,9479,9499,9554,9465,8092,9549,9488,9519,9586,9597,9559,9461,9454,9452,9568,8085,9594,8090,9523,9598,9453,9501,9507,9550,9516,8095,9596,9478,8089,9558,9521,9541,9574,9595,9513,9525,9573,9500,9537,9467,9510,9591,9456,9503,9485,9455,9460,9490,9508,9459,9520,9497,9527,9577,8096,9532,9567,9576,9561,9556,9495,9569,9553,9570,9476,9534,9487,9563,9518,8086,9498,9565,9580,9545,9566,9579,9538,9535,8091,9451,9542,9493,9539,9578,9496,9599,9481,9552,9524,9528,9506,9581,9543,9480,9529,9515,9544,9486,9593,9466,9536,8094,9575,9583,9512,9540,9551,9582,9489,9557,9530,9511,9531,9548,9589
+AlbumComboBox-CurrentIndex=8084
+AlbumComboBox-Expansion=8083,8229
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=5782
+AlbumComboBox-Selection=8084
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -1925,7 +1923,7 @@ Image Quality Use Full CPU=false
 ImageQualitySorter=false
 ImageQualitySorter Expanded=false
 MetadataSync=false
-MetadataSync Expanded=false
+MetadataSync Expanded=true
 NewItems=false
 NewItems Expanded=false
 Options Expanded=true
@@ -1942,7 +1940,7 @@ TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 Thumbnails=false
 Thumbnails Expanded=false
-UseLastSettings=true
+UseLastSettings=false
 UseMutiCoreCPU=false
 UseWholeAlbumsEntry=false
 UseWholeTagsEntry=false
@@ -1978,7 +1976,7 @@ EXIF Set Orientation=true
 ExifTool Path=
 Metadata Writing Mode=0
 Read Metadata From Files With ExifTool=true
-Rescan File If Modified=true
+Rescan File If Modified=false
 Rotate By Internal Flag=true
 Rotate By Metadata Flag=true
 Rotate Contents Lossless=true
@@ -2080,7 +2078,7 @@ UseWholeAlbumsEntry=false
 2 screens: Width=1411
 3840x2160 screen: Height=2088
 3840x2160 screen: Width=1920
-AlbumView Tab=0
+AlbumView Tab=2
 Albumview Tab=0
 Camera Tab=0
 Collections Tab=0
@@ -2088,10 +2086,10 @@ Editor Tab=0
 Geolocation Tab=0
 ICC Tab=0
 Metadata SubTab=0
-Metadata Tab=0
+Metadata Tab=3
 Misc Tab=0
 Plugin Tab=0
-Setup Page=4
+Setup Page=2
 Template Tab=0
 ToolTip Tab=0
 
@@ -2308,7 +2306,7 @@ CaseSensitive=0
 [TrashView]
 TrashViewColumn_0=418
 TrashViewColumn_1=1031
-TrashViewColumn_2=1474
+TrashViewColumn_2=1565
 
 [Versioning Settings]
 Auto-Save When Closing Editor=false

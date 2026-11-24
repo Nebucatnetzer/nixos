@@ -143,6 +143,10 @@ _: {
       "__pycache__/"
 
       "az_private/"
+
+      # Shared path with AI agents because their scratchpad is not available outside the
+      # sandbox.
+      "workbench/"
     ];
   };
   # raw files

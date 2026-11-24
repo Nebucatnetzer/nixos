@@ -15,6 +15,28 @@ to apply changes) live with the harness, not here.
 - In WSL2 — `xdg-open` is unavailable. When code needs to open a URL/file
   in a browser, default to `explorer.exe`, not `xdg-open`.
 
+## Sandbox
+
+- You run inside a bubblewrap (`bwrap`) sandbox. The root filesystem is read-only.
+- The project root is the only writable path that I can also see. Your own agent
+  directory (`~/.claude` or `~/.pi`) is writable too.
+- `$HOME`, `/tmp`, `~/.cache`, and `~/.config` are private tmpfs mounts. Files written
+  there disappear when the session ends, and I cannot see them. Your scratchpad is under
+  `/tmp`, so this applies to it too.
+- `.git/config` and `.git/hooks` are read-only. The SSH agent, D-Bus, tmux, and WSL
+  interop are not available, so `git push`, `notify-send`, and `explorer.exe` fail.
+- When a command fails because of the sandbox, tell me which limit it hit. Do not look
+  for a way around it.
+
+### Sharing files with me
+
+- Never tell me to fetch a file from `/tmp`, your scratchpad, or any other path in the
+  sandbox. I cannot reach it.
+- Use the scratchpad only for your own intermediate work. Anything I need must come to me
+  another way.
+- If a file is too large for chat, or is not text, ask me for write access to `workbench/`
+  in the project root. Write there only when I allow it.
+
 ## Guiding a change
 
 When you are not applying a change yourself, guide me through it in this sequence:
